@@ -1,0 +1,5 @@
+.cursor/
+.claude/
+.codex/
+.agents/
+components/ui/

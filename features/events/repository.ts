@@ -14,17 +14,23 @@ export async function listRecentEvents(params: {
     orgId: string;
     limit?: number;
     offset?: number;
+    eventName?: string;
 }): Promise<AppEvent[]> {
     const supabase = await createClient();
     const limit = params.limit ?? 10;
     const offset = params.offset ?? 0;
 
-    const { data, error } = await supabase
+    let query = supabase
         .from("app_events")
         .select("*")
         .eq("org_id", params.orgId)
-        .order("created_at", { ascending: false })
-        .range(offset, offset + limit - 1);
+        .order("created_at", { ascending: false });
+
+    if (params.eventName) {
+        query = query.eq("event_name", params.eventName);
+    }
+
+    const { data, error } = await query.range(offset, offset + limit - 1);
 
     if (error) throw error;
 
@@ -38,6 +44,31 @@ export async function listRecentEvents(params: {
             createdAt: row.created_at,
         })
     );
+}
+
+/**
+ * Counts events for an organization, optionally filtered by event name.
+ */
+export async function countOrgEvents(params: {
+    orgId: string;
+    eventName?: string;
+}): Promise<number> {
+    const supabase = await createClient();
+
+    let query = supabase
+        .from("app_events")
+        .select("*", { count: "exact", head: true })
+        .eq("org_id", params.orgId);
+
+    if (params.eventName) {
+        query = query.eq("event_name", params.eventName);
+    }
+
+    const { count, error } = await query;
+
+    if (error) throw error;
+
+    return count ?? 0;
 }
 
 // ========== MUTATIONS ==========

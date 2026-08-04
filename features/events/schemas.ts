@@ -46,3 +46,12 @@ export const appEventSchema = z.object({
 
 export type LogAppEventInput = z.infer<typeof logAppEventInputSchema>;
 export type AppEvent = z.infer<typeof appEventSchema>;
+
+export const AUDIT_LOG_PAGE_SIZE = 20;
+
+export const auditLogQuerySchema = z.object({
+    page: z.coerce.number().int().min(1).default(1),
+    event: z.enum(Object.values(APP_EVENTS) as [AppEventName, ...AppEventName[]]).optional(),
+});
+
+export type AuditLogQuery = z.infer<typeof auditLogQuerySchema>;

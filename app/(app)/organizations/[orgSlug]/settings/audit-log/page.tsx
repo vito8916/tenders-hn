@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 
 import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
 import { AuditLogList } from "@/features/events/components/audit-log-list";
-import { listAuditLogService } from "@/features/events/services";
+import { listAuditLogPageService } from "@/features/events/services";
+import { auditLogQuerySchema } from "@/features/events/schemas";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { canViewSettings } from "@/features/organizations/rbac";
 import { getUserOrgRoleService } from "@/features/memberships/services";
@@ -12,10 +13,22 @@ import { getCurrentUser } from "@/lib/auth/get-current-user";
 
 async function AuditLogSettingsContent({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ orgSlug: string }>;
+	searchParams: Promise<{ page?: string; event?: string }>;
 }) {
 	const { orgSlug } = await params;
+	const rawSearchParams = await searchParams;
+
+	const parsedQuery = auditLogQuerySchema.safeParse({
+		page: rawSearchParams.page ?? "1",
+		event: rawSearchParams.event,
+	});
+	const query = parsedQuery.success
+		? parsedQuery.data
+		: auditLogQuerySchema.parse({ page: rawSearchParams.page ?? "1" });
+
 	const [{ sub: userId }, organization] = await Promise.all([
 		getCurrentUser(),
 		getOrganizationBySlugService(orgSlug),
@@ -34,10 +47,10 @@ async function AuditLogSettingsContent({
 		redirect(`/organizations/${orgSlug}/settings/account`);
 	}
 
-	const events = await listAuditLogService({
+	const data = await listAuditLogPageService({
 		orgId: organization.id,
 		userId,
-		limit: 50,
+		query,
 	});
 
 	return (
@@ -45,19 +58,21 @@ async function AuditLogSettingsContent({
 			title="Audit log"
 			description="Track changes and activity across your organization."
 		>
-			<AuditLogList events={events} />
+			<AuditLogList orgSlug={orgSlug} data={data} />
 		</SettingsTemplatePage>
 	);
 }
 
 export default function AuditLogSettingsPage({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ orgSlug: string }>;
+	searchParams: Promise<{ page?: string; event?: string }>;
 }) {
 	return (
 		<Suspense fallback={<SettingsFormSkeleton sections={1} />}>
-			<AuditLogSettingsContent params={params} />
+			<AuditLogSettingsContent params={params} searchParams={searchParams} />
 		</Suspense>
 	);
 }

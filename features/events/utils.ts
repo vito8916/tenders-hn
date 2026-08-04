@@ -43,3 +43,58 @@ export function formatActorName(params: {
 }) {
 	return params.fullName?.trim() || params.email || "Unknown user";
 }
+
+export const EVENT_FILTER_GROUPS = [
+	{
+		label: "Organization",
+		events: [
+			APP_EVENTS.ORGANIZATION_CREATED,
+			APP_EVENTS.ORGANIZATION_UPDATED,
+			APP_EVENTS.ORGANIZATION_DELETED,
+			APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED,
+		],
+	},
+	{
+		label: "Invitations",
+		events: [
+			APP_EVENTS.INVITATION_SENT,
+			APP_EVENTS.INVITATION_ACCEPTED,
+			APP_EVENTS.INVITATION_REVOKED,
+		],
+	},
+	{
+		label: "Members",
+		events: [
+			APP_EVENTS.MEMBER_ROLE_CHANGED,
+			APP_EVENTS.MEMBER_REMOVED,
+			APP_EVENTS.MEMBER_LEFT,
+		],
+	},
+	{
+		label: "Projects",
+		events: [
+			APP_EVENTS.PROJECT_CREATED,
+			APP_EVENTS.PROJECT_DELETED,
+			APP_EVENTS.PROJECT_MEMBER_ASSIGNED,
+			APP_EVENTS.PROJECT_MEMBER_UNASSIGNED,
+		],
+	},
+] as const;
+
+export function auditLogHref(
+	orgSlug: string,
+	query: { page?: number; event?: string | null }
+) {
+	const params = new URLSearchParams();
+
+	if (query.page && query.page > 1) {
+		params.set("page", String(query.page));
+	}
+
+	if (query.event) {
+		params.set("event", query.event);
+	}
+
+	const qs = params.toString();
+	return `/organizations/${orgSlug}/settings/audit-log${qs ? `?${qs}` : ""}`;
+}

@@ -12,7 +12,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { InvitationCardSkeleton } from "@/components/shared/invitation-card-skeleton";
 
 function InvitationNotice({ title, description }: { title: string; description: string }) {
     return (
@@ -28,10 +28,6 @@ function InvitationNotice({ title, description }: { title: string; description: 
             </CardContent>
         </Card>
     );
-}
-
-function InvitationSkeleton() {
-    return <Skeleton className="h-64 w-full max-w-md rounded-xl" />;
 }
 
 async function InvitationContent({ params }: { params: Promise<{ token: string }> }) {
@@ -89,7 +85,7 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
 export default function InvitationPage({ params }: { params: Promise<{ token: string }> }) {
     return (
         <main className="flex min-h-svh items-center justify-center p-6">
-            <Suspense fallback={<InvitationSkeleton />}>
+            <Suspense fallback={<InvitationCardSkeleton />}>
                 <InvitationContent params={params} />
             </Suspense>
         </main>

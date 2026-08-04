@@ -6,7 +6,7 @@ import { listProjectsWithFavoritesByOrgService } from "@/features/projects/servi
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { redirect } from "next/navigation";
 import { ProjectSheet } from "@/features/projects/components/project-sheet";
-import ProjectsTableSkeleton from "@/features/projects/components/projects-table-skeleton";
+import { ProjectsListSkeleton } from "@/features/projects/components/projects-list-skeleton";
 
 async function ProjectsList({
     params,
@@ -57,7 +57,7 @@ export default function ProjectsPage({
 }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 lg:p-6 px-4 lg:px-8">
-            <Suspense fallback={<ProjectsTableSkeleton />}>
+            <Suspense fallback={<ProjectsListSkeleton showHeader />}>
                 <ProjectsList params={params} />
             </Suspense>
         </div>

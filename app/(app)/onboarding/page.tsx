@@ -4,7 +4,7 @@ import { getCurrentUserWithProfile } from "@/lib/auth/get-current-user";
 import { OnboardingStepper } from "@/features/onboarding/components/onboarding-stepper";
 import { listMyPendingInvitationsService } from "@/features/invitations/services";
 import { listOrganizationsByUserService } from "@/features/organizations/services";
-import { Skeleton } from "@/components/ui/skeleton";
+import { OnboardingSkeleton } from "@/components/shared/onboarding-skeleton";
 
 async function OnboardingContent() {
     const { user, profile } = await getCurrentUserWithProfile();
@@ -35,15 +35,6 @@ async function OnboardingContent() {
             }))}
             hasExistingMembership={organizations.length > 0}
         />
-    );
-}
-
-function OnboardingSkeleton() {
-    return (
-        <div className="w-full space-y-6">
-            <Skeleton className="mx-auto h-8 w-64" />
-            <Skeleton className="h-64 w-full rounded-xl" />
-        </div>
     );
 }
 

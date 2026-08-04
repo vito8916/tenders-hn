@@ -18,7 +18,7 @@ import {
 import { MembersTable } from "@/features/memberships/components/members-table";
 import { PendingInvitationsTable } from "@/features/invitations/components/pending-invitations-table";
 import { InviteMembersDialog } from "@/features/invitations/components/invite-members-dialog";
-import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
+import { MembersPageSkeleton } from "@/components/shared/members-page-skeleton";
 
 async function MembersContent({ params }: { params: Promise<{ orgSlug: string }> }) {
     const { orgSlug } = await params;
@@ -90,7 +90,7 @@ async function MembersContent({ params }: { params: Promise<{ orgSlug: string }>
 export default function MembersPage({ params }: { params: Promise<{ orgSlug: string }> }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <Suspense fallback={<PageSectionSkeleton cards={0} />}>
+            <Suspense fallback={<MembersPageSkeleton />}>
                 <MembersContent params={params} />
             </Suspense>
         </div>

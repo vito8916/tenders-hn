@@ -3,6 +3,7 @@ import { Settings } from "lucide-react";
 import type { ReactNode } from "react";
 import { SettingsNav } from "./_components/settings-nav";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PageHeaderSkeleton } from "@/components/shared/page-header-skeleton";
 
 async function SettingsLayoutContent({
     children,
@@ -37,14 +38,11 @@ async function SettingsLayoutContent({
 function SettingsLayoutSkeleton({ children }: { children: ReactNode }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <div className="flex items-center gap-3">
-                <Skeleton className="size-10 rounded-lg" />
-                <div className="space-y-2">
-                    <Skeleton className="h-7 w-32" />
-                    <Skeleton className="h-4 w-64" />
-                </div>
+            <PageHeaderSkeleton />
+            <div className="flex gap-1 border-b pb-px">
+                <Skeleton className="mb-[-1px] h-9 w-20 rounded-none" />
+                <Skeleton className="mb-[-1px] h-9 w-28 rounded-none" />
             </div>
-            <Skeleton className="h-9 w-full max-w-md" />
             <div className="max-w-2xl">{children}</div>
         </div>
     );

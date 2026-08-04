@@ -4,7 +4,7 @@ import { ProfileForm } from "@/components/settings/profile-form";
 import { PasswordForm } from "@/components/settings/password-form";
 import { AppearanceForm } from "@/components/settings/appearance-form";
 import { getCurrentUserWithProfile } from "@/lib/auth/get-current-user";
-import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
+import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
 
 async function AccountSettingsContent() {
     const { profile } = await getCurrentUserWithProfile();
@@ -50,7 +50,7 @@ async function AccountSettingsContent() {
 
 export default function AccountSettingsPage() {
     return (
-        <Suspense fallback={<PageSectionSkeleton cards={2} />}>
+        <Suspense fallback={<SettingsFormSkeleton sections={3} />}>
             <AccountSettingsContent />
         </Suspense>
     );

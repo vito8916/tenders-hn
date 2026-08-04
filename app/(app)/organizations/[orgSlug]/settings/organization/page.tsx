@@ -7,7 +7,7 @@ import { getUserOrgRoleService } from "@/features/memberships/services";
 import { canUpdateOrganization } from "@/features/organizations/rbac";
 import { OrganizationSettingsForm } from "@/features/organizations/components/organization-settings-form";
 import { OrganizationDangerZone } from "@/features/organizations/components/organization-danger-zone";
-import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
+import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
 
 async function OrganizationSettingsContent({
     params,
@@ -73,7 +73,7 @@ export default function OrganizationSettingsPage({
     params: Promise<{ orgSlug: string }>;
 }) {
     return (
-        <Suspense fallback={<PageSectionSkeleton cards={2} />}>
+        <Suspense fallback={<SettingsFormSkeleton sections={2} />}>
             <OrganizationSettingsContent params={params} />
         </Suspense>
     );

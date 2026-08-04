@@ -1,18 +1,19 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { SidebarMenu, SidebarMenuItem } from "../ui/sidebar";
+import { SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 
 export default function NavUserSkeleton() {
-	return (
-		<SidebarMenu>
-			<SidebarMenuItem>
-				<div className="flex w-full items-center gap-2 overflow-hidden rounded-md p-2">
-					<Skeleton className="relative size-10 shrink-0 overflow-hidden rounded-full" />
-					<div className="grid flex-1 text-left text-sm leading-tight gap-1">
-						<Skeleton className="h-3 w-full" />
-						<Skeleton className="h-3 w-full" />
-					</div>
-				</div>
-			</SidebarMenuItem>
-		</SidebarMenu>
-	);
+    return (
+        <SidebarMenu>
+            <SidebarMenuItem>
+                <div className="flex w-full items-center gap-2 overflow-hidden rounded-md p-2">
+                    <Skeleton className="size-8 shrink-0 rounded-lg" />
+                    <div className="grid flex-1 gap-1.5 text-left text-sm leading-tight">
+                        <Skeleton className="h-3.5 w-24" />
+                        <Skeleton className="h-3 w-32" />
+                    </div>
+                    <Skeleton className="ml-auto size-4 shrink-0 rounded-sm" />
+                </div>
+            </SidebarMenuItem>
+        </SidebarMenu>
+    );
 }

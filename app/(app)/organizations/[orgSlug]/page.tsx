@@ -74,7 +74,7 @@ async function DashboardContent({ params }: { params: Promise<{ orgSlug: string 
 export default function HomePage({ params }: { params: Promise<{ orgSlug: string }> }) {
 	return (
 		<div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">
-			<Suspense fallback={<PageSectionSkeleton cards={3} />}>
+			<Suspense fallback={<PageSectionSkeleton cards={3} showHeader showAction />}>
 				<DashboardContent params={params} />
 			</Suspense>
 		</div>

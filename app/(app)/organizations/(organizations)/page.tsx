@@ -130,7 +130,7 @@ export default function OrganizationsPage({
             </p>
 
             <div className="mb-6 flex w-full items-center gap-4">
-                <Suspense fallback={<Skeleton className="h-10 flex-1" />}>
+                <Suspense fallback={<Skeleton className="h-9 flex-1" />}>
                     <OrgSearch />
                 </Suspense>
                 <Button asChild>

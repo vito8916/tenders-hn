@@ -13,15 +13,18 @@ import { appEventSchema, type AppEvent, type LogAppEventInput } from "./schemas"
 export async function listRecentEvents(params: {
     orgId: string;
     limit?: number;
+    offset?: number;
 }): Promise<AppEvent[]> {
     const supabase = await createClient();
+    const limit = params.limit ?? 10;
+    const offset = params.offset ?? 0;
 
     const { data, error } = await supabase
         .from("app_events")
         .select("*")
         .eq("org_id", params.orgId)
         .order("created_at", { ascending: false })
-        .limit(params.limit ?? 10);
+        .range(offset, offset + limit - 1);
 
     if (error) throw error;
 

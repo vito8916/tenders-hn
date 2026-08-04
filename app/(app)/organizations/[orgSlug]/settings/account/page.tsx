@@ -8,13 +8,17 @@ import { ProfileForm } from "@/components/settings/profile-form";
 import { PasswordForm } from "@/components/settings/password-form";
 import { AppearanceForm } from "@/components/settings/appearance-form";
 import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
+import { SettingsTemplatePage } from "@/features/settings/components/settings-template-shell";
 import { getCurrentUserWithProfile } from "@/lib/auth/get-current-user";
 
 async function AccountSettingsContent() {
 	const { profile } = await getCurrentUserWithProfile();
 
 	return (
-		<>
+		<SettingsTemplatePage
+			title="Account"
+			description="Manage your personal profile, credentials, and appearance."
+		>
 			<SettingsSection
 				title="Profile"
 				description="How you appear to other members in this organization."
@@ -41,7 +45,7 @@ async function AccountSettingsContent() {
 					<AppearanceForm />
 				</SettingsSectionBody>
 			</SettingsSection>
-		</>
+		</SettingsTemplatePage>
 	);
 }
 

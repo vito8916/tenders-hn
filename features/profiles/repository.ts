@@ -100,6 +100,26 @@ export async function getProfileByEmail(params: { email: string }): Promise<Prof
     return mapProfileRow(data);
 }
 
+/**
+ * Fetches lightweight profile summaries for a set of user IDs.
+ */
+export async function getProfileSummariesByIds(params: {
+    userIds: string[];
+}): Promise<ProfileSummary[]> {
+    if (params.userIds.length === 0) return [];
+
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("id, full_name, avatar_url, email")
+        .in("id", params.userIds);
+
+    if (error) throw error;
+
+    return (data ?? []).map(mapProfileSummary);
+}
+
 // ========== MUTATIONS ==========
 
 /**

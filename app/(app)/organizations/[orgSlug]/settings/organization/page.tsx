@@ -8,6 +8,7 @@ import {
 import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
 import { OrganizationSettingsForm } from "@/features/organizations/components/organization-settings-form";
 import { OrganizationDangerZone } from "@/features/organizations/components/organization-danger-zone";
+import { SettingsTemplatePage } from "@/features/settings/components/settings-template-shell";
 import { canUpdateOrganization } from "@/features/organizations/rbac";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
@@ -34,7 +35,10 @@ async function OrganizationSettingsContent({
 	}
 
 	return (
-		<>
+		<SettingsTemplatePage
+			title="General"
+			description="Organization profile, branding, and destructive actions."
+		>
 			<SettingsSection
 				title="General"
 				description={
@@ -66,7 +70,7 @@ async function OrganizationSettingsContent({
 				orgName={organization.name}
 				isOwner={role === "owner"}
 			/>
-		</>
+		</SettingsTemplatePage>
 	);
 }
 

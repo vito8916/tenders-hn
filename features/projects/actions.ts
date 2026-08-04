@@ -13,6 +13,7 @@ import {
     createProjectService,
     bulkDeleteProjectsService,
     updateProjectService,
+    toggleProjectFavoriteService,
 } from "./services";
 
 const bulkDeleteProjectsInputSchema = z.object({
@@ -145,6 +146,44 @@ export async function updateProjectAction(input: {
         return {
             success: false,
             error: error instanceof Error ? error.message : "Failed to update project",
+        };
+    }
+}
+
+const toggleProjectFavoriteActionSchema = z.object({
+    projectId: z.uuid(),
+    orgSlug: z.string().min(1),
+});
+
+/**
+ * Server Action for toggling a project favorite
+ */
+export async function toggleProjectFavoriteAction(input: {
+    projectId: string;
+    orgSlug: string;
+}): Promise<{ success: boolean; isFavorite?: boolean; error?: string }> {
+    try {
+        const { sub: userId } = await getCurrentUser();
+
+        const parsed = toggleProjectFavoriteActionSchema.safeParse(input);
+        if (!parsed.success) {
+            return { success: false, error: parsed.error.issues[0]?.message ?? "Invalid input" };
+        }
+
+        const result = await toggleProjectFavoriteService({
+            userId,
+            projectId: parsed.data.projectId,
+        });
+
+        revalidatePath(`/organizations/${parsed.data.orgSlug}`);
+        revalidatePath(`/organizations/${parsed.data.orgSlug}/projects`);
+
+        return { success: true, isFavorite: result.isFavorite };
+    } catch (error) {
+        console.error("Error toggling project favorite:", error);
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : "Failed to update favorite",
         };
     }
 }

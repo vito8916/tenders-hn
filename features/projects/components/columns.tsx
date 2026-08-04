@@ -16,6 +16,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import type { ProjectListItem } from "../schemas";
 import { DataTableColumnHeader } from "@/components/shared/ui/data-table/data-table-column-header";
+import { FavoriteToggleButton } from "./favorite-toggle-button";
 
 const statusColors: Record<ProjectListItem["status"], string> = {
 	active: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
@@ -55,6 +56,23 @@ export function getProjectColumns(orgSlug: string): ColumnDef<ProjectListItem>[]
 					className="translate-y-[2px]"
 				/>
 			),
+			enableSorting: false,
+			enableHiding: false,
+		},
+		{
+			id: "favorite",
+			accessorKey: "isFavorite",
+			header: () => <span className="sr-only">Favorite</span>,
+			cell: ({ row }) => {
+				const project = row.original;
+				return (
+					<FavoriteToggleButton
+						projectId={project.id}
+						orgSlug={orgSlug}
+						isFavorite={project.isFavorite ?? false}
+					/>
+				);
+			},
 			enableSorting: false,
 			enableHiding: false,
 		},

@@ -12,6 +12,9 @@ import {
     listFavoriteProjectsByUser,
     bulkDeleteProjects,
     getProjectBySlugAndOrg,
+    isProjectFavorited,
+    addProjectFavorite,
+    removeProjectFavorite,
 } from "./repository";
 import {
     canCreateProject,
@@ -176,4 +179,56 @@ export async function updateProjectService(params: {
     }
 
     return updateProject(projectId, payload);
+}
+
+/**
+ * Toggles a project favorite for the current user.
+ * Any org member who can read the project may favorite it.
+ */
+export async function toggleProjectFavoriteService(params: {
+    userId: string;
+    projectId: string;
+}): Promise<{ isFavorite: boolean }> {
+    const project = await getProjectById({ projectId: params.projectId });
+    if (!project) {
+        throw new Error("Project not found");
+    }
+
+    const role = await getUserOrgRole({
+        userId: params.userId,
+        orgId: project.orgId,
+    });
+    if (!role) {
+        throw new Error("User is not a member of this organization");
+    }
+
+    const currentlyFavorited = await isProjectFavorited({
+        projectId: params.projectId,
+        userId: params.userId,
+    });
+
+    if (currentlyFavorited) {
+        await removeProjectFavorite({
+            projectId: params.projectId,
+            userId: params.userId,
+        });
+        return { isFavorite: false };
+    }
+
+    await addProjectFavorite({
+        projectId: params.projectId,
+        orgId: project.orgId,
+        userId: params.userId,
+    });
+    return { isFavorite: true };
+}
+
+/**
+ * Returns whether a project is favorited by a user
+ */
+export async function isProjectFavoritedService(params: {
+    projectId: string;
+    userId: string;
+}): Promise<boolean> {
+    return isProjectFavorited(params);
 }

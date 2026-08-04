@@ -1,12 +1,14 @@
 "use client"
 
+import { useTransition } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import { toast } from "sonner"
 import {
   Folder,
   Forward,
   MoreHorizontal,
-  Trash2,
+  StarOff,
 } from "lucide-react"
 
 import {
@@ -26,20 +28,33 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { useOrgContext } from "@/contexts/org-context"
+import { toggleProjectFavoriteAction } from "@/features/projects/actions"
 
 export function NavProjects() {
   const { isMobile } = useSidebar()
   const params = useParams()
   const orgSlug = params.orgSlug as string
   const { favoriteProjects } = useOrgContext()
+  const [isPending, startTransition] = useTransition()
 
   if (favoriteProjects.length === 0) {
     return null
   }
 
+  function handleUnfavorite(projectId: string) {
+    startTransition(async () => {
+      const result = await toggleProjectFavoriteAction({ projectId, orgSlug })
+      if (!result.success) {
+        toast.error(result.error ?? "Failed to remove favorite")
+        return
+      }
+      toast.success("Removed from favorites")
+    })
+  }
+
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>Favorites</SidebarGroupLabel>
       <SidebarMenu>
         {favoriteProjects.map((project) => (
           <SidebarMenuItem key={project.id}>
@@ -72,9 +87,12 @@ export function NavProjects() {
                   <span>Share Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
+                <DropdownMenuItem
+                  disabled={isPending}
+                  onClick={() => handleUnfavorite(project.id)}
+                >
+                  <StarOff className="text-muted-foreground" />
+                  <span>Remove favorite</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

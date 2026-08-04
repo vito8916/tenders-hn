@@ -9,10 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ProjectDetailsSkeleton } from "@/features/projects/components/project-details-skeleton";
 import { EditProjectDialog } from "@/features/projects/components/edit-project-dialog";
+import { FavoriteToggleButton } from "@/features/projects/components/favorite-toggle-button";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { Project } from "@/features/projects/schemas";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
-import { getProjectBySlugAndOrgService } from "@/features/projects/services";
+import {
+    getProjectBySlugAndOrgService,
+    isProjectFavoritedService,
+} from "@/features/projects/services";
 import { getUserOrgRoleService, listOrgMembersService } from "@/features/memberships/services";
 import { getProfileService } from "@/features/profiles/services";
 import { canUpdateProjectAsOwnerOrPrivileged } from "@/features/projects/rbac";
@@ -44,10 +48,12 @@ function ProjectHeader({
     project,
     orgSlug,
     canEdit,
+    isFavorite,
 }: {
     project: Project;
     orgSlug: string;
     canEdit: boolean;
+    isFavorite: boolean;
 }) {
     return (
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
@@ -71,6 +77,14 @@ function ProjectHeader({
                 </div>
             </div>
             <div className="flex items-center gap-2">
+                <FavoriteToggleButton
+                    projectId={project.id}
+                    orgSlug={orgSlug}
+                    isFavorite={isFavorite}
+                    size="sm"
+                    variant="outline"
+                    showLabel
+                />
                 {canEdit ? <EditProjectDialog project={project} orgSlug={orgSlug} /> : null}
                 <Button variant="outline" asChild>
                     <Link href={`/organizations/${orgSlug}/projects`}>Back to projects</Link>
@@ -156,6 +170,7 @@ function ProjectDetailsView({
     orgId,
     teamMembers,
     assignableMembers,
+    isFavorite,
 }: {
     orgSlug: string;
     project: Project;
@@ -165,10 +180,16 @@ function ProjectDetailsView({
     orgId: string;
     teamMembers: ProjectMemberWithProfile[];
     assignableMembers: OrgMember[];
+    isFavorite: boolean;
 }) {
     return (
         <>
-            <ProjectHeader project={project} orgSlug={orgSlug} canEdit={canEdit} />
+            <ProjectHeader
+                project={project}
+                orgSlug={orgSlug}
+                canEdit={canEdit}
+                isFavorite={isFavorite}
+            />
             <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
                 <ProjectOverviewCard project={project} />
                 <div className="space-y-6">
@@ -207,10 +228,11 @@ async function getProjectDetails(params: { orgSlug: string; projectSlug: string 
         return null;
     }
 
-    const [role, ownerProfile, teamMembers] = await Promise.all([
+    const [role, ownerProfile, teamMembers, isFavorite] = await Promise.all([
         getUserOrgRoleService({ userId, orgId: organization.id }),
         getProfileService({ userId: project.ownerId }),
         listProjectMembersService({ projectId: project.id }),
+        isProjectFavoritedService({ projectId: project.id, userId }),
     ]);
 
     const isProjectOwner = project.ownerId === userId;
@@ -235,6 +257,7 @@ async function getProjectDetails(params: { orgSlug: string; projectSlug: string 
         canManageTeam,
         teamMembers,
         assignableMembers,
+        isFavorite,
     };
 }
 
@@ -256,6 +279,7 @@ async function ProjectPageContent({ params }: { params: Promise<{ orgSlug: strin
             canManageTeam={data.canManageTeam}
             teamMembers={data.teamMembers}
             assignableMembers={data.assignableMembers}
+            isFavorite={data.isFavorite}
         />
     );
 }

@@ -367,3 +367,64 @@ export async function countProjectsByOrg(params: { orgId: string }): Promise<num
     if (error) throw error;
     return count ?? 0;
 }
+
+/**
+ * Returns whether a project is favorited by a user
+ */
+export async function isProjectFavorited(params: {
+    projectId: string;
+    userId: string;
+}): Promise<boolean> {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("project_favorites")
+        .select("id")
+        .eq("project_id", params.projectId)
+        .eq("user_id", params.userId)
+        .maybeSingle();
+
+    if (error) throw error;
+    return data !== null;
+}
+
+/**
+ * Adds a project to a user's favorites
+ */
+export async function addProjectFavorite(params: {
+    projectId: string;
+    orgId: string;
+    userId: string;
+}): Promise<void> {
+    const supabase = await createClient();
+
+    const { error } = await supabase.from("project_favorites").insert({
+        project_id: params.projectId,
+        org_id: params.orgId,
+        user_id: params.userId,
+    });
+
+    if (error) {
+        // Unique violation — already favorited
+        if (error.code === "23505") return;
+        throw error;
+    }
+}
+
+/**
+ * Removes a project from a user's favorites
+ */
+export async function removeProjectFavorite(params: {
+    projectId: string;
+    userId: string;
+}): Promise<void> {
+    const supabase = await createClient();
+
+    const { error } = await supabase
+        .from("project_favorites")
+        .delete()
+        .eq("project_id", params.projectId)
+        .eq("user_id", params.userId);
+
+    if (error) throw error;
+}

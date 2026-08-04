@@ -1,63 +1,39 @@
 import { Suspense } from "react";
-import { Settings } from "lucide-react";
 import type { ReactNode } from "react";
-import { SettingsNav } from "./_components/settings-nav";
-import { Skeleton } from "@/components/ui/skeleton";
-import { PageHeaderSkeleton } from "@/components/shared/page-header-skeleton";
 
-async function SettingsLayoutContent({
-    children,
-    params,
-}: {
-    children: ReactNode;
-    params: Promise<{ orgSlug: string }>;
-}) {
-    const { orgSlug } = await params;
-
-    return (
-        <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <div className="flex items-center gap-3">
-                <div className="flex size-10 items-center justify-center rounded-lg border bg-background">
-                    <Settings className="size-5" />
-                </div>
-                <div>
-                    <h1 className="text-2xl font-semibold">Settings</h1>
-                    <p className="text-sm text-muted-foreground">
-                        Manage your account and organization preferences.
-                    </p>
-                </div>
-            </div>
-
-            <SettingsNav orgSlug={orgSlug} />
-
-            <div className="max-w-2xl">{children}</div>
-        </div>
-    );
-}
+import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
 
 function SettingsLayoutSkeleton({ children }: { children: ReactNode }) {
-    return (
-        <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <PageHeaderSkeleton />
-            <div className="flex gap-1 border-b pb-px">
-                <Skeleton className="mb-[-1px] h-9 w-20 rounded-none" />
-                <Skeleton className="mb-[-1px] h-9 w-28 rounded-none" />
-            </div>
-            <div className="max-w-2xl">{children}</div>
-        </div>
-    );
+	return (
+		<div className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
+			<div className="mx-auto max-w-2xl">{children}</div>
+		</div>
+	);
+}
+
+async function SettingsLayoutContent({ children }: { children: ReactNode }) {
+	return (
+		<div className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
+			<div className="mx-auto max-w-2xl space-y-6">{children}</div>
+		</div>
+	);
 }
 
 export default function SettingsLayout({
-    children,
-    params,
+	children,
 }: {
-    children: ReactNode;
-    params: Promise<{ orgSlug: string }>;
+	children: ReactNode;
+	params: Promise<{ orgSlug: string }>;
 }) {
-    return (
-        <Suspense fallback={<SettingsLayoutSkeleton>{children}</SettingsLayoutSkeleton>}>
-            <SettingsLayoutContent params={params}>{children}</SettingsLayoutContent>
-        </Suspense>
-    );
+	return (
+		<Suspense
+			fallback={
+				<SettingsLayoutSkeleton>
+					<SettingsFormSkeleton sections={2} />
+				</SettingsLayoutSkeleton>
+			}
+		>
+			<SettingsLayoutContent>{children}</SettingsLayoutContent>
+		</Suspense>
+	);
 }

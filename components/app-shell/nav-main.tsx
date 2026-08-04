@@ -69,8 +69,15 @@ export function NavMain() {
         <SidebarGroup>
             <SidebarGroupLabel>Menu</SidebarGroupLabel>
             <SidebarMenu>
-                {items.map((item) => (
-                    item.items ? (
+                {items.map((item) => {
+                    const isActive =
+                        item.title === "Settings"
+                            ? pathname.startsWith(
+                                  `/organizations/${orgSlug}/settings`
+                              )
+                            : pathname === item.url;
+
+                    return item.items ? (
                         <Collapsible
                             key={item.title}
                             asChild
@@ -104,16 +111,15 @@ export function NavMain() {
                         </Collapsible>
                     ) : (
                         <SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton asChild>
-                                <Link prefetch href={item.url}
-                                      className={cn(pathname === item.url && "bg-sidebar-accent text-sidebar-accent-foreground")}>
+                            <SidebarMenuButton asChild isActive={isActive}>
+                                <Link prefetch href={item.url}>
                                     {item.icon && <item.icon/>}
                                     <span>{item.title}</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-                    )
-                ))}
+                    );
+                })}
             </SidebarMenu>
         </SidebarGroup>
     )

@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
+import { SettingsSectionFooter } from "@/components/settings/settings-section";
 import { OrganizationLogoUpload } from "./organization-logo-upload";
 import { updateOrganizationAction } from "../actions";
 import type { Organization } from "../schemas";
@@ -78,7 +79,8 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="space-y-5 px-6 py-6">
                 <div className="space-y-2">
                     <FormLabel>Logo</FormLabel>
                     <OrganizationLogoUpload
@@ -117,7 +119,9 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
                         </FormItem>
                     )}
                 />
+                </div>
 
+                <SettingsSectionFooter>
                 <Button type="submit" disabled={isSubmitting}>
                     {isSubmitting ? (
                         <>
@@ -125,9 +129,10 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
                             Saving...
                         </>
                     ) : (
-                        "Save changes"
+                        "Save"
                     )}
                 </Button>
+                </SettingsSectionFooter>
             </form>
         </Form>
     );

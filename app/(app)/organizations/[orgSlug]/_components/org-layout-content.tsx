@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Bell } from "lucide-react";
 import { requireOnboarding } from "@/lib/auth/require-onboarding";
 import type { ReactNode } from "react";
-import ProjectSwitcher from "@/components/app-shell/project-switcher";
+import { OrgHeader } from "@/components/app-shell/org-header";
 
 export async function OrgLayoutContent({
     children,
@@ -50,7 +50,7 @@ export async function OrgLayoutContent({
                         <div className="flex items-center gap-2 px-6">
                             <SidebarTrigger className="-ml-1" />
                             <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
-                            <ProjectSwitcher />
+                            <OrgHeader />
                         </div>
                         <div className="flex items-center gap-2">
                             <ThemeSwitcher />

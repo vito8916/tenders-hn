@@ -1,7 +1,13 @@
 import SupaNextLogo from "@/components/supanext-logo";
 import { ThemeSwitcher } from "@/components/shared/theme-switcher";
+import { CopyrightYear } from "@/components/shared/copyright-year";
 import { LogoutButton } from "@/components/shared/logout-button";
 import Link from "next/link";
+import { Suspense } from "react";
+
+// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
+export const instant = false;
 
 export default function OrganizationsLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -16,7 +22,7 @@ export default function OrganizationsLayout({ children }: { children: React.Reac
                 {children}
             </main>
             <footer className="w-full py-8 flex items-center justify-center gap-6 text-sm text-muted-foreground mt-auto">
-                <span>&copy; {new Date().getFullYear()} Multi-Tenant SupaNext Kit</span>
+                <span>&copy; <Suspense fallback={null}><CopyrightYear /></Suspense> Multi-Tenant SupaNext Kit</span>
                 <Link href="#" className="hover:underline hover:text-foreground transition-colors">Terms of Use</Link>
                 <Link href="#" className="hover:underline hover:text-foreground transition-colors">Privacy Policy</Link>
                 <div className="flex items-center gap-4 ml-2">

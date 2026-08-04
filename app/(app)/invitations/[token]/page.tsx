@@ -11,6 +11,10 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
+export const instant = false;
+
 function InvitationNotice({ title, description }: { title: string; description: string }) {
     return (
         <Card className="w-full max-w-md">

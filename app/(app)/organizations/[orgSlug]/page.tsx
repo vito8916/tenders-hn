@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,8 +13,9 @@ import {
 import { getUserOrgRoleService } from "@/features/memberships/services";
 import { canViewSettings } from "@/features/organizations/rbac";
 import { listRecentEventsService } from "@/features/events/services";
+import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
 
-export default async function HomePage({ params }: { params: Promise<{ orgSlug: string }> }) {
+async function DashboardContent({ params }: { params: Promise<{ orgSlug: string }> }) {
 	const { orgSlug } = await params;
 	const [{ sub: userId }, organization] = await Promise.all([
 		getCurrentUser(),
@@ -38,7 +40,7 @@ export default async function HomePage({ params }: { params: Promise<{ orgSlug: 
 	]);
 
 	return (
-		<div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">
+		<>
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<div className="flex size-10 items-center justify-center rounded-lg border bg-background">
@@ -65,6 +67,16 @@ export default async function HomePage({ params }: { params: Promise<{ orgSlug: 
 			/>
 
 			{recentEvents ? <RecentActivity events={recentEvents} /> : null}
+		</>
+	);
+}
+
+export default function HomePage({ params }: { params: Promise<{ orgSlug: string }> }) {
+	return (
+		<div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">
+			<Suspense fallback={<PageSectionSkeleton cards={3} />}>
+				<DashboardContent params={params} />
+			</Suspense>
 		</div>
 	);
 }

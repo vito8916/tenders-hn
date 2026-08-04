@@ -1,14 +1,16 @@
+import { Suspense } from "react";
 import { Separator } from "@/components/ui/separator";
 import { ProfileForm } from "@/components/settings/profile-form";
 import { PasswordForm } from "@/components/settings/password-form";
 import { AppearanceForm } from "@/components/settings/appearance-form";
 import { getCurrentUserWithProfile } from "@/lib/auth/get-current-user";
+import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
 
-export default async function AccountSettingsPage() {
+async function AccountSettingsContent() {
     const { profile } = await getCurrentUserWithProfile();
 
     return (
-        <div className="space-y-8">
+        <>
             <section className="space-y-4">
                 <div>
                     <h2 className="text-lg font-medium">Profile</h2>
@@ -42,6 +44,14 @@ export default async function AccountSettingsPage() {
                 </div>
                 <AppearanceForm />
             </section>
-        </div>
+        </>
+    );
+}
+
+export default function AccountSettingsPage() {
+    return (
+        <Suspense fallback={<PageSectionSkeleton cards={2} />}>
+            <AccountSettingsContent />
+        </Suspense>
     );
 }

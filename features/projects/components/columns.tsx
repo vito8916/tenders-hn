@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ColumnDef } from "@tanstack/table-core";
+import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Eye, Pencil, Trash } from "lucide-react";

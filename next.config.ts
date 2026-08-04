@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  cacheComponents: false,
+  cacheComponents: true,
+  partialPrefetching: true,
   experimental: {
     serverActions: {
       bodySizeLimit: "8mb",

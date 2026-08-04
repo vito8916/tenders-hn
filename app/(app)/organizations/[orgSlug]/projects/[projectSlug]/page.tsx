@@ -23,6 +23,10 @@ import type { OrgMember } from "@/features/memberships/schemas";
 import type { ProjectMemberWithProfile } from "@/features/project-members/schemas";
 import { cn } from "@/lib/utils";
 
+// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
+export const instant = false;
+
 const statusStyles: Record<Project["status"], string> = {
     active: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
     inactive: "bg-gray-500/10 text-gray-500 hover:bg-gray-500/20",

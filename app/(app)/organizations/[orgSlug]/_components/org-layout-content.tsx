@@ -7,8 +7,7 @@ import { listFavoriteProjectsService } from "@/features/projects/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
 import { redirect } from "next/navigation";
 import { OrgProvider } from "@/contexts/org-context";
-import { Button } from "@/components/ui/button";
-import { Bell } from "lucide-react";
+import { HeaderNotifications } from "@/components/app-shell/header-notifications";
 import { requireOnboarding } from "@/lib/auth/require-onboarding";
 import type { ReactNode } from "react";
 import { OrgHeader } from "@/components/app-shell/org-header";
@@ -52,11 +51,9 @@ export async function OrgLayoutContent({
                             <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
                             <OrgHeader />
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 px-6">
                             <ThemeSwitcher />
-                            <Button variant="ghost" size="icon" className="shrink-0">
-                                <Bell className="size-5" />
-                            </Button>
+                            <HeaderNotifications />
                         </div>
                     </header>
                     {children}

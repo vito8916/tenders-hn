@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Sheet,
@@ -11,18 +12,17 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet";
+import { useOrg } from "@/contexts/org-context";
 import AddProjectForm from "./add-project-form";
-import { useState } from "react";
 
-export function ProjectSheet({ orgId, orgSlug }: { orgId: string, orgSlug: string }) {
+export function ProjectSheet() {
+	const org = useOrg();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleOpenChange = (open: boolean) => {
 		setIsOpen(open);
-		if (!open) {
-			setIsOpen(false);
-		}
 	};
+
 	return (
 		<Sheet open={isOpen} onOpenChange={handleOpenChange}>
 			<SheetTrigger asChild>
@@ -38,8 +38,8 @@ export function ProjectSheet({ orgId, orgSlug }: { orgId: string, orgSlug: strin
 				<div className="w-full px-4">
 					<AddProjectForm
 						handleOpenChange={handleOpenChange}
-						orgSlug={orgSlug}
-						orgId={orgId}
+						orgSlug={org.slug}
+						orgId={org.id}
 					/>
 				</div>
 				<SheetFooter>

@@ -7,7 +7,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { PageHeaderSkeleton } from "@/components/shared/page-header-skeleton";
 
 function MembersTableSkeleton({ rows = 5 }: { rows?: number }) {
     return (
@@ -59,7 +58,6 @@ function MembersTableSkeleton({ rows = 5 }: { rows?: number }) {
 export function MembersPageSkeleton() {
     return (
         <div className="space-y-6">
-            <PageHeaderSkeleton showAction actionWidth="w-36" />
             <MembersTableSkeleton />
             <section className="space-y-3">
                 <Skeleton className="h-6 w-44" />

@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { Users } from "lucide-react";
 import { redirect } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
+import { PageHeader } from "@/components/shared/page-header";
+import { MembersPageSkeleton } from "@/components/shared/members-page-skeleton";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import {
@@ -18,9 +21,35 @@ import {
 import { MembersTable } from "@/features/memberships/components/members-table";
 import { PendingInvitationsTable } from "@/features/invitations/components/pending-invitations-table";
 import { InviteMembersDialog } from "@/features/invitations/components/invite-members-dialog";
-import { MembersPageSkeleton } from "@/components/shared/members-page-skeleton";
 
-async function MembersContent({ params }: { params: Promise<{ orgSlug: string }> }) {
+async function InviteMembersAction({
+    params,
+}: {
+    params: Promise<{ orgSlug: string }>;
+}) {
+    const { orgSlug } = await params;
+    const [{ sub: userId }, organization] = await Promise.all([
+        getCurrentUser(),
+        getOrganizationBySlugService(orgSlug),
+    ]);
+
+    if (!organization) {
+        return null;
+    }
+
+    const role = await getUserOrgRoleService({ userId, orgId: organization.id });
+    if (!role || !canInviteMembers(role)) {
+        return null;
+    }
+
+    return <InviteMembersDialog orgId={organization.id} orgSlug={orgSlug} />;
+}
+
+async function MembersContent({
+    params,
+}: {
+    params: Promise<{ orgSlug: string }>;
+}) {
     const { orgSlug } = await params;
     const [{ sub: userId }, organization] = await Promise.all([
         getCurrentUser(),
@@ -46,23 +75,6 @@ async function MembersContent({ params }: { params: Promise<{ orgSlug: string }>
 
     return (
         <>
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-lg border bg-background">
-                        <Users className="size-5" />
-                    </div>
-                    <div>
-                        <h1 className="text-2xl font-semibold">Members</h1>
-                        <p className="text-sm text-muted-foreground">
-                            Manage who has access to this organization.
-                        </p>
-                    </div>
-                </div>
-                {canInviteMembers(role) ? (
-                    <InviteMembersDialog orgId={organization.id} orgSlug={orgSlug} />
-                ) : null}
-            </div>
-
             <MembersTable
                 members={members}
                 orgId={organization.id}
@@ -87,9 +99,23 @@ async function MembersContent({ params }: { params: Promise<{ orgSlug: string }>
     );
 }
 
-export default function MembersPage({ params }: { params: Promise<{ orgSlug: string }> }) {
+export default function MembersPage({
+    params,
+}: {
+    params: Promise<{ orgSlug: string }>;
+}) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
+            <PageHeader
+                icon={Users}
+                title="Members"
+                description="Manage who has access to this organization."
+                action={
+                    <Suspense fallback={<Skeleton className="h-9 w-36" />}>
+                        <InviteMembersAction params={params} />
+                    </Suspense>
+                }
+            />
             <Suspense fallback={<MembersPageSkeleton />}>
                 <MembersContent params={params} />
             </Suspense>

@@ -1,16 +1,5 @@
 import { LoginForm } from "@/features/auth/components/login-form";
 
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
-
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: Promise<{ next?: string }>;
-}) {
-  const { next } = await searchParams;
-  const nextPath = next?.startsWith("/") ? next : undefined;
-
-  return <LoginForm nextPath={nextPath} />;
+export default function Page() {
+    return <LoginForm />;
 }

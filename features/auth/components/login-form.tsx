@@ -14,15 +14,16 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Eye, EyeOff, GithubIcon, Loader2 } from "lucide-react";
 import { signInAction, signInWithOAuthAction } from "../actions";
+import { useAuthNextPath, authPathWithNext } from "@/hooks/use-auth-next-path";
 
 export function LoginForm({
-    nextPath,
     className,
     ...props
-}: React.ComponentPropsWithoutRef<"div"> & { nextPath?: string }) {
+}: React.ComponentPropsWithoutRef<"div">) {
     const [showPassword, setShowPassword] = useState(false);
     const [isOauthLoading, setIsOauthLoading] = useState<"github" | "google" | null>(null);
     const router = useRouter();
+    const nextPath = useAuthNextPath();
     const destination = nextPath ?? "/organizations";
 
     // Initialize form with Zod validation.
@@ -197,7 +198,7 @@ export function LoginForm({
                         <div className="text-center text-sm">
                             Don&apos;t have an account?{" "}
                             <Link
-                                href={nextPath ? `/sign-up?next=${encodeURIComponent(nextPath)}` : "/sign-up"}
+                                href={authPathWithNext("/sign-up", nextPath)}
                                 className="underline underline-offset-4 hover:text-primary"
                             >
                                 Sign up

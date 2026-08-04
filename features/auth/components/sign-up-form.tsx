@@ -20,16 +20,17 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpFormValues, signUpSchema } from "../schemas";
+import { useAuthNextPath, authPathWithNext } from "@/hooks/use-auth-next-path";
 
 export function SignUpForm({
-  nextPath,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div"> & { nextPath?: string }) {
+}: React.ComponentPropsWithoutRef<"div">) {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isOauthLoading, setIsOauthLoading] = useState<"github" | "google" | null>(null);
   const router = useRouter();
+  const nextPath = useAuthNextPath();
   const destination = nextPath ?? "/organizations";
 
   const form = useForm<SignUpFormValues>({
@@ -236,7 +237,7 @@ export function SignUpForm({
                         <div className="text-center text-sm">
                             Already have an account?{" "}
                             <Link
-                                href={nextPath ? `/login?next=${encodeURIComponent(nextPath)}` : "/login"}
+                                href={authPathWithNext("/login", nextPath)}
                                 className="underline underline-offset-4 hover:text-primary"
                             >
                                 Sign in

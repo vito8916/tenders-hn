@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Suspense, use } from "react";
+import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
 import { format } from "date-fns";
 import { CalendarClock, FolderKanban, UserRound } from "lucide-react";
@@ -22,10 +22,6 @@ import { ProjectTeamCard } from "@/features/project-members/components/project-t
 import type { OrgMember } from "@/features/memberships/schemas";
 import type { ProjectMemberWithProfile } from "@/features/project-members/schemas";
 import { cn } from "@/lib/utils";
-
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
 
 const statusStyles: Record<Project["status"], string> = {
     active: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
@@ -208,16 +204,7 @@ async function getProjectDetails(params: { orgSlug: string; projectSlug: string 
     });
 
     if (!project) {
-        return {
-            orgSlug: params.orgSlug,
-            orgId: organization.id,
-            project: null,
-            ownerName: null,
-            canEdit: false,
-            canManageTeam: false,
-            teamMembers: [],
-            assignableMembers: [],
-        };
+        return null;
     }
 
     const [role, ownerProfile, teamMembers] = await Promise.all([
@@ -233,7 +220,9 @@ async function getProjectDetails(params: { orgSlug: string; projectSlug: string 
         : false;
     const canManageTeam = role ? canManageProjectMembers(role) : false;
 
-    const orgMembers = canManageTeam ? await listOrgMembersService({ orgId: organization.id, userId }) : [];
+    const orgMembers = canManageTeam
+        ? await listOrgMembersService({ orgId: organization.id, userId })
+        : [];
     const assignedUserIds = new Set(teamMembers.map((member) => member.userId));
     const assignableMembers = orgMembers.filter((member) => !assignedUserIds.has(member.userId));
 
@@ -249,23 +238,11 @@ async function getProjectDetails(params: { orgSlug: string; projectSlug: string 
     };
 }
 
-function ProjectContent({
-    dataPromise,
-}: {
-    dataPromise: Promise<{
-        orgSlug: string;
-        orgId: string;
-        project: Project | null;
-        ownerName: string | null;
-        canEdit: boolean;
-        canManageTeam: boolean;
-        teamMembers: ProjectMemberWithProfile[];
-        assignableMembers: OrgMember[];
-    }>;
-}) {
-    const data = use(dataPromise);
+async function ProjectPageContent({ params }: { params: Promise<{ orgSlug: string; projectSlug: string }> }) {
+    const { orgSlug, projectSlug } = await params;
+    const data = await getProjectDetails({ orgSlug, projectSlug });
 
-    if (!data.project) {
+    if (!data) {
         notFound();
     }
 
@@ -283,14 +260,11 @@ function ProjectContent({
     );
 }
 
-export default async function ProjectDetailsPage({ params }: ProjectDetailsPageProps) {
-    const { orgSlug, projectSlug } = await params;
-    const dataPromise = getProjectDetails({ orgSlug, projectSlug });
-
+export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 lg:p-6 px-4 lg:px-8">
             <Suspense fallback={<ProjectDetailsSkeleton />}>
-                <ProjectContent dataPromise={dataPromise} />
+                <ProjectPageContent params={params} />
             </Suspense>
         </div>
     );

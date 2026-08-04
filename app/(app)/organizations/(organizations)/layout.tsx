@@ -5,10 +5,6 @@ import { LogoutButton } from "@/components/shared/logout-button";
 import Link from "next/link";
 import { Suspense } from "react";
 
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
-
 export default function OrganizationsLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="min-h-screen bg-background flex flex-col items-center">

@@ -2,43 +2,41 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { CheckIcon } from "lucide-react";
 
 import dashboard from "@/public/assets/images/feature1.webp";
 import signup from "@/public/assets/images/feature2.webp";
 import bentoFeatures from "@/public/assets/images/feature3.webp";
 import preview from "@/public/assets/images/feature4.webp";
 
-import { CheckIcon } from "lucide-react";
-import { Badge } from "../ui/badge";
-
 const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
 		transition: {
-			duration: 0.6,
-			staggerChildren: 0.2,
-			delayChildren: 0.3,
+			duration: 0.5,
+			staggerChildren: 0.15,
+			delayChildren: 0.1,
 		},
 	},
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 30 },
+	hidden: { opacity: 0, y: 24 },
 	visible: {
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] },
+		transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
 	},
 };
 
 const imageVariants = {
-	hidden: { opacity: 0, scale: 0.92, y: 20 },
+	hidden: { opacity: 0, scale: 0.96, y: 16 },
 	visible: {
 		opacity: 1,
 		scale: 1,
 		y: 0,
-		transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] },
+		transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
 	},
 };
 
@@ -46,16 +44,16 @@ const listVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
-		transition: { staggerChildren: 0.1, delayChildren: 0.5 },
+		transition: { staggerChildren: 0.08, delayChildren: 0.3 },
 	},
 };
 
 const listItemVariants = {
-	hidden: { opacity: 0, x: -20 },
+	hidden: { opacity: 0, x: -12 },
 	visible: {
 		opacity: 1,
 		x: 0,
-		transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
+		transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
 	},
 };
 
@@ -69,43 +67,50 @@ const features = [
 
 export default function Features1() {
 	return (
-		<section className="w-full py-16 sm:py-20 lg:py-24" id="features">
+		<section
+			className="w-full border-b border-border/60 py-20 sm:py-28"
+			id="features"
+		>
 			<motion.div
-				className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+				className="mx-auto max-w-6xl px-4 sm:px-6"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
-				viewport={{ once: true, amount: 0 }}
+				viewport={{ once: true, amount: 0.2 }}
 			>
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
-					{/* Text Content */}
+				<div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-20">
 					<div className="flex flex-col">
-						<motion.div variants={itemVariants}>
-							<Badge variant="secondary">Stay in Control</Badge>
-						</motion.div>
+						<motion.p
+							variants={itemVariants}
+							className="mb-4 font-mono text-xs uppercase tracking-widest text-accent-blue"
+						>
+							Platform
+						</motion.p>
 
 						<motion.h2
 							variants={itemVariants}
-							className="mt-6 mb-6 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight"
+							className="mb-6 text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
 						>
-							Your projects, your team, one source of truth
+							Your projects, your team,
+							<br />
+							one source of truth
 						</motion.h2>
 
 						<motion.p
 							variants={itemVariants}
-							className="mb-8 text-muted-foreground leading-relaxed text-base sm:text-lg"
+							className="mb-10 max-w-lg text-muted-foreground leading-relaxed"
 						>
-							Multi-Tenant SupaNext Kit gives your teams a shared view of projects, progress,
-							and organization settings — so everyone stays aligned
-							without juggling spreadsheets and scattered tools.
+							A shared view of projects, progress, and organization settings
+							— so everyone stays aligned without spreadsheets or scattered
+							tools.
 						</motion.p>
 
 						<motion.ul
 							variants={listVariants}
 							initial="hidden"
 							whileInView="visible"
-							viewport={{ once: true, amount: 0 }}
-							className="space-y-3"
+							viewport={{ once: true, amount: 0.2 }}
+							className="space-y-4"
 						>
 							{features.map((feature, i) => (
 								<motion.li
@@ -113,81 +118,80 @@ export default function Features1() {
 									variants={listItemVariants}
 									className="flex items-start gap-3"
 								>
-									<span className="mt-0.5 shrink-0 size-5 rounded-full bg-primary/15 flex items-center justify-center">
-										<CheckIcon className="size-3 text-primary" />
+									<span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border border-border bg-muted">
+										<CheckIcon className="size-3 text-foreground" />
 									</span>
-									<span className="text-sm sm:text-base">{feature}</span>
+									<span className="text-sm text-muted-foreground sm:text-base">
+										{feature}
+									</span>
 								</motion.li>
 							))}
 						</motion.ul>
 					</div>
 
-					{/* Image Grid */}
 					<div className="grid grid-cols-2 gap-3 sm:gap-4">
-						{/* Column 1 */}
 						<div className="flex flex-col gap-3 sm:gap-4">
 							<motion.div
 								variants={imageVariants}
 								initial="hidden"
 								whileInView="visible"
-								viewport={{ once: true, amount: 0 }}
-								className="overflow-hidden rounded-xl border border-border shadow-md"
+								viewport={{ once: true, amount: 0.2 }}
+								className="overflow-hidden rounded-lg border border-border/80 bg-card shadow-xs"
 							>
 								<Image
 									src={dashboard.src}
 									width={500}
 									height={400}
 									alt="Dashboard interface"
-									className="w-full h-auto object-cover"
+									className="h-auto w-full object-cover"
 								/>
 							</motion.div>
 							<motion.div
 								variants={imageVariants}
 								initial="hidden"
 								whileInView="visible"
-								viewport={{ once: true, amount: 0 }}
-								className="overflow-hidden rounded-xl border border-border shadow-md"
+								viewport={{ once: true, amount: 0.2 }}
+								className="overflow-hidden rounded-lg border border-border/80 bg-card shadow-xs"
 							>
 								<Image
 									src={signup.src}
 									width={500}
 									height={400}
 									alt="Sign up interface"
-									className="w-full h-auto object-cover"
+									className="h-auto w-full object-cover"
 								/>
 							</motion.div>
 						</div>
 
-						{/* Column 2 — vertically offset on lg+ for staggered depth effect */}
-						<div className="flex flex-col gap-3 sm:gap-4 lg:mt-10 xl:mt-16">
+						<div className="flex flex-col gap-3 sm:gap-4 lg:mt-12">
 							<motion.div
 								variants={imageVariants}
 								initial="hidden"
 								whileInView="visible"
-								viewport={{ once: true, amount: 0 }}
-								className="overflow-hidden rounded-xl border border-border shadow-md"
+								viewport={{ once: true, amount: 0.2 }}
+								className="overflow-hidden rounded-lg border border-border/80 bg-card shadow-xs"
 							>
 								<Image
 									src={bentoFeatures.src}
 									width={500}
 									height={400}
 									alt="Features overview"
-									className="w-full h-auto object-cover"
+									className="h-auto w-full object-cover"
 								/>
 							</motion.div>
 							<motion.div
 								variants={imageVariants}
 								initial="hidden"
 								whileInView="visible"
-								viewport={{ once: true, amount: 0 }}
-								className="overflow-hidden rounded-xl border border-border shadow-md"
+								viewport={{ once: true, amount: 0.2 }}
+								className="overflow-hidden rounded-lg border border-border/80 bg-card shadow-xs"
 							>
 								<Image
 									src={preview.src}
 									width={500}
 									height={400}
 									alt="App preview"
-									className="w-full h-auto object-cover"
+									className="h-auto w-full object-cover"
 								/>
 							</motion.div>
 						</div>

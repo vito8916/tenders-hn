@@ -3,17 +3,15 @@ import Navbar from "@/components/marketing/navbar";
 import React from "react";
 
 export default function MarketingLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <Navbar />
-      <main className="flex flex-col gap-8 items-center min-h-screen w-full">
-        {children}
-      </main>
-      <Footer />
-    </>
-  );
+	return (
+		<div className="flex min-h-screen w-full flex-col">
+			<Navbar />
+			<main className="flex-1">{children}</main>
+			<Footer />
+		</div>
+	);
 }

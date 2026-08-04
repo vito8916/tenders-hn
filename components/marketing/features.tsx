@@ -1,13 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
-	ListCheckIcon,
-	ShieldCheckIcon,
 	CreditCardIcon,
 	DatabaseIcon,
+	ListCheckIcon,
 	RocketIcon,
+	ShieldCheckIcon,
 	ZapIcon,
 } from "lucide-react";
 
@@ -15,16 +13,16 @@ const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
-		transition: { duration: 0.5, staggerChildren: 0.1, delayChildren: 0.2 },
+		transition: { duration: 0.5, staggerChildren: 0.08, delayChildren: 0.1 },
 	},
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 24 },
+	hidden: { opacity: 0, y: 20 },
 	visible: {
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+		transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
 	},
 };
 
@@ -63,54 +61,55 @@ const featuresList = [
 
 export default function Features() {
 	return (
-		<section className="py-16 sm:py-20 lg:py-28">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<section className="border-b border-border/60 py-20 sm:py-28">
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
 				<motion.div
-					className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start"
+					className="grid items-start gap-px overflow-hidden rounded-lg border border-border/80 bg-border/80 md:grid-cols-2 lg:grid-cols-3"
 					variants={containerVariants}
 					initial="hidden"
 					whileInView="visible"
-					viewport={{ once: true, amount: 0 }}
+					viewport={{ once: true, amount: 0.1 }}
 				>
-					{/* Header — occupies 1 col at every breakpoint: no orphaned cards */}
-					<motion.div variants={itemVariants} className="flex flex-col gap-6">
-						<Badge className="text-xs font-medium uppercase w-fit">
-							<ListCheckIcon className="h-4 w-4 mr-2" />
-							Features
-						</Badge>
+					<motion.div
+						variants={itemVariants}
+						className="flex flex-col gap-4 bg-background p-8 lg:p-10"
+					>
+						<div className="flex size-10 items-center justify-center rounded-md border border-border bg-muted">
+							<ListCheckIcon className="size-5 text-foreground" />
+						</div>
 						<div className="space-y-3">
-							<h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
+							<p className="font-mono text-xs uppercase tracking-widest text-accent-blue">
+								Features
+							</p>
+							<h2 className="text-2xl font-semibold tracking-tighter lg:text-3xl">
 								Built for multi-tenant SaaS teams
 							</h2>
-							<p className="text-muted-foreground lg:text-lg">
-								Everything your organization needs to keep projects on
-								track — without spreadsheets, group chats, or guesswork.
+							<p className="text-sm text-muted-foreground leading-relaxed">
+								Everything your organization needs to keep projects on track —
+								without spreadsheets, group chats, or guesswork.
 							</p>
 						</div>
 					</motion.div>
 
-					{/* Feature Cards */}
 					{featuresList.map((feature, index) => (
-						<motion.div key={index} variants={itemVariants}>
-							<Card className="group border-border/50 transition-all hover:border-border hover:shadow-md h-full">
-								<CardHeader className="space-y-4">
-									<div className="grid size-12 shrink-0 place-content-center rounded-md border bg-background group-hover:border-primary/20 transition-colors">
-										<feature.icon className="h-6 w-6 text-primary" />
-									</div>
-								</CardHeader>
-								<CardContent className="space-y-3">
-									<h3 className="font-semibold text-lg tracking-tight">
-										{feature.title}
-									</h3>
-									<p className="text-sm text-muted-foreground leading-relaxed">
-										{feature.description}
-									</p>
-								</CardContent>
-							</Card>
+						<motion.div
+							key={index}
+							variants={itemVariants}
+							className="group flex flex-col gap-4 bg-background p-8 transition-colors hover:bg-accent/30 lg:p-10"
+						>
+							<div className="flex size-10 items-center justify-center rounded-md border border-border bg-muted transition-colors group-hover:border-foreground/20">
+								<feature.icon className="size-5 text-foreground" />
+							</div>
+							<div className="space-y-2">
+								<h3 className="font-medium tracking-tight">{feature.title}</h3>
+								<p className="text-sm text-muted-foreground leading-relaxed">
+									{feature.description}
+								</p>
+							</div>
 						</motion.div>
 					))}
 				</motion.div>
 			</div>
 		</section>
 	);
-};
+}

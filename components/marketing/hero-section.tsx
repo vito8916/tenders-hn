@@ -1,260 +1,113 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
+
+import { GridBackground } from "@/components/shared/grid-background";
 import SupaNextLogo from "@/components/supanext-logo";
+import { Button } from "@/components/ui/button";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
 		transition: {
-			duration: 0.6,
-			staggerChildren: 0.2,
-			delayChildren: 0.3,
-		},
-	},
-};
-const backgroundVariants = {
-	hidden: {
-		opacity: 0,
-		scale: 0.8,
-		rotate: 0,
-	},
-	visible: {
-		opacity: 1,
-		scale: 1,
-		rotate: 0,
-		transition: {
-			duration: 1,
-			ease: [0.6, -0.05, 0.01, 0.99],
+			duration: 0.5,
+			staggerChildren: 0.12,
+			delayChildren: 0.1,
 		},
 	},
 };
 
 const itemVariants = {
-	hidden: {
-		opacity: 0,
-		y: 30,
-	},
+	hidden: { opacity: 0, y: 20 },
 	visible: {
 		opacity: 1,
 		y: 0,
-		transition: {
-			duration: 0.8,
-			ease: [0.6, -0.05, 0.01, 0.99],
-		},
-	},
-};
-
-const logoVariants = {
-	hidden: {
-		opacity: 0,
-		scale: 0.8,
-		rotate: -10,
-	},
-	visible: {
-		opacity: 1,
-		scale: 1,
-		rotate: 0,
-		transition: {
-			duration: 1,
-			ease: [0.6, -0.05, 0.01, 0.99],
-		},
-	},
-};
-
-const buttonVariants = {
-	hidden: {
-		opacity: 0,
-		y: 20,
-		scale: 0.9,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		scale: 1,
 		transition: {
 			duration: 0.6,
-			ease: [0.6, -0.05, 0.01, 0.99],
-		},
-	},
-};
-
-const techStackVariants = {
-	hidden: { opacity: 0, y: 40 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.8,
-			staggerChildren: 0.1,
-			delayChildren: 0.5,
-		},
-	},
-};
-
-const techItemVariants = {
-	hidden: {
-		opacity: 0,
-		scale: 0.5,
-		rotate: -15,
-	},
-	visible: {
-		opacity: 1,
-		scale: 1,
-		rotate: 0,
-		transition: {
-			duration: 0.6,
-			ease: [0.6, -0.05, 0.01, 0.99],
+			ease: [0.25, 0.46, 0.45, 0.94],
 		},
 	},
 };
 
 export default function HeroSection() {
 	return (
-		<section className="relative overflow-hidden py-32 px-4">
-			<div className="absolute inset-x-0 top-0 flex h-full w-full items-center justify-center opacity-100">
-				<motion.div variants={backgroundVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-                <Image
-					priority
-					alt="background"
-					src="/assets/images/square-alt-grid.svg"
-					width={1200}
-					height={800}
-					className="[mask-image:radial-gradient(75%_75%_at_center,white,transparent)] opacity-90"
-				/>
-                </motion.div>
-			</div>
+		<section className="relative overflow-hidden border-b border-border/60">
+			<GridBackground className="opacity-100" />
+			<div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,oklch(from_var(--accent-blue)_l_c_h_/_0.12),transparent)]" />
+
 			<motion.div
-				className="relative z-10 container"
+				className="relative z-10 container mx-auto px-4 py-28 md:py-36 lg:py-44"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.3 }}
 			>
-				<div className="mx-auto flex max-w-5xl flex-col items-center">
-					<div className="flex flex-col items-center gap-6 text-center">
-						<motion.div variants={logoVariants}>
-							<SupaNextLogo />
-						</motion.div>
-						<motion.div variants={itemVariants}>
-							<h1 className="mb-6 text-5xl font-medium tracking-tight md:text-7xl ">
-								Control your SaaS <br />{" "}
-								<span className="text-primary">end to end</span>
-							</h1>
-							<p className="mx-auto max-w-3xl text-muted-foreground lg:text-xl">
-								Multi-Tenant SupaNext Kit helps teams track projects, members, and
-								organization settings from one place — built for
-								multi-tenant apps from day one.
-							</p>
-						</motion.div>
-						<motion.div variants={buttonVariants} className="mt-6 flex justify-center gap-3">
-							<Button asChild>
-								<Link href="/login">Get Started</Link>
-							</Button>
-							<Button variant="outline" className="group" asChild>
-								<Link href="/sign-up">
-									Create account
-									<ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-								</Link>
-							</Button>
-						</motion.div>
-						<motion.div variants={itemVariants} className="mt-20 flex flex-col items-center gap-5">
-							<p className="font-medium text-muted-foreground lg:text-left">
-								Built with open-source technologies
-							</p>
-							<motion.div variants={techStackVariants} className="flex flex-wrap items-center justify-center gap-4">
-								<motion.div variants={techItemVariants}>
-									<Button
-										variant="outline"
-										size="icon"
-										className="group h-12 w-12"
-										asChild
-									>
-										<Link
-											href="https://nextjs.org/"
-											target="_blank"
-										>
-											<Image
-												src="/assets/icons/brands/nextjs_icon_dark.svg"
-												alt="Next.js logo"
-												width={24}
-												height={24}
-												className="h-6 saturate-0 transition-all group-hover:saturate-100"
-											/>
-										</Link>
-									</Button>
-								</motion.div>
-								<motion.div variants={techItemVariants}>
-									<Button
-										variant="outline"
-										size="icon"
-										className="group h-12 w-12"
-										asChild
-									>
-										<Link
-											href="https://www.typescriptlang.org/"
-											target="_blank"
-										>
-											<Image
-												src="/assets/icons/brands/typescript.svg"
-												alt="TypeScript logo"
-												width={24}
-												height={24}
-												className="h-6 saturate-0 transition-all group-hover:saturate-100"
-											/>
-										</Link>
-									</Button>
-								</motion.div>
-								<motion.div variants={techItemVariants}>
-									<Button
-										variant="outline"
-										size="icon"
-										className="group h-12 w-12"
-										asChild
-									>
-										<Link
-											href="https://supabase.com/"
-											target="_blank"
-										>
-											<Image
-												src="/assets/icons/brands/supabase.svg"
-												alt="Supabase logo"
-												width={24}
-												height={24}
-												className="h-6 saturate-0 transition-all group-hover:saturate-100"
-											/>
-										</Link>
-									</Button>
-								</motion.div>
-								<motion.div variants={techItemVariants}>
-									<Button
-										variant="outline"
-										size="icon"
-										className="group h-12 w-12"
-										asChild
-									>
-										<Link
-											href="https://ui.shadcn.com/"
-											target="_blank"
-										>
-											<Image
-												src="/assets/icons/brands/ui_light.svg"
-												alt="Shadcn/ui logo"
-												width={24}
-												height={24}
-												className="h-6 saturate-0 transition-all group-hover:saturate-100"
-											/>
-										</Link>
-									</Button>
-								</motion.div>
-							</motion.div>
-						</motion.div>
-					</div>
+				<div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+					<motion.div variants={itemVariants} className="mb-8">
+						<SupaNextLogo className="h-8 w-auto" />
+					</motion.div>
+
+					<motion.div variants={itemVariants}>
+						<p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+							<span className="size-1.5 rounded-full bg-accent-blue" />
+							Multi-tenant SaaS starter kit
+						</p>
+					</motion.div>
+
+					<motion.h1
+						variants={itemVariants}
+						className="mb-6 text-5xl font-semibold tracking-tighter md:text-7xl lg:text-8xl"
+					>
+						Build and ship
+						<br />
+						<span className="text-gradient-blue">faster than ever.</span>
+					</motion.h1>
+
+					<motion.p
+						variants={itemVariants}
+						className="mb-10 max-w-2xl text-base text-muted-foreground md:text-lg lg:text-xl"
+					>
+						Organizations, projects, roles, and invitations — everything you
+						need to launch a production-ready multi-tenant app with Next.js and
+						Supabase.
+					</motion.p>
+
+					<motion.div
+						variants={itemVariants}
+						className="flex flex-col items-center gap-3 sm:flex-row"
+					>
+						<Button asChild size="lg" className="h-11 px-6">
+							<Link href="/login">
+								Start Building
+								<ArrowRight className="ml-1 size-4" />
+							</Link>
+						</Button>
+						<Button variant="outline" size="lg" className="group h-11 px-6" asChild>
+							<Link href="/sign-up">
+								View Documentation
+								<ExternalLink className="ml-1 size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+							</Link>
+						</Button>
+					</motion.div>
+
+					<motion.div
+						variants={itemVariants}
+						className="mt-20 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground"
+					>
+						{["Next.js", "Supabase", "TypeScript", "Tailwind CSS"].map(
+							(tech) => (
+								<span
+									key={tech}
+									className="font-mono text-xs uppercase tracking-wider"
+								>
+									{tech}
+								</span>
+							)
+						)}
+					</motion.div>
 				</div>
 			</motion.div>
 		</section>

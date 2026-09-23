@@ -2,15 +2,16 @@
 
 import { usePathname } from "next/navigation";
 
-import ProjectSwitcher from "@/components/app-shell/project-switcher";
+import { useOrg } from "@/contexts/org-context";
 
 export function OrgHeader() {
 	const pathname = usePathname();
+	const currentOrg = useOrg();
 	const isSettings = pathname.includes("/settings");
 
-	if (isSettings) {
-		return <span className="text-sm font-medium">Settings</span>;
-	}
-
-	return <ProjectSwitcher />;
+	return (
+		<span className="truncate text-sm font-medium">
+			{isSettings ? "Settings" : currentOrg.name}
+		</span>
+	);
 }

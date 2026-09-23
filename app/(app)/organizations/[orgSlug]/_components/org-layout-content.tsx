@@ -3,13 +3,12 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeSwitcher } from "@/components/shared/theme-switcher";
 import { getOrganizationBySlugService, listOrganizationsByUserService } from "@/features/organizations/services";
-import { listFavoriteProjectsService } from "@/features/projects/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
 import { redirect } from "next/navigation";
 import { OrgProvider } from "@/contexts/org-context";
-import { HeaderNotifications } from "@/components/app-shell/header-notifications";
+import { HeaderNotifications, HeaderNotificationsFallback } from "@/features/notifications/components/header-notifications";
 import { requireOnboarding } from "@/lib/auth/require-onboarding";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { OrgHeader } from "@/components/app-shell/org-header";
 
 export async function OrgLayoutContent({
@@ -31,17 +30,14 @@ export async function OrgLayoutContent({
         redirect("/organizations");
     }
 
-    const [role, favoriteProjects] = await Promise.all([
-        getUserOrgRoleService({ userId: user.sub, orgId: organization.id }),
-        listFavoriteProjectsService({ userId: user.sub, orgId: organization.id }),
-    ]);
+    const role = await getUserOrgRoleService({ userId: user.sub, orgId: organization.id });
 
     if (!role) {
         redirect("/organizations");
     }
 
     return (
-        <OrgProvider org={organization} organizations={organizations} favoriteProjects={favoriteProjects}>
+        <OrgProvider org={organization} organizations={organizations}>
             <SidebarProvider>
                 <AppSidebar profile={profile} />
                 <SidebarInset className="bg-background overflow-x-hidden">
@@ -53,7 +49,9 @@ export async function OrgLayoutContent({
                         </div>
                         <div className="flex items-center gap-2 px-6">
                             <ThemeSwitcher />
-                            <HeaderNotifications />
+                            <Suspense fallback={<HeaderNotificationsFallback />}>
+                                <HeaderNotifications userId={user.sub} />
+                            </Suspense>
                         </div>
                     </header>
                     {children}

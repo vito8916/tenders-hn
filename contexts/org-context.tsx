@@ -3,12 +3,10 @@
 
 import React, { createContext, useContext } from "react";
 import { Organization, OrganizationListItem } from "@/features/organizations/schemas";
-import { ProjectListItem } from "@/features/projects/schemas";
 
 interface OrgContextValue {
     currentOrg: Organization;
     organizations: OrganizationListItem[];
-    favoriteProjects: ProjectListItem[];
 }
 
 const OrgContext = createContext<OrgContextValue | null>(null);
@@ -16,16 +14,14 @@ const OrgContext = createContext<OrgContextValue | null>(null);
 export function OrgProvider({
     org,
     organizations,
-    favoriteProjects,
     children,
 }: {
     org: Organization;
     organizations: OrganizationListItem[];
-    favoriteProjects: ProjectListItem[];
     children: React.ReactNode;
 }) {
     return (
-        <OrgContext.Provider value={{ currentOrg: org, organizations, favoriteProjects }}>
+        <OrgContext.Provider value={{ currentOrg: org, organizations }}>
             {children}
         </OrgContext.Provider>
     );

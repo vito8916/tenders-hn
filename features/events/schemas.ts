@@ -15,10 +15,12 @@ export const APP_EVENTS = {
     MEMBER_ROLE_CHANGED: "member.role_changed",
     MEMBER_REMOVED: "member.removed",
     MEMBER_LEFT: "member.left",
-    PROJECT_CREATED: "project.created",
-    PROJECT_DELETED: "project.deleted",
-    PROJECT_MEMBER_ASSIGNED: "project.member_assigned",
-    PROJECT_MEMBER_UNASSIGNED: "project.member_unassigned",
+    // Logged by database triggers on organization_subscriptions
+    SUBSCRIPTION_ACTIVATED: "subscription.activated",
+    SUBSCRIPTION_RENEWED: "subscription.renewed",
+    SUBSCRIPTION_PLAN_CHANGED: "subscription.plan_changed",
+    SUBSCRIPTION_CANCELED: "subscription.canceled",
+    SUBSCRIPTION_EXPIRED: "subscription.expired",
 } as const;
 
 export type AppEventName = (typeof APP_EVENTS)[keyof typeof APP_EVENTS];

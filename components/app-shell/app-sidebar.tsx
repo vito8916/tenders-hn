@@ -4,7 +4,6 @@ import { ComponentProps } from "react";
 import { usePathname } from "next/navigation";
 
 import { NavMain } from "@/components/app-shell/nav-main";
-import { NavProjects } from "@/components/app-shell/nav-projects";
 import { NavUser } from "@/components/app-shell/nav-user";
 import { SettingsSidebar } from "@/components/app-shell/settings-sidebar";
 import { TeamSwitcher } from "@/components/app-shell/team-switcher";
@@ -38,7 +37,6 @@ export function AppSidebar({ profile, ...props }: AppSidebarProps) {
 					</SidebarHeader>
 					<SidebarContent>
 						<NavMain />
-						<NavProjects />
 					</SidebarContent>
 					<SidebarFooter>
 						<NavUser profile={profile} />

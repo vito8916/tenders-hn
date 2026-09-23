@@ -4,7 +4,6 @@ import Link from "next/link"
 import {useParams, usePathname} from "next/navigation"
 
 import {
-    Bot,
     ChevronRight,
     Home,
     Settings,
@@ -47,11 +46,6 @@ export function NavMain() {
             title: "Dashboard",
             url: `/organizations/${orgSlug}`,
             icon: Home,
-        },
-        {
-            title: "Projects",
-            url: `/organizations/${orgSlug}/projects`,
-            icon: Bot,
         },
         {
             title: "Members",

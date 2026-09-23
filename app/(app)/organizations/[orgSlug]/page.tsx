@@ -5,7 +5,6 @@ import { OrgName } from "@/components/shared/org-name";
 import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
 import { OverviewCards } from "@/features/organizations/components/overview-cards";
 import { RecentActivity } from "@/features/events/components/recent-activity";
-import { ProjectSheet } from "@/features/projects/components/project-sheet";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import {
 	getOrganizationBySlugService,
@@ -37,7 +36,7 @@ async function DashboardContent({
 	}
 
 	const isAdmin = canViewSettings(role);
-	const [{ projectsCount, membersCount, pendingInvitationsCount }, recentEvents] =
+	const [{ membersCount, pendingInvitationsCount }, recentEvents] =
 		await Promise.all([
 			getOrganizationOverviewService({ orgId: organization.id, userId }),
 			isAdmin
@@ -49,7 +48,6 @@ async function DashboardContent({
 		<>
 			<OverviewCards
 				orgSlug={orgSlug}
-				projectsCount={projectsCount}
 				membersCount={membersCount}
 				pendingInvitationsCount={pendingInvitationsCount}
 			/>
@@ -73,7 +71,6 @@ export default function HomePage({
 						Overview of <OrgName />.
 					</>
 				}
-				action={<ProjectSheet />}
 			/>
 			<Suspense fallback={<PageSectionSkeleton cards={3} />}>
 				<DashboardContent params={params} />

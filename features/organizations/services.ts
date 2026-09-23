@@ -1,7 +1,6 @@
 import 'server-only';
 import { cache } from "react";
 import { getUserOrgRole, countOrgMembers } from "@/features/memberships/repository";
-import { countProjectsByOrg } from "@/features/projects/repository";
 import { countPendingInvitations } from "@/features/invitations/repository";
 import { inviteMembersService } from "@/features/invitations/services";
 import { logAppEventService } from "@/features/events/services";
@@ -286,7 +285,6 @@ export async function getOrganizationOverviewService(params: {
     orgId: string;
     userId: string;
 }): Promise<{
-    projectsCount: number;
     membersCount: number;
     pendingInvitationsCount: number | null;
 }> {
@@ -297,13 +295,12 @@ export async function getOrganizationOverviewService(params: {
         throw new Error("User is not a member of this organization");
     }
 
-    const [projectsCount, membersCount, pendingInvitationsCount] = await Promise.all([
-        countProjectsByOrg({ orgId }),
+    const [membersCount, pendingInvitationsCount] = await Promise.all([
         countOrgMembers({ orgId }),
         canViewSettings(role) ? countPendingInvitations({ orgId }) : Promise.resolve(null),
     ]);
 
-    return { projectsCount, membersCount, pendingInvitationsCount };
+    return { membersCount, pendingInvitationsCount };
 }
 
 /**

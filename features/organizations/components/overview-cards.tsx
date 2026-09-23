@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { FolderKanban, Mail, Users } from "lucide-react";
+import { Mail, Users } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface OverviewCardsProps {
     orgSlug: string;
-    projectsCount: number;
     membersCount: number;
     pendingInvitationsCount: number | null;
 }
@@ -19,18 +18,10 @@ interface StatCard {
 
 export function OverviewCards({
     orgSlug,
-    projectsCount,
     membersCount,
     pendingInvitationsCount,
 }: OverviewCardsProps) {
     const cards: StatCard[] = [
-        {
-            title: "Projects",
-            value: projectsCount,
-            icon: FolderKanban,
-            href: `/organizations/${orgSlug}/projects`,
-            hint: "Active in this organization",
-        },
         {
             title: "Members",
             value: membersCount,
@@ -51,7 +42,7 @@ export function OverviewCards({
     }
 
     return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {cards.map((card) => (
                 <Link key={card.title} href={card.href}>
                     <Card className="transition-colors hover:bg-accent/50">

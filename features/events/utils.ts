@@ -11,10 +11,11 @@ export const EVENT_LABELS: Record<string, string> = {
 	[APP_EVENTS.MEMBER_ROLE_CHANGED]: "Member role changed",
 	[APP_EVENTS.MEMBER_REMOVED]: "Member removed",
 	[APP_EVENTS.MEMBER_LEFT]: "Member left",
-	[APP_EVENTS.PROJECT_CREATED]: "Project created",
-	[APP_EVENTS.PROJECT_DELETED]: "Project deleted",
-	[APP_EVENTS.PROJECT_MEMBER_ASSIGNED]: "Project member assigned",
-	[APP_EVENTS.PROJECT_MEMBER_UNASSIGNED]: "Project member unassigned",
+	[APP_EVENTS.SUBSCRIPTION_ACTIVATED]: "Plan activated",
+	[APP_EVENTS.SUBSCRIPTION_RENEWED]: "Plan renewed",
+	[APP_EVENTS.SUBSCRIPTION_PLAN_CHANGED]: "Plan changed",
+	[APP_EVENTS.SUBSCRIPTION_CANCELED]: "Plan canceled",
+	[APP_EVENTS.SUBSCRIPTION_EXPIRED]: "Plan expired",
 };
 
 export function eventLabel(eventName: string) {
@@ -32,6 +33,7 @@ export function eventDetail(event: AppEvent): string | null {
 		return `${metadata.from} → ${metadata.to}`;
 	}
 	if (typeof metadata.role === "string") return metadata.role;
+	if (typeof metadata.plan_id === "string") return metadata.plan_id;
 	if (typeof metadata.slug === "string") return metadata.slug;
 
 	return null;
@@ -71,12 +73,13 @@ export const EVENT_FILTER_GROUPS = [
 		],
 	},
 	{
-		label: "Projects",
+		label: "Billing",
 		events: [
-			APP_EVENTS.PROJECT_CREATED,
-			APP_EVENTS.PROJECT_DELETED,
-			APP_EVENTS.PROJECT_MEMBER_ASSIGNED,
-			APP_EVENTS.PROJECT_MEMBER_UNASSIGNED,
+			APP_EVENTS.SUBSCRIPTION_ACTIVATED,
+			APP_EVENTS.SUBSCRIPTION_RENEWED,
+			APP_EVENTS.SUBSCRIPTION_PLAN_CHANGED,
+			APP_EVENTS.SUBSCRIPTION_CANCELED,
+			APP_EVENTS.SUBSCRIPTION_EXPIRED,
 		],
 	},
 ] as const;

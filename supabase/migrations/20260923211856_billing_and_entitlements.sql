@@ -121,14 +121,14 @@ create trigger organization_subscriptions_set_updated_at
 -- Notification catalog for billing
 -- ============================================================
 
-insert into public.notification_types (id, category, description, default_in_app, default_email)
+insert into public.notification_types (id, label, category, description, default_in_app, default_email)
 values
-  ('subscription.activated', 'billing', 'A plan was activated for an organization you manage.', true, true),
-  ('subscription.renewed', 'billing', 'A plan was renewed for an organization you manage.', true, true),
-  ('subscription.plan_changed', 'billing', 'The plan of an organization you manage changed.', true, true),
-  ('subscription.expiring_soon', 'billing', 'A plan is about to expire.', true, true),
-  ('subscription.expired', 'billing', 'A plan expired and the organization is read-only.', true, true),
-  ('subscription.canceled', 'billing', 'A plan was canceled and the organization is read-only.', true, true);
+  ('subscription.activated', 'Plan activated', 'billing', 'A plan was activated for an organization you manage.', true, true),
+  ('subscription.renewed', 'Plan renewed', 'billing', 'A plan was renewed for an organization you manage.', true, true),
+  ('subscription.plan_changed', 'Plan changed', 'billing', 'The plan of an organization you manage changed.', true, true),
+  ('subscription.expiring_soon', 'Plan expiring soon', 'billing', 'A plan ends within 7 days.', true, true),
+  ('subscription.expired', 'Plan expired', 'billing', 'A plan expired and the organization is read-only.', true, true),
+  ('subscription.canceled', 'Plan canceled', 'billing', 'A plan was canceled and the organization is read-only.', true, true);
 
 -- ============================================================
 -- Table privileges: customers only read; writes come from service_role

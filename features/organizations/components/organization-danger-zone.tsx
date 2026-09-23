@@ -76,7 +76,7 @@ export function OrganizationDangerZone({
 					label={isOwner ? "Delete organization" : "Leave organization"}
 					description={
 						isOwner
-							? "Permanently removes all projects, members, and invitations."
+							? "Permanently removes all members, invitations, and organization data."
 							: "You will lose access until an admin invites you again."
 					}
 				>
@@ -124,7 +124,7 @@ export function OrganizationDangerZone({
 								<AlertDialogHeader>
 									<AlertDialogTitle>Leave {orgName}</AlertDialogTitle>
 									<AlertDialogDescription>
-										You will lose access to this organization and its projects.
+										You will lose access to this organization and its data.
 									</AlertDialogDescription>
 								</AlertDialogHeader>
 								<AlertDialogFooter>

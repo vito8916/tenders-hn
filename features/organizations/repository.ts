@@ -248,7 +248,7 @@ export async function updateOrganization(orgId: string, payload: UpdateOrganizat
 
 /**
  * Deletes an organization from the database
- * Note: Cascade deletes will remove related members, projects, etc.
+ * Note: Cascade deletes will remove related members, invitations, subscription, etc.
  *
  * @param orgId - UUID of the organization to delete
  * @throws Supabase error if delete fails or RLS denies access

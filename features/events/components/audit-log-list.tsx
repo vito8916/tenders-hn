@@ -40,7 +40,7 @@ export function AuditLogList({
 							<p className="mt-1 max-w-sm text-sm text-muted-foreground">
 								{hasFilter
 									? "Try another event type or clear the filter to see all activity."
-									: "Events appear here when members create projects, send invitations, or update organization settings."}
+									: "Events appear here when members send invitations, change roles, or update organization settings."}
 							</p>
 						</div>
 					) : (

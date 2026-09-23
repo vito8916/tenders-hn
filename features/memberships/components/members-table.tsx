@@ -204,7 +204,7 @@ export function MembersTable({
                                                     <AlertDialogTitle>Remove member</AlertDialogTitle>
                                                     <AlertDialogDescription>
                                                         {member.fullName ?? member.email} will lose access to this
-                                                        organization and all of its projects.
+                                                        organization and all of its data.
                                                     </AlertDialogDescription>
                                                 </AlertDialogHeader>
                                                 <AlertDialogFooter>

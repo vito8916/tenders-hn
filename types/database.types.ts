@@ -306,6 +306,7 @@ export type Database = {
           default_in_app: boolean
           description: string
           id: string
+          label: string
         }
         Insert: {
           category: string
@@ -313,6 +314,7 @@ export type Database = {
           default_in_app?: boolean
           description: string
           id: string
+          label: string
         }
         Update: {
           category?: string
@@ -320,6 +322,7 @@ export type Database = {
           default_in_app?: boolean
           description?: string
           id?: string
+          label?: string
         }
         Relationships: []
       }

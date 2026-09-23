@@ -15,6 +15,7 @@
 
 create table public.notification_types (
   id text primary key,
+  label text not null,
   category text not null constraint notification_types_category_check
     check (category in ('organization', 'billing')),
   description text not null,
@@ -93,13 +94,13 @@ create index notification_deliveries_notification_idx
 -- added by the billing migration)
 -- ============================================================
 
-insert into public.notification_types (id, category, description, default_in_app, default_email)
+insert into public.notification_types (id, label, category, description, default_in_app, default_email)
 values
-  ('organization.member_joined', 'organization', 'Someone joined an organization you manage.', true, false),
-  ('organization.member_removed', 'organization', 'You were removed from an organization.', true, true),
-  ('organization.role_changed', 'organization', 'Your role in an organization changed.', true, true),
-  ('organization.ownership_transferred', 'organization', 'You became the owner of an organization.', true, true),
-  ('invitation.received', 'organization', 'You were invited to join an organization.', true, false);
+  ('organization.member_joined', 'New members', 'organization', 'Someone joined an organization you manage.', true, false),
+  ('organization.member_removed', 'Removed from an organization', 'organization', 'You were removed from an organization.', true, true),
+  ('organization.role_changed', 'Role changes', 'organization', 'Your role in an organization changed.', true, true),
+  ('organization.ownership_transferred', 'Ownership transfers', 'organization', 'You became the owner of an organization.', true, true),
+  ('invitation.received', 'Invitations', 'organization', 'You were invited to join an organization.', true, false);
 
 -- ============================================================
 -- Table privileges

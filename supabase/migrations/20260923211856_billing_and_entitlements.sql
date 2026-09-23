@@ -746,7 +746,10 @@ begin
     body,
     '/organizations/' || org.slug || '/settings/billing',
     jsonb_build_object('plan_id', new.plan_id, 'current_period_end', new.current_period_end),
-    event_type || ':' || new.org_id::text || ':' || extract(epoch from now())::bigint::text
+    -- Keyed by the resulting state: a retried write dedupes, any real change notifies.
+    event_type || ':' || new.org_id::text || ':' || new.plan_id || ':'
+      || extract(epoch from new.current_period_start)::bigint::text || ':'
+      || coalesce(extract(epoch from new.current_period_end)::bigint::text, 'open')
   );
 
   if new.status = 'active' then

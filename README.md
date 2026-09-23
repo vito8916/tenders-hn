@@ -120,11 +120,14 @@ This project avoids the Supabase CLI defaults so it can run at the same time as 
 - `pnpm build` – Production build
 - `pnpm start` – Start the production server
 - `pnpm lint` – ESLint (flat config)
+- `pnpm typecheck` – TypeScript for the app and the worker
 - `pnpm test` – Run Vitest once
 - `pnpm test:watch` – Vitest in watch mode
 - `pnpm db:start` / `pnpm db:stop` / `pnpm db:status` – Local Supabase stack (uses the CLI version pinned in `package.json`)
 - `pnpm db:reset` – Recreate the local database from migrations + seed
 - `pnpm db:types` – Regenerate `types/database.types.ts` from the local database
+- `pnpm worker:dev` – Run the background worker against the local stack (reads `worker/.env.local`)
+- `pnpm --filter worker ai:smoke [--all-chat]` – Call each enabled AI role once through AI Gateway and log it in `ai_usage_events`
 
 ## Database
 
@@ -134,6 +137,7 @@ The single source of truth is `supabase/migrations/`:
 - `*_notifications.sql` — notification catalog, per-user preferences, in-app `notifications` (published to Realtime), and the `notification_deliveries` email outbox. Membership and invitation triggers create notifications.
 - `*_billing_and_entitlements.sql` — `plans`, `organization_subscriptions`, seat limits, and AI credits (`ai_credit_reservations` + append-only `ai_credit_ledger`). Subscription changes are audited and notified.
 - `*_scheduled_jobs.sql` — pg_cron jobs: expire subscriptions, warn 7 days before expiry, grant monthly AI credits, release abandoned credit reservations, dispatch notification emails, purge old records.
+- `*_worker_and_ai_foundation.sql` — search extensions (`vector`, `pg_trgm`, `unaccent`), Supabase Queues (`pgmq`) with the `maintenance` queue and a per-minute worker heartbeat, `worker_heartbeats`, `ai_usage_events`, and `ai_model_rates`.
 
 Edge function `supabase/functions/send-notification-emails` drains the email outbox. pg_cron calls it every minute (only when there is due work) with a shared secret stored in Vault. It sends through Resend when `RESEND_API_KEY` is set; locally it delivers to Mailpit.
 
@@ -190,13 +194,32 @@ types/database.types.ts   # Generated from the database
 documentation/            # Architecture and project docs
 ```
 
+## Background Worker
+
+`worker/` is a second pnpm workspace package: a long-running Node process that consumes Supabase Queues (pgmq) filled by pg_cron. It will run scraping, document processing, matching, and report jobs (see `documentation/mvp-implementation-plan.md`).
+
+```bash
+cp worker/.env.example worker/.env.local   # DATABASE_URL points at the local stack
+pnpm worker:dev                            # watch mode
+```
+
+- Failed jobs retry with exponential backoff (30 s, 60 s, ... up to 30 min) and are archived as dead letters after their queue's `maxAttempts`.
+- `SIGTERM` finishes in-flight jobs before exiting; the Docker image runs `node` as PID 1 so Railway's stop signal reaches it.
+- Liveness: pg_cron enqueues a heartbeat every minute and the worker records it in `worker_heartbeats`.
+- Image: `docker build -f worker/Dockerfile .` (includes poppler and Tesseract with Spanish). Shared modules it imports (`types/`, `lib/ai/`) must not import packages, because the image installs only the worker's dependencies.
+
+AI calls go through Vercel AI Gateway with the AI SDK. `lib/ai/models.ts` maps task roles (`evaluate`, `chat`, `embed`, ...) to gateway model ids; override any role per environment with `AI_MODEL_<ROLE>`.
+
 ## Testing
 
 ```bash
-pnpm test
+pnpm test              # Vitest: app, lib, and worker unit tests
+pnpm exec supabase test db   # pgTAP: RLS isolation, seats, notifications, billing and credits
 ```
 
-Unit tests live next to what they validate: RBAC permission matrices (`features/*/rbac.test.ts`) and schema validation (`features/invitations/schemas.test.ts`).
+Unit tests live next to what they validate (`features/*/rbac.test.ts`, `lib/ai/models.test.ts`, `worker/src/queue.test.ts`). Database tests live in `supabase/tests/`; each file creates its own fixtures and rolls back.
+
+CI (`.github/workflows/ci.yml`) runs lint, type checks, and unit tests; migrations, pgTAP, and `supabase db advisors --fail-on warn` on a fresh local stack; and a worker image build.
 
 ## Deploying to the Cloud
 

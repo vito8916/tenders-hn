@@ -1,3 +1,6 @@
+packages:
+  - .
+  - worker
 allowBuilds:
   esbuild: true
   sharp: true
@@ -16,3 +19,7 @@ minimumReleaseAgeExclude:
   - '@next/swc-win32-x64-msvc@16.3.0'
   - eslint-config-next@16.3.0
   - next@16.3.0
+  - '@ai-sdk/gateway@4.0.91'
+  - '@ai-sdk/provider-utils@5.0.47'
+  - '@ai-sdk/provider@4.0.18'
+  - ai@7.0.113

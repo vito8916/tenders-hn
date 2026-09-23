@@ -310,7 +310,7 @@ begin
           private.display_name(actor_id) || ' transferred ownership of the organization to you.',
           '/organizations/' || org.slug || '/settings/organization',
           jsonb_build_object('previous_owner_id', actor_id),
-          'ownership_transferred:' || new.id::text || ':' || extract(epoch from now())::bigint::text
+          'ownership_transferred:' || new.id::text || ':' || extract(epoch from clock_timestamp())::text
         );
       end if;
     -- The previous owner is demoted to admin as part of their own transfer.
@@ -323,7 +323,7 @@ begin
         'Your role changed from ' || old.role || ' to ' || new.role || '.',
         '/organizations/' || org.slug,
         jsonb_build_object('previous_role', old.role, 'role', new.role),
-        'role_changed:' || new.id::text || ':' || extract(epoch from now())::bigint::text
+        'role_changed:' || new.id::text || ':' || extract(epoch from clock_timestamp())::text
       );
     end if;
 

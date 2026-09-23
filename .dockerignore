@@ -1,0 +1,9 @@
+**/node_modules
+**/.env
+**/.env*.local
+.git
+.next
+.pnpm-store
+coverage
+supabase/.temp
+supabase/.branches

@@ -116,12 +116,13 @@ Key security decisions baked into the baseline:
 ### Daily workflow
 
 ```bash
-pnpm exec supabase start    # start the local stack (Docker)
-pnpm dev                    # Next.js against .env.local (http://127.0.0.1:54321)
-pnpm exec supabase stop     # stop containers (keeps data)
+pnpm db:start              # start the local stack (Docker)
+pnpm dev                   # Next.js on http://localhost:3001 against .env.local (http://127.0.0.1:55321)
+pnpm db:stop               # stop this project's containers (keeps data)
 ```
 
-- Studio: http://127.0.0.1:54323 — Mailpit (emails sent by Supabase auth): http://127.0.0.1:54324
+- Studio: http://127.0.0.1:55323 — Mailpit (emails sent by Supabase auth): http://127.0.0.1:55324
+- Ports are shifted from the CLI defaults so this stack can run alongside another local Supabase project (see README)
 - Test account (seeded): `test@mtsupanextkit.app` / `12345678`
 - Sign-up email confirmation is disabled locally (`enable_confirmations = false` in config.toml)
 

@@ -71,7 +71,7 @@ pnpm install
 2) Start the local Supabase stack
 
 ```bash
-pnpm exec supabase start
+pnpm db:start
 ```
 
 This applies every migration in `supabase/migrations/` and runs `supabase/seed.sql`, which creates a test account: `test@mtsupanextkit.app` / `12345678`.
@@ -81,9 +81,9 @@ This applies every migration in `supabase/migrations/` and runs `supabase/seed.s
 Create `.env.local` (see `.env.example`):
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<publishable key from `pnpm exec supabase status`>
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:55321
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<publishable key from `pnpm db:status`>
+NEXT_PUBLIC_APP_URL=http://localhost:3001
 
 # Optional: invitation emails (invitations still work without them;
 # only delivery fails, and the members page offers resend)
@@ -97,12 +97,22 @@ EMAIL_FROM="Multi-Tenant SupaNext Kit <onboarding@resend.dev>"
 pnpm dev
 ```
 
-The app starts on http://localhost:3000.
+The app starts on http://localhost:3001.
 
 Useful local URLs:
 
-- Supabase Studio: http://127.0.0.1:54323
-- Mailpit (auth emails sent by local Supabase): http://127.0.0.1:54324
+- Supabase Studio: http://127.0.0.1:55323
+- Mailpit (auth emails sent by local Supabase): http://127.0.0.1:55324
+- Postgres: `postgresql://postgres:postgres@127.0.0.1:55322/postgres`
+
+### Running next to other local Supabase projects
+
+This project avoids the Supabase CLI defaults so it can run at the same time as another local Next.js + Supabase app:
+
+- Supabase ports are shifted to the `553xx` range in `supabase/config.toml` (API `55321`, DB `55322`, Studio `55323`, Mailpit `55324`, analytics `55327`, edge inspector `8183`).
+- `pnpm dev` is pinned to port `3001`; `site_url` / `additional_redirect_urls` in `config.toml` match it.
+- The auth cookie has an app-specific name (`lib/supabase/auth-cookie.ts`). Browsers share cookies across ports on the same host, so the default `sb-127-auth-token` would make two local apps overwrite each other's sessions.
+- `supabase stop` only stops the containers for this `project_id`; the other project's stack keeps running.
 
 ## Scripts
 
@@ -112,6 +122,9 @@ Useful local URLs:
 - `pnpm lint` – ESLint (flat config)
 - `pnpm test` – Run Vitest once
 - `pnpm test:watch` – Vitest in watch mode
+- `pnpm db:start` / `pnpm db:stop` / `pnpm db:status` – Local Supabase stack (uses the CLI version pinned in `package.json`)
+- `pnpm db:reset` – Recreate the local database from migrations + seed
+- `pnpm db:types` – Regenerate `types/database.types.ts` from the local database
 
 ## Database
 

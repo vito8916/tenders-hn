@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { authCookieOptions } from "./auth-cookie";
 
 /**
  * Create a Supabase client for the browser.
@@ -8,5 +9,6 @@ export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
+    { cookieOptions: authCookieOptions },
   );
 }

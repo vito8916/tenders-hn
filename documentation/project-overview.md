@@ -123,7 +123,7 @@ pnpm db:stop               # stop this project's containers (keeps data)
 
 - Studio: http://127.0.0.1:55323 — Mailpit (emails sent by Supabase auth): http://127.0.0.1:55324
 - Ports are shifted from the CLI defaults so this stack can run alongside another local Supabase project (see README)
-- Test account (seeded): `test@mtsupanextkit.app` / `12345678`
+- Test account (seeded): `test@mtsupanextkit.app` / `12345678`, owner of "Test Organization" on an active `pilot` plan (500 AI credits)
 - Sign-up email confirmation is disabled locally (`enable_confirmations = false` in config.toml)
 
 ### Changing the schema

@@ -11,8 +11,6 @@ export const profileSchema = z.object({
     email: z.string().email().nullable(),
     phone: z.string().nullable(),
     status: z.string().nullable(),
-    stripeCustomerId: z.string().nullable(),
-    stripeSubscriptionId: z.string().nullable(),
     onboardingCompletedAt: z.coerce.date().nullable(),
     createdAt: z.coerce.date(),
     updatedAt: z.coerce.date(),

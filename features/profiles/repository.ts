@@ -26,8 +26,6 @@ export function mapProfileRow(row: ProfileRow): Profile {
         email: row.email,
         phone: row.phone,
         status: row.status,
-        stripeCustomerId: row.stripe_customer_id,
-        stripeSubscriptionId: row.stripe_subscription_id,
         onboardingCompletedAt: row.onboarding_completed_at,
         createdAt: row.created_at,
         updatedAt: row.updated_at,

@@ -74,7 +74,7 @@ pnpm install
 pnpm db:start
 ```
 
-This applies every migration in `supabase/migrations/` and runs `supabase/seed.sql`, which creates a test account: `test@mtsupanextkit.app` / `12345678`.
+This applies every migration in `supabase/migrations/` and runs `supabase/seed.sql`, which creates a test account (`test@mtsupanextkit.app` / `12345678`) that owns "Test Organization" on an active `pilot` plan, plus placeholder plans and the local Vault secrets for the email dispatcher.
 
 3) Environment variables
 
@@ -130,14 +130,21 @@ This project avoids the Supabase CLI defaults so it can run at the same time as 
 
 The single source of truth is `supabase/migrations/`:
 
-- `20260720000000_initial_schema.sql` — full baseline: tables, triggers (profile auto-creation on sign-up, owner membership on org creation), RLS policies, invitation/audit RPCs, and the two private storage buckets (`profile-pictures`, `organization-logos`) with their policies.
-- `20260720120000_ownership_transfer_and_my_invitations.sql` — `transfer_organization_ownership` and `list_my_pending_invitations` RPCs.
+- `*_baseline.sql` — profiles, organizations, memberships, invitations, audit log (`app_events`), invitation/ownership RPCs, and the private storage buckets (`profile-pictures`, `organization-logos`).
+- `*_notifications.sql` — notification catalog, per-user preferences, in-app `notifications` (published to Realtime), and the `notification_deliveries` email outbox. Membership and invitation triggers create notifications.
+- `*_billing_and_entitlements.sql` — `plans`, `organization_subscriptions`, seat limits, and AI credits (`ai_credit_reservations` + append-only `ai_credit_ledger`). Subscription changes are audited and notified.
+- `*_scheduled_jobs.sql` — pg_cron jobs: expire subscriptions, warn 7 days before expiry, grant monthly AI credits, release abandoned credit reservations, dispatch notification emails, purge old records.
+
+Edge function `supabase/functions/send-notification-emails` drains the email outbox. pg_cron calls it every minute (only when there is due work) with a shared secret stored in Vault. It sends through Resend when `RESEND_API_KEY` is set; locally it delivers to Mailpit.
 
 Key security decisions:
 
+- Tables are opt-in for the Data API: default privileges are revoked and each table grants only what its RLS policies filter (column-level where it matters, e.g. `organizations.owner_id` and `notifications` can't be edited directly).
+- SECURITY DEFINER helpers used by policies (`private.user_org_role()`, `private.shares_org_with()`, ...) live in the `private` schema, which the Data API does not expose.
 - `organization_members` has **no INSERT policy**: memberships are created only by SECURITY DEFINER paths (org-creation trigger, `accept_invitation`), so roles cannot be forged.
 - Role changes are owner-only, never on the owner's own row, and never to `owner`. Ownership moves only through the atomic `transfer_organization_ownership` RPC, which demotes the previous owner to admin.
-- `user_org_role()` / `shares_org_with()` helpers power the policies without RLS recursion.
+- Subscriptions, plans and credits are read-only for customers. Only `service_role` writes them (the platform admin app today, a payment webhook later). `reserve_ai_credits` / `commit_ai_credits` / `release_ai_credits` are service_role-only.
+- An organization without an active subscription is read-only: invitations and credit reservations fail with `subscription_inactive`; seat limits fail with `seat_limit_reached`.
 
 ### Changing the schema
 
@@ -212,6 +219,19 @@ pnpm exec supabase db push
 ```
 
 4. Set the environment variables in your host (e.g. Vercel): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`, `NEXT_PUBLIC_APP_URL` (production origin), plus `RESEND_API_KEY` and `EMAIL_FROM` for invitation emails.
+
+5. Deploy the email dispatcher and give it (and pg_cron) the same shared secret:
+
+```bash
+pnpm exec supabase functions deploy send-notification-emails
+pnpm exec supabase secrets set EMAIL_DISPATCHER_SECRET=<random> RESEND_API_KEY=<key> EMAIL_FROM="Tenders HN <noreply@your-domain>" APP_URL=https://<production origin>
+```
+
+```sql
+-- SQL editor, once per project
+select vault.create_secret('https://<ref>.supabase.co', 'project_url');
+select vault.create_secret('<same random secret>', 'email_dispatcher_secret');
+```
 
 ## License
 

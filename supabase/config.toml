@@ -372,8 +372,16 @@ inspector_port = 8183
 # The Deno major version to use.
 deno_version = 2
 
-# [edge_runtime.secrets]
-# secret_key = "env(SECRET_VALUE)"
+# Local-only values. Hosted projects set these with `supabase secrets set`.
+# Without RESEND_API_KEY the email dispatcher delivers to Mailpit instead.
+[edge_runtime.secrets]
+EMAIL_DISPATCHER_SECRET = "local-email-dispatcher-secret"
+MAILPIT_URL = "http://inbucket:8025"
+APP_URL = "http://localhost:3001"
+
+# Authenticated with the x-dispatcher-secret header instead of a user JWT.
+[functions.send-notification-emails]
+verify_jwt = false
 
 [analytics]
 enabled = true

@@ -14,27 +14,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Revisamos cada proceso publicado en HonduCompras y le entregamos una lista corta de oportunidades para su empresa, con el motivo de cada coincidencia.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://multi-tenant-supanext-kit.dev"),
-  title: "Multi-Tenant SupaNext Kit",
-  description:
-    "Multi-tenant SaaS starter kit built with Next.js and Supabase.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"),
+  title: "Tenders HN · Licitaciones de Honduras para su empresa",
+  description,
   openGraph: {
-    title: "Multi-Tenant SupaNext Kit",
-    description:
-      "Multi-tenant SaaS starter kit built with Next.js and Supabase.",
-    images: "/assets/images/bento-features.png",
-    url: "https://multi-tenant-supanext-kit.dev",
-    siteName: "Multi-Tenant SupaNext Kit",
-    locale: "en_US",
+    title: "Tenders HN",
+    description,
+    siteName: "Tenders HN",
+    locale: "es_HN",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    images: "/assets/images/bento-features.png",
-    title: "Multi-Tenant SupaNext Kit",
-    description:
-      "Multi-tenant SaaS starter kit built with Next.js and Supabase.",
+    card: "summary",
+    title: "Tenders HN",
+    description,
   },
 };
 
@@ -48,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en" suppressHydrationWarning>
+      <html lang="es" suppressHydrationWarning>
       <body
           className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased w-full min-h-screen`}
       >

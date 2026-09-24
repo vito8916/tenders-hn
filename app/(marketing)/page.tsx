@@ -1,15 +1,23 @@
+import CtaSection from "@/components/marketing/cta-section";
+import ExamplesSection from "@/components/marketing/examples-section";
+import FaqSection from "@/components/marketing/faq-section";
+import FeaturesSection from "@/components/marketing/features-section";
 import HeroSection from "@/components/marketing/hero-section";
-import Pricing from "@/components/marketing/pricing";
-import Features1 from "@/components/marketing/features1";
-import Features from "@/components/marketing/features";
+import HowItWorksSection from "@/components/marketing/how-it-works-section";
+import PricingSection from "@/components/marketing/pricing-section";
+import WhySection from "@/components/marketing/why-section";
 
 export default function Home() {
 	return (
 		<>
 			<HeroSection />
-			<Features1 />
-			<Features />
-			<Pricing />
+			<FeaturesSection />
+			<HowItWorksSection />
+			<WhySection />
+			<ExamplesSection />
+			<PricingSection />
+			<FaqSection />
+			<CtaSection />
 		</>
 	);
 }

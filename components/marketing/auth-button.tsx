@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
+
+const pressable = "transition-[scale,background-color] duration-150 ease-out active:scale-[0.96]";
 
 export async function AuthButton() {
 	const supabase = await createClient();
@@ -10,22 +11,16 @@ export async function AuthButton() {
 	const user = data?.claims;
 
 	return user ? (
-		<div className="flex items-center gap-3">
-			<Link
-				className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground md:inline"
-				href="/organizations"
-			>
-				Dashboard
-			</Link>
-			<LogoutButton />
-		</div>
+		<Button asChild size="sm" className={pressable}>
+			<Link href="/organizations">Ir a mi panel</Link>
+		</Button>
 	) : (
-		<div className="flex items-center gap-2">
-			<Button asChild size="sm" variant="ghost" className="text-muted-foreground">
-				<Link href="/login">Sign in</Link>
+		<div className="flex items-center gap-1">
+			<Button asChild size="sm" variant="ghost" className={`text-muted-foreground ${pressable}`}>
+				<Link href="/login">Iniciar sesión</Link>
 			</Button>
-			<Button asChild size="sm">
-				<Link href="/sign-up">Sign up</Link>
+			<Button asChild size="sm" className={pressable}>
+				<Link href="/sign-up">Solicitar acceso</Link>
 			</Button>
 		</div>
 	);

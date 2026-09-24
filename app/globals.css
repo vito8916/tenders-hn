@@ -57,6 +57,15 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.06), 0 8px 10px -6px rgb(0 0 0 / 0.06);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
   --tracking-normal: -0.011em;
+  --shadow-edge:
+    0px 0px 0px 1px oklch(0 0 0 / 0.06),
+    0px 1px 2px -1px oklch(0 0 0 / 0.06),
+    0px 2px 4px 0px oklch(0 0 0 / 0.04);
+  --shadow-edge-hover:
+    0px 0px 0px 1px oklch(0 0 0 / 0.08),
+    0px 1px 2px -1px oklch(0 0 0 / 0.08),
+    0px 2px 4px 0px oklch(0 0 0 / 0.06);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .dark {
@@ -102,6 +111,8 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.35);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.35), 0 8px 10px -6px rgb(0 0 0 / 0.35);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --shadow-edge: 0 0 0 1px oklch(1 0 0 / 0.08);
+  --shadow-edge-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
 }
 
 @theme inline {
@@ -156,6 +167,10 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+  --shadow-edge: var(--shadow-edge);
+  --shadow-edge-hover: var(--shadow-edge-hover);
+
+  --ease-out-strong: var(--ease-out-strong);
 
   --tracking-tighter: calc(var(--tracking-normal) - 0.04em);
   --tracking-tight: calc(var(--tracking-normal) - 0.02em);
@@ -213,5 +228,34 @@
 
   .surface-hover:hover {
     @apply bg-accent;
+  }
+}
+
+/* One-time staged entrance for the landing hero. Set --enter-step on each
+   chunk; chunks start 100ms apart. */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-enter {
+    animation: enter 600ms var(--ease-out-strong) both;
+    animation-delay: calc(var(--enter-step, 0) * 100ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-enter {
+      animation-name: enter-fade;
+    }
   }
 }

@@ -282,7 +282,7 @@ Rough sizes: **S** ≤ 3 days, **M** 1–2 weeks, **L** 2–4 weeks, for one dev
 - ~~`ingest.recheck_open` schedule~~ **Done (24 Sep 2026).** pg_cron runs `private.enqueue_open_rechecks()` every hour at :30 and enqueues ordinary `fetch_detail` jobs for up to 300 processes that are open (closing in the future or within the last day) and were not checked in the last 6 hours, oldest check first, skipping any already queued. This covers processes outside the moving window and annexes on processes inside it, which the results list does not show. The batch is sized so syncs never wait long behind it on the shared consumer.
 - Politeness and safety: one session at a time, 2–3 s between requests, bounded retries with backoff, a parser-health check (expected headers/fields present) that marks the run `failed` instead of storing garbage.
 - Freshness measurement: record `first_seen_at` per process and compare consecutive runs for a week before fixing the cadence (spec §14.1).
-- Source health read model for the admin project: views over `source_sync_runs` (last success, age, pages, errors).
+- ~~Source health read model for the admin project~~ **Done (24 Sep 2026).** `source_health` is a view over `source_sync_runs` with one row per source: the latest run (status, pages, error), the last successful sync with its age, pages, and processes, and failed or partial runs in the last 24 hours. The pgmq archive keeps no error, so the worker also records each job that exhausts its attempts (and each unknown message) in `worker_job_failures` with the error, in the same statement that archives it. Both are service role only.
 
 **Done when (spec §13):** a dated search reproduces the full set of pages and processes page 2+ without losing the filter; repeated syncs create no duplicate processes or documents; `LPN-008-2026` (IHSS) shows its three document links; `CM 39-019-2026` is stored with no documents as a valid state; a portal failure is recorded and never reported as "no new opportunities".
 
@@ -365,7 +365,7 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 | `reports.render` | run completed | `search_run_id` |
 | email dispatch | existing, every minute | `notification_deliveries.idempotency_key` |
 
-Failed jobs retry with backoff via pgmq visibility timeouts; after N attempts they are archived and surfaced in the admin views. A job never reports success for work it could not verify (spec §6, §13).
+Failed jobs retry with backoff via pgmq visibility timeouts; after N attempts they are archived and recorded with their error in `worker_job_failures`, which the admin app reads. A job never reports success for work it could not verify (spec §6, §13).
 
 ---
 

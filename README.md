@@ -8,7 +8,7 @@ Tenders HN is built on a multi-tenant Next.js + Supabase foundation (organizatio
 
 - **Product spec:** `documentation/MVP_Specification.md`
 - **How and in which order we build it:** `documentation/mvp-implementation-plan.md`
-- **Status:** Phase 0 (worker, queues, AI layer, tests, CI) is done. Phase 1 (ingestion) is in progress: source tables, window sync, detail fetch, and open-process rechecks are done; source health views are next.
+- **Status:** Phase 0 (worker, queues, AI layer, tests, CI) is done. Phase 1 (ingestion) is in progress: source tables, window sync, detail fetch, open-process rechecks, and the source health read model are done; a week of freshness measurement remains before fixing the sync cadence.
 
 The project is **local-first**: the entire data model lives in versioned migrations under `supabase/migrations/`, and development runs against a local Supabase stack (Docker). No cloud project is required to work on it.
 
@@ -159,6 +159,7 @@ The single source of truth is `supabase/migrations/`:
 - `*_worker_and_ai_foundation.sql` — search extensions (`vector`, `pg_trgm`, `unaccent`), Supabase Queues (`pgmq`) with the `maintenance` queue and a per-minute worker heartbeat, `worker_heartbeats`, `ai_usage_events`, and `ai_model_rates`.
 - `*_source_data.sql` — shared HonduCompras data readable by any organization member: `source_sync_runs`, `source_pages` (raw HTML in the private `source-pages` bucket), `procurement_processes` (accent-insensitive full-text search), `process_versions`, `process_events`, and `source_documents`. Adds the `ingest` queue and a sync every 3 hours.
 - `*_recheck_open_processes.sql` — hourly recheck of open processes (`private.enqueue_open_rechecks`).
+- `*_source_health.sql` — service-role-only read model for the platform admin app: `source_health` (latest run, last successful sync and its age, failed runs in the last 24 hours, per source) and `worker_job_failures` (jobs that exhausted their attempts, with the error).
 
 Edge function `supabase/functions/send-notification-emails` drains the email outbox. pg_cron calls it every minute (only when there is due work) with a shared secret stored in Vault. It sends through Resend when `RESEND_API_KEY` is set; locally it delivers to Mailpit.
 
@@ -234,7 +235,7 @@ pnpm worker:dev                            # watch mode
 
 - Ingestion (`ingest` queue): `sync_window` searches HonduCompras by start date (last 7 days), walks every results page, keeps each page's gzipped HTML for 14 days, upserts `procurement_processes`, and enqueues `fetch_detail` for new or changed processes. `fetch_detail` reads the detail page, stores a version when the content changed, records events (created, stage, deadlines, documents), and syncs `source_documents`. Every hour, `private.enqueue_open_rechecks()` enqueues `fetch_detail` for up to 300 open processes not checked in 6 hours, so deadline, stage, and annex changes are caught after a process leaves the window. One consumer handles all of it, one message at a time, 2–3 s between requests to the portal. A page that no longer matches the parser fails the job instead of storing data. To sync a specific window: `select pgmq.send('ingest', '{"type":"sync_window","from":"2026-09-22","to":"2026-09-23"}')`.
 
-- Failed jobs retry with exponential backoff (30 s, 60 s, ... up to 30 min) and are archived as dead letters after their queue's `maxAttempts`.
+- Failed jobs retry with exponential backoff (30 s, 60 s, ... up to 30 min) and are archived as dead letters after their queue's `maxAttempts`, with the error recorded in `worker_job_failures`.
 - `SIGTERM` finishes in-flight jobs before exiting; the Docker image runs `node` as PID 1 so Railway's stop signal reaches it.
 - Liveness: pg_cron enqueues a heartbeat every minute and the worker records it in `worker_heartbeats`.
 - Image: `docker build -f worker/Dockerfile .` (includes poppler and Tesseract with Spanish). Shared modules it imports (`types/`, `lib/ai/`) must not import packages, because the image installs only the worker's dependencies.

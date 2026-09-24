@@ -1,7 +1,10 @@
 import { redirect } from "next/navigation";
-import { VerifyEmailForm } from "@/features/auth/components/verify-email-form";
+import { Suspense } from "react";
 
-export default async function Page({
+import { VerifyEmailForm } from "@/features/auth/components/verify-email-form";
+import { AuthFormSkeleton } from "@/components/shared/auth-form-skeleton";
+
+async function VerifyEmailContent({
     searchParams,
 }: {
     searchParams: Promise<{ email?: string }>;
@@ -13,4 +16,16 @@ export default async function Page({
     }
 
     return <VerifyEmailForm email={email} />;
+}
+
+export default function Page({
+    searchParams,
+}: {
+    searchParams: Promise<{ email?: string }>;
+}) {
+    return (
+        <Suspense fallback={<AuthFormSkeleton variant="forgot-password" />}>
+            <VerifyEmailContent searchParams={searchParams} />
+        </Suspense>
+    );
 }

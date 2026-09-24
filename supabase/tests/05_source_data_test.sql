@@ -4,6 +4,11 @@ begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
 
+-- Start from empty source tables (a local database may hold synced data); the test rolls back.
+delete from public.procurement_processes;
+delete from public.source_sync_runs;
+delete from pgmq.q_ingest;
+
 -- Fixtures: owner (in an org), outsider (in no org)
 insert into auth.users (id, email, aud, role, raw_user_meta_data) values
   ('11111111-1111-4111-8111-111111111111', 'owner@test.local', 'authenticated', 'authenticated', '{}'),
@@ -89,6 +94,28 @@ select is(
   1,
   'a waiting sync is not enqueued twice'
 );
+
+-- ---------- Rechecking open processes ----------
+delete from pgmq.q_ingest;
+insert into public.procurement_processes (id, source, source_process_key, expediente, buyer_entity, title, detail_url, closes_at, last_checked_at)
+values
+  ('c0000000-0000-4000-8000-000000000001', 'honducompras_v1', 'k:open-stale', 'A', 'E', 'Open, checked long ago', 'http://x', now() + interval '20 days', now() - interval '2 days'),
+  ('c0000000-0000-4000-8000-000000000002', 'honducompras_v1', 'k:open-fresh', 'B', 'E', 'Open, checked recently', 'http://x', now() + interval '20 days', now() - interval '1 hour'),
+  ('c0000000-0000-4000-8000-000000000003', 'honducompras_v1', 'k:closed', 'C', 'E', 'Closed a week ago', 'http://x', now() - interval '7 days', now() - interval '2 days'),
+  ('c0000000-0000-4000-8000-000000000004', 'honducompras_v1', 'k:just-closed', 'D', 'E', 'Closed an hour ago', 'http://x', now() - interval '1 hour', now() - interval '2 days'),
+  ('c0000000-0000-4000-8000-000000000005', 'honducompras_v1', 'k:queued', 'F', 'E', 'Open, already queued', 'http://x', now() + interval '20 days', now() - interval '2 days');
+-- Keep the earlier fixtures out of the batch.
+update public.procurement_processes set closes_at = now() - interval '30 days' where source_process_key not like 'k:%';
+select pgmq.send('ingest', '{"type": "fetch_detail", "processId": "c0000000-0000-4000-8000-000000000005"}');
+
+select is(private.enqueue_open_rechecks(), 2, 'open processes not checked for 6 hours are enqueued');
+select results_eq(
+  $$select message ->> 'processId' from pgmq.q_ingest where message ->> 'type' = 'fetch_detail' order by 1$$,
+  $$values ('c0000000-0000-4000-8000-000000000001'), ('c0000000-0000-4000-8000-000000000004'), ('c0000000-0000-4000-8000-000000000005')$$,
+  'recently checked, long-closed, and already queued processes are skipped'
+);
+select is(private.enqueue_open_rechecks(), 0, 'a second run does not enqueue them twice');
+select ok(exists (select 1 from cron.job where jobname = 'enqueue-open-rechecks'), 'rechecks are scheduled');
 
 select * from finish();
 rollback;

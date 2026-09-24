@@ -30,6 +30,8 @@ The multi-tenant foundation is in place. Everything below is committed and runni
 | Scheduled jobs (pg_cron): expiry, expiry warnings, monthly credits, reservation cleanup, email dispatch, retention | Done | `*_scheduled_jobs.sql` |
 | Local dev isolated from other projects (ports 553xx, app on 3001, own auth cookie) | Done | `supabase/config.toml`, `lib/supabase/auth-cookie.ts` |
 | Projects feature (template demo) | Removed | — |
+| Phase 0: worker, queues, AI layer (Jev + chat via AI Gateway verified), pgTAP tests, CI | Done | `worker/`, `lib/ai/`, `supabase/tests/`, `.github/workflows/ci.yml` |
+| Phase 1 spike: HonduCompras search, paging, and details reproduced over HTTP | Done | section 8, Phase 1; fixtures in `worker/src/honducompras/__fixtures__/` |
 
 Still template-grade and to be replaced during the phases below: billing settings page (mock), security and integrations settings (mock), marketing pages, English UI text.
 
@@ -205,8 +207,8 @@ New tables follow the current conventions: `org_id` for org-scoped rows, explici
 |---|---|
 | `source_sync_runs` | `id`, `source` (`honducompras_v1`), `window_start`, `window_end`, `status` (`running`/`succeeded`/`failed`/`partial`), `pages_expected`, `pages_fetched`, `processes_seen`, `processes_new`, `processes_changed`, `error`, `started_at`, `finished_at`. The latest `succeeded` row is "última ingesta completa". |
 | `source_pages` | `sync_run_id`, `page_number`, `status`, `row_count`, `html_sha256`, `storage_path` (raw HTML kept for debugging/parser changes), `fetched_at`. Unique `(sync_run_id, page_number)`. |
-| `procurement_processes` | `id`, `source`, `source_process_key` (stable portal identifier from the detail link), `expediente` (display only), `ocid` (nullable), `buyer_entity`, `purchase_unit`, `title`, `stage`, `modality`, `acquisition_type`, `source_start_at`, `closes_at`, `detail_url`, `current_version_id`, `first_seen_at`, `last_seen_at`, `last_checked_at`, `is_open`. Unique `(source, source_process_key)`. FTS `tsvector` generated from title + entity + object; trigram index on `expediente`. |
-| `process_versions` | `id`, `process_id`, `content_sha256`, `detail` (jsonb: full object, dates, UNSPSC items, products), `observed_at`. Unique `(process_id, content_sha256)`. |
+| `procurement_processes` | `id`, `source`, `source_process_key` (decoded `Id0:Id1:Id2` from the detail link, e.g. `117:1:LPN-008-2026`), `expediente` (display only), `ocid` (nullable), `buyer_entity`, `purchase_unit`, `title`, `stage`, `modality`, `acquisition_type`, `source_start_at`, `closes_at`, `detail_url`, `current_version_id`, `first_seen_at`, `last_seen_at`, `last_checked_at`, `is_open`. Unique `(source, source_process_key)`. FTS `tsvector` generated from title + entity + object; trigram index on `expediente`. |
+| `process_versions` | `id`, `process_id`, `content_sha256`, `detail` (jsonb: full object, dates with times, source of funds, UNSPSC items and quantities, place of bid reception, bid document value, contact name/phone/email — kept by decision), `observed_at`. Unique `(process_id, content_sha256)`. |
 | `process_events` | `process_id`, `version_id`, `kind` (`created`, `stage_changed`, `deadline_changed`, `document_added`, `document_replaced`, `document_removed`), `before`, `after`, `observed_at`. Drives "actualizada" and change alerts. |
 | `source_documents` | `id`, `process_id`, `source_url`, `title`, `kind` (aviso, pliego, anexo, other), `first_seen_at`, `last_seen_at`, `removed_at`. Unique `(process_id, source_url)`. |
 | `document_versions` | `id`, `document_id`, `sha256`, `byte_size`, `mime_type`, `storage_path`, `page_count`, `extraction_status` (`pending`/`text`/`ocr`/`partial`/`failed`), `extraction_error`, `downloaded_at`. Unique `(document_id, sha256)` — downloaded once per version (spec §6). |
@@ -265,7 +267,14 @@ Rough sizes: **S** ≤ 3 days, **M** 1–2 weeks, **L** 2–4 weeks, for one dev
 
 ### Phase 1 — Ingestion prototype (M) — spec §2, §6
 
-- Spike: confirm the ASP.NET WebForms flow (`__VIEWSTATE`, `__EVENTVALIDATION`, calendar fields, `__EVENTTARGET` postbacks for pagination, session cookies) and pick the stable process key from the detail link.
+- ~~Spike~~ **Done (23 Sep 2026).** Findings the implementation must follow:
+  - **User-Agent:** send `Mozilla/5.0 (compatible; TendersHN/0.1)`. An unrecognized UA gets ASP.NET "downlevel" handling and the date filter is silently ignored (unfiltered results, inputs echo "(Todas)"). No contact info in the UA (owner's choice); never impersonate a specific browser.
+  - **Search:** GET the form, then POST every hidden field it returned (`__VIEWSTATE`, `__EVENTVALIDATION`, …) plus `ctl00$cphCuerpo$wpParametros$wdInicio_hidden` / `wdFin_hidden` = `<DateChooser Value="2026x9x22"></DateChooser>` **already URL-encoded** (JS `escape` style, `/` kept; the form encoding then encodes it again), the visible `ctl00_cphCuerpo_wpParametros_wdInicio_input` / `wdFin_input` = `22/09/2026`, and `ctl00$cphCuerpo$wpParametros$btnBuscar=Buscar`. Sending the XML raw returns HTTP 500 (request validation).
+  - **Paging:** POST the previous page's form with `__EVENTTARGET=ctl00$cphCuerpo$gvResultados` and `__EVENTARGUMENT=Page$N`; the date filter is preserved. 30 rows per page; 22–23 Sep 2026 had 12 pages. No session cookie; state lives in ViewState.
+  - **Rows:** expediente, entity, purchase unit, object (truncated), stage, modality, start and close dates, and a detail link.
+  - **Detail links:** `ProcesoHistorico.aspx?Id0=…&Id1=…&Id2=…`; each value is base64 of UTF-32LE text plus `-<signature>`. Decoded: `Id0` institution code (117 = IHSS, also in PDF names), `Id1` small integer, `Id2` expediente. The key is the decoded triple; the signatures cannot be generated, so store and follow the portal's links.
+  - **Detail page:** full object, start / bid reception / clarification deadline with times, source of funds, modality, stage, acquisition type, place of bid reception, bid document value, contact (name, phone, email — stored), UNSPSC products with quantities, and a documents table with PDFs on `http://h1.honducompras.gob.hn/Docs/`. `LPN-008-2026` has 3 PDFs; `CM 39-019-2026` has none.
+  - **Fixtures** (captured that day, used by parser tests): `worker/src/honducompras/__fixtures__/` — search form, window 22–23 Sep pages 1–2, both detail pages.
 - `ingest.sync_window` job: open a session, submit the date window (now − 7 days → today), walk every page, store raw HTML per page, upsert `procurement_processes`, enqueue `ingest.fetch_detail` for new or changed rows.
 - `ingest.fetch_detail` job: parse full object, dates/hours, acquisition type, products/UNSPSC, document links; write `process_versions` on content change; emit `process_events`; upsert `source_documents`; enqueue downloads.
 - `ingest.recheck_open` schedule: re-fetch details of processes still open even outside the moving window.

@@ -40,6 +40,14 @@ export function LoginForm({
         try {
             const result = await signInAction(data);
 
+            if (result.code === "email_not_confirmed") {
+                const verifyParams = new URLSearchParams({ email: data.email });
+                if (nextPath) verifyParams.set("next", nextPath);
+                toast.info("Confirm your email to continue");
+                router.push(`/verify-email?${verifyParams}`);
+                return;
+            }
+
             if (result.error) {
                 toast.error(result.error);
                 return;

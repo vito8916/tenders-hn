@@ -3,13 +3,17 @@
 import { createClient } from "@/lib/supabase/server";
 import {
   forgotPasswordSchema,
+  resendConfirmationEmailSchema,
   signInSchema,
   signUpSchema,
   updatePasswordSchema,
+  verifyEmailSchema,
   type ForgotPasswordFormValues,
+  type ResendConfirmationEmailFormValues,
   type SignInFormValues,
   type SignUpFormValues,
   type UpdatePasswordFormValues,
+  type VerifyEmailFormValues,
 } from "./schemas";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -33,12 +37,11 @@ export const getAuthUser = cache(async () => {
 
 /**
  * Sign up a new user with email/password.
+ * Supabase emails a 6-digit code that the user enters on /verify-email.
  * @param values - Validated sign-up form values.
  */
-export async function signUpAction(values: SignUpFormValues, nextPath?: string) {
+export async function signUpAction(values: SignUpFormValues) {
     const supabase = await createClient();
-    const headersList = await headers();
-    const origin = headersList.get("origin") || process.env.NEXT_PUBLIC_SITE_URL;
 
     // Validate incoming values against Zod schema.
     const validatedFields = signUpSchema.safeParse(values);
@@ -49,8 +52,6 @@ export async function signUpAction(values: SignUpFormValues, nextPath?: string) 
 
     const { fullName, email, password } = validatedFields.data;
 
-    const destination = nextPath?.startsWith("/") ? nextPath : "/organizations";
-
     // Create user and attach basic profile metadata.
     const { data, error } = await supabase.auth.signUp({
         email,
@@ -59,8 +60,6 @@ export async function signUpAction(values: SignUpFormValues, nextPath?: string) 
             data: {
                 full_name: fullName,
             },
-            // Email link redirect target after confirmation.
-            emailRedirectTo: `${origin}${destination}`,
         },
     });
 
@@ -69,6 +68,60 @@ export async function signUpAction(values: SignUpFormValues, nextPath?: string) 
     }
 
     return { data };
+}
+
+/**
+ * Confirm a new account with the code from the confirmation email.
+ * On success the user is signed in.
+ * @param values - Validated email and 6-digit code.
+ */
+export async function verifyEmailAction(values: VerifyEmailFormValues) {
+    const supabase = await createClient();
+
+    const validatedFields = verifyEmailSchema.safeParse(values);
+
+    if (!validatedFields.success) {
+        return { error: "Invalid fields" };
+    }
+
+    const { email, token } = validatedFields.data;
+
+    const { data, error } = await supabase.auth.verifyOtp({
+        email,
+        token,
+        type: "email",
+    });
+
+    if (error) {
+        return { error: error.message };
+    }
+
+    return { data };
+}
+
+/**
+ * Send a new confirmation code to an unconfirmed account.
+ * @param values - Validated email.
+ */
+export async function resendConfirmationEmailAction(values: ResendConfirmationEmailFormValues) {
+    const supabase = await createClient();
+
+    const validatedFields = resendConfirmationEmailSchema.safeParse(values);
+
+    if (!validatedFields.success) {
+        return { error: "Invalid fields" };
+    }
+
+    const { error } = await supabase.auth.resend({
+        type: "signup",
+        email: validatedFields.data.email,
+    });
+
+    if (error) {
+        return { error: error.message };
+    }
+
+    return { success: true };
 }
 
 /**
@@ -99,6 +152,7 @@ export async function signInAction(values: SignInFormValues) {
         console.error('Error signing in:', error);
         return {
             error: error.message,
+            code: error.code,
         };
     }
 

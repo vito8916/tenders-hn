@@ -184,7 +184,7 @@ Generated types in `types/database.types.ts` are never edited by hand.
 - Entry: `proxy.ts` delegates to `lib/supabase/middleware.updateSession()`.
 - Unauthenticated users are redirected from protected routes to `/login?next=<destination>`; after signing in they land on the original destination (this is how invitation links survive the login wall).
 - Authenticated users are redirected away from `/login` and `/sign-up`.
-- Public routes: `/`, `/login`, `/sign-up`, `/forgot-password`, `/update-password`, `/sign-up-success`, `/error`, and everything under `/auth`.
+- Public routes: `/`, `/login`, `/sign-up`, `/forgot-password`, `/update-password`, `/verify-email`, `/error`, and everything under `/auth`.
 - Middleware is a convenience layer only — every server entry point re-checks the session, and RLS enforces data access regardless.
 
 ## Project Structure
@@ -258,12 +258,9 @@ pnpm exec supabase link --project-ref <ref>
 pnpm exec supabase db push
 ```
 
-3. Configure auth email templates in the Supabase dashboard (Authentication → Emails) so links go through the app's confirm route:
+3. Configure auth email templates in the Supabase dashboard (Authentication → Emails). Sign-up confirmation sends a 6-digit code that users enter on `/verify-email`; paste `supabase/templates/confirmation.html` (it uses `{{ .Token }}`) into **Confirm signup**. Password reset links go through the app's confirm route:
 
 ```html
-<!-- Confirm sign up -->
-<p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email">Confirm your mail</a></p>
-
 <!-- Reset password -->
 <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/update-password">Reset Password</a></p>
 ```

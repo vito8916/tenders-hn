@@ -71,7 +71,7 @@ Middleware keeps sessions fresh and blocks unauthenticated access to private rou
 
 | Module | Status | Notes |
 |---|---|---|
-| Auth | ✓ | Login, sign-up, forgot/reset password, sign-up-success, OAuth callback, `next` redirect support |
+| Auth | ✓ | Login, sign-up, forgot/reset password, email confirmation code, OAuth callback, `next` redirect support |
 | Onboarding | ✓ | Multi-step flow (profile → org → invites → theme), `requireOnboarding()` guard |
 | Organizations | ✓ | List, create, RBAC, actions/services/repository, logo upload, `OrgProvider` context |
 | Projects | ✓ | List (TanStack Table), create via slide-in sheet, detail page, favorites in sidebar |

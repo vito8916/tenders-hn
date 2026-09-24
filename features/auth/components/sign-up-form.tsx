@@ -44,13 +44,14 @@ export function SignUpForm({
 
   async function onSubmit(data: SignUpFormValues) {
     try {
-      const result = await signUpAction(data, destination);
+      const result = await signUpAction(data);
       if (result?.error) {
         toast.error(result.error);
         return;
       }
-      toast.success("Account created successfully");
-      router.push("/sign-up-success");
+      const verifyParams = new URLSearchParams({ email: data.email });
+      if (nextPath) verifyParams.set("next", nextPath);
+      router.push(`/verify-email?${verifyParams}`);
     } catch {
       toast.error("Something went wrong. Please try again.");
     }

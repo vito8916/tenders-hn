@@ -24,6 +24,11 @@ export const resendConfirmationEmailSchema = z.object({
     email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
   });
 
+export const verifyEmailSchema = z.object({
+    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
+    token: z.string().trim().regex(/^\d{6}$/, "Enter the 6-digit code from the email"),
+  });
+
 export const forgotPasswordSchema = z.object({
     email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
   });
@@ -45,6 +50,7 @@ export const changePasswordSchema = z.object({
 export type SignInFormValues = z.infer<typeof signInSchema>
 export type SignUpFormValues = z.infer<typeof signUpSchema>
 export type ResendConfirmationEmailFormValues = z.infer<typeof resendConfirmationEmailSchema>
+export type VerifyEmailFormValues = z.infer<typeof verifyEmailSchema>
 export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
 export type UpdatePasswordFormValues = z.infer<typeof updatePasswordSchema>
 export type ChangePasswordFormValues = z.infer<typeof changePasswordSchema>

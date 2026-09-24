@@ -29,7 +29,22 @@ export function retryDelaySeconds(attempt: number): number {
 interface QueueRow {
     msg_id: string;
     read_ct: number;
+    enqueued_at: Date;
     message: unknown;
+}
+
+/** Archives the message as a dead letter and records why, for the admin app. */
+async function archiveFailedJob(pool: Pool, queue: string, row: QueueRow, error: string) {
+    await pool.query(
+        `with failure as (
+           insert into public.worker_job_failures (queue, msg_id, message, attempts, error, enqueued_at)
+           values ($1, $2, $3, $4, $5, $6)
+           on conflict (queue, msg_id) do update
+           set message = excluded.message, attempts = excluded.attempts, error = excluded.error, failed_at = now()
+         )
+         select pgmq.archive($1, $2::bigint)`,
+        [queue, row.msg_id, JSON.stringify(row.message), row.read_ct, error, row.enqueued_at],
+    );
 }
 
 async function processMessage(pool: Pool, consumer: QueueConsumer, row: QueueRow) {
@@ -40,7 +55,7 @@ async function processMessage(pool: Pool, consumer: QueueConsumer, row: QueueRow
 
     if (!parsed.success || !handler) {
         log("error", "Unknown job message, archiving", { ...fields, payload: row.message });
-        await pool.query("select pgmq.archive($1, $2::bigint)", [queue, row.msg_id]);
+        await archiveFailedJob(pool, queue, row, "Unknown job message");
         return;
     }
 
@@ -50,7 +65,7 @@ async function processMessage(pool: Pool, consumer: QueueConsumer, row: QueueRow
     } catch (error) {
         if (row.read_ct >= consumer.maxAttempts) {
             log("error", "Job failed permanently, archiving", { ...fields, type: parsed.data.type, error: errorMessage(error) });
-            await pool.query("select pgmq.archive($1, $2::bigint)", [queue, row.msg_id]);
+            await archiveFailedJob(pool, queue, row, errorMessage(error));
             return;
         }
 
@@ -63,7 +78,8 @@ async function processMessage(pool: Pool, consumer: QueueConsumer, row: QueueRow
 /**
  * Reads one message at a time from a pgmq queue until `signal` aborts.
  * Successful jobs are deleted; failed jobs become visible again after an
- * exponential delay; jobs that exhaust their attempts are archived.
+ * exponential delay; jobs that exhaust their attempts are archived and
+ * recorded in worker_job_failures.
  */
 export async function consumeQueue(pool: Pool, consumer: QueueConsumer, signal: AbortSignal) {
     log("info", "Consuming queue", { queue: consumer.queue });
@@ -72,7 +88,7 @@ export async function consumeQueue(pool: Pool, consumer: QueueConsumer, signal: 
         let rows: QueueRow[];
         try {
             const result = await pool.query<QueueRow>(
-                "select msg_id, read_ct, message from pgmq.read_with_poll($1, $2, 1, $3, $4)",
+                "select msg_id, read_ct, enqueued_at, message from pgmq.read_with_poll($1, $2, 1, $3, $4)",
                 [consumer.queue, consumer.visibilityTimeoutSeconds, POLL_SECONDS, POLL_INTERVAL_MS],
             );
             rows = result.rows;

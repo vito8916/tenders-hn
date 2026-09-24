@@ -279,7 +279,7 @@ Rough sizes: **S** ≤ 3 days, **M** 1–2 weeks, **L** 2–4 weeks, for one dev
 - ~~`ingest.sync_window` job~~ **Done (24 Sep 2026).** Submits the window (today − 7 days → today, Honduras time), walks every page, stores each page's gzipped HTML in the private `source-pages` bucket (kept 14 days), upserts `procurement_processes`, and enqueues `ingest.fetch_detail` for new or changed rows (skipped when one is already waiting). Listing values only fill a process until its detail has been read. Verified live on 22–23 Sep: 12/12 pages, 335 processes, all start dates inside the window.
 - ~~`ingest.fetch_detail` job~~ **Done (24 Sep 2026).** Parses the full object, dates with times, funding, acquisition type, products/UNSPSC, contact, and document links; writes `process_versions` on content change; emits `process_events`; syncs `source_documents` (`removed_at` when a link disappears). Enqueuing downloads waits for the `docs.download` consumer in Phase 2; a document replaced under the same URL (`document_replaced`) is detected there by content hash.
 - Implementation notes: both jobs share the `ingest` queue with a single consumer, so the portal sees one request at a time (2–3 s apart, two retries with backoff per request, three attempts per job). A page that fails the parser-health checks (form state, result headers, row layout, detail table, product and document grids) fails the job and marks the run `failed`/`partial`; its raw HTML is still stored. `is_open` was dropped in favor of `closes_at` (a stored flag goes stale); `source_pages` is service-role only. The worker needs `SUPABASE_URL` and `SUPABASE_SECRET_KEY` for Storage.
-- `ingest.recheck_open` schedule: re-fetch details of processes still open even outside the moving window.
+- ~~`ingest.recheck_open` schedule~~ **Done (24 Sep 2026).** pg_cron runs `private.enqueue_open_rechecks()` every hour at :30 and enqueues ordinary `fetch_detail` jobs for up to 300 processes that are open (closing in the future or within the last day) and were not checked in the last 6 hours, oldest check first, skipping any already queued. This covers processes outside the moving window and annexes on processes inside it, which the results list does not show. The batch is sized so syncs never wait long behind it on the shared consumer.
 - Politeness and safety: one session at a time, 2–3 s between requests, bounded retries with backoff, a parser-health check (expected headers/fields present) that marks the run `failed` instead of storing garbage.
 - Freshness measurement: record `first_seen_at` per process and compare consecutive runs for a week before fixing the cadence (spec §14.1).
 - Source health read model for the admin project: views over `source_sync_runs` (last success, age, pages, errors).
@@ -355,7 +355,7 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 |---|---|---|
 | `ingest.sync_window` | pg_cron every 3 h (O6) | one running sync per source (advisory lock) |
 | `ingest.fetch_detail` | enqueued by sync / recheck | `(source, source_process_key)` + content hash |
-| `ingest.recheck_open` | pg_cron (e.g. every 6 h) | per process, skip if checked recently |
+| `ingest.recheck_open` | pg_cron hourly at :30, up to 300 processes | per process: open, not checked in 6 h, not already queued |
 | `docs.download` | new document link | `(document_id, sha256)` |
 | `docs.extract` | new document version | `document_version_id` |
 | `docs.chunk_embed` | extraction finished | `document_version_id` + `embedding_model` |

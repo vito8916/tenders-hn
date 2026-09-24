@@ -141,6 +141,80 @@ export type Database = {
           },
         ]
       }
+      ai_model_rates: {
+        Row: {
+          credits_per_1k_input: number
+          credits_per_1k_output: number
+          is_enabled: boolean
+          model: string
+          updated_at: string
+        }
+        Insert: {
+          credits_per_1k_input: number
+          credits_per_1k_output: number
+          is_enabled?: boolean
+          model: string
+          updated_at?: string
+        }
+        Update: {
+          credits_per_1k_input?: number
+          credits_per_1k_output?: number
+          is_enabled?: boolean
+          model?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ai_usage_events: {
+        Row: {
+          created_at: string
+          error: string | null
+          id: number
+          input_tokens: number | null
+          latency_ms: number | null
+          model: string
+          org_id: string | null
+          output_tokens: number | null
+          reference: Json | null
+          role: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          id?: never
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model: string
+          org_id?: string | null
+          output_tokens?: number | null
+          reference?: Json | null
+          role: string
+          status: string
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          id?: never
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model?: string
+          org_id?: string | null
+          output_tokens?: number | null
+          reference?: Json | null
+          role?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_usage_events_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       app_events: {
         Row: {
           created_at: string
@@ -588,6 +662,157 @@ export type Database = {
         }
         Relationships: []
       }
+      process_events: {
+        Row: {
+          after: Json | null
+          before: Json | null
+          id: number
+          kind: string
+          observed_at: string
+          process_id: string
+          version_id: string | null
+        }
+        Insert: {
+          after?: Json | null
+          before?: Json | null
+          id?: never
+          kind: string
+          observed_at?: string
+          process_id: string
+          version_id?: string | null
+        }
+        Update: {
+          after?: Json | null
+          before?: Json | null
+          id?: never
+          kind?: string
+          observed_at?: string
+          process_id?: string
+          version_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "process_events_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "process_events_version_id_fkey"
+            columns: ["version_id"]
+            isOneToOne: false
+            referencedRelation: "process_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      process_versions: {
+        Row: {
+          content_sha256: string
+          detail: Json
+          id: string
+          observed_at: string
+          process_id: string
+        }
+        Insert: {
+          content_sha256: string
+          detail: Json
+          id?: string
+          observed_at?: string
+          process_id: string
+        }
+        Update: {
+          content_sha256?: string
+          detail?: Json
+          id?: string
+          observed_at?: string
+          process_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "process_versions_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      procurement_processes: {
+        Row: {
+          acquisition_type: string | null
+          buyer_entity: string
+          closes_at: string | null
+          current_version_id: string | null
+          detail_url: string
+          expediente: string
+          first_seen_at: string
+          id: string
+          last_checked_at: string | null
+          last_seen_at: string
+          modality: string | null
+          ocid: string | null
+          purchase_unit: string | null
+          search_tsv: unknown
+          source: string
+          source_process_key: string
+          source_start_at: string | null
+          stage: string | null
+          title: string
+        }
+        Insert: {
+          acquisition_type?: string | null
+          buyer_entity: string
+          closes_at?: string | null
+          current_version_id?: string | null
+          detail_url: string
+          expediente: string
+          first_seen_at?: string
+          id?: string
+          last_checked_at?: string | null
+          last_seen_at?: string
+          modality?: string | null
+          ocid?: string | null
+          purchase_unit?: string | null
+          search_tsv?: unknown
+          source: string
+          source_process_key: string
+          source_start_at?: string | null
+          stage?: string | null
+          title: string
+        }
+        Update: {
+          acquisition_type?: string | null
+          buyer_entity?: string
+          closes_at?: string | null
+          current_version_id?: string | null
+          detail_url?: string
+          expediente?: string
+          first_seen_at?: string
+          id?: string
+          last_checked_at?: string | null
+          last_seen_at?: string
+          modality?: string | null
+          ocid?: string | null
+          purchase_unit?: string | null
+          search_tsv?: unknown
+          source?: string
+          source_process_key?: string
+          source_start_at?: string | null
+          stage?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "procurement_processes_current_version_fkey"
+            columns: ["current_version_id"]
+            isOneToOne: false
+            referencedRelation: "process_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -624,6 +849,157 @@ export type Database = {
           phone?: string | null
           status?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      source_documents: {
+        Row: {
+          first_seen_at: string
+          id: string
+          kind: string
+          last_seen_at: string
+          process_id: string
+          removed_at: string | null
+          source_url: string
+          title: string
+        }
+        Insert: {
+          first_seen_at?: string
+          id?: string
+          kind: string
+          last_seen_at?: string
+          process_id: string
+          removed_at?: string | null
+          source_url: string
+          title: string
+        }
+        Update: {
+          first_seen_at?: string
+          id?: string
+          kind?: string
+          last_seen_at?: string
+          process_id?: string
+          removed_at?: string | null
+          source_url?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_documents_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      source_pages: {
+        Row: {
+          fetched_at: string
+          html_sha256: string
+          id: number
+          page_number: number
+          row_count: number | null
+          status: string
+          storage_path: string | null
+          sync_run_id: number
+        }
+        Insert: {
+          fetched_at?: string
+          html_sha256: string
+          id?: never
+          page_number: number
+          row_count?: number | null
+          status: string
+          storage_path?: string | null
+          sync_run_id: number
+        }
+        Update: {
+          fetched_at?: string
+          html_sha256?: string
+          id?: never
+          page_number?: number
+          row_count?: number | null
+          status?: string
+          storage_path?: string | null
+          sync_run_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_pages_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_sync_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      source_sync_runs: {
+        Row: {
+          error: string | null
+          finished_at: string | null
+          id: number
+          pages_expected: number | null
+          pages_fetched: number
+          processes_changed: number
+          processes_new: number
+          processes_seen: number
+          source: string
+          started_at: string
+          status: string
+          window_end: string
+          window_start: string
+        }
+        Insert: {
+          error?: string | null
+          finished_at?: string | null
+          id?: never
+          pages_expected?: number | null
+          pages_fetched?: number
+          processes_changed?: number
+          processes_new?: number
+          processes_seen?: number
+          source: string
+          started_at?: string
+          status?: string
+          window_end: string
+          window_start: string
+        }
+        Update: {
+          error?: string | null
+          finished_at?: string | null
+          id?: never
+          pages_expected?: number | null
+          pages_fetched?: number
+          processes_changed?: number
+          processes_new?: number
+          processes_seen?: number
+          source?: string
+          started_at?: string
+          status?: string
+          window_end?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
+      worker_heartbeats: {
+        Row: {
+          last_heartbeat_at: string
+          started_at: string
+          version: string | null
+          worker_id: string
+        }
+        Insert: {
+          last_heartbeat_at?: string
+          started_at: string
+          version?: string | null
+          worker_id: string
+        }
+        Update: {
+          last_heartbeat_at?: string
+          started_at?: string
+          version?: string | null
+          worker_id?: string
         }
         Relationships: []
       }

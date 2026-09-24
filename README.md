@@ -8,7 +8,7 @@ Tenders HN is built on a multi-tenant Next.js + Supabase foundation (organizatio
 
 - **Product spec:** `documentation/MVP_Specification.md`
 - **How and in which order we build it:** `documentation/mvp-implementation-plan.md`
-- **Status:** Phase 0 (worker, queues, AI layer, tests, CI) is done and the HonduCompras search protocol is verified. Phase 1 (ingestion) is next.
+- **Status:** Phase 0 (worker, queues, AI layer, tests, CI) is done. Phase 1 (ingestion) is in progress: source tables, window sync, and detail fetch are done; rechecking open processes and source health views are next.
 
 The project is **local-first**: the entire data model lives in versioned migrations under `supabase/migrations/`, and development runs against a local Supabase stack (Docker). No cloud project is required to work on it.
 
@@ -157,6 +157,7 @@ The single source of truth is `supabase/migrations/`:
 - `*_billing_and_entitlements.sql` — `plans`, `organization_subscriptions`, seat limits, and AI credits (`ai_credit_reservations` + append-only `ai_credit_ledger`). Subscription changes are audited and notified.
 - `*_scheduled_jobs.sql` — pg_cron jobs: expire subscriptions, warn 7 days before expiry, grant monthly AI credits, release abandoned credit reservations, dispatch notification emails, purge old records.
 - `*_worker_and_ai_foundation.sql` — search extensions (`vector`, `pg_trgm`, `unaccent`), Supabase Queues (`pgmq`) with the `maintenance` queue and a per-minute worker heartbeat, `worker_heartbeats`, `ai_usage_events`, and `ai_model_rates`.
+- `*_source_data.sql` — shared HonduCompras data readable by any organization member: `source_sync_runs`, `source_pages` (raw HTML in the private `source-pages` bucket), `procurement_processes` (accent-insensitive full-text search), `process_versions`, `process_events`, and `source_documents`. Adds the `ingest` queue and a sync every 3 hours.
 
 Edge function `supabase/functions/send-notification-emails` drains the email outbox. pg_cron calls it every minute (only when there is due work) with a shared secret stored in Vault. It sends through Resend when `RESEND_API_KEY` is set; locally it delivers to Mailpit.
 
@@ -226,9 +227,11 @@ documentation/            # Spec, implementation plan, architecture docs
 `worker/` is a second pnpm workspace package: a long-running Node process that consumes Supabase Queues (pgmq) filled by pg_cron. It will run scraping, document processing, matching, and report jobs (see `documentation/mvp-implementation-plan.md`).
 
 ```bash
-cp worker/.env.example worker/.env.local   # DATABASE_URL points at the local stack
+cp worker/.env.example worker/.env.local   # DATABASE_URL, SUPABASE_URL, SUPABASE_SECRET_KEY (from `supabase status`)
 pnpm worker:dev                            # watch mode
 ```
+
+- Ingestion (`ingest` queue): `sync_window` searches HonduCompras by start date (last 7 days), walks every results page, keeps each page's gzipped HTML for 14 days, upserts `procurement_processes`, and enqueues `fetch_detail` for new or changed processes. `fetch_detail` reads the detail page, stores a version when the content changed, records events (created, stage, deadlines, documents), and syncs `source_documents`. One consumer handles both, one message at a time, 2–3 s between requests to the portal. A page that no longer matches the parser fails the job instead of storing data. To sync a specific window: `select pgmq.send('ingest', '{"type":"sync_window","from":"2026-09-22","to":"2026-09-23"}')`.
 
 - Failed jobs retry with exponential backoff (30 s, 60 s, ... up to 30 min) and are archived as dead letters after their queue's `maxAttempts`.
 - `SIGTERM` finishes in-flight jobs before exiting; the Docker image runs `node` as PID 1 so Railway's stop signal reaches it.
@@ -244,7 +247,7 @@ pnpm test              # Vitest: app, lib, and worker unit tests
 pnpm exec supabase test db   # pgTAP: RLS isolation, seats, notifications, billing and credits
 ```
 
-Unit tests live next to what they validate (`features/*/rbac.test.ts`, `lib/ai/models.test.ts`, `worker/src/queue.test.ts`). Database tests live in `supabase/tests/`; each file creates its own fixtures and rolls back.
+Unit tests live next to what they validate (`features/*/rbac.test.ts`, `lib/ai/models.test.ts`, `worker/src/queue.test.ts`, `worker/src/honducompras/*.test.ts` against the captured portal pages). Database tests live in `supabase/tests/`; each file creates its own fixtures and rolls back.
 
 CI (`.github/workflows/ci.yml`) runs lint, type checks, and unit tests; migrations, pgTAP, and `supabase db advisors --fail-on warn` on a fresh local stack; and a worker image build.
 
@@ -267,7 +270,7 @@ pnpm exec supabase db push
 
 4. Railway `web` service (root of the repo, `pnpm build` / `pnpm start`): set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`, `NEXT_PUBLIC_APP_URL` (production origin), `RESEND_API_KEY` and `EMAIL_FROM` for invitation emails, and `AI_GATEWAY_API_KEY` once chat lands.
 
-   Railway `worker` service: Dockerfile `worker/Dockerfile` with the repository root as build context; set `DATABASE_URL` to the Supabase **Session pooler** connection string (the direct connection is IPv6-only) and `AI_GATEWAY_API_KEY`. Optional `AI_MODEL_<ROLE>` overrides per environment.
+   Railway `worker` service: Dockerfile `worker/Dockerfile` with the repository root as build context; set `DATABASE_URL` to the Supabase **Session pooler** connection string (the direct connection is IPv6-only), `SUPABASE_URL` and `SUPABASE_SECRET_KEY` (a secret key from Project Settings → API Keys, for Storage), and `AI_GATEWAY_API_KEY`. Optional `AI_MODEL_<ROLE>` overrides per environment.
 
 5. Deploy the email dispatcher and give it (and pg_cron) the same shared secret:
 

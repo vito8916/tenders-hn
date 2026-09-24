@@ -1,12 +1,18 @@
-# Multi-Tenant SupaNext Kit
+# Tenders HN
 
-Multi-tenant SaaS starter kit built on Next.js and Supabase.
+Plataforma de oportunidades de compras públicas para Honduras. It collects the processes published on HonduCompras, reads their details and documents, compares them with what each company sells, and delivers a short, justified list of opportunities worth reviewing.
 
 ## Overview
 
-Multi-Tenant SupaNext Kit helps you manage projects, members, and organization workflows from one place. It ships with complete flows for authentication, onboarding (including invited users), organizations, projects, member management, invitations with email delivery, settings, and an audit log — all enforced by RBAC in the app and Row Level Security in the database.
+Tenders HN is built on a multi-tenant Next.js + Supabase foundation (organizations, roles, invitations, plans, notifications, audit log — all enforced by RBAC in the app and Row Level Security in the database) plus a background worker for ingestion and AI matching.
+
+- **Product spec:** `documentation/MVP_Specification.md`
+- **How and in which order we build it:** `documentation/mvp-implementation-plan.md`
+- **Status:** Phase 0 (worker, queues, AI layer, tests, CI) is done and the HonduCompras search protocol is verified. Phase 1 (ingestion) is next.
 
 The project is **local-first**: the entire data model lives in versioned migrations under `supabase/migrations/`, and development runs against a local Supabase stack (Docker). No cloud project is required to work on it.
+
+The product UI will be **Spanish-only**; screens inherited from the template are still in English until the Phase 4 translation pass.
 
 ## Features
 
@@ -15,9 +21,11 @@ The project is **local-first**: the entire data model lives in versioned migrati
 - **Invitations**: Invite by email (Resend + React Email), resend/revoke, and a token-based accept flow at `/invitations/[token]`.
 - **Member Management**: Members table with role changes, removal, leave, and atomic ownership transfer.
 - **Onboarding**: Multi-step flow (profile → theme → organization → invites); invited users get a join flow instead of creating an organization.
-- **Projects**: List (TanStack Table), create, edit (name, description, status, visibility), favorites, and detail page.
-- **Settings**: Account (profile, password, appearance) and organization (name, slug, logo, danger zone).
-- **Audit Log**: `app_events` table written through a SECURITY DEFINER RPC, surfaced as Recent Activity on the dashboard.
+- **Settings**: Account (profile, password, appearance), organization (name, slug, logo, danger zone), and notification preferences.
+- **Notifications**: In-app inbox in the header bell with live updates (Supabase Realtime), per-user in-app/email preferences, and an email outbox drained by an edge function.
+- **Plans and entitlements**: Organization subscriptions activated by the platform admin app, seat limits, read-only mode without an active plan, and monthly AI credits with reserve / commit / release.
+- **Audit Log**: `app_events` written by a SECURITY DEFINER RPC and by database triggers (subscription changes), surfaced as Recent Activity and a filterable audit log page.
+- **Background worker**: Node process consuming Supabase Queues for ingestion, documents, matching, and reports.
 - **Complete Auth**: Sign up, sign in, OAuth (GitHub/Google), forgot/update password, email confirmation, and `next` redirect support.
 
 ## Tech Stack
@@ -27,7 +35,10 @@ The project is **local-first**: the entire data model lives in versioned migrati
 - Tailwind CSS v4 + shadcn/ui
 - Zod (runtime validation + inferred types) + React Hook Form
 - Resend + React Email
-- Vitest for unit tests
+- Supabase Queues (pgmq) + pg_cron for background jobs; `worker/` package (Node 24) consumes them
+- AI SDK + Vercel AI Gateway: Jev (`typesafe-ai/jev`) for matching, multi-provider chat and embedding models by task role
+- Vitest for unit tests, pgTAP for database tests
+- Deployment target: Railway (`web` and `worker` services) + Supabase Cloud
 - ESLint flat config (`eslint-config-next/core-web-vitals` + `/typescript`)
 
 ## Architecture
@@ -50,13 +61,13 @@ features/[domain]/
   components/     # UI colocated with the domain
 ```
 
-Current domains: `auth`, `onboarding`, `organizations`, `memberships`, `invitations`, `projects`, `profiles`, `events`.
+Current domains: `auth`, `onboarding`, `organizations`, `memberships`, `invitations`, `profiles`, `events`, `notifications`, `settings`. Procurement domains (processes, documents, profiles, searches, runs, chat) arrive with the phases in the implementation plan.
 
 See `documentation/project-overview.md` for the full architecture snapshot.
 
 ## Requirements
 
-- Node.js 18+ (LTS recommended)
+- Node.js 24 (used by CI and the worker image)
 - pnpm 11+ (repository includes `pnpm-lock.yaml`)
 - Docker (for the local Supabase stack)
 
@@ -98,6 +109,14 @@ pnpm dev
 ```
 
 The app starts on http://localhost:3001.
+
+5) Optional: run the background worker and check AI access
+
+```bash
+cp worker/.env.example worker/.env.local   # add AI_GATEWAY_API_KEY for AI jobs
+pnpm worker:dev
+pnpm --filter worker ai:smoke --all-chat   # calls Jev and each chat candidate once
+```
 
 Useful local URLs:
 
@@ -178,20 +197,28 @@ app/
     onboarding/           # Multi-step onboarding (create or join)
     invitations/[token]/  # Invitation accept page
     organizations/        # Org list + org-scoped app
-      [orgSlug]/          # Dashboard, projects, members, settings
+      [orgSlug]/          # Dashboard, members, settings
 features/                 # Domain slices (see Architecture)
 components/               # App shell, marketing, shared UI
 components/ui/            # Vendored shadcn/diceui components — do not edit
 emails/                   # React Email templates
 lib/
+  ai/                     # AI role → gateway model registry (shared with the worker)
   auth/                   # Claims helpers, onboarding guard
   email/                  # Resend wrapper
   supabase/               # SSR/CSR clients, middleware integration
+worker/
+  src/                    # Queue consumer, jobs, scripts
+  src/honducompras/__fixtures__/  # Captured portal pages for parser tests
+  Dockerfile              # Worker image (poppler + Tesseract spa)
 supabase/
   migrations/             # Database source of truth
+  functions/              # Edge functions (email dispatcher)
+  tests/                  # pgTAP database tests
   seed.sql                # Local test data
 types/database.types.ts   # Generated from the database
-documentation/            # Architecture and project docs
+documentation/            # Spec, implementation plan, architecture docs
+.github/workflows/ci.yml  # Lint, types, unit + DB tests, worker image
 ```
 
 ## Background Worker
@@ -241,7 +268,9 @@ pnpm exec supabase db push
 <p><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/update-password">Reset Password</a></p>
 ```
 
-4. Set the environment variables in your host (e.g. Vercel): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`, `NEXT_PUBLIC_APP_URL` (production origin), plus `RESEND_API_KEY` and `EMAIL_FROM` for invitation emails.
+4. Railway `web` service (root of the repo, `pnpm build` / `pnpm start`): set `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`, `NEXT_PUBLIC_APP_URL` (production origin), `RESEND_API_KEY` and `EMAIL_FROM` for invitation emails, and `AI_GATEWAY_API_KEY` once chat lands.
+
+   Railway `worker` service: Dockerfile `worker/Dockerfile` with the repository root as build context; set `DATABASE_URL` to the Supabase **Session pooler** connection string (the direct connection is IPv6-only) and `AI_GATEWAY_API_KEY`. Optional `AI_MODEL_<ROLE>` overrides per environment.
 
 5. Deploy the email dispatcher and give it (and pg_cron) the same shared secret:
 

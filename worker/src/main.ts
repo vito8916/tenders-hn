@@ -1,11 +1,12 @@
 import { Pool } from "pg";
 import { env } from "./env";
+import { docsConsumer } from "./jobs/docs";
 import { ingestConsumer } from "./jobs/ingest";
 import { maintenanceConsumer } from "./jobs/maintenance";
 import { errorMessage, log } from "./log";
 import { consumeQueue, type QueueConsumer } from "./queue";
 
-const consumers: QueueConsumer[] = [maintenanceConsumer, ingestConsumer];
+const consumers: QueueConsumer[] = [maintenanceConsumer, ingestConsumer, docsConsumer];
 
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: consumers.length + 2 });
 pool.on("error", (error) => log("error", "Idle database client error", { error: errorMessage(error) }));

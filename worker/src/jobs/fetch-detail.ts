@@ -10,8 +10,9 @@ const fetchDetailMessageSchema = z.object({ processId: z.uuid() });
 
 /**
  * Reads a process's detail page, stores a new version when its content
- * changed, records what changed as events, and keeps the document list in
- * sync. Fetching the same unchanged page again only updates last_checked_at.
+ * changed, records what changed as events, keeps the document list in sync,
+ * and queues a download check for each of its files. An unchanged page only
+ * updates last_checked_at and re-checks the files.
  */
 export const fetchDetail: JobHandler = async (message, { pool }) => {
     const { processId } = fetchDetailMessageSchema.parse(message);
@@ -95,6 +96,18 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
             `update public.source_documents set removed_at = now()
              where process_id = $1 and removed_at is null and not (source_url = any($2::text[]))`,
             [processId, detail.documents.map((document) => document.url)],
+        );
+        // Conditional requests make re-checking unchanged files cheap, so every
+        // detail fetch also checks the process's files for new or replaced content.
+        await client.query(
+            `select pgmq.send('ingest', jsonb_build_object('type', 'download_document', 'documentId', d.id))
+             from public.source_documents d
+             where d.process_id = $1 and d.removed_at is null
+               and not exists (
+                 select 1 from pgmq.q_ingest q
+                 where q.message ->> 'type' = 'download_document' and q.message ->> 'documentId' = d.id::text
+               )`,
+            [processId],
         );
 
         await client.query("commit");

@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { diffDetails } from "./events";
 import { parseDetailPage, type ProcessDetail } from "./parse";
 
-const detail = parseDetailPage(readFileSync(new URL("./__fixtures__/detail-LPN-008-2026.html", import.meta.url), "utf8"));
+const detail = parseDetailPage(readFileSync(new URL("./__fixtures__/detail-LPN-008-2026.html", import.meta.url), "utf8"))!;
 
 describe("diffDetails", () => {
     it("emits only created for the first version", () => {

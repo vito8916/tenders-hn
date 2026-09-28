@@ -209,11 +209,19 @@ function gridRows(root: HTMLElement, gridId: string): HTMLElement[] {
     return grid.querySelectorAll('tbody[id*="mkr:rows"] > tr');
 }
 
-export function parseDetailPage(html: string): ProcessDetail {
+/**
+ * Parses a detail page, or returns null when the portal serves the page with
+ * an empty process table: it lists the process but publishes no detail for it
+ * (seen on some processes in Elaboración or Recepción de Ofertas).
+ */
+export function parseDetailPage(html: string): ProcessDetail | null {
     const root = parse(html);
     const table = root.getElementById("ctl00_cphCuerpo_dvProceso");
     if (!table) {
         throw new ParserHealthError("Process table is missing");
+    }
+    if (table.querySelectorAll("tr").length === 0) {
+        return null;
     }
 
     const fields = new Map<string, HTMLElement>();

@@ -217,12 +217,16 @@ async function upsertListingRow(pool: Pool, row: ListingRow): Promise<"new" | "c
     return existing.stage !== row.stage || existing.close_date !== row.closeDate ? "changed" : "unchanged";
 }
 
-/** Skips the enqueue when a fetch for this process is already waiting. */
+/**
+ * Skips the enqueue when a fetch for this process is already waiting, or when
+ * the portal published no detail for it in the last 6 hours.
+ */
 async function enqueueDetailFetch(pool: Pool, processKey: string) {
     await pool.query(
         `select pgmq.send('ingest', jsonb_build_object('type', 'fetch_detail', 'processId', p.id))
          from public.procurement_processes p
          where p.source = $1 and p.source_process_key = $2
+           and (p.detail_unavailable_at is null or p.detail_unavailable_at < now() - interval '6 hours')
            and not exists (
              select 1 from pgmq.q_ingest q
              where q.message ->> 'type' = 'fetch_detail' and q.message ->> 'processId' = p.id::text

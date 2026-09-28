@@ -77,7 +77,7 @@ describe("parseSearchPage", () => {
 
 describe("parseDetailPage", () => {
     it("parses LPN-008-2026 (IHSS) with its three documents", () => {
-        const detail = parseDetailPage(fixture("detail-LPN-008-2026.html"));
+        const detail = parseDetailPage(fixture("detail-LPN-008-2026.html"))!;
 
         expect(detail).toMatchObject({
             expediente: "LPN-008-2026",
@@ -122,7 +122,7 @@ describe("parseDetailPage", () => {
     });
 
     it("parses CM 39-019-2026 with no documents as a valid state", () => {
-        const detail = parseDetailPage(fixture("detail-CM-39-019-2026.html"));
+        const detail = parseDetailPage(fixture("detail-CM-39-019-2026.html"))!;
 
         expect(detail.expediente).toBe("CM 39-019-2026");
         expect(detail.documents).toEqual([]);
@@ -132,6 +132,10 @@ describe("parseDetailPage", () => {
         expect(detail.products).toEqual([
             { unspsc: "41103913", description: "Accesorios para centrifugadoras de laboratorio", specifications: "Ninguna", quantity: 1 },
         ]);
+    });
+
+    it("returns null when the portal publishes no detail for the process", () => {
+        expect(parseDetailPage(fixture("detail-unavailable-INJUPEMP-LPR-09-2026.html"))).toBeNull();
     });
 
     it("rejects a page without the process table", () => {

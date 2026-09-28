@@ -31,6 +31,16 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
     }
 
     const detail = parseDetailPage(await fetchDetailPage(process.detail_url));
+    if (!detail) {
+        // Not a job failure: retrying cannot make the portal publish it. Syncs and
+        // rechecks wait 6 hours before asking again; the last version is kept.
+        await pool.query(
+            "update public.procurement_processes set detail_unavailable_at = now(), last_checked_at = now() where id = $1",
+            [processId],
+        );
+        log("info", "The portal publishes no detail for this process", { processId });
+        return;
+    }
     const contentSha256 = createHash("sha256").update(JSON.stringify(detail)).digest("hex");
 
     const client = await pool.connect();
@@ -57,7 +67,7 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
             `update public.procurement_processes
              set expediente = $2, buyer_entity = $3, purchase_unit = $4, title = $5, stage = $6, modality = $7,
                  acquisition_type = $8, source_start_at = $9, closes_at = $10, current_version_id = $11,
-                 last_checked_at = now()
+                 last_checked_at = now(), detail_unavailable_at = null
              where id = $1`,
             [
                 processId,

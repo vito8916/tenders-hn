@@ -67,7 +67,7 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
             `update public.procurement_processes
              set expediente = $2, buyer_entity = $3, purchase_unit = $4, title = $5, stage = $6, modality = $7,
                  acquisition_type = $8, source_start_at = $9, closes_at = $10, current_version_id = $11,
-                 last_checked_at = now(), detail_unavailable_at = null
+                 products_text = $12, unspsc_codes = $13, last_checked_at = now(), detail_unavailable_at = null
              where id = $1`,
             [
                 processId,
@@ -81,10 +81,15 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
                 detail.startsAt,
                 detail.bidsDueAt,
                 versionId,
+                detail.products.map((product) => product.description).join("; ") || null,
+                [...new Set(detail.products.map((product) => product.unspsc))],
             ],
         );
 
         if (versionId !== process.current_version_id) {
+            // The object, entity, or products may have changed; retrieval compares against their embedding.
+            await client.query("select pgmq.send('docs', jsonb_build_object('type', 'embed_process', 'processId', $1::uuid))", [processId]);
+
             for (const event of diffDetails(process.previous_detail, detail)) {
                 await client.query(
                     "insert into public.process_events (process_id, version_id, kind, before, after) values ($1, $2, $3, $4, $5)",

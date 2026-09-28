@@ -1,5 +1,6 @@
 import type { QueueConsumer } from "../queue";
 import { embedDocument } from "./embed-document";
+import { embedProcess } from "./embed-process";
 import { extractDocument } from "./extract-document";
 
 // Extraction (CPU) and embedding (AI Gateway) never call the portal, so they
@@ -13,5 +14,6 @@ export const docsConsumer: QueueConsumer = {
     handlers: {
         extract_document: extractDocument,
         embed_document: embedDocument,
+        embed_process: embedProcess,
     },
 };

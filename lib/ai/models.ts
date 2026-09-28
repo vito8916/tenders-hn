@@ -12,11 +12,17 @@ const DEFAULT_MODELS: Record<AiRole, string | null> = {
     evaluate: "typesafe-ai/jev",
     // Provisional until the chat evaluation set picks a default (decision O5).
     chat: "anthropic/claude-sonnet-5",
-    embed: null,
+    // Provisional until retrieval recall on the labeled set picks one (decision O3).
+    // Voyage 4 models share one embedding space, so moving within the series
+    // does not require re-embedding.
+    embed: "voyage/voyage-4",
     rerank: null,
     vision: null,
     extract: null,
 };
+
+// document_chunks.embedding is halfvec(1024): every embed model must produce this size.
+export const EMBEDDING_DIMENSIONS = 1024;
 
 // Chat models the evaluation compares; any gateway model id can be added.
 export const CHAT_MODEL_CANDIDATES = [

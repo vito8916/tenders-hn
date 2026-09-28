@@ -16,7 +16,8 @@ const extractMessageSchema = z.object({ versionId: z.uuid() });
  * Writes the text of every page of a stored document version: the PDF text
  * layer, or Spanish OCR for scanned pages and images. Pages already stored
  * are skipped, so a job interrupted mid-document resumes where it stopped.
- * Formats other than PDF and images are marked unsupported.
+ * Formats other than PDF and images are marked unsupported. Extracted text
+ * is queued for chunking and embedding.
  */
 export const extractDocument: JobHandler = async (message, { pool }) => {
     const { versionId } = extractMessageSchema.parse(message);
@@ -92,6 +93,9 @@ export const extractDocument: JobHandler = async (message, { pool }) => {
         );
         const status = summary.pages === 0 ? "failed" : summary.pages < pageCount ? "partial" : summary.any_ocr ? "ocr" : "text";
         await finishExtraction(pool, versionId, { status, pageCount, error: failures.join("; ") || null });
+        if (status !== "failed") {
+            await pool.query("select pgmq.send('docs', jsonb_build_object('type', 'embed_document', 'versionId', $1::uuid))", [versionId]);
+        }
         log("info", "Document extracted", { versionId, status, pages: pageCount, failedPages: failures.length });
     } finally {
         await rm(workDir, { recursive: true, force: true });

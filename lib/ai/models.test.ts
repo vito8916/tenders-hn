@@ -15,12 +15,10 @@ describe("modelForRole", () => {
     });
 
     it("enables a role that has no default through its override", () => {
-        expect(modelForRole("embed", { AI_MODEL_EMBED: "openai/text-embedding-3-small" })).toBe(
-            "openai/text-embedding-3-small",
-        );
+        expect(modelForRole("rerank", { AI_MODEL_RERANK: "cohere/rerank-v3.5" })).toBe("cohere/rerank-v3.5");
     });
 
     it("throws for a role with no model", () => {
-        expect(() => modelForRole("embed", {})).toThrow(/AI_MODEL_EMBED/);
+        expect(() => modelForRole("rerank", {})).toThrow(/AI_MODEL_RERANK/);
     });
 });

@@ -6,6 +6,7 @@ select no_plan();
 
 -- Start from empty tables (a local database may hold synced data); the test rolls back.
 delete from public.source_sync_runs;
+delete from public.procurement_processes;
 delete from public.worker_job_failures;
 
 -- Fixtures: owner (in an org) to check customers cannot read health data.
@@ -49,6 +50,16 @@ select results_eq(
     from public.source_health where source = 'other_source'$$,
   $$values ('failed'::text, 'Search form not found'::text, null::timestamptz, null::interval)$$,
   'a source that never succeeded has no last success'
+);
+
+insert into public.procurement_processes (source, source_process_key, expediente, buyer_entity, title, detail_url, detail_unavailable_at)
+values
+  ('honducompras_v1', 'k:published', 'A', 'E', 'Detail published', 'http://x', null),
+  ('honducompras_v1', 'k:unpublished', 'B', 'E', 'Empty detail page', 'http://x', now() - interval '2 hours');
+select is(
+  (select processes_without_detail from public.source_health where source = 'honducompras_v1'),
+  1,
+  'processes whose detail page came back empty are counted'
 );
 
 -- ---------- Failed jobs ----------

@@ -8,7 +8,8 @@
     "start": "node --import tsx src/main.ts",
     "typecheck": "tsc --noEmit",
     "ai:smoke": "tsx --env-file=.env.local src/scripts/ai-smoke.ts",
-    "eval:retrieval": "tsx --env-file=.env.local src/eval/run-retrieval.ts"
+    "eval:retrieval": "tsx --env-file=.env.local src/eval/run-retrieval.ts",
+    "eval:jev": "tsx --env-file=.env.local src/eval/run-jev.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.86.0",

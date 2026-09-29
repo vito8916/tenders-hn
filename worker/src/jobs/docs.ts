@@ -1,4 +1,5 @@
 import type { QueueConsumer } from "../queue";
+import { embedCatalog } from "./embed-catalog";
 import { embedDocument } from "./embed-document";
 import { embedProcess } from "./embed-process";
 import { extractDocument } from "./extract-document";
@@ -15,5 +16,6 @@ export const docsConsumer: QueueConsumer = {
         extract_document: extractDocument,
         embed_document: embedDocument,
         embed_process: embedProcess,
+        embed_catalog: embedCatalog,
     },
 };

@@ -1,0 +1,1658 @@
+{
+ "extractedAt": "2026-09-29T22:25:15.192Z",
+ "extractionVersion": "v2",
+ "profiles": {
+  "software": {
+   "name": "Empresa de Software, Tecnología y Servicios de TI",
+   "profile": {
+    "summary": "La sociedad presta servicios de tecnología de la información, con énfasis en desarrollo, implementación, soporte y administración de soluciones informáticas. También comercializa software y equipos de cómputo, redes, telecomunicaciones, audiovisuales y seguridad electrónica.",
+    "linesOfBusiness": [
+     {
+      "name": "Desarrollo e implementación de software",
+      "tier": "primary",
+      "description": "Cubre el diseño, desarrollo, programación, integración e implementación de sistemas informáticos, aplicaciones y plataformas digitales.",
+      "keywords": [
+       "desarrollo de software",
+       "desarrollo de sistemas informáticos",
+       "programación de aplicaciones",
+       "aplicaciones móviles",
+       "aplicaciones web",
+       "sistemas empresariales",
+       "sistemas de información",
+       "plataformas digitales",
+       "portales electrónicos",
+       "comercio electrónico"
+      ],
+      "unspscHints": [
+       "4323",
+       "811115",
+       "811116"
+      ],
+      "sourceExcerpt": "análisis, diseño, desarrollo, programación, implementación, integración, mantenimiento, actualización, soporte y comercialización de sistemas informáticos, programas de computación, aplicaciones móviles, aplicaciones web, plataformas digitales, sistemas empresariales, sistemas de información",
+      "unspscClasses": [
+       {
+        "code": "801116",
+        "name": "Servicios de personal temporal",
+        "processes": 4,
+        "share": 0.571,
+        "examples": [
+         "Administradores temporales de base de datos o sistemas de tecnología de la información",
+         "Desarrolladores temporales de software de tecnología de la información"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Licencias y productos de software",
+      "tier": "secondary",
+      "description": "Cubre la adquisición, distribución y comercialización de licencias, programas, plataformas y productos de software propios o de terceros.",
+      "keywords": [
+       "licencias de software",
+       "programas de computación",
+       "software empresarial",
+       "software de aplicación",
+       "plataformas de software",
+       "productos tecnológicos",
+       "licenciamiento de software",
+       "suscripciones de software"
+      ],
+      "unspscHints": [
+       "4323"
+      ],
+      "sourceExcerpt": "desarrollar, adquirir, registrar, licenciar, explotar, ceder y comercializar software, marcas, derechos de autor, propiedad intelectual, plataformas y productos tecnológicos propios o de terceros",
+      "unspscClasses": [
+       {
+        "code": "432315",
+        "name": "Software de funciones de gestión",
+        "processes": 62,
+        "share": 0.954,
+        "examples": [
+         "Software de gestión de licencias"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Consultoría, asesoría y auditoría informática",
+      "tier": "secondary",
+      "description": "Cubre servicios profesionales de consultoría, asesoría y auditoría relacionados con tecnologías de información y sistemas informáticos.",
+      "keywords": [
+       "consultoría informática",
+       "consultoría en tecnologías de información",
+       "asesoría informática",
+       "auditoría informática",
+       "auditoría de sistemas",
+       "consultoría de sistemas",
+       "evaluación de sistemas informáticos"
+      ],
+      "unspscHints": [
+       "8111",
+       "811118"
+      ],
+      "sourceExcerpt": "servicios de consultoría, asesoría, auditoría",
+      "unspscClasses": []
+     },
+     {
+      "name": "Capacitación en informática",
+      "tier": "secondary",
+      "description": "Cubre capacitación y formación sobre informática, tecnologías de información y uso de sistemas o soluciones tecnológicas.",
+      "keywords": [
+       "capacitación en informática",
+       "capacitación en software",
+       "formación en tecnologías de información",
+       "capacitación en sistemas informáticos",
+       "cursos de informática",
+       "entrenamiento en software"
+      ],
+      "unspscHints": [
+       "8610",
+       "861017"
+      ],
+      "sourceExcerpt": "capacitación",
+      "unspscClasses": []
+     },
+     {
+      "name": "Soporte y mantenimiento informático",
+      "tier": "secondary",
+      "description": "Cubre soporte técnico, mantenimiento y actualización de sistemas informáticos y soluciones tecnológicas.",
+      "keywords": [
+       "soporte informático",
+       "soporte técnico de sistemas",
+       "mantenimiento de sistemas informáticos",
+       "actualización de software",
+       "mantenimiento de software",
+       "asistencia técnica informática",
+       "mesa de ayuda informática"
+      ],
+      "unspscHints": [
+       "8111",
+       "811118",
+       "811122"
+      ],
+      "sourceExcerpt": "mantenimiento, actualización, soporte",
+      "unspscClasses": []
+     },
+     {
+      "name": "Administración de infraestructura tecnológica",
+      "tier": "secondary",
+      "description": "Cubre la administración de redes, servidores e infraestructura tecnológica de sistemas de información.",
+      "keywords": [
+       "administración de infraestructura tecnológica",
+       "administración de redes informáticas",
+       "administración de servidores",
+       "gestión de redes de datos",
+       "configuración de servidores",
+       "gestión de infraestructura informática",
+       "servicios de administración de redes"
+      ],
+      "unspscHints": [
+       "8111",
+       "811118",
+       "811117"
+      ],
+      "sourceExcerpt": "administración de infraestructura tecnológica, redes, servidores",
+      "unspscClasses": [
+       {
+        "code": "811118",
+        "name": "Administradores de sistemas",
+        "processes": 3,
+        "share": 1,
+        "examples": [
+         "Servicios de administración del servidor"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Servicios en la nube y alojamiento de sistemas",
+      "tier": "secondary",
+      "description": "Cubre soluciones en la nube, alojamiento de sistemas y administración u operación de centros de datos.",
+      "keywords": [
+       "servicios en la nube",
+       "computación en la nube",
+       "alojamiento de sistemas",
+       "hosting de aplicaciones",
+       "alojamiento web",
+       "servicios de centro de datos",
+       "administración de centros de datos",
+       "servidores en la nube"
+      ],
+      "unspscHints": [
+       "8111",
+       "811121",
+       "811123"
+      ],
+      "sourceExcerpt": "soluciones en la nube",
+      "unspscClasses": []
+     },
+     {
+      "name": "Ciberseguridad",
+      "tier": "secondary",
+      "description": "Cubre soluciones y servicios tecnológicos de ciberseguridad para sistemas, redes y datos.",
+      "keywords": [
+       "ciberseguridad",
+       "seguridad informática",
+       "seguridad de redes",
+       "protección de sistemas informáticos",
+       "protección de datos",
+       "software de seguridad informática",
+       "servicios de seguridad informática"
+      ],
+      "unspscHints": [
+       "4323",
+       "8111",
+       "811118"
+      ],
+      "sourceExcerpt": "ciberseguridad",
+      "unspscClasses": [
+       {
+        "code": "432225",
+        "name": "Equipo de seguridad de red",
+        "processes": 3,
+        "share": 0.6,
+        "examples": [
+         "Equipo de seguridad de red de firewall"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Inteligencia artificial, automatización y analítica de datos",
+      "tier": "secondary",
+      "description": "Cubre soluciones de inteligencia artificial, automatización de procesos y análisis de datos.",
+      "keywords": [
+       "inteligencia artificial",
+       "soluciones de inteligencia artificial",
+       "automatización de procesos",
+       "automatización de procesos empresariales",
+       "analítica de datos",
+       "análisis de datos",
+       "plataformas de análisis de datos",
+       "herramientas de inteligencia artificial"
+      ],
+      "unspscHints": [
+       "4323",
+       "8111",
+       "811115"
+      ],
+      "sourceExcerpt": "inteligencia artificial, automatización de procesos, analítica de datos",
+      "unspscClasses": []
+     },
+     {
+      "name": "Digitalización y procesamiento de información",
+      "tier": "secondary",
+      "description": "Cubre servicios de digitalización de documentos y procesamiento de información.",
+      "keywords": [
+       "digitalización de documentos",
+       "escaneo de documentos",
+       "conversión de documentos a formato digital",
+       "procesamiento de información",
+       "captura de datos",
+       "digitalización documental",
+       "gestión documental digital"
+      ],
+      "unspscHints": [
+       "8111",
+       "811120"
+      ],
+      "sourceExcerpt": "digitalización de documentos, respaldo y recuperación de datos",
+      "unspscClasses": []
+     },
+     {
+      "name": "Respaldo y recuperación de datos",
+      "tier": "secondary",
+      "description": "Cubre servicios de respaldo, almacenamiento y recuperación de datos informáticos.",
+      "keywords": [
+       "respaldo de datos",
+       "copias de seguridad de datos",
+       "recuperación de datos",
+       "recuperación de información",
+       "respaldo de información digital",
+       "servicios de backup",
+       "restauración de datos"
+      ],
+      "unspscHints": [
+       "8111",
+       "811120",
+       "4323"
+      ],
+      "sourceExcerpt": "respaldo y recuperación de datos",
+      "unspscClasses": []
+     },
+     {
+      "name": "Implementación de sistemas de comunicación",
+      "tier": "secondary",
+      "description": "Cubre la implementación y administración de sistemas de comunicación relacionados con tecnologías de información y comunicación.",
+      "keywords": [
+       "implementación de sistemas de comunicación",
+       "administración de sistemas de comunicación",
+       "sistemas de comunicación digital",
+       "instalación de sistemas de comunicación",
+       "configuración de sistemas de comunicación",
+       "soluciones de comunicación tecnológica"
+      ],
+      "unspscHints": [
+       "8111",
+       "4322"
+      ],
+      "sourceExcerpt": "implementación y administración de sistemas de comunicación",
+      "unspscClasses": []
+     },
+     {
+      "name": "Computadoras y periféricos",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, arrendamiento, instalación, configuración y reparación de computadoras, periféricos, accesorios y repuestos.",
+      "keywords": [
+       "computadoras de escritorio",
+       "computadoras portátiles",
+       "laptops",
+       "computadoras",
+       "periféricos de computadora",
+       "teclados",
+       "ratones para computadora",
+       "accesorios para computadora",
+       "repuestos para computadora"
+      ],
+      "unspscHints": [
+       "4321",
+       "432115",
+       "432116"
+      ],
+      "sourceExcerpt": "computadoras, servidores, dispositivos electrónicos, equipos de telecomunicaciones, equipos de redes, accesorios, repuestos, periféricos",
+      "unspscClasses": [
+       {
+        "code": "432115",
+        "name": "Computadoras y Servidores",
+        "processes": 77,
+        "share": 0.828,
+        "examples": [
+         "Computadora personal (PC) o portátil",
+         "Computadoras de sobremesa o escritorio",
+         "Computadoras portátiles tipo tableta"
+        ]
+       },
+       {
+        "code": "432116",
+        "name": "Accesorios para la computadora",
+        "processes": 6,
+        "share": 0.065,
+        "examples": [
+         "Altavoces o parlantes para la computadora",
+         "Cajas de conmutación de computadoras"
+        ]
+       },
+       {
+        "code": "432117",
+        "name": "Dispositivos informáticos de entrada de datos",
+        "processes": 6,
+        "share": 0.065,
+        "examples": [
+         "Teclados",
+         "Trackballs y mouse para computadora",
+         "Micrófonos de voz para computadora"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Servidores",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, arrendamiento, instalación, configuración y reparación de servidores informáticos.",
+      "keywords": [
+       "servidores informáticos",
+       "servidores de red",
+       "servidores empresariales",
+       "servidores físicos",
+       "servidores para centros de datos",
+       "servidores de almacenamiento"
+      ],
+      "unspscHints": [
+       "4321",
+       "432115"
+      ],
+      "sourceExcerpt": "computadoras, servidores",
+      "unspscClasses": []
+     },
+     {
+      "name": "Equipos de telecomunicaciones",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, arrendamiento, instalación, configuración y reparación de equipos de telecomunicaciones.",
+      "keywords": [
+       "equipos de telecomunicaciones",
+       "equipo de telecomunicación",
+       "centrales telefónicas",
+       "teléfonos IP",
+       "conmutadores telefónicos",
+       "equipos de comunicación de voz",
+       "accesorios para telecomunicaciones"
+      ],
+      "unspscHints": [
+       "4322",
+       "432217",
+       "432226"
+      ],
+      "sourceExcerpt": "equipos de telecomunicaciones",
+      "unspscClasses": []
+     },
+     {
+      "name": "Equipos y accesorios de redes",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, arrendamiento, instalación, configuración y reparación de equipos de redes informáticas y sus accesorios.",
+      "keywords": [
+       "equipos de redes",
+       "equipos de red informática",
+       "enrutadores",
+       "routers",
+       "conmutadores de red",
+       "switches",
+       "puntos de acceso inalámbrico",
+       "access points",
+       "accesorios de red"
+      ],
+      "unspscHints": [
+       "4322",
+       "432226",
+       "432228"
+      ],
+      "sourceExcerpt": "equipos de redes, accesorios, repuestos",
+      "unspscClasses": [
+       {
+        "code": "432226",
+        "name": "Equipo de servicio de red",
+        "processes": 8,
+        "share": 0.727,
+        "examples": [
+         "Routers de red o enrutador de red",
+         "Punto de acceso inalámbrico",
+         "Equipo de red de vídeo"
+        ]
+       },
+       {
+        "code": "432225",
+        "name": "Equipo de seguridad de red",
+        "processes": 3,
+        "share": 0.273,
+        "examples": [
+         "Equipo de seguridad de red de firewall"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Equipos audiovisuales",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, arrendamiento, instalación, configuración y reparación de equipos audiovisuales.",
+      "keywords": [
+       "equipos audiovisuales",
+       "proyectores multimedia",
+       "pantallas de proyección",
+       "monitores",
+       "cámaras de video",
+       "equipos de sonido",
+       "sistemas de audio y video",
+       "accesorios audiovisuales"
+      ],
+      "unspscHints": [
+       "4511",
+       "5216"
+      ],
+      "sourceExcerpt": "equipos audiovisuales",
+      "unspscClasses": [
+       {
+        "code": "411162",
+        "name": "Suministros y equipo para lugares de tratamiento de pacientes",
+        "processes": 7,
+        "share": 0.368,
+        "examples": [
+         "Accesorios de monitores o medidores",
+         "Monitores o medidores de glucosa"
+        ]
+       },
+       {
+        "code": "451116",
+        "name": "Proyectores y suministros",
+        "processes": 5,
+        "share": 0.263,
+        "examples": [
+         "Proyectores multimedia o data show",
+         "Pantallas de proyección"
+        ]
+       },
+       {
+        "code": "432119",
+        "name": "Monitores o pantallas para la computadora",
+        "processes": 3,
+        "share": 0.158,
+        "examples": [
+         "Monitores o pantallas de visualización en cristal líquido (LCD)",
+         "Monitores de pantalla táctil"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Sistemas de seguridad electrónica",
+      "tier": "secondary",
+      "description": "Cubre la compra, venta, instalación, configuración, reparación y mantenimiento de cámaras, controles de acceso y dispositivos biométricos.",
+      "keywords": [
+       "sistemas de seguridad electrónica",
+       "cámaras de seguridad",
+       "cámaras CCTV",
+       "sistemas de videovigilancia",
+       "controles de acceso",
+       "lectores biométricos",
+       "dispositivos biométricos",
+       "alarmas electrónicas",
+       "equipos de vigilancia"
+      ],
+      "unspscHints": [
+       "4617",
+       "461716",
+       "461715"
+      ],
+      "sourceExcerpt": "sistemas de seguridad electrónica, cámaras, controles de acceso, dispositivos biométricos",
+      "unspscClasses": [
+       {
+        "code": "461716",
+        "name": "Equipo de vigilancia y detección",
+        "processes": 12,
+        "share": 1,
+        "examples": [
+         "Cámaras de seguridad",
+         "Sistemas de control de acceso o de seguridad"
+        ]
+       }
+      ]
+     }
+    ],
+    "ignoredClauses": [
+     "Participación en concursos, cotizaciones, compras directas y licitaciones; celebración de contratos con entidades y personas.",
+     "Adquisición, arrendamiento y enajenación de bienes muebles e inmuebles; apertura de oficinas, agencias, establecimientos y sucursales.",
+     "Actos mercantiles relacionados directa o indirectamente con el objeto social y cualquier otra actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1349,
+   "outputTokens": 3987,
+   "latencyMs": 27134,
+   "hintNames": {
+    "4321": "Equipo informático y accesorios",
+    "4322": "Datos-voz, equipo de red multimedia, plataformas y accesorios",
+    "4323": "Software",
+    "4511": "Equipos de audio y video para presentación y composición",
+    "4617": "Seguridad, vigilancia y detección",
+    "5216": "Electrónica de consumo",
+    "8111": "Servicios informáticos",
+    "8610": "Formación profesional",
+    "432115": "Computadoras y Servidores",
+    "432116": "Accesorios para la computadora",
+    "432217": "Equipo fijo de red y componentes",
+    "432226": "Equipo de servicio de red",
+    "432228": "Equipo de telefonía",
+    "461715": "Cerraduras, elementos de seguridad y accesorios",
+    "461716": "Equipo de vigilancia y detección",
+    "811115": "Ingeniería de software o de hardware",
+    "811116": "Programadores informáticos",
+    "811117": "Sistemas de gestión de la información (MIS)",
+    "811118": "Administradores de sistemas",
+    "811120": "Servicios de datos",
+    "811121": "Servicios de Internet",
+    "811122": "Mantenimiento y apoyo de logical",
+    "811123": null,
+    "861017": "Servicios de formación profesional no científica"
+   },
+   "linesWithoutSource": []
+  },
+  "laboratorio": {
+   "name": "Empresa de Suministros de Laboratorio, Diagnóstico y Laboratorio Clínico",
+   "profile": {
+    "summary": "La sociedad se dedica principalmente a la comercialización de reactivos, productos, equipos e insumos para laboratorios clínicos, científicos y de investigación. También ofrece equipos médicos y hospitalarios, consumibles sanitarios, servicios técnicos y apoyo logístico relacionados con esas actividades.",
+    "linesOfBusiness": [
+     {
+      "name": "Reactivos y pruebas de diagnóstico",
+      "tier": "primary",
+      "description": "Suministro de reactivos, controles, calibradores y pruebas para diagnóstico clínico y análisis de laboratorio.",
+      "keywords": [
+       "reactivos para diagnóstico",
+       "reactivos para diagnóstico in vitro",
+       "pruebas rápidas",
+       "reactivos de laboratorio",
+       "controles de laboratorio",
+       "calibradores",
+       "reactivos de hematología",
+       "reactivos de química clínica",
+       "reactivos de inmunología",
+       "reactivos de microbiología",
+       "reactivos de serología",
+       "reactivos para banco de sangre"
+      ],
+      "unspscHints": [
+       "4111",
+       "4112"
+      ],
+      "sourceExcerpt": "reactivos para diagnóstico, reactivos para diagnóstico in vitro, medios de cultivo, pruebas rápidas, controles, calibradores",
+      "unspscClasses": [
+       {
+        "code": "411160",
+        "name": "Reactivos de analizadores clínicos y diagnósticos",
+        "processes": 8,
+        "share": 0.8,
+        "examples": [
+         "Reactivos de analizadores de banco de sangre"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Medios de cultivo y productos químicos de laboratorio",
+      "tier": "primary",
+      "description": "Suministro de medios de cultivo, soluciones, colorantes y productos químicos utilizados en procedimientos de laboratorio.",
+      "keywords": [
+       "medios de cultivo",
+       "medio de cultivo microbiológico",
+       "soluciones de laboratorio",
+       "colorantes para laboratorio",
+       "químicos para laboratorio",
+       "productos químicos para análisis",
+       "reactivos químicos"
+      ],
+      "unspscHints": [
+       "4111",
+       "1235"
+      ],
+      "sourceExcerpt": "medios de cultivo, pruebas rápidas, controles, calibradores, soluciones, colorantes, químicos",
+      "unspscClasses": []
+     },
+     {
+      "name": "Equipos e instrumentos de laboratorio",
+      "tier": "primary",
+      "description": "Venta, suministro e instalación de analizadores, instrumentos y maquinaria para análisis, procesamiento y esterilización en laboratorios.",
+      "keywords": [
+       "analizadores de laboratorio",
+       "microscopios",
+       "centrífugas de laboratorio",
+       "autoclaves",
+       "incubadoras de laboratorio",
+       "refrigeradores para laboratorio",
+       "congeladores para laboratorio",
+       "balanzas de laboratorio",
+       "pipetas de laboratorio",
+       "espectrofotómetros",
+       "equipos de esterilización",
+       "instrumentos de laboratorio"
+      ],
+      "unspscHints": [
+       "4110",
+       "4111",
+       "4112"
+      ],
+      "sourceExcerpt": "analizadores, microscopios, centrífugas, autoclaves, incubadoras, refrigeradores, congeladores, balanzas, pipetas, espectrofotómetros",
+      "unspscClasses": []
+     },
+     {
+      "name": "Equipos médicos y hospitalarios",
+      "tier": "secondary",
+      "description": "Suministro de equipos destinados a diagnóstico y atención médica u hospitalaria.",
+      "keywords": [
+       "equipos médicos",
+       "equipo hospitalario",
+       "equipos de diagnóstico médico",
+       "equipo para clínica",
+       "equipo para diagnóstico",
+       "equipos de atención médica"
+      ],
+      "unspscHints": [
+       "4214",
+       "4218"
+      ],
+      "sourceExcerpt": "equipos de diagnóstico, equipos médicos y hospitalarios",
+      "unspscClasses": [
+       {
+        "code": "421720",
+        "name": "Kits para los servicios médicos de urgencias y campo",
+        "processes": 3,
+        "share": 1,
+        "examples": [
+         "Equipos de primera respuesta de servicios médicos de urgencia",
+         "Equipos de rescate y investigación de servicios médicos de urgencia"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Consumibles y material de laboratorio",
+      "tier": "primary",
+      "description": "Suministro de recipientes, material descartable y artículos de vidrio o plástico para toma, conservación, transporte y procesamiento de muestras.",
+      "keywords": [
+       "tubos para muestras",
+       "frascos para muestras",
+       "recipientes para muestras",
+       "material de vidrio para laboratorio",
+       "material plástico para laboratorio",
+       "material descartable de laboratorio",
+       "consumibles de laboratorio",
+       "productos para toma de muestras",
+       "productos para conservación de muestras",
+       "productos para transporte de muestras"
+      ],
+      "unspscHints": [
+       "4112",
+       "4110"
+      ],
+      "sourceExcerpt": "tubos, frascos, recipientes para muestras, jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable, material de vidrio y plástico",
+      "unspscClasses": []
+     },
+     {
+      "name": "Material médico descartable y equipo de protección personal",
+      "tier": "secondary",
+      "description": "Suministro de jeringas, agujas, guantes, mascarillas, batas y otros artículos descartables de protección sanitaria.",
+      "keywords": [
+       "jeringas",
+       "agujas hipodérmicas",
+       "guantes desechables",
+       "mascarillas",
+       "batas desechables",
+       "gorros desechables",
+       "cubrezapatos",
+       "equipo de protección personal",
+       "EPP sanitario",
+       "material médico descartable"
+      ],
+      "unspscHints": [
+       "4213",
+       "4214"
+      ],
+      "sourceExcerpt": "jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable",
+      "unspscClasses": [
+       {
+        "code": "421426",
+        "name": "Jeringas y accesorios",
+        "processes": 14,
+        "share": 0.7,
+        "examples": [
+         "Jeringas médicas con aguja",
+         "Jeringas de medicación oral de liquido",
+         "Jeringas de fuente"
+        ]
+       },
+       {
+        "code": "421525",
+        "name": "Suministros dentales generales",
+        "processes": 3,
+        "share": 0.15,
+        "examples": [
+         "Kits de accesorios de jeringas odontológicas",
+         "Jeringas dentales o agujas o jeringas con agujas"
+        ]
+       },
+       {
+        "code": "422717",
+        "name": "Sistemas y dispositivos de terapia de entrega de oxígeno",
+        "processes": 3,
+        "share": 0.15,
+        "examples": [
+         "Mascarillas de oxígeno médicas o piezas"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Productos de limpieza, desinfección y esterilización",
+      "tier": "secondary",
+      "description": "Suministro de productos utilizados para limpiar, desinfectar y esterilizar áreas, instrumentos y equipos sanitarios o de laboratorio.",
+      "keywords": [
+       "productos de limpieza para laboratorio",
+       "desinfectantes",
+       "productos para desinfección",
+       "productos para esterilización",
+       "soluciones desinfectantes",
+       "insumos para limpieza sanitaria"
+      ],
+      "unspscHints": [
+       "4713",
+       "4110"
+      ],
+      "sourceExcerpt": "productos para limpieza, desinfección y esterilización",
+      "unspscClasses": []
+     },
+     {
+      "name": "Mobiliario de laboratorio",
+      "tier": "secondary",
+      "description": "Suministro de mobiliario destinado al uso en laboratorios, clínicas, hospitales e instituciones de investigación.",
+      "keywords": [
+       "mobiliario para laboratorio",
+       "muebles de laboratorio",
+       "mobiliario clínico",
+       "mobiliario hospitalario",
+       "muebles para investigación"
+      ],
+      "unspscHints": [
+       "5610",
+       "5612"
+      ],
+      "sourceExcerpt": "mobiliario utilizado en laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación",
+      "unspscClasses": []
+     },
+     {
+      "name": "Instalación, mantenimiento y calibración de equipos",
+      "tier": "secondary",
+      "description": "Prestación de servicios de instalación, reparación, mantenimiento, validación y calibración de equipos e instrumentos.",
+      "keywords": [
+       "instalación de equipos de laboratorio",
+       "mantenimiento preventivo de equipos",
+       "mantenimiento correctivo de equipos",
+       "reparación de equipos de laboratorio",
+       "calibración de equipos",
+       "validación de equipos",
+       "calibración de instrumentos",
+       "mantenimiento de equipo médico"
+      ],
+      "unspscHints": [
+       "8110",
+       "8114"
+      ],
+      "sourceExcerpt": "servicios de instalación, mantenimiento preventivo y correctivo, reparación, validación, calibración",
+      "unspscClasses": []
+     },
+     {
+      "name": "Capacitación y soporte técnico de equipos",
+      "tier": "secondary",
+      "description": "Prestación de capacitación, asesoría y soporte técnico vinculados al uso y operación de equipos e instrumentos.",
+      "keywords": [
+       "capacitación en equipos de laboratorio",
+       "capacitación técnica",
+       "asesoría técnica de laboratorio",
+       "soporte técnico de equipos",
+       "asistencia técnica de equipos médicos",
+       "soporte para instrumentos de laboratorio"
+      ],
+      "unspscHints": [
+       "8110",
+       "8610"
+      ],
+      "sourceExcerpt": "capacitación, asesoría y soporte técnico de equipos e instrumentos",
+      "unspscClasses": []
+     },
+     {
+      "name": "Logística y administración de suministros",
+      "tier": "optional",
+      "description": "Prestación de servicios de administración de inventarios, almacenamiento, logística y distribución de suministros médicos, científicos y de laboratorio.",
+      "keywords": [
+       "administración de inventarios",
+       "control de inventario de suministros",
+       "almacenamiento de suministros médicos",
+       "logística de suministros de laboratorio",
+       "distribución de insumos médicos",
+       "distribución de reactivos de laboratorio"
+      ],
+      "unspscHints": [
+       "7810",
+       "8010"
+      ],
+      "sourceExcerpt": "servicios relacionados con administración de inventarios, logística, almacenamiento y distribución de suministros médicos, científicos y de laboratorio",
+      "unspscClasses": []
+     }
+    ],
+    "ignoredClauses": [
+     "Representación de fabricantes y marcas, agencia y distribución comercial como modalidades de actividad comercial.",
+     "Participación en compras, cotizaciones, concursos y licitaciones públicas o privadas.",
+     "Cumplimiento de registros, licencias, permisos y demás requisitos regulatorios.",
+     "Importación o exportación general, adquisición o arrendamiento de bienes, apertura de sucursales, bodegas y centros de distribución.",
+     "Cualquier otra actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1472,
+   "outputTokens": 3050,
+   "latencyMs": 21777,
+   "hintNames": {
+    "1235": "Compuestos y mezclas",
+    "4110": "Equipo de laboratorio y científico",
+    "4111": "Instrumentos de medida, observación y ensayo",
+    "4112": "Suministros y accesorios de laboratorio",
+    "4213": "Telas y vestidos médicos",
+    "4214": "Suministros y productos de tratamiento y cuidado del enfermo",
+    "4218": "Productos de examen y control del paciente",
+    "4713": "Suministros de limpieza",
+    "5610": "Muebles de alojamiento",
+    "5612": "Mobiliario institucional, escolar y educativo y accesorios",
+    "7810": "Transporte de correo y carga",
+    "8010": "Servicios de asesoría de gestión",
+    "8110": "Servicios profesionales de ingeniería",
+    "8114": "Tecnologías de fabricación",
+    "8610": "Formación profesional"
+   },
+   "linesWithoutSource": []
+  },
+  "carreteras": {
+   "name": "Empresa Constructora y Contratista de Obras Civiles",
+   "profile": {
+    "summary": "La sociedad se dedica principalmente a construir, ampliar, remodelar, reparar y supervisar edificaciones y obras de infraestructura civil. También ofrece servicios de ingeniería y gestión de proyectos, comercializa materiales y equipos para construcción, alquila maquinaria y desarrolla proyectos inmobiliarios.",
+    "linesOfBusiness": [
+     {
+      "name": "Construcción y remodelación de edificaciones",
+      "tier": "primary",
+      "description": "Ejecución, ampliación, remodelación, reparación y mantenimiento de viviendas, edificios y otras edificaciones.",
+      "keywords": [
+       "construcción de edificios",
+       "construcción de viviendas",
+       "remodelación de edificios",
+       "reparación de edificios",
+       "ampliación de edificios",
+       "construcción de oficinas",
+       "construcción de bodegas",
+       "construcción de instalaciones industriales",
+       "mantenimiento de edificios"
+      ],
+      "unspscHints": [
+       "7212",
+       "7210"
+      ],
+      "sourceExcerpt": "Podrá ejecutar obras de edificación residencial, comercial, industrial e institucional; construcción y remodelación de viviendas, edificios, oficinas, centros comerciales, bodegas, hospitales, centros educativos, instalaciones deportivas, instalaciones industriales y todo tipo de edificaciones.",
+      "unspscClasses": [
+       {
+        "code": "721028",
+        "name": "Servicios de modernización",
+        "processes": 43,
+        "share": 0.956,
+        "examples": [
+         "Mantenimiento de edificios, mojones o monumentos",
+         "Reparación de edificios, mojones y monumentos"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Carreteras, calles y obras viales",
+      "tier": "primary",
+      "description": "Construcción y rehabilitación de vías, puentes, pavimentos, terracerías y obras de contención asociadas.",
+      "keywords": [
+       "construcción de carreteras",
+       "construcción de calles",
+       "construcción de caminos",
+       "construcción de puentes",
+       "cajas puente",
+       "pavimentación",
+       "adoquinado de calles",
+       "terracería",
+       "movimiento de tierra",
+       "nivelación de terrenos",
+       "muros de contención"
+      ],
+      "unspscHints": [
+       "7214",
+       "721410",
+       "721411"
+      ],
+      "sourceExcerpt": "Asimismo, podrá ejecutar proyectos de carreteras, calles, caminos, puentes, cajas puente, muros de contención, pavimentaciones, adoquinados, terracerías, excavaciones, movimiento de tierra, nivelación de terrenos, drenajes, alcantarillado sanitario y pluvial, sistemas de agua potable, plantas de tratamiento, pozos, obras hidráulicas, obras de saneamiento, urbanizaciones, lotificaciones y demás obras de infraestructura.",
+      "unspscClasses": [
+       {
+        "code": "721317",
+        "name": "Construcción de infraestructura",
+        "processes": 3,
+        "share": 0.6,
+        "examples": [
+         "Construcción de puentes"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Agua potable, drenajes y saneamiento",
+      "tier": "primary",
+      "description": "Construcción de sistemas de agua potable, drenajes, alcantarillado, pozos, plantas de tratamiento y obras hidráulicas y de saneamiento.",
+      "keywords": [
+       "sistemas de agua potable",
+       "alcantarillado sanitario",
+       "alcantarillado pluvial",
+       "drenajes pluviales",
+       "drenajes sanitarios",
+       "plantas de tratamiento de agua",
+       "construcción de pozos",
+       "obras hidráulicas",
+       "obras de saneamiento"
+      ],
+      "unspscHints": [
+       "7214",
+       "721411",
+       "721412"
+      ],
+      "sourceExcerpt": "Asimismo, podrá ejecutar proyectos de carreteras, calles, caminos, puentes, cajas puente, muros de contención, pavimentaciones, adoquinados, terracerías, excavaciones, movimiento de tierra, nivelación de terrenos, drenajes, alcantarillado sanitario y pluvial, sistemas de agua potable, plantas de tratamiento, pozos, obras hidráulicas, obras de saneamiento, urbanizaciones, lotificaciones y demás obras de infraestructura.",
+      "unspscClasses": []
+     },
+     {
+      "name": "Instalaciones eléctricas, hidrosanitarias y electromecánicas",
+      "tier": "secondary",
+      "description": "Instalación de sistemas eléctricos, hidrosanitarios, mecánicos, contra incendios, de climatización, iluminación y telecomunicaciones en obras.",
+      "keywords": [
+       "instalaciones eléctricas",
+       "instalaciones hidrosanitarias",
+       "instalaciones mecánicas",
+       "instalaciones electromecánicas",
+       "sistemas contra incendios",
+       "sistemas de climatización",
+       "instalación de iluminación",
+       "instalaciones de telecomunicaciones"
+      ],
+      "unspscHints": [
+       "7215",
+       "721515",
+       "721512"
+      ],
+      "sourceExcerpt": "Podrá desarrollar trabajos de instalaciones eléctricas, hidrosanitarias, mecánicas, electromecánicas, sistemas contra incendios, climatización, iluminación, telecomunicaciones y demás instalaciones complementarias de las obras civiles",
+      "unspscClasses": []
+     },
+     {
+      "name": "Diseño, supervisión y consultoría de construcción",
+      "tier": "secondary",
+      "description": "Servicios de diseño, planificación, elaboración de planos, estudios técnicos, presupuestación, administración, inspección y supervisión de obras.",
+      "keywords": [
+       "diseño de obras",
+       "planificación de proyectos de construcción",
+       "elaboración de planos",
+       "presupuestos de construcción",
+       "levantamientos topográficos",
+       "estudios técnicos de ingeniería",
+       "administración de proyectos de construcción",
+       "supervisión de obras",
+       "inspección de obras",
+       "consultoría de ingeniería",
+       "asesoría en construcción"
+      ],
+      "unspscHints": [
+       "8110",
+       "811015",
+       "811016"
+      ],
+      "sourceExcerpt": "La sociedad podrá prestar servicios de diseño, planificación, presupuestación, elaboración de planos, levantamientos, estudios técnicos, administración de proyectos, supervisión de obras, inspección, consultoría y asesoría relacionada con construcción e infraestructura",
+      "unspscClasses": [
+       {
+        "code": "721316",
+        "name": "Construcción comercial o industrial",
+        "processes": 35,
+        "share": 1,
+        "examples": [
+         "Supervisión de proyectos, obras y construcción."
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Cemento, agregados y productos de mampostería",
+      "tier": "secondary",
+      "description": "Suministro y comercialización de cemento, agregados, bloques y ladrillos utilizados en obras de construcción.",
+      "keywords": [
+       "cemento",
+       "cemento gris",
+       "arena para construcción",
+       "grava",
+       "agregados para concreto",
+       "bloques de concreto",
+       "ladrillos de barro",
+       "materiales para mampostería"
+      ],
+      "unspscHints": [
+       "3011",
+       "3013",
+       "3015"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos",
+      "unspscClasses": [
+       {
+        "code": "301116",
+        "name": "Cemento y cal",
+        "processes": 73,
+        "share": 0.702,
+        "examples": [
+         "Cemento"
+        ]
+       },
+       {
+        "code": "301315",
+        "name": "Bloques",
+        "processes": 20,
+        "share": 0.192,
+        "examples": [
+         "Bloques de cemento"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Acero y madera para construcción",
+      "tier": "secondary",
+      "description": "Comercialización de acero y madera destinados a estructuras y otros trabajos de construcción.",
+      "keywords": [
+       "acero para construcción",
+       "varilla corrugada",
+       "barras de acero",
+       "perfiles de acero",
+       "láminas de acero",
+       "madera para construcción",
+       "madera estructural"
+      ],
+      "unspscHints": [
+       "3010",
+       "3012",
+       "3016"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera",
+      "unspscClasses": []
+     },
+     {
+      "name": "Tuberías y materiales hidrosanitarios",
+      "tier": "secondary",
+      "description": "Suministro de tuberías y materiales para instalaciones de agua, drenaje y sistemas hidrosanitarios.",
+      "keywords": [
+       "tubería para agua potable",
+       "tubería PVC",
+       "tubería sanitaria",
+       "tubería pluvial",
+       "accesorios para tubería",
+       "válvulas para agua",
+       "materiales hidrosanitarios"
+      ],
+      "unspscHints": [
+       "4014",
+       "4017",
+       "3012"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios",
+      "unspscClasses": [
+       {
+        "code": "312313",
+        "name": "Tubos y tubería",
+        "processes": 17,
+        "share": 1,
+        "examples": [
+         "Tubería de plástico o de Pvc"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Materiales eléctricos",
+      "tier": "secondary",
+      "description": "Comercialización de materiales y componentes eléctricos para instalaciones y obras.",
+      "keywords": [
+       "cables eléctricos",
+       "alambre eléctrico",
+       "interruptores eléctricos",
+       "tomacorrientes",
+       "tableros eléctricos",
+       "canalización eléctrica",
+       "materiales eléctricos"
+      ],
+      "unspscHints": [
+       "3912",
+       "3913",
+       "3914"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos",
+      "unspscClasses": [
+       {
+        "code": "601049",
+        "name": "Materiales de física de electricidad",
+        "processes": 7,
+        "share": 0.467,
+        "examples": [
+         "Cables o electrodos eléctricos"
+        ]
+       },
+       {
+        "code": "391214",
+        "name": "Lengüetas de conexión, conectadores y terminales",
+        "processes": 5,
+        "share": 0.333,
+        "examples": [
+         "Conectores de cables eléctricos"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Pinturas, acabados y herramientas de construcción",
+      "tier": "secondary",
+      "description": "Venta de pinturas, productos de acabado y herramientas para trabajos de construcción y mantenimiento.",
+      "keywords": [
+       "pintura para construcción",
+       "pintura látex",
+       "pintura anticorrosiva",
+       "selladores para construcción",
+       "acabados para edificios",
+       "herramientas de construcción",
+       "herramientas manuales para construcción"
+      ],
+      "unspscHints": [
+       "3121",
+       "3122",
+       "2711"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas",
+      "unspscClasses": [
+       {
+        "code": "312115",
+        "name": "Pinturas y tapa poros",
+        "processes": 6,
+        "share": 1,
+        "examples": [
+         "Pinturas de látex"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Maquinaria, equipo y repuestos para construcción",
+      "tier": "secondary",
+      "description": "Comercialización de maquinaria pesada, equipos y repuestos destinados a obras civiles y de construcción.",
+      "keywords": [
+       "maquinaria pesada para construcción",
+       "excavadoras",
+       "retroexcavadoras",
+       "motoniveladoras",
+       "compactadoras",
+       "repuestos para maquinaria pesada",
+       "equipo para obras civiles"
+      ],
+      "unspscHints": [
+       "2210",
+       "221015",
+       "2510"
+      ],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos",
+      "unspscClasses": [
+       {
+        "code": "221015",
+        "name": "Maquinaria para trabajo de desmonte",
+        "processes": 4,
+        "share": 0.571,
+        "examples": [
+         "Retroexcavadoras"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Alquiler de maquinaria y equipo para obras",
+      "tier": "secondary",
+      "description": "Alquiler, arrendamiento y operación de maquinaria, vehículos, herramientas y equipo para ejecutar obras civiles.",
+      "keywords": [
+       "alquiler de maquinaria pesada",
+       "alquiler de excavadoras",
+       "alquiler de retroexcavadoras",
+       "alquiler de motoniveladoras",
+       "alquiler de compactadoras",
+       "alquiler de vehículos para obras",
+       "alquiler de herramientas de construcción",
+       "alquiler de equipo para obras civiles"
+      ],
+      "unspscHints": [
+       "7214",
+       "721417",
+       "8016"
+      ],
+      "sourceExcerpt": "Podrá igualmente prestar servicios de alquiler, arrendamiento y operación de maquinaria, vehículos, herramientas y equipo para obras civiles.",
+      "unspscClasses": []
+     },
+     {
+      "name": "Desarrollo y administración de proyectos inmobiliarios",
+      "tier": "secondary",
+      "description": "Desarrollo, urbanización, construcción, administración, arrendamiento y venta de bienes inmuebles y proyectos inmobiliarios.",
+      "keywords": [
+       "desarrollo de proyectos inmobiliarios",
+       "urbanización de terrenos",
+       "lotificación de terrenos",
+       "construcción de proyectos inmobiliarios",
+       "administración de bienes inmuebles",
+       "arrendamiento de bienes inmuebles",
+       "venta de bienes inmuebles"
+      ],
+      "unspscHints": [
+       "8013",
+       "801315",
+       "801316"
+      ],
+      "sourceExcerpt": "La sociedad podrá adquirir, desarrollar, urbanizar, construir, administrar, arrendar y enajenar bienes inmuebles; desarrollar proyectos inmobiliarios",
+      "unspscClasses": []
+     }
+    ],
+    "ignoredClauses": [
+     "Participación en precalificaciones, concursos, cotizaciones y licitaciones, y contratación con entidades públicas o privadas.",
+     "Representación de empresas nacionales o extranjeras.",
+     "Apertura de sucursales, oficinas, planteles y establecimientos.",
+     "Realización de actos, operaciones y actividades de lícito comercio relacionadas con su finalidad o permitidas por la ley."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1482,
+   "outputTokens": 3627,
+   "latencyMs": 24738,
+   "hintNames": {
+    "2210": "Maquinaria y equipo pesado de construcción",
+    "2510": "Vehículos de motor",
+    "2711": "Herramientas de mano",
+    "3010": "Materiales estructurales: formas básicas",
+    "3011": "Hormigón, cemento y yeso",
+    "3012": "Productos para carreterras y calles",
+    "3013": "Productos de construcción estructurales",
+    "3015": "Materiales para acabado de exteriores",
+    "3016": "Materiales de acabado de interiores",
+    "3121": "Pinturas y tapa poros y acabados",
+    "3122": "Extractos de teñir y de curtir",
+    "3912": "Equipos, suministros y componentes eléctricos",
+    "3913": null,
+    "3914": null,
+    "4014": "Distribución de fluidos y gas",
+    "4017": null,
+    "7210": "Construcción de edificios, atención, mantenimiento y servicios de reparaciones",
+    "7212": null,
+    "7214": null,
+    "7215": null,
+    "8013": "Servicios inmobiliarios",
+    "8016": "Servicios de administración de empresas",
+    "8110": "Servicios profesionales de ingeniería",
+    "221015": "Maquinaria para trabajo de desmonte",
+    "721410": null,
+    "721411": null,
+    "721412": null,
+    "721417": null,
+    "721512": null,
+    "721515": null,
+    "801315": "Arrendamiento o alquiler de propiedades o edificios",
+    "801316": "Venta de propiedades o edificios",
+    "811015": "Ingeniería civil",
+    "811016": "Ingeniería mecánica"
+   },
+   "linesWithoutSource": []
+  },
+  "uniformes": {
+   "name": "Empresa de Uniformes, Textiles y Equipo de Protección Personal",
+   "profile": {
+    "summary": "La sociedad se dedica principalmente a fabricar, confeccionar y comercializar textiles, uniformes y prendas de vestir. También ofrece personalización textil y comercializa insumos para confección, equipos de protección personal y productos relacionados con higiene, bioseguridad y señalización.",
+    "linesOfBusiness": [
+     {
+      "name": "Uniformes y prendas de vestir",
+      "tier": "primary",
+      "description": "Fabricación y suministro de uniformes, ropa de trabajo y otras prendas de vestir para distintos usos.",
+      "keywords": [
+       "uniformes empresariales",
+       "uniformes administrativos",
+       "uniformes industriales",
+       "uniformes médicos",
+       "uniformes escolares",
+       "uniformes deportivos",
+       "uniformes de seguridad",
+       "ropa de trabajo",
+       "camisas",
+       "pantalones",
+       "gabachas",
+       "batas",
+       "overoles",
+       "chalecos",
+       "camisetas",
+       "gorras"
+      ],
+      "unspscHints": [
+       "5310",
+       "531015",
+       "531016"
+      ],
+      "sourceExcerpt": "Podrá fabricar y comercializar uniformes empresariales, institucionales, administrativos, industriales, médicos, hospitalarios, escolares, deportivos, militares, de seguridad, de trabajo y de uso especializado; camisas, pantalones, chaquetas, gabachas, batas, overoles, chalecos, camisetas, gorras, ropa deportiva y cualquier otra clase de prendas de vestir.",
+      "unspscClasses": [
+       {
+        "code": "531016",
+        "name": "Camisas y blusas",
+        "processes": 32,
+        "share": 0.438,
+        "examples": [
+         "Camisas de hombre",
+         "Camisas o blusas de mujer",
+         "Camisas de niña"
+        ]
+       },
+       {
+        "code": "461815",
+        "name": "Ropa protectora contra materias peligrosas",
+        "processes": 13,
+        "share": 0.178,
+        "examples": [
+         "Chalecos de protección",
+         "Camisas protectivas",
+         "Batas blancas"
+        ]
+       },
+       {
+        "code": "531027",
+        "name": "Uniformes",
+        "processes": 10,
+        "share": 0.137,
+        "examples": [
+         "Uniformes empresariales",
+         "Uniformes escolares",
+         "Uniformes de personal médico"
+        ]
+       },
+       {
+        "code": "531015",
+        "name": "Pantalones deportivos, pantalones y pantalones cortos",
+        "processes": 6,
+        "share": 0.082,
+        "examples": [
+         "Pantalón para mujer",
+         "Pantalón para hombre",
+         "Pantalones deportivos y pantalones cortos para mujer"
+        ]
+       },
+       {
+        "code": "531023",
+        "name": "Ropa interior",
+        "processes": 4,
+        "share": 0.055,
+        "examples": [
+         "Camisetas"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Diseño y personalización de prendas textiles",
+      "tier": "secondary",
+      "description": "Servicios de diseño, confección y personalización de prendas y artículos textiles mediante bordado, impresión y otras técnicas indicadas.",
+      "keywords": [
+       "diseño de prendas",
+       "personalización de prendas",
+       "bordado de prendas",
+       "serigrafía textil",
+       "sublimación textil",
+       "estampado de prendas",
+       "impresión textil",
+       "transfer textil",
+       "corte y confección",
+       "costura"
+      ],
+      "unspscHints": [
+       "8213",
+       "821315",
+       "821215"
+      ],
+      "sourceExcerpt": "Podrá prestar servicios de diseño y personalización de prendas y artículos textiles mediante bordado, serigrafía, sublimación, estampado, impresión, transfer, corte, costura, confección y demás técnicas de producción y personalización.",
+      "unspscClasses": []
+     },
+     {
+      "name": "Telas e insumos de confección",
+      "tier": "secondary",
+      "description": "Suministro de telas, materias primas, accesorios y otros insumos utilizados en la industria textil y de confección.",
+      "keywords": [
+       "telas",
+       "hilos",
+       "cierres",
+       "botones",
+       "elásticos",
+       "cintas textiles",
+       "materiales reflectivos",
+       "materias primas textiles",
+       "accesorios para confección",
+       "insumos de confección"
+      ],
+      "unspscHints": [
+       "1116",
+       "5314",
+       "531415"
+      ],
+      "sourceExcerpt": "Asimismo, podrá comprar, vender, importar, exportar, distribuir y comercializar telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos, materias primas, accesorios, maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura.",
+      "unspscClasses": [
+       {
+        "code": "301715",
+        "name": "Puertas",
+        "processes": 9,
+        "share": 0.237,
+        "examples": [
+         "Cierres o llavines para puertas"
+        ]
+       },
+       {
+        "code": "111617",
+        "name": "Tejidos de algodón",
+        "processes": 8,
+        "share": 0.211,
+        "examples": [
+         "Telas de Oxford de algodón"
+        ]
+       },
+       {
+        "code": "111517",
+        "name": "Hilos",
+        "processes": 5,
+        "share": 0.132,
+        "examples": [
+         "Hilo de poliéster",
+         "Hilo de seda",
+         "Hilo acrílico"
+        ]
+       },
+       {
+        "code": "841116",
+        "name": "Servicios de auditoria",
+        "processes": 3,
+        "share": 0.079,
+        "examples": [
+         "Auditorias de cierre del ejercicio"
+        ]
+       },
+       {
+        "code": "261215",
+        "name": "Alambre eléctrico",
+        "processes": 3,
+        "share": 0.079,
+        "examples": [
+         "Hilos de cableado"
+        ]
+       },
+       {
+        "code": "111621",
+        "name": "Tejidos o telas especiales",
+        "processes": 3,
+        "share": 0.079,
+        "examples": [
+         "Tela acolchada",
+         "Tejido o tela de malla metálica"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Maquinaria, herramientas y repuestos para la industria textil",
+      "tier": "secondary",
+      "description": "Comercialización de maquinaria, herramientas y repuestos para actividades de producción textil, confección y manufactura.",
+      "keywords": [
+       "maquinaria textil",
+       "maquinaria de confección",
+       "máquinas de coser",
+       "herramientas para confección",
+       "repuestos para maquinaria textil",
+       "repuestos para máquinas de coser"
+      ],
+      "unspscHints": [
+       "2315",
+       "231516",
+       "2711"
+      ],
+      "sourceExcerpt": "Asimismo, podrá comprar, vender, importar, exportar, distribuir y comercializar telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos, materias primas, accesorios, maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura.",
+      "unspscClasses": []
+     },
+     {
+      "name": "Equipo de protección personal y seguridad industrial",
+      "tier": "secondary",
+      "description": "Suministro de equipo y artículos de protección personal para seguridad ocupacional y trabajos industriales.",
+      "keywords": [
+       "cascos de seguridad",
+       "guantes de protección",
+       "gafas de seguridad",
+       "protectores visuales",
+       "mascarillas",
+       "respiradores",
+       "protectores auditivos",
+       "chalecos reflectivos",
+       "arneses de seguridad",
+       "líneas de vida",
+       "botas de seguridad",
+       "calzado de seguridad",
+       "ropa de alta visibilidad",
+       "ropa impermeable",
+       "ropa de protección industrial"
+      ],
+      "unspscHints": [
+       "4618",
+       "461815",
+       "461816",
+       "461817",
+       "461818",
+       "461819",
+       "461823"
+      ],
+      "sourceExcerpt": "La sociedad podrá comercializar equipos y elementos de protección personal y seguridad industrial, incluyendo cascos, guantes, gafas y protectores visuales, mascarillas, respiradores, protectores auditivos, chalecos reflectivos, arneses, líneas de vida, botas y calzado de seguridad, ropa de alta visibilidad, ropa impermeable, ropa y accesorios de protección para trabajos industriales y demás artículos destinados a la seguridad ocupacional y protección personal.",
+      "unspscClasses": [
+       {
+        "code": "461817",
+        "name": "Protectores de cara y cabeza",
+        "processes": 5,
+        "share": 0.5,
+        "examples": [
+         "Cascos de seguridad"
+        ]
+       },
+       {
+        "code": "422717",
+        "name": "Sistemas y dispositivos de terapia de entrega de oxígeno",
+        "processes": 3,
+        "share": 0.3,
+        "examples": [
+         "Mascarillas de oxígeno médicas o piezas"
+        ]
+       }
+      ]
+     },
+     {
+      "name": "Productos de higiene, bioseguridad y señalización",
+      "tier": "secondary",
+      "description": "Distribución de productos y suministros relacionados con higiene, bioseguridad, señalización y prevención de riesgos.",
+      "keywords": [
+       "productos de higiene",
+       "suministros de higiene",
+       "productos de bioseguridad",
+       "suministros de bioseguridad",
+       "productos de seguridad industrial",
+       "señalización de seguridad",
+       "señalización preventiva",
+       "productos para prevención de riesgos"
+      ],
+      "unspscHints": [
+       "4713",
+       "4615",
+       "5512",
+       "551217"
+      ],
+      "sourceExcerpt": "Podrá igualmente distribuir productos y suministros relacionados con higiene, bioseguridad, seguridad industrial, señalización y prevención de riesgos, así como representar y distribuir marcas, fabricantes y casas comerciales nacionales o extranjeras.",
+      "unspscClasses": []
+     }
+    ],
+    "ignoredClauses": [
+     "Suministro a empresas e instituciones y participación en cotizaciones, concursos, compras directas y licitaciones.",
+     "Representación de marcas, fabricantes y casas comerciales, sin especificación de productos adicionales.",
+     "Establecimiento de fábricas, talleres, almacenes, tiendas, bodegas, centros de distribución, agencias y sucursales; adquisición o arrendamiento de bienes para las operaciones.",
+     "Importación, exportación y distribución comercial como facultades generales, además de cualquier otra actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1421,
+   "outputTokens": 2370,
+   "latencyMs": 16758,
+   "hintNames": {
+    "1116": "Tejidos y materiales de cuero",
+    "2315": "Maquinaria, equipo y suministros de procesos industriales",
+    "2711": "Herramientas de mano",
+    "4615": "Orden Público",
+    "4618": "Seguridad y protección personal",
+    "4713": "Suministros de limpieza",
+    "5310": "Ropa",
+    "5314": "Accesorios de costura",
+    "5512": "Etiquetado y accesorios",
+    "8213": "Servicios fotográficos",
+    "231516": "Maquinaria, equipo y suministros para la industria del cemento, cerámica y vidrio",
+    "461815": "Ropa protectora contra materias peligrosas",
+    "461816": "Calzado de protección",
+    "461817": "Protectores de cara y cabeza",
+    "461818": "Protección y accesorios para la visión",
+    "461819": "Protectores auditivos",
+    "461823": "Protección anti caída",
+    "531015": "Pantalones deportivos, pantalones y pantalones cortos",
+    "531016": "Camisas y blusas",
+    "531415": "Afianzadores de costura",
+    "551217": "Señalización",
+    "821215": "Impresión",
+    "821315": "Servicios de elaboración de películas"
+   },
+   "linesWithoutSource": []
+  }
+ }
+}

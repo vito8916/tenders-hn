@@ -1,67 +1,99 @@
-// UNSPSC classes for a line of business, taken from how Honduran institutions
-// actually code their purchases: product lines whose description matches the
-// line's keywords, grouped by class. Institutions sometimes leave codes out or
-// use wrong or generic ones, so a class needs several processes and a fair
-// share of the matches before it is proposed, and codes remain a supporting
-// signal next to keywords and semantic search.
+// UNSPSC classes for a line of business, by meaning: the line (name,
+// description, keywords) is embedded and compared with CUBS class names and
+// with the product descriptions HonduCompras product lines carry
+// (unspsc_terms). A line named differently from the catalog still finds its
+// class, and its context tells zippers from door locks. Institutions
+// sometimes leave codes out or use wrong or generic ones, so codes stay a
+// supporting signal next to keywords and semantic search, and the customer
+// confirms the classes.
+import { embed } from "ai";
 import type { Pool } from "pg";
+import { EMBEDDING_DIMENSIONS, modelForRole } from "@/lib/ai/models";
+import type { LineOfBusiness } from "./profile";
 
-const MIN_PROCESSES = 3;
-const MIN_SHARE = 0.05;
-const MAX_CLASSES = 6;
+const NEAREST_TERMS = 40;
+// Classes within this much of the best match are proposed with it.
+const SIMILARITY_MARGIN = 0.08;
+const MAX_CLASSES = 5;
 const EXAMPLES_PER_CLASS = 3;
 
-export interface DerivedClass {
+export interface TermHit {
+    kind: "class" | "product";
     code: string;
-    // From the CUBS catalog; null when the catalog does not list the class.
-    name: string | null;
-    processes: number;
-    share: number;
+    text: string;
+    similarity: number;
+}
+
+export interface RankedClass {
+    code: string;
+    similarity: number;
+    // The nearest product descriptions under the class, best first.
     examples: string[];
 }
 
-/** Classes of the product lines that match any keyword, most used first. */
-export async function deriveClasses(pool: Pool, keywords: string[]): Promise<DerivedClass[]> {
-    const { rows } = await pool.query<{ code: string; name: string | null; processes: number; share: number; examples: string[] }>(
-        `with query as (
-           select string_agg('(' || tq::text || ')', ' | ')::tsquery as tq
-           from (select websearch_to_tsquery('spanish'::regconfig, private.immutable_unaccent(keyword)) as tq
-                 from unnest($1::text[]) as keyword) terms
-           where numnode(tq) > 0
-         ),
-         matches as (
-           select p.id as process_id, left(item ->> 'unspsc', 6) as code, item ->> 'description' as description
-           from public.procurement_processes p
-           join public.process_versions v on v.id = p.current_version_id
-           cross join lateral jsonb_array_elements(coalesce(v.detail -> 'products', '[]'::jsonb)) as item
-           cross join query
-           where item ->> 'unspsc' ~ '^[0-9]{8}$'
-             and to_tsvector('spanish'::regconfig, private.immutable_unaccent(item ->> 'description')) @@ query.tq
-         ),
-         classes as (
-           select code, count(distinct process_id)::int as processes
-           from matches group by code
-         ),
-         examples as (
-           select code, array_agg(description order by lines desc) filter (where position <= $2) as examples
-           from (
-             select code, description, count(*) as lines,
-                    row_number() over (partition by code order by count(*) desc) as position
-             from matches group by code, description
-           ) ranked
-           group by code
-         )
-         select c.code, catalog.name, c.processes,
-                round(c.processes::numeric / nullif((select count(distinct process_id) from matches), 0), 3)::float8 as share,
-                e.examples
-         from classes c
-         join examples e using (code)
-         left join public.unspsc_catalog catalog on catalog.code = c.code
-         order by c.processes desc`,
-        [keywords, EXAMPLES_PER_CLASS],
-    );
+export interface DerivedClass extends RankedClass {
+    // From the CUBS catalog; null when the catalog does not list the class.
+    name: string | null;
+    // Processes whose product lines use the class.
+    processes: number;
+}
 
-    return rows.filter((row) => row.processes >= MIN_PROCESSES && row.share >= MIN_SHARE).slice(0, MAX_CLASSES);
+/** Groups term hits by class, scores each class by its best hit, and keeps those close to the best class. */
+export function rankClasses(hits: TermHit[]): RankedClass[] {
+    const classes = new Map<string, RankedClass>();
+    for (const hit of [...hits].sort((a, b) => b.similarity - a.similarity)) {
+        const code = hit.code.slice(0, 6);
+        const ranked = classes.get(code) ?? { code, similarity: hit.similarity, examples: [] };
+        if (hit.kind === "product" && ranked.examples.length < EXAMPLES_PER_CLASS && !ranked.examples.includes(hit.text)) {
+            ranked.examples.push(hit.text);
+        }
+        classes.set(code, ranked);
+    }
+    const sorted = [...classes.values()].sort((a, b) => b.similarity - a.similarity);
+    const best = sorted[0]?.similarity ?? 0;
+    return sorted.filter((ranked) => ranked.similarity >= best - SIMILARITY_MARGIN).slice(0, MAX_CLASSES);
+}
+
+export const lineQueryText = (line: Pick<LineOfBusiness, "name" | "description" | "keywords">) =>
+    `${line.name}. ${line.description} Palabras clave: ${line.keywords.join(", ")}.`;
+
+/** Proposed UNSPSC classes for a line of business, nearest first, with catalog names and how many processes use each. */
+export async function deriveClasses(pool: Pool, line: Pick<LineOfBusiness, "name" | "description" | "keywords">): Promise<DerivedClass[]> {
+    const model = modelForRole("embed");
+    const { embedding } = await embed({
+        model,
+        value: lineQueryText(line),
+        providerOptions: { voyage: { inputType: "query", outputDimension: EMBEDDING_DIMENSIONS } },
+    });
+
+    const { rows: hits } = await pool.query<TermHit>(
+        `select kind, code, text, 1 - (embedding operator(extensions.<=>) $1::extensions.halfvec) as similarity
+         from public.unspsc_terms
+         where embedding_model = $2
+         order by embedding operator(extensions.<=>) $1::extensions.halfvec
+         limit $3`,
+        [JSON.stringify(embedding), model, NEAREST_TERMS],
+    );
+    const ranked = rankClasses(hits);
+
+    const { rows: details } = await pool.query<{ code: string; name: string | null; processes: number }>(
+        `select code, catalog.name,
+                (select count(distinct p.id)::int
+                 from public.procurement_processes p
+                 join public.process_versions v on v.id = p.current_version_id
+                 cross join lateral jsonb_array_elements(coalesce(v.detail -> 'products', '[]'::jsonb)) as item
+                 where item ->> 'unspsc' like code || '%') as processes
+         from unnest($1::text[]) as code
+         left join public.unspsc_catalog catalog using (code)`,
+        [ranked.map((item) => item.code)],
+    );
+    const detailByCode = new Map(details.map((row) => [row.code, row]));
+
+    return ranked.map((item) => ({
+        ...item,
+        name: detailByCode.get(item.code)?.name ?? null,
+        processes: detailByCode.get(item.code)?.processes ?? 0,
+    }));
 }
 
 /** The catalog name of each code, or null for a code the catalog does not list. */

@@ -23,7 +23,7 @@ const concurrency = numberArgument("concurrency", 4);
 const IN_SCOPE_THRESHOLDS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7];
 const STRENGTH_THRESHOLDS = [0.5, 1, 1.5, 2];
 
-const { profiles, pools, labels } = await loadLabeledSet();
+const { profiles, pools, labels } = await loadLabeledSet("v1");
 const embedModel = modelForRole("embed");
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: concurrency + 1 });
 const { populationIds } = await loadPopulation(pool, pools, labels, embedModel);
@@ -42,7 +42,7 @@ const relevantBeyondTop: Record<string, string[]> = {};
 for (const profile of profiles) {
     const embedding = await embedProfile(profile, embedModel);
     const candidates = (
-        await retrieveCandidates(pool, { terms: profile.terms, model: embedModel, embedding, unspsc: profile.unspsc, populationIds })
+        await retrieveCandidates(pool, { terms: profile.offerings, model: embedModel, embedding, unspsc: profile.unspsc, populationIds })
     ).slice(0, top);
     const labelById = new Map(labels[profile.key].map((item) => [item.processId, item]));
     const candidateIds = new Set(candidates.map((candidate) => candidate.process_id));
@@ -74,7 +74,7 @@ for (const profile of profiles) {
         try {
             const result = await evaluateMatch(pool, {
                 processId: candidate.process_id,
-                profile: { description: profile.description, offerings: profile.terms, exclusions: [] },
+                profile: { description: profile.description, offerings: profile.offerings, exclusions: [] },
                 match: { terms: candidate.matched_terms, fields: candidate.matched_fields, unspsc: candidate.matched_unspsc },
                 chunkIds: candidate.fragments.map((fragment) => fragment.chunk_id),
             });

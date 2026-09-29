@@ -18,7 +18,10 @@ const DEFAULT_MODELS: Record<AiRole, string | null> = {
     embed: "voyage/voyage-4",
     rerank: null,
     vision: null,
-    extract: null,
+    // Turns a company's corporate purpose into its matching profile (lines of
+    // business, keywords, UNSPSC families). Provisional until profile
+    // extraction is compared on the labeled set.
+    extract: "openai/gpt-6-luna",
 };
 
 // document_chunks.embedding is halfvec(1024): every embed model must produce this size.

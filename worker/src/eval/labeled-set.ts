@@ -10,9 +10,15 @@ export interface Profile {
     key: string;
     name: string;
     description: string;
-    terms: string[];
+    // Concrete examples of what the company offers; retrieval searches for them as terms.
+    offerings: string[];
     unspsc: string[];
 }
+
+// Labeled sets live in labeled-set/<version>/. v1 (29 Sep 2026): narrow
+// profiles, relevant / not relevant. v2: corporate-purpose profiles labeled
+// core / adjacent / not relevant.
+export type LabeledSetVersion = "v1" | "v2";
 
 export interface Pools {
     generatedAt: string;
@@ -27,14 +33,22 @@ export interface Candidate {
     fragments: { chunk_id: number }[];
 }
 
-const labeledSetUrl = new URL("./labeled-set/", import.meta.url);
-const readJson = async <T>(file: string): Promise<T> => JSON.parse(await readFile(new URL(file, labeledSetUrl), "utf8"));
+export const labeledSetUrl = (version: LabeledSetVersion) => new URL(`./labeled-set/${version}/`, import.meta.url);
+const readJson = async <T>(version: LabeledSetVersion, file: string): Promise<T> =>
+    JSON.parse(await readFile(new URL(file, labeledSetUrl(version)), "utf8"));
 
-export async function loadLabeledSet() {
+// v1 profiles named their offerings `terms`.
+export const loadProfiles = async (version: LabeledSetVersion) =>
+    (await readJson<(Profile & { terms?: string[] })[]>(version, "profiles.json")).map(({ terms, ...profile }) => ({
+        ...profile,
+        offerings: profile.offerings ?? terms ?? [],
+    }));
+
+export async function loadLabeledSet(version: LabeledSetVersion) {
     const [profiles, pools, { profiles: labels }] = await Promise.all([
-        readJson<Profile[]>("profiles.json"),
-        readJson<Pools>("pools.json"),
-        readJson<{ profiles: Record<string, LabeledProcess[]> }>("labels.json"),
+        loadProfiles(version),
+        readJson<Pools>(version, "pools.json"),
+        readJson<{ profiles: Record<string, LabeledProcess[]> }>(version, "labels.json"),
     ]);
     return { profiles, pools, labels };
 }

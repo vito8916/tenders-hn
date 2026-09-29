@@ -1,0 +1,1172 @@
+{
+ "extractedAt": "2026-09-29T21:20:14.750Z",
+ "extractionVersion": "v1",
+ "profiles": {
+  "software": {
+   "name": "Empresa de Software, Tecnología y Servicios de TI",
+   "profile": {
+    "summary": "La sociedad ofrece servicios de tecnología de la información, informática, telecomunicaciones y transformación digital, incluyendo desarrollo de software, consultoría, soporte y gestión de infraestructura. También comercializa equipos tecnológicos, licencias de software y sistemas de seguridad electrónica.",
+    "linesOfBusiness": [
+     {
+      "name": "Desarrollo e implementación de software",
+      "tier": "primary",
+      "description": "Desarrolla, integra, implementa y mantiene sistemas informáticos, aplicaciones y plataformas digitales para instituciones y empresas.",
+      "keywords": [
+       "desarrollo de software",
+       "sistemas informáticos",
+       "programas de computación",
+       "aplicaciones móviles",
+       "aplicaciones web",
+       "plataformas digitales",
+       "sistemas empresariales",
+       "sistemas de información",
+       "comercio electrónico",
+       "automatización de procesos"
+      ],
+      "unspscFamilies": [
+       "4323"
+      ],
+      "sourceExcerpt": "análisis, diseño, desarrollo, programación, implementación, integración, mantenimiento, actualización, soporte y comercialización de sistemas informáticos, programas de computación, aplicaciones móviles, aplicaciones web, plataformas digitales, sistemas empresariales, sistemas de información"
+     },
+     {
+      "name": "Consultoría y auditoría informática",
+      "tier": "secondary",
+      "description": "Presta consultoría, asesoría y auditoría en tecnologías de información y soluciones informáticas.",
+      "keywords": [
+       "consultoría informática",
+       "consultoría en tecnología",
+       "asesoría informática",
+       "auditoría informática",
+       "auditoría de sistemas",
+       "tecnologías de información",
+       "TIC"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "servicios de consultoría, asesoría, auditoría"
+     },
+     {
+      "name": "Capacitación en tecnologías de información",
+      "tier": "secondary",
+      "description": "Imparte capacitación relacionada con informática, sistemas y tecnologías de información y comunicación.",
+      "keywords": [
+       "capacitación informática",
+       "capacitación en TIC",
+       "capacitación en sistemas",
+       "formación tecnológica",
+       "cursos de informática",
+       "tecnologías de información"
+      ],
+      "unspscFamilies": [
+       "8613"
+      ],
+      "sourceExcerpt": "capacitación"
+     },
+     {
+      "name": "Soporte y mantenimiento informático",
+      "tier": "secondary",
+      "description": "Brinda soporte, asistencia técnica, actualización y reparación de sistemas y equipos informáticos.",
+      "keywords": [
+       "soporte informático",
+       "asistencia técnica informática",
+       "mantenimiento de sistemas",
+       "actualización de software",
+       "reparación de computadoras",
+       "mesa de ayuda",
+       "servicio técnico"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "mantenimiento, actualización, soporte"
+     },
+     {
+      "name": "Servicios en la nube y gestión de datos",
+      "tier": "secondary",
+      "description": "Administra infraestructura tecnológica, servidores y centros de datos, y presta servicios de alojamiento, procesamiento, respaldo y recuperación de información.",
+      "keywords": [
+       "servicios en la nube",
+       "computación en la nube",
+       "alojamiento de sistemas",
+       "hosting",
+       "centro de datos",
+       "data center",
+       "procesamiento de información",
+       "respaldo de datos",
+       "recuperación de datos",
+       "administración de servidores"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "administración de infraestructura tecnológica, redes, servidores, centros de datos, alojamiento de sistemas, procesamiento de información"
+     },
+     {
+      "name": "Instalación y administración de redes y comunicaciones",
+      "tier": "secondary",
+      "description": "Implementa y administra redes y sistemas de comunicación para instituciones y empresas.",
+      "keywords": [
+       "instalación de redes",
+       "administración de redes",
+       "redes de datos",
+       "sistemas de comunicación",
+       "comunicaciones",
+       "infraestructura de red",
+       "TIC"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "implementación y administración de sistemas de comunicación"
+     },
+     {
+      "name": "Digitalización de documentos",
+      "tier": "secondary",
+      "description": "Presta servicios de digitalización de documentos para su tratamiento y gestión electrónica.",
+      "keywords": [
+       "digitalización de documentos",
+       "escaneo de documentos",
+       "documentos digitalizados",
+       "conversión de documentos",
+       "archivo digital",
+       "gestión documental electrónica"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "digitalización de documentos"
+     },
+     {
+      "name": "Ciberseguridad",
+      "tier": "secondary",
+      "description": "Ofrece soluciones tecnológicas de ciberseguridad para proteger sistemas y recursos de información.",
+      "keywords": [
+       "ciberseguridad",
+       "seguridad informática",
+       "seguridad de la información",
+       "protección de sistemas",
+       "protección de datos",
+       "seguridad digital"
+      ],
+      "unspscFamilies": [
+       "8111"
+      ],
+      "sourceExcerpt": "ciberseguridad"
+     },
+     {
+      "name": "Computadoras y servidores",
+      "tier": "secondary",
+      "description": "Comercializa, importa, distribuye, arrienda, instala, configura y repara computadoras y servidores.",
+      "keywords": [
+       "computadoras",
+       "computadoras de escritorio",
+       "computadoras portátiles",
+       "laptops",
+       "servidores",
+       "estaciones de trabajo",
+       "arrendamiento de computadoras",
+       "repuestos para computadoras"
+      ],
+      "unspscFamilies": [
+       "4321"
+      ],
+      "sourceExcerpt": "computadoras, servidores"
+     },
+     {
+      "name": "Equipos de telecomunicaciones y redes",
+      "tier": "secondary",
+      "description": "Comercializa, instala, configura y repara equipos de telecomunicaciones y de redes.",
+      "keywords": [
+       "equipos de telecomunicaciones",
+       "equipos de redes",
+       "equipo de comunicación",
+       "equipo de conectividad",
+       "dispositivos de red",
+       "accesorios de red",
+       "repuestos de telecomunicaciones"
+      ],
+      "unspscFamilies": [
+       "4322"
+      ],
+      "sourceExcerpt": "equipos de telecomunicaciones, equipos de redes"
+     },
+     {
+      "name": "Licencias de software",
+      "tier": "secondary",
+      "description": "Comercializa y licencia software, plataformas y productos tecnológicos propios o de terceros.",
+      "keywords": [
+       "licencias de software",
+       "licenciamiento de software",
+       "programas de computación",
+       "software empresarial",
+       "software de aplicación",
+       "plataformas digitales",
+       "productos tecnológicos"
+      ],
+      "unspscFamilies": [
+       "4323"
+      ],
+      "sourceExcerpt": "desarrollar, adquirir, registrar, licenciar, explotar, ceder y comercializar software"
+     },
+     {
+      "name": "Sistemas de seguridad electrónica",
+      "tier": "secondary",
+      "description": "Comercializa e instala sistemas de seguridad electrónica, cámaras, controles de acceso y dispositivos biométricos.",
+      "keywords": [
+       "seguridad electrónica",
+       "cámaras de seguridad",
+       "circuito cerrado de televisión",
+       "CCTV",
+       "controles de acceso",
+       "control de acceso",
+       "dispositivos biométricos",
+       "sistemas biométricos",
+       "instalación de cámaras"
+      ],
+      "unspscFamilies": [
+       "4617"
+      ],
+      "sourceExcerpt": "sistemas de seguridad electrónica, cámaras, controles de acceso, dispositivos biométricos"
+     },
+     {
+      "name": "Equipos audiovisuales",
+      "tier": "secondary",
+      "description": "Comercializa equipos audiovisuales para uso institucional y empresarial.",
+      "keywords": [
+       "equipos audiovisuales",
+       "equipo de audio",
+       "equipo de video",
+       "sistemas audiovisuales",
+       "equipos de presentación",
+       "accesorios audiovisuales"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "equipos audiovisuales"
+     },
+     {
+      "name": "Periféricos, accesorios y suministros tecnológicos",
+      "tier": "secondary",
+      "description": "Comercializa accesorios, repuestos, periféricos y suministros relacionados con equipos tecnológicos.",
+      "keywords": [
+       "periféricos de computadora",
+       "accesorios para computadoras",
+       "repuestos para equipo informático",
+       "suministros tecnológicos",
+       "accesorios electrónicos",
+       "repuestos de equipo tecnológico"
+      ],
+      "unspscFamilies": [
+       "4321"
+      ],
+      "sourceExcerpt": "accesorios, repuestos, periféricos"
+     }
+    ],
+    "ignoredClauses": [
+     "Participación en concursos, cotizaciones, compras directas y licitaciones, y celebración de contratos con entidades públicas o privadas.",
+     "Adquisición, arrendamiento y enajenación de bienes muebles e inmuebles; apertura de oficinas, agencias, establecimientos o sucursales.",
+     "Celebración de actos mercantiles relacionados con el objeto social y cualquier otra actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1296,
+   "outputTokens": 3105,
+   "latencyMs": 24217,
+   "codeCheck": {
+    "4321": {
+     "productLines": 200,
+     "examples": [
+      "Almohadillas de ratón o mouse",
+      "Altavoces o parlantes para la computadora",
+      "Cajas de conmutación de computadoras",
+      "Computadora de bolsillo"
+     ]
+    },
+    "4322": {
+     "productLines": 48,
+     "examples": [
+      "Antena LAN UMTS GSM",
+      "Antenas de onda corta",
+      "Antenas de radio",
+      "Antenas de satélite"
+     ]
+    },
+    "4323": {
+     "productLines": 102,
+     "examples": [
+      "Paquetes de ofimática",
+      "Software de acceso",
+      "Software de administración",
+      "Software de administración de bases de datos orientado a objetos"
+     ]
+    },
+    "4617": {
+     "productLines": 28,
+     "examples": [
+      "Cámaras de seguridad",
+      "Candados",
+      "Dispositivos de bloqueo",
+      "Estuches de llaves o llaveros"
+     ]
+    },
+    "8111": {
+     "productLines": 34,
+     "examples": [
+      "Almacenamiento de datos",
+      "Alquiler de equipo de computación",
+      "Centro de servicios de datos",
+      "Codificación de software"
+     ]
+    },
+    "8613": {
+     "productLines": 43,
+     "examples": [
+      "Pintura"
+     ]
+    }
+   },
+   "linesWithoutSource": []
+  },
+  "laboratorio": {
+   "name": "Empresa de Suministros de Laboratorio, Diagnóstico y Laboratorio Clínico",
+   "profile": {
+    "summary": "Empresa dedicada principalmente a la importación, distribución y comercialización de reactivos, equipos e insumos para laboratorios clínicos, científicos, médicos y hospitalarios. También ofrece servicios técnicos para equipos y apoyo logístico para suministros médicos y de laboratorio.",
+    "linesOfBusiness": [
+     {
+      "name": "Reactivos y productos de diagnóstico",
+      "tier": "primary",
+      "description": "Suministra reactivos, pruebas, controles, calibradores, medios de cultivo, soluciones y productos químicos para diagnóstico clínico y análisis científico.",
+      "keywords": [
+       "reactivos para diagnóstico",
+       "reactivos de diagnóstico in vitro",
+       "pruebas rápidas",
+       "medios de cultivo",
+       "controles de laboratorio",
+       "calibradores",
+       "reactivos de hematología",
+       "reactivos de química clínica",
+       "reactivos de microbiología",
+       "reactivos de inmunología",
+       "reactivos de banco de sangre",
+       "químicos para laboratorio"
+      ],
+      "unspscFamilies": [
+       "4110"
+      ],
+      "sourceExcerpt": "Podrá comercializar reactivos para diagnóstico, reactivos para diagnóstico in vitro, medios de cultivo, pruebas rápidas, controles, calibradores, soluciones, colorantes, químicos y demás materiales utilizados en las áreas de hematología, química clínica, inmunología, microbiología, serología, parasitología, biología molecular, genética, patología, banco de sangre y demás ramas del diagnóstico clínico y científico."
+     },
+     {
+      "name": "Equipos e instrumentos de laboratorio",
+      "tier": "primary",
+      "description": "Provee analizadores, microscopios, centrífugas, autoclaves, incubadoras, equipos de medición y otros instrumentos y repuestos para laboratorios y centros de diagnóstico.",
+      "keywords": [
+       "analizadores de laboratorio",
+       "microscopios",
+       "centrífugas",
+       "autoclaves",
+       "incubadoras de laboratorio",
+       "refrigeradores para laboratorio",
+       "congeladores para laboratorio",
+       "balanzas de laboratorio",
+       "pipetas",
+       "espectrofotómetros",
+       "equipos de esterilización",
+       "instrumentos de laboratorio",
+       "repuestos para equipo de laboratorio"
+      ],
+      "unspscFamilies": [
+       "4110"
+      ],
+      "sourceExcerpt": "Podrá importar, distribuir, vender, instalar y suministrar analizadores, microscopios, centrífugas, autoclaves, incubadoras, refrigeradores, congeladores, balanzas, pipetas, espectrofotómetros, equipos de esterilización, equipos de diagnóstico, equipos médicos y hospitalarios y demás maquinaria, instrumentos, accesorios, repuestos y mobiliario utilizado en laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación."
+     },
+     {
+      "name": "Equipos médicos y hospitalarios",
+      "tier": "secondary",
+      "description": "Comercializa equipos de diagnóstico y equipos médicos y hospitalarios para clínicas, hospitales y centros de atención.",
+      "keywords": [
+       "equipo médico",
+       "equipo hospitalario",
+       "equipos de diagnóstico",
+       "equipo médico para hospitales",
+       "equipo médico para clínicas",
+       "equipamiento hospitalario",
+       "equipos para centros de diagnóstico",
+       "repuestos para equipo médico"
+      ],
+      "unspscFamilies": [
+       "4200"
+      ],
+      "sourceExcerpt": "Podrá importar, distribuir, vender, instalar y suministrar analizadores, microscopios, centrífugas, autoclaves, incubadoras, refrigeradores, congeladores, balanzas, pipetas, espectrofotómetros, equipos de esterilización, equipos de diagnóstico, equipos médicos y hospitalarios y demás maquinaria, instrumentos, accesorios, repuestos y mobiliario utilizado en laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación."
+     },
+     {
+      "name": "Mobiliario para laboratorios y centros de salud",
+      "tier": "secondary",
+      "description": "Suministra mobiliario destinado a laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación.",
+      "keywords": [
+       "mobiliario para laboratorio",
+       "muebles para laboratorio",
+       "mobiliario hospitalario",
+       "mobiliario clínico",
+       "muebles para clínicas",
+       "muebles para hospitales",
+       "mobiliario para centros de diagnóstico"
+      ],
+      "unspscFamilies": [
+       "5610"
+      ],
+      "sourceExcerpt": "Podrá importar, distribuir, vender, instalar y suministrar analizadores, microscopios, centrífugas, autoclaves, incubadoras, refrigeradores, congeladores, balanzas, pipetas, espectrofotómetros, equipos de esterilización, equipos de diagnóstico, equipos médicos y hospitalarios y demás maquinaria, instrumentos, accesorios, repuestos y mobiliario utilizado en laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación."
+     },
+     {
+      "name": "Consumibles y materiales para laboratorio y manejo de muestras",
+      "tier": "primary",
+      "description": "Provee tubos, frascos, recipientes, material de vidrio y plástico y productos para toma, conservación y transporte de muestras clínicas o de laboratorio.",
+      "keywords": [
+       "tubos para laboratorio",
+       "tubos para muestras",
+       "frascos para muestras",
+       "recipientes para muestras",
+       "material de vidrio para laboratorio",
+       "material plástico para laboratorio",
+       "consumibles de laboratorio",
+       "toma de muestras",
+       "conservación de muestras",
+       "transporte de muestras",
+       "insumos para laboratorio"
+      ],
+      "unspscFamilies": [
+       "4112"
+      ],
+      "sourceExcerpt": "Podrá comercializar materiales y consumibles tales como tubos, frascos, recipientes para muestras, jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable, material de vidrio y plástico, productos para toma, conservación y transporte de muestras, productos para limpieza, desinfección y esterilización, equipos de protección personal y demás suministros relacionados con actividades sanitarias, clínicas y de laboratorio."
+     },
+     {
+      "name": "Material médico descartable y equipo de protección personal",
+      "tier": "secondary",
+      "description": "Suministra jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos y otros materiales descartables y de protección para actividades sanitarias.",
+      "keywords": [
+       "jeringas descartables",
+       "agujas médicas",
+       "guantes de examen",
+       "guantes médicos",
+       "mascarillas quirúrgicas",
+       "batas descartables",
+       "gorros descartables",
+       "cubrezapatos",
+       "material médico descartable",
+       "equipo de protección personal",
+       "EPP"
+      ],
+      "unspscFamilies": [
+       "4200",
+       "4618"
+      ],
+      "sourceExcerpt": "Podrá comercializar materiales y consumibles tales como tubos, frascos, recipientes para muestras, jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable, material de vidrio y plástico, productos para toma, conservación y transporte de muestras, productos para limpieza, desinfección y esterilización, equipos de protección personal y demás suministros relacionados con actividades sanitarias, clínicas y de laboratorio."
+     },
+     {
+      "name": "Productos de limpieza, desinfección y esterilización",
+      "tier": "secondary",
+      "description": "Comercializa productos para limpiar, desinfectar y esterilizar áreas, materiales y equipos de uso sanitario y de laboratorio.",
+      "keywords": [
+       "productos de limpieza para laboratorio",
+       "desinfectantes hospitalarios",
+       "desinfectantes para laboratorio",
+       "productos de esterilización",
+       "insumos para desinfección",
+       "limpieza hospitalaria",
+       "limpieza de laboratorio",
+       "soluciones desinfectantes"
+      ],
+      "unspscFamilies": [
+       "4713"
+      ],
+      "sourceExcerpt": "Podrá comercializar materiales y consumibles tales como tubos, frascos, recipientes para muestras, jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable, material de vidrio y plástico, productos para toma, conservación y transporte de muestras, productos para limpieza, desinfección y esterilización, equipos de protección personal y demás suministros relacionados con actividades sanitarias, clínicas y de laboratorio."
+     },
+     {
+      "name": "Servicios técnicos para equipos e instrumentos",
+      "tier": "secondary",
+      "description": "Presta instalación, mantenimiento, reparación, validación, calibración, capacitación y soporte técnico para equipos e instrumentos.",
+      "keywords": [
+       "instalación de equipo de laboratorio",
+       "mantenimiento preventivo de equipos",
+       "mantenimiento correctivo de equipos",
+       "reparación de equipo médico",
+       "reparación de equipos de laboratorio",
+       "calibración de equipos",
+       "validación de equipos",
+       "soporte técnico de laboratorio",
+       "capacitación en equipos de laboratorio",
+       "asesoría técnica"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "La sociedad podrá prestar servicios de instalación, mantenimiento preventivo y correctivo, reparación, validación, calibración, capacitación, asesoría y soporte técnico de equipos e instrumentos"
+     },
+     {
+      "name": "Logística y almacenamiento de suministros médicos y de laboratorio",
+      "tier": "optional",
+      "description": "Ofrece apoyo para la administración de inventarios, almacenamiento, distribución y logística de suministros médicos, científicos y de laboratorio.",
+      "keywords": [
+       "administración de inventarios médicos",
+       "logística de suministros médicos",
+       "almacenamiento de insumos médicos",
+       "almacenamiento de suministros de laboratorio",
+       "distribución de insumos médicos",
+       "distribución de suministros de laboratorio",
+       "bodega de suministros médicos"
+      ],
+      "unspscFamilies": [
+       "7800"
+      ],
+      "sourceExcerpt": "así como servicios relacionados con administración de inventarios, logística, almacenamiento y distribución de suministros médicos, científicos y de laboratorio."
+     }
+    ],
+    "ignoredClauses": [
+     "Representación y agencia comercial de fabricantes, laboratorios y marcas.",
+     "Participación en compras, cotizaciones, concursos y licitaciones públicas o privadas.",
+     "Cumplimiento de registros, licencias, permisos y demás requisitos regulatorios.",
+     "Importación y exportación genéricas, adquisición o arrendamiento de bienes, apertura de sucursales y bodegas, y cualquier otra actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1419,
+   "outputTokens": 2955,
+   "latencyMs": 21906,
+   "codeCheck": {
+    "4110": {
+     "productLines": 34,
+     "examples": [
+      "Accesorios de incubadoras",
+      "Accesorios del equipo de teñido de portaobjetos de laboratorio",
+      "Accesorios para centrifugadoras de laboratorio",
+      "Agua destilada o agua desionizada"
+     ]
+    },
+    "4112": {
+     "productLines": 35,
+     "examples": [
+      "Aceite de inmersión para microscopio",
+      "Adaptadores o conectores de laboratorio",
+      "Asas o agujas de inoculación microbiológica",
+      "Bandejas de uso general"
+     ]
+    },
+    "4200": {
+     "productLines": 0,
+     "examples": []
+    },
+    "4618": {
+     "productLines": 65,
+     "examples": [
+      "Batas blancas",
+      "Batas de protección",
+      "Botas de protección",
+      "Calzado ignífugo"
+     ]
+    },
+    "4713": {
+     "productLines": 46,
+     "examples": [
+      "Accesorios para urinarios o aseos",
+      "Ácido muriático",
+      "Alfombrillas absorbentes",
+      "Cepillos de limpieza"
+     ]
+    },
+    "5610": {
+     "productLines": 125,
+     "examples": [
+      "Accesorios para cunas",
+      "Archivos móviles",
+      "Archivos para clasificación",
+      "Armarios de almacenamiento"
+     ]
+    },
+    "7800": {
+     "productLines": 0,
+     "examples": []
+    }
+   },
+   "linesWithoutSource": []
+  },
+  "carreteras": {
+   "name": "Empresa Constructora y Contratista de Obras Civiles",
+   "profile": {
+    "summary": "La sociedad se dedica principalmente a construir, remodelar, reparar, rehabilitar, mantener y supervisar edificaciones y obras de infraestructura. También ofrece servicios técnicos de ingeniería y construcción, comercializa materiales y equipos para obras, alquila maquinaria y desarrolla actividades inmobiliarias.",
+    "linesOfBusiness": [
+     {
+      "name": "Construcción y remodelación de edificaciones",
+      "tier": "primary",
+      "description": "Ejecución, ampliación, remodelación, reparación, rehabilitación, mantenimiento y demolición de viviendas, edificios comerciales, industriales, institucionales y otras edificaciones.",
+      "keywords": [
+       "construcción de edificios",
+       "construcción de viviendas",
+       "remodelación de edificios",
+       "reparación de edificios",
+       "rehabilitación de edificaciones",
+       "mantenimiento de edificios",
+       "obras civiles",
+       "edificios institucionales",
+       "bodegas",
+       "centros educativos",
+       "hospitales"
+      ],
+      "unspscFamilies": [
+       "7210"
+      ],
+      "sourceExcerpt": "Podrá ejecutar obras de edificación residencial, comercial, industrial e institucional; construcción y remodelación de viviendas, edificios, oficinas, centros comerciales, bodegas, hospitales, centros educativos, instalaciones deportivas, instalaciones industriales y todo tipo de edificaciones."
+     },
+     {
+      "name": "Carreteras, calles y obras viales",
+      "tier": "primary",
+      "description": "Construcción y mejoramiento de carreteras, calles, caminos, puentes, pavimentos, adoquinados y obras de movimiento de tierra asociadas.",
+      "keywords": [
+       "construcción de carreteras",
+       "construcción de calles",
+       "caminos",
+       "puentes",
+       "cajas puente",
+       "pavimentación",
+       "adoquinado",
+       "terracería",
+       "excavación",
+       "movimiento de tierra",
+       "nivelación de terrenos",
+       "muros de contención"
+      ],
+      "unspscFamilies": [
+       "7214"
+      ],
+      "sourceExcerpt": "Asimismo, podrá ejecutar proyectos de carreteras, calles, caminos, puentes, cajas puente, muros de contención, pavimentaciones, adoquinados, terracerías, excavaciones, movimiento de tierra, nivelación de terrenos, drenajes, alcantarillado sanitario y pluvial, sistemas de agua potable, plantas de tratamiento, pozos, obras hidráulicas, obras de saneamiento, urbanizaciones, lotificaciones y demás obras de infraestructura."
+     },
+     {
+      "name": "Agua potable, drenaje y saneamiento",
+      "tier": "primary",
+      "description": "Construcción de redes y obras de agua potable, drenaje pluvial y sanitario, alcantarillado, pozos y plantas de tratamiento.",
+      "keywords": [
+       "sistema de agua potable",
+       "red de agua potable",
+       "alcantarillado sanitario",
+       "alcantarillado pluvial",
+       "drenaje pluvial",
+       "drenaje sanitario",
+       "plantas de tratamiento",
+       "pozos",
+       "obras de saneamiento",
+       "obras hidráulicas",
+       "construcción de redes"
+      ],
+      "unspscFamilies": [
+       "7214"
+      ],
+      "sourceExcerpt": "Asimismo, podrá ejecutar proyectos de carreteras, calles, caminos, puentes, cajas puente, muros de contención, pavimentaciones, adoquinados, terracerías, excavaciones, movimiento de tierra, nivelación de terrenos, drenajes, alcantarillado sanitario y pluvial, sistemas de agua potable, plantas de tratamiento, pozos, obras hidráulicas, obras de saneamiento, urbanizaciones, lotificaciones y demás obras de infraestructura."
+     },
+     {
+      "name": "Instalaciones eléctricas e iluminación",
+      "tier": "secondary",
+      "description": "Ejecución de instalaciones eléctricas y sistemas de iluminación como parte de edificaciones y obras civiles.",
+      "keywords": [
+       "instalaciones eléctricas",
+       "trabajos eléctricos",
+       "sistema eléctrico",
+       "red eléctrica",
+       "iluminación",
+       "instalación de iluminación",
+       "obras eléctricas",
+       "instalaciones electromecánicas"
+      ],
+      "unspscFamilies": [
+       "7215"
+      ],
+      "sourceExcerpt": "Podrá desarrollar trabajos de instalaciones eléctricas, hidrosanitarias, mecánicas, electromecánicas, sistemas contra incendios, climatización, iluminación, telecomunicaciones y demás instalaciones complementarias de las obras civiles, directamente o mediante profesionales, técnicos y contratistas legalmente facultados para ello."
+     },
+     {
+      "name": "Instalaciones hidrosanitarias",
+      "tier": "secondary",
+      "description": "Ejecución de instalaciones de agua y saneamiento en edificaciones y obras civiles.",
+      "keywords": [
+       "instalaciones hidrosanitarias",
+       "instalación sanitaria",
+       "instalación hidráulica",
+       "redes hidrosanitarias",
+       "tuberías de agua",
+       "sistema de drenaje",
+       "instalaciones de agua",
+       "obras hidrosanitarias"
+      ],
+      "unspscFamilies": [
+       "7215"
+      ],
+      "sourceExcerpt": "Podrá desarrollar trabajos de instalaciones eléctricas, hidrosanitarias, mecánicas, electromecánicas, sistemas contra incendios, climatización, iluminación, telecomunicaciones y demás instalaciones complementarias de las obras civiles, directamente o mediante profesionales, técnicos y contratistas legalmente facultados para ello."
+     },
+     {
+      "name": "Instalaciones mecánicas, climatización y contra incendios",
+      "tier": "secondary",
+      "description": "Instalación de sistemas mecánicos, electromecánicos, de climatización y protección contra incendios en obras civiles.",
+      "keywords": [
+       "instalaciones mecánicas",
+       "instalaciones electromecánicas",
+       "climatización",
+       "aire acondicionado",
+       "sistemas contra incendios",
+       "protección contra incendios",
+       "sistemas mecánicos",
+       "montaje electromecánico"
+      ],
+      "unspscFamilies": [
+       "7215"
+      ],
+      "sourceExcerpt": "Podrá desarrollar trabajos de instalaciones eléctricas, hidrosanitarias, mecánicas, electromecánicas, sistemas contra incendios, climatización, iluminación, telecomunicaciones y demás instalaciones complementarias de las obras civiles, directamente o mediante profesionales, técnicos y contratistas legalmente facultados para ello."
+     },
+     {
+      "name": "Instalaciones de telecomunicaciones",
+      "tier": "secondary",
+      "description": "Ejecución de instalaciones de telecomunicaciones complementarias de edificaciones y obras civiles.",
+      "keywords": [
+       "instalaciones de telecomunicaciones",
+       "redes de telecomunicaciones",
+       "cableado de telecomunicaciones",
+       "infraestructura de telecomunicaciones",
+       "instalación de redes",
+       "obras de telecomunicaciones"
+      ],
+      "unspscFamilies": [
+       "7215"
+      ],
+      "sourceExcerpt": "Podrá desarrollar trabajos de instalaciones eléctricas, hidrosanitarias, mecánicas, electromecánicas, sistemas contra incendios, climatización, iluminación, telecomunicaciones y demás instalaciones complementarias de las obras civiles, directamente o mediante profesionales, técnicos y contratistas legalmente facultados para ello."
+     },
+     {
+      "name": "Diseño y consultoría de ingeniería y construcción",
+      "tier": "secondary",
+      "description": "Servicios de diseño, planificación, presupuestación, elaboración de planos, levantamientos, estudios técnicos, consultoría y asesoría para proyectos de construcción e infraestructura.",
+      "keywords": [
+       "diseño de obras",
+       "diseño arquitectónico",
+       "planificación de proyectos",
+       "presupuesto de obra",
+       "elaboración de planos",
+       "levantamientos topográficos",
+       "estudios técnicos",
+       "consultoría de construcción",
+       "consultoría de ingeniería",
+       "asesoría de infraestructura"
+      ],
+      "unspscFamilies": [
+       "8110"
+      ],
+      "sourceExcerpt": "La sociedad podrá prestar servicios de diseño, planificación, presupuestación, elaboración de planos, levantamientos, estudios técnicos, administración de proyectos, supervisión de obras, inspección, consultoría y asesoría relacionada con construcción e infraestructura, utilizando cuando corresponda profesionales debidamente colegiados o autorizados conforme a la legislación hondureña."
+     },
+     {
+      "name": "Supervisión, inspección y administración de proyectos",
+      "tier": "secondary",
+      "description": "Administración, supervisión e inspección de obras y proyectos de construcción e infraestructura.",
+      "keywords": [
+       "supervisión de obras",
+       "inspección de obras",
+       "administración de proyectos",
+       "gerencia de proyectos",
+       "supervisión de construcción",
+       "fiscalización de obras",
+       "control de obras",
+       "administración de contratos de construcción"
+      ],
+      "unspscFamilies": [
+       "8110"
+      ],
+      "sourceExcerpt": "La sociedad podrá prestar servicios de diseño, planificación, presupuestación, elaboración de planos, levantamientos, estudios técnicos, administración de proyectos, supervisión de obras, inspección, consultoría y asesoría relacionada con construcción e infraestructura, utilizando cuando corresponda profesionales debidamente colegiados o autorizados conforme a la legislación hondureña."
+     },
+     {
+      "name": "Suministro de cemento, acero y agregados",
+      "tier": "optional",
+      "description": "Venta y distribución de cemento, acero y agregados utilizados en proyectos de construcción.",
+      "keywords": [
+       "cemento",
+       "cemento gris",
+       "acero para construcción",
+       "varilla",
+       "acero de refuerzo",
+       "agregados",
+       "arena",
+       "grava",
+       "materiales de construcción"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Suministro de bloques, ladrillos y madera",
+      "tier": "optional",
+      "description": "Venta y distribución de bloques, ladrillos y madera para obras de construcción.",
+      "keywords": [
+       "bloques de concreto",
+       "bloques",
+       "ladrillos",
+       " ladrillo de barro",
+       "madera para construcción",
+       "madera",
+       "materiales para mampostería",
+       "materiales de construcción"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Suministro de tuberías y materiales hidrosanitarios",
+      "tier": "optional",
+      "description": "Venta y distribución de tuberías y materiales para instalaciones de agua, drenaje y saneamiento.",
+      "keywords": [
+       "tuberías",
+       "tubería PVC",
+       "tubería para agua potable",
+       "materiales hidrosanitarios",
+       "accesorios para tubería",
+       "materiales de plomería",
+       "conexiones hidrosanitarias",
+       "válvulas para agua"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Suministro de materiales eléctricos",
+      "tier": "optional",
+      "description": "Venta y distribución de materiales destinados a instalaciones eléctricas e iluminación en obras.",
+      "keywords": [
+       "materiales eléctricos",
+       "cable eléctrico",
+       "conductores eléctricos",
+       "material eléctrico para construcción",
+       "accesorios eléctricos",
+       "materiales para iluminación",
+       "suministros eléctricos"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Suministro de pinturas y acabados",
+      "tier": "optional",
+      "description": "Venta y distribución de pinturas y materiales de acabado para proyectos de construcción y remodelación.",
+      "keywords": [
+       "pintura",
+       "pintura para interiores",
+       "pintura para exteriores",
+       "acabados de construcción",
+       "materiales de acabado",
+       "recubrimientos",
+       "pintura para edificios"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Suministro de herramientas y equipos para construcción",
+      "tier": "optional",
+      "description": "Venta y distribución de herramientas y equipos utilizados en obras de construcción.",
+      "keywords": [
+       "herramientas para construcción",
+       "herramientas de obra",
+       "equipo para construcción",
+       "equipo de obra",
+       "herramientas manuales",
+       "equipos para obras civiles",
+       "suministros para construcción"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Maquinaria pesada y repuestos para construcción",
+      "tier": "optional",
+      "description": "Venta, importación y distribución de maquinaria pesada y repuestos para obras civiles y construcción.",
+      "keywords": [
+       "maquinaria pesada",
+       "maquinaria para construcción",
+       "equipo pesado",
+       "repuestos para maquinaria",
+       "repuestos para construcción",
+       "maquinaria para obras civiles",
+       "importación de maquinaria"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos y, en general, toda clase de materiales y suministros para construcción."
+     },
+     {
+      "name": "Alquiler y operación de maquinaria y equipo para obras",
+      "tier": "optional",
+      "description": "Alquiler, arrendamiento y operación de maquinaria, vehículos, herramientas y equipo destinado a obras civiles.",
+      "keywords": [
+       "alquiler de maquinaria",
+       "renta de maquinaria pesada",
+       "arrendamiento de equipo",
+       "alquiler de equipo para construcción",
+       "alquiler de vehículos para obra",
+       "alquiler de herramientas",
+       "operación de maquinaria",
+       "equipo para obras civiles"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá igualmente prestar servicios de alquiler, arrendamiento y operación de maquinaria, vehículos, herramientas y equipo para obras civiles."
+     },
+     {
+      "name": "Desarrollo y arrendamiento de bienes inmuebles",
+      "tier": "secondary",
+      "description": "Desarrollo, urbanización, construcción, administración y arrendamiento de bienes inmuebles y proyectos inmobiliarios.",
+      "keywords": [
+       "desarrollo inmobiliario",
+       "proyectos inmobiliarios",
+       "urbanización",
+       "lotificación",
+       "construcción de inmuebles",
+       "administración de inmuebles",
+       "arrendamiento de inmuebles",
+       "alquiler de bienes inmuebles"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "La sociedad podrá adquirir, desarrollar, urbanizar, construir, administrar, arrendar y enajenar bienes inmuebles; desarrollar proyectos inmobiliarios y celebrar contratos de construcción, suministro, subcontratación, administración y demás contratos relacionados con su actividad."
+     }
+    ],
+    "ignoredClauses": [
+     "Participación en precalificaciones, concursos, cotizaciones y licitaciones, y contratación con entidades públicas o privadas.",
+     "Representación de empresas y apertura de sucursales, oficinas, planteles y establecimientos.",
+     "Importación y exportación de maquinaria y suministros cuando se menciona como facultad general, además de las líneas de bienes descritas.",
+     "Celebración de contratos relacionados con la actividad y realización de otros actos de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1429,
+   "outputTokens": 5098,
+   "latencyMs": 37757,
+   "codeCheck": {
+    "7210": {
+     "productLines": 170,
+     "examples": [
+      "Carpintería o chapistería de acabados",
+      "Construcción de muros de contención",
+      "Construcción de sistemas de fontanería",
+      "Diseño o decoración de interiores"
+     ]
+    },
+    "7214": {
+     "productLines": 0,
+     "examples": []
+    },
+    "7215": {
+     "productLines": 0,
+     "examples": []
+    },
+    "8110": {
+     "productLines": 10,
+     "examples": [
+      "Gestión de construcción de edificios",
+      "Ingeniería de carreteras",
+      "Servicios de Consultoría de Energia",
+      "Servicios de ingeniería eléctrica"
+     ]
+    }
+   },
+   "linesWithoutSource": []
+  },
+  "uniformes": {
+   "name": "Empresa de Uniformes, Textiles y Equipo de Protección Personal",
+   "profile": {
+    "summary": "La sociedad diseña, fabrica y comercializa textiles, prendas de vestir y uniformes para distintos sectores. También ofrece personalización textil y comercializa insumos, equipos de protección personal y productos de higiene, bioseguridad y señalización.",
+    "linesOfBusiness": [
+     {
+      "name": "Prendas de vestir y uniformes",
+      "tier": "primary",
+      "description": "Diseño, confección y suministro de ropa y uniformes institucionales, empresariales, escolares, médicos, industriales, deportivos y de trabajo, incluidos los de protección.",
+      "keywords": [
+       "uniformes institucionales",
+       "uniformes empresariales",
+       "uniformes escolares",
+       "uniformes médicos",
+       "uniformes industriales",
+       "uniformes de trabajo",
+       "uniformes de seguridad",
+       "camisas",
+       "pantalones",
+       "gabachas",
+       "overoles",
+       "chalecos reflectivos",
+       "ropa deportiva",
+       "ropa de alta visibilidad",
+       "ropa impermeable"
+      ],
+      "unspscFamilies": [
+       "5310"
+      ],
+      "sourceExcerpt": "Podrá fabricar y comercializar uniformes empresariales, institucionales, administrativos, industriales, médicos, hospitalarios, escolares, deportivos, militares, de seguridad, de trabajo y de uso especializado; camisas, pantalones, chaquetas, gabachas, batas, overoles, chalecos, camisetas, gorras, ropa deportiva y cualquier otra clase de prendas de vestir."
+     },
+     {
+      "name": "Personalización y confección textil",
+      "tier": "secondary",
+      "description": "Servicios de diseño, personalización, bordado, serigrafía, sublimación, estampado, impresión, corte, costura y confección de prendas y artículos textiles.",
+      "keywords": [
+       "bordado",
+       "bordado de uniformes",
+       "serigrafía",
+       "sublimación textil",
+       "estampado de prendas",
+       "impresión textil",
+       "transfer",
+       "personalización de uniformes",
+       "diseño de prendas",
+       "corte y confección",
+       "costura",
+       "confección de ropa"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá prestar servicios de diseño y personalización de prendas y artículos textiles mediante bordado, serigrafía, sublimación, estampado, impresión, transfer, corte, costura, confección y demás técnicas de producción y personalización."
+     },
+     {
+      "name": "Telas, hilos y accesorios textiles",
+      "tier": "secondary",
+      "description": "Venta y suministro de telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos y otros insumos para confección y manufactura textil.",
+      "keywords": [
+       "telas",
+       "tela para uniformes",
+       "hilos de coser",
+       "cierres",
+       "zipers",
+       "botones",
+       "elásticos",
+       "cintas",
+       "material reflectivo",
+       "insumos de confección",
+       "materias primas textiles",
+       "accesorios textiles"
+      ],
+      "unspscFamilies": [
+       "1116"
+      ],
+      "sourceExcerpt": "Asimismo, podrá comprar, vender, importar, exportar, distribuir y comercializar telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos, materias primas, accesorios, maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura."
+     },
+     {
+      "name": "Maquinaria, herramientas y repuestos textiles",
+      "tier": "optional",
+      "description": "Suministro de maquinaria, herramientas y repuestos utilizados en la fabricación, confección y manufactura de productos textiles.",
+      "keywords": [
+       "maquinaria textil",
+       "máquinas de coser",
+       "máquinas de confección",
+       "repuestos para máquinas de coser",
+       "herramientas de confección",
+       "repuestos para maquinaria textil",
+       "equipo para taller de costura"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura."
+     },
+     {
+      "name": "Equipo de protección personal y seguridad industrial",
+      "tier": "secondary",
+      "description": "Suministro de equipos y elementos de protección personal para seguridad ocupacional, como cascos, guantes, gafas, mascarillas, respiradores, protectores auditivos, arneses y botas de seguridad.",
+      "keywords": [
+       "equipo de protección personal",
+       "EPP",
+       "equipo de seguridad industrial",
+       "cascos de seguridad",
+       "guantes de protección",
+       "gafas de seguridad",
+       "protectores visuales",
+       "mascarillas",
+       "respiradores",
+       "protectores auditivos",
+       "arneses de seguridad",
+       "líneas de vida",
+       "botas de seguridad",
+       "calzado de seguridad"
+      ],
+      "unspscFamilies": [
+       "4618"
+      ],
+      "sourceExcerpt": "La sociedad podrá comercializar equipos y elementos de protección personal y seguridad industrial, incluyendo cascos, guantes, gafas y protectores visuales, mascarillas, respiradores, protectores auditivos, chalecos reflectivos, arneses, líneas de vida, botas y calzado de seguridad, ropa de alta visibilidad, ropa impermeable, ropa y accesorios de protección para trabajos industriales y demás artículos destinados a la seguridad ocupacional y protección personal."
+     },
+     {
+      "name": "Productos de higiene y bioseguridad",
+      "tier": "secondary",
+      "description": "Distribución de productos y suministros destinados a higiene y bioseguridad para instituciones y centros de trabajo.",
+      "keywords": [
+       "productos de higiene",
+       "suministros de higiene",
+       "productos de bioseguridad",
+       "insumos de bioseguridad",
+       "mascarillas de bioseguridad",
+       "protección sanitaria",
+       "artículos para higiene institucional"
+      ],
+      "unspscFamilies": [],
+      "sourceExcerpt": "Podrá igualmente distribuir productos y suministros relacionados con higiene, bioseguridad, seguridad industrial, señalización y prevención de riesgos"
+     },
+     {
+      "name": "Señalización y prevención de riesgos",
+      "tier": "secondary",
+      "description": "Distribución de señalización y suministros utilizados para comunicar riesgos y apoyar la prevención de accidentes en centros de trabajo.",
+      "keywords": [
+       "señalización de seguridad",
+       "señales de seguridad industrial",
+       "rótulos de seguridad",
+       "señales de prevención",
+       "señalización de riesgos",
+       "señales de advertencia",
+       "prevención de riesgos laborales"
+      ],
+      "unspscFamilies": [
+       "5512"
+      ],
+      "sourceExcerpt": "Podrá igualmente distribuir productos y suministros relacionados con higiene, bioseguridad, seguridad industrial, señalización y prevención de riesgos"
+     }
+    ],
+    "ignoredClauses": [
+     "Suministro a distintos tipos de clientes y sectores.",
+     "Participación en cotizaciones, concursos, compras directas y licitaciones públicas o privadas.",
+     "Establecimiento de fábricas, talleres, almacenes, tiendas, bodegas, centros de distribución, agencias y sucursales.",
+     "Adquisición o arrendamiento de maquinaria, vehículos, inmuebles y otros bienes para las operaciones.",
+     "Importación, exportación, representación y distribución comercial como facultades generales.",
+     "Realización de cualquier otro acto o actividad de lícito comercio."
+    ]
+   },
+   "model": "openai/gpt-6-luna",
+   "inputTokens": 1368,
+   "outputTokens": 2534,
+   "latencyMs": 18895,
+   "codeCheck": {
+    "1116": {
+     "productLines": 15,
+     "examples": [
+      "Malla",
+      "Tejido o tela de malla metálica",
+      "Tejidos de fieltro",
+      "Tela acolchada"
+     ]
+    },
+    "4618": {
+     "productLines": 65,
+     "examples": [
+      "Batas blancas",
+      "Batas de protección",
+      "Botas de protección",
+      "Calzado ignífugo"
+     ]
+    },
+    "5310": {
+     "productLines": 97,
+     "examples": [
+      "Abrigos y chumpas para hombre",
+      "Atuendo de servicio o preparación de alimentos institucional",
+      "Brazalete",
+      "Camisas de hombre"
+     ]
+    },
+    "5512": {
+     "productLines": 43,
+     "examples": [
+      "Accesorios de banderas",
+      "Banderas",
+      "Banderolas",
+      "Distintivos o portadistintivos"
+     ]
+    }
+   },
+   "linesWithoutSource": []
+  }
+ }
+}

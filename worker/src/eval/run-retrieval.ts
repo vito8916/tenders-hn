@@ -31,7 +31,7 @@ if (unknownArm) {
     process.exit(1);
 }
 
-const { profiles, pools, labels } = await loadLabeledSet();
+const { profiles, pools, labels } = await loadLabeledSet("v1");
 const model = modelForRole("embed");
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: 1 });
 const { populationIds, coverage } = await loadPopulation(pool, pools, labels, model);
@@ -46,7 +46,7 @@ for (const profile of profiles) {
         const signals = ARMS[arm];
         const startedAt = performance.now();
         const candidates = await retrieveCandidates(pool, {
-            terms: signals.terms ? profile.terms : [],
+            terms: signals.terms ? profile.offerings : [],
             model,
             embedding: signals.semantic ? embedding : null,
             unspsc: signals.codes ? profile.unspsc : [],

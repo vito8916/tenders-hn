@@ -15,6 +15,8 @@ export interface PoolItem {
     expediente: string;
     stratum: "retrieved" | "sampled";
     rank: number | null;
+    // v2 pools: rank when each paragraph of the profile is a query, fused.
+    paragraphRank?: number | null;
     score: number | null;
 }
 

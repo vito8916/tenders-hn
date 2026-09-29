@@ -1,5 +1,5 @@
 {
- "extractedAt": "2026-09-29T22:54:22.557Z",
+ "extractedAt": "2026-09-29T23:16:38.984Z",
  "extractionVersion": "v2",
  "profiles": {
   "software": {
@@ -32,7 +32,7 @@
       "unspscClasses": [
        {
         "code": "432324",
-        "similarity": 0.734799660662532,
+        "similarity": 0.734706275341223,
         "examples": [
          "Software de desarrollo de plataforma Web",
          "Software de integración de aplicaciones de empresa",
@@ -43,7 +43,7 @@
        },
        {
         "code": "811115",
-        "similarity": 0.709813407761406,
+        "similarity": 0.709853768021594,
         "examples": [
          "Servicios de desarrollo de aplicación del cliente Internet / intranet",
          "Servicios de ejecución de aplicaciones"
@@ -53,7 +53,7 @@
        },
        {
         "code": "801116",
-        "similarity": 0.665442480018067,
+        "similarity": 0.665424624143979,
         "examples": [
          "Desarrolladores temporales de software de tecnología de la información"
         ],
@@ -62,17 +62,19 @@
        },
        {
         "code": "811118",
-        "similarity": 0.664124714986867,
+        "similarity": 0.663894254882302,
         "examples": [
          "Codificación de software",
          "Instalación de sistemas"
         ],
         "name": "Administradores de sistemas",
         "processes": 11
-       },
+       }
+      ],
+      "unusedClasses": [
        {
         "code": "811116",
-        "similarity": 0.660838004797683,
+        "similarity": 0.66071508457832,
         "examples": [],
         "name": "Programadores informáticos",
         "processes": 0
@@ -108,7 +110,8 @@
         "name": "Software de funciones de gestión",
         "processes": 70
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Consultoría, asesoría y auditoría informática",
@@ -128,52 +131,8 @@
        "811118"
       ],
       "sourceExcerpt": "servicios de consultoría, asesoría, auditoría",
-      "unspscClasses": [
-       {
-        "code": "841116",
-        "similarity": 0.631481054209264,
-        "examples": [
-         "Auditorias internas",
-         "Auditorias de cierre del ejercicio"
-        ],
-        "name": "Servicios de auditoria",
-        "processes": 4
-       },
-       {
-        "code": "841115",
-        "similarity": 0.58869951401132,
-        "examples": [
-         "Servicios de facturación"
-        ],
-        "name": "Servicios contables",
-        "processes": 3
-       },
-       {
-        "code": "811122",
-        "similarity": 0.586846063483209,
-        "examples": [],
-        "name": "Mantenimiento y apoyo de logical",
-        "processes": 0
-       },
-       {
-        "code": "801015",
-        "similarity": 0.584856907530277,
-        "examples": [
-         "Servicios de asesoramiento de planificación estratégica"
-        ],
-        "name": "Servicios de consultoría de administración empresarial y comercial",
-        "processes": 4
-       },
-       {
-        "code": "811115",
-        "similarity": 0.571805398117602,
-        "examples": [
-         "Servicios de desarrollo de aplicación del cliente Internet / intranet"
-        ],
-        "name": "Ingeniería de software o de hardware",
-        "processes": 3
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      },
      {
       "name": "Capacitación en informática",
@@ -192,45 +151,8 @@
        "861017"
       ],
       "sourceExcerpt": "capacitación",
-      "unspscClasses": [
-       {
-        "code": "861018",
-        "similarity": 0.627863229918115,
-        "examples": [],
-        "name": "Capacitación de personal / desarrollo de recursos humanos",
-        "processes": 1
-       },
-       {
-        "code": "811116",
-        "similarity": 0.62019933716328,
-        "examples": [],
-        "name": "Programadores informáticos",
-        "processes": 0
-       },
-       {
-        "code": "811115",
-        "similarity": 0.616350251170381,
-        "examples": [
-         "Servicios de desarrollo de aplicación del cliente Internet / intranet"
-        ],
-        "name": "Ingeniería de software o de hardware",
-        "processes": 3
-       },
-       {
-        "code": "861417",
-        "similarity": 0.598259866467515,
-        "examples": [],
-        "name": "Tecnología educativa",
-        "processes": 3
-       },
-       {
-        "code": "432324",
-        "similarity": 0.597736417666169,
-        "examples": [],
-        "name": "Programas de desarrollo",
-        "processes": 5
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      },
      {
       "name": "Soporte y mantenimiento informático",
@@ -253,13 +175,6 @@
       "sourceExcerpt": "mantenimiento, actualización, soporte",
       "unspscClasses": [
        {
-        "code": "811122",
-        "similarity": 0.774123052455729,
-        "examples": [],
-        "name": "Mantenimiento y apoyo de logical",
-        "processes": 0
-       },
-       {
         "code": "811118",
         "similarity": 0.69950085053199,
         "examples": [
@@ -269,6 +184,15 @@
         ],
         "name": "Administradores de sistemas",
         "processes": 11
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "811122",
+        "similarity": 0.774123052455729,
+        "examples": [],
+        "name": "Mantenimiento y apoyo de logical",
+        "processes": 0
        }
       ]
      },
@@ -294,7 +218,7 @@
       "unspscClasses": [
        {
         "code": "811118",
-        "similarity": 0.690324060463089,
+        "similarity": 0.690414380826785,
         "examples": [
          "Servicios de administración del servidor",
          "Soporte o mantenimiento de red de área local (LAN)",
@@ -305,43 +229,16 @@
        },
        {
         "code": "432328",
-        "similarity": 0.682456940349424,
+        "similarity": 0.681959357461392,
         "examples": [
          "Software de administración",
          "Software de administración de redes ópticas"
         ],
         "name": "Software de administración de redes",
         "processes": 2
-       },
-       {
-        "code": "432115",
-        "similarity": 0.640967147868629,
-        "examples": [
-         "Servidores",
-         "Servidores de gama alta"
-        ],
-        "name": "Computadoras y Servidores",
-        "processes": 86
-       },
-       {
-        "code": "432226",
-        "similarity": 0.637638164557051,
-        "examples": [
-         "Servidores de acceso",
-         "Concentradores de servicio de red",
-         "Interruptores de red"
-        ],
-        "name": "Equipo de servicio de red",
-        "processes": 14
-       },
-       {
-        "code": "811122",
-        "similarity": 0.63037411675535,
-        "examples": [],
-        "name": "Mantenimiento y apoyo de logical",
-        "processes": 0
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Servicios en la nube y alojamiento de sistemas",
@@ -381,39 +278,9 @@
         ],
         "name": "Servicios de datos",
         "processes": 1
-       },
-       {
-        "code": "811115",
-        "similarity": 0.649253530735913,
-        "examples": [
-         "Servicios de ejecución de aplicaciones",
-         "Servicios de desarrollo de aplicación del cliente Internet / intranet"
-        ],
-        "name": "Ingeniería de software o de hardware",
-        "processes": 3
-       },
-       {
-        "code": "432115",
-        "similarity": 0.628778494185361,
-        "examples": [
-         "Servidores",
-         "Servidores de gama alta"
-        ],
-        "name": "Computadoras y Servidores",
-        "processes": 86
-       },
-       {
-        "code": "811118",
-        "similarity": 0.618430083447263,
-        "examples": [
-         "Servicios de administración del servidor",
-         "Instalación de sistemas",
-         "Almacenamiento de datos"
-        ],
-        "name": "Administradores de sistemas",
-        "processes": 11
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Ciberseguridad",
@@ -437,7 +304,7 @@
       "unspscClasses": [
        {
         "code": "432332",
-        "similarity": 0.720901000752853,
+        "similarity": 0.720777689655537,
         "examples": [
          "Software de protección antivirus y de seguridad de transacciones",
          "Software de administración de red privada virtual (VPN) o de seguridad de red"
@@ -447,14 +314,14 @@
        },
        {
         "code": "921217",
-        "similarity": 0.692409527718088,
+        "similarity": 0.692190780065257,
         "examples": [],
         "name": "Servicios de sistemas de seguridad",
         "processes": 2
        },
        {
         "code": "432225",
-        "similarity": 0.689851599344608,
+        "similarity": 0.689528205575772,
         "examples": [
          "Equipo de seguridad de red de firewall",
          "Equipo de seguridad de evaluación de vulnerabilidad"
@@ -462,7 +329,8 @@
         "name": "Equipo de seguridad de red",
         "processes": 4
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Inteligencia artificial, automatización y analítica de datos",
@@ -484,51 +352,8 @@
        "811115"
       ],
       "sourceExcerpt": "inteligencia artificial, automatización de procesos, analítica de datos",
-      "unspscClasses": [
-       {
-        "code": "811120",
-        "similarity": 0.531417164812255,
-        "examples": [
-         "Centro de servicios de datos"
-        ],
-        "name": "Servicios de datos",
-        "processes": 1
-       },
-       {
-        "code": "432324",
-        "similarity": 0.525693451228813,
-        "examples": [
-         "Software de integración de aplicaciones de empresa",
-         "Software de desarrollo de plataforma Web"
-        ],
-        "name": "Programas de desarrollo",
-        "processes": 5
-       },
-       {
-        "code": "711511",
-        "similarity": 0.520891945508407,
-        "examples": [],
-        "name": "Servicios de gerencia de datos del campo petrolífero",
-        "processes": 0
-       },
-       {
-        "code": "432315",
-        "similarity": 0.520379953257354,
-        "examples": [
-         "Software de sistema experto",
-         "Software de centro de llamadas o soporte técnico"
-        ],
-        "name": "Software de funciones de gestión",
-        "processes": 70
-       },
-       {
-        "code": "432323",
-        "similarity": 0.520045856295616,
-        "examples": [],
-        "name": "Software de consultas y gestión de datos",
-        "processes": 2
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      },
      {
       "name": "Digitalización y procesamiento de información",
@@ -548,54 +373,8 @@
        "811120"
       ],
       "sourceExcerpt": "digitalización de documentos, respaldo y recuperación de datos",
-      "unspscClasses": [
-       {
-        "code": "432117",
-        "similarity": 0.608027502086275,
-        "examples": [
-         "Escáneres"
-        ],
-        "name": "Dispositivos informáticos de entrada de datos",
-        "processes": 23
-       },
-       {
-        "code": "821217",
-        "similarity": 0.606532414388266,
-        "examples": [
-         "Servicios de copias en blanco y negro o de cotejo"
-        ],
-        "name": "Fotocopiado",
-        "processes": 3
-       },
-       {
-        "code": "821215",
-        "similarity": 0.594008836143969,
-        "examples": [
-         "Impresión digital",
-         "Impresión de papelería o formularios comerciales"
-        ],
-        "name": "Impresión",
-        "processes": 54
-       },
-       {
-        "code": "561017",
-        "similarity": 0.591362415158327,
-        "examples": [
-         "Organizadores de documentos"
-        ],
-        "name": "Muebles de oficina",
-        "processes": 37
-       },
-       {
-        "code": "801615",
-        "similarity": 0.590299583170588,
-        "examples": [
-         "Servicios de archivo de datos"
-        ],
-        "name": "Servicios de apoyo a la gestión",
-        "processes": 54
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      },
      {
       "name": "Respaldo y recuperación de datos",
@@ -616,22 +395,14 @@
        "4323"
       ],
       "sourceExcerpt": "respaldo y recuperación de datos",
-      "unspscClasses": [
+      "unspscClasses": [],
+      "unusedClasses": [
        {
         "code": "811119",
-        "similarity": 0.726422478471327,
+        "similarity": 0.726920340041863,
         "examples": [],
         "name": "Sistemas de recuperación de la información",
         "processes": 0
-       },
-       {
-        "code": "801615",
-        "similarity": 0.646847623992524,
-        "examples": [
-         "Servicios de archivo de datos"
-        ],
-        "name": "Servicios de apoyo a la gestión",
-        "processes": 54
        }
       ]
      },
@@ -661,22 +432,9 @@
         ],
         "name": "Sistemas de gestión de llamadas o accesorios",
         "processes": 1
-       },
-       {
-        "code": "432227",
-        "similarity": 0.605967082007558,
-        "examples": [],
-        "name": "Equipo telegráfico",
-        "processes": 0
-       },
-       {
-        "code": "432231",
-        "similarity": 0.576395105701232,
-        "examples": [],
-        "name": "Componentes y equipo de infraestructura de redes móviles y digitales",
-        "processes": 1
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Computadoras y periféricos",
@@ -745,8 +503,33 @@
         ],
         "name": "Muebles de apoyo de la computadora",
         "processes": 2
+       },
+       {
+        "code": "811125",
+        "similarity": 0.686393573518272,
+        "examples": [
+         "Alquiler de equipo de computación",
+         "Mantenimiento y reparación de equipo de computación"
+        ],
+        "name": "Alquiler y mantenimiento de equipo de computación",
+        "processes": 9
+       },
+       {
+        "code": "432120",
+        "similarity": 0.685280981712238,
+        "examples": [],
+        "name": "Accesorios de pantallas de la computadora",
+        "processes": 1
+       },
+       {
+        "code": "432121",
+        "similarity": 0.671290360625501,
+        "examples": [],
+        "name": "Impresoras para computadoras",
+        "processes": 58
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Servidores",
@@ -786,29 +569,9 @@
         ],
         "name": "Equipo de servicio de red",
         "processes": 14
-       },
-       {
-        "code": "811118",
-        "similarity": 0.649520780072922,
-        "examples": [
-         "Servicios de administración del servidor",
-         "Instalación de sistemas",
-         "Mantenimiento o apoyo del hardware de la computadora"
-        ],
-        "name": "Administradores de sistemas",
-        "processes": 11
-       },
-       {
-        "code": "811125",
-        "similarity": 0.648339930513544,
-        "examples": [
-         "Mantenimiento y reparación de equipo de computación",
-         "Alquiler de equipo de computación"
-        ],
-        "name": "Alquiler y mantenimiento de equipo de computación",
-        "processes": 9
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Equipos de telecomunicaciones",
@@ -840,13 +603,6 @@
         "processes": 1
        },
        {
-        "code": "432227",
-        "similarity": 0.731557267813887,
-        "examples": [],
-        "name": "Equipo telegráfico",
-        "processes": 0
-       },
-       {
         "code": "432228",
         "similarity": 0.731038714757138,
         "examples": [
@@ -871,6 +627,78 @@
         ],
         "name": "Alquiler y mantenimiento de equipo de comunicación",
         "processes": 8
+       },
+       {
+        "code": "432226",
+        "similarity": 0.716829001553113,
+        "examples": [
+         "Concentradores de servicio de red",
+         "Interruptores de red"
+        ],
+        "name": "Equipo de servicio de red",
+        "processes": 14
+       },
+       {
+        "code": "432231",
+        "similarity": 0.704766383801788,
+        "examples": [],
+        "name": "Componentes y equipo de infraestructura de redes móviles y digitales",
+        "processes": 1
+       },
+       {
+        "code": "432216",
+        "similarity": 0.673605326690006,
+        "examples": [
+         "Cuadro de splitter cautivo de oficina de abonado de línea digital (DSL)"
+        ],
+        "name": "Componentes y equipo de acceso de abonado de línea digital (DSL) y accesorios",
+        "processes": 2
+       },
+       {
+        "code": "831115",
+        "similarity": 0.654368148449935,
+        "examples": [
+         "Servicios de proveedor de teléfonos públicos"
+        ],
+        "name": "Comunicaciones telefónicas locales y de larga distancia",
+        "processes": 2
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "432227",
+        "similarity": 0.731557267813887,
+        "examples": [],
+        "name": "Equipo telegráfico",
+        "processes": 0
+       },
+       {
+        "code": "432230",
+        "similarity": 0.691348913159059,
+        "examples": [],
+        "name": "Equipo de teletipo",
+        "processes": 0
+       },
+       {
+        "code": "432229",
+        "similarity": 0.688777322845351,
+        "examples": [],
+        "name": "Accesorios de equipo de telefonía",
+        "processes": 0
+       },
+       {
+        "code": "432218",
+        "similarity": 0.674549982310745,
+        "examples": [],
+        "name": "Dispositivos de red óptica",
+        "processes": 0
+       },
+       {
+        "code": "831124",
+        "similarity": 0.660427204016264,
+        "examples": [],
+        "name": "Servicios de telecomunicaciones por circuitos de líneas selectivas y líneas dedicadas arrendadas",
+        "processes": 0
        }
       ]
      },
@@ -924,18 +752,38 @@
         "processes": 4
        },
        {
-        "code": "432218",
-        "similarity": 0.716464132254611,
-        "examples": [],
-        "name": "Dispositivos de red óptica",
-        "processes": 0
-       },
-       {
         "code": "432231",
         "similarity": 0.694453899640057,
         "examples": [],
         "name": "Componentes y equipo de infraestructura de redes móviles y digitales",
         "processes": 1
+       },
+       {
+        "code": "432216",
+        "similarity": 0.693249508907165,
+        "examples": [
+         "Cuadro de splitter cautivo de oficina de abonado de línea digital (DSL)"
+        ],
+        "name": "Componentes y equipo de acceso de abonado de línea digital (DSL) y accesorios",
+        "processes": 2
+       },
+       {
+        "code": "432116",
+        "similarity": 0.687501721312065,
+        "examples": [
+         "Cajas de conmutación de computadoras"
+        ],
+        "name": "Accesorios para la computadora",
+        "processes": 7
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "432218",
+        "similarity": 0.716464132254611,
+        "examples": [],
+        "name": "Dispositivos de red óptica",
+        "processes": 0
        }
       ]
      },
@@ -971,13 +819,6 @@
         "processes": 6
        },
        {
-        "code": "451120",
-        "similarity": 0.714334565488674,
-        "examples": [],
-        "name": "Equipo y suministros de microfilm",
-        "processes": 0
-       },
-       {
         "code": "451115",
         "similarity": 0.706637584039806,
         "examples": [],
@@ -999,6 +840,22 @@
         "examples": [],
         "name": "Equipos, hardware y controladores para sistemas de teleconferencia y videoconferencia",
         "processes": 3
+       },
+       {
+        "code": "451117",
+        "similarity": 0.669478395670752,
+        "examples": [],
+        "name": "Equipo de composición y presentación de sonido, hardware y controladores",
+        "processes": 2
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "451120",
+        "similarity": 0.714334565488674,
+        "examples": [],
+        "name": "Equipo y suministros de microfilm",
+        "processes": 0
        }
       ]
      },
@@ -1051,22 +908,9 @@
         ],
         "name": "Servicios de sistemas de seguridad",
         "processes": 2
-       },
-       {
-        "code": "801616",
-        "similarity": 0.630516230093134,
-        "examples": [],
-        "name": "Vigilancia de instalaciones empresariales",
-        "processes": 0
-       },
-       {
-        "code": "432225",
-        "similarity": 0.624628119317046,
-        "examples": [],
-        "name": "Equipo de seguridad de red",
-        "processes": 4
        }
-      ]
+      ],
+      "unusedClasses": []
      }
     ],
     "ignoredClauses": [
@@ -1147,7 +991,8 @@
         "name": "Reactivos de analizadores clínicos y diagnósticos",
         "processes": 20
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Medios de cultivo y productos químicos de laboratorio",
@@ -1169,6 +1014,70 @@
       "sourceExcerpt": "medios de cultivo, pruebas rápidas, controles, calibradores, soluciones, colorantes, químicos",
       "unspscClasses": [
        {
+        "code": "601040",
+        "similarity": 0.687895898761044,
+        "examples": [],
+        "name": "Biotecnología, bioquímica, genética, microbiología y materiales relacionados",
+        "processes": 1
+       },
+       {
+        "code": "411221",
+        "similarity": 0.67232050626023,
+        "examples": [],
+        "name": "Suministros de cultivo de tejido y cribado de alta definición",
+        "processes": 1
+       },
+       {
+        "code": "411052",
+        "similarity": 0.671958624046467,
+        "examples": [
+         "Accesorios del equipo de teñido de portaobjetos de laboratorio"
+        ],
+        "name": "Equipo de teñido de portaobjetos de laboratorio y accesorios",
+        "processes": 1
+       },
+       {
+        "code": "411218",
+        "similarity": 0.668416870474039,
+        "examples": [],
+        "name": "Artículos de vidrio o plástico y suministros generales de laboratorio",
+        "processes": 1
+       },
+       {
+        "code": "411160",
+        "similarity": 0.666639606166783,
+        "examples": [
+         "Reactivos de analizadores químicos"
+        ],
+        "name": "Reactivos de analizadores clínicos y diagnósticos",
+        "processes": 20
+       },
+       {
+        "code": "411161",
+        "similarity": 0.664475661721225,
+        "examples": [
+         "Reactivos o soluciones químicos"
+        ],
+        "name": "Kits de ensayos manuales, controles de calidad, calibradores y normativas",
+        "processes": 4
+       },
+       {
+        "code": "411224",
+        "similarity": 0.663278085647028,
+        "examples": [],
+        "name": "Instrumentos de laboratorio",
+        "processes": 5
+       },
+       {
+        "code": "411227",
+        "similarity": 0.663135572889983,
+        "examples": [],
+        "name": "Cintas y etiquetas de laboratorio",
+        "processes": 2
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "411062",
         "similarity": 0.70135444970945,
         "examples": [],
@@ -1183,13 +1092,6 @@
         "processes": 0
        },
        {
-        "code": "601040",
-        "similarity": 0.687895898761044,
-        "examples": [],
-        "name": "Biotecnología, bioquímica, genética, microbiología y materiales relacionados",
-        "processes": 1
-       },
-       {
         "code": "411232",
         "similarity": 0.676196016468166,
         "examples": [],
@@ -1197,11 +1099,11 @@
         "processes": 0
        },
        {
-        "code": "411221",
-        "similarity": 0.67232050626023,
+        "code": "601045",
+        "similarity": 0.666011360196145,
         "examples": [],
-        "name": "Suministros de cultivo de tejido y cribado de alta definición",
-        "processes": 1
+        "name": "Química, electroquímica y microquímica",
+        "processes": 0
        }
       ]
      },
@@ -1266,6 +1168,134 @@
         "examples": [],
         "name": "Portaobjetos de laboratorio y suministros",
         "processes": 3
+       },
+       {
+        "code": "411053",
+        "similarity": 0.696298173872756,
+        "examples": [],
+        "name": "Sistemas de electroforesis y transferencia para laboratorio y suministros",
+        "processes": 1
+       },
+       {
+        "code": "411032",
+        "similarity": 0.688208106866318,
+        "examples": [],
+        "name": "Equipo de lavado de laboratorio",
+        "processes": 2
+       },
+       {
+        "code": "411040",
+        "similarity": 0.68569041017178,
+        "examples": [],
+        "name": "Equipo de toma de muestras",
+        "processes": 1
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "411019",
+        "similarity": 0.693046603296543,
+        "examples": [],
+        "name": "Equipo iónico de laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411230",
+        "similarity": 0.69245271931613,
+        "examples": [],
+        "name": "Desecadores y desecantes de laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411047",
+        "similarity": 0.69225613043224,
+        "examples": [],
+        "name": "Secadoras por congelación y liofilizadoras de laboratorio, y accesorios",
+        "processes": 0
+       },
+       {
+        "code": "411234",
+        "similarity": 0.691862943903795,
+        "examples": [],
+        "name": "Dispositivos de dosificación",
+        "processes": 0
+       },
+       {
+        "code": "411049",
+        "similarity": 0.690985364258167,
+        "examples": [],
+        "name": "Equipo y suministros de filtrado para laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411045",
+        "similarity": 0.68959070988344,
+        "examples": [],
+        "name": "Estufas de laboratorio y accesorios",
+        "processes": 0
+       },
+       {
+        "code": "411232",
+        "similarity": 0.685171294345716,
+        "examples": [],
+        "name": "Especímenes preservados y suministros",
+        "processes": 0
+       },
+       {
+        "code": "411046",
+        "similarity": 0.683281311289406,
+        "examples": [],
+        "name": "Hornos de laboratorio y accesorios",
+        "processes": 0
+       },
+       {
+        "code": "411034",
+        "similarity": 0.682220825946609,
+        "examples": [],
+        "name": "Equipo de acondicionamiento ambiental para laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411062",
+        "similarity": 0.679804870571348,
+        "examples": [],
+        "name": "Entornos, kits y equipo de propagación y transformación de microorganismos",
+        "processes": 0
+       },
+       {
+        "code": "411051",
+        "similarity": 0.675679197194544,
+        "examples": [],
+        "name": "Bombas y conductos de laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411059",
+        "similarity": 0.674135383963567,
+        "examples": [],
+        "name": "Bibliotecas y material relacionado",
+        "processes": 0
+       },
+       {
+        "code": "411025",
+        "similarity": 0.673328971845701,
+        "examples": [],
+        "name": "Equipo entomológico para laboratorio y accesorios",
+        "processes": 0
+       },
+       {
+        "code": "411024",
+        "similarity": 0.673192883474955,
+        "examples": [],
+        "name": "Equipo de calefacción y secadores para laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411043",
+        "similarity": 0.669683449457085,
+        "examples": [],
+        "name": "Equipo de fermentación",
+        "processes": 0
        }
       ]
      },
@@ -1295,6 +1325,43 @@
         "processes": 7
        },
        {
+        "code": "411158",
+        "similarity": 0.727365027890829,
+        "examples": [],
+        "name": "Analizadores, accesorios y suministros clínicos y diagnósticos",
+        "processes": 2
+       },
+       {
+        "code": "422037",
+        "similarity": 0.725438907777093,
+        "examples": [],
+        "name": "Suministros y equipo de procesado de toma de imágenes médicos",
+        "processes": 1
+       },
+       {
+        "code": "421820",
+        "similarity": 0.721826911944451,
+        "examples": [],
+        "name": "Especulo y scopios y accesorios para uso del reconocimiento diagnóstico médico",
+        "processes": 4
+       },
+       {
+        "code": "421815",
+        "similarity": 0.710428273946157,
+        "examples": [],
+        "name": "Evaluación diagnóstica y productos de examen de uso general",
+        "processes": 3
+       },
+       {
+        "code": "421817",
+        "similarity": 0.701228998170268,
+        "examples": [],
+        "name": "Unidades de electrocardiografía (ECG) y productos relacionados",
+        "processes": 5
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "421819",
         "similarity": 0.750994166170396,
         "examples": [],
@@ -1309,18 +1376,67 @@
         "processes": 0
        },
        {
-        "code": "411158",
-        "similarity": 0.727365027890829,
+        "code": "421920",
+        "similarity": 0.717004516725876,
         "examples": [],
-        "name": "Analizadores, accesorios y suministros clínicos y diagnósticos",
-        "processes": 2
+        "name": "Mesas de examen o de procedimiento clínico",
+        "processes": 0
        },
        {
-        "code": "422037",
-        "similarity": 0.725438907777093,
+        "code": "422947",
+        "similarity": 0.713306514967539,
         "examples": [],
-        "name": "Suministros y equipo de procesado de toma de imágenes médicos",
-        "processes": 1
+        "name": "Equipo de perfusión de corazón abierto y monitores y accesorios y productos relacionados",
+        "processes": 0
+       },
+       {
+        "code": "421423",
+        "similarity": 0.711529314838563,
+        "examples": [],
+        "name": "Productos de documentación médica",
+        "processes": 0
+       },
+       {
+        "code": "421420",
+        "similarity": 0.711343497189576,
+        "examples": [],
+        "name": "Instrumentos de grado bajo \"floor grade\"",
+        "processes": 0
+       },
+       {
+        "code": "421915",
+        "similarity": 0.709287265330477,
+        "examples": [],
+        "name": "Manejo de materiales de facilidad médica y equipo de distribución",
+        "processes": 0
+       },
+       {
+        "code": "422038",
+        "similarity": 0.708118249080818,
+        "examples": [],
+        "name": "Auxilios de posicionamiento radiológico médico",
+        "processes": 0
+       },
+       {
+        "code": "421821",
+        "similarity": 0.707235453684673,
+        "examples": [],
+        "name": "Estetoscopio y productos relacionados",
+        "processes": 0
+       },
+       {
+        "code": "422930",
+        "similarity": 0.702022910152983,
+        "examples": [],
+        "name": "Dispositivos quirúrgicos de medir y productos relacionados",
+        "processes": 0
+       },
+       {
+        "code": "422029",
+        "similarity": 0.700358302739714,
+        "examples": [],
+        "name": "Equipo radiográfico médico de bajo consumo eléctrico",
+        "processes": 0
        }
       ]
      },
@@ -1370,6 +1486,29 @@
         "processes": 3
        },
        {
+        "code": "411226",
+        "similarity": 0.703591175979366,
+        "examples": [],
+        "name": "Portaobjetos de laboratorio y suministros",
+        "processes": 3
+       },
+       {
+        "code": "411215",
+        "similarity": 0.691777331780768,
+        "examples": [],
+        "name": "Equipo y suministros de pipetas y manipulación de líquidos",
+        "processes": 2
+       },
+       {
+        "code": "411224",
+        "similarity": 0.682847211401086,
+        "examples": [],
+        "name": "Instrumentos de laboratorio",
+        "processes": 5
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "411232",
         "similarity": 0.716456709960149,
         "examples": [],
@@ -1377,11 +1516,18 @@
         "processes": 0
        },
        {
-        "code": "411226",
-        "similarity": 0.703591175979366,
+        "code": "411225",
+        "similarity": 0.701829941719731,
         "examples": [],
-        "name": "Portaobjetos de laboratorio y suministros",
-        "processes": 3
+        "name": "Corchos, tapones y accesorios de laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "411220",
+        "similarity": 0.697096474487208,
+        "examples": [],
+        "name": "Jeringuillas de laboratorio o de muestreo",
+        "processes": 0
        }
       ]
      },
@@ -1408,13 +1554,6 @@
       "sourceExcerpt": "jeringas, agujas, guantes, mascarillas, batas, gorros, cubrezapatos, material descartable",
       "unspscClasses": [
        {
-        "code": "421925",
-        "similarity": 0.698974038349977,
-        "examples": [],
-        "name": "Protectores para equipo médico",
-        "processes": 0
-       },
-       {
         "code": "421426",
         "similarity": 0.689664351494491,
         "examples": [
@@ -1440,17 +1579,15 @@
         ],
         "name": "Guantes y accesorios médicos",
         "processes": 12
-       },
+       }
+      ],
+      "unusedClasses": [
        {
-        "code": "421316",
-        "similarity": 0.642933820075569,
-        "examples": [
-         "Mascarillas para el personal sanitario",
-         "Guardapolvos o chaquetas para el personal sanitario",
-         "Uniformes para el personal sanitario"
-        ],
-        "name": "Vestuario para el personal sanitario y artículos relacionados",
-        "processes": 8
+        "code": "421925",
+        "similarity": 0.698974038349977,
+        "examples": [],
+        "name": "Protectores para equipo médico",
+        "processes": 0
        }
       ]
      },
@@ -1493,13 +1630,6 @@
         "processes": 22
        },
        {
-        "code": "422816",
-        "similarity": 0.741640782010106,
-        "examples": [],
-        "name": "Soluciones de desinfectantes y esterilización en frío",
-        "processes": 0
-       },
-       {
         "code": "422818",
         "similarity": 0.715705979032263,
         "examples": [
@@ -1508,6 +1638,24 @@
         ],
         "name": "Controles y indicadores de esterilización",
         "processes": 2
+       },
+       {
+        "code": "471321",
+        "similarity": 0.701938119668237,
+        "examples": [
+         "Kits de limpieza de uso general"
+        ],
+        "name": "Kits de limpieza",
+        "processes": 2
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "422816",
+        "similarity": 0.741640782010106,
+        "examples": [],
+        "name": "Soluciones de desinfectantes y esterilización en frío",
+        "processes": 0
        },
        {
         "code": "761015",
@@ -1536,13 +1684,6 @@
       "sourceExcerpt": "mobiliario utilizado en laboratorios, clínicas, hospitales, centros de diagnóstico e instituciones de investigación",
       "unspscClasses": [
        {
-        "code": "561220",
-        "similarity": 0.778122832333679,
-        "examples": [],
-        "name": "Muebles de laboratorio",
-        "processes": 0
-       },
-       {
         "code": "411228",
         "similarity": 0.737778684544202,
         "examples": [],
@@ -1569,6 +1710,29 @@
         "examples": [],
         "name": "Portaobjetos de laboratorio y suministros",
         "processes": 3
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "561220",
+        "similarity": 0.778122832333679,
+        "examples": [],
+        "name": "Muebles de laboratorio",
+        "processes": 0
+       },
+       {
+        "code": "421920",
+        "similarity": 0.710771734710312,
+        "examples": [],
+        "name": "Mesas de examen o de procedimiento clínico",
+        "processes": 0
+       },
+       {
+        "code": "411223",
+        "similarity": 0.707073766706586,
+        "examples": [],
+        "name": "Protectores y revestimientos de banco de laboratorio",
+        "processes": 0
        }
       ]
      },
@@ -1611,13 +1775,6 @@
         "processes": 4
        },
        {
-        "code": "411126",
-        "similarity": 0.651607567345571,
-        "examples": [],
-        "name": "Equipo de monitorización y comprobación higiénica",
-        "processes": 0
-       },
-       {
         "code": "411158",
         "similarity": 0.651340835241554,
         "examples": [],
@@ -1630,6 +1787,24 @@
         "examples": [],
         "name": "Suministros y equipo para lugares de tratamiento de pacientes",
         "processes": 7
+       },
+       {
+        "code": "811418",
+        "similarity": 0.650888426405083,
+        "examples": [
+         "Servicio de inspección de equipos"
+        ],
+        "name": "Gestión de instalaciones",
+        "processes": 1
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "411126",
+        "similarity": 0.651607567345571,
+        "examples": [],
+        "name": "Equipo de monitorización y comprobación higiénica",
+        "processes": 0
        }
       ]
      },
@@ -1650,45 +1825,8 @@
        "8610"
       ],
       "sourceExcerpt": "capacitación, asesoría y soporte técnico de equipos e instrumentos",
-      "unspscClasses": [
-       {
-        "code": "851915",
-        "similarity": 0.635844977494923,
-        "examples": [
-         "Mantenimiento y reparación de equipo sanitario y de laboratorio"
-        ],
-        "name": "Alquiler y mantenimiento de equipo sanitario y de laboratorio",
-        "processes": 1
-       },
-       {
-        "code": "411162",
-        "similarity": 0.628333319368216,
-        "examples": [],
-        "name": "Suministros y equipo para lugares de tratamiento de pacientes",
-        "processes": 7
-       },
-       {
-        "code": "411019",
-        "similarity": 0.626673080869521,
-        "examples": [],
-        "name": "Equipo iónico de laboratorio",
-        "processes": 0
-       },
-       {
-        "code": "411224",
-        "similarity": 0.620074788057567,
-        "examples": [],
-        "name": "Instrumentos de laboratorio",
-        "processes": 5
-       },
-       {
-        "code": "411158",
-        "similarity": 0.617850576626996,
-        "examples": [],
-        "name": "Analizadores, accesorios y suministros clínicos y diagnósticos",
-        "processes": 2
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      },
      {
       "name": "Logística y administración de suministros",
@@ -1708,13 +1846,6 @@
       ],
       "sourceExcerpt": "servicios relacionados con administración de inventarios, logística, almacenamiento y distribución de suministros médicos, científicos y de laboratorio",
       "unspscClasses": [
-       {
-        "code": "421915",
-        "similarity": 0.715454083159974,
-        "examples": [],
-        "name": "Manejo de materiales de facilidad médica y equipo de distribución",
-        "processes": 0
-       },
        {
         "code": "481021",
         "similarity": 0.678523270488748,
@@ -1744,6 +1875,22 @@
         "examples": [],
         "name": "Contenedores y armarios de almacenamiento general para laboratorio",
         "processes": 4
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "421915",
+        "similarity": 0.715454083159974,
+        "examples": [],
+        "name": "Manejo de materiales de facilidad médica y equipo de distribución",
+        "processes": 0
+       },
+       {
+        "code": "411232",
+        "similarity": 0.650826822939706,
+        "examples": [],
+        "name": "Especímenes preservados y suministros",
+        "processes": 0
        }
       ]
      }
@@ -1807,7 +1954,7 @@
       "unspscClasses": [
        {
         "code": "721028",
-        "similarity": 0.754000702135693,
+        "similarity": 0.754530787662879,
         "examples": [
          "Reparación de edificios, mojones y monumentos",
          "Mantenimiento de edificios, mojones o monumentos"
@@ -1817,34 +1964,82 @@
        },
        {
         "code": "721019",
-        "similarity": 0.742412089485279,
+        "similarity": 0.742803246821199,
         "examples": [],
         "name": "Acabados de interiores",
         "processes": 3
        },
        {
         "code": "721015",
-        "similarity": 0.74148283778956,
+        "similarity": 0.742084992418776,
         "examples": [],
         "name": "Servicios de apoyo para la construcción",
         "processes": 9
        },
        {
         "code": "721026",
-        "similarity": 0.736298684561735,
+        "similarity": 0.736771190577748,
         "examples": [],
         "name": "Carpintería",
         "processes": 7
        },
        {
         "code": "721016",
-        "similarity": 0.734424028668656,
+        "similarity": 0.734805173177432,
         "examples": [
          "Instalación o reparación de paredes",
          "Instalación o reparación de techos"
         ],
         "name": "Revestimientos de techos, paredes o metalistería",
         "processes": 11
+       },
+       {
+        "code": "721025",
+        "similarity": 0.716177709117693,
+        "examples": [
+         "Restauración de albañilería, mampostería o azulejos"
+        ],
+        "name": "Albañilería, mampostería y colocación de azulejos",
+        "processes": 16
+       },
+       {
+        "code": "721027",
+        "similarity": 0.711408377977711,
+        "examples": [
+         "Revestimiento, instalación o mantenimiento de suelos"
+        ],
+        "name": "Servicios de revestimiento de suelos",
+        "processes": 3
+       },
+       {
+        "code": "721030",
+        "similarity": 0.707630760564004,
+        "examples": [],
+        "name": "Servicios de preparación de solares",
+        "processes": 1
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "721315",
+        "similarity": 0.699351545193899,
+        "examples": [],
+        "name": "Construcción residencial",
+        "processes": 0
+       },
+       {
+        "code": "721017",
+        "similarity": 0.692044740364616,
+        "examples": [],
+        "name": "Trabajo en hormigón",
+        "processes": 0
+       },
+       {
+        "code": "721018",
+        "similarity": 0.685443649304243,
+        "examples": [],
+        "name": "Limpieza exterior",
+        "processes": 0
        }
       ]
      },
@@ -1891,33 +2086,9 @@
         ],
         "name": "Construcción de infraestructura",
         "processes": 94
-       },
-       {
-        "code": "302220",
-        "similarity": 0.642954049583254,
-        "examples": [
-         "Puente de carretera"
-        ],
-        "name": "Estructuras de transporte",
-        "processes": 3
-       },
-       {
-        "code": "811015",
-        "similarity": 0.635467371028611,
-        "examples": [
-         "Ingeniería de carreteras"
-        ],
-        "name": "Ingeniería civil",
-        "processes": 8
-       },
-       {
-        "code": "221016",
-        "similarity": 0.635371223101232,
-        "examples": [],
-        "name": "Equipo de pavimentación",
-        "processes": 0
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Agua potable, drenajes y saneamiento",
@@ -1979,17 +2150,9 @@
         ],
         "name": "Fontanería, calefacción y aire acondicionado",
         "processes": 33
-       },
-       {
-        "code": "771217",
-        "similarity": 0.644297408227417,
-        "examples": [
-         "Servicios de drenaje de la contaminación de aguas residuales"
-        ],
-        "name": "Contaminación del agua",
-        "processes": 1
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Instalaciones eléctricas, hidrosanitarias y electromecánicas",
@@ -2020,47 +2183,9 @@
         ],
         "name": "Servicios eléctricos",
         "processes": 5
-       },
-       {
-        "code": "721023",
-        "similarity": 0.634865352634118,
-        "examples": [
-         "Construcción de sistemas de fontanería",
-         "Instalación, reparación o mantenimiento de sistemas de calefacción"
-        ],
-        "name": "Fontanería, calefacción y aire acondicionado",
-        "processes": 33
-       },
-       {
-        "code": "811017",
-        "similarity": 0.634797487869134,
-        "examples": [
-         "Servicios de ingeniería eléctrica"
-        ],
-        "name": "Ingeniería eléctrica y electrónica",
-        "processes": 1
-       },
-       {
-        "code": "391211",
-        "similarity": 0.633600395820223,
-        "examples": [
-         "Sistemas de control de iluminación",
-         "Accesorios del panel de control o distribución"
-        ],
-        "name": "Centros de control y distribución y accesorios",
-        "processes": 6
-       },
-       {
-        "code": "391213",
-        "similarity": 0.62143410860579,
-        "examples": [
-         "Cajas eléctricas",
-         "Cajas de toma de corriente"
-        ],
-        "name": "Cuadros, registros y menaje para electricidad",
-        "processes": 21
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Diseño, supervisión y consultoría de construcción",
@@ -2088,7 +2213,7 @@
       "unspscClasses": [
        {
         "code": "811015",
-        "similarity": 0.677776530209536,
+        "similarity": 0.677422377451176,
         "examples": [
          "Gestión de construcción de edificios"
         ],
@@ -2097,7 +2222,7 @@
        },
        {
         "code": "721316",
-        "similarity": 0.677194100456412,
+        "similarity": 0.67711413157742,
         "examples": [
          "Supervisión de proyectos, obras y construcción."
         ],
@@ -2106,29 +2231,23 @@
        },
        {
         "code": "721015",
-        "similarity": 0.655187874251739,
+        "similarity": 0.655049197754671,
         "examples": [],
         "name": "Servicios de apoyo para la construcción",
         "processes": 9
        },
        {
         "code": "721317",
-        "similarity": 0.653078695075921,
+        "similarity": 0.652876013344716,
         "examples": [
          "Construcción de puentes",
          "Obras Públicas Llave en mano"
         ],
         "name": "Construcción de infraestructura",
         "processes": 94
-       },
-       {
-        "code": "721030",
-        "similarity": 0.638846330803777,
-        "examples": [],
-        "name": "Servicios de preparación de solares",
-        "processes": 1
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Cemento, agregados y productos de mampostería",
@@ -2161,13 +2280,6 @@
         "processes": 73
        },
        {
-        "code": "301115",
-        "similarity": 0.683781852035056,
-        "examples": [],
-        "name": "Hormigón y morteros",
-        "processes": 0
-       },
-       {
         "code": "301315",
         "similarity": 0.678967711666147,
         "examples": [
@@ -2185,6 +2297,15 @@
         ],
         "name": "Ladrillos",
         "processes": 3
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "301115",
+        "similarity": 0.683781852035056,
+        "examples": [],
+        "name": "Hormigón y morteros",
+        "processes": 0
        },
        {
         "code": "301117",
@@ -2226,6 +2347,15 @@
         "processes": 11
        },
        {
+        "code": "301036",
+        "similarity": 0.652028143450301,
+        "examples": [],
+        "name": "Productos estructurales",
+        "processes": 2
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "301016",
         "similarity": 0.663879647952525,
         "examples": [],
@@ -2240,17 +2370,17 @@
         "processes": 0
        },
        {
-        "code": "301036",
-        "similarity": 0.652028143450301,
-        "examples": [],
-        "name": "Productos estructurales",
-        "processes": 2
-       },
-       {
         "code": "313317",
         "similarity": 0.651033513134695,
         "examples": [],
         "name": "Conjuntos estructurales remachados",
+        "processes": 0
+       },
+       {
+        "code": "312311",
+        "similarity": 0.650935633479954,
+        "examples": [],
+        "name": "Material en barra labrada",
         "processes": 0
        }
       ]
@@ -2276,13 +2406,6 @@
       "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios",
       "unspscClasses": [
        {
-        "code": "313113",
-        "similarity": 0.675659482808799,
-        "examples": [],
-        "name": "Conjuntos empernados de tubería",
-        "processes": 0
-       },
-       {
         "code": "401426",
         "similarity": 0.67371533122474,
         "examples": [
@@ -2305,13 +2428,6 @@
         "processes": 9
        },
        {
-        "code": "313117",
-        "similarity": 0.666413037411104,
-        "examples": [],
-        "name": "Conjuntos de tubería juntada",
-        "processes": 0
-       },
-       {
         "code": "312313",
         "similarity": 0.658727163716107,
         "examples": [
@@ -2321,6 +2437,38 @@
         ],
         "name": "Tubos y tubería",
         "processes": 21
+       },
+       {
+        "code": "401417",
+        "similarity": 0.653204538395209,
+        "examples": [
+         "Conectores para fontanería"
+        ],
+        "name": "Material de ferretería y accesorios",
+        "processes": 6
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "313113",
+        "similarity": 0.675659482808799,
+        "examples": [],
+        "name": "Conjuntos empernados de tubería",
+        "processes": 0
+       },
+       {
+        "code": "313117",
+        "similarity": 0.666413037411104,
+        "examples": [],
+        "name": "Conjuntos de tubería juntada",
+        "processes": 0
+       },
+       {
+        "code": "313112",
+        "similarity": 0.655931262179671,
+        "examples": [],
+        "name": "Conjuntos de tubería remachada",
+        "processes": 0
        }
       ]
      },
@@ -2395,6 +2543,51 @@
         ],
         "name": "Cuadros, registros y menaje para electricidad",
         "processes": 21
+       },
+       {
+        "code": "391212",
+        "similarity": 0.712651848421896,
+        "examples": [
+         "Conductos eléctricos",
+         "Canaletas para cables"
+        ],
+        "name": "Cerramientos de barras colectoras y componentes de gestión de hilos",
+        "processes": 6
+       },
+       {
+        "code": "601049",
+        "similarity": 0.696579820683324,
+        "examples": [
+         "Kits de electricidad",
+         "Cables o electrodos eléctricos"
+        ],
+        "name": "Materiales de física de electricidad",
+        "processes": 12
+       },
+       {
+        "code": "391211",
+        "similarity": 0.696414771181851,
+        "examples": [
+         "Accesorios del panel de control o distribución"
+        ],
+        "name": "Centros de control y distribución y accesorios",
+        "processes": 6
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "311631",
+        "similarity": 0.707140584113338,
+        "examples": [],
+        "name": "Conectadores",
+        "processes": 0
+       },
+       {
+        "code": "261217",
+        "similarity": 0.70362406206843,
+        "examples": [],
+        "name": "Cableado preformado",
+        "processes": 0
        }
       ]
      },
@@ -2420,7 +2613,7 @@
       "unspscClasses": [
        {
         "code": "312119",
-        "similarity": 0.724633806111425,
+        "similarity": 0.724618526829555,
         "examples": [
          "Mezcladores de pintura",
          "Rodillos de pintar",
@@ -2431,7 +2624,7 @@
        },
        {
         "code": "312115",
-        "similarity": 0.708931503891076,
+        "similarity": 0.708836036292699,
         "examples": [
          "Pinturas de látex",
          "Pinturas en aerosol",
@@ -2442,14 +2635,14 @@
        },
        {
         "code": "312117",
-        "similarity": 0.69331816624908,
+        "similarity": 0.693294326371539,
         "examples": [],
         "name": "Acabados en general",
         "processes": 5
        },
        {
         "code": "312116",
-        "similarity": 0.682902915126132,
+        "similarity": 0.682768535688855,
         "examples": [
          "Diluyentes para pinturas"
         ],
@@ -2457,8 +2650,44 @@
         "processes": 8
        },
        {
+        "code": "301519",
+        "similarity": 0.680785787738584,
+        "examples": [],
+        "name": "Materiales y productos para acabados",
+        "processes": 6
+       },
+       {
+        "code": "721024",
+        "similarity": 0.676290098715877,
+        "examples": [
+         "Servicios de pintura de exteriores"
+        ],
+        "name": "Pintura y colocación de papel pintado",
+        "processes": 5
+       },
+       {
+        "code": "241218",
+        "similarity": 0.662154656123457,
+        "examples": [
+         "Latas de pintura o barniz"
+        ],
+        "name": "Latas para envasado",
+        "processes": 12
+       },
+       {
+        "code": "231535",
+        "similarity": 0.659391293915198,
+        "examples": [
+         "Sistemas de aplicación de pintura"
+        ],
+        "name": "Sistemas de pintura",
+        "processes": 4
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "312118",
-        "similarity": 0.680678115544532,
+        "similarity": 0.680616410104973,
         "examples": [],
         "name": "Disolventes y diluyentes para pinturas",
         "processes": 0
@@ -2486,13 +2715,6 @@
       "sourceExcerpt": "Podrá comprar, vender, producir, transformar, importar, exportar, almacenar, transportar y distribuir cemento, acero, agregados, bloques, ladrillos, madera, tuberías, materiales eléctricos, materiales hidrosanitarios, pinturas, acabados, herramientas, equipos, maquinaria pesada, repuestos",
       "unspscClasses": [
        {
-        "code": "221017",
-        "similarity": 0.753215568248856,
-        "examples": [],
-        "name": "Componentes de equipo pesado",
-        "processes": 0
-       },
-       {
         "code": "221015",
         "similarity": 0.743192066282331,
         "examples": [
@@ -2500,6 +2722,15 @@
         ],
         "name": "Maquinaria para trabajo de desmonte",
         "processes": 6
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "221017",
+        "similarity": 0.753215568248856,
+        "examples": [],
+        "name": "Componentes de equipo pesado",
+        "processes": 0
        },
        {
         "code": "221019",
@@ -2572,7 +2803,9 @@
         ],
         "name": "Maquinaria para trabajo de desmonte",
         "processes": 6
-       },
+       }
+      ],
+      "unusedClasses": [
        {
         "code": "221017",
         "similarity": 0.670083699891785,
@@ -2585,6 +2818,13 @@
         "similarity": 0.665848485202206,
         "examples": [],
         "name": "Maquinaria y accesorios de construcción de edificios",
+        "processes": 0
+       },
+       {
+        "code": "732015",
+        "similarity": 0.651348380212517,
+        "examples": [],
+        "name": "Alquiler de equipo para producción y fabricación industrial",
         "processes": 0
        }
       ]
@@ -2608,50 +2848,8 @@
        "801316"
       ],
       "sourceExcerpt": "La sociedad podrá adquirir, desarrollar, urbanizar, construir, administrar, arrendar y enajenar bienes inmuebles; desarrollar proyectos inmobiliarios",
-      "unspscClasses": [
-       {
-        "code": "981015",
-        "similarity": 0.642536447890477,
-        "examples": [
-         "Construcción de Bienes Dominio Privado",
-         "Construcción de Bienes Dominio Público"
-        ],
-        "name": "Tierras y Terrenos Preexistentes",
-        "processes": 16
-       },
-       {
-        "code": "801318",
-        "similarity": 0.634826421571945,
-        "examples": [
-         "Servicios de listado inmobiliario"
-        ],
-        "name": "Servicios de gestión inmobiliaria",
-        "processes": 1
-       },
-       {
-        "code": "811015",
-        "similarity": 0.630797556251634,
-        "examples": [
-         "Gestión de construcción de edificios"
-        ],
-        "name": "Ingeniería civil",
-        "processes": 8
-       },
-       {
-        "code": "721315",
-        "similarity": 0.627106587288243,
-        "examples": [],
-        "name": "Construcción residencial",
-        "processes": 0
-       },
-       {
-        "code": "801316",
-        "similarity": 0.613967303948979,
-        "examples": [],
-        "name": "Venta de propiedades o edificios",
-        "processes": 0
-       }
-      ]
+      "unspscClasses": [],
+      "unusedClasses": []
      }
     ],
     "ignoredClauses": [
@@ -2757,26 +2955,9 @@
         ],
         "name": "Vestuario para el personal sanitario y artículos relacionados",
         "processes": 8
-       },
-       {
-        "code": "531023",
-        "similarity": 0.632492768574662,
-        "examples": [
-         "Camisetas"
-        ],
-        "name": "Ropa interior",
-        "processes": 5
-       },
-       {
-        "code": "911117",
-        "similarity": 0.630710377819641,
-        "examples": [
-         "Servicios de compra de vestuario"
-        ],
-        "name": "Servicios de compras o intercambio para consumo",
-        "processes": 1
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Diseño y personalización de prendas textiles",
@@ -2809,40 +2990,9 @@
         ],
         "name": "Servicios de diseño artístico",
         "processes": 17
-       },
-       {
-        "code": "601058",
-        "similarity": 0.64519826404907,
-        "examples": [],
-        "name": "Materiales educativos de diseño textil y de ropa",
-        "processes": 0
-       },
-       {
-        "code": "601217",
-        "similarity": 0.63794780540133,
-        "examples": [
-         "Accesorios de serigrafiado"
-        ],
-        "name": "Suministros y accesorios de grabados",
-        "processes": 17
-       },
-       {
-        "code": "731417",
-        "similarity": 0.617061527510224,
-        "examples": [
-         "Servicios de fabricación de prendas exteriores tejidas"
-        ],
-        "name": "Producción de telas y cuero",
-        "processes": 4
-       },
-       {
-        "code": "601219",
-        "similarity": 0.616969800753189,
-        "examples": [],
-        "name": "Materiales de decoración de telas y arte textil y suministros",
-        "processes": 0
        }
-      ]
+      ],
+      "unusedClasses": []
      },
      {
       "name": "Telas e insumos de confección",
@@ -2868,40 +3018,26 @@
       "sourceExcerpt": "Asimismo, podrá comprar, vender, importar, exportar, distribuir y comercializar telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos, materias primas, accesorios, maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura.",
       "unspscClasses": [
        {
+        "code": "531416",
+        "similarity": 0.662473809798837,
+        "examples": [],
+        "name": "Suministros de costura variados",
+        "processes": 1
+       }
+      ],
+      "unusedClasses": [
+       {
         "code": "601058",
-        "similarity": 0.66713853611399,
+        "similarity": 0.666963697034819,
         "examples": [],
         "name": "Materiales educativos de diseño textil y de ropa",
         "processes": 0
        },
        {
-        "code": "531416",
-        "similarity": 0.66267983581165,
-        "examples": [],
-        "name": "Suministros de costura variados",
-        "processes": 1
-       },
-       {
         "code": "601219",
-        "similarity": 0.658102509357608,
+        "similarity": 0.657897361059537,
         "examples": [],
         "name": "Materiales de decoración de telas y arte textil y suministros",
-        "processes": 0
-       },
-       {
-        "code": "111617",
-        "similarity": 0.641867872876002,
-        "examples": [
-         "Telas de Oxford de algodón"
-        ],
-        "name": "Tejidos de algodón",
-        "processes": 8
-       },
-       {
-        "code": "231215",
-        "similarity": 0.63354837020582,
-        "examples": [],
-        "name": "Maquinaria y accesorios para transformados textiles",
         "processes": 0
        }
       ]
@@ -2926,13 +3062,6 @@
       "sourceExcerpt": "Asimismo, podrá comprar, vender, importar, exportar, distribuir y comercializar telas, hilos, cierres, botones, elásticos, cintas, materiales reflectivos, materias primas, accesorios, maquinaria, herramientas, repuestos y demás materiales e insumos utilizados en la industria textil, de confección y manufactura.",
       "unspscClasses": [
        {
-        "code": "231215",
-        "similarity": 0.746849502790685,
-        "examples": [],
-        "name": "Maquinaria y accesorios para transformados textiles",
-        "processes": 0
-       },
-       {
         "code": "231216",
         "similarity": 0.743182281205535,
         "examples": [
@@ -2940,6 +3069,15 @@
         ],
         "name": "Maquinaria, equipo y accesorios para trabajo textil",
         "processes": 1
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "231215",
+        "similarity": 0.746849502790685,
+        "examples": [],
+        "name": "Maquinaria y accesorios para transformados textiles",
+        "processes": 0
        }
       ]
      },
@@ -2977,7 +3115,7 @@
       "unspscClasses": [
        {
         "code": "461815",
-        "similarity": 0.710069133968333,
+        "similarity": 0.710304862344698,
         "examples": [
          "Trajes de trabajo protectores",
          "Chalecos de protección",
@@ -2987,22 +3125,15 @@
         "processes": 28
        },
        {
-        "code": "461821",
-        "similarity": 0.705785882590292,
-        "examples": [],
-        "name": "Equipo y suministros antiestáticos",
-        "processes": 0
-       },
-       {
         "code": "461822",
-        "similarity": 0.698469241076572,
+        "similarity": 0.698655773195364,
         "examples": [],
         "name": "Equipo de apoyo ergonómico",
         "processes": 1
        },
        {
         "code": "312119",
-        "similarity": 0.693365920376927,
+        "similarity": 0.693668622691654,
         "examples": [
          "Equipo para protección"
         ],
@@ -3011,13 +3142,71 @@
        },
        {
         "code": "461817",
-        "similarity": 0.690679884981932,
+        "similarity": 0.690817345625381,
         "examples": [
          "Cascos de seguridad",
          "Cascos protectores"
         ],
         "name": "Protectores de cara y cabeza",
         "processes": 9
+       },
+       {
+        "code": "461816",
+        "similarity": 0.685813222178766,
+        "examples": [
+         "Zapatos de protección",
+         "Botas de protección"
+        ],
+        "name": "Calzado de protección",
+        "processes": 8
+       },
+       {
+        "code": "241415",
+        "similarity": 0.679494622385853,
+        "examples": [],
+        "name": "Suministros para seguridad y protección",
+        "processes": 2
+       },
+       {
+        "code": "461515",
+        "similarity": 0.666728177617472,
+        "examples": [
+         "Equipo de protección corporal"
+        ],
+        "name": "Equipo de control de masas",
+        "processes": 1
+       },
+       {
+        "code": "461818",
+        "similarity": 0.665886155198411,
+        "examples": [
+         "Gafas de protección"
+        ],
+        "name": "Protección y accesorios para la visión",
+        "processes": 3
+       }
+      ],
+      "unusedClasses": [
+       {
+        "code": "461821",
+        "similarity": 0.706000567417261,
+        "examples": [],
+        "name": "Equipo y suministros antiestáticos",
+        "processes": 0
+       },
+       {
+        "code": "461820",
+        "similarity": 0.685352170241944,
+        "examples": [],
+        "name": "Protección de la respiración",
+        "processes": 0
+       },
+       {
+        "code": "461824",
+        "similarity": 0.67270374065409,
+        "examples": [],
+        "name": "Equipo de limpieza de seguridad y materiales de descontaminación",
+        "processes": 0
        }
       ]
      },
@@ -3044,43 +3233,20 @@
       "sourceExcerpt": "Podrá igualmente distribuir productos y suministros relacionados con higiene, bioseguridad, seguridad industrial, señalización y prevención de riesgos, así como representar y distribuir marcas, fabricantes y casas comerciales nacionales o extranjeras.",
       "unspscClasses": [
        {
-        "code": "461824",
-        "similarity": 0.691324528432705,
-        "examples": [],
-        "name": "Equipo de limpieza de seguridad y materiales de descontaminación",
-        "processes": 0
-       },
-       {
         "code": "241415",
         "similarity": 0.650735371509045,
         "examples": [],
         "name": "Suministros para seguridad y protección",
         "processes": 2
-       },
+       }
+      ],
+      "unusedClasses": [
        {
-        "code": "421925",
-        "similarity": 0.649257598446816,
+        "code": "461824",
+        "similarity": 0.691324528432705,
         "examples": [],
-        "name": "Protectores para equipo médico",
+        "name": "Equipo de limpieza de seguridad y materiales de descontaminación",
         "processes": 0
-       },
-       {
-        "code": "422818",
-        "similarity": 0.645916758058822,
-        "examples": [
-         "Tiras indicadores de esterilización"
-        ],
-        "name": "Controles y indicadores de esterilización",
-        "processes": 2
-       },
-       {
-        "code": "471318",
-        "similarity": 0.645533126952895,
-        "examples": [
-         "Desinfectantes domésticos"
-        ],
-        "name": "Soluciones de limpieza y desinfección",
-        "processes": 22
        }
       ]
      }

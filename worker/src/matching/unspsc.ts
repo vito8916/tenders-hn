@@ -12,9 +12,12 @@ import { EMBEDDING_DIMENSIONS, modelForRole } from "@/lib/ai/models";
 import type { LineOfBusiness } from "./profile";
 
 const NEAREST_TERMS = 40;
+// Below this, proposals were mostly wrong in the first review (29 Sep 2026):
+// good matches scored 0.68-0.78, wrong ones 0.52-0.63.
+const MIN_SIMILARITY = 0.65;
 // Classes within this much of the best match are proposed with it.
 const SIMILARITY_MARGIN = 0.08;
-const MAX_CLASSES = 5;
+const MAX_CLASSES = 8;
 const EXAMPLES_PER_CLASS = 3;
 
 export interface TermHit {
@@ -38,7 +41,7 @@ export interface DerivedClass extends RankedClass {
     processes: number;
 }
 
-/** Groups term hits by class, scores each class by its best hit, and keeps those close to the best class. */
+/** Groups term hits by class, scores each class by its best hit, and keeps those close enough to the line and to the best class. */
 export function rankClasses(hits: TermHit[]): RankedClass[] {
     const classes = new Map<string, RankedClass>();
     for (const hit of [...hits].sort((a, b) => b.similarity - a.similarity)) {
@@ -51,14 +54,22 @@ export function rankClasses(hits: TermHit[]): RankedClass[] {
     }
     const sorted = [...classes.values()].sort((a, b) => b.similarity - a.similarity);
     const best = sorted[0]?.similarity ?? 0;
-    return sorted.filter((ranked) => ranked.similarity >= best - SIMILARITY_MARGIN).slice(0, MAX_CLASSES);
+    return sorted.filter((ranked) => ranked.similarity >= MIN_SIMILARITY && ranked.similarity >= best - SIMILARITY_MARGIN);
 }
 
 export const lineQueryText = (line: Pick<LineOfBusiness, "name" | "description" | "keywords">) =>
     `${line.name}. ${line.description} Palabras clave: ${line.keywords.join(", ")}.`;
 
-/** Proposed UNSPSC classes for a line of business, nearest first, with catalog names and how many processes use each. */
-export async function deriveClasses(pool: Pool, line: Pick<LineOfBusiness, "name" | "description" | "keywords">): Promise<DerivedClass[]> {
+/**
+ * UNSPSC classes for a line of business, nearest first, with catalog names and
+ * how many processes use each. `proposed` are classes some process uses;
+ * `unused` exist in the catalog but no process uses them, so they would match
+ * nothing and are only shown for reference.
+ */
+export async function deriveClasses(
+    pool: Pool,
+    line: Pick<LineOfBusiness, "name" | "description" | "keywords">,
+): Promise<{ proposed: DerivedClass[]; unused: DerivedClass[] }> {
     const model = modelForRole("embed");
     const { embedding } = await embed({
         model,
@@ -89,11 +100,15 @@ export async function deriveClasses(pool: Pool, line: Pick<LineOfBusiness, "name
     );
     const detailByCode = new Map(details.map((row) => [row.code, row]));
 
-    return ranked.map((item) => ({
+    const derived = ranked.map((item) => ({
         ...item,
         name: detailByCode.get(item.code)?.name ?? null,
         processes: detailByCode.get(item.code)?.processes ?? 0,
     }));
+    return {
+        proposed: derived.filter((item) => item.processes > 0).slice(0, MAX_CLASSES),
+        unused: derived.filter((item) => item.processes === 0),
+    };
 }
 
 /** The catalog name of each code, or null for a code the catalog does not list. */

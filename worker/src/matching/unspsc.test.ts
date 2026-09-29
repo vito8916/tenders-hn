@@ -27,6 +27,12 @@ describe("rankClasses", () => {
         expect(ranked.map((item) => item.code)).toEqual(["531415"]);
     });
 
+    it("drops classes below the minimum similarity even when they are the best", () => {
+        const ranked = rankClasses([hit("product", "71151101", "Servicios de gerencia de datos del campo petrolífero", 0.52)]);
+
+        expect(ranked).toEqual([]);
+    });
+
     it("returns nothing without hits", () => {
         expect(rankClasses([])).toEqual([]);
     });

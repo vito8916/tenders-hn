@@ -74,7 +74,8 @@ for (const company of profiles) {
     const hintNames = await catalogNames(pool, [...new Set(profile.linesOfBusiness.flatMap((line) => line.unspscHints))]);
     const lines = [];
     for (const line of profile.linesOfBusiness) {
-        lines.push({ ...line, unspscClasses: await deriveClasses(pool, line) });
+        const { proposed, unused } = await deriveClasses(pool, line);
+        lines.push({ ...line, unspscClasses: proposed, unusedClasses: unused });
     }
     const unsourced = linesWithoutSource(profile, company.description).map((line) => line.name);
 
@@ -97,6 +98,9 @@ for (const company of profiles) {
                 );
             }
             if (!line.unspscClasses.length) console.log("      no class proposed");
+            if (line.unusedClasses.length) {
+                console.log(`      in the catalog, unused on HonduCompras: ${line.unusedClasses.map((item) => `${item.code} ${item.name}`).join(", ")}`);
+            }
             const hints = line.unspscHints.map((code) => `${code} ${hintNames[code] ?? "[not in the catalog]"}`);
             if (hints.length) console.log(`      model hints: ${hints.join(", ")}`);
         }

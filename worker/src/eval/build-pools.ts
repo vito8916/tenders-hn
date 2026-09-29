@@ -3,22 +3,30 @@
 // labels cover the same processes and the harness ranks within the same set.
 // A corporate purpose runs several paragraphs on different lines of business,
 // and one embedding of the whole text averages them, so a process that fits a
-// single clause can rank low. Each profile's pool therefore joins two
-// retrievals, the whole text and each paragraph as its own query fused by
-// reciprocal rank, plus a random sample of the rest to estimate what both
-// miss. Items are shuffled so the labeler cannot tell how one was found.
+// single clause can rank low. Each profile's pool therefore joins three
+// retrievals, so that none of the methods the harness compares is favored by
+// what got labeled:
+//   whole      the whole text as one query
+//   paragraph  each paragraph as its own query, fused by reciprocal rank
+//   profile    each line of business of the extracted profile
+//              (extracted-profiles-<version>.json) as its own query, with its
+//              keywords as terms and its proposed classes as codes, fused
+// plus a random sample of the rest to estimate what all three miss. Items are
+// shuffled so the labeler cannot tell how one was found.
 //
 //   DATABASE_URL=<production> pnpm --filter worker eval:build-pools [--set=v2] [--retrieved=150] (per method) [--sampled=60]
 //
 // Writes labeled-set/<set>/pools.json (for the harness) and, under
 // worker/.eval-page/<set>/, the documents the labeling page reads: one per
 // profile, and the product lines, document links, and excerpts per process.
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { embedMany } from "ai";
 import { Pool } from "pg";
 import { EMBEDDING_DIMENSIONS, modelForRole } from "@/lib/ai/models";
 import { env } from "../env";
 import type { ProcessDetail } from "../honducompras/parse";
+import { EXTRACTION_VERSION, type LineOfBusiness } from "../matching/profile";
+import { lineQueryText } from "../matching/unspsc";
 import { embedProfile, labeledSetUrl, loadLabeledSet, loadPopulation, loadProfiles, retrieveCandidates, type LabeledSetVersion, type Pools } from "./labeled-set";
 import type { PoolItem } from "./retrieval";
 
@@ -40,6 +48,15 @@ const shuffle = <T>(items: T[]) => {
 };
 
 const profiles = await loadProfiles(set);
+const extractedFile = `extracted-profiles-${EXTRACTION_VERSION}.json`;
+const extracted: Record<string, { profile: { linesOfBusiness: (LineOfBusiness & { unspscClasses: { code: string }[] })[] } }> = JSON.parse(
+    await readFile(new URL(extractedFile, labeledSetUrl(set)), "utf8"),
+).profiles;
+const missing = profiles.filter((profile) => !extracted[profile.key]);
+if (missing.length) {
+    console.error(`${extractedFile} has no extraction for ${missing.map((profile) => profile.key).join(", ")}. Run eval:extract-profiles first.`);
+    process.exit(1);
+}
 const v1 = await loadLabeledSet("v1");
 const model = modelForRole("embed");
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: 1 });
@@ -51,7 +68,8 @@ const pools: Pools & { builtAt: string; retrieval: Record<string, unknown> } = {
     retrieval: {
         function: "public.retrieve_candidates",
         model,
-        query: "union of the whole description and its paragraphs fused by reciprocal rank (inputType query); offerings as terms, unspsc as prefixes",
+        query: "union of the whole description, its paragraphs fused by reciprocal rank, and the extracted profile's lines of business fused (keywords as terms, proposed classes as prefixes); inputType query",
+        extraction: extractedFile,
         retrievedLimit,
         sampled: sampledCount,
         population: "labeled-set v1 snapshot",
@@ -60,32 +78,42 @@ const pools: Pools & { builtAt: string; retrieval: Record<string, unknown> } = {
 };
 
 for (const profile of profiles) {
-    const retrieve = async (embedding: number[]) =>
-        (await retrieveCandidates(pool, { terms: profile.offerings, model, embedding, unspsc: profile.unspsc, populationIds })).map(
-            (candidate) => candidate.process_id,
-        );
+    const retrieve = async (embedding: number[], terms = profile.offerings, unspsc = profile.unspsc) =>
+        (await retrieveCandidates(pool, { terms, model, embedding, unspsc, populationIds })).map((candidate) => candidate.process_id);
+    const embedQueries = async (values: string[]) =>
+        (await embedMany({ model, values, providerOptions: { voyage: { inputType: "query", outputDimension: EMBEDDING_DIMENSIONS } } })).embeddings;
+    // Reciprocal-rank fusion of several ranked lists, best first.
+    const fuse = (lists: string[][]) => {
+        const scores = new Map<string, number>();
+        for (const list of lists) {
+            for (const [index, processId] of list.entries()) {
+                scores.set(processId, (scores.get(processId) ?? 0) + 1 / (60 + index + 1));
+            }
+        }
+        return [...scores.entries()].sort((a, b) => b[1] - a[1]).map(([processId]) => processId);
+    };
+
     const wholeRanked = (await retrieve(await embedProfile(profile, model))).slice(0, retrievedLimit);
 
     const paragraphs = profile.description.split(/\n\s*\n/).filter((paragraph) => paragraph.trim());
-    const { embeddings } = await embedMany({
-        model,
-        values: paragraphs,
-        providerOptions: { voyage: { inputType: "query", outputDimension: EMBEDDING_DIMENSIONS } },
-    });
-    const fusedScores = new Map<string, number>();
-    for (const embedding of embeddings) {
-        for (const [index, processId] of (await retrieve(embedding)).entries()) {
-            fusedScores.set(processId, (fusedScores.get(processId) ?? 0) + 1 / (60 + index + 1));
-        }
+    const paragraphLists = [];
+    for (const embedding of await embedQueries(paragraphs)) {
+        paragraphLists.push(await retrieve(embedding));
     }
-    const paragraphRanked = [...fusedScores.entries()]
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, retrievedLimit)
-        .map(([processId]) => processId);
+    const paragraphRanked = fuse(paragraphLists).slice(0, retrievedLimit);
+
+    const lines = extracted[profile.key].profile.linesOfBusiness;
+    const lineEmbeddings = await embedQueries(lines.map(lineQueryText));
+    const lineLists = [];
+    for (const [index, line] of lines.entries()) {
+        lineLists.push(await retrieve(lineEmbeddings[index], line.keywords, line.unspscClasses.map((item) => item.code)));
+    }
+    const profileRanked = fuse(lineLists).slice(0, retrievedLimit);
 
     const wholeRank = new Map(wholeRanked.map((processId, index) => [processId, index + 1]));
     const paragraphRank = new Map(paragraphRanked.map((processId, index) => [processId, index + 1]));
-    const retrieved = [...new Set([...wholeRanked, ...paragraphRanked])];
+    const profileRank = new Map(profileRanked.map((processId, index) => [processId, index + 1]));
+    const retrieved = [...new Set([...wholeRanked, ...paragraphRanked, ...profileRanked])];
     const retrievedIds = new Set(retrieved);
     const notRetrieved = populationIds.filter((id) => !retrievedIds.has(id));
     const sampled = shuffle(notRetrieved).slice(0, sampledCount);
@@ -97,6 +125,7 @@ for (const profile of profiles) {
             stratum: "retrieved" as const,
             rank: wholeRank.get(processId) ?? null,
             paragraphRank: paragraphRank.get(processId) ?? null,
+            profileRank: profileRank.get(processId) ?? null,
             score: null,
         })),
         ...sampled.map((processId) => ({ processId, expediente: "", stratum: "sampled" as const, rank: null, score: null })),
@@ -107,9 +136,11 @@ for (const profile of profiles) {
         sampleWeight: Math.round((notRetrieved.length / Math.max(sampled.length, 1)) * 10_000) / 10_000,
         items: shuffle(items),
     };
+    const onlyBy = (ranked: string[], others: Map<string, number>[]) => ranked.filter((id) => others.every((other) => !other.has(id))).length;
     console.log(
-        `${profile.key}: ${retrieved.length} retrieved (${wholeRanked.length} whole text, ${paragraphRanked.length} by ${paragraphs.length} paragraphs, ` +
-            `${wholeRanked.length + paragraphRanked.length - retrieved.length} by both), ${sampled.length} sampled of ${notRetrieved.length}`,
+        `${profile.key}: ${retrieved.length} retrieved (top ${retrievedLimit} each; found only by whole text ${onlyBy(wholeRanked, [paragraphRank, profileRank])}, ` +
+            `only by ${paragraphs.length} paragraphs ${onlyBy(paragraphRanked, [wholeRank, profileRank])}, ` +
+            `only by ${lines.length} lines of business ${onlyBy(profileRanked, [wholeRank, paragraphRank])}), ${sampled.length} sampled of ${notRetrieved.length}`,
     );
 }
 

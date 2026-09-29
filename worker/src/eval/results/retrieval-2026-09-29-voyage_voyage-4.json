@@ -1,0 +1,2533 @@
+{
+ "ranAt": "2026-09-29T16:55:43.225Z",
+ "model": "voyage/voyage-4",
+ "labeledAt": "2026-09-29T00:18:31+00:00",
+ "population": 568,
+ "coverage": {
+  "embedded_processes": 565,
+  "chunks": 26100
+ },
+ "results": [
+  {
+   "arm": "full",
+   "profile": "software",
+   "latencyMs": 19445,
+   "score": {
+    "returned": 159,
+    "relevant": 19,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 8,
+      "recall": 0.42105263157894735,
+      "precision": 0.8,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 16,
+      "recall": 0.8421052631578947,
+      "precision": 0.64,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 19,
+      "recall": 1,
+      "precision": 0.38,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 19,
+      "recall": 1,
+      "precision": 0.1919191919191919,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 19,
+      "recall": 1,
+      "precision": 0.13286713286713286,
+      "unlabeled": 2
+     }
+    ],
+    "lastRelevantRank": 47,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-008-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "CD-035-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SAR-014-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "LPN-SIT-SUM-004-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "SEFIN-LPN-GC-007-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "IPM-LPR-GC-2026-016",
+      "rank": 8
+     },
+     {
+      "expediente": "SETRASS-CM-UE008-2026-001",
+      "rank": 9
+     },
+     {
+      "expediente": "INPREMA-1200-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "CM-SC035-BCH-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "SEN-LPriN-002-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "LPN-001-CONSUCOOP-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "CM-GC-DIDAPDOL-075-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "SEN-LPriN-004-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "LPUN-AMR-006-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "CM-0296-ECGE-2026",
+      "rank": 22
+     },
+     {
+      "expediente": "INPREMA-LPN-GC-002-2026",
+      "rank": 24
+     },
+     {
+      "expediente": "CNPV-02-LPN-B-2026",
+      "rank": 26
+     },
+     {
+      "expediente": "SIT-CDE-SUM-003-2026",
+      "rank": 34
+     },
+     {
+      "expediente": "SIT-GA-176-2026",
+      "rank": 47
+     }
+    ]
+   }
+  },
+  {
+   "arm": "terms",
+   "profile": "software",
+   "latencyMs": 526,
+   "score": {
+    "returned": 80,
+    "relevant": 19,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 6,
+      "recall": 0.3157894736842105,
+      "precision": 0.6,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 13,
+      "recall": 0.6842105263157895,
+      "precision": 0.52,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 14,
+      "recall": 0.7368421052631579,
+      "precision": 0.28,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 14,
+      "recall": 0.7368421052631579,
+      "precision": 0.175,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 14,
+      "recall": 0.7368421052631579,
+      "precision": 0.175,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "SEN-LPriN-002-2026",
+     "CM-GC-DIDAPDOL-075-2026",
+     "CM-0296-ECGE-2026",
+     "INPREMA-LPN-GC-002-2026",
+     "SIT-GA-176-2026"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-008-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "CD-035-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SAR-014-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LPN-SIT-SUM-004-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "IPM-LPR-GC-2026-016",
+      "rank": 6
+     },
+     {
+      "expediente": "LPUN-AMR-006-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "CM-SC035-BCH-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "INPREMA-1200-2026",
+      "rank": 14
+     },
+     {
+      "expediente": "CNPV-02-LPN-B-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "SETRASS-CM-UE008-2026-001",
+      "rank": 17
+     },
+     {
+      "expediente": "SEFIN-LPN-GC-007-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "SEN-LPriN-004-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "SIT-CDE-SUM-003-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "LPN-001-CONSUCOOP-2026",
+      "rank": 44
+     },
+     {
+      "expediente": "SEN-LPriN-002-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-GC-DIDAPDOL-075-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-0296-ECGE-2026",
+      "rank": null
+     },
+     {
+      "expediente": "INPREMA-LPN-GC-002-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SIT-GA-176-2026",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "semantic",
+   "profile": "software",
+   "latencyMs": 11787,
+   "score": {
+    "returned": 102,
+    "relevant": 19,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 8,
+      "recall": 0.42105263157894735,
+      "precision": 0.8,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 15,
+      "recall": 0.7894736842105263,
+      "precision": 0.6,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 17,
+      "recall": 0.8947368421052632,
+      "precision": 0.3469387755102041,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 18,
+      "recall": 0.9473684210526315,
+      "precision": 0.20930232558139536,
+      "unlabeled": 8
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 18,
+      "recall": 0.9473684210526315,
+      "precision": 0.20930232558139536,
+      "unlabeled": 10
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "SIT-CDE-SUM-003-2026"
+    ],
+    "unlabeledAboveLastRelevant": 10,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-008-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "SEFIN-LPN-GC-007-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SAR-014-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "CD-035-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LPN-001-CONSUCOOP-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-SIT-SUM-004-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "SEN-LPriN-002-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "INPREMA-LPN-GC-002-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "SETRASS-CM-UE008-2026-001",
+      "rank": 14
+     },
+     {
+      "expediente": "INPREMA-1200-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "IPM-LPR-GC-2026-016",
+      "rank": 16
+     },
+     {
+      "expediente": "SEN-LPriN-004-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "CM-SC035-BCH-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LPUN-AMR-006-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "CM-GC-DIDAPDOL-075-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "SIT-GA-176-2026",
+      "rank": 26
+     },
+     {
+      "expediente": "CM-0296-ECGE-2026",
+      "rank": 27
+     },
+     {
+      "expediente": "CNPV-02-LPN-B-2026",
+      "rank": 66
+     },
+     {
+      "expediente": "SIT-CDE-SUM-003-2026",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "codes",
+   "profile": "software",
+   "latencyMs": 200,
+   "score": {
+    "returned": 18,
+    "relevant": 19,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 6,
+      "recall": 0.3157894736842105,
+      "precision": 0.6,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 12,
+      "recall": 0.631578947368421,
+      "precision": 0.6666666666666666,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 12,
+      "recall": 0.631578947368421,
+      "precision": 0.6666666666666666,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 12,
+      "recall": 0.631578947368421,
+      "precision": 0.6666666666666666,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 12,
+      "recall": 0.631578947368421,
+      "precision": 0.6666666666666666,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "LPN-001-CONSUCOOP-2026",
+     "SEN-LPriN-004-2026",
+     "LPUN-AMR-006-2026",
+     "INPREMA-LPN-GC-002-2026",
+     "CNPV-02-LPN-B-2026",
+     "SIT-CDE-SUM-003-2026",
+     "SIT-GA-176-2026"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "CM-GC-DIDAPDOL-075-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "IPM-LPR-GC-2026-016",
+      "rank": 2
+     },
+     {
+      "expediente": "CM-0296-ECGE-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-008-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "SEFIN-LPN-GC-007-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "SEN-LPriN-002-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "LPN-SIT-SUM-004-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "SETRASS-CM-UE008-2026-001",
+      "rank": 12
+     },
+     {
+      "expediente": "CM-SC035-BCH-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "INPREMA-1200-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "LPN-SAR-014-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "CD-035-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LPN-001-CONSUCOOP-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SEN-LPriN-004-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPUN-AMR-006-2026",
+      "rank": null
+     },
+     {
+      "expediente": "INPREMA-LPN-GC-002-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CNPV-02-LPN-B-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SIT-CDE-SUM-003-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SIT-GA-176-2026",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "full",
+   "profile": "laboratorio",
+   "latencyMs": 5113,
+   "score": {
+    "returned": 185,
+    "relevant": 18,
+    "unsure": 5,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 8,
+      "recall": 0.4444444444444444,
+      "precision": 0.8,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 13,
+      "recall": 0.7222222222222222,
+      "precision": 0.5652173913043478,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 16,
+      "recall": 0.8888888888888888,
+      "precision": 0.3333333333333333,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 18,
+      "recall": 1,
+      "precision": 0.18556701030927836,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 18,
+      "recall": 1,
+      "precision": 0.12244897959183673,
+      "unlabeled": 1
+     }
+    ],
+    "lastRelevantRank": 94,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 1,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "CD-01-2026-HPL",
+      "rank": 1
+     },
+     {
+      "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-MSPS-GS-05-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LP-10-2026-HGS",
+      "rank": 5
+     },
+     {
+      "expediente": "LP-08-2026-HGS",
+      "rank": 6
+     },
+     {
+      "expediente": "LP-004-2026-HO-SESAL",
+      "rank": 8
+     },
+     {
+      "expediente": "LP-SDE-001-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "HN-SESAL-569324-GO-RFB",
+      "rank": 10
+     },
+     {
+      "expediente": "SESAL-CM-GC-0110-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "CD 001-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "CM 39-019-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "HGSI-LP-02-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "UE-64-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "LP-008-2026-HGSF",
+      "rank": 26
+     },
+     {
+      "expediente": "HGSI-LP-01-2026",
+      "rank": 45
+     },
+     {
+      "expediente": "38-23-2026",
+      "rank": 48
+     },
+     {
+      "expediente": "CM-030-2026-HT",
+      "rank": 51
+     },
+     {
+      "expediente": "CM-034-2026-HJMG",
+      "rank": 94
+     }
+    ]
+   }
+  },
+  {
+   "arm": "terms",
+   "profile": "laboratorio",
+   "latencyMs": 5020,
+   "score": {
+    "returned": 105,
+    "relevant": 18,
+    "unsure": 5,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 7,
+      "recall": 0.3888888888888889,
+      "precision": 0.7,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 10,
+      "recall": 0.5555555555555556,
+      "precision": 0.4166666666666667,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 11,
+      "recall": 0.6111111111111112,
+      "precision": 0.22916666666666666,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 12,
+      "recall": 0.6666666666666666,
+      "precision": 0.13636363636363635,
+      "unlabeled": 11
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 12,
+      "recall": 0.6666666666666666,
+      "precision": 0.13333333333333333,
+      "unlabeled": 14
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "CM 39-019-2026",
+     "UE-64-2026",
+     "HGSI-LP-01-2026",
+     "38-23-2026",
+     "CM-030-2026-HT",
+     "CM-034-2026-HJMG"
+    ],
+    "unlabeledAboveLastRelevant": 14,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-MSPS-GS-05-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "LP-10-2026-HGS",
+      "rank": 2
+     },
+     {
+      "expediente": "CD-01-2026-HPL",
+      "rank": 3
+     },
+     {
+      "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+      "rank": 4
+     },
+     {
+      "expediente": "LP-08-2026-HGS",
+      "rank": 5
+     },
+     {
+      "expediente": "LP-SDE-001-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "LP-004-2026-HO-SESAL",
+      "rank": 10
+     },
+     {
+      "expediente": "HGSI-LP-02-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "HN-SESAL-569324-GO-RFB",
+      "rank": 14
+     },
+     {
+      "expediente": "SESAL-CM-GC-0110-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LP-008-2026-HGSF",
+      "rank": 48
+     },
+     {
+      "expediente": "CD 001-2026",
+      "rank": 85
+     },
+     {
+      "expediente": "CM 39-019-2026",
+      "rank": null
+     },
+     {
+      "expediente": "UE-64-2026",
+      "rank": null
+     },
+     {
+      "expediente": "HGSI-LP-01-2026",
+      "rank": null
+     },
+     {
+      "expediente": "38-23-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-030-2026-HT",
+      "rank": null
+     },
+     {
+      "expediente": "CM-034-2026-HJMG",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "semantic",
+   "profile": "laboratorio",
+   "latencyMs": 5197,
+   "score": {
+    "returned": 104,
+    "relevant": 18,
+    "unsure": 5,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 7,
+      "recall": 0.3888888888888889,
+      "precision": 0.7,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 15,
+      "recall": 0.8333333333333334,
+      "precision": 0.6521739130434783,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 17,
+      "recall": 0.9444444444444444,
+      "precision": 0.3617021276595745,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 18,
+      "recall": 1,
+      "precision": 0.21428571428571427,
+      "unlabeled": 13
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 18,
+      "recall": 1,
+      "precision": 0.21176470588235294,
+      "unlabeled": 16
+     }
+    ],
+    "lastRelevantRank": 52,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 1,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "CD-01-2026-HPL",
+      "rank": 1
+     },
+     {
+      "expediente": "LPN-MSPS-GS-05-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LP-10-2026-HGS",
+      "rank": 3
+     },
+     {
+      "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+      "rank": 4
+     },
+     {
+      "expediente": "LP-004-2026-HO-SESAL",
+      "rank": 5
+     },
+     {
+      "expediente": "LP-08-2026-HGS",
+      "rank": 6
+     },
+     {
+      "expediente": "LP-SDE-001-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "CD 001-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "HN-SESAL-569324-GO-RFB",
+      "rank": 14
+     },
+     {
+      "expediente": "SESAL-CM-GC-0110-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "HGSI-LP-02-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "CM 39-019-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LP-008-2026-HGSF",
+      "rank": 19
+     },
+     {
+      "expediente": "UE-64-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "HGSI-LP-01-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "38-23-2026",
+      "rank": 28
+     },
+     {
+      "expediente": "CM-030-2026-HT",
+      "rank": 29
+     },
+     {
+      "expediente": "CM-034-2026-HJMG",
+      "rank": 52
+     }
+    ]
+   }
+  },
+  {
+   "arm": "codes",
+   "profile": "laboratorio",
+   "latencyMs": 408,
+   "score": {
+    "returned": 13,
+    "relevant": 18,
+    "unsure": 5,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 4,
+      "recall": 0.2222222222222222,
+      "precision": 0.4,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 6,
+      "recall": 0.3333333333333333,
+      "precision": 0.46153846153846156,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 6,
+      "recall": 0.3333333333333333,
+      "precision": 0.46153846153846156,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 6,
+      "recall": 0.3333333333333333,
+      "precision": 0.46153846153846156,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 6,
+      "recall": 0.3333333333333333,
+      "precision": 0.46153846153846156,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "LPN-MSPS-GS-05-2026",
+     "LP-10-2026-HGS",
+     "LP-08-2026-HGS",
+     "LP-004-2026-HO-SESAL",
+     "LP-SDE-001-2026",
+     "CD 001-2026",
+     "HGSI-LP-02-2026",
+     "LP-008-2026-HGSF",
+     "HGSI-LP-01-2026",
+     "38-23-2026",
+     "CM-030-2026-HT",
+     "CM-034-2026-HJMG"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "UE-64-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "HN-SESAL-569324-GO-RFB",
+      "rank": 3
+     },
+     {
+      "expediente": "CM 39-019-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "SESAL-CM-GC-0110-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+      "rank": 11
+     },
+     {
+      "expediente": "CD-01-2026-HPL",
+      "rank": 13
+     },
+     {
+      "expediente": "LPN-MSPS-GS-05-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-10-2026-HGS",
+      "rank": null
+     },
+     {
+      "expediente": "LP-08-2026-HGS",
+      "rank": null
+     },
+     {
+      "expediente": "LP-004-2026-HO-SESAL",
+      "rank": null
+     },
+     {
+      "expediente": "LP-SDE-001-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CD 001-2026",
+      "rank": null
+     },
+     {
+      "expediente": "HGSI-LP-02-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-008-2026-HGSF",
+      "rank": null
+     },
+     {
+      "expediente": "HGSI-LP-01-2026",
+      "rank": null
+     },
+     {
+      "expediente": "38-23-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-030-2026-HT",
+      "rank": null
+     },
+     {
+      "expediente": "CM-034-2026-HJMG",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "full",
+   "profile": "carreteras",
+   "latencyMs": 2898,
+   "score": {
+    "returned": 130,
+    "relevant": 42,
+    "unsure": 9,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 10,
+      "recall": 0.23809523809523808,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 25,
+      "recall": 0.5952380952380952,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 40,
+      "recall": 0.9523809523809523,
+      "precision": 0.851063829787234,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 42,
+      "recall": 1,
+      "precision": 0.44680851063829785,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 42,
+      "recall": 1,
+      "precision": 0.3442622950819672,
+      "unlabeled": 1
+     }
+    ],
+    "lastRelevantRank": 74,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-SIT-047-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "LPN-SIT-042-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SIT-049-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "CPN-SIT-042-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LPN-SIT-050-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "LPN-SIT-048-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-SIT-040-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "LPN-SIT-039-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "CPN-SIT-047-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "CPN-SIT-048-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "LPN-AMENY-002-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "LPN-SIT-041-2026",
+      "rank": 12
+     },
+     {
+      "expediente": "CPN-SIT-043-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "LPN-SIT-052-2026",
+      "rank": 14
+     },
+     {
+      "expediente": "LPN-SIT-043-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "LPN-SIT-046-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "CPN-SIT-051-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "CPN-SIT-039-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LPN-SIT-053-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "CPN-SIT-049-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "CPN-SIT-045-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "CPN-SIT-040-2026",
+      "rank": 22
+     },
+     {
+      "expediente": "LPN-SIT-051-2026",
+      "rank": 23
+     },
+     {
+      "expediente": "SIT-CD-CO-016-2026",
+      "rank": 24
+     },
+     {
+      "expediente": "SIT-CP-014-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "CPN-SIT-046-2026",
+      "rank": 26
+     },
+     {
+      "expediente": "LPN-SIT-044-2026",
+      "rank": 27
+     },
+     {
+      "expediente": "CPN-SIT-050-2026",
+      "rank": 28
+     },
+     {
+      "expediente": "CPN-SIT-052-2026",
+      "rank": 29
+     },
+     {
+      "expediente": "LPR-AMLEI-UOP-01-2026",
+      "rank": 30
+     },
+     {
+      "expediente": "LPN-SIT-045-2026",
+      "rank": 31
+     },
+     {
+      "expediente": "CPN-SIT-041-2026",
+      "rank": 32
+     },
+     {
+      "expediente": "CPN-SIT-044-2026",
+      "rank": 33
+     },
+     {
+      "expediente": "CP-SIT-012-2026",
+      "rank": 34
+     },
+     {
+      "expediente": "LPN 10-2026",
+      "rank": 43
+     },
+     {
+      "expediente": "LPN-SIT-054-2026",
+      "rank": 45
+     },
+     {
+      "expediente": "1223-RDSLP-2026",
+      "rank": 47
+     },
+     {
+      "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+      "rank": 48
+     },
+     {
+      "expediente": "CM-AMD-UTM-087-2026",
+      "rank": 49
+     },
+     {
+      "expediente": "CM-AMD-UTM-084-2026",
+      "rank": 50
+     },
+     {
+      "expediente": "CPN-SIT-053-2026",
+      "rank": 52
+     },
+     {
+      "expediente": "CM-AMD-CS-1178-2026",
+      "rank": 74
+     }
+    ]
+   }
+  },
+  {
+   "arm": "terms",
+   "profile": "carreteras",
+   "latencyMs": 1223,
+   "score": {
+    "returned": 89,
+    "relevant": 42,
+    "unsure": 9,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 10,
+      "recall": 0.23809523809523808,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 25,
+      "recall": 0.5952380952380952,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 41,
+      "recall": 0.9761904761904762,
+      "precision": 0.8367346938775511,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 41,
+      "recall": 0.9761904761904762,
+      "precision": 0.4659090909090909,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 41,
+      "recall": 0.9761904761904762,
+      "precision": 0.4659090909090909,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "CM-AMD-CS-1178-2026"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-SIT-047-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "LPN-SIT-041-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SIT-043-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "LPN-SIT-042-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "CPN-SIT-041-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "LPN-SIT-049-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-SIT-045-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "SIT-CP-014-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "LPN-SIT-050-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "LPN-SIT-046-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "CPN-SIT-040-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "LPN-SIT-052-2026",
+      "rank": 12
+     },
+     {
+      "expediente": "LPN-SIT-040-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "CPN-SIT-043-2026",
+      "rank": 14
+     },
+     {
+      "expediente": "CPN-SIT-042-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "CPN-SIT-051-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "LPN-SIT-039-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "LPN-SIT-053-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LPN-SIT-051-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "CPN-SIT-045-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "CPN-SIT-044-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "CPN-SIT-039-2026",
+      "rank": 22
+     },
+     {
+      "expediente": "LPN-SIT-044-2026",
+      "rank": 23
+     },
+     {
+      "expediente": "CPN-SIT-049-2026",
+      "rank": 24
+     },
+     {
+      "expediente": "SIT-CD-CO-016-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "CPN-SIT-052-2026",
+      "rank": 26
+     },
+     {
+      "expediente": "LPN-SIT-048-2026",
+      "rank": 27
+     },
+     {
+      "expediente": "CPN-SIT-047-2026",
+      "rank": 28
+     },
+     {
+      "expediente": "CPN-SIT-048-2026",
+      "rank": 29
+     },
+     {
+      "expediente": "CP-SIT-012-2026",
+      "rank": 30
+     },
+     {
+      "expediente": "LPR-AMLEI-UOP-01-2026",
+      "rank": 31
+     },
+     {
+      "expediente": "CPN-SIT-046-2026",
+      "rank": 32
+     },
+     {
+      "expediente": "CPN-SIT-050-2026",
+      "rank": 34
+     },
+     {
+      "expediente": "LPN-AMENY-002-2026",
+      "rank": 35
+     },
+     {
+      "expediente": "LPN-SIT-054-2026",
+      "rank": 37
+     },
+     {
+      "expediente": "LPN 10-2026",
+      "rank": 38
+     },
+     {
+      "expediente": "CM-AMD-UTM-087-2026",
+      "rank": 39
+     },
+     {
+      "expediente": "1223-RDSLP-2026",
+      "rank": 40
+     },
+     {
+      "expediente": "CPN-SIT-053-2026",
+      "rank": 41
+     },
+     {
+      "expediente": "CM-AMD-UTM-084-2026",
+      "rank": 42
+     },
+     {
+      "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+      "rank": 45
+     },
+     {
+      "expediente": "CM-AMD-CS-1178-2026",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "semantic",
+   "profile": "carreteras",
+   "latencyMs": 490,
+   "score": {
+    "returned": 100,
+    "relevant": 42,
+    "unsure": 9,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 10,
+      "recall": 0.23809523809523808,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 25,
+      "recall": 0.5952380952380952,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 41,
+      "recall": 0.9761904761904762,
+      "precision": 0.8541666666666666,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 42,
+      "recall": 1,
+      "precision": 0.45161290322580644,
+      "unlabeled": 1
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 42,
+      "recall": 1,
+      "precision": 0.45161290322580644,
+      "unlabeled": 1
+     }
+    ],
+    "lastRelevantRank": 51,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-SIT-047-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "LPN-SIT-042-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SIT-052-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "CPN-SIT-049-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LPN-SIT-041-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "CPN-SIT-050-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-SIT-046-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "LPN-SIT-049-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "LPN-SIT-048-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "CPN-SIT-042-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "CPN-SIT-051-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "LPN-SIT-053-2026",
+      "rank": 12
+     },
+     {
+      "expediente": "LPN-SIT-043-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "SIT-CD-CO-016-2026",
+      "rank": 14
+     },
+     {
+      "expediente": "CPN-SIT-047-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "CPN-SIT-045-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "LPN-SIT-051-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "LPN-SIT-044-2026",
+      "rank": 18
+     },
+     {
+      "expediente": "LPN-SIT-050-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "CPN-SIT-040-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "CPN-SIT-052-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "LPN-SIT-040-2026",
+      "rank": 22
+     },
+     {
+      "expediente": "LPN-SIT-039-2026",
+      "rank": 23
+     },
+     {
+      "expediente": "LPN-AMENY-002-2026",
+      "rank": 24
+     },
+     {
+      "expediente": "SIT-CP-014-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "LPR-AMLEI-UOP-01-2026",
+      "rank": 26
+     },
+     {
+      "expediente": "CPN-SIT-048-2026",
+      "rank": 27
+     },
+     {
+      "expediente": "CPN-SIT-043-2026",
+      "rank": 28
+     },
+     {
+      "expediente": "LPN-SIT-045-2026",
+      "rank": 29
+     },
+     {
+      "expediente": "CPN-SIT-046-2026",
+      "rank": 30
+     },
+     {
+      "expediente": "CPN-SIT-044-2026",
+      "rank": 31
+     },
+     {
+      "expediente": "CPN-SIT-039-2026",
+      "rank": 32
+     },
+     {
+      "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+      "rank": 33
+     },
+     {
+      "expediente": "CP-SIT-012-2026",
+      "rank": 34
+     },
+     {
+      "expediente": "1223-RDSLP-2026",
+      "rank": 35
+     },
+     {
+      "expediente": "CPN-SIT-041-2026",
+      "rank": 36
+     },
+     {
+      "expediente": "LPN 10-2026",
+      "rank": 37
+     },
+     {
+      "expediente": "CM-AMD-UTM-087-2026",
+      "rank": 39
+     },
+     {
+      "expediente": "CM-AMD-UTM-084-2026",
+      "rank": 40
+     },
+     {
+      "expediente": "LPN-SIT-054-2026",
+      "rank": 42
+     },
+     {
+      "expediente": "CPN-SIT-053-2026",
+      "rank": 43
+     },
+     {
+      "expediente": "CM-AMD-CS-1178-2026",
+      "rank": 51
+     }
+    ]
+   }
+  },
+  {
+   "arm": "codes",
+   "profile": "carreteras",
+   "latencyMs": 173,
+   "score": {
+    "returned": 23,
+    "relevant": 42,
+    "unsure": 9,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 7,
+      "recall": 0.16666666666666666,
+      "precision": 0.7777777777777778,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 14,
+      "recall": 0.3333333333333333,
+      "precision": 0.7368421052631579,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 14,
+      "recall": 0.3333333333333333,
+      "precision": 0.7368421052631579,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 14,
+      "recall": 0.3333333333333333,
+      "precision": 0.7368421052631579,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 14,
+      "recall": 0.3333333333333333,
+      "precision": 0.7368421052631579,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "LPN-SIT-041-2026",
+     "LPN-SIT-052-2026",
+     "LPN-SIT-046-2026",
+     "LPN-SIT-043-2026",
+     "SIT-CD-CO-016-2026",
+     "CPN-SIT-051-2026",
+     "CPN-SIT-049-2026",
+     "LPN-SIT-053-2026",
+     "CPN-SIT-040-2026",
+     "CPN-SIT-045-2026",
+     "LPN-SIT-051-2026",
+     "CPN-SIT-052-2026",
+     "LPN-SIT-044-2026",
+     "CPN-SIT-050-2026",
+     "LPR-AMLEI-UOP-01-2026",
+     "LPN-SIT-045-2026",
+     "CPN-SIT-041-2026",
+     "SIT-CP-014-2026",
+     "CPN-SIT-044-2026",
+     "CP-SIT-012-2026",
+     "LPN 10-2026",
+     "LPN-SIT-054-2026",
+     "1223-RDSLP-2026",
+     "ENP-LPRIVN-GA-UI-03-2026",
+     "CM-AMD-UTM-087-2026",
+     "CM-AMD-UTM-084-2026",
+     "CPN-SIT-053-2026",
+     "CM-AMD-CS-1178-2026"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LPN-SIT-042-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LPN-SIT-050-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "LPN-SIT-040-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "LPN-SIT-047-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "CPN-SIT-039-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "CPN-SIT-043-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "CPN-SIT-046-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "LPN-SIT-048-2026",
+      "rank": 12
+     },
+     {
+      "expediente": "CPN-SIT-042-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "LPN-AMENY-002-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "LPN-SIT-049-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "LPN-SIT-039-2026",
+      "rank": 21
+     },
+     {
+      "expediente": "CPN-SIT-047-2026",
+      "rank": 22
+     },
+     {
+      "expediente": "CPN-SIT-048-2026",
+      "rank": 23
+     },
+     {
+      "expediente": "LPN-SIT-041-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-052-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-046-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-043-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SIT-CD-CO-016-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-051-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-049-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-053-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-040-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-045-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-051-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-052-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-044-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-050-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPR-AMLEI-UOP-01-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-045-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-041-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SIT-CP-014-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-044-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CP-SIT-012-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN 10-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-SIT-054-2026",
+      "rank": null
+     },
+     {
+      "expediente": "1223-RDSLP-2026",
+      "rank": null
+     },
+     {
+      "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-AMD-UTM-087-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-AMD-UTM-084-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CPN-SIT-053-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-AMD-CS-1178-2026",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "full",
+   "profile": "uniformes",
+   "latencyMs": 1624,
+   "score": {
+    "returned": 187,
+    "relevant": 20,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 10,
+      "recall": 0.5,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 12,
+      "recall": 0.6,
+      "precision": 0.48,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 16,
+      "recall": 0.8,
+      "precision": 0.32,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 20,
+      "recall": 1,
+      "precision": 0.20408163265306123,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 20,
+      "recall": 1,
+      "precision": 0.1360544217687075,
+      "unlabeled": 1
+     }
+    ],
+    "lastRelevantRank": 59,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+      "rank": 2
+     },
+     {
+      "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "33-LP-001-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LP-04-2026-RSDI",
+      "rank": 5
+     },
+     {
+      "expediente": "CM-CONEANFO-034-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "ENEE-CM-GG-30005225-2026",
+      "rank": 7
+     },
+     {
+      "expediente": "CM-565-AMLE-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+      "rank": 9
+     },
+     {
+      "expediente": "CM-567-AMLC-2026",
+      "rank": 10
+     },
+     {
+      "expediente": "ENEE-CM-GG-10005210-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "LP-03-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "IHT-CM-GC-2026-248",
+      "rank": 33
+     },
+     {
+      "expediente": "LPN-001-SECAPPH-2026",
+      "rank": 39
+     },
+     {
+      "expediente": "LPN-MPC-GPYD-01-2026",
+      "rank": 41
+     },
+     {
+      "expediente": "CM-GC-IHMA-2026-076",
+      "rank": 46
+     },
+     {
+      "expediente": "CM-066-INAMI-2026",
+      "rank": 53
+     },
+     {
+      "expediente": "SENAF-CM-127-2026",
+      "rank": 56
+     },
+     {
+      "expediente": "LP-002-2026-RSN4-SESAL",
+      "rank": 57
+     },
+     {
+      "expediente": "DICTA-CM-GC-2026-088",
+      "rank": 59
+     }
+    ]
+   }
+  },
+  {
+   "arm": "terms",
+   "profile": "uniformes",
+   "latencyMs": 1166,
+   "score": {
+    "returned": 114,
+    "relevant": 20,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 3,
+      "recall": 0.15,
+      "precision": 0.3,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 9,
+      "recall": 0.45,
+      "precision": 0.36,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 9,
+      "recall": 0.45,
+      "precision": 0.18,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 11,
+      "recall": 0.55,
+      "precision": 0.12087912087912088,
+      "unlabeled": 9
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 12,
+      "recall": 0.6,
+      "precision": 0.1276595744680851,
+      "unlabeled": 20
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "ENEE-CM-GG-10005210-2026",
+     "LP-03-2026",
+     "LPN-MPC-GPYD-01-2026",
+     "CM-GC-IHMA-2026-076",
+     "CM-066-INAMI-2026",
+     "SENAF-CM-127-2026",
+     "LP-002-2026-RSN4-SESAL",
+     "DICTA-CM-GC-2026-088"
+    ],
+    "unlabeledAboveLastRelevant": 20,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+      "rank": 3
+     },
+     {
+      "expediente": "CM-CONEANFO-034-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "ENEE-CM-GG-30005225-2026",
+      "rank": 13
+     },
+     {
+      "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+      "rank": 14
+     },
+     {
+      "expediente": "CM-565-AMLE-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "CM-567-AMLC-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "IHT-CM-GC-2026-248",
+      "rank": 21
+     },
+     {
+      "expediente": "LP-04-2026-RSDI",
+      "rank": 90
+     },
+     {
+      "expediente": "33-LP-001-2026",
+      "rank": 92
+     },
+     {
+      "expediente": "LPN-001-SECAPPH-2026",
+      "rank": 111
+     },
+     {
+      "expediente": "ENEE-CM-GG-10005210-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-03-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-MPC-GPYD-01-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-GC-IHMA-2026-076",
+      "rank": null
+     },
+     {
+      "expediente": "CM-066-INAMI-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SENAF-CM-127-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-002-2026-RSN4-SESAL",
+      "rank": null
+     },
+     {
+      "expediente": "DICTA-CM-GC-2026-088",
+      "rank": null
+     }
+    ]
+   }
+  },
+  {
+   "arm": "semantic",
+   "profile": "uniformes",
+   "latencyMs": 500,
+   "score": {
+    "returned": 116,
+    "relevant": 20,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 6,
+      "recall": 0.3,
+      "precision": 0.6,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 15,
+      "recall": 0.75,
+      "precision": 0.6,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 19,
+      "recall": 0.95,
+      "precision": 0.38,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 20,
+      "recall": 1,
+      "precision": 0.21505376344086022,
+      "unlabeled": 5
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 20,
+      "recall": 1,
+      "precision": 0.20408163265306123,
+      "unlabeled": 16
+     }
+    ],
+    "lastRelevantRank": 74,
+    "relevantNotReturned": [],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+      "rank": 1
+     },
+     {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "33-LP-001-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "LP-03-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "LP-04-2026-RSDI",
+      "rank": 5
+     },
+     {
+      "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LPN-MPC-GPYD-01-2026",
+      "rank": 11
+     },
+     {
+      "expediente": "CM-GC-IHMA-2026-076",
+      "rank": 13
+     },
+     {
+      "expediente": "ENEE-CM-GG-30005225-2026",
+      "rank": 15
+     },
+     {
+      "expediente": "CM-CONEANFO-034-2026",
+      "rank": 16
+     },
+     {
+      "expediente": "LPN-001-SECAPPH-2026",
+      "rank": 17
+     },
+     {
+      "expediente": "ENEE-CM-GG-10005210-2026",
+      "rank": 19
+     },
+     {
+      "expediente": "CM-565-AMLE-2026",
+      "rank": 20
+     },
+     {
+      "expediente": "CM-066-INAMI-2026",
+      "rank": 24
+     },
+     {
+      "expediente": "SENAF-CM-127-2026",
+      "rank": 25
+     },
+     {
+      "expediente": "LP-002-2026-RSN4-SESAL",
+      "rank": 28
+     },
+     {
+      "expediente": "DICTA-CM-GC-2026-088",
+      "rank": 31
+     },
+     {
+      "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+      "rank": 36
+     },
+     {
+      "expediente": "CM-567-AMLC-2026",
+      "rank": 50
+     },
+     {
+      "expediente": "IHT-CM-GC-2026-248",
+      "rank": 74
+     }
+    ]
+   }
+  },
+  {
+   "arm": "codes",
+   "profile": "uniformes",
+   "latencyMs": 172,
+   "score": {
+    "returned": 8,
+    "relevant": 20,
+    "unsure": 11,
+    "cutoffs": [
+     {
+      "cutoff": 10,
+      "relevantFound": 8,
+      "recall": 0.4,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 25,
+      "relevantFound": 8,
+      "recall": 0.4,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 50,
+      "relevantFound": 8,
+      "recall": 0.4,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 100,
+      "relevantFound": 8,
+      "recall": 0.4,
+      "precision": 1,
+      "unlabeled": 0
+     },
+     {
+      "cutoff": 150,
+      "relevantFound": 8,
+      "recall": 0.4,
+      "precision": 1,
+      "unlabeled": 0
+     }
+    ],
+    "lastRelevantRank": null,
+    "relevantNotReturned": [
+     "UNAH-SEAF-LPN-009-2026",
+     "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+     "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+     "LP-03-2026",
+     "IHT-CM-GC-2026-248",
+     "LPN-001-SECAPPH-2026",
+     "LPN-MPC-GPYD-01-2026",
+     "CM-GC-IHMA-2026-076",
+     "CM-066-INAMI-2026",
+     "SENAF-CM-127-2026",
+     "LP-002-2026-RSN4-SESAL",
+     "DICTA-CM-GC-2026-088"
+    ],
+    "unlabeledAboveLastRelevant": 0,
+    "estimatedMissesBeyondCutoffs": 0,
+    "relevantRanks": [
+     {
+      "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+      "rank": 1
+     },
+     {
+      "expediente": "CM-567-AMLC-2026",
+      "rank": 2
+     },
+     {
+      "expediente": "ENEE-CM-GG-30005225-2026",
+      "rank": 3
+     },
+     {
+      "expediente": "CM-565-AMLE-2026",
+      "rank": 4
+     },
+     {
+      "expediente": "ENEE-CM-GG-10005210-2026",
+      "rank": 5
+     },
+     {
+      "expediente": "CM-CONEANFO-034-2026",
+      "rank": 6
+     },
+     {
+      "expediente": "LP-04-2026-RSDI",
+      "rank": 7
+     },
+     {
+      "expediente": "33-LP-001-2026",
+      "rank": 8
+     },
+     {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+      "rank": null
+     },
+     {
+      "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-03-2026",
+      "rank": null
+     },
+     {
+      "expediente": "IHT-CM-GC-2026-248",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-001-SECAPPH-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LPN-MPC-GPYD-01-2026",
+      "rank": null
+     },
+     {
+      "expediente": "CM-GC-IHMA-2026-076",
+      "rank": null
+     },
+     {
+      "expediente": "CM-066-INAMI-2026",
+      "rank": null
+     },
+     {
+      "expediente": "SENAF-CM-127-2026",
+      "rank": null
+     },
+     {
+      "expediente": "LP-002-2026-RSN4-SESAL",
+      "rank": null
+     },
+     {
+      "expediente": "DICTA-CM-GC-2026-088",
+      "rank": null
+     }
+    ]
+   }
+  }
+ ]
+}

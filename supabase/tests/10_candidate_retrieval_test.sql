@@ -101,6 +101,18 @@ select ok(
   ),
   'closed processes are included when asked'
 );
+select results_eq(
+  $$select p.expediente
+    from public.retrieve_candidates(
+      array['soporte SAP', 'mesa de ayuda'], 'test/model', pg_temp.vec(array[1, 0, 0.2]), array['4323'],
+      open_only => false,
+      process_ids => array['c0000000-0000-4000-8000-00000000000c', 'c0000000-0000-4000-8000-00000000000e']::uuid[]
+    ) r
+    join public.procurement_processes p on p.id = r.process_id
+    order by r.score desc$$,
+  $$values ('LPN-001-2025'::text), ('CM-9')$$,
+  'retrieval can be restricted to a set of processes, open or closed'
+);
 select is(
   (select count(*)::int from public.retrieve_candidates(array['de la'], 'test/model')),
   0,

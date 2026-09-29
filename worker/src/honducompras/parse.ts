@@ -113,7 +113,7 @@ export function decodeProcessKey(detailUrl: string): string {
     return parts.join(":");
 }
 
-function hiddenFields(root: HTMLElement): Record<string, string> {
+export function hiddenFields(root: HTMLElement): Record<string, string> {
     const fields: Record<string, string> = {};
     for (const input of root.querySelectorAll('input[type="hidden"]')) {
         const name = input.getAttribute("name");

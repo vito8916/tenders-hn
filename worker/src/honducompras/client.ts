@@ -1,4 +1,5 @@
 import { log } from "../log";
+import { CATALOG_FIELDS, CATALOG_URL, type CatalogPage } from "./catalog";
 import { parseSearchPage, SEARCH_URL } from "./parse";
 
 // An unrecognized User-Agent gets ASP.NET "downlevel" handling and the date
@@ -103,6 +104,24 @@ export function goToResultsPage(formFields: Record<string, string>, pageNumber: 
         ...formFields,
         __EVENTTARGET: GRID_EVENT_TARGET,
         __EVENTARGUMENT: `Page$${pageNumber}`,
+    });
+}
+
+export function fetchCatalogPage(): Promise<string> {
+    return request(CATALOG_URL);
+}
+
+/** Posts back a catalog dropdown change; the page returns the next level's options. */
+export function selectCatalogOption(page: CatalogPage, level: "segment" | "family", value: string): Promise<string> {
+    const selected = { ...page.selected, [level]: value };
+    return request(CATALOG_URL, {
+        ...page.formFields,
+        __EVENTTARGET: CATALOG_FIELDS[level],
+        __EVENTARGUMENT: "",
+        [CATALOG_FIELDS.segment]: selected.segment,
+        [CATALOG_FIELDS.family]: selected.family,
+        [CATALOG_FIELDS.class]: selected.class,
+        [CATALOG_FIELDS.commodity]: selected.commodity,
     });
 }
 

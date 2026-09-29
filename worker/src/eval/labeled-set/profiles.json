@@ -1,0 +1,30 @@
+[
+  {
+    "key": "software",
+    "name": "Enterprise software",
+    "description": "Vendemos soporte y licencias de software empresarial: soporte funcional y técnico de SAP y otros ERP, licencias, mantenimiento y desarrollo de sistemas, y mesa de ayuda.",
+    "terms": ["soporte funcional SAP", "SAP", "ERP", "licencias de software", "software empresarial", "mantenimiento de software", "desarrollo de software", "sistema informático", "mesa de ayuda"],
+    "unspsc": ["4323", "8111"]
+  },
+  {
+    "key": "laboratorio",
+    "name": "Clinical lab supplies",
+    "description": "Distribuimos equipo y reactivos para laboratorio clínico: analizadores, equipo de biología molecular y PCR, reactivos, pruebas diagnósticas e insumos de laboratorio.",
+    "terms": ["equipo de laboratorio", "reactivos", "laboratorio clínico", "biología molecular", "PCR", "pruebas de laboratorio", "insumos de laboratorio", "analizador"],
+    "unspsc": ["4110", "4111", "4112"]
+  },
+  {
+    "key": "carreteras",
+    "name": "Road construction",
+    "description": "Construimos y rehabilitamos carreteras y calles: pavimentación con concreto hidráulico o asfalto, bacheo, obras viales, drenaje y puentes menores.",
+    "terms": ["pavimentación", "concreto hidráulico", "carretera", "rehabilitación de calles", "bacheo", "obras viales", "asfalto", "tramo carretero"],
+    "unspsc": ["7213", "7214"]
+  },
+  {
+    "key": "uniformes",
+    "name": "Uniforms and PPE",
+    "description": "Confeccionamos uniformes y equipo de protección personal: uniformes de trabajo e institucionales, camisas, pantalones, chalecos, botas y calzado de seguridad, guantes y cascos.",
+    "terms": ["uniformes", "indumentaria", "equipo de protección personal", "botas de seguridad", "calzado", "camisas", "chalecos", "guantes"],
+    "unspsc": ["5310", "5311", "4618"]
+  }
+]

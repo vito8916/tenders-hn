@@ -1,0 +1,5913 @@
+{
+ "labeledAt": "2026-09-29",
+ "labels": "core | adjacent | not_relevant | unsure",
+ "review": "Where a blind second opinion (claude-code/fable-5.1, second-opinion-claude-code-fable-5.1-v1.json) disagreed, the labeler reviewed its reasoning on 29 Sep 2026: 196 reviewed, 194 changed to the second opinion. firstLabel is the blind label wherever the review changed it.",
+ "profiles": {
+  "software": [
+   {
+    "processId": "449143a5-b2e3-4665-8af0-b9452e5b85ba",
+    "expediente": "LPN-SIT-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d5da0739-d217-497d-adb9-4b20de24da16",
+    "expediente": "CM-SDE-196-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e70e5fff-65be-4d10-8238-f5b44af967b2",
+    "expediente": "ENEE-CM-GG-30005232-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3979fb46-83bf-4e6c-95e3-bc8547a5c3ec",
+    "expediente": "CM-CREE- 146-2026 IMPRESORA DE CARNETS",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "f7866cac-091b-4d2d-b66b-0f855f697621",
+    "expediente": "CPN-SIT-047-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f3d6f214-8e62-4f2a-a77e-32c2907aaa35",
+    "expediente": "CM 39-015-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "5ddf154a-277b-4183-8b8d-d09fe9569c9b",
+    "expediente": "UNAH-RECTORIA-027-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "6b740f3a-c87b-48d3-bf5c-e6622e65cf7c",
+    "expediente": "IHAH-CM-GC-UE01-COMPRA DE EQUIPO INFORMATICO",
+    "label": "adjacent"
+   },
+   {
+    "processId": "b72b1716-47c3-4940-a4db-ba789f375ad0",
+    "expediente": "ENP-LPRIVN-GA-UI-18-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ff090e9d-0b09-449d-8c20-1a54320d43cd",
+    "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0640f598-d4a7-4684-887c-026ce3cbd8ad",
+    "expediente": "IPM-LPR-GC-2026-016",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "4659c4a3-73d4-4666-aff9-46b353bba134",
+    "expediente": "IPM-LPN-GC-2026-018",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "5e32e8c6-db14-4909-833b-8658c1962b8c",
+    "expediente": "ENEE-CM-GC-36003056-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "570decb1-a517-4f07-9d9e-24e591d1c625",
+    "expediente": "ENP-CM-391-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "810b6a21-3bd5-400b-8c4e-2e3926660fb9",
+    "expediente": "LPública No.26-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0149641a-a06a-4e57-9a7f-5746ed8050a1",
+    "expediente": "HO-L1202-P00243",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0b35ad6-49c4-4b99-a41f-750e697e0af6",
+    "expediente": "LP-009-2026-HSL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9da4fb91-bd53-4e26-b683-c1259e3d62c7",
+    "expediente": "HO-L1202-P00241",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b172fbda-0c38-46fb-88da-c856385a140f",
+    "expediente": "LPN-SIT-SUM-004-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "4ff08698-c7e8-4dec-b56c-8293abb03f6d",
+    "expediente": "CM-008DDEO-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "aacd7ca8-4afa-4049-9cf7-65e422a0c070",
+    "expediente": "CM-224-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "654c7cbd-bf10-412f-9b93-2f6f9db6b3b4",
+    "expediente": "No.UNACIFOR-LPN-GC-UE02-2026-03",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "208341d4-0a41-41b8-83f9-34a0e9f20c9d",
+    "expediente": "UNAH-SEAF-SDRYT-CM-SC22497-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "15901b20-2ef3-49ed-82d8-c278e611bf11",
+    "expediente": "UNAH-SEAF-DEP-CM-SC22573-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19e8ace7-edfe-4343-8ebe-dfae632b6d26",
+    "expediente": "UNAH-SEAPI-GACETA-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "09ca2c8f-0320-4bbc-985e-95d6a1691c73",
+    "expediente": "CM-SDE-195-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b2f16170-b0f4-44b0-9455-315be9f04aa3",
+    "expediente": "SETRASS-CM-UE008-2026-001",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "4caed57f-af4a-4b4f-a14f-d2bf81f060ab",
+    "expediente": "UNAH-RECTORIA-021a-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "603fc8e0-01bd-45cc-98de-665c8f85d47a",
+    "expediente": "CM-229-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1c7b0724-fedc-459b-9825-010b253f6e27",
+    "expediente": "PGR-CM-GC-2026-350",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "784bafc1-323e-4758-bf42-b48a699117ce",
+    "expediente": "LP-002-AHAC-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "2ec19519-1792-4239-b754-6f741fb6cb8a",
+    "expediente": "LPN-SEDESOL-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c76f146f-3a27-431d-94f0-64e7d303ff4b",
+    "expediente": "AMPC-GAF-OM-086-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "009f94e3-177d-4474-a0f2-ecead4280673",
+    "expediente": "CPN-SIT-052-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11d4d751-df1f-4b4b-af7f-f0c1437c5e1c",
+    "expediente": "SEGOB-CM-GC-2026-070",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "0e0be778-051e-4433-8cb5-b8c83dd5783d",
+    "expediente": "IHT-CM-GC-2026-248",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d919f943-9e9f-4985-85e9-6bbe57bdde56",
+    "expediente": "LPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e93fcbf0-b859-4d85-868b-de94d3e78e3e",
+    "expediente": "UNAH-RECTORIA-029-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "2c254378-0d03-4443-a530-afb07fd28f73",
+    "expediente": "SIT-CDE-SUM-003-2026",
+    "label": "core",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ce2aa5ba-24f8-494e-a55c-75a9224bc295",
+    "expediente": "UNAH-SEAPI-PUBLICACIONES-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "662e8c54-eeb8-45fa-ac32-6d0974fb4983",
+    "expediente": "AMPC-GAF-CM-0710-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "df09e873-7fcc-40e8-b0a7-b48eb3ad4a83",
+    "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "98b654ca-b800-48b5-abb0-372c0a38d780",
+    "expediente": "LPV-INM-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7e77335e-12e2-4190-a46c-4fd9fbdcc209",
+    "expediente": "CM-555-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3c7d37f4-9dfc-4585-9026-3fc436720e27",
+    "expediente": "CM-AMD-CS-1170-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "9e1de3ca-220f-42d2-9c26-55838b75d076",
+    "expediente": "LPN-SIT-038-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5b6fa522-064b-46b2-8534-2bc31c356516",
+    "expediente": "UNAH-RECTORIA-024-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "5de8822b-3cf5-4dd6-8ff7-300c90ef47f0",
+    "expediente": "CPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fa815fd5-ce4c-4e7a-a354-5093c9aa3540",
+    "expediente": "CPN-SIT-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b983158f-f932-42ca-8123-4cc1b8d24c05",
+    "expediente": "UNAH-SEAF-LPN-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "818feb4e-9912-41b2-84f7-1fd36c0bf54f",
+    "expediente": "LPN 10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5e560411-ddd4-46c0-86c1-bd7989614bbe",
+    "expediente": "LPN-IP-014-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c0f7b99d-470d-432a-8845-49a4805e5983",
+    "expediente": "6000001515-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4009cca4-a8b4-4d3a-9fc8-fa7544462cd8",
+    "expediente": "AMPC-GAF-OM-085-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b9c15693-6376-4758-ab18-62d8028f0565",
+    "expediente": "CM-1730-EMC-C2-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e0c02bf-65ae-4c9b-aa5f-6614710dbed5",
+    "expediente": "CM-563-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fdda209-5c46-463e-bb35-321eb7618da6",
+    "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "56e0c29b-aa8c-4ee5-98ee-ad7606fb0747",
+    "expediente": "PJ-CM-GC-2026-0789",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf751296-9dac-4455-98d1-e0e4e262e073",
+    "expediente": "IHT-CM-GC-2026-271",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c584f831-f09a-4ab4-b06d-2143cd54ad96",
+    "expediente": "OC-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ac65170a-3319-4743-81b7-cfccbf628364",
+    "expediente": "CM-066-INAMI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "496cba89-d534-45de-b5d1-a6edb0bb77f3",
+    "expediente": "UNAH-SEAF-DES-CM-SC22537-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ef266303-fc5b-463a-814b-5954fbb583d4",
+    "expediente": "IHT-LP-GC-2026-10",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "964fff28-f81c-4493-80d7-2a042b43974c",
+    "expediente": "LP-002-2026-RSN4-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da981db4-e81c-4691-8535-dfb6bfe6db0c",
+    "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43756950-fb0e-49ac-b2fa-e70bfdfa6106",
+    "expediente": "ENP-LPRIVN-GA-UI-07-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ba58aa5f-47a2-4e2b-bc04-ce7d1e93cf60",
+    "expediente": "CM-569-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "34557385-6fb6-4b49-a31f-db23b6eb717f",
+    "expediente": "CM-006-DDEO-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "3562af82-57b5-422e-a360-3ef027471dd3",
+    "expediente": "HOP6-ENEE-10-LPN-S",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "003ee09e-1fd8-4d0e-8b58-677ef50b675c",
+    "expediente": "LP-CNBS-010-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8328c982-c953-47ea-9afb-f053bba8963a",
+    "expediente": "INPREMA-1207-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "cbf523c5-4116-4893-8773-6b657c517540",
+    "expediente": "LP-03-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "72b2b994-44ce-437a-a434-4be44836b73f",
+    "expediente": "PJSPS-CM-GC-2026-0126",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e827a478-34b1-410f-a258-d3360a108668",
+    "expediente": "ENEE-CM-GG-10005207-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "eaf83f5e-7256-4f5c-b5a2-7d5114f38b13",
+    "expediente": "LP-008-2026-HGSF",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b29a9b99-cfab-4f47-a3f9-31193b871914",
+    "expediente": "LPN-IHCIETI-FC-006-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "99142edd-f66f-47af-8034-99805c0b7ba3",
+    "expediente": "BANADESA-2026-544",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "86094db0-b1c4-47ea-a306-09cc745a15c0",
+    "expediente": "LP-IHCIETI-FC-005-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "a6bdfd85-3444-406f-a3b7-9f415f5282ad",
+    "expediente": "SEN-LPriN-002-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "e7d5b311-18fa-4256-9f43-12addca49150",
+    "expediente": "CD-035-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "e5f083d5-8966-4469-a8b0-1ce75a1dd414",
+    "expediente": "SBCC -SETRASS-UEP-PAILH-23-2026-HO-L1237-P00041",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a22ff43-75ca-43f9-a334-ae88fa1010fb",
+    "expediente": "LPuNBS-MCH-005-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "744c4638-5d07-4ef0-911a-41a267981f32",
+    "expediente": "LPN-018-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "630dea17-cbc5-4f06-a96e-30fc1fd903a4",
+    "expediente": "UNAH-RECTORIA-022A-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0855cd8a-5624-490e-8548-308c01f9baee",
+    "expediente": "INHGEOMIN-CI-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9cde19cb-5828-48e6-b0a7-094ba1d0fe6e",
+    "expediente": "SEFIN-LPN-GC-007-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "7a30cdad-2085-4ae7-ae2c-de6c5dc72447",
+    "expediente": "CM-568-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "608b7b66-aa36-4b8e-b9c0-64474fa6675a",
+    "expediente": "ENP-LPRIVN-GA-UI-10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "062db04e-5dac-4588-8fde-9d9f99bd9f5f",
+    "expediente": "LPN-UPNFM-009-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "226b2c8e-f6db-4393-8393-d6d0c71b3e10",
+    "expediente": "CM-226-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2f7fbbfd-c65c-42a3-bef0-584f38868724",
+    "expediente": "CPrNBS-AMDC-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b0967f99-14ac-4aa8-ba6c-18851cff8e57",
+    "expediente": "ENP-LPRIVN-GA-UI-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "778069e7-1239-4b18-905c-932b0b585c8e",
+    "expediente": "HO-L1202-P00246",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "49cda353-488c-4482-93cf-338f57718598",
+    "expediente": "ENP-LPRIVN-GA-UADQ-12-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "66e525e1-c8c7-471f-8fbf-8e7cc537194a",
+    "expediente": "SENAF-CM-127-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92714894-7a0c-47f5-88eb-852c99c9a21d",
+    "expediente": "IHT-CM-GC-2026-269",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e1a6dbdd-e79f-4b3e-9350-22b13f49b1be",
+    "expediente": "LPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3e2676f6-adb5-4605-817e-3da7ec3d8a6d",
+    "expediente": "SIT-CP-014-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6aa13f16-710c-4451-9690-5158ab99dc82",
+    "expediente": "IPM-LPN-GC-2026-017",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "16a8a57c-20d0-4e5e-a645-6e98994e2466",
+    "expediente": "LPuNBS-AMDC-010-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "8eb4c0c9-52fe-420c-869f-42a2a7db6f0e",
+    "expediente": "UNAH-SEAF-SEDI-CM-SC22561-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f2cb5206-82b2-4f65-ad4d-0974c0f0e97b",
+    "expediente": "COTI CONSULTORIA TDR 02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "229e9ee4-9615-4a20-9a43-67b4effc31dc",
+    "expediente": "LPN-05-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "98391856-fe35-4470-a45c-efb476bef88c",
+    "expediente": "CM-230-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "26e3df87-194b-4ad6-acb5-c933a3ef5004",
+    "expediente": "33-CM-029-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "5c110a85-4f84-44e8-93e4-a0eade0e645f",
+    "expediente": "CM-GC-178-SERNA-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "073f3577-7ec5-4a2a-a0ef-3cee581a9ff8",
+    "expediente": "CM-249-INP-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "cf3f4deb-c6ec-42e0-93b3-8a9434adbeca",
+    "expediente": "INPREMA-1200-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "25d00e3f-ae6c-4180-b75b-77af2f728fc6",
+    "expediente": "ARSA-CM-GC-2026-136",
+    "label": "adjacent"
+   },
+   {
+    "processId": "c3147096-fc3f-400a-ab10-ae3530d552bc",
+    "expediente": "UNAH-RECTORIA-026-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e8cf40ea-6236-4b09-b789-c840093a5e1e",
+    "expediente": "CM-079-SAR-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ef7312be-5c18-44e1-b9ad-b9a1cfe09a2d",
+    "expediente": "LP-AHAC-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "94f8e1f9-759d-400f-bde1-ce0d0ffe5e9f",
+    "expediente": "INPREMA-1204-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0fa36518-4756-4c6b-901b-2e7879ee2369",
+    "expediente": "CD-038-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "5802442d-4515-423d-9f2d-a54b107e561c",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "34123d26-a948-4d88-8db5-1d525922b4dd",
+    "expediente": "CM-AMD-UTM-087-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dbf0b43b-6045-42ba-a76f-eff67c89ded7",
+    "expediente": "LPN-SDE-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "97c5f203-2289-4699-a1c6-8a41710a263f",
+    "expediente": "SAG-COMRURAL-III-SDO-O-37-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "52b2d74a-6a58-405a-a9dc-026c263b0ef6",
+    "expediente": "CM-236-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6cc9f558-6568-4a38-9b2b-2516219513b3",
+    "expediente": "ENP-CM-392-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e8f2267a-de9c-47c1-9a02-35b0c9776714",
+    "expediente": "UNAHVS-SEAF-CM-SC22603-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e27d20ea-06aa-409b-8048-4ffa1415494e",
+    "expediente": "CM-556-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "777c6e8c-6e38-4ae7-89d6-c6caf96f29e4",
+    "expediente": "INPREMA-LPN-GC-002-2026",
+    "label": "core"
+   },
+   {
+    "processId": "7d172164-f0ea-4df5-85ac-b23745b34d68",
+    "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "39ad6bbd-15ab-4e8f-93e2-3c112e4f5e0e",
+    "expediente": "LPR-SESAL-HE-02-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "cea382cf-36aa-449e-a1bb-b343270a543f",
+    "expediente": "CM-SC035-BCH-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "220a4b12-623d-4768-9d56-ea9a01f0eed0",
+    "expediente": "ENEE-GG-CPC-003-2026-2",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f84f89b9-740f-43fe-be2f-58f390cd685e",
+    "expediente": "CM-077-SAR-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "9ad803b6-104c-4ed1-a794-94b56cb35a97",
+    "expediente": "LPN-SIT-041-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "817a9389-9835-48f1-bc0c-932f59c1a697",
+    "expediente": "CPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "51895ce6-103a-4f57-b3bc-2bb8e7318ab4",
+    "expediente": "LPN-SIT-040-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "75b132ca-02b7-48ea-a7de-edd05013c65c",
+    "expediente": "LP-IHCIETI-FC-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8a47801f-eaa4-4765-b276-8f8198571baa",
+    "expediente": "IHT-CM-GC-2026-264",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e8ec6ad1-76e0-4d43-b0bd-c2c9b1aeb15c",
+    "expediente": "CM-GC-DIDADPOL-077-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "09f1c410-a181-409c-a8ca-cc8530bdbef3",
+    "expediente": "UNAH-SEAF-EU-CM-SC22467-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "67cfe8ca-ad3b-4ec7-aadc-6a137c1722cd",
+    "expediente": "CD-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e6af95e0-817b-41a1-8cf5-fa20ee62c87d",
+    "expediente": "LP-008-SE-DIGECEBI-DGA-OBRA-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "047ca9fe-f7e6-4d2d-895f-ee935aa356e7",
+    "expediente": "CM-011-2026RDSB16",
+    "label": "adjacent"
+   },
+   {
+    "processId": "a7e448b4-1736-444f-84d4-f21d4bb756c7",
+    "expediente": "CPN-SIT-053-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e6f5873e-596d-47fd-ba11-fc34d277b355",
+    "expediente": "SIT-GA-187-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "306ab264-2c99-4dd0-a328-1ffe07366e08",
+    "expediente": "HGSI-LP-05-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "58c4b55d-353d-4a6a-9779-c5120de43779",
+    "expediente": "UNACIFOR-CM-GC-DEN-087-SEPTIEMBRE-76-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "50096f29-b1ce-4a10-bd32-12178bf1f5f0",
+    "expediente": "LP-003-RDSLP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a5ee06c3-aba7-47f5-a4e8-21f664872bc6",
+    "expediente": "LPN-SDE-004-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "11e6f531-32c4-4ce3-8ee4-cf5444f1aa3b",
+    "expediente": "CM-222-IP-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "02b9a699-d051-41c1-8a58-19637c3bbfdd",
+    "expediente": "LPN-UPNFM-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "57d758e1-e60e-4fe7-a1d2-43f63c96eb2e",
+    "expediente": "AMPC-GAF-CM-0709-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4a74cca1-55be-4e34-ba02-3c9c352a0e2c",
+    "expediente": "CNPV-03-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e1ae3800-7606-4c60-9117-9e3eb4888947",
+    "expediente": "UMAPS-LPR-01-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4d6e77c3-a166-4e83-bb35-1b410ec6186e",
+    "expediente": "CM-044-CRSRC-SC18467-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "93f7f6d1-d74f-441f-a5aa-996d16ae8011",
+    "expediente": "PJ-CM-GC-2026-0787",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "11a93aee-502b-4956-ab3b-4f075e74406b",
+    "expediente": "IHT-CDI-GC-2026-24",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "63c18f6c-391e-4c00-92fd-0e8969b0daa8",
+    "expediente": "LPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5e09b4e6-a23e-4707-b9f3-4372d1ade1d6",
+    "expediente": "CM-564-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "05cb111a-74cc-4e21-b5eb-15eaa9a2db88",
+    "expediente": "CM-566-AMLE-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "bd4ad401-9477-445f-8c75-bf90651f33c4",
+    "expediente": "LPública No.27-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "134bc01c-a6ed-46be-a059-23a9d39b4234",
+    "expediente": "CP-SIT-012-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7809fc98-00f8-477e-a251-2ece22bb6c43",
+    "expediente": "CM-0296-ECGE-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "e7158d68-d8fc-4ed1-926e-9909d81ae374",
+    "expediente": "LPN-SAR-014-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "e0f7b3cf-6244-4e2b-98f6-fb42dcb83a2c",
+    "expediente": "004-LP-2026-AMCAT",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "12c71c2f-f64a-4e44-add7-0a90c4f5a9d2",
+    "expediente": "ENEE-CM-GH-50003504-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "36259ec2-ded5-476a-a2ea-5a310d4e1d5a",
+    "expediente": "LPR-MUNI-DUYURE-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a0e8a394-fddf-4cab-8db2-40e7ffb53d0f",
+    "expediente": "CPN-SIT-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f85289db-e3ba-49f7-a995-a1ed03ddb3b0",
+    "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "d9bf9a83-aa55-418d-8e13-06b86da1eb1e",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-034",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8a5f0cd8-f3e9-4569-8cd3-2bd9f73786e3",
+    "expediente": "LPN-008-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "c4536efc-1429-487d-bc54-7462640c9f5f",
+    "expediente": "CPN-SIT-051-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f6c887ad-785e-4871-92c9-c07c2e9b41dd",
+    "expediente": "CPN-SIT-045-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "694b0d91-7c98-4299-9f08-2b710811e76f",
+    "expediente": "2000001412-IHSS-SPS",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "405d7f38-c6bf-4b86-9f97-824b8e4779de",
+    "expediente": "LPN-UAFCE-EUROSAN-008-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "80e191d7-c486-49ef-afa6-9270eccf4c5b",
+    "expediente": "LP-010-2026-HSL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "85a45124-5597-4f4b-bde0-e775e1454aa0",
+    "expediente": "CNPV-02-LPN-B-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e093c996-76dd-4aed-bd18-ccf1db3a4dea",
+    "expediente": "LPN-MPC-GT-10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7261f1ae-f947-4b91-8b46-4fda64727a37",
+    "expediente": "CM-5445-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c6bda7da-e511-4e96-a699-89c83f6b4e52",
+    "expediente": "CM-GA-2026-ADMON-089-318",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5dd912b7-23b3-4ec2-b012-bd42d081c5dd",
+    "expediente": "LPN-UAFCE-EUROSAN-005-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2b6fd782-cb52-485b-af2e-4cd36c7e114c",
+    "expediente": "CPN-SIT-041-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4998fc27-9f4e-4982-a84e-e3b33cef44ae",
+    "expediente": "CM-CREE- 149-2026 MANTENIMIENTO VEHICULO",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "01c1a434-23be-4118-8e9a-ce2dee85f14f",
+    "expediente": "CPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff69d01-7d44-4f9c-a870-d7a9968a1178",
+    "expediente": "UNAH-RECTORIA-025-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "11078b21-a4a5-4be1-9533-152d393f71cf",
+    "expediente": "ENEE-CM-GG-50003479-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c503ec25-a6c9-4d37-a234-cf0c4338cd41",
+    "expediente": "LP-IHCIETI-FC-007-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "f3646e9e-584c-4627-b3fe-f8265aa72211",
+    "expediente": "HO-L1227-P00192",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7a717814-328b-4b05-b184-d54a1943c46b",
+    "expediente": "LPN-MSPS-GS-05-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9d80ac1d-4a3d-41ef-bb0d-0621181a60b4",
+    "expediente": "SEN-LPriN-003-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "cd025a3a-722b-4786-99a4-81694b5648dd",
+    "expediente": "CPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3ec0a9fc-84d7-4614-ab59-c0e09ba7b671",
+    "expediente": "UNAH-SEAF-LPN-011-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "238249ac-785a-46a5-b7e1-dc335bf9d516",
+    "expediente": "CM-015-DDE02-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "90f4b30f-8d65-4ef0-8407-5a934db1bf6a",
+    "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0cbde3d2-9ad4-4f05-a30f-8d148c1706c0",
+    "expediente": "SEFIN-LPN-GC-008-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "1c14ed87-414b-4614-b24f-250ef9b1bc5f",
+    "expediente": "LPN-001-CONSUCOOP-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "e11aacaf-5174-4971-94b5-a0b6d0fa2a8b",
+    "expediente": "CM-559-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "25e26252-d80d-4c1e-887b-66af696b0f36",
+    "expediente": "AMPC-GAF-CM-0712-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e9e772eb-49ed-45b5-9a4b-46ed4039d359",
+    "expediente": "HO-L1202-P00133",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dedc5034-373b-495d-a885-485c135e2280",
+    "expediente": "CM-557-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0c11f4a7-f14e-4ba9-9eea-fbab6eb809af",
+    "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b9d611ab-900e-4f00-bec3-6229bbb59a5c",
+    "expediente": "PJ-CM-GC-2026-0771",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ffb4ab4f-7b24-4f81-8dd3-77a20b9a8af2",
+    "expediente": "SANAA-RA-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "05e858db-b5e2-412f-aed4-9f2e591b1a68",
+    "expediente": "CM-GC-DIDAPDOL-075-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "ad6b1433-2ccb-4f39-9fed-15b14a240b55",
+    "expediente": "AMPC-GAF-OM-087-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92c0062b-3665-44d3-9855-7dde6c9ec398",
+    "expediente": "LPN-MPC-GT-11-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "55c00f77-6297-4283-8e33-b1993b8f6273",
+    "expediente": "LPN-019-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "40ea1879-35fe-4cfe-bb27-dc48ed896865",
+    "expediente": "1224-RDSLP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "228fa2ae-0cb7-4c3a-abce-c058933eee43",
+    "expediente": "CM-225-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "244abcb0-d563-4aa6-86ee-33ead09b8d70",
+    "expediente": "CD-SESAL-HE-11-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fe79409a-5db3-407a-9e07-dba231135d44",
+    "expediente": "LPN No. TSC-002-2026-GAF",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6e45762a-e1d5-4fb2-8926-eee48ba8efe7",
+    "expediente": "LIC. PRIV. 02-2026 MOBILIARIO PRESIDENCIA",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bcf6b38b-3e0a-4022-b388-f0c826c56d38",
+    "expediente": "AMPC-GAF-CM-0711-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "fd8a63bd-202d-4f8a-ba3b-21d739ac5321",
+    "expediente": "LPN-06-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "613b6b18-0129-41b2-9b78-ed83b45e7c38",
+    "expediente": "ENEE-CM-DIESEL-LA-2134-IX-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b97fe9af-e70d-4f51-8507-6affebe1a37f",
+    "expediente": "LP-IHCIETI-FC-003-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e68dbdfb-dfd9-45ba-a762-6745985ace88",
+    "expediente": "LP-SDE-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ed270a86-2065-4ac6-80ac-e5c5dd38d2a3",
+    "expediente": "CP-SETRASS-PAILH-22-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff2f81a-f719-4139-85ab-37bf3a41263e",
+    "expediente": "LP-IHCIETI-FC-008-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "6efb6e41-eab7-479f-ae69-4d12b21275a8",
+    "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "027a2c2c-46ac-4705-ad85-13bba885aca2",
+    "expediente": "CPN-SIT-037-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6fc54a7e-e06d-4f6b-bd76-c40a31320ea3",
+    "expediente": "CPN-SIT-046-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "300d04d4-83d0-4342-acc3-0bc336d561a7",
+    "expediente": "LP-003-2026-RSN4-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1acf0847-5ccf-4ecf-80b3-9e3748ca2112",
+    "expediente": "SEN-LPriN-004-2026",
+    "label": "core",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "c66ca7ae-4139-4f19-9faf-f61342a008a5",
+    "expediente": "UNAH-SEAPI-CM-GC-27-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da39a1aa-d69b-448b-8e62-003f7d072b63",
+    "expediente": "PGR-CM-GC-2026-353",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "fc415982-b89b-45a8-9b59-2bd0041db4fd",
+    "expediente": "LPUN-AMR-006-2026",
+    "label": "core"
+   },
+   {
+    "processId": "bbd8ab1a-252f-4ee5-b36d-ada71c08922c",
+    "expediente": "AMPC-GAF-CM-0706-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "17d9edf2-a326-494e-8bbd-9225f91538da",
+    "expediente": "SESAL-CM-GC-0111-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7916211b-b064-47c0-83af-b89421d12c0e",
+    "expediente": "BANADESA-2026-539",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "482eaf74-6f8c-4f3b-9840-62c123b031ba",
+    "expediente": "LPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5fd27a4e-0fad-450e-ac9c-dd424c3a50ad",
+    "expediente": "CM-015-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0e7ae5c8-3842-44d8-a685-52a25081e5a4",
+    "expediente": "CM-AMD-CS-1175-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bdb572eb-86c6-4a73-b4c9-de176aa1ee7b",
+    "expediente": "INJUPEMP-CM-GC-2026-585",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a04aa1a-cf36-445f-a507-3f495ef0483e",
+    "expediente": "CM-DA-2026-039",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cc36a72b-ebf2-456f-879b-524400c73275",
+    "expediente": "HO-L1202-P00244",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "73540002-256e-4817-ab8d-1385859d4b91",
+    "expediente": "PJSPS-CM-GC-2026-0128",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "bb4ccd55-e0c0-4788-8ab9-68b3f198c72f",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "4096bad6-75e3-41a4-80db-3eefe322423d",
+    "expediente": "CM-GC-IHMA-2026-080",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43e0c15b-250c-4bfa-be6a-01e228123c28",
+    "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf4ea7bb-c835-4c45-96b2-101698031c8e",
+    "expediente": "LP-08-2026-HGS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cdd84f38-e33a-40ef-9850-8ae174e39afa",
+    "expediente": "MCOM-009-2026-EMC",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0351cca6-d77f-4fed-9487-136ee5dc9bc5",
+    "expediente": "LPN-SIT-046-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8cb0481e-8907-43a9-b84a-c95f05a8cb0b",
+    "expediente": "PGR-CM-GC-2026-351",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0b0cb9bd-dd2c-4e00-ab3d-b8e2c3255b33",
+    "expediente": "LPN-MSPS-GDS-06-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "63923511-9dbd-4ad9-a32d-5f971dbd3aa9",
+    "expediente": "SAG-COMRURAL-III-SCI-41-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7e1668b7-45d9-4c06-ae10-9f0aa4f9d744",
+    "expediente": "AMPC-GAF-OM-084-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "a633f306-4ad1-4bbe-abd5-403f0d2040d1",
+    "expediente": "UNAH-RECTORIA-028-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "601eb283-9bf7-466f-a5a1-a9156589a792",
+    "expediente": "UNAH-SEAF-FCS-CM-SC22558-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "53425200-e692-44c4-89d0-0f130fe5f887",
+    "expediente": "CM-546-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd26ffbe-ac60-41d3-a032-e30caac8b04f",
+    "expediente": "IHT-CM-GC-2026-204",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "741417f1-b419-42da-ae71-bcc74a979b1b",
+    "expediente": "IHT-LPN-GC-2026-02",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "508c340a-0a1e-4dd6-951f-676a47df13b7",
+    "expediente": "LPN-007-2026-AMCAT",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "63c228e0-8951-4db6-9ab9-6a4eff6f9e78",
+    "expediente": "CPN-SIT-043-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1f1453d6-3b94-43bd-b06a-7ad61d57b728",
+    "expediente": "ENEE-CM-GG-40002460-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "80c34757-233f-43fb-b9a2-45ed417b72a0",
+    "expediente": "HGSI-LP-06-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0b0fe8d6-0a06-4640-9786-163bd770dc5e",
+    "expediente": "UNAH-SEAPI-CM-GV-28-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "794eb060-b850-453f-abad-bd3456fec6ab",
+    "expediente": "LPN-02-PANI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d35435ee-f82a-4cc7-b862-9a4a155c1bf6",
+    "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "66c0f83a-f4c2-46cf-b73a-5201ccb39d2a",
+    "expediente": "BANADESA-2026-537",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "8b471e53-7622-4cd3-8d57-616d67d9a138",
+    "expediente": "LPN-04-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "106517e1-bdf6-4eff-9a33-e337aab9dd70",
+    "expediente": "LPN-UPNFM-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5527b6aa-d3a2-4d38-ae28-86aeb4d19331",
+    "expediente": "LPN-SIT-047-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f5ac7ec6-49a0-4d99-942d-6b0fb3f4bfea",
+    "expediente": "LP-IHCIETI-FC-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "62f04e85-dc2c-4a03-b949-9e0d46552e1a",
+    "expediente": "LPN-003-BANADESA-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "406b2375-f07d-424a-8e22-f9bd4ef367c0",
+    "expediente": "ENEE-CM-GH-10005213-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ceea6d3a-57eb-43ff-ab85-95aff1d60a04",
+    "expediente": "CPN-SIT-040-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7ac1603a-773f-44a4-b24a-7489e5fa2c5e",
+    "expediente": "UNAH-SEAF-LPN-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e82eb04b-e13d-4bef-8b17-fb254c3abbe7",
+    "expediente": "CM-SDE-194-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cb13a90f-04f6-4f6d-b792-39e23294ae4f",
+    "expediente": "LPN-SAR-013-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "13fadb88-e8c9-4844-b47e-3bdcf8a4c7bd",
+    "expediente": "CM-558-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0480a604-b192-4419-9a78-288caa2c0f97",
+    "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4665d7fd-44b3-4659-aea0-b7fcb0df0359",
+    "expediente": "LPN-020-2026-SDN",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "b2a3355c-c30f-49c6-8db3-3f7fd91200c0",
+    "expediente": "CCPF-TM-007-UNAH-FCE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d487bcb-f84e-435c-ba9d-f4c2bef60200",
+    "expediente": "UNAH-RECTORIA-023A-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "f51149e3-b580-4d72-bffb-ad010a1f211f",
+    "expediente": "CM-080-SAR-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "762796ba-e5fb-46eb-bde5-9afe37243929",
+    "expediente": "LPN-SIT-054-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d26a7960-af38-47d5-861f-c94582ee5e36",
+    "expediente": "LP No. 01-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd70c51f-8c4a-417f-bebd-24f9eef8f69e",
+    "expediente": "SIT-GA-176-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   }
+  ],
+  "laboratorio": [
+   {
+    "processId": "da39a1aa-d69b-448b-8e62-003f7d072b63",
+    "expediente": "PGR-CM-GC-2026-353",
+    "label": "unsure",
+    "note": "There is not enough evidence."
+   },
+   {
+    "processId": "d783796f-9dd3-4ca8-9611-dec9043e80f9",
+    "expediente": "CM-CONEANFO-034-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0a10a92-5e79-4f17-b29a-af364784f80e",
+    "expediente": "DICTA-CM-GC-2026-089",
+    "label": "core"
+   },
+   {
+    "processId": "cd865a68-c261-43d3-ae1f-29df39f0ef2c",
+    "expediente": "51-2026",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "fc415982-b89b-45a8-9b59-2bd0041db4fd",
+    "expediente": "LPUN-AMR-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a22ff43-75ca-43f9-a334-ae88fa1010fb",
+    "expediente": "LPuNBS-MCH-005-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3236ad22-cc61-48bf-b9d2-9ed6b7e5571a",
+    "expediente": "CM-014-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d5da0739-d217-497d-adb9-4b20de24da16",
+    "expediente": "CM-SDE-196-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f077d466-730f-484d-9277-809588c3b408",
+    "expediente": "SIT-GA-185-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "090146ed-57ed-434e-b5d6-8e3eeca25354",
+    "expediente": "UNAH-SEAF-PAV-CM-SC22557-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "51895ce6-103a-4f57-b3bc-2bb8e7318ab4",
+    "expediente": "LPN-SIT-040-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5fd27a4e-0fad-450e-ac9c-dd424c3a50ad",
+    "expediente": "CM-015-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "818feb4e-9912-41b2-84f7-1fd36c0bf54f",
+    "expediente": "LPN 10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "26e3df87-194b-4ad6-acb5-c933a3ef5004",
+    "expediente": "33-CM-029-2026",
+    "label": "unsure",
+    "note": "There is not enough evidence."
+   },
+   {
+    "processId": "e7d5b311-18fa-4256-9f43-12addca49150",
+    "expediente": "CD-035-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8b712dc9-eb4a-4dba-b19a-b76c2b964722",
+    "expediente": "50-2026 FUNDANIQUEM-CEHNIQ",
+    "label": "adjacent"
+   },
+   {
+    "processId": "9b6ce8cc-5378-4ac8-a20b-b769345d00b9",
+    "expediente": "UNAH-SEAF-CEINSAG-CM-SC22468-2026",
+    "label": "core",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0351cca6-d77f-4fed-9487-136ee5dc9bc5",
+    "expediente": "LPN-SIT-046-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "244abcb0-d563-4aa6-86ee-33ead09b8d70",
+    "expediente": "CD-SESAL-HE-11-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e1f5499f-974e-41dd-98fd-198ccbb3054e",
+    "expediente": "GC-LPN-HBCBH-TEG-CENTRO DE DIAGNOSTICO-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c503ec25-a6c9-4d37-a234-cf0c4338cd41",
+    "expediente": "LP-IHCIETI-FC-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "39ad6bbd-15ab-4e8f-93e2-3c112e4f5e0e",
+    "expediente": "LPR-SESAL-HE-02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e7ee930b-6a15-4fc5-9934-99e67c68d364",
+    "expediente": "UNAH-SEAF-SDRYT-CM-SC22555-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff69d01-7d44-4f9c-a870-d7a9968a1178",
+    "expediente": "UNAH-RECTORIA-025-2026",
+    "label": "unsure",
+    "note": "There is not enough evidence."
+   },
+   {
+    "processId": "08e86f86-b545-42ae-8495-5c455a3886f6",
+    "expediente": "ENEE-CM-GG-50003445-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf43804b-bd57-4257-accb-1046d3737394",
+    "expediente": "SESAL-CM-GC-0110-2026",
+    "label": "core"
+   },
+   {
+    "processId": "1e6df45c-54c3-4f32-ad33-265c5b9b6958",
+    "expediente": "CM-AMD-UTM-080-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d487bcb-f84e-435c-ba9d-f4c2bef60200",
+    "expediente": "UNAH-RECTORIA-023A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "e1ae3800-7606-4c60-9117-9e3eb4888947",
+    "expediente": "UMAPS-LPR-01-2026",
+    "label": "not_relevant",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "c4536efc-1429-487d-bc54-7462640c9f5f",
+    "expediente": "CPN-SIT-051-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f18cce3a-b780-4089-9a94-9fbd26035c16",
+    "expediente": "CD-01-2026-HPL",
+    "label": "core"
+   },
+   {
+    "processId": "6214ac45-2b91-4878-98ca-af60b44a7510",
+    "expediente": "ENEE-CM-GG-50003489-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "97c5f203-2289-4699-a1c6-8a41710a263f",
+    "expediente": "SAG-COMRURAL-III-SDO-O-37-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3bd6b612-6d48-4468-96f4-a613e3015182",
+    "expediente": "LPN-SIT-043-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "300d04d4-83d0-4342-acc3-0bc336d561a7",
+    "expediente": "LP-003-2026-RSN4-SESAL",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "a0fce4fa-b6be-4ce1-9297-0fb1f57ad190",
+    "expediente": "CM-342-2026-HGSF-SESAL",
+    "label": "unsure",
+    "note": "There is not enough evidence."
+   },
+   {
+    "processId": "964fff28-f81c-4493-80d7-2a042b43974c",
+    "expediente": "LP-002-2026-RSN4-SESAL",
+    "label": "core"
+   },
+   {
+    "processId": "9374b579-50eb-4044-be2d-976206e53694",
+    "expediente": "CM-AMD-CS-1173-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "99fe2d40-cce3-4675-b238-73c36a3d3f00",
+    "expediente": "Licitacion Privada 02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "94f8e1f9-759d-400f-bde1-ce0d0ffe5e9f",
+    "expediente": "INPREMA-1204-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3562af82-57b5-422e-a360-3ef027471dd3",
+    "expediente": "HOP6-ENEE-10-LPN-S",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0e0be778-051e-4433-8cb5-b8c83dd5783d",
+    "expediente": "IHT-CM-GC-2026-248",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7ac1603a-773f-44a4-b24a-7489e5fa2c5e",
+    "expediente": "UNAH-SEAF-LPN-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19e8ace7-edfe-4343-8ebe-dfae632b6d26",
+    "expediente": "UNAH-SEAPI-GACETA-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "27bb6ec1-81f1-4d13-9d5b-24aa4c8a077e",
+    "expediente": "CCPF-TM-008-UNAH-FCE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "96574578-95dd-4b1b-b363-646151f70abc",
+    "expediente": "CM-GC-IHMA-2026-077",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "744c4638-5d07-4ef0-911a-41a267981f32",
+    "expediente": "LPN-018-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "efa6031e-6f73-47af-97da-08d741d9238d",
+    "expediente": "SANAA-UC-37-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e9a837d5-bbbe-4124-9e6c-715647406c79",
+    "expediente": "LPN-UPNFM-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "98b654ca-b800-48b5-abb0-372c0a38d780",
+    "expediente": "LPV-INM-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "decc270e-2e8f-464e-8dd3-2011e346defc",
+    "expediente": "ENP-LPRIVN-GA-UDO-02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da987689-b090-4ef8-a917-94706cb30818",
+    "expediente": "LP-002-RDSN3-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "d919f943-9e9f-4985-85e9-6bbe57bdde56",
+    "expediente": "LPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "65dae6e1-b718-4936-a602-c2f04827098e",
+    "expediente": "UE-065-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "fd8a63bd-202d-4f8a-ba3b-21d739ac5321",
+    "expediente": "LPN-06-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "784bafc1-323e-4758-bf42-b48a699117ce",
+    "expediente": "LP-002-AHAC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92c0062b-3665-44d3-9855-7dde6c9ec398",
+    "expediente": "LPN-MPC-GT-11-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11e6f531-32c4-4ce3-8ee4-cf5444f1aa3b",
+    "expediente": "CM-222-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5d8ea270-39ed-48cc-885e-6feb677b1017",
+    "expediente": "ENEE-CM-GG-10005209-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6fc54a7e-e06d-4f6b-bd76-c40a31320ea3",
+    "expediente": "CPN-SIT-046-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7916211b-b064-47c0-83af-b89421d12c0e",
+    "expediente": "BANADESA-2026-539",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "449143a5-b2e3-4665-8af0-b9452e5b85ba",
+    "expediente": "LPN-SIT-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "17d9edf2-a326-494e-8bbd-9225f91538da",
+    "expediente": "SESAL-CM-GC-0111-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4caed57f-af4a-4b4f-a14f-d2bf81f060ab",
+    "expediente": "UNAH-RECTORIA-021a-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "80e191d7-c486-49ef-afa6-9270eccf4c5b",
+    "expediente": "LP-010-2026-HSL",
+    "label": "adjacent"
+   },
+   {
+    "processId": "80328e3f-2354-4e74-ae52-b87418bc28a1",
+    "expediente": "CM-GC-DIDADPOL-078-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bdfbe11b-fe38-46f0-a5cc-26c9ddcd3f25",
+    "expediente": "38-22-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4388e591-2837-412d-8fad-63090a89814f",
+    "expediente": "UE-64-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "c584f831-f09a-4ab4-b06d-2143cd54ad96",
+    "expediente": "OC-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd4ad401-9477-445f-8c75-bf90651f33c4",
+    "expediente": "LPública No.27-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "603fc8e0-01bd-45cc-98de-665c8f85d47a",
+    "expediente": "CM-229-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "482eaf74-6f8c-4f3b-9840-62c123b031ba",
+    "expediente": "LPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e3c4cac-4b28-4fbf-94ed-01950540517d",
+    "expediente": "DICTA-CM-GC-2026-090",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6f4721dc-9f81-46aa-bae8-1658435d246f",
+    "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9d80ac1d-4a3d-41ef-bb0d-0621181a60b4",
+    "expediente": "SEN-LPriN-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "84b11700-dfcd-41a8-9f5d-03dcbcce5cb5",
+    "expediente": "CM-GC-IHMA-2026-076",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "a390c8b8-ceb5-44b2-95de-5c8c1a4a219d",
+    "expediente": "ENEE-CM-GG-50003487-2026.",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19c2efbd-4665-4eae-b40c-d7996d0e431e",
+    "expediente": "ENEE-CM-GG-10005189-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2f00b96f-5409-49ad-a0ec-93d2d047e7b5",
+    "expediente": "COT121711-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9ce718a8-57d8-41de-9cfd-9d52d809b720",
+    "expediente": "CM 39-019-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "53d13d91-d5b2-44f3-87cc-6d13448eafce",
+    "expediente": "AMPC-GAF-OM-083-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "6a0fff1c-8be2-4062-b630-418bf5bb5aba",
+    "expediente": "3000012016-IHSS-SPS",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "57c48bfd-9a49-4a14-b900-85ccbdefb57a",
+    "expediente": "CM-034-2026-HJMG",
+    "label": "adjacent",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "cea382cf-36aa-449e-a1bb-b343270a543f",
+    "expediente": "CM-SC035-BCH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "49cda353-488c-4482-93cf-338f57718598",
+    "expediente": "ENP-LPRIVN-GA-UADQ-12-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c0f7b99d-470d-432a-8845-49a4805e5983",
+    "expediente": "6000001515-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8a5f0cd8-f3e9-4569-8cd3-2bd9f73786e3",
+    "expediente": "LPN-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5de8822b-3cf5-4dd6-8ff7-300c90ef47f0",
+    "expediente": "CPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d26a7960-af38-47d5-861f-c94582ee5e36",
+    "expediente": "LP No. 01-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "72b2b994-44ce-437a-a434-4be44836b73f",
+    "expediente": "PJSPS-CM-GC-2026-0126",
+    "label": "unsure"
+   },
+   {
+    "processId": "a8d50e90-37fc-4e68-a6f2-ec9979e602aa",
+    "expediente": "HPSR-019-2026-CM",
+    "label": "unsure"
+   },
+   {
+    "processId": "047ca9fe-f7e6-4d2d-895f-ee935aa356e7",
+    "expediente": "CM-011-2026RDSB16",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d68f4415-3d82-4a72-81da-94c82da17f81",
+    "expediente": "LPN-SIT-053-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "15901b20-2ef3-49ed-82d8-c278e611bf11",
+    "expediente": "UNAH-SEAF-DEP-CM-SC22573-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "75a5ca04-e0a0-4e75-b209-55f956cdd985",
+    "expediente": "AMPC-GAF-CM-0707-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "ffb4ab4f-7b24-4f81-8dd3-77a20b9a8af2",
+    "expediente": "SANAA-RA-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a7e949a9-5f4e-4d69-87fd-9b4a84e84ad7",
+    "expediente": "No. UNACIFOR-LP-GC-UE02-2026-01",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "306d70be-3a1f-4284-adf7-66a704bfcd22",
+    "expediente": "UNAH-DSA-FE-CM-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "694b0d91-7c98-4299-9f08-2b710811e76f",
+    "expediente": "2000001412-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "25d00e3f-ae6c-4180-b75b-77af2f728fc6",
+    "expediente": "ARSA-CM-GC-2026-136",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ced24052-ce5f-4486-9c7f-e4735c3dedf1",
+    "expediente": "IPM-LPN-GC-2026-016",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1e377175-a3b2-4db2-987b-cd5505adc296",
+    "expediente": "ENEE-CM-GG-50003491-2026",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "de15a3d1-57cb-417b-b242-c85f66319326",
+    "expediente": "CM 39-016-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "3ec0a9fc-84d7-4614-ab59-c0e09ba7b671",
+    "expediente": "UNAH-SEAF-LPN-011-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a3196cc7-822e-4fad-951c-7402e085360d",
+    "expediente": "CM-550-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c655ef9e-7576-45e4-a856-378c5120e02c",
+    "expediente": "LPN-017-2026-SDN",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "3a7f711d-121c-4381-8932-ac4da972a726",
+    "expediente": "CM-ICF-SGM-069-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "810b6a21-3bd5-400b-8c4e-2e3926660fb9",
+    "expediente": "LPública No.26-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0b0cb9bd-dd2c-4e00-ab3d-b8e2c3255b33",
+    "expediente": "LPN-MSPS-GDS-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b56451a0-5298-42ba-9fcd-c7881d01fbfb",
+    "expediente": "CM 39-017-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "f5ac7ec6-49a0-4d99-942d-6b0fb3f4bfea",
+    "expediente": "LP-IHCIETI-FC-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7f4a3e67-c078-44e3-bb8d-86f53ed2fe43",
+    "expediente": "SESAL-CM-GC-0109-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c66ca7ae-4139-4f19-9faf-f61342a008a5",
+    "expediente": "UNAH-SEAPI-CM-GC-27-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1acf0847-5ccf-4ecf-80b3-9e3748ca2112",
+    "expediente": "SEN-LPriN-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d172164-f0ea-4df5-85ac-b23745b34d68",
+    "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "208341d4-0a41-41b8-83f9-34a0e9f20c9d",
+    "expediente": "UNAH-SEAF-SDRYT-CM-SC22497-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf3f4deb-c6ec-42e0-93b3-8a9434adbeca",
+    "expediente": "INPREMA-1200-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cdd84f38-e33a-40ef-9850-8ae174e39afa",
+    "expediente": "MCOM-009-2026-EMC",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "22fd1d47-e827-45f9-9488-7ddf84034c41",
+    "expediente": "CM-237-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "95ba3be7-869a-4d57-a132-a783773b01a9",
+    "expediente": "HGSI-LP-03-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "f6c887ad-785e-4871-92c9-c07c2e9b41dd",
+    "expediente": "CPN-SIT-045-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4096bad6-75e3-41a4-80db-3eefe322423d",
+    "expediente": "CM-GC-IHMA-2026-080",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "884282a5-4ae6-431a-b20c-735b901f5807",
+    "expediente": "HN-SESAL-569324-GO-RFB",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "5b6fa522-064b-46b2-8534-2bc31c356516",
+    "expediente": "UNAH-RECTORIA-024-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "6e871cb8-6c17-42e0-bf42-eddc71dc766c",
+    "expediente": "LP-001-RDSN3-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "f00c2d15-5dc0-4f6d-873a-0c6a43f75118",
+    "expediente": "38-23-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a7d4f6a6-de84-4df2-a560-cd1304eb17c9",
+    "expediente": "HGSI-LP-02-2026",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "11ed7719-4ce0-4705-bfea-39b27e3808b0",
+    "expediente": "IPM-LPN-GC-2026-015",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "40ea1879-35fe-4cfe-bb27-dc48ed896865",
+    "expediente": "1224-RDSLP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "52dbb98f-4e92-4468-9be2-f49be4329d46",
+    "expediente": "CM-036-2026-HJMG",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6efb6e41-eab7-479f-ae69-4d12b21275a8",
+    "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "09ca2c8f-0320-4bbc-985e-95d6a1691c73",
+    "expediente": "CM-SDE-195-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a633f306-4ad1-4bbe-abd5-403f0d2040d1",
+    "expediente": "UNAH-RECTORIA-028-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "b2f16170-b0f4-44b0-9455-315be9f04aa3",
+    "expediente": "SETRASS-CM-UE008-2026-001",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ceea6d3a-57eb-43ff-ab85-95aff1d60a04",
+    "expediente": "CPN-SIT-040-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0149641a-a06a-4e57-9a7f-5746ed8050a1",
+    "expediente": "HO-L1202-P00243",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6831b556-e08c-412b-a4bb-d6ce5fb39518",
+    "expediente": "AMPC-GAF-CM-0708-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "de2ea5d2-c79e-4546-9b97-a7564f300128",
+    "expediente": "33-LP-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "134bc01c-a6ed-46be-a059-23a9d39b4234",
+    "expediente": "CP-SIT-012-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "570decb1-a517-4f07-9d9e-24e591d1c625",
+    "expediente": "ENP-CM-391-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da27df2b-c520-47a6-a945-bd5cad4e680d",
+    "expediente": "SENASA-CM-GC-2026-007",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e5790365-8f84-48c4-8960-e495cd5da431",
+    "expediente": "LP-10-2026-HGS",
+    "label": "core"
+   },
+   {
+    "processId": "706b346e-389f-4a1d-be39-62fe1b393789",
+    "expediente": "49-2026 FUNDANIQUEM-CEHNIQ",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a7e448b4-1736-444f-84d4-f21d4bb756c7",
+    "expediente": "CPN-SIT-053-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d2b38877-8ba8-4eca-a658-4660c90cf74d",
+    "expediente": "CD 001-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "09f1c410-a181-409c-a8ca-cc8530bdbef3",
+    "expediente": "UNAH-SEAF-EU-CM-SC22467-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b2ec270d-527e-4daa-9ea8-183e50f000d0",
+    "expediente": "CM-554-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "62c7bc48-e592-40d6-8429-8d85c67d6347",
+    "expediente": "3000012014-IHSS-SPS",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "fe8f4cd0-e720-4025-8424-52603caae96a",
+    "expediente": "LPN-MPC-GPYD-02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bbd8ab1a-252f-4ee5-b36d-ada71c08922c",
+    "expediente": "AMPC-GAF-CM-0706-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4a74cca1-55be-4e34-ba02-3c9c352a0e2c",
+    "expediente": "CNPV-03-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "37fb7e1f-478c-47b4-996c-6a88ed2a81ec",
+    "expediente": "LPN 09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "817f497d-4960-47e4-9411-18d8c32acac3",
+    "expediente": "ENEE-CM-GG-30005225-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c77720b8-b501-434d-b748-ab23bd2c5632",
+    "expediente": "CMO-009-OBRA-DIGECEBI-DGA-SE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ce928dec-e344-401f-b2e1-8da10ef80800",
+    "expediente": "CM-030-2026-HT",
+    "label": "adjacent"
+   },
+   {
+    "processId": "020626cf-8e63-4013-8275-922bb3d22548",
+    "expediente": "SETRASS-CM-GC-2026-061",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8ac47ed7-dc33-435b-bca0-0f2be9a0feda",
+    "expediente": "ENEE-UCP-BID-CP-SNC-HO-L1186-P00045",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c76f146f-3a27-431d-94f0-64e7d303ff4b",
+    "expediente": "AMPC-GAF-OM-086-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "496cba89-d534-45de-b5d1-a6edb0bb77f3",
+    "expediente": "UNAH-SEAF-DES-CM-SC22537-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1a40a969-1ba0-464c-b35d-212635a7b6f1",
+    "expediente": "SESAL-RDSY-CM-8-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "6f28a14f-f1db-4cdd-8f9c-9da7fe5e272a",
+    "expediente": "35-29-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0075f2a3-7121-4c51-9767-fbe91aff6650",
+    "expediente": "LPN-MSPS-GS-03-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "b172fbda-0c38-46fb-88da-c856385a140f",
+    "expediente": "LPN-SIT-SUM-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "62a306c4-02b5-4580-912d-a7f7d751888a",
+    "expediente": "CM-548-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cbf523c5-4116-4893-8773-6b657c517540",
+    "expediente": "LP-03-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "405d7f38-c6bf-4b86-9f97-824b8e4779de",
+    "expediente": "LPN-UAFCE-EUROSAN-008-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f3646e9e-584c-4627-b3fe-f8265aa72211",
+    "expediente": "HO-L1227-P00192",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fead14bf-ec51-42de-b54a-9644adaadbb5",
+    "expediente": "BANADESA-2026-540",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f51149e3-b580-4d72-bffb-ad010a1f211f",
+    "expediente": "CM-080-SAR-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "62f04e85-dc2c-4a03-b949-9e0d46552e1a",
+    "expediente": "LPN-003-BANADESA-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e1a6dbdd-e79f-4b3e-9350-22b13f49b1be",
+    "expediente": "LPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "67cfe8ca-ad3b-4ec7-aadc-6a137c1722cd",
+    "expediente": "CD-002-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "0c11f4a7-f14e-4ba9-9eea-fbab6eb809af",
+    "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "c6bda7da-e511-4e96-a699-89c83f6b4e52",
+    "expediente": "CM-GA-2026-ADMON-089-318",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "eaf83f5e-7256-4f5c-b5a2-7d5114f38b13",
+    "expediente": "LP-008-2026-HGSF",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "ae1e740b-b4a0-4ad4-801a-4d9c14c369f1",
+    "expediente": "CD-03-2026-HPL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fdda209-5c46-463e-bb35-321eb7618da6",
+    "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "003ee09e-1fd8-4d0e-8b58-677ef50b675c",
+    "expediente": "LP-CNBS-010-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "630dea17-cbc5-4f06-a96e-30fc1fd903a4",
+    "expediente": "UNAH-RECTORIA-022A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "63c228e0-8951-4db6-9ab9-6a4eff6f9e78",
+    "expediente": "CPN-SIT-043-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "027a2c2c-46ac-4705-ad85-13bba885aca2",
+    "expediente": "CPN-SIT-037-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dc52c87a-43f0-409f-8488-4c1f429ad011",
+    "expediente": "LP-04-2026-RSDI",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a0e8a394-fddf-4cab-8db2-40e7ffb53d0f",
+    "expediente": "CPN-SIT-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "426e9497-d1bb-428d-b8d9-457abbd55906",
+    "expediente": "DICTA-CM-GC-2026-088",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "914f06ae-386a-4986-9d2c-b073fcd15807",
+    "expediente": "LP-005-2026-HO-SESAL",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "226b2c8e-f6db-4393-8393-d6d0c71b3e10",
+    "expediente": "CM-226-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "50096f29-b1ce-4a10-bd32-12178bf1f5f0",
+    "expediente": "LP-003-RDSLP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d35435ee-f82a-4cc7-b862-9a4a155c1bf6",
+    "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "741417f1-b419-42da-ae71-bcc74a979b1b",
+    "expediente": "IHT-LPN-GC-2026-02",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e82eb04b-e13d-4bef-8b17-fb254c3abbe7",
+    "expediente": "CM-SDE-194-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e7bd29cb-d370-4dcd-a34a-1735ac4ac351",
+    "expediente": "LP-02-2026-RSDI",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0855cd8a-5624-490e-8548-308c01f9baee",
+    "expediente": "INHGEOMIN-CI-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e0c02bf-65ae-4c9b-aa5f-6614710dbed5",
+    "expediente": "CM-563-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "01c1a434-23be-4118-8e9a-ce2dee85f14f",
+    "expediente": "CPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a4c01330-fc0d-4dd7-af10-ee16b23de3e0",
+    "expediente": "CM-573-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8e08f860-ebe4-4f9b-a91d-e8f807a00945",
+    "expediente": "CM-T2668-BCH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1af4c77b-6485-4eb3-ba89-532a172bbbfe",
+    "expediente": "LPN-UAFCE-EUROSAN-007-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "009f94e3-177d-4474-a0f2-ecead4280673",
+    "expediente": "CPN-SIT-052-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c3147096-fc3f-400a-ab10-ae3530d552bc",
+    "expediente": "UNAH-RECTORIA-026-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "cd505b7f-ce80-47c1-ac5a-285247438df7",
+    "expediente": "CM-168-BANHPROVI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b9d611ab-900e-4f00-bec3-6229bbb59a5c",
+    "expediente": "PJ-CM-GC-2026-0771",
+    "label": "unsure"
+   },
+   {
+    "processId": "d1ecd37f-2f46-4942-921e-310d4fd2e6cf",
+    "expediente": "UNAH-SEAF-AI-CM-SC22549-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bb4ccd55-e0c0-4788-8ab9-68b3f198c72f",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b02fff42-8d41-411a-8573-1ade288a4653",
+    "expediente": "IHT-CM-GC-2026-273",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f3d6f214-8e62-4f2a-a77e-32c2907aaa35",
+    "expediente": "CM 39-015-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "106517e1-bdf6-4eff-9a33-e337aab9dd70",
+    "expediente": "LPN-UPNFM-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "be2d27e9-1b6e-49b4-81ff-e9cb80460ae7",
+    "expediente": "CM 39-018-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "6aa13f16-710c-4451-9690-5158ab99dc82",
+    "expediente": "IPM-LPN-GC-2026-017",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a9b6f059-dd9d-48f8-8719-9cc86a6077c9",
+    "expediente": "LPN-SIT-052-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ce2aa5ba-24f8-494e-a55c-75a9224bc295",
+    "expediente": "UNAH-SEAPI-PUBLICACIONES-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "654c7cbd-bf10-412f-9b93-2f6f9db6b3b4",
+    "expediente": "No.UNACIFOR-LPN-GC-UE02-2026-03",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1c14ed87-414b-4614-b24f-250ef9b1bc5f",
+    "expediente": "LPN-001-CONSUCOOP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3e2676f6-adb5-4605-817e-3da7ec3d8a6d",
+    "expediente": "SIT-CP-014-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7f6697f6-6737-46dd-810e-34096747e8ff",
+    "expediente": "CCPF-TM-005-UNAH-FCE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a829f15-35c7-4097-a62b-5269f67f8b00",
+    "expediente": "MP-1012220667-3564-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "817a9389-9835-48f1-bc0c-932f59c1a697",
+    "expediente": "CPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0b35ad6-49c4-4b99-a41f-750e697e0af6",
+    "expediente": "LP-009-2026-HSL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "93f7f6d1-d74f-441f-a5aa-996d16ae8011",
+    "expediente": "PJ-CM-GC-2026-0787",
+    "label": "unsure"
+   },
+   {
+    "processId": "23a8cc1b-7203-454c-97d5-819884e1298e",
+    "expediente": "ENEE-CM-GH-30005248-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "75b132ca-02b7-48ea-a7de-edd05013c65c",
+    "expediente": "LP-IHCIETI-FC-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "68196297-9f0a-4d74-913c-9461477610a1",
+    "expediente": "032-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1f07a4db-087b-4735-b001-3a81c3c5c5ef",
+    "expediente": "4000000794-IHSS-SPS",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "5802442d-4515-423d-9f2d-a54b107e561c",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "33d8927d-c760-4065-ace5-408ca4f1f4f5",
+    "expediente": "CM-1733-EMC-ECEM-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43e0c15b-250c-4bfa-be6a-01e228123c28",
+    "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c356b170-b174-4da5-9bd2-6ff32114caad",
+    "expediente": "CCPF-TM-001-UNAH-FCE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e1de3ca-220f-42d2-9c26-55838b75d076",
+    "expediente": "LPN-SIT-038-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5ddf154a-277b-4183-8b8d-d09fe9569c9b",
+    "expediente": "UNAH-RECTORIA-027-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "da981db4-e81c-4691-8535-dfb6bfe6db0c",
+    "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "07986d77-4c20-474c-a00b-c309dd3beb9c",
+    "expediente": "UNAH-SEAF-CM-SC22532-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7a717814-328b-4b05-b184-d54a1943c46b",
+    "expediente": "LPN-MSPS-GS-05-2026",
+    "label": "core"
+   },
+   {
+    "processId": "cd025a3a-722b-4786-99a4-81694b5648dd",
+    "expediente": "CPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e68dbdfb-dfd9-45ba-a762-6745985ace88",
+    "expediente": "LP-SDE-001-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "6b740f3a-c87b-48d3-bf5c-e6622e65cf7c",
+    "expediente": "IHAH-CM-GC-UE01-COMPRA DE EQUIPO INFORMATICO",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a5761ff8-a5f2-4a59-bbec-2f38d4f78502",
+    "expediente": "ARSA-CM-GC-2026-125",
+    "label": "core"
+   },
+   {
+    "processId": "78d2b87e-0e80-4fb8-b5c0-473c2be2316e",
+    "expediente": "CM-019-DDEC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf4ea7bb-c835-4c45-96b2-101698031c8e",
+    "expediente": "LP-08-2026-HGS",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "df09e873-7fcc-40e8-b0a7-b48eb3ad4a83",
+    "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "beb50f0a-d4ec-4c67-909d-02148b9ceea8",
+    "expediente": "2000001413-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "63c18f6c-391e-4c00-92fd-0e8969b0daa8",
+    "expediente": "LPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fe38ab5-1f39-40c1-9451-3df589cebaea",
+    "expediente": "LP-004-2026-HO-SESAL",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "92714894-7a0c-47f5-88eb-852c99c9a21d",
+    "expediente": "IHT-CM-GC-2026-269",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6ef2e29a-0d91-4071-aafb-5e8c083ea8a3",
+    "expediente": "CM-071-SAR-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9da4fb91-bd53-4e26-b683-c1259e3d62c7",
+    "expediente": "HO-L1202-P00241",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6006a81a-6211-45ae-8c44-bc9f6540acda",
+    "expediente": "LPN-SIT-SUM-005-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd26ffbe-ac60-41d3-a032-e30caac8b04f",
+    "expediente": "IHT-CM-GC-2026-204",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "38d2a314-a30e-4f8a-ae28-990c20bc8208",
+    "expediente": "6000001514-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d0324276-70b2-442a-92d0-88feb1368b26",
+    "expediente": "LPN-001-IHAH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9ad803b6-104c-4ed1-a794-94b56cb35a97",
+    "expediente": "LPN-SIT-041-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e93fcbf0-b859-4d85-868b-de94d3e78e3e",
+    "expediente": "UNAH-RECTORIA-029-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "afcb274c-dd25-4fc7-a842-6ebd8232705f",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-033",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "062db04e-5dac-4588-8fde-9d9f99bd9f5f",
+    "expediente": "LPN-UPNFM-009-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a6bdfd85-3444-406f-a3b7-9f415f5282ad",
+    "expediente": "SEN-LPriN-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ac65170a-3319-4743-81b7-cfccbf628364",
+    "expediente": "CM-066-INAMI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b983158f-f932-42ca-8123-4cc1b8d24c05",
+    "expediente": "UNAH-SEAF-LPN-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ba2610e5-75fc-4f9b-a508-ab7294962057",
+    "expediente": "HPSR-020-2026-CM",
+    "label": "unsure"
+   },
+   {
+    "processId": "8a47801f-eaa4-4765-b276-8f8198571baa",
+    "expediente": "IHT-CM-GC-2026-264",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "601eb283-9bf7-466f-a5a1-a9156589a792",
+    "expediente": "UNAH-SEAF-FCS-CM-SC22558-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "994c10d6-ff59-43cd-a2cb-aa1a72100f84",
+    "expediente": "SESAL-CM-GC-0105-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fa815fd5-ce4c-4e7a-a354-5093c9aa3540",
+    "expediente": "CPN-SIT-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "34123d26-a948-4d88-8db5-1d525922b4dd",
+    "expediente": "CM-AMD-UTM-087-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "98391856-fe35-4470-a45c-efb476bef88c",
+    "expediente": "CM-230-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e8f2267a-de9c-47c1-9a02-35b0c9776714",
+    "expediente": "UNAHVS-SEAF-CM-SC22603-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0f7b3cf-6244-4e2b-98f6-fb42dcb83a2c",
+    "expediente": "004-LP-2026-AMCAT",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a04aa1a-cf36-445f-a507-3f495ef0483e",
+    "expediente": "CM-DA-2026-039",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3979fb46-83bf-4e6c-95e3-bc8547a5c3ec",
+    "expediente": "CM-CREE- 146-2026 IMPRESORA DE CARNETS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cc36a72b-ebf2-456f-879b-524400c73275",
+    "expediente": "HO-L1202-P00244",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "49e96f70-fc3e-4e75-9d7d-1571fb81b18c",
+    "expediente": "CM-012-2026RDSB16",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0b0fe8d6-0a06-4640-9786-163bd770dc5e",
+    "expediente": "UNAH-SEAPI-CM-GV-28-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "26f61103-96be-464d-b634-2b45ce39dcec",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-035",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5dd912b7-23b3-4ec2-b012-bd42d081c5dd",
+    "expediente": "LPN-UAFCE-EUROSAN-005-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dda99435-dd09-4808-9c82-2b27d3afd11f",
+    "expediente": "HGSI-LP-01-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "cffde565-5418-490b-9167-2e2f908be381",
+    "expediente": "35-28-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2ec19519-1792-4239-b754-6f741fb6cb8a",
+    "expediente": "LPN-SEDESOL-001-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "5527b6aa-d3a2-4d38-ae28-86aeb4d19331",
+    "expediente": "LPN-SIT-047-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7a30cdad-2085-4ae7-ae2c-de6c5dc72447",
+    "expediente": "CM-568-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e093c996-76dd-4aed-bd18-ccf1db3a4dea",
+    "expediente": "LPN-MPC-GT-10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7e0775a0-72b3-4316-a91c-f97ef33f2b19",
+    "expediente": "PJ-CM-GC-2026-0776",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "229e9ee4-9615-4a20-9a43-67b4effc31dc",
+    "expediente": "LPN-05-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d9bf9a83-aa55-418d-8e13-06b86da1eb1e",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-034",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "13fadb88-e8c9-4844-b47e-3bdcf8a4c7bd",
+    "expediente": "CM-558-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4430a9ed-8ac6-40a8-9a33-72f540fc8c4c",
+    "expediente": "ENEE-CM-GG-10005208-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6aa52064-5a0a-463c-84c0-871e28b6c84b",
+    "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e7eb6208-db22-4e30-92e0-6365463ba4bf",
+    "expediente": "LP-012-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f7866cac-091b-4d2d-b66b-0f855f697621",
+    "expediente": "CPN-SIT-047-2026",
+    "label": "not_relevant"
+   }
+  ],
+  "carreteras": [
+   {
+    "processId": "6214ac45-2b91-4878-98ca-af60b44a7510",
+    "expediente": "ENEE-CM-GG-50003489-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "0e0be778-051e-4433-8cb5-b8c83dd5783d",
+    "expediente": "IHT-CM-GC-2026-248",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "02b9a699-d051-41c1-8a58-19637c3bbfdd",
+    "expediente": "LPN-UPNFM-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f2cb5206-82b2-4f65-ad4d-0974c0f0e97b",
+    "expediente": "COTI CONSULTORIA TDR 02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "051a3566-c366-441d-83ea-894e96196cec",
+    "expediente": "CM-AMD-UTM-085-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "b8a9a1bd-3560-4295-b659-81ec1e6285ab",
+    "expediente": "LPN-AMENY-002-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e68dbdfb-dfd9-45ba-a762-6745985ace88",
+    "expediente": "LP-SDE-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "654c7cbd-bf10-412f-9b93-2f6f9db6b3b4",
+    "expediente": "No.UNACIFOR-LPN-GC-UE02-2026-03",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "0833c243-207a-4496-b899-093486cae4c7",
+    "expediente": "CM-10-09-2026-SEMUJER",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "9bd7de3c-3542-424d-be8e-9e82c644fa82",
+    "expediente": "ENEE-CM-GG-10005211-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0351cca6-d77f-4fed-9487-136ee5dc9bc5",
+    "expediente": "LPN-SIT-046-2026",
+    "label": "core"
+   },
+   {
+    "processId": "ced24052-ce5f-4486-9c7f-e4735c3dedf1",
+    "expediente": "IPM-LPN-GC-2026-016",
+    "label": "core"
+   },
+   {
+    "processId": "9a829f15-35c7-4097-a62b-5269f67f8b00",
+    "expediente": "MP-1012220667-3564-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "f6c887ad-785e-4871-92c9-c07c2e9b41dd",
+    "expediente": "CPN-SIT-045-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a15d40e4-92f2-44db-85d0-e7ae5b649bb5",
+    "expediente": "LPN-006-2026-AMCAT",
+    "label": "core"
+   },
+   {
+    "processId": "4998fc27-9f4e-4982-a84e-e3b33cef44ae",
+    "expediente": "CM-CREE- 149-2026 MANTENIMIENTO VEHICULO",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7ac1603a-773f-44a4-b24a-7489e5fa2c5e",
+    "expediente": "UNAH-SEAF-LPN-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dc91e0b6-093d-42f5-a251-8fe603b89414",
+    "expediente": "INJUPEMP-LPN-01-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e27d20ea-06aa-409b-8048-4ffa1415494e",
+    "expediente": "CM-556-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11e6f531-32c4-4ce3-8ee4-cf5444f1aa3b",
+    "expediente": "CM-222-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d7b76f7f-ebbc-4baf-8676-bd2f354807fd",
+    "expediente": "UNAH-SEAF-SEDI-CM-SC22562-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9ad803b6-104c-4ed1-a794-94b56cb35a97",
+    "expediente": "LPN-SIT-041-2026",
+    "label": "core"
+   },
+   {
+    "processId": "20f30703-abbd-49c5-bdc2-97ee012accd8",
+    "expediente": "CM-574-AMLC-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "0b0fe8d6-0a06-4640-9786-163bd770dc5e",
+    "expediente": "UNAH-SEAPI-CM-GV-28-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "b983158f-f932-42ca-8123-4cc1b8d24c05",
+    "expediente": "UNAH-SEAF-LPN-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "449143a5-b2e3-4665-8af0-b9452e5b85ba",
+    "expediente": "LPN-SIT-042-2026",
+    "label": "core"
+   },
+   {
+    "processId": "09e554f0-50e5-4abd-957d-cec225f8a39b",
+    "expediente": "CM-AMD-CS-1174-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "d26a7960-af38-47d5-861f-c94582ee5e36",
+    "expediente": "LP No. 01-2026-SEAPI-UNAH",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "a98a038f-58bc-42e1-bbbd-7e51a298a130",
+    "expediente": "1223-RDSLP-2026",
+    "label": "core"
+   },
+   {
+    "processId": "40ea1879-35fe-4cfe-bb27-dc48ed896865",
+    "expediente": "1224-RDSLP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1c14ed87-414b-4614-b24f-250ef9b1bc5f",
+    "expediente": "LPN-001-CONSUCOOP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fabec220-610d-4156-999e-7e7d82adbf3a",
+    "expediente": "GC-CM-HBCBH-COPAN RUINAS-09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "817a9389-9835-48f1-bc0c-932f59c1a697",
+    "expediente": "CPN-SIT-049-2026",
+    "label": "core"
+   },
+   {
+    "processId": "97c5f203-2289-4699-a1c6-8a41710a263f",
+    "expediente": "SAG-COMRURAL-III-SDO-O-37-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "009f94e3-177d-4474-a0f2-ecead4280673",
+    "expediente": "CPN-SIT-052-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e093c996-76dd-4aed-bd18-ccf1db3a4dea",
+    "expediente": "LPN-MPC-GT-10-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "6e45762a-e1d5-4fb2-8926-eee48ba8efe7",
+    "expediente": "LIC. PRIV. 02-2026 MOBILIARIO PRESIDENCIA",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "818feb4e-9912-41b2-84f7-1fd36c0bf54f",
+    "expediente": "LPN 10-2026",
+    "label": "core"
+   },
+   {
+    "processId": "784bafc1-323e-4758-bf42-b48a699117ce",
+    "expediente": "LP-002-AHAC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6831b556-e08c-412b-a4bb-d6ce5fb39518",
+    "expediente": "AMPC-GAF-CM-0708-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ac019df2-7318-489f-8ee9-e996fac9c434",
+    "expediente": "AMPC-GAF-CM-0617-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "09ca2c8f-0320-4bbc-985e-95d6a1691c73",
+    "expediente": "CM-SDE-195-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f3646e9e-584c-4627-b3fe-f8265aa72211",
+    "expediente": "HO-L1227-P00192",
+    "label": "core"
+   },
+   {
+    "processId": "df09e873-7fcc-40e8-b0a7-b48eb3ad4a83",
+    "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "d68f4415-3d82-4a72-81da-94c82da17f81",
+    "expediente": "LPN-SIT-053-2026",
+    "label": "core"
+   },
+   {
+    "processId": "0e11415a-f72b-4993-8209-802a80404918",
+    "expediente": "LPrN-001-IHAH-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "efa6031e-6f73-47af-97da-08d741d9238d",
+    "expediente": "SANAA-UC-37-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e9a72eae-77f2-44ab-bc6a-5ec91a3fb6dc",
+    "expediente": "SANAA-RA-043-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "63923511-9dbd-4ad9-a32d-5f971dbd3aa9",
+    "expediente": "SAG-COMRURAL-III-SCI-41-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "741417f1-b419-42da-ae71-bcc74a979b1b",
+    "expediente": "IHT-LPN-GC-2026-02",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "08e86f86-b545-42ae-8495-5c455a3886f6",
+    "expediente": "ENEE-CM-GG-50003445-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e0c02bf-65ae-4c9b-aa5f-6614710dbed5",
+    "expediente": "CM-563-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1e377175-a3b2-4db2-987b-cd5505adc296",
+    "expediente": "ENEE-CM-GG-50003491-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6f28a14f-f1db-4cdd-8f9c-9da7fe5e272a",
+    "expediente": "35-29-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4009cca4-a8b4-4d3a-9fc8-fa7544462cd8",
+    "expediente": "AMPC-GAF-OM-085-2026",
+    "label": "core"
+   },
+   {
+    "processId": "55c00f77-6297-4283-8e33-b1993b8f6273",
+    "expediente": "LPN-019-2026-SDN",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "b56451a0-5298-42ba-9fcd-c7881d01fbfb",
+    "expediente": "CM 39-017-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5802442d-4515-423d-9f2d-a54b107e561c",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+    "label": "core"
+   },
+   {
+    "processId": "cf43804b-bd57-4257-accb-1046d3737394",
+    "expediente": "SESAL-CM-GC-0110-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3ec0a9fc-84d7-4614-ab59-c0e09ba7b671",
+    "expediente": "UNAH-SEAF-LPN-011-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "f85289db-e3ba-49f7-a995-a1ed03ddb3b0",
+    "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "a633f306-4ad1-4bbe-abd5-403f0d2040d1",
+    "expediente": "UNAH-RECTORIA-028-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "d615fa46-1eb0-4ae9-b72f-5ae386c1770d",
+    "expediente": "COTI 05-2026",
+    "label": "core"
+   },
+   {
+    "processId": "406b2375-f07d-424a-8e22-f9bd4ef367c0",
+    "expediente": "ENEE-CM-GH-10005213-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "994c10d6-ff59-43cd-a2cb-aa1a72100f84",
+    "expediente": "SESAL-CM-GC-0105-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "562e3a7e-9eb3-4453-ab60-f9cf1aa96903",
+    "expediente": "ENEE-CM-GG-10005199-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "55555e5d-4818-4f63-9c87-9dd891c3c809",
+    "expediente": "CM-AMD-CS-1177-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "75b132ca-02b7-48ea-a7de-edd05013c65c",
+    "expediente": "LP-IHCIETI-FC-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11078b21-a4a5-4be1-9533-152d393f71cf",
+    "expediente": "ENEE-CM-GG-50003479-2026",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "5527b6aa-d3a2-4d38-ae28-86aeb4d19331",
+    "expediente": "LPN-SIT-047-2026",
+    "label": "core"
+   },
+   {
+    "processId": "25e26252-d80d-4c1e-887b-66af696b0f36",
+    "expediente": "AMPC-GAF-CM-0712-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "001d7923-2dc0-4874-9a1d-2c5855f2b9d6",
+    "expediente": "ENEE-CM-GG-50003498-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "95ba3be7-869a-4d57-a132-a783773b01a9",
+    "expediente": "HGSI-LP-03-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "c66ca7ae-4139-4f19-9faf-f61342a008a5",
+    "expediente": "UNAH-SEAPI-CM-GC-27-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "4e3bc7cb-48a0-4b18-818f-2652ca711c5c",
+    "expediente": "LPuNO-AMDC-002-2026",
+    "label": "core"
+   },
+   {
+    "processId": "ad6b1433-2ccb-4f39-9fed-15b14a240b55",
+    "expediente": "AMPC-GAF-OM-087-2026",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "52b2d74a-6a58-405a-a9dc-026c263b0ef6",
+    "expediente": "CM-236-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2f7fbbfd-c65c-42a3-bef0-584f38868724",
+    "expediente": "CPrNBS-AMDC-002-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "630dea17-cbc5-4f06-a96e-30fc1fd903a4",
+    "expediente": "UNAH-RECTORIA-022A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "b172fbda-0c38-46fb-88da-c856385a140f",
+    "expediente": "LPN-SIT-SUM-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9b6ce8cc-5378-4ac8-a20b-b769345d00b9",
+    "expediente": "UNAH-SEAF-CEINSAG-CM-SC22468-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0149641a-a06a-4e57-9a7f-5746ed8050a1",
+    "expediente": "HO-L1202-P00243",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d919f943-9e9f-4985-85e9-6bbe57bdde56",
+    "expediente": "LPN-SIT-049-2026",
+    "label": "core"
+   },
+   {
+    "processId": "b8af337a-886a-4eb4-ab7d-1695f6ce6aea",
+    "expediente": "LPN-AMENY-001-2026",
+    "label": "core"
+   },
+   {
+    "processId": "11ed7719-4ce0-4705-bfea-39b27e3808b0",
+    "expediente": "IPM-LPN-GC-2026-015",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4caed57f-af4a-4b4f-a14f-d2bf81f060ab",
+    "expediente": "UNAH-RECTORIA-021a-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "d1ecd37f-2f46-4942-921e-310d4fd2e6cf",
+    "expediente": "UNAH-SEAF-AI-CM-SC22549-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "93f7f6d1-d74f-441f-a5aa-996d16ae8011",
+    "expediente": "PJ-CM-GC-2026-0787",
+    "label": "unsure"
+   },
+   {
+    "processId": "810b6a21-3bd5-400b-8c4e-2e3926660fb9",
+    "expediente": "LPública No.26-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8230cca3-10cf-4d50-a913-e09db07a8407",
+    "expediente": "CM-571-AMLE-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "fa815fd5-ce4c-4e7a-a354-5093c9aa3540",
+    "expediente": "CPN-SIT-048-2026",
+    "label": "core"
+   },
+   {
+    "processId": "99fe2d40-cce3-4675-b238-73c36a3d3f00",
+    "expediente": "Licitacion Privada 02-2026",
+    "label": "core"
+   },
+   {
+    "processId": "0cbde3d2-9ad4-4f05-a30f-8d148c1706c0",
+    "expediente": "SEFIN-LPN-GC-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bbd8ab1a-252f-4ee5-b36d-ada71c08922c",
+    "expediente": "AMPC-GAF-CM-0706-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5e99c9bb-df04-4511-adc1-00cd4b5c74ec",
+    "expediente": "LPN-001-SECAPPH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e9a837d5-bbbe-4124-9e6c-715647406c79",
+    "expediente": "LPN-UPNFM-007-2026",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "6efb6e41-eab7-479f-ae69-4d12b21275a8",
+    "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d487bcb-f84e-435c-ba9d-f4c2bef60200",
+    "expediente": "UNAH-RECTORIA-023A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "92c0062b-3665-44d3-9855-7dde6c9ec398",
+    "expediente": "LPN-MPC-GT-11-2026",
+    "label": "core"
+   },
+   {
+    "processId": "4ff69d01-7d44-4f9c-a870-d7a9968a1178",
+    "expediente": "UNAH-RECTORIA-025-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "a012f3f2-ddb4-4e82-a397-c7db95abab6f",
+    "expediente": "LPN-SIT-051-2026",
+    "label": "core"
+   },
+   {
+    "processId": "4239bf04-b5d9-4ac1-8cdc-93d0b3828e9a",
+    "expediente": "CM-566-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9ed958f9-262b-4dbb-9458-90337337d906",
+    "expediente": "INJUPEMP-CM-GC-2026-588",
+    "label": "adjacent"
+   },
+   {
+    "processId": "0b0cb9bd-dd2c-4e00-ab3d-b8e2c3255b33",
+    "expediente": "LPN-MSPS-GDS-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "37fb7e1f-478c-47b4-996c-6a88ed2a81ec",
+    "expediente": "LPN 09-2026",
+    "label": "core"
+   },
+   {
+    "processId": "3236ad22-cc61-48bf-b9d2-9ed6b7e5571a",
+    "expediente": "CM-014-2026",
+    "label": "core"
+   },
+   {
+    "processId": "3c70f4fe-2230-4c38-a6d9-7e9421cb0cb5",
+    "expediente": "CM-GC-DIDADPOL-076-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cdd84f38-e33a-40ef-9850-8ae174e39afa",
+    "expediente": "MCOM-009-2026-EMC",
+    "label": "core"
+   },
+   {
+    "processId": "bd4ad401-9477-445f-8c75-bf90651f33c4",
+    "expediente": "LPública No.27-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "05e858db-b5e2-412f-aed4-9f2e591b1a68",
+    "expediente": "CM-GC-DIDAPDOL-075-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c77720b8-b501-434d-b748-ab23bd2c5632",
+    "expediente": "CMO-009-OBRA-DIGECEBI-DGA-SE-2026",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "a7e448b4-1736-444f-84d4-f21d4bb756c7",
+    "expediente": "CPN-SIT-053-2026",
+    "label": "core"
+   },
+   {
+    "processId": "8b9f9d1e-df76-4dfb-bc98-9b84d6e99398",
+    "expediente": "LPuNO-MCH-002-2026",
+    "label": "core"
+   },
+   {
+    "processId": "7d172164-f0ea-4df5-85ac-b23745b34d68",
+    "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+    "label": "core"
+   },
+   {
+    "processId": "bd26ffbe-ac60-41d3-a032-e30caac8b04f",
+    "expediente": "IHT-CM-GC-2026-204",
+    "label": "core"
+   },
+   {
+    "processId": "25d00e3f-ae6c-4180-b75b-77af2f728fc6",
+    "expediente": "ARSA-CM-GC-2026-136",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92714894-7a0c-47f5-88eb-852c99c9a21d",
+    "expediente": "IHT-CM-GC-2026-269",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19e8ace7-edfe-4343-8ebe-dfae632b6d26",
+    "expediente": "UNAH-SEAPI-GACETA-33-2026",
+    "label": "not_relevant",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "306ab264-2c99-4dd0-a328-1ffe07366e08",
+    "expediente": "HGSI-LP-05-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "43756950-fb0e-49ac-b2fa-e70bfdfa6106",
+    "expediente": "ENP-LPRIVN-GA-UI-07-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "7261f1ae-f947-4b91-8b46-4fda64727a37",
+    "expediente": "CM-5445-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9da4fb91-bd53-4e26-b683-c1259e3d62c7",
+    "expediente": "HO-L1202-P00241",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "86a15c6b-9c03-4318-a89c-7b4abd2c0a3e",
+    "expediente": "CM-AMD-CS-1172-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "55a731b7-6e5c-46f1-907e-0120f98b1323",
+    "expediente": "SANAA-RA-040-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "ac65170a-3319-4743-81b7-cfccbf628364",
+    "expediente": "CM-066-INAMI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ff090e9d-0b09-449d-8c20-1a54320d43cd",
+    "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "34485271-a811-4373-ab1d-8833f8b3b043",
+    "expediente": "INJUPEMP-LPR-09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ffb71db1-d04d-46a4-be06-5a805697074a",
+    "expediente": "CM-575-AMLC-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "2b6fd782-cb52-485b-af2e-4cd36c7e114c",
+    "expediente": "CPN-SIT-041-2026",
+    "label": "core"
+   },
+   {
+    "processId": "508c340a-0a1e-4dd6-951f-676a47df13b7",
+    "expediente": "LPN-007-2026-AMCAT",
+    "label": "core"
+   },
+   {
+    "processId": "496cba89-d534-45de-b5d1-a6edb0bb77f3",
+    "expediente": "UNAH-SEAF-DES-CM-SC22537-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ea519de2-acee-4ca2-a01d-ac01fd5a1c5e",
+    "expediente": "LPR-HND-019-B-002-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4a1a313b-c5bc-4bb2-9468-451c510db8bd",
+    "expediente": "COTI 06-2026",
+    "label": "core"
+   },
+   {
+    "processId": "7e77335e-12e2-4190-a46c-4fd9fbdcc209",
+    "expediente": "CM-555-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e8cf40ea-6236-4b09-b789-c840093a5e1e",
+    "expediente": "CM-079-SAR-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43e0c15b-250c-4bfa-be6a-01e228123c28",
+    "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "fd8a63bd-202d-4f8a-ba3b-21d739ac5321",
+    "expediente": "LPN-06-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "090146ed-57ed-434e-b5d6-8e3eeca25354",
+    "expediente": "UNAH-SEAF-PAV-CM-SC22557-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "027a2c2c-46ac-4705-ad85-13bba885aca2",
+    "expediente": "CPN-SIT-037-2026",
+    "label": "core"
+   },
+   {
+    "processId": "226b2c8e-f6db-4393-8393-d6d0c71b3e10",
+    "expediente": "CM-226-IP-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "3516f8d9-a4f4-47a6-b0af-0469c78c785f",
+    "expediente": "CM-AMD-CS-1180-2026",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "19c2efbd-4665-4eae-b40c-d7996d0e431e",
+    "expediente": "ENEE-CM-GG-10005189-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "15901b20-2ef3-49ed-82d8-c278e611bf11",
+    "expediente": "UNAH-SEAF-DEP-CM-SC22573-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd70c51f-8c4a-417f-bebd-24f9eef8f69e",
+    "expediente": "SIT-GA-176-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a6bdfd85-3444-406f-a3b7-9f415f5282ad",
+    "expediente": "SEN-LPriN-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5d8ea270-39ed-48cc-885e-6feb677b1017",
+    "expediente": "ENEE-CM-GG-10005209-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "354e01b5-3485-4d5a-a3a6-39e0ca4151e6",
+    "expediente": "ENEE-CM-GG-50003502-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "94f8e1f9-759d-400f-bde1-ce0d0ffe5e9f",
+    "expediente": "INPREMA-1204-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6aa13f16-710c-4451-9690-5158ab99dc82",
+    "expediente": "IPM-LPN-GC-2026-017",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "426e9497-d1bb-428d-b8d9-457abbd55906",
+    "expediente": "DICTA-CM-GC-2026-088",
+    "label": "unsure"
+   },
+   {
+    "processId": "e82eb04b-e13d-4bef-8b17-fb254c3abbe7",
+    "expediente": "CM-SDE-194-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3562af82-57b5-422e-a360-3ef027471dd3",
+    "expediente": "HOP6-ENEE-10-LPN-S",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "72b2b994-44ce-437a-a434-4be44836b73f",
+    "expediente": "PJSPS-CM-GC-2026-0126",
+    "label": "unsure"
+   },
+   {
+    "processId": "49cda353-488c-4482-93cf-338f57718598",
+    "expediente": "ENP-LPRIVN-GA-UADQ-12-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e93fcbf0-b859-4d85-868b-de94d3e78e3e",
+    "expediente": "UNAH-RECTORIA-029-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "dda99435-dd09-4808-9c82-2b27d3afd11f",
+    "expediente": "HGSI-LP-01-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "718a8ad7-5cba-4518-be9e-33a83c79364a",
+    "expediente": "HOP6-ENEE-09-LPI-B",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "8a907ad4-c3d3-45a3-aeaa-05d4305ebb83",
+    "expediente": "CM-AMD-UTM-084-2026",
+    "label": "core"
+   },
+   {
+    "processId": "9e3c4cac-4b28-4fbf-94ed-01950540517d",
+    "expediente": "DICTA-CM-GC-2026-090",
+    "label": "core"
+   },
+   {
+    "processId": "85a45124-5597-4f4b-bde0-e775e1454aa0",
+    "expediente": "CNPV-02-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f00c2d15-5dc0-4f6d-873a-0c6a43f75118",
+    "expediente": "38-23-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8ac47ed7-dc33-435b-bca0-0f2be9a0feda",
+    "expediente": "ENEE-UCP-BID-CP-SNC-HO-L1186-P00045",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e7eb6208-db22-4e30-92e0-6365463ba4bf",
+    "expediente": "LP-012-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f51149e3-b580-4d72-bffb-ad010a1f211f",
+    "expediente": "CM-080-SAR-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "34123d26-a948-4d88-8db5-1d525922b4dd",
+    "expediente": "CM-AMD-UTM-087-2026",
+    "label": "core"
+   },
+   {
+    "processId": "f1aeab7a-c918-4dbb-aa13-f83e30067a28",
+    "expediente": "SANAA-RA-041-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "115af26e-cf26-4227-90c6-46b18e15f67f",
+    "expediente": "DFP-CM-033-18925-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2414b85f-8a60-46bb-b39f-b7cb8d4b6558",
+    "expediente": "LPN-SIT-045-2026",
+    "label": "core"
+   },
+   {
+    "processId": "03f382a3-6899-4dc2-9eda-289f42a079f1",
+    "expediente": "ENEE-CM-GG-10005197-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "1f1453d6-3b94-43bd-b06a-7ad61d57b728",
+    "expediente": "ENEE-CM-GG-40002460-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "aacd7ca8-4afa-4049-9cf7-65e422a0c070",
+    "expediente": "CM-224-IP-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "5880f85e-982d-4338-9ab1-dfce20f27499",
+    "expediente": "CM-063-SAR-2026",
+    "label": "core"
+   },
+   {
+    "processId": "cb13a90f-04f6-4f6d-b792-39e23294ae4f",
+    "expediente": "LPN-SAR-013-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "b0967f99-14ac-4aa8-ba6c-18851cff8e57",
+    "expediente": "ENP-LPRIVN-GA-UI-06-2026",
+    "label": "core"
+   },
+   {
+    "processId": "7e1668b7-45d9-4c06-ae10-9f0aa4f9d744",
+    "expediente": "AMPC-GAF-OM-084-2026",
+    "label": "unsure",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "3bd6b612-6d48-4468-96f4-a613e3015182",
+    "expediente": "LPN-SIT-043-2026",
+    "label": "core"
+   },
+   {
+    "processId": "5de8822b-3cf5-4dd6-8ff7-300c90ef47f0",
+    "expediente": "CPN-SIT-039-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a4c01330-fc0d-4dd7-af10-ee16b23de3e0",
+    "expediente": "CM-573-AMLC-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "8a47801f-eaa4-4765-b276-8f8198571baa",
+    "expediente": "IHT-CM-GC-2026-264",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3979fb46-83bf-4e6c-95e3-bc8547a5c3ec",
+    "expediente": "CM-CREE- 146-2026 IMPRESORA DE CARNETS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3e2676f6-adb5-4605-817e-3da7ec3d8a6d",
+    "expediente": "SIT-CP-014-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e0b35ad6-49c4-4b99-a41f-750e697e0af6",
+    "expediente": "LP-009-2026-HSL",
+    "label": "adjacent"
+   },
+   {
+    "processId": "f7866cac-091b-4d2d-b66b-0f855f697621",
+    "expediente": "CPN-SIT-047-2026",
+    "label": "core"
+   },
+   {
+    "processId": "63c228e0-8951-4db6-9ab9-6a4eff6f9e78",
+    "expediente": "CPN-SIT-043-2026",
+    "label": "core"
+   },
+   {
+    "processId": "9e1de3ca-220f-42d2-9c26-55838b75d076",
+    "expediente": "LPN-SIT-038-2026",
+    "label": "core"
+   },
+   {
+    "processId": "46d5bc29-9cb7-4119-b027-69361fc2a3b5",
+    "expediente": "LPR-AMLEI-UOP-01-2026",
+    "label": "core"
+   },
+   {
+    "processId": "cd505b7f-ce80-47c1-ac5a-285247438df7",
+    "expediente": "CM-168-BANHPROVI-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "98b654ca-b800-48b5-abb0-372c0a38d780",
+    "expediente": "LPV-INM-001-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "744c4638-5d07-4ef0-911a-41a267981f32",
+    "expediente": "LPN-018-2026-SDN",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "5b6fa522-064b-46b2-8534-2bc31c356516",
+    "expediente": "UNAH-RECTORIA-024-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "003ee09e-1fd8-4d0e-8b58-677ef50b675c",
+    "expediente": "LP-CNBS-010-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d4a3ee66-f2af-4e80-b508-7c3d7500cb3c",
+    "expediente": "ENEE-CM-GG-10005186-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "482eaf74-6f8c-4f3b-9840-62c123b031ba",
+    "expediente": "LPN-SIT-050-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a9b6f059-dd9d-48f8-8719-9cc86a6077c9",
+    "expediente": "LPN-SIT-052-2026",
+    "label": "core"
+   },
+   {
+    "processId": "f0ca8c59-d93e-4189-ad45-77472a4fb10f",
+    "expediente": "ENEE-CM-GG-50003464-2026-2",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a928315c-fe14-410d-8b5b-9a8ce36a1147",
+    "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+    "label": "core"
+   },
+   {
+    "processId": "5dd912b7-23b3-4ec2-b012-bd42d081c5dd",
+    "expediente": "LPN-UAFCE-EUROSAN-005-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fdda209-5c46-463e-bb35-321eb7618da6",
+    "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e766e35f-547a-4603-86bb-29880baa30f2",
+    "expediente": "CM-020-DDEC-2026",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "f8f8aa08-58a4-4d56-9f3f-435ad8bb6bdf",
+    "expediente": "SIT-LPR-026-2026",
+    "label": "core",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ce2aa5ba-24f8-494e-a55c-75a9224bc295",
+    "expediente": "UNAH-SEAPI-PUBLICACIONES-33-2026",
+    "label": "not_relevant",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "3a7f711d-121c-4381-8932-ac4da972a726",
+    "expediente": "CM-ICF-SGM-069-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f9c18de7-1e2f-469a-a6cb-6b6b9a1bd168",
+    "expediente": "ENEE-CM-GG-50003493-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cd2533d7-2b8f-4786-afcc-a052c6c45a58",
+    "expediente": "CM-AMD-UTM-086-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "3c7d37f4-9dfc-4585-9026-3fc436720e27",
+    "expediente": "CM-AMD-CS-1170-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b5541d4f-e4ba-439d-b961-0b1383593227",
+    "expediente": "ENP-COM-012-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "cd025a3a-722b-4786-99a4-81694b5648dd",
+    "expediente": "CPN-SIT-044-2026",
+    "label": "core"
+   },
+   {
+    "processId": "f077d466-730f-484d-9277-809588c3b408",
+    "expediente": "SIT-GA-185-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e9e772eb-49ed-45b5-9a4b-46ed4039d359",
+    "expediente": "HO-L1202-P00133",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a35f3b57-2634-47fc-b6b2-e02678a72f0f",
+    "expediente": "ENEE-CM-DIESEL-GTA-UTCD-015-IX-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4aaeea7f-8dd0-4b00-b7dc-6d9c35aca9f4",
+    "expediente": "ENP-LPRIVN-GA-UI-19-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "0c11f4a7-f14e-4ba9-9eea-fbab6eb809af",
+    "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4a74cca1-55be-4e34-ba02-3c9c352a0e2c",
+    "expediente": "CNPV-03-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "63c18f6c-391e-4c00-92fd-0e8969b0daa8",
+    "expediente": "LPN-SIT-044-2026",
+    "label": "core"
+   },
+   {
+    "processId": "608b7b66-aa36-4b8e-b9c0-64474fa6675a",
+    "expediente": "ENP-LPRIVN-GA-UI-10-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "5ddf154a-277b-4183-8b8d-d09fe9569c9b",
+    "expediente": "UNAH-RECTORIA-027-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "a390c8b8-ceb5-44b2-95de-5c8c1a4a219d",
+    "expediente": "ENEE-CM-GG-50003487-2026.",
+    "label": "adjacent"
+   },
+   {
+    "processId": "6fc54a7e-e06d-4f6b-bd76-c40a31320ea3",
+    "expediente": "CPN-SIT-046-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e0f7b3cf-6244-4e2b-98f6-fb42dcb83a2c",
+    "expediente": "004-LP-2026-AMCAT",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "d5da0739-d217-497d-adb9-4b20de24da16",
+    "expediente": "CM-SDE-196-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a0e8a394-fddf-4cab-8db2-40e7ffb53d0f",
+    "expediente": "CPN-SIT-042-2026",
+    "label": "core"
+   },
+   {
+    "processId": "b4185a56-724c-46f7-b9bb-a7affda00b3e",
+    "expediente": "CM-572-AMLC-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "c76f146f-3a27-431d-94f0-64e7d303ff4b",
+    "expediente": "AMPC-GAF-OM-086-2026",
+    "label": "core"
+   },
+   {
+    "processId": "e6af95e0-817b-41a1-8cf5-fa20ee62c87d",
+    "expediente": "LP-008-SE-DIGECEBI-DGA-OBRA-2026",
+    "label": "core"
+   },
+   {
+    "processId": "c4536efc-1429-487d-bc54-7462640c9f5f",
+    "expediente": "CPN-SIT-051-2026",
+    "label": "core"
+   },
+   {
+    "processId": "fc415982-b89b-45a8-9b59-2bd0041db4fd",
+    "expediente": "LPUN-AMR-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2c254378-0d03-4443-a530-afb07fd28f73",
+    "expediente": "SIT-CDE-SUM-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da981db4-e81c-4691-8535-dfb6bfe6db0c",
+    "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "3c132a17-ae19-4d5b-8c4f-09e3ac3f572d",
+    "expediente": "OM-004-2026-EJERCITO",
+    "label": "core"
+   },
+   {
+    "processId": "1a40a969-1ba0-464c-b35d-212635a7b6f1",
+    "expediente": "SESAL-RDSY-CM-8-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "e827a478-34b1-410f-a258-d3360a108668",
+    "expediente": "ENEE-CM-GG-10005207-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8272474a-664f-42dc-aa9c-7b0cd3573921",
+    "expediente": "CM-570-AMLC-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "134bc01c-a6ed-46be-a059-23a9d39b4234",
+    "expediente": "CP-SIT-012-2026",
+    "label": "core"
+   },
+   {
+    "processId": "bcf6b38b-3e0a-4022-b388-f0c826c56d38",
+    "expediente": "AMPC-GAF-CM-0711-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d0324276-70b2-442a-92d0-88feb1368b26",
+    "expediente": "LPN-001-IHAH-2026",
+    "label": "core"
+   },
+   {
+    "processId": "c3147096-fc3f-400a-ab10-ae3530d552bc",
+    "expediente": "UNAH-RECTORIA-026-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "22fd1d47-e827-45f9-9488-7ddf84034c41",
+    "expediente": "CM-237-IP-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "51895ce6-103a-4f57-b3bc-2bb8e7318ab4",
+    "expediente": "LPN-SIT-040-2026",
+    "label": "core"
+   },
+   {
+    "processId": "c824360a-f81c-4ea8-8f46-a2ca88391656",
+    "expediente": "LP-011-2026-HGSF",
+    "label": "unsure"
+   },
+   {
+    "processId": "b9d611ab-900e-4f00-bec3-6229bbb59a5c",
+    "expediente": "PJ-CM-GC-2026-0771",
+    "label": "unsure"
+   },
+   {
+    "processId": "f82ed283-e1ff-4420-b2ca-b217b166b77f",
+    "expediente": "GC-LPN-HBCBH-TEG-CENTRO DE DIAGNOSTICO-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "af7e2aed-1aba-444d-8f02-7f46c31a9300",
+    "expediente": "CM-042-ENP-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "6006a81a-6211-45ae-8c44-bc9f6540acda",
+    "expediente": "LPN-SIT-SUM-005-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "9374b579-50eb-4044-be2d-976206e53694",
+    "expediente": "CM-AMD-CS-1173-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e6f5873e-596d-47fd-ba11-fc34d277b355",
+    "expediente": "SIT-GA-187-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "01c1a434-23be-4118-8e9a-ce2dee85f14f",
+    "expediente": "CPN-SIT-050-2026",
+    "label": "core"
+   },
+   {
+    "processId": "ae1e740b-b4a0-4ad4-801a-4d9c14c369f1",
+    "expediente": "CD-03-2026-HPL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "90f4b30f-8d65-4ef0-8407-5a934db1bf6a",
+    "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "afcb274c-dd25-4fc7-a842-6ebd8232705f",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-033",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0855cd8a-5624-490e-8548-308c01f9baee",
+    "expediente": "INHGEOMIN-CI-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92464f23-3aba-48be-949a-6bc4e00b7987",
+    "expediente": "LPN-SIT-048-2026",
+    "label": "core"
+   },
+   {
+    "processId": "bb4ccd55-e0c0-4788-8ab9-68b3f198c72f",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fc3b89f-8bdb-4cc1-811a-37fc36f3cd02",
+    "expediente": "ENP-LPRIVN-GA-UA-13-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "662e8c54-eeb8-45fa-ac32-6d0974fb4983",
+    "expediente": "AMPC-GAF-CM-0710-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "762796ba-e5fb-46eb-bde5-9afe37243929",
+    "expediente": "LPN-SIT-054-2026",
+    "label": "core"
+   },
+   {
+    "processId": "4003978a-a45e-4c2e-afd4-2c383f987dbe",
+    "expediente": "CM-AMD-CS-1178-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e1a6dbdd-e79f-4b3e-9350-22b13f49b1be",
+    "expediente": "LPN-SIT-039-2026",
+    "label": "core"
+   },
+   {
+    "processId": "2f00b96f-5409-49ad-a0ec-93d2d047e7b5",
+    "expediente": "COT121711-2026",
+    "label": "core"
+   },
+   {
+    "processId": "c503ec25-a6c9-4d37-a234-cf0c4338cd41",
+    "expediente": "LP-IHCIETI-FC-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ceea6d3a-57eb-43ff-ab85-95aff1d60a04",
+    "expediente": "CPN-SIT-040-2026",
+    "label": "core"
+   },
+   {
+    "processId": "c655ef9e-7576-45e4-a856-378c5120e02c",
+    "expediente": "LPN-017-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a45db25-d242-45f9-95ae-da376ee815f7",
+    "expediente": "SIT-CD-CO-016-2026",
+    "label": "core"
+   },
+   {
+    "processId": "b9c15693-6376-4758-ab18-62d8028f0565",
+    "expediente": "CM-1730-EMC-C2-2026",
+    "label": "not_relevant"
+   }
+  ],
+  "uniformes": [
+   {
+    "processId": "9da4fb91-bd53-4e26-b683-c1259e3d62c7",
+    "expediente": "HO-L1202-P00241",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9ad803b6-104c-4ed1-a794-94b56cb35a97",
+    "expediente": "LPN-SIT-041-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1af4c77b-6485-4eb3-ba89-532a172bbbfe",
+    "expediente": "LPN-UAFCE-EUROSAN-007-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "90f4b30f-8d65-4ef0-8407-5a934db1bf6a",
+    "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "de74c421-665a-478d-9eac-1822394fa455",
+    "expediente": "SS-012-ENP-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "762796ba-e5fb-46eb-bde5-9afe37243929",
+    "expediente": "LPN-SIT-054-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2ec19519-1792-4239-b754-6f741fb6cb8a",
+    "expediente": "LPN-SEDESOL-001-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "c66ca7ae-4139-4f19-9faf-f61342a008a5",
+    "expediente": "UNAH-SEAPI-CM-GC-27-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f951a99b-f582-4939-a5cb-c5099a658ea7",
+    "expediente": "CM-528-PROHECO-SDGP-SE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "07986d77-4c20-474c-a00b-c309dd3beb9c",
+    "expediente": "UNAH-SEAF-CM-SC22532-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd93fe03-e452-452b-a27c-d7d023dbee60",
+    "expediente": "CM-565-AMLE-2026",
+    "label": "adjacent",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "777c6e8c-6e38-4ae7-89d6-c6caf96f29e4",
+    "expediente": "INPREMA-LPN-GC-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fd8a63bd-202d-4f8a-ba3b-21d739ac5321",
+    "expediente": "LPN-06-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ce928dec-e344-401f-b2e1-8da10ef80800",
+    "expediente": "CM-030-2026-HT",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a928315c-fe14-410d-8b5b-9a8ce36a1147",
+    "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9bd7de3c-3542-424d-be8e-9e82c644fa82",
+    "expediente": "ENEE-CM-GG-10005211-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6b740f3a-c87b-48d3-bf5c-e6622e65cf7c",
+    "expediente": "IHAH-CM-GC-UE01-COMPRA DE EQUIPO INFORMATICO",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6efb6e41-eab7-479f-ae69-4d12b21275a8",
+    "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ef7312be-5c18-44e1-b9ad-b9a1cfe09a2d",
+    "expediente": "LP-AHAC-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "de2ea5d2-c79e-4546-9b97-a7564f300128",
+    "expediente": "33-LP-001-2026",
+    "label": "core"
+   },
+   {
+    "processId": "85a45124-5597-4f4b-bde0-e775e1454aa0",
+    "expediente": "CNPV-02-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "95ba3be7-869a-4d57-a132-a783773b01a9",
+    "expediente": "HGSI-LP-03-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "8eb4c0c9-52fe-420c-869f-42a2a7db6f0e",
+    "expediente": "UNAH-SEAF-SEDI-CM-SC22561-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f5ac7ec6-49a0-4d99-942d-6b0fb3f4bfea",
+    "expediente": "LP-IHCIETI-FC-004-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "ba58aa5f-47a2-4e2b-bc04-ce7d1e93cf60",
+    "expediente": "CM-569-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5ddf154a-277b-4183-8b8d-d09fe9569c9b",
+    "expediente": "UNAH-RECTORIA-027-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "ad6b1433-2ccb-4f39-9fed-15b14a240b55",
+    "expediente": "AMPC-GAF-OM-087-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ed270a86-2065-4ac6-80ac-e5c5dd38d2a3",
+    "expediente": "CP-SETRASS-PAILH-22-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11078b21-a4a5-4be1-9533-152d393f71cf",
+    "expediente": "ENEE-CM-GG-50003479-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8944ef4a-1a3d-411a-b9de-75755585d1c5",
+    "expediente": "CM-AMD-CS-1179-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "8ac47ed7-dc33-435b-bca0-0f2be9a0feda",
+    "expediente": "ENEE-UCP-BID-CP-SNC-HO-L1186-P00045",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dc91e0b6-093d-42f5-a251-8fe603b89414",
+    "expediente": "INJUPEMP-LPN-01-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "020626cf-8e63-4013-8275-922bb3d22548",
+    "expediente": "SETRASS-CM-GC-2026-061",
+    "label": "adjacent"
+   },
+   {
+    "processId": "62c7bc48-e592-40d6-8429-8d85c67d6347",
+    "expediente": "3000012014-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e1de3ca-220f-42d2-9c26-55838b75d076",
+    "expediente": "LPN-SIT-038-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "67cfe8ca-ad3b-4ec7-aadc-6a137c1722cd",
+    "expediente": "CD-002-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "e989c665-c9bf-46a5-a929-ad4d5b2222a4",
+    "expediente": "AMPC-GAF-OM-088-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "92c0062b-3665-44d3-9855-7dde6c9ec398",
+    "expediente": "LPN-MPC-GT-11-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "22fd1d47-e827-45f9-9488-7ddf84034c41",
+    "expediente": "CM-237-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e82eb04b-e13d-4bef-8b17-fb254c3abbe7",
+    "expediente": "CM-SDE-194-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d172164-f0ea-4df5-85ac-b23745b34d68",
+    "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "98391856-fe35-4470-a45c-efb476bef88c",
+    "expediente": "CM-230-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "496cba89-d534-45de-b5d1-a6edb0bb77f3",
+    "expediente": "UNAH-SEAF-DES-CM-SC22537-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0c11f4a7-f14e-4ba9-9eea-fbab6eb809af",
+    "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "5d8ea270-39ed-48cc-885e-6feb677b1017",
+    "expediente": "ENEE-CM-GG-10005209-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4009cca4-a8b4-4d3a-9fc8-fa7544462cd8",
+    "expediente": "AMPC-GAF-OM-085-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4fdda209-5c46-463e-bb35-321eb7618da6",
+    "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "adf8d210-1857-4a74-85b5-120fd6baf227",
+    "expediente": "CM-096-SEDH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "090146ed-57ed-434e-b5d6-8e3eeca25354",
+    "expediente": "UNAH-SEAF-PAV-CM-SC22557-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8e08f860-ebe4-4f9b-a91d-e8f807a00945",
+    "expediente": "CM-T2668-BCH-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "cffde565-5418-490b-9167-2e2f908be381",
+    "expediente": "35-28-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d7b76f7f-ebbc-4baf-8676-bd2f354807fd",
+    "expediente": "UNAH-SEAF-SEDI-CM-SC22562-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "847a586b-3c14-4611-9246-6218767d0c6f",
+    "expediente": "CM-067-SAR-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b172fbda-0c38-46fb-88da-c856385a140f",
+    "expediente": "LPN-SIT-SUM-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "label": "core"
+   },
+   {
+    "processId": "23a8cc1b-7203-454c-97d5-819884e1298e",
+    "expediente": "ENEE-CM-GH-30005248-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "adda6aa5-1f98-4644-8365-c8cd453b8c9f",
+    "expediente": "GD-DAS-AMI-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5fd27a4e-0fad-450e-ac9c-dd424c3a50ad",
+    "expediente": "CM-015-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d35435ee-f82a-4cc7-b862-9a4a155c1bf6",
+    "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0e7ae5c8-3842-44d8-a685-52a25081e5a4",
+    "expediente": "CM-AMD-CS-1175-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da987689-b090-4ef8-a917-94706cb30818",
+    "expediente": "LP-002-RDSN3-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "244abcb0-d563-4aa6-86ee-33ead09b8d70",
+    "expediente": "CD-SESAL-HE-11-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "449143a5-b2e3-4665-8af0-b9452e5b85ba",
+    "expediente": "LPN-SIT-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "decc270e-2e8f-464e-8dd3-2011e346defc",
+    "expediente": "ENP-LPRIVN-GA-UDO-02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd4ad401-9477-445f-8c75-bf90651f33c4",
+    "expediente": "LPública No.27-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b02fff42-8d41-411a-8573-1ade288a4653",
+    "expediente": "IHT-CM-GC-2026-273",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6006a81a-6211-45ae-8c44-bc9f6540acda",
+    "expediente": "LPN-SIT-SUM-005-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d919f943-9e9f-4985-85e9-6bbe57bdde56",
+    "expediente": "LPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c0f7b99d-470d-432a-8845-49a4805e5983",
+    "expediente": "6000001515-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd26ffbe-ac60-41d3-a032-e30caac8b04f",
+    "expediente": "IHT-CM-GC-2026-204",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bd70c51f-8c4a-417f-bebd-24f9eef8f69e",
+    "expediente": "SIT-GA-176-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "25e26252-d80d-4c1e-887b-66af696b0f36",
+    "expediente": "AMPC-GAF-CM-0712-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "261cee9f-4fc8-462c-bf78-3eaf5938a4ad",
+    "expediente": "CM-561-AMLC-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "208341d4-0a41-41b8-83f9-34a0e9f20c9d",
+    "expediente": "UNAH-SEAF-SDRYT-CM-SC22497-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92714894-7a0c-47f5-88eb-852c99c9a21d",
+    "expediente": "IHT-CM-GC-2026-269",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "406b2375-f07d-424a-8e22-f9bd4ef367c0",
+    "expediente": "ENEE-CM-GH-10005213-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "718a8ad7-5cba-4518-be9e-33a83c79364a",
+    "expediente": "HOP6-ENEE-09-LPI-B",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0855cd8a-5624-490e-8548-308c01f9baee",
+    "expediente": "INHGEOMIN-CI-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3516f8d9-a4f4-47a6-b0af-0469c78c785f",
+    "expediente": "CM-AMD-CS-1180-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff2f81a-f719-4139-85ab-37bf3a41263e",
+    "expediente": "LP-IHCIETI-FC-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cf5311bf-665a-42b9-b75b-00738b9440ab",
+    "expediente": "CM-AMD-CS-1171-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0833c243-207a-4496-b899-093486cae4c7",
+    "expediente": "CM-10-09-2026-SEMUJER",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4a74cca1-55be-4e34-ba02-3c9c352a0e2c",
+    "expediente": "CNPV-03-LPN-B-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ff090e9d-0b09-449d-8c20-1a54320d43cd",
+    "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "13426f17-844d-40ea-ac60-354a56879d35",
+    "expediente": "CM-578-AMLC-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "8076ebe1-29e6-4a10-a72a-fd90539e5389",
+    "expediente": "LPN-MPC-GPYD-01-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "cd505b7f-ce80-47c1-ac5a-285247438df7",
+    "expediente": "CM-168-BANHPROVI-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "354e01b5-3485-4d5a-a3a6-39e0ca4151e6",
+    "expediente": "ENEE-CM-GG-50003502-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "047ca9fe-f7e6-4d2d-895f-ee935aa356e7",
+    "expediente": "CM-011-2026RDSB16",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3ec0a9fc-84d7-4614-ab59-c0e09ba7b671",
+    "expediente": "UNAH-SEAF-LPN-011-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43e0c15b-250c-4bfa-be6a-01e228123c28",
+    "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ac65170a-3319-4743-81b7-cfccbf628364",
+    "expediente": "CM-066-INAMI-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "817f497d-4960-47e4-9411-18d8c32acac3",
+    "expediente": "ENEE-CM-GG-30005225-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "6831b556-e08c-412b-a4bb-d6ce5fb39518",
+    "expediente": "AMPC-GAF-CM-0708-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fa815fd5-ce4c-4e7a-a354-5093c9aa3540",
+    "expediente": "CPN-SIT-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "300d04d4-83d0-4342-acc3-0bc336d561a7",
+    "expediente": "LP-003-2026-RSN4-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "92464f23-3aba-48be-949a-6bc4e00b7987",
+    "expediente": "LPN-SIT-048-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fe8f4cd0-e720-4025-8424-52603caae96a",
+    "expediente": "LPN-MPC-GPYD-02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "51895ce6-103a-4f57-b3bc-2bb8e7318ab4",
+    "expediente": "LPN-SIT-040-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "229e9ee4-9615-4a20-9a43-67b4effc31dc",
+    "expediente": "LPN-05-2026-FAHM",
+    "label": "not_relevant",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "af7e2aed-1aba-444d-8f02-7f46c31a9300",
+    "expediente": "CM-042-ENP-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "11e6f531-32c4-4ce3-8ee4-cf5444f1aa3b",
+    "expediente": "CM-222-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "003ee09e-1fd8-4d0e-8b58-677ef50b675c",
+    "expediente": "LP-CNBS-010-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3562af82-57b5-422e-a360-3ef027471dd3",
+    "expediente": "HOP6-ENEE-10-LPN-S",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1c14ed87-414b-4614-b24f-250ef9b1bc5f",
+    "expediente": "LPN-001-CONSUCOOP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0b0cb9bd-dd2c-4e00-ab3d-b8e2c3255b33",
+    "expediente": "LPN-MSPS-GDS-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2187c8d8-0e28-4c41-8e1d-a471e6dcc2b0",
+    "expediente": "CM-567-AMLC-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a5761ff8-a5f2-4a59-bbec-2f38d4f78502",
+    "expediente": "ARSA-CM-GC-2026-125",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "da981db4-e81c-4691-8535-dfb6bfe6db0c",
+    "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4096bad6-75e3-41a4-80db-3eefe322423d",
+    "expediente": "CM-GC-IHMA-2026-080",
+    "label": "adjacent"
+   },
+   {
+    "processId": "e093c996-76dd-4aed-bd18-ccf1db3a4dea",
+    "expediente": "LPN-MPC-GT-10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bbd8ab1a-252f-4ee5-b36d-ada71c08922c",
+    "expediente": "AMPC-GAF-CM-0706-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "6214ac45-2b91-4878-98ca-af60b44a7510",
+    "expediente": "ENEE-CM-GG-50003489-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "66b7d76d-8ed9-4c54-a737-6da03c99431c",
+    "expediente": "GC-LPN-HBCBH-ROATAN-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7a717814-328b-4b05-b184-d54a1943c46b",
+    "expediente": "LPN-MSPS-GS-05-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cea382cf-36aa-449e-a1bb-b343270a543f",
+    "expediente": "CM-SC035-BCH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a45db25-d242-45f9-95ae-da376ee815f7",
+    "expediente": "SIT-CD-CO-016-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "662e8c54-eeb8-45fa-ac32-6d0974fb4983",
+    "expediente": "AMPC-GAF-CM-0710-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d8d9f780-61eb-4c13-9d30-17374842e521",
+    "expediente": "SETRASS-CM-UE003-2026 004",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "93f7f6d1-d74f-441f-a5aa-996d16ae8011",
+    "expediente": "PJ-CM-GC-2026-0787",
+    "label": "unsure"
+   },
+   {
+    "processId": "c3147096-fc3f-400a-ab10-ae3530d552bc",
+    "expediente": "UNAH-RECTORIA-026-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "0351cca6-d77f-4fed-9487-136ee5dc9bc5",
+    "expediente": "LPN-SIT-046-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8a47801f-eaa4-4765-b276-8f8198571baa",
+    "expediente": "IHT-CM-GC-2026-264",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2414b85f-8a60-46bb-b39f-b7cb8d4b6558",
+    "expediente": "LPN-SIT-045-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff69d01-7d44-4f9c-a870-d7a9968a1178",
+    "expediente": "UNAH-RECTORIA-025-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "e93fcbf0-b859-4d85-868b-de94d3e78e3e",
+    "expediente": "UNAH-RECTORIA-029-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "306d70be-3a1f-4284-adf7-66a704bfcd22",
+    "expediente": "UNAH-DSA-FE-CM-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a012f3f2-ddb4-4e82-a397-c7db95abab6f",
+    "expediente": "LPN-SIT-051-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ae1e740b-b4a0-4ad4-801a-4d9c14c369f1",
+    "expediente": "CD-03-2026-HPL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cdd84f38-e33a-40ef-9850-8ae174e39afa",
+    "expediente": "MCOM-009-2026-EMC",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "817a9389-9835-48f1-bc0c-932f59c1a697",
+    "expediente": "CPN-SIT-049-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6e45762a-e1d5-4fb2-8926-eee48ba8efe7",
+    "expediente": "LIC. PRIV. 02-2026 MOBILIARIO PRESIDENCIA",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4aaeea7f-8dd0-4b00-b7dc-6d9c35aca9f4",
+    "expediente": "ENP-LPRIVN-GA-UI-19-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "34485271-a811-4373-ab1d-8833f8b3b043",
+    "expediente": "INJUPEMP-LPR-09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "68196297-9f0a-4d74-913c-9461477610a1",
+    "expediente": "032-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "80e191d7-c486-49ef-afa6-9270eccf4c5b",
+    "expediente": "LP-010-2026-HSL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5802442d-4515-423d-9f2d-a54b107e561c",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f9c18de7-1e2f-469a-a6cb-6b6b9a1bd168",
+    "expediente": "ENEE-CM-GG-50003493-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8cb0481e-8907-43a9-b84a-c95f05a8cb0b",
+    "expediente": "PGR-CM-GC-2026-351",
+    "label": "unsure"
+   },
+   {
+    "processId": "e70e5fff-65be-4d10-8238-f5b44af967b2",
+    "expediente": "ENEE-CM-GG-30005232-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "66c0f83a-f4c2-46cf-b73a-5201ccb39d2a",
+    "expediente": "BANADESA-2026-537",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "de15a3d1-57cb-417b-b242-c85f66319326",
+    "expediente": "CM 39-016-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "788f0211-5435-4acd-8bb8-7fe1e65dc199",
+    "expediente": "ENEE-CM-GG-10005204-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a829f15-35c7-4097-a62b-5269f67f8b00",
+    "expediente": "MP-1012220667-3564-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b56451a0-5298-42ba-9fcd-c7881d01fbfb",
+    "expediente": "CM 39-017-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1f1453d6-3b94-43bd-b06a-7ad61d57b728",
+    "expediente": "ENEE-CM-GG-40002460-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "601eb283-9bf7-466f-a5a1-a9156589a792",
+    "expediente": "UNAH-SEAF-FCS-CM-SC22558-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "741417f1-b419-42da-ae71-bcc74a979b1b",
+    "expediente": "IHT-LPN-GC-2026-02",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "818feb4e-9912-41b2-84f7-1fd36c0bf54f",
+    "expediente": "LPN 10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3a3beddc-9132-41d3-b228-e97ae1e7b7d3",
+    "expediente": "UNAH-SEAF-CDU-CM-SC22540-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5de8822b-3cf5-4dd6-8ff7-300c90ef47f0",
+    "expediente": "CPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "65dae6e1-b718-4936-a602-c2f04827098e",
+    "expediente": "UE-065-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "c9744600-698f-430f-be13-f26839cdce92",
+    "expediente": "CM-452-USINIEH-SDGP-SE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "630dea17-cbc5-4f06-a96e-30fc1fd903a4",
+    "expediente": "UNAH-RECTORIA-022A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "be2d27e9-1b6e-49b4-81ff-e9cb80460ae7",
+    "expediente": "CM 39-018-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "bb4ccd55-e0c0-4788-8ab9-68b3f198c72f",
+    "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3c70f4fe-2230-4c38-a6d9-7e9421cb0cb5",
+    "expediente": "CM-GC-DIDADPOL-076-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d2b38877-8ba8-4eca-a658-4660c90cf74d",
+    "expediente": "CD 001-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "ff538868-f2f9-4991-aa7d-59eadb02db89",
+    "expediente": "CM-154-SDN-CMDOPMOP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8b712dc9-eb4a-4dba-b19a-b76c2b964722",
+    "expediente": "50-2026 FUNDANIQUEM-CEHNIQ",
+    "label": "core",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "e9a72eae-77f2-44ab-bc6a-5ec91a3fb6dc",
+    "expediente": "SANAA-RA-043-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "03f382a3-6899-4dc2-9eda-289f42a079f1",
+    "expediente": "ENEE-CM-GG-10005197-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "37fb7e1f-478c-47b4-996c-6a88ed2a81ec",
+    "expediente": "LPN 09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "fabec220-610d-4156-999e-7e7d82adbf3a",
+    "expediente": "GC-CM-HBCBH-COPAN RUINAS-09-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "0b0fe8d6-0a06-4640-9786-163bd770dc5e",
+    "expediente": "UNAH-SEAPI-CM-GV-28-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cd3ff569-fac1-4ab7-a231-71816fa419c6",
+    "expediente": "ENEE-CM-GD-50003447-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1acf0847-5ccf-4ecf-80b3-9e3748ca2112",
+    "expediente": "SEN-LPriN-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0c163b25-0812-47ab-b488-912594047ca5",
+    "expediente": "CM-AMD-UTM-083-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "82774de2-9c51-4ef1-a397-6a5e1fc1ef4d",
+    "expediente": "CM-571-AMLC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "106517e1-bdf6-4eff-9a33-e337aab9dd70",
+    "expediente": "LPN-UPNFM-008-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "e1a6dbdd-e79f-4b3e-9350-22b13f49b1be",
+    "expediente": "LPN-SIT-039-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7ac1603a-773f-44a4-b24a-7489e5fa2c5e",
+    "expediente": "UNAH-SEAF-LPN-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f2cb5206-82b2-4f65-ad4d-0974c0f0e97b",
+    "expediente": "COTI CONSULTORIA TDR 02-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "75b132ca-02b7-48ea-a7de-edd05013c65c",
+    "expediente": "LP-IHCIETI-FC-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6aa13f16-710c-4451-9690-5158ab99dc82",
+    "expediente": "IPM-LPN-GC-2026-017",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "562e3a7e-9eb3-4453-ab60-f9cf1aa96903",
+    "expediente": "ENEE-CM-GG-10005199-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a3bd5472-79b5-4996-a4f5-49dde0b18589",
+    "expediente": "CM-AMD-CS-1181-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4e3bc7cb-48a0-4b18-818f-2652ca711c5c",
+    "expediente": "LPuNO-AMDC-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "964fff28-f81c-4493-80d7-2a042b43974c",
+    "expediente": "LP-002-2026-RSN4-SESAL",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "0fa36518-4756-4c6b-901b-2e7879ee2369",
+    "expediente": "CD-038-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2729a2f0-eca3-4ca7-be64-ca9acf9dfee4",
+    "expediente": "ENEE-CM-GG-10005203-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "1f7f9e70-d5d9-4653-9c84-8ae7decd5e84",
+    "expediente": "CM-560-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b0967f99-14ac-4aa8-ba6c-18851cff8e57",
+    "expediente": "ENP-LPRIVN-GA-UI-06-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f7866cac-091b-4d2d-b66b-0f855f697621",
+    "expediente": "CPN-SIT-047-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "43756950-fb0e-49ac-b2fa-e70bfdfa6106",
+    "expediente": "ENP-LPRIVN-GA-UI-07-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f8f8aa08-58a4-4d56-9f3f-435ad8bb6bdf",
+    "expediente": "SIT-LPR-026-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8b471e53-7622-4cd3-8d57-616d67d9a138",
+    "expediente": "LPN-04-2026-FAHM",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d26a7960-af38-47d5-861f-c94582ee5e36",
+    "expediente": "LP No. 01-2026-SEAPI-UNAH",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9099cc82-c9ff-4e7c-b771-f6e3bf4267f4",
+    "expediente": "SETRASS -CM -UE003- 2026 -005.",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "914f06ae-386a-4986-9d2c-b073fcd15807",
+    "expediente": "LP-005-2026-HO-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "608b7b66-aa36-4b8e-b9c0-64474fa6675a",
+    "expediente": "ENP-LPRIVN-GA-UI-10-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4388e591-2837-412d-8fad-63090a89814f",
+    "expediente": "UE-64-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e68dbdfb-dfd9-45ba-a762-6745985ace88",
+    "expediente": "LP-SDE-001-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "63923511-9dbd-4ad9-a32d-5f971dbd3aa9",
+    "expediente": "SAG-COMRURAL-III-SCI-41-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "52b2d74a-6a58-405a-a9dc-026c263b0ef6",
+    "expediente": "CM-236-IP-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a633f306-4ad1-4bbe-abd5-403f0d2040d1",
+    "expediente": "UNAH-RECTORIA-028-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "99fe2d40-cce3-4675-b238-73c36a3d3f00",
+    "expediente": "Licitacion Privada 02-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "cbf523c5-4116-4893-8773-6b657c517540",
+    "expediente": "LP-03-2026",
+    "label": "core"
+   },
+   {
+    "processId": "b2f16170-b0f4-44b0-9455-315be9f04aa3",
+    "expediente": "SETRASS-CM-UE008-2026-001",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "38d2a314-a30e-4f8a-ae28-990c20bc8208",
+    "expediente": "6000001514-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0b35ad6-49c4-4b99-a41f-750e697e0af6",
+    "expediente": "LP-009-2026-HSL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19e8ace7-edfe-4343-8ebe-dfae632b6d26",
+    "expediente": "UNAH-SEAPI-GACETA-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "884282a5-4ae6-431a-b20c-735b901f5807",
+    "expediente": "HN-SESAL-569324-GO-RFB",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "eaf83f5e-7256-4f5c-b5a2-7d5114f38b13",
+    "expediente": "LP-008-2026-HGSF",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "4998fc27-9f4e-4982-a84e-e3b33cef44ae",
+    "expediente": "CM-CREE- 149-2026 MANTENIMIENTO VEHICULO",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "01c1a434-23be-4118-8e9a-ce2dee85f14f",
+    "expediente": "CPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "df09e873-7fcc-40e8-b0a7-b48eb3ad4a83",
+    "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "694b0d91-7c98-4299-9f08-2b710811e76f",
+    "expediente": "2000001412-IHSS-SPS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c6bda7da-e511-4e96-a699-89c83f6b4e52",
+    "expediente": "CM-GA-2026-ADMON-089-318",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "744c4638-5d07-4ef0-911a-41a267981f32",
+    "expediente": "LPN-018-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "26f61103-96be-464d-b634-2b45ce39dcec",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-035",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6e871cb8-6c17-42e0-bf42-eddc71dc766c",
+    "expediente": "LP-001-RDSN3-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3bd6b612-6d48-4468-96f4-a613e3015182",
+    "expediente": "LPN-SIT-043-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9a04aa1a-cf36-445f-a507-3f495ef0483e",
+    "expediente": "CM-DA-2026-039",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "ce2aa5ba-24f8-494e-a55c-75a9224bc295",
+    "expediente": "UNAH-SEAPI-PUBLICACIONES-33-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a9b6f059-dd9d-48f8-8719-9cc86a6077c9",
+    "expediente": "LPN-SIT-052-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c503ec25-a6c9-4d37-a234-cf0c4338cd41",
+    "expediente": "LP-IHCIETI-FC-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "49e96f70-fc3e-4e75-9d7d-1571fb81b18c",
+    "expediente": "CM-012-2026RDSB16",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "8e9fbc2e-9eec-484a-bcb8-2a3d6148e43d",
+    "expediente": "CM-009-DDEO-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "afae0418-e6d1-4a8a-9c01-819f8d0d9532",
+    "expediente": "PGR-CM-GC-2026-352",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4ff08698-c7e8-4dec-b56c-8293abb03f6d",
+    "expediente": "CM-008DDEO-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "ffb4ab4f-7b24-4f81-8dd3-77a20b9a8af2",
+    "expediente": "SANAA-RA-042-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e8cf40ea-6236-4b09-b789-c840093a5e1e",
+    "expediente": "CM-079-SAR-2026",
+    "label": "adjacent",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "33d8927d-c760-4065-ace5-408ca4f1f4f5",
+    "expediente": "CM-1733-EMC-ECEM-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f6c887ad-785e-4871-92c9-c07c2e9b41dd",
+    "expediente": "CPN-SIT-045-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "11ed7719-4ce0-4705-bfea-39b27e3808b0",
+    "expediente": "IPM-LPN-GC-2026-015",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b9d611ab-900e-4f00-bec3-6229bbb59a5c",
+    "expediente": "PJ-CM-GC-2026-0771",
+    "label": "unsure"
+   },
+   {
+    "processId": "009f94e3-177d-4474-a0f2-ecead4280673",
+    "expediente": "CPN-SIT-052-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c76f146f-3a27-431d-94f0-64e7d303ff4b",
+    "expediente": "AMPC-GAF-OM-086-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e7bd29cb-d370-4dcd-a34a-1735ac4ac351",
+    "expediente": "LP-02-2026-RSDI",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "beb50f0a-d4ec-4c67-909d-02148b9ceea8",
+    "expediente": "2000001413-IHSS-SPS",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "63c18f6c-391e-4c00-92fd-0e8969b0daa8",
+    "expediente": "LPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5e99c9bb-df04-4511-adc1-00cd4b5c74ec",
+    "expediente": "LPN-001-SECAPPH-2026",
+    "label": "core"
+   },
+   {
+    "processId": "d68f4415-3d82-4a72-81da-94c82da17f81",
+    "expediente": "LPN-SIT-053-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "96574578-95dd-4b1b-b363-646151f70abc",
+    "expediente": "CM-GC-IHMA-2026-077",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b5541d4f-e4ba-439d-b961-0b1383593227",
+    "expediente": "ENP-COM-012-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "0e11415a-f72b-4993-8209-802a80404918",
+    "expediente": "LPrN-001-IHAH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "bfdcad14-6943-4bcc-a91a-ff97abc9a1c0",
+    "expediente": "ENEE-CM-GG-10005210-2026",
+    "label": "adjacent",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "f77dfed7-7b3a-40c5-a3aa-aa07d2dbb8be",
+    "expediente": "PJ-CM-GC-2026-0790",
+    "label": "not_relevant",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "9d80ac1d-4a3d-41ef-bb0d-0621181a60b4",
+    "expediente": "SEN-LPriN-003-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2b6fd782-cb52-485b-af2e-4cd36c7e114c",
+    "expediente": "CPN-SIT-041-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "3979fb46-83bf-4e6c-95e3-bc8547a5c3ec",
+    "expediente": "CM-CREE- 146-2026 IMPRESORA DE CARNETS",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f85289db-e3ba-49f7-a995-a1ed03ddb3b0",
+    "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "afcb274c-dd25-4fc7-a842-6ebd8232705f",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-033",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "19c2efbd-4665-4eae-b40c-d7996d0e431e",
+    "expediente": "ENEE-CM-GG-10005189-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e913a784-b1cd-4f0c-ae6d-3f00b07f3dfe",
+    "expediente": "GC-CM-HBCBH-SANLORENZO-028-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c655ef9e-7576-45e4-a856-378c5120e02c",
+    "expediente": "LPN-017-2026-SDN",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "5b6fa522-064b-46b2-8534-2bc31c356516",
+    "expediente": "UNAH-RECTORIA-024-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "810b6a21-3bd5-400b-8c4e-2e3926660fb9",
+    "expediente": "LPública No.26-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "dc52c87a-43f0-409f-8488-4c1f429ad011",
+    "expediente": "LP-04-2026-RSDI",
+    "label": "core"
+   },
+   {
+    "processId": "ea519de2-acee-4ca2-a01d-ac01fd5a1c5e",
+    "expediente": "LPR-HND-019-B-002-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "b983158f-f932-42ca-8123-4cc1b8d24c05",
+    "expediente": "UNAH-SEAF-LPN-008-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d783796f-9dd3-4ca8-9611-dec9043e80f9",
+    "expediente": "CM-CONEANFO-034-2026",
+    "label": "adjacent"
+   },
+   {
+    "processId": "66e525e1-c8c7-471f-8fbf-8e7cc537194a",
+    "expediente": "SENAF-CM-127-2026",
+    "label": "core"
+   },
+   {
+    "processId": "a2c6e81d-3f21-41f3-9d73-cd759235efd4",
+    "expediente": "CM-553-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "40ea1879-35fe-4cfe-bb27-dc48ed896865",
+    "expediente": "1224-RDSLP-2026",
+    "label": "core",
+    "firstLabel": "adjacent"
+   },
+   {
+    "processId": "cf3f4deb-c6ec-42e0-93b3-8a9434adbeca",
+    "expediente": "INPREMA-1200-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0e0be778-051e-4433-8cb5-b8c83dd5783d",
+    "expediente": "IHT-CM-GC-2026-248",
+    "label": "adjacent",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "4caed57f-af4a-4b4f-a14f-d2bf81f060ab",
+    "expediente": "UNAH-RECTORIA-021a-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "6f4721dc-9f81-46aa-bae8-1658435d246f",
+    "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+    "label": "adjacent",
+    "firstLabel": "core"
+   },
+   {
+    "processId": "e7eb6208-db22-4e30-92e0-6365463ba4bf",
+    "expediente": "LP-012-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "46d5bc29-9cb7-4119-b027-69361fc2a3b5",
+    "expediente": "LPR-AMLEI-UOP-01-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "482eaf74-6f8c-4f3b-9840-62c123b031ba",
+    "expediente": "LPN-SIT-050-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7ac5edfc-0fb6-4805-a6a6-062f4d0725e3",
+    "expediente": "ENEE-CM-DIESEL-GTA-UTCD-013-IX-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7e1668b7-45d9-4c06-ae10-9f0aa4f9d744",
+    "expediente": "AMPC-GAF-OM-084-2026",
+    "label": "unsure",
+    "firstLabel": "not_relevant"
+   },
+   {
+    "processId": "115af26e-cf26-4227-90c6-46b18e15f67f",
+    "expediente": "DFP-CM-033-18925-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a5ee06c3-aba7-47f5-a4e8-21f664872bc6",
+    "expediente": "LPN-SDE-004-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2f89e498-1399-4230-8e3d-9697b790e583",
+    "expediente": "CM-544-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "49cda353-488c-4482-93cf-338f57718598",
+    "expediente": "ENP-LPRIVN-GA-UADQ-12-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e9e772eb-49ed-45b5-9a4b-46ed4039d359",
+    "expediente": "HO-L1202-P00133",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "4665d7fd-44b3-4659-aea0-b7fcb0df0359",
+    "expediente": "LPN-020-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6aa52064-5a0a-463c-84c0-871e28b6c84b",
+    "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+    "label": "core"
+   },
+   {
+    "processId": "405d7f38-c6bf-4b86-9f97-824b8e4779de",
+    "expediente": "LPN-UAFCE-EUROSAN-008-2026-SESAL",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "7d487bcb-f84e-435c-ba9d-f4c2bef60200",
+    "expediente": "UNAH-RECTORIA-023A-2026",
+    "label": "unsure"
+   },
+   {
+    "processId": "e1f5499f-974e-41dd-98fd-198ccbb3054e",
+    "expediente": "GC-LPN-HBCBH-TEG-CENTRO DE DIAGNOSTICO-007-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "001d7923-2dc0-4874-9a1d-2c5855f2b9d6",
+    "expediente": "ENEE-CM-GG-50003498-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "02b9a699-d051-41c1-8a58-19637c3bbfdd",
+    "expediente": "LPN-UPNFM-006-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "56e0c29b-aa8c-4ee5-98ee-ad7606fb0747",
+    "expediente": "PJ-CM-GC-2026-0789",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "706b346e-389f-4a1d-be39-62fe1b393789",
+    "expediente": "49-2026 FUNDANIQUEM-CEHNIQ",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e1ae3800-7606-4c60-9117-9e3eb4888947",
+    "expediente": "UMAPS-LPR-01-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "2ac81b9b-3763-4975-b610-ff32d8b4424c",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-036",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "5527b6aa-d3a2-4d38-ae28-86aeb4d19331",
+    "expediente": "LPN-SIT-047-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "784bafc1-323e-4758-bf42-b48a699117ce",
+    "expediente": "LP-002-AHAC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "37c83943-f174-488c-9c44-e7419fd82024",
+    "expediente": "LPN-SEDESOL-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a3196cc7-822e-4fad-951c-7402e085360d",
+    "expediente": "CM-550-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e8f2267a-de9c-47c1-9a02-35b0c9776714",
+    "expediente": "UNAHVS-SEAF-CM-SC22603-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "15901b20-2ef3-49ed-82d8-c278e611bf11",
+    "expediente": "UNAH-SEAF-DEP-CM-SC22573-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "6f28a14f-f1db-4cdd-8f9c-9da7fe5e272a",
+    "expediente": "35-29-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cc36a72b-ebf2-456f-879b-524400c73275",
+    "expediente": "HO-L1202-P00244",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "c4536efc-1429-487d-bc54-7462640c9f5f",
+    "expediente": "CPN-SIT-051-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d5da0739-d217-497d-adb9-4b20de24da16",
+    "expediente": "CM-SDE-196-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "570decb1-a517-4f07-9d9e-24e591d1c625",
+    "expediente": "ENP-CM-391-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "09ca2c8f-0320-4bbc-985e-95d6a1691c73",
+    "expediente": "CM-SDE-195-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "426e9497-d1bb-428d-b8d9-457abbd55906",
+    "expediente": "DICTA-CM-GC-2026-088",
+    "label": "adjacent"
+   },
+   {
+    "processId": "68479704-1105-492b-a40e-db456560ccb3",
+    "expediente": "CM-564-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "78d2b87e-0e80-4fb8-b5c0-473c2be2316e",
+    "expediente": "CM-019-DDEC-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "051a3566-c366-441d-83ea-894e96196cec",
+    "expediente": "CM-AMD-UTM-085-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b9c15693-6376-4758-ab18-62d8028f0565",
+    "expediente": "CM-1730-EMC-C2-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d0324276-70b2-442a-92d0-88feb1368b26",
+    "expediente": "LPN-001-IHAH-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "b72b1716-47c3-4940-a4db-ba789f375ad0",
+    "expediente": "ENP-LPRIVN-GA-UI-18-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d9bf9a83-aa55-418d-8e13-06b86da1eb1e",
+    "expediente": "CM-GC-HBCBH-ROATAN-2026-034",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "9e0c02bf-65ae-4c9b-aa5f-6614710dbed5",
+    "expediente": "CM-563-AMLE-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "f00c2d15-5dc0-4f6d-873a-0c6a43f75118",
+    "expediente": "38-23-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0149641a-a06a-4e57-9a7f-5746ed8050a1",
+    "expediente": "HO-L1202-P00243",
+    "label": "adjacent",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "7916211b-b064-47c0-83af-b89421d12c0e",
+    "expediente": "BANADESA-2026-539",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "cd025a3a-722b-4786-99a4-81694b5648dd",
+    "expediente": "CPN-SIT-044-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e6af95e0-817b-41a1-8cf5-fa20ee62c87d",
+    "expediente": "LP-008-SE-DIGECEBI-DGA-OBRA-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "a6bdfd85-3444-406f-a3b7-9f415f5282ad",
+    "expediente": "SEN-LPriN-002-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "17d9edf2-a326-494e-8bbd-9225f91538da",
+    "expediente": "SESAL-CM-GC-0111-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "e0f7b3cf-6244-4e2b-98f6-fb42dcb83a2c",
+    "expediente": "004-LP-2026-AMCAT",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "55c00f77-6297-4283-8e33-b1993b8f6273",
+    "expediente": "LPN-019-2026-SDN",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "0480a604-b192-4419-9a78-288caa2c0f97",
+    "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+    "label": "core"
+   },
+   {
+    "processId": "efa6031e-6f73-47af-97da-08d741d9238d",
+    "expediente": "SANAA-UC-37-2026",
+    "label": "not_relevant"
+   },
+   {
+    "processId": "d1ecd37f-2f46-4942-921e-310d4fd2e6cf",
+    "expediente": "UNAH-SEAF-AI-CM-SC22549-2026",
+    "label": "not_relevant",
+    "firstLabel": "unsure"
+   },
+   {
+    "processId": "72b2b994-44ce-437a-a434-4be44836b73f",
+    "expediente": "PJSPS-CM-GC-2026-0126",
+    "label": "unsure"
+   },
+   {
+    "processId": "84b11700-dfcd-41a8-9f5d-03dcbcce5cb5",
+    "expediente": "CM-GC-IHMA-2026-076",
+    "label": "adjacent",
+    "firstLabel": "core"
+   }
+  ]
+ }
+}

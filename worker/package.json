@@ -11,7 +11,8 @@
     "eval:retrieval": "tsx --env-file=.env.local src/eval/run-retrieval.ts",
     "eval:jev": "tsx --env-file=.env.local src/eval/run-jev.ts",
     "eval:build-pools": "tsx --env-file=.env.local src/eval/build-pools.ts",
-    "eval:extract-profiles": "tsx --env-file=.env.local src/eval/extract-profiles.ts"
+    "eval:extract-profiles": "tsx --env-file=.env.local src/eval/extract-profiles.ts",
+    "eval:second-opinion": "tsx --env-file=.env.local src/eval/second-opinion.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.86.0",

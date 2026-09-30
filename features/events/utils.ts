@@ -7,6 +7,9 @@ export const EVENT_LABELS: Record<string, string> = {
 	[APP_EVENTS.ORGANIZATION_DELETED]: "Organización eliminada",
 	[APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED]: "Propiedad transferida",
 	[APP_EVENTS.COMPANY_PROFILE_UPDATED]: "Perfil de la empresa actualizado",
+	[APP_EVENTS.SAVED_SEARCH_CREATED]: "Búsqueda creada",
+	[APP_EVENTS.SAVED_SEARCH_UPDATED]: "Búsqueda modificada",
+	[APP_EVENTS.SAVED_SEARCH_DELETED]: "Búsqueda eliminada",
 	[APP_EVENTS.INVITATION_SENT]: "Invitaciones enviadas",
 	[APP_EVENTS.INVITATION_ACCEPTED]: "Invitación aceptada",
 	[APP_EVENTS.INVITATION_REVOKED]: "Invitación revocada",
@@ -63,6 +66,14 @@ export const EVENT_FILTER_GROUPS = [
 			APP_EVENTS.ORGANIZATION_DELETED,
 			APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED,
 			APP_EVENTS.COMPANY_PROFILE_UPDATED,
+		],
+	},
+	{
+		label: "Búsquedas",
+		events: [
+			APP_EVENTS.SAVED_SEARCH_CREATED,
+			APP_EVENTS.SAVED_SEARCH_UPDATED,
+			APP_EVENTS.SAVED_SEARCH_DELETED,
 		],
 	},
 	{

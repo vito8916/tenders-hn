@@ -5,12 +5,22 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { requestSearchRunAction } from "../actions";
 
-export function RunSearchButton({ orgId, orgSlug, runActive }: { orgId: string; orgSlug: string; runActive: boolean }) {
+export function RunSearchButton({
+    searchId,
+    orgSlug,
+    disabled,
+    size,
+}: {
+    searchId: string;
+    orgSlug: string;
+    disabled?: boolean;
+    size?: "sm" | "default";
+}) {
     const [isPending, startTransition] = useTransition();
 
     const run = () =>
         startTransition(async () => {
-            const result = await requestSearchRunAction({ orgId, orgSlug });
+            const result = await requestSearchRunAction({ searchId, orgSlug });
             if (result.success) {
                 toast.success("Búsqueda iniciada");
             } else {
@@ -19,7 +29,7 @@ export function RunSearchButton({ orgId, orgSlug, runActive }: { orgId: string; 
         });
 
     return (
-        <Button onClick={run} disabled={isPending || runActive}>
+        <Button onClick={run} disabled={isPending || disabled} size={size}>
             {isPending ? "Iniciando…" : "Ejecutar ahora"}
         </Button>
     );

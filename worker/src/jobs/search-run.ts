@@ -12,42 +12,56 @@ import type { JobHandler } from "../queue";
 
 const searchRunMessageSchema = z.object({ runId: z.uuid() });
 
+// The search's criteria as request_search_run froze them in config_snapshot.
+const searchSnapshotSchema = z.object({
+    name: z.string(),
+    inheritsProfile: z.boolean(),
+    description: z.string().nullable(),
+    keywords: z.array(z.string()),
+    exclusions: z.array(z.string()),
+    entities: z.array(z.string()),
+    modalities: z.array(z.string()),
+    acquisitionTypes: z.array(z.string()),
+});
+type SearchSnapshot = z.infer<typeof searchSnapshotSchema>;
+
 // Candidates Jev evaluates: the labeled set's top 100 of the extracted profile held 95% of core processes.
 const CANDIDATE_CUTOFF = 100;
 const EVALUATION_CONCURRENCY = 4;
 
 type StoredProfile = ExtractedProfile & { linesOfBusiness: RetrievalLine[] };
 
-interface RunProfile {
-    version: number;
+/** What the run matches against: the company profile or the search's own description, plus the search's additions. */
+interface MatchingProfile {
     description: string;
     offerings: string[];
     exclusions: string[];
 }
 
+/** Where the extracted lines of business are cached: the profile version or the search's current description. */
+type ExtractionSource =
+    | { kind: "profile"; orgId: string; version: number; text: string; stored: StoredProfile | null; storedVersion: string | null }
+    | { kind: "search"; searchId: string; description: string; text: string; stored: StoredProfile | null; storedVersion: string | null };
+
 /**
- * Runs matching for the profile version a run was requested with, over the
- * open processes: extracts the profile's lines of business when needed,
- * retrieves candidates, evaluates the top ones with Jev, and stores each with
- * its relevance and reasons. A process whose object matches one of the
- * company's exclusions is `descartada`. A failed evaluation leaves its
- * candidate `pendiente` and the run `partial`; any other failure marks the
- * run `failed` so a new one can start.
+ * Runs matching for a saved search over the open processes, with the
+ * criteria frozen when the run was requested: the company profile version
+ * (or the search's own description), extra keywords, exclusions, and filters
+ * by institution, modality, and acquisition type. Extracts the lines of
+ * business when needed, retrieves candidates, evaluates the top ones with
+ * Jev, and stores each with its relevance and reasons. A process whose object
+ * matches one of the exclusions is `descartada`. A failed evaluation leaves
+ * its candidate `pendiente` and the run `partial`; any other failure marks
+ * the run `failed` so a new one can start.
  */
 export const searchRun: JobHandler = async (message, { pool }) => {
     const { runId } = searchRunMessageSchema.parse(message);
 
-    const { rows } = await pool.query<
-        RunProfile & { org_id: string; extracted_profile: StoredProfile | null; extraction_version: string | null }
-    >(
+    const { rows } = await pool.query<{ org_id: string; saved_search_id: string; profile_version: number | null; search: unknown }>(
         `update public.search_runs r
          set status = 'running', started_at = coalesce(r.started_at, now())
-         from public.company_profile_versions v
-         join public.company_profiles p on p.org_id = v.org_id
-         where r.id = $1 and v.org_id = r.org_id and v.version = r.profile_version and r.status in ('queued', 'running')
-         returning r.org_id, v.version, v.description, v.offerings, v.exclusions,
-                   -- The stored extraction belongs to the current version; a run for an older one extracts its own.
-                   case when p.version = v.version then p.extracted_profile end as extracted_profile, p.extraction_version`,
+         where r.id = $1 and r.status in ('queued', 'running')
+         returning r.org_id, r.saved_search_id, r.profile_version, r.config_snapshot -> 'search' as search`,
         [runId],
     );
     const run = rows[0];
@@ -57,17 +71,41 @@ export const searchRun: JobHandler = async (message, { pool }) => {
     }
 
     try {
-        const profile =
-            run.extracted_profile && run.extraction_version === EXTRACTION_VERSION
-                ? run.extracted_profile
-                : await extractAndStore(pool, run.org_id, run);
+        const search = searchSnapshotSchema.parse(run.search);
+        const { matching, extraction } = await loadMatchingProfile(pool, run, search);
+        const extracted =
+            extraction.stored && extraction.storedVersion === EXTRACTION_VERSION ? extraction.stored : await extractAndStore(pool, run.org_id, extraction);
+        const lines: RetrievalLine[] = [
+            ...extracted.linesOfBusiness,
+            // The search's own keywords are one more query, named after the search.
+            ...(search.keywords.length > 0 ? [{ name: search.name, description: "", keywords: search.keywords, unspscClasses: [] }] : []),
+        ];
+
+        const { rows: openRows } = await pool.query<{ id: string }>(
+            `select id from public.procurement_processes
+             where (closes_at is null or closes_at > now())
+               and (cardinality($1::text[]) = 0 or buyer_entity = any ($1))
+               and (cardinality($2::text[]) = 0 or modality = any ($2))
+               and (cardinality($3::text[]) = 0 or acquisition_type = any ($3))`,
+            [search.entities, search.modalities, search.acquisitionTypes],
+        );
+        const filtered = search.entities.length > 0 || search.modalities.length > 0 || search.acquisitionTypes.length > 0;
 
         const embedModel = modelForRole("embed");
-        const candidates = (await retrieveForLines(pool, { lines: profile.linesOfBusiness, model: embedModel })).slice(0, CANDIDATE_CUTOFF);
-        const evaluated = await evaluateAll(pool, run, candidates);
+        const candidates =
+            filtered && openRows.length === 0
+                ? []
+                : (
+                      await retrieveForLines(pool, {
+                          lines,
+                          model: embedModel,
+                          processIds: filtered ? openRows.map((row) => row.id) : null,
+                      })
+                  ).slice(0, CANDIDATE_CUTOFF);
+        const evaluated = await evaluateAll(pool, matching, candidates);
         const { rows: exclusionRows } = await pool.query<{ process_id: string; matched_exclusions: string[] }>(
             "select process_id, matched_exclusions from public.match_exclusions($1::uuid[], $2::text[])",
-            [candidates.map((candidate) => candidate.process_id), run.exclusions],
+            [candidates.map((candidate) => candidate.process_id), matching.exclusions],
         );
         const matchedExclusions = new Map(exclusionRows.map((row) => [row.process_id, row.matched_exclusions]));
 
@@ -106,10 +144,10 @@ export const searchRun: JobHandler = async (message, { pool }) => {
             );
             await client.query(
                 `update public.search_runs
-                 set status = $2, candidates = $3,
+                 set status = $2, candidates = $3, processes_examined = $6,
                      matches_count = (select count(*) from public.search_run_matches
                                       where run_id = $1 and relevance in ('muy_relevante', 'posible')),
-                     coverage = $4, config_snapshot = $5, completed_at = now(), error = null
+                     coverage = $4, config_snapshot = config_snapshot || $5::jsonb, completed_at = now(), error = null
                  where id = $1`,
                 [
                     runId,
@@ -117,11 +155,12 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     candidates.length,
                     { failedEvaluations },
                     {
-                        profile,
+                        profile: extracted,
                         candidateCutoff: CANDIDATE_CUTOFF,
                         models: { embed: embedModel, evaluate: modelForRole("evaluate") },
                         questionsVersion: QUESTIONS_VERSION,
                     },
+                    openRows.length,
                 ],
             );
             await client.query("commit");
@@ -140,17 +179,85 @@ export const searchRun: JobHandler = async (message, { pool }) => {
     }
 };
 
-async function extractAndStore(pool: Pool, orgId: string, runProfile: RunProfile): Promise<StoredProfile> {
-    // The offerings are the customer's own words for what it sells; the extraction reads them as part of the text.
-    const result = await extractProfile(
-        runProfile.offerings.length > 0
-            ? `${runProfile.description}\n\nEjemplos concretos de lo que ofrece:\n${runProfile.offerings.map((offering) => `- ${offering}`).join("\n")}`
-            : runProfile.description,
+async function loadMatchingProfile(
+    pool: Pool,
+    run: { org_id: string; saved_search_id: string; profile_version: number | null },
+    search: SearchSnapshot,
+): Promise<{ matching: MatchingProfile; extraction: ExtractionSource }> {
+    if (!search.inheritsProfile) {
+        const description = search.description ?? "";
+        const { rows } = await pool.query<{ extracted_profile: StoredProfile | null; extraction_version: string | null }>(
+            // The stored extraction belongs to the search's current description; a run for an older one extracts its own.
+            "select extracted_profile, extraction_version from public.saved_searches where id = $1 and description = $2",
+            [run.saved_search_id, description],
+        );
+        return {
+            matching: { description, offerings: search.keywords, exclusions: search.exclusions },
+            extraction: {
+                kind: "search",
+                searchId: run.saved_search_id,
+                description,
+                text: description,
+                stored: rows[0]?.extracted_profile ?? null,
+                storedVersion: rows[0]?.extraction_version ?? null,
+            },
+        };
+    }
+
+    const { rows } = await pool.query<{
+        version: number;
+        description: string;
+        offerings: string[];
+        exclusions: string[];
+        extracted_profile: StoredProfile | null;
+        extraction_version: string | null;
+    }>(
+        `select v.version, v.description, v.offerings, v.exclusions,
+                -- The stored extraction belongs to the current version; a run for an older one extracts its own.
+                case when p.version = v.version then p.extracted_profile end as extracted_profile, p.extraction_version
+         from public.company_profile_versions v
+         join public.company_profiles p on p.org_id = v.org_id
+         where v.org_id = $1 and v.version = $2`,
+        [run.org_id, run.profile_version],
     );
+    const profile = rows[0];
+    if (!profile) {
+        throw new Error(`Profile version ${run.profile_version} of organization ${run.org_id} not found`);
+    }
+    return {
+        matching: {
+            description: profile.description,
+            offerings: [...profile.offerings, ...search.keywords],
+            exclusions: [...profile.exclusions, ...search.exclusions],
+        },
+        extraction: {
+            kind: "profile",
+            orgId: run.org_id,
+            version: profile.version,
+            // The offerings are the customer's own words for what it sells; the extraction reads them as part of the text.
+            text:
+                profile.offerings.length > 0
+                    ? `${profile.description}\n\nEjemplos concretos de lo que ofrece:\n${profile.offerings.map((offering) => `- ${offering}`).join("\n")}`
+                    : profile.description,
+            stored: profile.extracted_profile,
+            storedVersion: profile.extraction_version,
+        },
+    };
+}
+
+async function extractAndStore(pool: Pool, orgId: string, source: ExtractionSource): Promise<StoredProfile> {
+    const result = await extractProfile(source.text);
     await pool.query(
         `insert into public.ai_usage_events (org_id, role, model, input_tokens, output_tokens, latency_ms, status, reference)
          values ($1, 'extract', $2, $3, $4, $5, 'succeeded', $6)`,
-        [orgId, result.model, result.inputTokens ?? null, result.outputTokens ?? null, result.latencyMs, { type: "company_profile", orgId }],
+        [
+            orgId,
+            result.model,
+            result.inputTokens ?? null,
+            result.outputTokens ?? null,
+            result.latencyMs,
+            source.kind === "profile" ? { type: "company_profile", orgId } : { type: "saved_search", searchId: source.searchId },
+        ],
     );
 
     const lines = [];
@@ -160,14 +267,21 @@ async function extractAndStore(pool: Pool, orgId: string, runProfile: RunProfile
     }
     const profile = { ...result.profile, linesOfBusiness: lines };
 
-    await pool.query(
-        "update public.company_profiles set extracted_profile = $2, extraction_version = $3 where org_id = $1 and version = $4",
-        [orgId, profile, EXTRACTION_VERSION, runProfile.version],
-    );
+    if (source.kind === "profile") {
+        await pool.query(
+            "update public.company_profiles set extracted_profile = $2, extraction_version = $3 where org_id = $1 and version = $4",
+            [source.orgId, profile, EXTRACTION_VERSION, source.version],
+        );
+    } else {
+        await pool.query(
+            "update public.saved_searches set extracted_profile = $2, extraction_version = $3 where id = $1 and description = $4",
+            [source.searchId, profile, EXTRACTION_VERSION, source.description],
+        );
+    }
     return profile;
 }
 
-async function evaluateAll(pool: Pool, runProfile: RunProfile, candidates: Candidate[]) {
+async function evaluateAll(pool: Pool, matching: MatchingProfile, candidates: Candidate[]) {
     const evaluated: { candidate: Candidate; inScope: number | null; evaluationId: string | null }[] = candidates.map((candidate) => ({
         candidate,
         inScope: null,
@@ -182,7 +296,7 @@ async function evaluateAll(pool: Pool, runProfile: RunProfile, candidates: Candi
             const result = await evaluateMatch(pool, {
                 processId: item.candidate.process_id,
                 // Without offerings or exclusions this is the state the labeled-set thresholds were read with.
-                profile: { description: runProfile.description, offerings: runProfile.offerings, exclusions: runProfile.exclusions },
+                profile: matching,
                 match: { terms: item.candidate.matched_terms, fields: item.candidate.matched_fields, unspsc: item.candidate.matched_unspsc },
                 chunkIds: item.candidate.fragments.map((fragment) => fragment.chunk_id),
             });

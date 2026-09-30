@@ -6,7 +6,7 @@ export class UserFacingError extends Error {}
 
 /**
  * Spanish messages for the exceptions the database raises in organization,
- * membership, invitation, and company profile flows (`raise exception '<code>'` in supabase/migrations).
+ * membership, invitation, company profile, and search flows (`raise exception '<code>'` in supabase/migrations).
  * Postgres puts the code in the error message, so lookup is by substring.
  */
 const DATABASE_ERROR_MESSAGES: Record<string, string> = {
@@ -17,6 +17,13 @@ const DATABASE_ERROR_MESSAGES: Record<string, string> = {
     organizations_slug_key: "Ese identificador en la URL ya está en uso. Elija otro.",
     empty_profile: "Describa qué vende la empresa.",
     improvement_limit_reached: "Ya usó las 3 mejoras con IA de este campo por hoy. Podrá usarlas de nuevo mañana.",
+    search_limit_reached: "La organización alcanzó el límite de búsquedas activas de su plan. Pause otra búsqueda para activar esta.",
+    schedule_interval_not_allowed: "Su plan no permite ejecutar búsquedas con esa frecuencia.",
+    saved_searches_org_name_key: "Ya existe una búsqueda con ese nombre.",
+    search_not_found: "La búsqueda no existe o no tiene acceso a ella.",
+    search_inactive: "La búsqueda está pausada. Reactívela para ejecutarla.",
+    no_profile: "Guarde primero el perfil de la empresa.",
+    run_in_progress: "Esta búsqueda ya se está ejecutando. Espere a que termine.",
 };
 
 /** The code of a known database error (a key of DATABASE_ERROR_MESSAGES) in the error's message. */

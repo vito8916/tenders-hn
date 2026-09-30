@@ -2,16 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
+import { userErrorMessage } from "@/lib/errors";
 import { requestSearchRunSchema } from "./schemas";
 import { requestSearchRunService } from "./services";
 
 /**
- * Server Action that starts a search run for the saved company profile
+ * Server Action for «Ejecutar ahora»: queues a run of a saved search
  */
-export async function requestSearchRunAction(input: {
-    orgId: string;
-    orgSlug: string;
-}): Promise<{ success: boolean; error?: string }> {
+export async function requestSearchRunAction(input: { searchId: string; orgSlug: string }): Promise<{ success: boolean; error?: string }> {
     try {
         await getCurrentUser();
 
@@ -20,16 +18,13 @@ export async function requestSearchRunAction(input: {
             return { success: false, error: parsed.error.issues[0]?.message ?? "Datos no válidos." };
         }
 
-        await requestSearchRunService(parsed.data.orgId);
+        await requestSearchRunService(parsed.data.searchId);
 
-        revalidatePath(`/organizations/${parsed.data.orgSlug}/inbox`);
+        revalidatePath(`/organizations/${parsed.data.orgSlug}/searches`, "layout");
 
         return { success: true };
     } catch (error) {
         console.error("Error requesting search run:", error);
-        return {
-            success: false,
-            error: error instanceof Error ? error.message : "No se pudo iniciar la búsqueda.",
-        };
+        return { success: false, error: userErrorMessage(error, "No se pudo iniciar la búsqueda.") };
     }
 }

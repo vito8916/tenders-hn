@@ -1,7 +1,6 @@
--- Company profiles and search runs: owners and admins save the profile
--- through save_company_profile, the owner starts a run for it through
--- request_search_run, members read their organization's rows, and only the
--- worker writes results.
+-- Company profiles: owners and admins save the profile through
+-- save_company_profile, members read their organization's rows, and only the
+-- worker matches exclusions. Searches and runs are in 17_saved_searches_test.
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
@@ -26,10 +25,6 @@ $$;
 set local role authenticated;
 select pg_temp.act_as('11111111-1111-4111-8111-111111111111');
 
-select throws_ok(
-  $$select public.request_search_run('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  'P0001', 'no_profile', 'a run needs a saved profile'
-);
 select is(
   public.save_company_profile(
     'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '  Venta de software  ',
@@ -114,40 +109,7 @@ select throws_ok(
 );
 select is((select count(*)::int from public.company_profile_versions), 3, 'members read the profile versions');
 
--- ---------- Requesting a run ----------
-select pg_temp.act_as('33333333-3333-4333-8333-333333333333');
-select throws_ok(
-  $$select public.request_search_run('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  'P0001', 'not_owner', 'only the owner starts a run while the inbox is internal'
-);
-
-select pg_temp.act_as('11111111-1111-4111-8111-111111111111');
-select lives_ok(
-  $$select public.request_search_run('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  'the owner starts a run'
-);
-select results_eq(
-  $$select status, profile_version, trigger from public.search_runs$$,
-  $$values ('queued'::text, 3, 'manual'::text)$$,
-  'the run is queued for the current version'
-);
-select throws_ok(
-  $$select public.request_search_run('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  'P0001', 'run_in_progress', 'a second run cannot start while one is queued'
-);
-select throws_ok(
-  $$insert into public.search_runs (org_id, profile_version) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 1)$$,
-  '42501', null, 'members cannot write runs directly'
-);
 reset role;
-
-select ok(
-  exists (
-    select 1 from pgmq.q_match q join public.search_runs r on r.id = (q.message ->> 'runId')::uuid
-    where q.message ->> 'type' = 'search_run'
-  ),
-  'the run is queued for the worker'
-);
 
 -- ---------- Verifiable exclusions ----------
 insert into public.procurement_processes (id, source, source_process_key, expediente, buyer_entity, title, detail_url, products_text) values
@@ -172,13 +134,8 @@ select throws_ok(
   $$select public.save_company_profile('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Otra cosa')$$,
   'P0001', 'insufficient_role', 'other organizations cannot save the profile'
 );
-select throws_ok(
-  $$select public.request_search_run('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  'P0001', 'not_owner', 'other organizations cannot start a run'
-);
 select is((select count(*)::int from public.company_profiles), 0, 'other organizations cannot read the profile');
 select is((select count(*)::int from public.company_profile_versions), 0, 'other organizations cannot read the versions');
-select is((select count(*)::int from public.search_runs), 0, 'other organizations cannot read the runs');
 select throws_ok(
   $$select * from public.match_exclusions(array[]::uuid[], array['x'])$$,
   '42501', null, 'only the worker matches exclusions'

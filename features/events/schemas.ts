@@ -11,6 +11,10 @@ export const APP_EVENTS = {
     ORGANIZATION_OWNERSHIP_TRANSFERRED: "organization.ownership_transferred",
     // Logged by save_company_profile
     COMPANY_PROFILE_UPDATED: "company_profile.updated",
+    // Logged by a trigger on saved_searches
+    SAVED_SEARCH_CREATED: "saved_search.created",
+    SAVED_SEARCH_UPDATED: "saved_search.updated",
+    SAVED_SEARCH_DELETED: "saved_search.deleted",
     INVITATION_SENT: "invitation.sent",
     INVITATION_ACCEPTED: "invitation.accepted",
     INVITATION_REVOKED: "invitation.revoked",

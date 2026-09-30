@@ -11,7 +11,7 @@ function SummaryItem({ label, children }: { label: string; children: React.React
 
 const listOrNone = (items: string[]) => (items.length > 0 ? items.join(" · ") : "Ninguno");
 
-/** The saved profile, read-only: for members who cannot edit it and for the internal inbox. */
+/** The saved profile, read-only: for members who cannot edit it. */
 export function CompanyProfileSummary({ profile }: { profile: CompanyProfile }) {
     return (
         <dl className="divide-y divide-border/60">

@@ -1183,6 +1183,89 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_searches: {
+        Row: {
+          acquisition_types: string[]
+          alert_on_changes: boolean
+          created_at: string
+          created_by: string | null
+          deliver_by_email: boolean
+          description: string | null
+          email_when_empty: boolean
+          entities: string[]
+          exclusions: string[]
+          extracted_profile: Json | null
+          extraction_version: string | null
+          id: string
+          inherits_profile: boolean
+          is_active: boolean
+          keywords: string[]
+          modalities: string[]
+          name: string
+          next_run_at: string | null
+          org_id: string
+          schedule: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          acquisition_types?: string[]
+          alert_on_changes?: boolean
+          created_at?: string
+          created_by?: string | null
+          deliver_by_email?: boolean
+          description?: string | null
+          email_when_empty?: boolean
+          entities?: string[]
+          exclusions?: string[]
+          extracted_profile?: Json | null
+          extraction_version?: string | null
+          id?: string
+          inherits_profile?: boolean
+          is_active?: boolean
+          keywords?: string[]
+          modalities?: string[]
+          name: string
+          next_run_at?: string | null
+          org_id: string
+          schedule?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          acquisition_types?: string[]
+          alert_on_changes?: boolean
+          created_at?: string
+          created_by?: string | null
+          deliver_by_email?: boolean
+          description?: string | null
+          email_when_empty?: boolean
+          entities?: string[]
+          exclusions?: string[]
+          extracted_profile?: Json | null
+          extraction_version?: string | null
+          id?: string
+          inherits_profile?: boolean
+          is_active?: boolean
+          keywords?: string[]
+          modalities?: string[]
+          name?: string
+          next_run_at?: string | null
+          org_id?: string
+          schedule?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_searches_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       search_run_matches: {
         Row: {
           buyer_entity: string
@@ -1295,9 +1378,13 @@ export type Database = {
           id: string
           matches_count: number | null
           org_id: string
-          profile_version: number
+          processes_examined: number | null
+          profile_version: number | null
+          saved_search_id: string
+          source_synced_at: string | null
           started_at: string | null
           status: string
+          sync_run_id: number | null
           trigger: string
         }
         Insert: {
@@ -1311,9 +1398,13 @@ export type Database = {
           id?: string
           matches_count?: number | null
           org_id: string
-          profile_version: number
+          processes_examined?: number | null
+          profile_version?: number | null
+          saved_search_id: string
+          source_synced_at?: string | null
           started_at?: string | null
           status?: string
+          sync_run_id?: number | null
           trigger?: string
         }
         Update: {
@@ -1327,9 +1418,13 @@ export type Database = {
           id?: string
           matches_count?: number | null
           org_id?: string
-          profile_version?: number
+          processes_examined?: number | null
+          profile_version?: number | null
+          saved_search_id?: string
+          source_synced_at?: string | null
           started_at?: string | null
           status?: string
+          sync_run_id?: number | null
           trigger?: string
         }
         Relationships: [
@@ -1338,6 +1433,41 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_runs_saved_search_id_fkey"
+            columns: ["saved_search_id"]
+            isOneToOne: false
+            referencedRelation: "saved_searches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_runs_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["first_seen_run_id"]
+          },
+          {
+            foreignKeyName: "search_runs_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_health"
+            referencedColumns: ["last_success_run_id"]
+          },
+          {
+            foreignKeyName: "search_runs_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_health"
+            referencedColumns: ["latest_run_id"]
+          },
+          {
+            foreignKeyName: "search_runs_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_sync_runs"
             referencedColumns: ["id"]
           },
         ]
@@ -1865,7 +1995,7 @@ export type Database = {
           isSetofReturn: false
         }
       }
-      request_search_run: { Args: { target_org: string }; Returns: string }
+      request_search_run: { Args: { target_search: string }; Returns: string }
       reserve_ai_credits: {
         Args: {
           p_amount: number
@@ -1929,6 +2059,23 @@ export type Database = {
           target_org: string
         }
         Returns: number
+      }
+      saved_search_limits: {
+        Args: { target_org: string }
+        Returns: {
+          active_searches: number
+          allowed_schedules: string[]
+          has_active_plan: boolean
+          max_active_searches: number
+        }[]
+      }
+      search_filter_options: {
+        Args: never
+        Returns: {
+          kind: string
+          open_processes: number
+          value: string
+        }[]
       }
       transfer_organization_ownership: {
         Args: { new_owner_user_id: string; target_org: string }

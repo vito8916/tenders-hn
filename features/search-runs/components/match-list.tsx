@@ -30,10 +30,6 @@ function MatchItem({ match }: { match: SearchRunMatch }) {
             ) : null}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                 <span>{match.closesAt ? `Cierra el ${dateTime.format(new Date(match.closesAt))}` : "Sin fecha de cierre publicada"}</span>
-                <span>
-                    Posición {match.retrievalRank}
-                    {match.inScope !== null ? ` · in_scope ${match.inScope.toFixed(2)}` : ""}
-                </span>
                 <a href={match.detailUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-primary hover:underline">
                     Ver en HonduCompras <ExternalLink className="size-3" />
                 </a>

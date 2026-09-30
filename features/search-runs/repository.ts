@@ -1,41 +1,110 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import type { Tables } from "@/types/database.types";
 import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
+
+const SEARCH_RUN_COLUMNS =
+    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, coverage, source_synced_at, error, created_at, completed_at";
+
+type SearchRunRow = Pick<
+    Tables<"search_runs">,
+    | "id"
+    | "saved_search_id"
+    | "trigger"
+    | "status"
+    | "processes_examined"
+    | "candidates"
+    | "matches_count"
+    | "coverage"
+    | "source_synced_at"
+    | "error"
+    | "created_at"
+    | "completed_at"
+>;
+
+// ========== MAPPERS ==========
+
+function mapSearchRunRow(row: SearchRunRow): SearchRun {
+    const coverage = row.coverage as { failedEvaluations?: number } | null;
+    return searchRunSchema.parse({
+        id: row.id,
+        savedSearchId: row.saved_search_id,
+        trigger: row.trigger,
+        status: row.status,
+        processesExamined: row.processes_examined,
+        candidates: row.candidates,
+        matchesCount: row.matches_count,
+        failedEvaluations: coverage?.failedEvaluations ?? 0,
+        sourceSyncedAt: row.source_synced_at,
+        error: row.error,
+        createdAt: row.created_at,
+        completedAt: row.completed_at,
+    });
+}
 
 // ========== QUERIES ==========
 
-export async function getLatestSearchRun(orgId: string): Promise<SearchRun | null> {
+/** The most recent run of each of the organization's searches that has one. */
+export async function listLatestRuns(orgId: string): Promise<SearchRun[]> {
     const supabase = await createClient();
     const { data, error } = await supabase
-        .from("search_runs")
-        .select("id, status, profile_version, candidates, matches_count, coverage, error, created_at, completed_at")
+        .from("saved_searches")
+        .select(`search_runs (${SEARCH_RUN_COLUMNS})`)
         .eq("org_id", orgId)
-        .order("created_at", { ascending: false })
+        .order("created_at", { referencedTable: "search_runs", ascending: false })
+        .limit(1, { referencedTable: "search_runs" });
+
+    if (error) throw error;
+    return data.flatMap((search) => search.search_runs.map(mapSearchRunRow));
+}
+
+/**
+ * The search's latest run, and its latest finished one (completed or
+ * partial), which is the one whose results are shown: a run in progress
+ * never replaces finished results (spec §12.1).
+ */
+export async function getLatestRuns(searchId: string): Promise<{ latest: SearchRun | null; finished: SearchRun | null }> {
+    const supabase = await createClient();
+    const [latest, finished] = await Promise.all([
+        supabase.from("search_runs").select(SEARCH_RUN_COLUMNS).eq("saved_search_id", searchId).order("created_at", { ascending: false }).limit(1).maybeSingle(),
+        supabase
+            .from("search_runs")
+            .select(SEARCH_RUN_COLUMNS)
+            .eq("saved_search_id", searchId)
+            .in("status", ["completed", "partial"])
+            .order("created_at", { ascending: false })
+            .limit(1)
+            .maybeSingle(),
+    ]);
+
+    if (latest.error) throw latest.error;
+    if (finished.error) throw finished.error;
+    return {
+        latest: latest.data ? mapSearchRunRow(latest.data) : null,
+        finished: finished.data ? mapSearchRunRow(finished.data) : null,
+    };
+}
+
+/** When the latest complete ingestion finished: what «Ejecutar ahora» would use. */
+export async function getLatestIngestionAt(): Promise<string | null> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("source_sync_runs")
+        .select("finished_at")
+        .eq("status", "succeeded")
+        .order("finished_at", { ascending: false })
         .limit(1)
         .maybeSingle();
 
     if (error) throw error;
-    if (!data) return null;
-
-    const coverage = data.coverage as { failedEvaluations?: number } | null;
-    return searchRunSchema.parse({
-        id: data.id,
-        status: data.status,
-        profileVersion: data.profile_version,
-        candidates: data.candidates,
-        matchesCount: data.matches_count,
-        failedEvaluations: coverage?.failedEvaluations ?? 0,
-        error: data.error,
-        createdAt: data.created_at,
-        completedAt: data.completed_at,
-    });
+    return data?.finished_at ?? null;
 }
 
 export async function listSearchRunMatches(runId: string): Promise<SearchRunMatch[]> {
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("search_run_matches")
-        .select("process_id, retrieval_rank, relevance, in_scope, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url")
+        .select("process_id, retrieval_rank, relevance, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url")
         .eq("run_id", runId)
         // Within each relevance level, the ones closing soonest first (plan, Phase 3).
         .order("closes_at", { ascending: true, nullsFirst: false })
@@ -48,7 +117,6 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
             processId: row.process_id,
             retrievalRank: row.retrieval_rank,
             relevance: row.relevance,
-            inScope: row.in_scope,
             reasons: row.reasons,
             expediente: row.expediente,
             title: row.title,
@@ -63,10 +131,10 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
 
 // ========== MUTATIONS ==========
 
-/** Queues a run for the saved profile; raises not_owner, no_profile, or run_in_progress. */
-export async function requestSearchRun(orgId: string): Promise<string> {
+/** Queues a run of the search; raises search_not_found, search_inactive, subscription_inactive, no_profile, or run_in_progress. */
+export async function requestSearchRun(searchId: string): Promise<string> {
     const supabase = await createClient();
-    const { data, error } = await supabase.rpc("request_search_run", { target_org: orgId });
+    const { data, error } = await supabase.rpc("request_search_run", { target_search: searchId });
 
     if (error) throw error;
     return data;

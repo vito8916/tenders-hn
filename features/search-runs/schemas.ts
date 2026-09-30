@@ -6,13 +6,18 @@ export type Relevance = z.infer<typeof RelevanceSchema>;
 export const SearchRunStatusSchema = z.enum(["queued", "running", "completed", "partial", "failed"]);
 export type SearchRunStatus = z.infer<typeof SearchRunStatusSchema>;
 
+export const isRunActive = (status: SearchRunStatus) => status === "queued" || status === "running";
+
 export const searchRunSchema = z.object({
     id: z.uuid(),
+    savedSearchId: z.uuid(),
+    trigger: z.enum(["schedule", "manual"]),
     status: SearchRunStatusSchema,
-    profileVersion: z.number().int(),
+    processesExamined: z.number().int().nullable(),
     candidates: z.number().int().nullable(),
     matchesCount: z.number().int().nullable(),
     failedEvaluations: z.number().int(),
+    sourceSyncedAt: z.string().nullable(),
     error: z.string().nullable(),
     createdAt: z.string(),
     completedAt: z.string().nullable(),
@@ -23,7 +28,6 @@ export const searchRunMatchSchema = z.object({
     processId: z.uuid(),
     retrievalRank: z.number().int(),
     relevance: RelevanceSchema,
-    inScope: z.number().nullable(),
     reasons: z.array(z.object({ text: z.string() })),
     expediente: z.string(),
     title: z.string(),
@@ -36,6 +40,6 @@ export const searchRunMatchSchema = z.object({
 export type SearchRunMatch = z.infer<typeof searchRunMatchSchema>;
 
 export const requestSearchRunSchema = z.object({
-    orgId: z.uuid(),
+    searchId: z.uuid(),
     orgSlug: z.string().min(1),
 });

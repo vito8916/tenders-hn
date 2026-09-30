@@ -6,7 +6,7 @@ import {useParams, usePathname} from "next/navigation"
 import {
     ChevronRight,
     Home,
-    Inbox,
+    Search,
     Settings,
     Users,
     type LucideIcon,
@@ -34,10 +34,12 @@ interface MenuItem {
     url: string;
     icon?: LucideIcon;
     isActive?: boolean;
+    // Also active on the pages under url, e.g. a search under /searches.
+    matchSubpaths?: boolean;
     items?: MenuItem[];
 }
 
-export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
+export function NavMain() {
     const pathname = usePathname()
     const params = useParams();
     const orgSlug = params.orgSlug
@@ -49,13 +51,12 @@ export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
             url: `/organizations/${orgSlug}`,
             icon: Home,
         },
-        ...(showInternalInbox
-            ? [{
-                title: "Bandeja interna",
-                url: `/organizations/${orgSlug}/inbox`,
-                icon: Inbox,
-            }]
-            : []),
+        {
+            title: "Búsquedas",
+            url: `/organizations/${orgSlug}/searches`,
+            icon: Search,
+            matchSubpaths: true,
+        },
         {
             title: "Miembros",
             url: `/organizations/${orgSlug}/members`,
@@ -75,7 +76,7 @@ export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
                 {items.map((item) => {
                     const isActive = item.url.startsWith(settingsPathPrefix)
                         ? pathname.startsWith(settingsPathPrefix)
-                        : pathname === item.url;
+                        : pathname === item.url || (item.matchSubpaths === true && pathname.startsWith(`${item.url}/`));
 
                     return item.items ? (
                         <Collapsible

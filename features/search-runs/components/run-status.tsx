@@ -1,8 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import type { SearchRun, SearchRunStatus } from "../schemas";
+import { isRunActive, type SearchRun, type SearchRunStatus } from "../schemas";
 import { RefreshWhileActive } from "./refresh-while-active";
 
-const STATUS_LABELS: Record<SearchRunStatus, string> = {
+export const RUN_STATUS_LABELS: Record<SearchRunStatus, string> = {
     queued: "En cola",
     running: "En curso",
     completed: "Completada",
@@ -12,22 +12,34 @@ const STATUS_LABELS: Record<SearchRunStatus, string> = {
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 
+export function RunStatusBadge({ status }: { status: SearchRunStatus }) {
+    return (
+        <Badge variant={status === "failed" ? "destructive" : isRunActive(status) ? "secondary" : "outline"}>
+            {RUN_STATUS_LABELS[status]}
+        </Badge>
+    );
+}
+
 export function RunStatus({ run }: { run: SearchRun }) {
-    const active = run.status === "queued" || run.status === "running";
+    const active = isRunActive(run.status);
 
     return (
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-            <Badge variant={run.status === "failed" ? "destructive" : active ? "secondary" : "outline"}>{STATUS_LABELS[run.status]}</Badge>
-            <span className="text-muted-foreground">Iniciada el {dateTime.format(new Date(run.createdAt))}</span>
+            <RunStatusBadge status={run.status} />
+            <span className="text-muted-foreground">
+                {run.trigger === "schedule" ? "Programada" : "Iniciada"} el {dateTime.format(new Date(run.createdAt))}
+            </span>
+            {run.sourceSyncedAt ? (
+                <span className="text-muted-foreground">Datos de HonduCompras del {dateTime.format(new Date(run.sourceSyncedAt))}</span>
+            ) : null}
             {run.candidates !== null ? (
                 <span className="text-muted-foreground">
+                    {run.processesExamined !== null ? `${run.processesExamined} procesos abiertos, ` : ""}
                     {run.candidates} candidatos evaluados, {run.matchesCount ?? 0} relevantes o posibles
                 </span>
             ) : null}
-            {run.failedEvaluations > 0 ? (
-                <span className="text-muted-foreground">{run.failedEvaluations} sin evaluar por errores</span>
-            ) : null}
-            {run.error ? <span className="text-destructive">{run.error}</span> : null}
+            {run.failedEvaluations > 0 ? <span className="text-muted-foreground">{run.failedEvaluations} sin evaluar por errores</span> : null}
+            {run.status === "failed" ? <span className="text-destructive">No se pudo completar. Intente ejecutarla de nuevo.</span> : null}
             {active ? (
                 <>
                     <span className="text-muted-foreground">La página se actualiza sola; puede tardar unos minutos.</span>

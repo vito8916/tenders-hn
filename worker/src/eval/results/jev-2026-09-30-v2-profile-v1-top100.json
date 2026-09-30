@@ -1,0 +1,6093 @@
+{
+ "ranAt": "2026-09-30T03:19:27.585Z",
+ "evaluateModel": "typesafe-ai/jev",
+ "embedModel": "voyage/voyage-4",
+ "questionsVersion": "v1",
+ "set": "v2",
+ "method": "profile",
+ "view": "relevant",
+ "top": 100,
+ "usage": {
+  "candidates": 400,
+  "new": 400,
+  "reused": 0,
+  "failed": 0,
+  "inputTokens": 3534510,
+  "outputTokens": 22800,
+  "latencyP50Ms": 333,
+  "latencyP95Ms": 587,
+  "withEvidenceLeftOut": 33
+ },
+ "relevantBeyondTop": {
+  "software": [
+   "UNAH-SEAF-SDRYT-CM-SC22497-2026",
+   "CM-AMD-CS-1170-2026",
+   "UNAH-SEAF-DES-CM-SC22537-2026",
+   "CM-079-SAR-2026",
+   "UNAHVS-SEAF-CM-SC22603-2026",
+   "UNAH-SEAF-EU-CM-SC22467-2026",
+   "2000001412-IHSS-SPS",
+   "BANADESA-2026-539",
+   "UNAH-SEAPI-CM-GV-28-2026",
+   "BANADESA-2026-537"
+  ],
+  "laboratorio": [
+   "38-22-2026",
+   "AMPC-GAF-CM-0707-2026",
+   "AMPC-GAF-CM-0706-2026",
+   "LPN-MSPS-GS-03-2026"
+  ],
+  "carreteras": [
+   "CM-AMD-UTM-085-2026",
+   "No.UNACIFOR-LPN-GC-UE02-2026-03",
+   "CM-574-AMLC-2026",
+   "CM-AMD-CS-1174-2026",
+   "1223-RDSLP-2026",
+   "SANAA-UC-37-2026",
+   "ENEE-CM-GG-10005199-2026",
+   "CM-AMD-CS-1177-2026",
+   "ENEE-CM-GG-50003498-2026",
+   "UNAH-SEAPI-CM-GC-27-2026",
+   "LPN-AMENY-001-2026",
+   "CM-571-AMLE-2026",
+   "INJUPEMP-CM-GC-2026-588",
+   "LPública No.27-2026",
+   "CMO-009-OBRA-DIGECEBI-DGA-SE-2026",
+   "LPuNO-MCH-002-2026",
+   "IHT-CM-GC-2026-204",
+   "ENP-LPRIVN-GA-UI-07-2026",
+   "SANAA-RA-040-2026",
+   "CM-575-AMLC-2026",
+   "LPR-HND-019-B-002-2026",
+   "CM-226-IP-2026",
+   "CM-AMD-CS-1180-2026",
+   "ENEE-CM-GG-10005189-2026",
+   "ENEE-CM-GG-10005209-2026",
+   "CM-080-SAR-2026",
+   "ENEE-CM-GG-10005197-2026",
+   "CM-224-IP-2026",
+   "LPN-SAR-013-2026",
+   "CM-573-AMLC-2026",
+   "LP-009-2026-HSL",
+   "CM-168-BANHPROVI-2026",
+   "LPV-INM-001-2026",
+   "ENEE-CM-GG-10005186-2026",
+   "CM-AMD-UTM-086-2026",
+   "ENEE-CM-GG-50003487-2026.",
+   "CM-572-AMLC-2026",
+   "CM-570-AMLC-2026",
+   "CM-237-IP-2026",
+   "CM-AMD-CS-1173-2026",
+   "CM-AMD-CS-1178-2026"
+  ],
+  "uniformes": [
+   "LP-IHCIETI-FC-004-2026",
+   "CM-AMD-CS-1179-2026",
+   "CM-079-SAR-2026",
+   "IHT-CM-GC-2026-248",
+   "HO-L1202-P00243"
+  ]
+ },
+ "candidates": [
+  {
+   "profile": "software",
+   "rank": 1,
+   "expediente": "LPública No.27-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.77,
+   "strength": 0.88,
+   "insufficient": 0.1,
+   "evaluationId": "9a444e85-8738-4707-a594-23bc06d6aa25",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 3,
+   "expediente": "CNPV-02-LPN-B-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.43,
+   "insufficient": 0.09,
+   "evaluationId": "2e435671-3605-4030-a39d-81fc1bd752fe",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 2,
+   "expediente": "LPN-001-CONSUCOOP-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.2,
+   "insufficient": 0.09,
+   "evaluationId": "ab72841f-ce13-457b-bd13-cc6aae246688",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 5,
+   "expediente": "LPuNBS-MCH-005-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.57,
+   "insufficient": 0.12,
+   "evaluationId": "9cc3de01-46b9-430c-a429-9239e7160468",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 4,
+   "expediente": "IPM-LPR-GC-2026-016",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 0.78,
+   "insufficient": 0.1,
+   "evaluationId": "9fad5c52-0bfa-4a7a-8088-190080f8c6d8",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 6,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.8,
+   "strength": 0.97,
+   "insufficient": 0.15,
+   "evaluationId": "c09577f8-32a9-41bd-9bb4-55e1a007a565",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 8,
+   "expediente": "IPM-LPN-GC-2026-018",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 0.77,
+   "insufficient": 0.09,
+   "evaluationId": "489f19c1-cf16-4207-a650-8aebaab5288b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 7,
+   "expediente": "LPuNBS-AMDC-010-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.67,
+   "strength": 0.67,
+   "insufficient": 0.15,
+   "evaluationId": "533d23c8-5e3e-4816-9663-a0f73e013528",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 9,
+   "expediente": "LPN-SIT-SUM-004-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.33,
+   "insufficient": 0.11,
+   "evaluationId": "3600a44a-43a8-4afa-a716-e502464c291d",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 10,
+   "expediente": "SEN-LPriN-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 1.05,
+   "insufficient": 0.14,
+   "evaluationId": "e45f87e7-d711-4192-86b4-47a5514e0ddf",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 11,
+   "expediente": "LP-IHCIETI-FC-003-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.02,
+   "insufficient": 0.14,
+   "evaluationId": "bea36e64-8dbb-4d35-880b-afaeb33b77d4",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 12,
+   "expediente": "LP-IHCIETI-FC-008-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.87,
+   "strength": 1.33,
+   "insufficient": 0.12,
+   "evaluationId": "af9d3255-289b-4025-8b7f-55254cb24371",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 14,
+   "expediente": "LP-002-AHAC-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.81,
+   "strength": 0.9,
+   "insufficient": 0.22,
+   "evaluationId": "af2527da-1485-4493-bc7d-4ae480ff3d74",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 13,
+   "expediente": "LPUN-AMR-006-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.33,
+   "insufficient": 0.11,
+   "evaluationId": "5cf26cfa-2da2-416c-9770-02d0a1c8846a",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 15,
+   "expediente": "SEN-LPriN-003-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.87,
+   "strength": 1.32,
+   "insufficient": 0.15,
+   "evaluationId": "b212574c-b2ae-4285-ba9e-aa151c6b434c",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 16,
+   "expediente": "LPN-SAR-014-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 0.58,
+   "insufficient": 0.12,
+   "evaluationId": "64839549-c4ab-40bf-8043-3615d17bc1a5",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 17,
+   "expediente": "LPN-SDE-004-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.79,
+   "strength": 1.49,
+   "insufficient": 0.13,
+   "evaluationId": "1693de54-8651-4e5a-959e-0cf6fd29cc91",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 18,
+   "expediente": "LP No. 01-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.6,
+   "strength": 0.64,
+   "insufficient": 0.15,
+   "evaluationId": "2dd41d3c-ac96-463b-a115-187c429a6ffb",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 19,
+   "expediente": "CD-038-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.02,
+   "insufficient": 0.11,
+   "evaluationId": "b09d2233-0b51-4f30-8799-a44ca313e485",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 20,
+   "expediente": "LPR-SESAL-HE-02-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.87,
+   "strength": 1.15,
+   "insufficient": 0.21,
+   "evaluationId": "d8ee30de-de14-4ac2-a13e-02aa1ab523ec",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 21,
+   "expediente": "ENP-LPRIVN-GA-UADQ-12-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.56,
+   "insufficient": 0.12,
+   "evaluationId": "aeda53a2-a7a4-4fb2-88cf-9b63d35546a2",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 22,
+   "expediente": "CD-035-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 0.91,
+   "insufficient": 0.12,
+   "evaluationId": "30242ece-08f0-4e43-a330-d85ef30ed8c0",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 23,
+   "expediente": "LP-IHCIETI-FC-005-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.2,
+   "insufficient": 0.14,
+   "evaluationId": "4e5680c7-bfee-45e3-9181-df9abd9fbc19",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 24,
+   "expediente": "SEFIN-LPN-GC-007-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.72,
+   "strength": 0.71,
+   "insufficient": 0.15,
+   "evaluationId": "ae3d6cf9-8158-4f40-81c7-db925aba8d0b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 25,
+   "expediente": "SIT-CDE-SUM-003-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.14,
+   "insufficient": 0.14,
+   "evaluationId": "1e8b58c8-61ab-490a-a5fb-a415bfaad0aa",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 26,
+   "expediente": "LP-IHCIETI-FC-007-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.27,
+   "insufficient": 0.17,
+   "evaluationId": "75cf9830-aa43-47bb-a152-054e28bf3284",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 28,
+   "expediente": "SIT-GA-176-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.76,
+   "strength": 0.81,
+   "insufficient": 0.24,
+   "evaluationId": "af16a836-ab26-4921-804f-10312a0131d0",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 29,
+   "expediente": "AMPC-GAF-CM-0711-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.75,
+   "strength": 0.66,
+   "insufficient": 0.26,
+   "evaluationId": "9dc73b7b-459d-4ec3-8909-31297e8b3f21",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 27,
+   "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.24,
+   "strength": 0.14,
+   "insufficient": 0.13,
+   "evaluationId": "28219dd5-a8fe-469d-9f9a-84849e660250",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 30,
+   "expediente": "LPN-003-BANADESA-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 0.93,
+   "insufficient": 0.32,
+   "evaluationId": "20831174-820e-4176-b4e9-07ec94034301",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 31,
+   "expediente": "INPREMA-LPN-GC-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.2,
+   "insufficient": 0.15,
+   "evaluationId": "c6e7194a-4285-4a9d-9e49-0434e4f55e91",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 32,
+   "expediente": "CNPV-03-LPN-B-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.36,
+   "strength": 0.41,
+   "insufficient": 0.19,
+   "evaluationId": "6d8298c6-7822-40b0-8737-3f3d4a6d1abf",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 33,
+   "expediente": "IHAH-CM-GC-UE01-COMPRA DE EQUIPO INFORMATICO",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 0.6,
+   "insufficient": 0.16,
+   "evaluationId": "5d669073-d978-4387-bcf5-544b2a988d77",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 34,
+   "expediente": "LPN-008-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.74,
+   "insufficient": 0.15,
+   "evaluationId": "73ccfd08-8abd-4f62-865b-94dd9848681b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 35,
+   "expediente": "CM-GC-DIDAPDOL-075-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.6,
+   "insufficient": 0.32,
+   "evaluationId": "0086899a-e4ca-4f06-adeb-d45f62e54218",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 36,
+   "expediente": "ENP-CM-391-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.74,
+   "strength": 0.56,
+   "insufficient": 0.51,
+   "evaluationId": "34de6963-ace3-4260-9f92-4a8cc0e5d451",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 37,
+   "expediente": "SEFIN-LPN-GC-008-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.74,
+   "strength": 0.76,
+   "insufficient": 0.15,
+   "evaluationId": "e9d59b33-15b6-4bf4-840b-2f1602f7088e",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 38,
+   "expediente": "CM-222-IP-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.7,
+   "strength": 0.52,
+   "insufficient": 0.34,
+   "evaluationId": "64644fd5-37b2-4642-b642-57523b8212ac",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 39,
+   "expediente": "ENEE-CM-GC-36003056-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.65,
+   "strength": 0.54,
+   "insufficient": 0.53,
+   "evaluationId": "8fd435e9-1307-40d8-80f2-2d0d57bc2ecc",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 41,
+   "expediente": "ARSA-CM-GC-2026-136",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.7,
+   "strength": 0.59,
+   "insufficient": 0.43,
+   "evaluationId": "395bf891-d49e-4e86-86b3-bb6ae4c71483",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 40,
+   "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.32,
+   "strength": 0.28,
+   "insufficient": 0.14,
+   "evaluationId": "8c1424ac-454d-4e48-a716-6c3ecf766f43",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 42,
+   "expediente": "LPN-SIT-038-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.4,
+   "strength": 0.55,
+   "insufficient": 0.14,
+   "evaluationId": "8cfe3330-5067-4a65-b842-84dc37e5d65b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 43,
+   "expediente": "LPN-UPNFM-006-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.15,
+   "insufficient": 0.17,
+   "evaluationId": "f3939f55-9fcf-4e1d-957d-00579256a534",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 44,
+   "expediente": "SEGOB-CM-GC-2026-070",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.6,
+   "strength": 0.82,
+   "insufficient": 0.42,
+   "evaluationId": "ad4a955c-4a47-4bc2-b89b-b16111489a2d",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 45,
+   "expediente": "ENEE-CM-GH-50003504-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.62,
+   "strength": 0.32,
+   "insufficient": 0.5,
+   "evaluationId": "5fff367b-a304-4443-9a37-7dc387bbeea6",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 46,
+   "expediente": "INPREMA-1200-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.64,
+   "strength": 0.83,
+   "insufficient": 0.33,
+   "evaluationId": "fad8fca9-cf42-4dbe-9e86-a413e754497c",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 48,
+   "expediente": "SETRASS-CM-UE008-2026-001",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.71,
+   "strength": 0.83,
+   "insufficient": 0.33,
+   "evaluationId": "620afafe-df3c-4c24-9864-6c0d4be1ca8f",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 47,
+   "expediente": "LPN-020-2026-SDN",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.8,
+   "strength": 0.93,
+   "insufficient": 0.13,
+   "evaluationId": "d53d95bc-6149-4ccb-a174-b19dcf09212f",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 49,
+   "expediente": "CM-CREE- 146-2026 IMPRESORA DE CARNETS",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.56,
+   "strength": 0.49,
+   "insufficient": 0.3,
+   "evaluationId": "b63977b0-8801-45d2-bc75-a94df790253c",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 50,
+   "expediente": "LPN-018-2026-SDN",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.25,
+   "strength": 0.17,
+   "insufficient": 0.14,
+   "evaluationId": "13833dce-33f4-4e75-8347-4620fce1633e",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 51,
+   "expediente": "LPN-IP-014-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.59,
+   "strength": 0.3,
+   "insufficient": 0.15,
+   "evaluationId": "a7c68999-e1a0-4e66-9fb5-9c52e642fd40",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 52,
+   "expediente": "SIT-CP-014-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.21,
+   "insufficient": 0.19,
+   "evaluationId": "e358fea8-e4ca-476c-8cf5-8dd4e20df963",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 53,
+   "expediente": "LPN-SAR-013-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.62,
+   "strength": 0.26,
+   "insufficient": 0.2,
+   "evaluationId": "5b2f9c09-45a6-4165-b505-7a8a07c4683a",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 54,
+   "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.16,
+   "strength": 0.08,
+   "insufficient": 0.15,
+   "evaluationId": "50ae5910-c367-4422-aa36-68a49f2c9876",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 55,
+   "expediente": "CM-249-INP-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.49,
+   "insufficient": 0.39,
+   "evaluationId": "a5251b69-2a4f-43ec-8e0a-d506127cf873",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 57,
+   "expediente": "CM-0296-ECGE-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.59,
+   "strength": 0.48,
+   "insufficient": 0.41,
+   "evaluationId": "2898b7a5-ac62-4507-ac08-e3427bb88b41",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 56,
+   "expediente": "CM-SC035-BCH-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.67,
+   "strength": 0.58,
+   "insufficient": 0.35,
+   "evaluationId": "54cfcdb5-ae17-4a29-a16c-c243c59cab51",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 59,
+   "expediente": "UNAH-SEAF-FCS-CM-SC22558-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.75,
+   "insufficient": 0.3,
+   "evaluationId": "4f3922c5-71a4-47e2-a7db-87d1dba51569",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 58,
+   "expediente": "AMPC-GAF-CM-0712-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.5,
+   "insufficient": 0.35,
+   "evaluationId": "12cf76bf-a529-456b-a93c-9144f288fd57",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 60,
+   "expediente": "CM-080-SAR-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.52,
+   "strength": 0.26,
+   "insufficient": 0.6,
+   "evaluationId": "1b9b37a5-c30b-4330-acef-9031d2f320ce",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 61,
+   "expediente": "ENP-CM-392-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.35,
+   "insufficient": 0.39,
+   "evaluationId": "79403c87-f016-47c7-9d7a-c64cfd4416c3",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 63,
+   "expediente": "INPREMA-1204-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.7,
+   "strength": 0.48,
+   "insufficient": 0.34,
+   "evaluationId": "748f4a7e-4f87-4253-a831-9891126d7268",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 62,
+   "expediente": "HO-L1202-P00133",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.65,
+   "strength": 0.75,
+   "insufficient": 0.18,
+   "evaluationId": "8dae8bf0-2690-491e-8822-474650356dc1",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 64,
+   "expediente": "AMPC-GAF-CM-0710-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.63,
+   "strength": 0.41,
+   "insufficient": 0.39,
+   "evaluationId": "02df4fff-d91e-4fb2-bc89-b56f1031fecf",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 65,
+   "expediente": "CM-006-DDEO-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.6,
+   "strength": 0.4,
+   "insufficient": 0.34,
+   "evaluationId": "9c09cf15-ffac-4f74-8f41-6d95267392e0",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 67,
+   "expediente": "ENP-LPRIVN-GA-UI-07-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.45,
+   "strength": 0.13,
+   "insufficient": 0.21,
+   "evaluationId": "b974295d-bfdf-45e6-a4fc-8b3ed9150c2b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 68,
+   "expediente": "IPM-LPN-GC-2026-017",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.3,
+   "insufficient": 0.14,
+   "evaluationId": "f7b709e9-5206-4161-afa4-dec60c0cee2b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 66,
+   "expediente": "HO-L1227-P00192",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.54,
+   "insufficient": 0.17,
+   "evaluationId": "df543dbe-e632-4275-97b1-8fa6b33a112d",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 69,
+   "expediente": "PJSPS-CM-GC-2026-0128",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.42,
+   "insufficient": 0.54,
+   "evaluationId": "6ecb6bdb-5da4-4085-ae2a-a007a9ad9523",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 72,
+   "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.4,
+   "strength": 0.31,
+   "insufficient": 0.2,
+   "evaluationId": "ffe7b807-9add-4015-a2dd-a53755fe61e8",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 70,
+   "expediente": "LPN-IHCIETI-FC-006-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.63,
+   "strength": 0.46,
+   "insufficient": 0.18,
+   "evaluationId": "36b7b384-dc91-4aca-baf0-6af619bafb54",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 71,
+   "expediente": "CP-SIT-012-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.28,
+   "insufficient": 0.2,
+   "evaluationId": "553b5d69-5532-4d59-a862-4eeb3bda2078",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 73,
+   "expediente": "LPN-SIT-044-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.46,
+   "strength": 0.39,
+   "insufficient": 0.16,
+   "evaluationId": "c2db5446-a1f4-4ddd-876e-29e62c96a46a",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 74,
+   "expediente": "HO-L1202-P00244",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.74,
+   "strength": 0.86,
+   "insufficient": 0.42,
+   "evaluationId": "b8a68b57-f7b5-4d2b-b9ea-767c0865148a",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 75,
+   "expediente": "LP-CNBS-010-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.3,
+   "insufficient": 0.2,
+   "evaluationId": "f1f7f226-88d2-41b5-8ae8-1939ee6a979d",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 76,
+   "expediente": "LPN-019-2026-SDN",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.64,
+   "strength": 0.73,
+   "insufficient": 0.16,
+   "evaluationId": "057b5dc7-e44d-460a-bd34-19b21a5a3b0b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 77,
+   "expediente": "CM 39-015-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.76,
+   "insufficient": 0.43,
+   "evaluationId": "1255df7d-ccfc-4e0f-8912-34f7ff24fc03",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 78,
+   "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.29,
+   "strength": 0.18,
+   "insufficient": 0.21,
+   "evaluationId": "ef4bf23e-6e1a-45e3-ad30-195c2db79a43",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 81,
+   "expediente": "CM-GA-2026-ADMON-089-318",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.42,
+   "strength": 0.19,
+   "insufficient": 0.54,
+   "evaluationId": "7d397815-db55-4c3a-af1d-ab6c247b26b9",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 80,
+   "expediente": "LPV-INM-001-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.25,
+   "strength": 0.1,
+   "insufficient": 0.17,
+   "evaluationId": "995c8921-bb7b-44be-8faa-93d15e604eca",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 79,
+   "expediente": "CD-SESAL-HE-11-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.46,
+   "strength": 0.43,
+   "insufficient": 0.16,
+   "evaluationId": "076f82ae-139c-44fa-a01e-fa8ce8a6afe0",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 82,
+   "expediente": "LPN-SIT-046-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.08,
+   "strength": 0.06,
+   "insufficient": 0.16,
+   "evaluationId": "d0f5d622-1ed1-4989-a5ff-a2c43cd75641",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 84,
+   "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.08,
+   "strength": 0.07,
+   "insufficient": 0.16,
+   "evaluationId": "9cbca8b5-59ca-419e-b8a8-f5687fe264e9",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 85,
+   "expediente": "HO-L1202-P00241",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.09,
+   "insufficient": 0.45,
+   "evaluationId": "223410f8-6883-4c86-97d5-db2c52c00321",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 83,
+   "expediente": "CPN-SIT-037-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.16,
+   "strength": 0.17,
+   "insufficient": 0.15,
+   "evaluationId": "8c7aeeac-4eeb-4112-95db-cceb4c1bc511",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 86,
+   "expediente": "IHT-CM-GC-2026-269",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.63,
+   "strength": 0.31,
+   "insufficient": 0.33,
+   "evaluationId": "c989a771-0d80-4416-a2ba-b342f3022f21",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 88,
+   "expediente": "CM-011-2026RDSB16",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.74,
+   "strength": 0.67,
+   "insufficient": 0.25,
+   "evaluationId": "51657989-5f20-4ce6-b04b-ddd93dc00734",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 87,
+   "expediente": "CPN-SIT-043-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.18,
+   "strength": 0.21,
+   "insufficient": 0.18,
+   "evaluationId": "254c379f-55dc-4ea2-a579-eaa24befd45c",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 89,
+   "expediente": "LPN-007-2026-AMCAT",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.62,
+   "strength": 0.85,
+   "insufficient": 0.14,
+   "evaluationId": "c92e3f16-93a6-478a-9c9d-eb572e66d407",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 91,
+   "expediente": "CPN-SIT-051-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.11,
+   "strength": 0.25,
+   "insufficient": 0.19,
+   "evaluationId": "ee06e2aa-f8ef-40b0-ab4d-366f6c6e41ee",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 90,
+   "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.45,
+   "strength": 0.23,
+   "insufficient": 0.21,
+   "evaluationId": "865f594d-f416-4c09-ad4a-a40172ac2432",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 93,
+   "expediente": "CM-DA-2026-039",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.52,
+   "strength": 0.16,
+   "insufficient": 0.44,
+   "evaluationId": "168e48ac-cbae-497d-8642-99c6afa5363b",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 92,
+   "expediente": "LPN-SIT-049-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.07,
+   "strength": 0.04,
+   "insufficient": 0.15,
+   "evaluationId": "827ecf52-5f61-4711-ac8d-57fed967c507",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 95,
+   "expediente": "No.UNACIFOR-LPN-GC-UE02-2026-03",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.43,
+   "strength": 0.2,
+   "insufficient": 0.14,
+   "evaluationId": "43c57030-9e8d-4c94-a1bb-c9d431ea8c6e",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 94,
+   "expediente": "SEN-LPriN-004-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.78,
+   "strength": 1.15,
+   "insufficient": 0.13,
+   "evaluationId": "0f3ed566-e8e5-4d0d-9a7e-a349f5f33370",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 96,
+   "expediente": "CPrNBS-AMDC-002-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.29,
+   "insufficient": 0.18,
+   "evaluationId": "0b3cf8eb-6b7a-4e48-85e7-b2c301f044e7",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 97,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.07,
+   "insufficient": 0.19,
+   "evaluationId": "5e5af085-95be-4201-9e53-31232208797c",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 98,
+   "expediente": "LPN-MSPS-GDS-06-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.79,
+   "strength": 1.27,
+   "insufficient": 0.16,
+   "evaluationId": "c2ae2618-085e-42ec-a0fc-89752817e7b7",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 99,
+   "expediente": "CPN-SIT-049-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.23,
+   "insufficient": 0.19,
+   "evaluationId": "11568e19-6fd7-4987-9b5a-2246943cccfe",
+   "error": null
+  },
+  {
+   "profile": "software",
+   "rank": 100,
+   "expediente": "LPN-UPNFM-008-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.08,
+   "strength": 0.05,
+   "insufficient": 0.17,
+   "evaluationId": "a009df02-8710-4a8e-bb10-84740e188dbe",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 1,
+   "expediente": "LPN-MSPS-GS-05-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.91,
+   "strength": 1.19,
+   "insufficient": 0.1,
+   "evaluationId": "42499b65-5b8a-4db3-aa6b-ca91d9677856",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 4,
+   "expediente": "LP-004-2026-HO-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 2.01,
+   "insufficient": 0.14,
+   "evaluationId": "5fb851f4-cdbf-4fb7-ac1b-8c837fe272dc",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 2,
+   "expediente": "LP No. 01-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.45,
+   "strength": 0.33,
+   "insufficient": 0.16,
+   "evaluationId": "058a58ac-0c0e-4de5-b160-9baf34a13546",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 3,
+   "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.93,
+   "strength": 1.83,
+   "insufficient": 0.14,
+   "evaluationId": "8ac8a480-5f0f-40b0-8fe6-1e3989259880",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 5,
+   "expediente": "LP-005-2026-HO-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.74,
+   "strength": 1.21,
+   "insufficient": 0.14,
+   "evaluationId": "faa8f2b2-8644-45c1-8124-ec4d5507d067",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 6,
+   "expediente": "LP-002-2026-RSN4-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.83,
+   "strength": 1.8,
+   "insufficient": 0.15,
+   "evaluationId": "8bf8ec65-7c7a-424c-a0cd-068f00fc8340",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 7,
+   "expediente": "LP-08-2026-HGS",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.91,
+   "strength": 2.23,
+   "insufficient": 0.15,
+   "evaluationId": "6e35e867-ec2d-4ddc-8eec-d040c07313e8",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 8,
+   "expediente": "CD-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.93,
+   "strength": 2.08,
+   "insufficient": 0.16,
+   "evaluationId": "48953796-5d58-4a6a-8f4f-753b81157e66",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 10,
+   "expediente": "UE-64-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.73,
+   "strength": 0.7,
+   "insufficient": 0.18,
+   "evaluationId": "e1174a74-497b-4ee2-8ca9-ea790a417f04",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 9,
+   "expediente": "CD-SESAL-HE-11-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 2.16,
+   "insufficient": 0.13,
+   "evaluationId": "fea0149c-56a6-4ed5-a71b-7a14e868b6c6",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 11,
+   "expediente": "HGSI-LP-02-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.9,
+   "strength": 2.01,
+   "insufficient": 0.13,
+   "evaluationId": "90c61b95-118c-4756-8aca-1042546b95ce",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 12,
+   "expediente": "LP-010-2026-HSL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 2.19,
+   "insufficient": 0.12,
+   "evaluationId": "8beb952f-d3c4-4e48-9c04-ab6f795e879a",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 13,
+   "expediente": "LP-008-2026-HGSF",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 2.49,
+   "insufficient": 0.19,
+   "evaluationId": "cd852563-604c-4172-8ece-122f6bc82cfe",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 14,
+   "expediente": "DICTA-CM-GC-2026-089",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.74,
+   "strength": 0.9,
+   "insufficient": 0.46,
+   "evaluationId": "731a8836-4c69-41fc-a713-5dd566c5c78d",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 15,
+   "expediente": "CD-01-2026-HPL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.83,
+   "strength": 1.13,
+   "insufficient": 0.1,
+   "evaluationId": "db0b8fb9-4dc6-459c-a589-3a1b53676df7",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 16,
+   "expediente": "CM 39-019-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 1.04,
+   "insufficient": 0.45,
+   "evaluationId": "0cdd8c70-b3a2-41ee-8054-b37dfc235f19",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 17,
+   "expediente": "HN-SESAL-569324-GO-RFB",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.9,
+   "insufficient": 0.34,
+   "evaluationId": "e0831772-9f39-4975-b137-abe1443e95b4",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 18,
+   "expediente": "LPN-06-2026-FAHM",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.14,
+   "insufficient": 0.15,
+   "evaluationId": "3e0cf858-875a-4e1a-80ad-b8a9deaa3c74",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 19,
+   "expediente": "LP-SDE-001-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.81,
+   "strength": 1.24,
+   "insufficient": 0.17,
+   "evaluationId": "aef641d6-510f-4cbc-8a35-63e41d619e39",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 20,
+   "expediente": "CD 001-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 0.95,
+   "insufficient": 0.21,
+   "evaluationId": "c8d6abf2-7724-4ad1-abad-b1501973cd1c",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 21,
+   "expediente": "LPN-UAFCE-EUROSAN-003-2026-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 0.97,
+   "insufficient": 0.11,
+   "evaluationId": "21883ced-8ae2-4d4d-af7f-0a08e5fe1d34",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 23,
+   "expediente": "SESAL-CM-GC-0110-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.72,
+   "strength": 1.21,
+   "insufficient": 0.35,
+   "evaluationId": "47c3b748-687f-4027-b337-6220aab411e6",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 22,
+   "expediente": "LP-10-2026-HGS",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.88,
+   "strength": 1.68,
+   "insufficient": 0.12,
+   "evaluationId": "1bb20ca8-cc54-49c8-876c-46c4829f698d",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 25,
+   "expediente": "LPN-017-2026-SDN",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.89,
+   "strength": 1.63,
+   "insufficient": 0.12,
+   "evaluationId": "0f83401b-a75b-46a3-a1d3-f36a855ed8b9",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 24,
+   "expediente": "ARSA-CM-GC-2026-125",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.75,
+   "strength": 0.9,
+   "insufficient": 0.43,
+   "evaluationId": "b5abcc49-ef2f-4773-af48-5c0358c89369",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 28,
+   "expediente": "50-2026 FUNDANIQUEM-CEHNIQ",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.47,
+   "insufficient": 0.44,
+   "evaluationId": "8167b4b9-3929-4a30-92b2-a2881d831345",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 26,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.1,
+   "insufficient": 0.22,
+   "evaluationId": "a55f9024-f326-41b9-8fbe-9251acea630f",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 27,
+   "expediente": "LPN-UPNFM-008-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.34,
+   "strength": 0.33,
+   "insufficient": 0.2,
+   "evaluationId": "8b8c4d1f-af3c-427e-9677-d69195b950af",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 29,
+   "expediente": "3000012014-IHSS-SPS",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.63,
+   "strength": 0.45,
+   "insufficient": 0.43,
+   "evaluationId": "7d163e22-8977-407b-8406-e9f3adb2c6b5",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 30,
+   "expediente": "CM-342-2026-HGSF-SESAL",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.63,
+   "strength": 0.78,
+   "insufficient": 0.37,
+   "evaluationId": "ff28fc08-2753-495f-864f-7f238d79d4b6",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 31,
+   "expediente": "CM-030-2026-HT",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.66,
+   "strength": 0.54,
+   "insufficient": 0.35,
+   "evaluationId": "db906150-1540-4202-a0ef-ed6af83090bc",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 32,
+   "expediente": "LP-02-2026-RSDI",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.47,
+   "strength": 0.48,
+   "insufficient": 0.45,
+   "evaluationId": "8b082b46-a5bb-4ce2-8580-3e332d7209bc",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 33,
+   "expediente": "SESAL-CM-GC-0111-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.65,
+   "strength": 0.54,
+   "insufficient": 0.38,
+   "evaluationId": "c2707cf6-6976-4b0c-9e9c-a3ebfb8af280",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 35,
+   "expediente": "LP-003-2026-RSN4-SESAL",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.67,
+   "strength": 0.93,
+   "insufficient": 0.18,
+   "evaluationId": "32448733-62dd-40de-86d9-73cfb2b71bcb",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 34,
+   "expediente": "LP-002-RDSN3-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.15,
+   "insufficient": 0.16,
+   "evaluationId": "598f6e4f-b201-412b-a5cc-d3c5b0ebc741",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 37,
+   "expediente": "UNAH-SEAF-CEINSAG-CM-SC22468-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.7,
+   "strength": 0.72,
+   "insufficient": 0.34,
+   "evaluationId": "a6fabff9-3f90-4a60-87cc-661a5a25544e",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 36,
+   "expediente": "UE-065-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 0.9,
+   "insufficient": 0.26,
+   "evaluationId": "d4c776c7-7ffe-40c3-b351-1713bed42964",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 38,
+   "expediente": "HGSI-LP-01-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.68,
+   "insufficient": 0.28,
+   "evaluationId": "7040c78b-1dc3-41ba-8f3c-05762b5f6b97",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 39,
+   "expediente": "LP-003-RDSLP-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.38,
+   "insufficient": 0.15,
+   "evaluationId": "f548ccac-5740-47e4-aabe-6de3b231fe9d",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 40,
+   "expediente": "LPN-SEDESOL-001-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.47,
+   "strength": 0.21,
+   "insufficient": 0.39,
+   "evaluationId": "8610fb70-c0f0-4d93-9157-54a5403fc1d3",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 41,
+   "expediente": "DICTA-CM-GC-2026-088",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.37,
+   "strength": 0.05,
+   "insufficient": 0.47,
+   "evaluationId": "40860dda-d4ee-4f1b-a397-35cd18c297b8",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 45,
+   "expediente": "UNAH-SEAF-FCS-CM-SC22558-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.47,
+   "strength": 0.25,
+   "insufficient": 0.37,
+   "evaluationId": "b9ef221e-7bc3-4945-bcc9-75bc6342ad28",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 42,
+   "expediente": "38-23-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 0.6,
+   "insufficient": 0.37,
+   "evaluationId": "8d033cb9-db8a-4678-b0cc-ae4f4b2821cf",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 44,
+   "expediente": "CM 39-017-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.69,
+   "strength": 0.72,
+   "insufficient": 0.36,
+   "evaluationId": "7f867fb3-d24c-47c8-8ec2-5872d0b16ca2",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 43,
+   "expediente": "Licitacion Privada 02-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.13,
+   "strength": 0.11,
+   "insufficient": 0.17,
+   "evaluationId": "55010389-ab21-4049-a0a8-d6580fc1232b",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 46,
+   "expediente": "3000012016-IHSS-SPS",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.75,
+   "strength": 0.73,
+   "insufficient": 0.43,
+   "evaluationId": "29559ee6-c486-4eeb-a733-a5af3e77de8d",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 48,
+   "expediente": "CM-GC-IHMA-2026-076",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.74,
+   "strength": 1.01,
+   "insufficient": 0.34,
+   "evaluationId": "6a621311-31b6-44b9-843d-7c27bd398e79",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 49,
+   "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.26,
+   "strength": 0.13,
+   "insufficient": 0.31,
+   "evaluationId": "0f4aa20d-51ec-4b41-9a13-a36c604bab34",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 47,
+   "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.11,
+   "strength": 0.08,
+   "insufficient": 0.17,
+   "evaluationId": "f1e767a5-3444-484c-942a-e0e03a738dcd",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 50,
+   "expediente": "LPN-SIT-049-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.1,
+   "strength": 0.19,
+   "insufficient": 0.14,
+   "evaluationId": "ea551908-f776-4cac-8c6e-f78bc010e090",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 51,
+   "expediente": "LP-001-RDSN3-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.52,
+   "strength": 0.47,
+   "insufficient": 0.16,
+   "evaluationId": "17e1e7fd-104b-475a-9c14-0d1128b4be0f",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 53,
+   "expediente": "CP-SIT-012-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.27,
+   "strength": 0.44,
+   "insufficient": 0.25,
+   "evaluationId": "3704cea3-9f02-4863-86b8-e3d3dc0e6471",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 52,
+   "expediente": "LPN-SIT-040-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.11,
+   "strength": 0.2,
+   "insufficient": 0.14,
+   "evaluationId": "95f0362a-ba53-432c-9e8e-35bbc01ff06a",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 55,
+   "expediente": "CM 39-016-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.49,
+   "strength": 0.37,
+   "insufficient": 0.38,
+   "evaluationId": "292ff107-e0e3-4608-ad21-eaf25094a573",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 54,
+   "expediente": "LPN-SIT-052-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.1,
+   "strength": 0.2,
+   "insufficient": 0.16,
+   "evaluationId": "4fe057cd-195f-4573-8b15-f31d936eaa33",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 56,
+   "expediente": "51-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.42,
+   "strength": 0.21,
+   "insufficient": 0.45,
+   "evaluationId": "670d48c8-bab6-4320-8ba4-e30943e3126f",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 57,
+   "expediente": "LP-009-2026-HSL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.24,
+   "strength": 0.1,
+   "insufficient": 0.3,
+   "evaluationId": "5ccb5fbb-8480-41f3-a166-78c0bbec76a6",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 58,
+   "expediente": "CM-034-2026-HJMG",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.61,
+   "strength": 0.59,
+   "insufficient": 0.48,
+   "evaluationId": "c2626343-ab4c-4784-b822-4c0526342452",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 59,
+   "expediente": "35-29-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.25,
+   "insufficient": 0.43,
+   "evaluationId": "96a8c3d8-7978-4adf-8dc2-00c57e92bdf3",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 60,
+   "expediente": "SETRASS-CM-GC-2026-061",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.33,
+   "strength": 0.09,
+   "insufficient": 0.39,
+   "evaluationId": "e23afae8-4eba-4fa4-b124-a966fd069688",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 61,
+   "expediente": "LPN-UPNFM-009-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.53,
+   "insufficient": 0.14,
+   "evaluationId": "e7ce1d34-e627-401e-80f1-cf73b06c970e",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 64,
+   "expediente": "49-2026 FUNDANIQUEM-CEHNIQ",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.05,
+   "insufficient": 0.49,
+   "evaluationId": "ca115aa0-d560-42e0-b132-3a85e7921fda",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 62,
+   "expediente": "LPN-05-2026-FAHM",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.22,
+   "strength": 0.31,
+   "insufficient": 0.15,
+   "evaluationId": "ebe4b697-c70a-42c6-90dd-0b26c7b1d713",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 63,
+   "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.52,
+   "strength": 0.43,
+   "insufficient": 0.19,
+   "evaluationId": "98c9716c-194c-4e4b-a898-37745a1a4039",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 65,
+   "expediente": "No.UNACIFOR-LPN-GC-UE02-2026-03",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.26,
+   "strength": 0.22,
+   "insufficient": 0.14,
+   "evaluationId": "8e10d2f2-b764-4496-a04e-50fde9f81949",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 66,
+   "expediente": "HO-L1202-P00243",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.77,
+   "insufficient": 0.17,
+   "evaluationId": "e06afbfd-f3e0-4715-b674-38b4309e8428",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 68,
+   "expediente": "CPN-SIT-042-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.27,
+   "insufficient": 0.2,
+   "evaluationId": "61d4e07d-5950-4e08-9e5c-6a5707315d53",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 67,
+   "expediente": "CPN-SIT-043-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.31,
+   "insufficient": 0.19,
+   "evaluationId": "3040177f-aa37-4ed9-af84-3ab52e9b673f",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 69,
+   "expediente": "LPN-SIT-050-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.23,
+   "insufficient": 0.13,
+   "evaluationId": "99c115d4-445a-4f3d-a913-040bba2a57bf",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 70,
+   "expediente": "SANAA-UC-37-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.03,
+   "insufficient": 0.44,
+   "evaluationId": "9d45fe0c-1e1a-42a1-96b5-0896f5f1e784",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 72,
+   "expediente": "CPN-SIT-044-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.16,
+   "strength": 0.33,
+   "insufficient": 0.19,
+   "evaluationId": "831e9c84-b1aa-4aeb-b1e0-b58e8d2ba632",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 71,
+   "expediente": "LPN-SIT-053-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.3,
+   "insufficient": 0.19,
+   "evaluationId": "27f75bd0-594b-42df-959e-1be1dc9e0db4",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 73,
+   "expediente": "CM-036-2026-HJMG",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.35,
+   "strength": 0.09,
+   "insufficient": 0.33,
+   "evaluationId": "93fe9a43-f1fd-4a8b-b7eb-83f4dff766e4",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 74,
+   "expediente": "LPN-SIT-042-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.09,
+   "strength": 0.12,
+   "insufficient": 0.16,
+   "evaluationId": "f6b01189-e4cc-4e2d-a518-1f08d2056977",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 75,
+   "expediente": "LPN 09-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.22,
+   "strength": 0.24,
+   "insufficient": 0.17,
+   "evaluationId": "d323698a-e244-405e-bad0-9d9d69335444",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 76,
+   "expediente": "LPN-SIT-046-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.13,
+   "strength": 0.19,
+   "insufficient": 0.14,
+   "evaluationId": "bce40dfb-f990-4bcf-8ea2-27d842d51fea",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 77,
+   "expediente": "LPN-SIT-041-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.16,
+   "insufficient": 0.15,
+   "evaluationId": "4ee36e98-f50d-4b98-af0c-3507a1027183",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 78,
+   "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.56,
+   "strength": 0.59,
+   "insufficient": 0.12,
+   "evaluationId": "785b4429-934e-4ec3-aaaf-6ef085a79b36",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 79,
+   "expediente": "LPN-SIT-039-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.13,
+   "strength": 0.16,
+   "insufficient": 0.14,
+   "evaluationId": "514a99ed-4900-41dc-8af8-9869138f2995",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 80,
+   "expediente": "CPN-SIT-050-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.45,
+   "insufficient": 0.21,
+   "evaluationId": "5a3acdcd-f313-4301-8206-5e160b056447",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 81,
+   "expediente": "CNPV-03-LPN-B-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.43,
+   "strength": 0.38,
+   "insufficient": 0.18,
+   "evaluationId": "30bce050-ce38-433c-9a24-1a9c71aebb7e",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 82,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-006",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.04,
+   "insufficient": 0.4,
+   "evaluationId": "44cf6b53-be85-41be-bef1-b5dbace5382b",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 83,
+   "expediente": "HO-L1227-P00192",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.34,
+   "strength": 0.62,
+   "insufficient": 0.19,
+   "evaluationId": "18f8b216-6f9d-40f4-8415-38840acf53c1",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 84,
+   "expediente": "SIT-CP-014-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.13,
+   "strength": 0.29,
+   "insufficient": 0.19,
+   "evaluationId": "4950dfaf-f4b0-48ad-98b0-e5277e114b36",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 85,
+   "expediente": "LPN-001-IHAH-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.08,
+   "strength": 0.15,
+   "insufficient": 0.15,
+   "evaluationId": "57fc48b5-740b-46a7-8257-9cc3cd44e1f0",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 86,
+   "expediente": "CPN-SIT-053-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.4,
+   "insufficient": 0.19,
+   "evaluationId": "e6208df2-392a-4f52-8121-fe1b3e23ddea",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 87,
+   "expediente": "CM-237-IP-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.24,
+   "strength": 0.05,
+   "insufficient": 0.44,
+   "evaluationId": "a43ef825-fc0c-4ecf-8d55-4e1854763ad6",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 88,
+   "expediente": "ARSA-CM-GC-2026-136",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.38,
+   "strength": 0.03,
+   "insufficient": 0.52,
+   "evaluationId": "fdfcdcc6-f700-48a3-9e9f-2ed2aa96161e",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 89,
+   "expediente": "IPM-LPN-GC-2026-015",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.64,
+   "strength": 0.95,
+   "insufficient": 0.14,
+   "evaluationId": "050cd369-197c-4b7e-bee4-ab7f97e87f74",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 90,
+   "expediente": "CD-035-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.44,
+   "strength": 0.47,
+   "insufficient": 0.15,
+   "evaluationId": "72239cc3-61d0-4e18-bd57-bc45f2fc3f06",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 91,
+   "expediente": "CM-DA-2026-039",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.23,
+   "insufficient": 0.44,
+   "evaluationId": "2ec38eed-9348-4e72-909c-e6489a85464b",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 92,
+   "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.22,
+   "strength": 0.21,
+   "insufficient": 0.16,
+   "evaluationId": "f51346c5-d00d-4943-a17e-e27042abec3b",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 93,
+   "expediente": "CM-015-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.43,
+   "strength": 0.12,
+   "insufficient": 0.5,
+   "evaluationId": "f95b2f38-7e09-45f0-bc54-f1d1731e05c3",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 95,
+   "expediente": "LP-03-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.25,
+   "strength": 0.05,
+   "insufficient": 0.65,
+   "evaluationId": "065c1839-bc20-451f-b5f1-ba35ad91c3d2",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 94,
+   "expediente": "CPN-SIT-039-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.37,
+   "strength": 0.44,
+   "insufficient": 0.18,
+   "evaluationId": "c4e995ec-1af5-4573-b05e-ee7bae9ca580",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 96,
+   "expediente": "CM-CONEANFO-034-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.57,
+   "strength": 0.51,
+   "insufficient": 0.3,
+   "evaluationId": "78070879-2ea3-4607-83e3-9429d40bbdd5",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 97,
+   "expediente": "LPN-UAFCE-EUROSAN-007-2026-SESAL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.02,
+   "insufficient": 0.15,
+   "evaluationId": "a5477e7b-e801-4d34-96ef-876b42298158",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 98,
+   "expediente": "1224-RDSLP-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.61,
+   "strength": 0.3,
+   "insufficient": 0.51,
+   "evaluationId": "dc32f726-451e-48bf-8374-b0e02218a98e",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 99,
+   "expediente": "UNAH-SEAPI-CM-GC-27-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.04,
+   "insufficient": 0.39,
+   "evaluationId": "b110e9c0-6e67-4ba8-a7e2-4e68b1269cc5",
+   "error": null
+  },
+  {
+   "profile": "laboratorio",
+   "rank": 100,
+   "expediente": "LPR-SESAL-HE-02-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.21,
+   "strength": 0.26,
+   "insufficient": 0.46,
+   "evaluationId": "9c467544-ebd8-4a14-8ab8-cbd8b2306a1c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 1,
+   "expediente": "ENP-LPRIVN-GA-UI-10-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.91,
+   "strength": 1.37,
+   "insufficient": 0.12,
+   "evaluationId": "89f75c9a-26a5-432b-b9ab-7e9d31e8909f",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 2,
+   "expediente": "LPN-SIT-038-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.46,
+   "insufficient": 0.1,
+   "evaluationId": "34a01c76-76bc-4af1-8e30-9b9fad844d99",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 4,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.29,
+   "insufficient": 0.12,
+   "evaluationId": "b9ea798e-aca4-439b-a1dc-c70006d1e262",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 3,
+   "expediente": "LPN-018-2026-SDN",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.93,
+   "strength": 1.71,
+   "insufficient": 0.12,
+   "evaluationId": "2c50b3ca-ca3a-4310-80d8-dc85a7029bcc",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 5,
+   "expediente": "LP No. 01-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.94,
+   "strength": 1.66,
+   "insufficient": 0.11,
+   "evaluationId": "797c04b6-e667-46c5-bd6a-c0512b9c8f9d",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 8,
+   "expediente": "MCOM-009-2026-EMC",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.78,
+   "insufficient": 0.11,
+   "evaluationId": "1239ba00-fc08-49f4-bd88-3ab6fd39c8da",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 6,
+   "expediente": "LPN 10-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.36,
+   "insufficient": 0.15,
+   "evaluationId": "774350f3-7f5c-4c27-8698-fc638fa8e4ab",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 7,
+   "expediente": "Licitacion Privada 02-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.88,
+   "strength": 1.11,
+   "insufficient": 0.13,
+   "evaluationId": "920dd0e9-26a5-47f6-bf53-373166bbebd9",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 9,
+   "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.25,
+   "insufficient": 0.1,
+   "evaluationId": "fbc8e6cc-5207-44ca-a5b8-16b44cab0a6c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 10,
+   "expediente": "LPN-SIT-042-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.91,
+   "strength": 1.26,
+   "insufficient": 0.09,
+   "evaluationId": "0ef4f5b6-0bd2-4185-8061-6cdc917950ea",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 11,
+   "expediente": "LPN 09-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.66,
+   "insufficient": 0.13,
+   "evaluationId": "91e2daeb-9126-44a6-8e09-0b754ae4a961",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 12,
+   "expediente": "SAG-COMRURAL-III-SDO-O-37-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.64,
+   "insufficient": 0.14,
+   "evaluationId": "1e4073ae-a2ad-4d6c-858a-1595d2021efe",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 13,
+   "expediente": "LPN-001-IHAH-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.99,
+   "insufficient": 0.1,
+   "evaluationId": "4b93f6ca-2f1d-4551-977c-c0148531c87d",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 14,
+   "expediente": "LPN-SIT-046-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 1.28,
+   "insufficient": 0.09,
+   "evaluationId": "2d5e508b-3ba5-4501-9665-ae605dcef41c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 15,
+   "expediente": "LPN-MPC-GT-11-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.11,
+   "insufficient": 0.13,
+   "evaluationId": "c97f2415-4080-433f-9d7c-fc9a921c1ca1",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 16,
+   "expediente": "LPN-SIT-041-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 1.17,
+   "insufficient": 0.13,
+   "evaluationId": "44d3003f-b350-43a0-8e3b-02cc182aa096",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 18,
+   "expediente": "COTI 06-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.84,
+   "insufficient": 0.13,
+   "evaluationId": "f58975a2-514c-4634-bcc7-5252edca0362",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 17,
+   "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 0.82,
+   "insufficient": 0.11,
+   "evaluationId": "d4444699-cebb-4904-a30f-d60fa5178cf5",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 19,
+   "expediente": "ENP-LPRIVN-GA-UI-06-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.2,
+   "insufficient": 0.1,
+   "evaluationId": "e13b855e-7c25-4c9d-a566-bb9054738dbb",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 20,
+   "expediente": "LPN-SIT-052-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.91,
+   "strength": 1.11,
+   "insufficient": 0.12,
+   "evaluationId": "b801462d-b163-4dd9-a14f-939f8f5f1c6c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 21,
+   "expediente": "LPN-SIT-047-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.05,
+   "insufficient": 0.1,
+   "evaluationId": "18477da9-ba7f-435c-8996-a8e2de4c1904",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 22,
+   "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.87,
+   "strength": 1.21,
+   "insufficient": 0.13,
+   "evaluationId": "6817cd76-7494-418d-98f0-e18519aa87a6",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 23,
+   "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.68,
+   "strength": 0.58,
+   "insufficient": 0.15,
+   "evaluationId": "ad8a78f3-3af9-4ffa-b80b-e65bbd8ba037",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 24,
+   "expediente": "LPN-AMENY-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.61,
+   "insufficient": 0.1,
+   "evaluationId": "040812cc-a941-4ac3-95cd-aca0edf8cc63",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 25,
+   "expediente": "LPN-SIT-049-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 0.95,
+   "insufficient": 0.09,
+   "evaluationId": "36964c42-df70-41fd-b8a0-266ef38ee1f9",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 26,
+   "expediente": "LPN-006-2026-AMCAT",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.39,
+   "insufficient": 0.12,
+   "evaluationId": "27512ef4-d1ae-4a6d-b963-67aa99b6b473",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 27,
+   "expediente": "LPR-AMLEI-UOP-01-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.39,
+   "insufficient": 0.12,
+   "evaluationId": "08e9c045-1adc-4660-883d-c160d5f63ae1",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 28,
+   "expediente": "LPuNO-AMDC-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.78,
+   "insufficient": 0.14,
+   "evaluationId": "5849c84b-712d-4d87-bd43-383f3ff58db7",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 29,
+   "expediente": "LPN-SIT-044-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.97,
+   "insufficient": 0.1,
+   "evaluationId": "276b7e45-59e8-42dc-b245-3f6f22d168a3",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 30,
+   "expediente": "SIT-CP-014-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.72,
+   "strength": 0.8,
+   "insufficient": 0.11,
+   "evaluationId": "d57f2146-b0b0-4ea2-b8d1-805e85a2f04a",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 31,
+   "expediente": "LPN-SIT-054-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.34,
+   "insufficient": 0.1,
+   "evaluationId": "010d3142-e19b-4ed2-a2a3-d35375767224",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 32,
+   "expediente": "LPN-SIT-048-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.33,
+   "insufficient": 0.1,
+   "evaluationId": "f4eaa1c5-8175-4a4f-945c-15a0774443d3",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 33,
+   "expediente": "HO-L1227-P00192",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.88,
+   "strength": 1.51,
+   "insufficient": 0.1,
+   "evaluationId": "0bf54476-597d-414a-9787-5bf3bd2e7715",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 34,
+   "expediente": "LPN-007-2026-AMCAT",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 1.3,
+   "insufficient": 0.11,
+   "evaluationId": "005a6d1b-981a-46e4-96a1-ee864ecc6496",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 35,
+   "expediente": "COTI 05-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.85,
+   "insufficient": 0.13,
+   "evaluationId": "c6d28bb3-7a9b-4459-9ae1-305bdb5482b0",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 36,
+   "expediente": "LPN-SIT-050-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.16,
+   "insufficient": 0.09,
+   "evaluationId": "1a605df8-0bda-4dff-9fa5-ac392b04942b",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 37,
+   "expediente": "SIT-CD-CO-016-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.83,
+   "strength": 1.91,
+   "insufficient": 0.16,
+   "evaluationId": "30102f21-1c75-4a8a-996c-642beb515074",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 38,
+   "expediente": "IPM-LPN-GC-2026-016",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.52,
+   "insufficient": 0.1,
+   "evaluationId": "9090e3fc-80bc-4036-af8c-2de36c5d94e3",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 39,
+   "expediente": "LPN-SIT-040-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.29,
+   "insufficient": 0.11,
+   "evaluationId": "12f7220a-7a42-4631-bc05-9bc5ae2193fe",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 40,
+   "expediente": "HOP6-ENEE-10-LPN-S",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.64,
+   "strength": 0.71,
+   "insufficient": 0.14,
+   "evaluationId": "8a2a7e2a-4738-4909-991b-15a4d021e406",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 41,
+   "expediente": "LPN-SIT-043-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.21,
+   "insufficient": 0.1,
+   "evaluationId": "1c483c8e-5409-4b65-b098-772979e11164",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 42,
+   "expediente": "CPN-SIT-051-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.19,
+   "insufficient": 0.11,
+   "evaluationId": "61da02b7-7b6f-473b-b47a-846e42d3b7f2",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 43,
+   "expediente": "CPN-SIT-040-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.44,
+   "insufficient": 0.12,
+   "evaluationId": "a868aec7-16df-4dae-a0d5-deb79e2c10ff",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 44,
+   "expediente": "DICTA-CM-GC-2026-090",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.11,
+   "insufficient": 0.32,
+   "evaluationId": "b7f6f2c7-6ede-4b83-8a13-240a7b8eedac",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 45,
+   "expediente": "LPN-SIT-039-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.1,
+   "insufficient": 0.1,
+   "evaluationId": "efd8092f-1afb-4164-81af-a85558c17f64",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 46,
+   "expediente": "CPN-SIT-045-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.84,
+   "strength": 0.81,
+   "insufficient": 0.1,
+   "evaluationId": "50e5e6c4-0c7d-418d-8134-e65de070f1e6",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 47,
+   "expediente": "LPN-SIT-045-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.9,
+   "strength": 1.89,
+   "insufficient": 0.12,
+   "evaluationId": "f396c395-16fe-4091-9cdd-f3707e51c013",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 48,
+   "expediente": "HOP6-ENEE-09-LPI-B",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.69,
+   "strength": 0.57,
+   "insufficient": 0.11,
+   "evaluationId": "bb8f5725-2494-45cb-9140-cc6ba29e5b21",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 49,
+   "expediente": "LPN-SIT-053-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.88,
+   "strength": 1.54,
+   "insufficient": 0.11,
+   "evaluationId": "36644fd1-19e8-4bee-b58c-f9baf9323425",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 50,
+   "expediente": "CPN-SIT-043-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 1.11,
+   "insufficient": 0.12,
+   "evaluationId": "71cb8960-c424-43a2-80b7-fcf3c5244d79",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 51,
+   "expediente": "ENP-LPRIVN-GA-UI-05-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.82,
+   "strength": 1.26,
+   "insufficient": 0.11,
+   "evaluationId": "a9211933-501b-4cc0-8681-9136c7f29c66",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 52,
+   "expediente": "LPrN-001-IHAH-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.42,
+   "insufficient": 0.11,
+   "evaluationId": "04a17cde-786b-4493-8c50-acd22c8e941b",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 53,
+   "expediente": "AMPC-GAF-OM-085-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.7,
+   "strength": 1.16,
+   "insufficient": 0.35,
+   "evaluationId": "f2d5e93a-9297-4998-8d51-2e1e67bf467d",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 54,
+   "expediente": "AMPC-GAF-OM-086-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.73,
+   "strength": 1.31,
+   "insufficient": 0.32,
+   "evaluationId": "ab0f1a1c-0547-4ae3-9eef-4d7a16232bcf",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 55,
+   "expediente": "AMPC-GAF-OM-087-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.7,
+   "strength": 1.19,
+   "insufficient": 0.34,
+   "evaluationId": "70690a22-b5a9-4996-a888-3743fec50f6d",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 57,
+   "expediente": "AMPC-GAF-OM-084-2026",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.57,
+   "insufficient": 0.64,
+   "evaluationId": "b07969b7-a1aa-4d46-b8dc-50b30133de1e",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 56,
+   "expediente": "CPN-SIT-049-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.22,
+   "insufficient": 0.11,
+   "evaluationId": "8bb9b6ff-c495-4a9f-bf1a-8b6216a08461",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 58,
+   "expediente": "LPN-SIT-SUM-005-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.41,
+   "insufficient": 0.13,
+   "evaluationId": "82c183ae-73df-4865-9deb-957a2c5d48a0",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 59,
+   "expediente": "IPM-LPN-GC-2026-017",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.86,
+   "strength": 1.13,
+   "insufficient": 0.11,
+   "evaluationId": "8ac51d91-90d8-4845-8a60-10faf9c49cde",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 60,
+   "expediente": "ENP-LPRIVN-GA-UI-19-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.63,
+   "strength": 0.68,
+   "insufficient": 0.14,
+   "evaluationId": "4c58b072-637e-4505-96b7-c7a7683cd60c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 61,
+   "expediente": "CPN-SIT-047-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.33,
+   "insufficient": 0.1,
+   "evaluationId": "a8321f29-79c5-42dd-b158-2642b08213ed",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 62,
+   "expediente": "CPN-SIT-050-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.82,
+   "strength": 1.69,
+   "insufficient": 0.12,
+   "evaluationId": "581428cc-d96b-4a8a-8454-c02359470d08",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 63,
+   "expediente": "CPN-SIT-052-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.82,
+   "strength": 1.27,
+   "insufficient": 0.13,
+   "evaluationId": "ae71e365-0f9a-4718-817e-05615ff1cb2c",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 64,
+   "expediente": "CPN-SIT-042-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.82,
+   "strength": 1.3,
+   "insufficient": 0.11,
+   "evaluationId": "9ad537d8-50ec-423f-8abc-8f5aaf7983c6",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 65,
+   "expediente": "LP-008-SE-DIGECEBI-DGA-OBRA-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.88,
+   "strength": 2.03,
+   "insufficient": 0.13,
+   "evaluationId": "bd3424a1-e791-4eb8-b511-03f64f53d0a0",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 67,
+   "expediente": "ENP-COM-012-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.64,
+   "strength": 0.61,
+   "insufficient": 0.58,
+   "evaluationId": "3836121b-c660-4db3-bbdd-9f1e6cc127d3",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 66,
+   "expediente": "CPN-SIT-039-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.83,
+   "strength": 1.2,
+   "insufficient": 0.15,
+   "evaluationId": "b9b37f53-1847-4844-8e76-752cafe8f186",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 68,
+   "expediente": "SIT-LPR-026-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.93,
+   "strength": 1.79,
+   "insufficient": 0.13,
+   "evaluationId": "c4dbab6e-6288-41e5-891a-7c2af8c822b1",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 69,
+   "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.65,
+   "strength": 0.58,
+   "insufficient": 0.16,
+   "evaluationId": "8124faf8-a4d0-4c48-bf75-f89c92634d87",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 71,
+   "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.83,
+   "strength": 1.78,
+   "insufficient": 0.12,
+   "evaluationId": "edda280d-e018-45e7-9e72-cb552916fe9a",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 70,
+   "expediente": "LPN-SIT-051-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.92,
+   "strength": 1.42,
+   "insufficient": 0.09,
+   "evaluationId": "9113030a-d212-4272-a758-0c0cb9251a09",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 72,
+   "expediente": "MP-1012220667-3564-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.73,
+   "strength": 0.75,
+   "insufficient": 0.22,
+   "evaluationId": "e2cb6cfe-0d2c-4dd3-9374-dad028b922be",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 73,
+   "expediente": "CM-063-SAR-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 1.05,
+   "insufficient": 0.38,
+   "evaluationId": "fb6d5042-d98a-4199-8601-96a5b941d396",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 75,
+   "expediente": "CM-014-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.79,
+   "strength": 1.16,
+   "insufficient": 0.4,
+   "evaluationId": "03568750-5a3b-476d-85e6-6f29468ed73e",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 74,
+   "expediente": "CPN-SIT-048-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.78,
+   "strength": 1.11,
+   "insufficient": 0.11,
+   "evaluationId": "28e045c9-eb7f-42b1-b95e-c732bcedcb12",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 76,
+   "expediente": "CM-10-09-2026-SEMUJER",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 0.85,
+   "insufficient": 0.27,
+   "evaluationId": "a46411f4-2be8-4de8-8308-71fc25512d1d",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 77,
+   "expediente": "CPN-SIT-044-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.32,
+   "insufficient": 0.13,
+   "evaluationId": "45ae88e2-a7ff-4e83-b80b-a17430b1fe44",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 78,
+   "expediente": "CPN-SIT-046-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.15,
+   "insufficient": 0.12,
+   "evaluationId": "94c2cd3d-59af-4041-b64d-84a7189519ba",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 79,
+   "expediente": "CPN-SIT-037-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.53,
+   "insufficient": 0.13,
+   "evaluationId": "d0d870bd-accc-4cf3-8ba2-551fcd2fb230",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 80,
+   "expediente": "SANAA-RA-043-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.73,
+   "strength": 0.47,
+   "insufficient": 0.43,
+   "evaluationId": "742c5a8f-4799-4cb0-91ba-8df0a30c1f16",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 81,
+   "expediente": "CPN-SIT-041-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.81,
+   "strength": 1.05,
+   "insufficient": 0.13,
+   "evaluationId": "65b67fde-fba9-4712-af7b-a1ab577fa42a",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 83,
+   "expediente": "UNAH-SEAF-LPN-011-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.72,
+   "strength": 0.82,
+   "insufficient": 0.15,
+   "evaluationId": "5a3dac67-e932-4f85-9925-6e9f0573c2ca",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 82,
+   "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.78,
+   "strength": 0.98,
+   "insufficient": 0.17,
+   "evaluationId": "49473cf9-b498-4639-b194-3bbf066574b2",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 84,
+   "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.86,
+   "strength": 1.24,
+   "insufficient": 0.11,
+   "evaluationId": "8553dacc-48b9-4bd9-91ab-a543395d241b",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 86,
+   "expediente": "ENEE-CM-GG-10005211-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.6,
+   "strength": 0.54,
+   "insufficient": 0.3,
+   "evaluationId": "5a6138c6-9191-467b-bd4c-1e473941f935",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 87,
+   "expediente": "LPN-MPC-GT-10-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.45,
+   "insufficient": 0.15,
+   "evaluationId": "b87deed7-8644-400e-b3f3-7ae722f2fce9",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 85,
+   "expediente": "CPN-SIT-053-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.81,
+   "strength": 1.54,
+   "insufficient": 0.15,
+   "evaluationId": "c31d245c-39cd-411a-8531-3b5bc33af7de",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 88,
+   "expediente": "ENEE-CM-GG-50003489-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.53,
+   "strength": 0.32,
+   "insufficient": 0.42,
+   "evaluationId": "6d6262cf-154d-4a3e-a24c-278150c4093e",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 89,
+   "expediente": "COT121711-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.75,
+   "strength": 1.14,
+   "insufficient": 0.3,
+   "evaluationId": "7da51538-32d5-47fa-91d4-b9e634cffdf4",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 90,
+   "expediente": "CM-AMD-UTM-087-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.75,
+   "strength": 0.8,
+   "insufficient": 0.47,
+   "evaluationId": "a52d4f49-98c5-49e9-97be-451fdaabd0d5",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 91,
+   "expediente": "ENEE-CM-GG-10005207-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.53,
+   "strength": 0.14,
+   "insufficient": 0.5,
+   "evaluationId": "477a7d90-5301-44fc-bc70-60246ed28d05",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 92,
+   "expediente": "ENEE-CM-GG-50003502-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.25,
+   "insufficient": 0.27,
+   "evaluationId": "bf45aa54-fbcd-4804-82bf-c41dd2fc4c39",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 93,
+   "expediente": "CM-AMD-UTM-084-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.73,
+   "strength": 0.77,
+   "insufficient": 0.41,
+   "evaluationId": "17f226e9-d0da-41bb-a143-affda3c1803e",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 94,
+   "expediente": "ENEE-CM-GG-50003493-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.55,
+   "strength": 0.22,
+   "insufficient": 0.36,
+   "evaluationId": "cef67b40-7a27-4a01-be29-7af5e20c317e",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 96,
+   "expediente": "CM-020-DDEC-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.76,
+   "strength": 0.77,
+   "insufficient": 0.31,
+   "evaluationId": "6635fdb1-21d4-4e6f-9916-c1b04a5f506b",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 95,
+   "expediente": "CPrNBS-AMDC-002-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.71,
+   "strength": 0.99,
+   "insufficient": 0.15,
+   "evaluationId": "f783560d-c418-48f7-b4f7-3fb3060271df",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 98,
+   "expediente": "AMPC-GAF-CM-0617-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 0.93,
+   "insufficient": 0.27,
+   "evaluationId": "985357a4-1d92-4769-96d6-4f9133d85941",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 97,
+   "expediente": "CP-SIT-012-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.58,
+   "insufficient": 0.13,
+   "evaluationId": "1f9e76b1-5150-40fa-912b-48c66c9f4146",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 99,
+   "expediente": "SANAA-RA-041-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.73,
+   "strength": 0.74,
+   "insufficient": 0.35,
+   "evaluationId": "16b83980-0d36-4c4f-8c7b-d029b6958bac",
+   "error": null
+  },
+  {
+   "profile": "carreteras",
+   "rank": 100,
+   "expediente": "OM-004-2026-EJERCITO",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.75,
+   "strength": 1.43,
+   "insufficient": 0.25,
+   "evaluationId": "4a43ca59-72a3-4ea0-ba25-3fb2f6c4499c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 1,
+   "expediente": "LP 001-2026 FUNDAGES HEAC UNIFORMES",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 2.28,
+   "insufficient": 0.09,
+   "evaluationId": "12852b3e-01a6-4156-b965-0f9caf6a8ec2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 2,
+   "expediente": "LPN-05-2026-FAHM",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.5,
+   "strength": 0.69,
+   "insufficient": 0.15,
+   "evaluationId": "f2ebbce5-975c-49bf-839f-f8f7a4552f54",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 4,
+   "expediente": "LP-04-2026-RSDI",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.93,
+   "strength": 2.06,
+   "insufficient": 0.13,
+   "evaluationId": "e69d78e0-fe3c-47dc-9b10-1ed79f886d1c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 3,
+   "expediente": "LP No. 01-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.64,
+   "strength": 0.94,
+   "insufficient": 0.15,
+   "evaluationId": "64285b9c-7c39-4530-9e47-ec6c60c512b1",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 5,
+   "expediente": "33-LP-001-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.95,
+   "strength": 2.42,
+   "insufficient": 0.12,
+   "evaluationId": "7dd78be0-af90-4aec-ade8-b99e04edbdb1",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 6,
+   "expediente": "LP-03-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 2.48,
+   "insufficient": 0.17,
+   "evaluationId": "c4cdffd1-46df-472d-933f-b1aa5cab263a",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 7,
+   "expediente": "Licitacion Privada 02-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.38,
+   "strength": 0.52,
+   "insufficient": 0.2,
+   "evaluationId": "d642e261-60a8-4c37-8746-9da99d55aab0",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 8,
+   "expediente": "LPN 10-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.5,
+   "strength": 0.65,
+   "insufficient": 0.15,
+   "evaluationId": "13ad9736-e9f9-403f-9886-9d3538d63c63",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 9,
+   "expediente": "No.GC-LPN-HBCBH-SPS-OPERACIONES-001-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.74,
+   "insufficient": 0.09,
+   "evaluationId": "06d073ba-cd23-4977-a864-a6891ce0cc00",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 10,
+   "expediente": "LPN-SIT-038-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.45,
+   "strength": 0.6,
+   "insufficient": 0.17,
+   "evaluationId": "2f4ccfd9-17e8-45e5-ad64-44de987821df",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 11,
+   "expediente": "LPN-SIT-SUM-005-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.38,
+   "strength": 0.84,
+   "insufficient": 0.14,
+   "evaluationId": "01cd5def-3002-4b4e-a66f-28f2e81a531c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 12,
+   "expediente": "IPM-LPN-GC-2026-017",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.36,
+   "strength": 0.52,
+   "insufficient": 0.17,
+   "evaluationId": "e44f237d-16aa-4a1b-85bf-14248aa08942",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 13,
+   "expediente": "LPN-017-2026-SDN",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.53,
+   "strength": 0.71,
+   "insufficient": 0.13,
+   "evaluationId": "a0b928de-968e-41ed-82a5-5e5415ba6767",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 14,
+   "expediente": "HOP6-ENEE-07-LPI-S- Segunda Vuelta",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.38,
+   "strength": 0.5,
+   "insufficient": 0.2,
+   "evaluationId": "fa95ea77-739f-45a0-8e5e-b76d80cd05c3",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 15,
+   "expediente": "UNAH-SEAF-LPN-009-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.94,
+   "strength": 2.09,
+   "insufficient": 0.08,
+   "evaluationId": "e878f3d9-7a4f-4d61-951c-304bce47c44c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 16,
+   "expediente": "LPN-UAFCE-EUROSAN-004-2026-SESAL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.48,
+   "strength": 0.55,
+   "insufficient": 0.15,
+   "evaluationId": "0fec7dd9-464b-4710-9a76-d9c498dcd7f9",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 17,
+   "expediente": "LPN-018-2026-SDN",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.37,
+   "strength": 0.47,
+   "insufficient": 0.19,
+   "evaluationId": "1f0606ad-15ea-4582-a13c-3fa9c2dfaf8d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 18,
+   "expediente": "1224-RDSLP-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.43,
+   "insufficient": 0.42,
+   "evaluationId": "2d31c3d9-7214-4a23-90cf-c283af5a114d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 19,
+   "expediente": "LPN-001-SECAPPH-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.41,
+   "insufficient": 0.34,
+   "evaluationId": "d720adc8-c01e-4357-b4be-8c544e207dd1",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 20,
+   "expediente": "ENP-LPRIVN-GA-UI-20-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.31,
+   "strength": 0.43,
+   "insufficient": 0.25,
+   "evaluationId": "ac661370-cbe8-4866-bd6e-b5cd3b2dce20",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 21,
+   "expediente": "LP-002-RDSN3-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.39,
+   "strength": 0.56,
+   "insufficient": 0.14,
+   "evaluationId": "7faf185a-bc72-415e-8f55-1bbdbc4ded1e",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 22,
+   "expediente": "CM-GC-IHMA-2026-076",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.07,
+   "insufficient": 0.34,
+   "evaluationId": "853f729e-ba22-4b29-9b52-028a7c21e031",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 23,
+   "expediente": "LPN-SIT-049-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.67,
+   "insufficient": 0.14,
+   "evaluationId": "6410bd46-9a6e-45e4-9aad-b5610a0b724b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 24,
+   "expediente": "LPN-PRODESOFI-UNAG-GAP-2026-005",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.2,
+   "strength": 0.26,
+   "insufficient": 0.14,
+   "evaluationId": "60018d03-608e-4b09-bb90-2b33a95fc1f9",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 25,
+   "expediente": "LP-009-2026-HSL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.35,
+   "strength": 0.27,
+   "insufficient": 0.18,
+   "evaluationId": "9dfebc42-d40b-4616-92e9-67932fe906d9",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 26,
+   "expediente": "LP-002-2026-RSN4-SESAL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.11,
+   "strength": 0.1,
+   "insufficient": 0.34,
+   "evaluationId": "76129720-efaf-40e5-ae9f-5f65e70d205b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 27,
+   "expediente": "CM-066-INAMI-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.66,
+   "strength": 0.64,
+   "insufficient": 0.33,
+   "evaluationId": "821db745-5f3f-42e3-8434-cb6ca18d851a",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 28,
+   "expediente": "CM-GC-IHMA-2026-080",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.81,
+   "strength": 1.26,
+   "insufficient": 0.3,
+   "evaluationId": "cc87bcc5-1f0b-4999-bd9a-363f62eb014b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 29,
+   "expediente": "DICTA-CM-GC-2026-088",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.09,
+   "insufficient": 0.32,
+   "evaluationId": "9843c452-0edc-4ec4-867f-792952ae8cfc",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 30,
+   "expediente": "ENEE-CM-GG-30005225-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.83,
+   "strength": 1.49,
+   "insufficient": 0.25,
+   "evaluationId": "25a786a2-9679-4a42-a566-7b6a2b8bd657",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 31,
+   "expediente": "SENAF-CM-127-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.82,
+   "strength": 1.62,
+   "insufficient": 0.29,
+   "evaluationId": "f9604956-0740-4ce7-9e7a-044433fa35e3",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 32,
+   "expediente": "SETRASS -CM -UE003- 2026 -005.",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.12,
+   "strength": 0.01,
+   "insufficient": 0.36,
+   "evaluationId": "57b81b15-688d-411b-80a9-b10ab15f0513",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 34,
+   "expediente": "50-2026 FUNDANIQUEM-CEHNIQ",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.76,
+   "strength": 1.02,
+   "insufficient": 0.37,
+   "evaluationId": "d2ec8029-e62e-46ed-a437-76dc31a38d06",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 33,
+   "expediente": "LPN-SIT-039-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.44,
+   "strength": 0.51,
+   "insufficient": 0.16,
+   "evaluationId": "c9c28889-b8f5-456b-92dd-c8fe5f78dd53",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 35,
+   "expediente": "LP-02-2026-RSDI",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.47,
+   "strength": 0.52,
+   "insufficient": 0.29,
+   "evaluationId": "db26ced5-7923-4e21-9527-8b16f0dbc213",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 36,
+   "expediente": "LPuNO-AMDC-002-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.75,
+   "strength": 1.53,
+   "insufficient": 0.18,
+   "evaluationId": "b9020546-c87b-4ac4-b32c-738664cfdcc5",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 38,
+   "expediente": "2000001413-IHSS-SPS",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.37,
+   "strength": 0.1,
+   "insufficient": 0.46,
+   "evaluationId": "23b0e265-47b9-4ab0-9818-354dbf9aedcd",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 37,
+   "expediente": "LPN 09-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.52,
+   "strength": 0.94,
+   "insufficient": 0.19,
+   "evaluationId": "b28d6f53-adcd-4a3a-96cc-1ef7e442aa2f",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 39,
+   "expediente": "CM-565-AMLE-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.85,
+   "strength": 1.46,
+   "insufficient": 0.47,
+   "evaluationId": "5e34c0fb-f123-4ad5-afed-0b49196afa4a",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 40,
+   "expediente": "LPN-06-2026-FAHM",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.42,
+   "strength": 0.41,
+   "insufficient": 0.18,
+   "evaluationId": "c3e3f9a7-8dcb-4655-94ac-a81c41955081",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 41,
+   "expediente": "LPN-MPC-GPYD-01-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.76,
+   "strength": 1.15,
+   "insufficient": 0.15,
+   "evaluationId": "588c7b11-088a-4238-92f1-34eeb07cd038",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 43,
+   "expediente": "CD-002-2026",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "unsure"
+   },
+   "inScope": 0.73,
+   "strength": 1.12,
+   "insufficient": 0.13,
+   "evaluationId": "2be086b8-0ea0-4731-99af-24d385f18669",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 42,
+   "expediente": "IHT-LPN-GC-2026-02",
+   "labels": {
+    "relevant": "unsure",
+    "core": "unsure",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.91,
+   "strength": 2.1,
+   "insufficient": 0.12,
+   "evaluationId": "6a060b6a-902a-4d91-96bd-a61808d6a5ad",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 44,
+   "expediente": "ENP-LPRIVN-GA-UI-19-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.75,
+   "insufficient": 0.2,
+   "evaluationId": "362b6124-8e25-446d-b882-bc1ae0f13da2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 45,
+   "expediente": "LPN-SIT-047-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.61,
+   "strength": 0.79,
+   "insufficient": 0.14,
+   "evaluationId": "a1cb7235-1dfd-4c47-b7e1-91752f65a91d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 47,
+   "expediente": "MCOM-009-2026-EMC",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.37,
+   "insufficient": 0.2,
+   "evaluationId": "1024448a-0884-4476-a728-d5cb48544ef2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 46,
+   "expediente": "ENP-COM-012-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.14,
+   "strength": 0.03,
+   "insufficient": 0.59,
+   "evaluationId": "d386cb80-7e22-49a2-be17-1a5cc05c0534",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 48,
+   "expediente": "LPN-SIT-041-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.46,
+   "strength": 0.48,
+   "insufficient": 0.14,
+   "evaluationId": "d8e67cec-83a2-47b5-a8fa-1f3af0e92572",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 50,
+   "expediente": "LPN-UPNFM-008-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.44,
+   "strength": 0.37,
+   "insufficient": 0.17,
+   "evaluationId": "2c505dd5-d432-4ca9-b39d-2cb28922fced",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 49,
+   "expediente": "ENEE-UCP-BID-CP-SNC-HO-L1186-P00045",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.55,
+   "strength": 0.6,
+   "insufficient": 0.13,
+   "evaluationId": "2115e9a5-d932-45fd-a59b-33711f791400",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 51,
+   "expediente": "CM-567-AMLC-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.8,
+   "strength": 1.39,
+   "insufficient": 0.27,
+   "evaluationId": "4dcdea13-5e44-4ad5-b52c-e14e3b570dc9",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 53,
+   "expediente": "PJ-CM-GC-2026-0790",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.4,
+   "strength": 0.22,
+   "insufficient": 0.36,
+   "evaluationId": "356fa1c5-80c4-4d3b-ac5c-7cb18464ab44",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 52,
+   "expediente": "LPN-SIT-054-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.48,
+   "strength": 0.83,
+   "insufficient": 0.17,
+   "evaluationId": "432ebb97-741d-4881-ad7c-62c9c3c51bf5",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 54,
+   "expediente": "CNPV-03-LPN-B-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.34,
+   "insufficient": 0.17,
+   "evaluationId": "d90a09eb-0957-4ec3-9244-7591de985fc4",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 55,
+   "expediente": "LPN-SIT-053-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.7,
+   "insufficient": 0.22,
+   "evaluationId": "9cb73c85-907b-40cf-bea4-b5feb5c1aa90",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 56,
+   "expediente": "CM-CONEANFO-034-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.89,
+   "strength": 1.64,
+   "insufficient": 0.19,
+   "evaluationId": "072e957e-2fa6-4e9d-a165-d7d31ba4af84",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 57,
+   "expediente": "MP-1012220667-3564-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.27,
+   "strength": 0.24,
+   "insufficient": 0.23,
+   "evaluationId": "8ac2dfa1-e957-4e2c-9fc2-8f761e21b126",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 58,
+   "expediente": "CM-030-2026-HT",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.12,
+   "strength": 0.15,
+   "insufficient": 0.33,
+   "evaluationId": "907ad113-5690-4bfe-985c-2862f72f20d2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 59,
+   "expediente": "6000001514-IHSS-SPS",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.17,
+   "strength": 0.03,
+   "insufficient": 0.28,
+   "evaluationId": "8f6a5e85-53f8-4ebc-b8c7-50700869126e",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 60,
+   "expediente": "LPN-SIT-040-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.44,
+   "strength": 0.43,
+   "insufficient": 0.15,
+   "evaluationId": "9ac7f89a-148b-4ddb-b878-d0e53266b68c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 61,
+   "expediente": "CPN No. 08-2026-SEAPI-UNAH",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.14,
+   "strength": 0.24,
+   "insufficient": 0.18,
+   "evaluationId": "b9e71a53-ad47-478e-aa71-84da28f51977",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 63,
+   "expediente": "CM-DA-2026-039",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.14,
+   "strength": 0.02,
+   "insufficient": 0.35,
+   "evaluationId": "9119c862-3749-40c4-841b-90b13049554d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 62,
+   "expediente": "LPN-SIT-046-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.74,
+   "insufficient": 0.13,
+   "evaluationId": "dbc48bc5-7da8-490e-a583-3919dbfc6767",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 64,
+   "expediente": "LPN-MPC-GT-11-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.85,
+   "insufficient": 0.2,
+   "evaluationId": "4763232e-493c-44e8-9548-6748b39ddd76",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 65,
+   "expediente": "ENP-LPRIVN-GA-UI-10-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.48,
+   "strength": 0.66,
+   "insufficient": 0.17,
+   "evaluationId": "28c40913-8a24-4c74-b504-37ba25022a9b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 66,
+   "expediente": "ENEE-CM-GG-10005210-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.86,
+   "strength": 1.58,
+   "insufficient": 0.33,
+   "evaluationId": "646eaf55-6595-4c81-b6cc-ac34d0980965",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 67,
+   "expediente": "LPN-SIT-048-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.57,
+   "strength": 0.78,
+   "insufficient": 0.15,
+   "evaluationId": "540ddd7d-ec40-4788-849a-ce12c455e599",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 70,
+   "expediente": "GC-CM-HBCBH-COPAN RUINAS-09-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "unsure"
+   },
+   "inScope": 0.33,
+   "strength": 0.07,
+   "insufficient": 0.42,
+   "evaluationId": "3e5a2b02-bc65-4dcb-aee6-eef76caa789b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 69,
+   "expediente": "IPM-LPN-GC-2026-015",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.23,
+   "strength": 0.37,
+   "insufficient": 0.15,
+   "evaluationId": "27e7a82c-bbbe-441d-b309-4bba5b3cb153",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 68,
+   "expediente": "LPN-SIT-050-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.49,
+   "strength": 0.59,
+   "insufficient": 0.14,
+   "evaluationId": "3b69d221-324e-4caa-8ce3-ed99c72776a2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 71,
+   "expediente": "LPN-SIT-044-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.6,
+   "strength": 1.06,
+   "insufficient": 0.14,
+   "evaluationId": "ac31056c-40e3-4736-9d2c-6513c7f3140d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 72,
+   "expediente": "ENP-LPRIVN-GA-UI-09-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.36,
+   "strength": 0.52,
+   "insufficient": 0.35,
+   "evaluationId": "f07c8afe-9ca2-45bd-8fff-4238ce7fb8c3",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 74,
+   "expediente": "LPN-SIT-043-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.69,
+   "strength": 1.15,
+   "insufficient": 0.15,
+   "evaluationId": "bf44a2b0-b781-47eb-b8a1-bf2c16e24909",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 73,
+   "expediente": "ENP-LPRIVN-GA-UI-06-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.44,
+   "strength": 0.83,
+   "insufficient": 0.16,
+   "evaluationId": "8a25c917-df77-46cb-b5a7-a2ec207e67d2",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 75,
+   "expediente": "LP-003-2026-RSN4-SESAL",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.11,
+   "strength": 0.2,
+   "insufficient": 0.26,
+   "evaluationId": "1ea9248c-4e1c-4be8-b911-103d24f149ba",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 76,
+   "expediente": "CM-GC-IHMA-2026-077",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.26,
+   "strength": 0.08,
+   "insufficient": 0.46,
+   "evaluationId": "e8a31be3-38ff-4703-86d3-8ac27599c2d6",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 78,
+   "expediente": "SETRASS-CM-UE003-2026 004",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.15,
+   "strength": 0.02,
+   "insufficient": 0.32,
+   "evaluationId": "e8148a05-47fb-4861-aee0-6f9c1ebd3460",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 77,
+   "expediente": "LPN-SIT-052-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.56,
+   "strength": 0.92,
+   "insufficient": 0.17,
+   "evaluationId": "452460f3-0f96-4d80-938d-45ab2e71361c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 79,
+   "expediente": "UE-065-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.6,
+   "strength": 0.74,
+   "insufficient": 0.32,
+   "evaluationId": "70ecfe3c-a556-4098-a8ef-bd59b24caaa6",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 80,
+   "expediente": "ENEE-CM-GG-10005204-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.57,
+   "strength": 0.34,
+   "insufficient": 0.44,
+   "evaluationId": "c42e677a-7ace-4709-8ab1-46fd581fb982",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 81,
+   "expediente": "LPN-04-2026-FAHM",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.23,
+   "strength": 0.27,
+   "insufficient": 0.17,
+   "evaluationId": "05fc7ee1-19b3-4b58-a38f-54fdae9b2640",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 82,
+   "expediente": "ENP-LPRIVN-GA-UI-11-2025",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.36,
+   "strength": 0.59,
+   "insufficient": 0.19,
+   "evaluationId": "b4f0f571-8c3d-4df2-8ea6-205cd5cf8b1c",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 84,
+   "expediente": "No. UNACIFOR-LPN-GC-UE02-2026-04",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.44,
+   "strength": 0.73,
+   "insufficient": 0.16,
+   "evaluationId": "0967f0a4-d520-4224-98f9-e4d679e11f44",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 83,
+   "expediente": "CM-237-IP-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.18,
+   "strength": 0.03,
+   "insufficient": 0.41,
+   "evaluationId": "67dc35af-53a0-42cc-958c-6724bb27cf20",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 85,
+   "expediente": "CPN-SIT-041-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.06,
+   "strength": 0.12,
+   "insufficient": 0.15,
+   "evaluationId": "34c4b120-158c-4d93-96da-ff1fd50eed41",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 86,
+   "expediente": "ENP-LPRIVN-GA-UI-04-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.49,
+   "insufficient": 0.25,
+   "evaluationId": "7187e1a3-0898-4900-9d44-691273dd2eab",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 87,
+   "expediente": "ENEE-CM-GG-10005211-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.19,
+   "strength": 0.02,
+   "insufficient": 0.39,
+   "evaluationId": "a81f7979-7a78-4757-af2a-eb044eda5ef1",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 88,
+   "expediente": "CM-520-PROHECO-SDGP-SE-2026",
+   "labels": {
+    "relevant": "relevant",
+    "core": "relevant",
+    "blind": "relevant"
+   },
+   "inScope": 0.77,
+   "strength": 1.45,
+   "insufficient": 0.28,
+   "evaluationId": "8a31caee-f7cb-429c-9ec9-8bf8cbbfbdac",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 89,
+   "expediente": "LPN-SIT-042-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.58,
+   "strength": 0.71,
+   "insufficient": 0.14,
+   "evaluationId": "86667e7c-7441-4fe9-abf4-1c9344fea557",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 90,
+   "expediente": "ENEE-CM-GG-10005199-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.14,
+   "strength": 0.02,
+   "insufficient": 0.69,
+   "evaluationId": "4da3653f-0b8e-4486-a557-382a951626eb",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 92,
+   "expediente": "HOP6-ENEE-10-LPN-S",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.29,
+   "strength": 0.41,
+   "insufficient": 0.17,
+   "evaluationId": "03cc2b94-b9c6-430f-b550-5bd612b0c081",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 91,
+   "expediente": "LPN-001-IHAH-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.45,
+   "insufficient": 0.2,
+   "evaluationId": "4b07a4f9-70d3-47d5-9efc-82c015f29a8a",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 93,
+   "expediente": "ENEE-CM-GG-10005209-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.16,
+   "strength": 0.01,
+   "insufficient": 0.44,
+   "evaluationId": "9ec6ea29-3aeb-46af-b2af-42869da71b9d",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 94,
+   "expediente": "ENEE-CM-GH-10005213-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.18,
+   "strength": 0.02,
+   "insufficient": 0.46,
+   "evaluationId": "014e5213-692d-4718-9dd3-bc0fb524fd86",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 95,
+   "expediente": "ENP-LPRIVN-GA-UI-03-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.26,
+   "strength": 0.42,
+   "insufficient": 0.18,
+   "evaluationId": "aa888f26-6e99-49b0-afe2-873becabf44e",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 96,
+   "expediente": "SANAA-RA-042-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.28,
+   "strength": 0.03,
+   "insufficient": 0.38,
+   "evaluationId": "b1a0202e-1de5-4449-82f9-aa565438d635",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 97,
+   "expediente": "CM-GC-HBCBH-ROATAN-2026-036",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.16,
+   "strength": 0.02,
+   "insufficient": 0.37,
+   "evaluationId": "84f7f414-81a9-44d6-9cce-e67f278a7b50",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 98,
+   "expediente": "SETRASS-CM-GC-2026-061",
+   "labels": {
+    "relevant": "relevant",
+    "core": "unsure",
+    "blind": "relevant"
+   },
+   "inScope": 0.51,
+   "strength": 0.43,
+   "insufficient": 0.36,
+   "evaluationId": "3f44f1a2-f106-4230-af3c-f77fd2ae4c8b",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 99,
+   "expediente": "ENP-LPRIVN-GA-UI-08-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.23,
+   "strength": 0.35,
+   "insufficient": 0.24,
+   "evaluationId": "1e56eddf-b92a-4b4e-b501-dbd72bf97896",
+   "error": null
+  },
+  {
+   "profile": "uniformes",
+   "rank": 100,
+   "expediente": "ENEE-CM-GG-50003489-2026",
+   "labels": {
+    "relevant": "not_relevant",
+    "core": "not_relevant",
+    "blind": "not_relevant"
+   },
+   "inScope": 0.23,
+   "strength": 0.04,
+   "insufficient": 0.41,
+   "evaluationId": "023c3b43-afd7-4d55-8af2-9ffed8a0d5b5",
+   "error": null
+  }
+ ]
+}

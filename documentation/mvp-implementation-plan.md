@@ -182,6 +182,7 @@ Company profiles and chat questions are private customer data. Before a provider
 | D2 | **Railway** for the `web` and `worker` services; **Supabase Cloud** for database, auth, storage, Realtime, pg_cron, Vault | Self-hosting Supabase on Railway is possible but adds backups, upgrades, and Auth/Realtime operations for no product gain. Railway PR environments point at a staging Supabase project. |
 | D3 | **AI SDK** for every model call | `streamText`/`useChat` for chat, `embedMany` for embeddings, `rerank`, `experimental_evaluate` for Jev. |
 | D4 | **Multi-provider by design** | Role-based registry, per-environment overrides, `ai_usage_events`, provider-neutral credits and citations (section 5). |
+| D5 | **Paddle for billing, and the only source of subscriptions (30 Sep 2026)** | Paddle is merchant of record (it collects and remits taxes). Every `organization_subscriptions` row comes from Paddle webhooks, pilots included; the admin app no longer activates plans. Prices in USD (Paddle does not support HNL); payouts in USD. Design in 7.5. |
 
 ### 6.1.1 Spanish UI conventions (D1)
 
@@ -221,6 +222,10 @@ Company profiles and chat questions are private customer data. Before a provider
 | O6 | Central sync cadence | Start every **3 hours** with a 7-day overlap window (spec §6) plus a daily 30-day sync while measuring; adjust after the measurement ends on 1 Oct 2026. | Phase 1 |
 | O7 | Access and content use | Review HonduCompras terms and attribution before operating commercially (spec §14.5). Always link the official source. | Before the pilot |
 | O8 | Retention | Keep source documents and texts during the pilot; define the deletion policy before commercial launch (spec §10). | Phase 6 |
+| O9 | Pilots on Paddle | **Decided 30 Sep 2026: a 100% discount code** on the chosen plan for the pilot's duration, entered at checkout. To verify in sandbox: whether a $0 checkout still asks for a card, and that the subscription renews at full price when the discount ends (or is canceled before). | Billing build |
+| O10 | Prices | **Decided 30 Sep 2026: monthly, per organization, in USD, tax included** (the amount shown is final; Paddle takes any tax out of it): Básico **$15**, Estándar **$20** (today's «Piloto» plan with its limits, renamed since pilots are now discounts), Pro **$25**. No annual prices for now. | Billing build |
+| O11 | Grace for failed payments | **Decided 30 Sep 2026:** `past_due` keeps access for **7 days** from the failed renewal, with a banner asking the owner to update the card; after that the organization is read-only until Paddle recovers the payment or cancels. | Billing build |
+| O12 | Who manages billing | **Decided 30 Sep 2026: owner only** for checkout, plan changes, and the customer portal; admins see the billing page read-only. | Billing build |
 
 ---
 
@@ -274,6 +279,51 @@ RLS: `select` for authenticated users who belong to at least one organization; n
 | `history_months` | RLS on `search_runs` / `search_run_matches`: visible when `created_at >= now() - history_months` of the org's current (or last) plan. |
 | Read-only without plan | Insert policies on `saved_searches`, `search_runs` (manual), `chat_messages` require `private.active_plan_id(org_id) is not null`; scheduled runs are skipped for inactive orgs. |
 | AI credits | Chat and requested document analysis: `reserve_ai_credits` → model via AI Gateway → `commit_ai_credits` (credits from usage × `ai_model_rates`) or `release_ai_credits`. Matching, embeddings, and reports never charge credits (spec §9). |
+
+### 7.5 Billing with Paddle (D5)
+
+Design written 30 Sep 2026, not built yet. Paddle is the source of truth; `organization_subscriptions` is its mirror, and every limit keeps reading `private.active_plan_id(org)`, so seats, searches, schedules, history, and credits follow the Paddle state without other changes. Sources: the Paddle plugin's `subscription-sync`, `webhooks`, `checkout-web`, `customer-portal`, and `subscription-update` skills, adapted from one subscription per user (matched by email) to one per organization (matched by `custom_data.org_id`).
+
+**Eligibility (checked 30 Sep 2026 in Paddle's public docs).** Honduras is not on Paddle's list of unsupported seller countries, and buyers in Honduras can pay. HNL is not a payment currency, so prices are in USD. Bank transfer exists only for EUR, GBP, and USD invoices; small Honduran companies pay by card, so confirm with a pilot customer that their cards work for international online payments. Live payments need Paddle's domain review of the public site: product description and features, a pricing page, Terms and Conditions naming the company, Refund Policy, Privacy Policy, HTTPS (Spanish is fine). Paddle's acceptable use policy excludes products that infringe another party's terms, which makes O7 (HonduCompras terms) a prerequisite for going live. The sandbox needs no review.
+
+**Catalog.** One Paddle product per plan with one monthly USD price, tax-inclusive (O10: Básico $15, Estándar $20, Pro $25), created in sandbox and live separately (their ids differ). Pilot discount codes are Paddle discounts of 100% for a set number of billing periods (O9). A new table maps them:
+
+| Table | Key columns and constraints |
+|---|---|
+| `plan_prices` | `paddle_price_id` (PK), `plan_id` → `plans`, `billing_interval` (`month`/`year`), `is_active`. Readable by authenticated users; written by a seed script per environment or by the admin app. Amounts are not stored: the pricing page and the billing page read them from Paddle (`PricePreview` / pricing preview), so tax and currency display come from Paddle. |
+
+`plans` keeps the limits and stays edited by the admin app.
+
+**Subscription mirror.** `organization_subscriptions` (one row per organization) changes:
+- `status`: `trialing`, `active`, `past_due`, `paused`, `canceled` (Paddle's values). `expired` stays only for manual rows written before this change.
+- `source`: `paddle`; `manual` stays for existing rows until they end, and the admin app stops writing new ones. The unused `stripe_*` columns are replaced by `paddle_customer_id` and `paddle_subscription_id` (unique).
+- New: `paddle_price_id` → `plan_prices` (which sets `plan_id`), `billing_interval`, `scheduled_change` jsonb (`action` cancel/pause, `effective_at`; set while the org keeps access until then), `next_billed_at`, `past_due_since`, and `paddle_updated_at` (the event's `occurred_at`, to ignore older events that arrive late).
+- `current_period_start` / `current_period_end` come from Paddle's `current_billing_period`, so monthly credit cycles (`private.credit_cycle_start`) keep working, also for annual plans.
+
+**Access.** `private.active_plan_id(org)` returns the plan when:
+- `status` is `active` or `trialing` and `current_period_end + 3 days > now()` (the 3 days absorb a late renewal webhook; a missed one still ends access), or
+- `status` is `past_due` and `past_due_since + 7 days > now()` (O11).
+
+`paused` and `canceled` are read-only, as today without a plan. A cancellation keeps `active` with `scheduled_change` until its date; Paddle then sends `canceled`. `private.expire_subscriptions` only touches `source = 'manual'` rows. `private.grant_monthly_ai_credits` grants to every org with an active plan by that function, trials included.
+
+**Notifications.** `tg_subscription_changed` maps the new states: `trialing`/`active` → `subscription.activated` (or `renewed` / `plan_changed` as today), `canceled`/`paused` → `subscription.canceled`. New types: `subscription.payment_failed` (to owners, with a link to update the card) and `subscription.cancel_scheduled` (with the end date). `warn_expiring_subscriptions` warns 7 days before a scheduled cancellation and for manual rows, never before a normal renewal.
+
+**Webhooks.** `app/api/webhooks/paddle/route.ts` (Node runtime):
+1. Read the raw body and verify `Paddle-Signature` with `paddle.webhooks.unmarshal` and the notification secret; reject anything else with 401.
+2. Insert the event into `paddle_webhook_events` (`event_id` PK, `event_type`, `occurred_at`, `payload`, `processed_at`, `error`; service role only). A duplicate `event_id` returns 200 without reprocessing.
+3. Apply it through `public.apply_paddle_subscription(payload jsonb)` (security definer, service role only). It finds the organization by `custom_data.org_id` (or by `paddle_subscription_id` for later events), upserts the row, and skips it when `occurred_at` is older than `paddle_updated_at`.
+4. Return 200 quickly; a failure returns 500 so Paddle retries, and the error stays on the event row.
+
+Subscribed events: `subscription.created`, `.updated`, `.activated`, `.trialing`, `.past_due`, `.paused`, `.resumed`, `.canceled` (each carries the whole subscription), and `customer.updated` (billing email shown on the page). The web service gets `SUPABASE_SECRET_KEY` for a server-only admin client (`lib/supabase/admin.ts`, imported only by the webhook), plus `PADDLE_API_KEY`, `PADDLE_WEBHOOK_SECRET`, `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, and `NEXT_PUBLIC_PADDLE_ENV` (`sandbox` locally and in staging, `production` live).
+
+**Checkout.** Paddle.js overlay from Configuración › Facturación, and after creating an organization in onboarding («Elija su plan», which can be skipped and leaves the organization read-only). Owner only (O12). It opens with the chosen `plan_prices` id, `customData: { org_id, user_id }`, the owner's email, and the organization's `paddle_customer_id` when it had one. The server refuses a second checkout while the organization has a subscription that is not `canceled`. After `checkout.completed` the page shows «Activando su plan…» and refreshes until the webhook row appears. Onboarding with a plan also settles the invitations that fail with `subscription_inactive` (Phase 4, Spanish pass).
+
+**Managing the plan.**
+- Plan change (Server Action, `paddle.subscriptions.update`, preview first): upgrades apply now with `prorated_immediately`. A downgrade is allowed only if current use fits the smaller plan (members plus pending invitations, active searches, schedules); otherwise the page says what to reduce first.
+- Payment method, invoices, and cancellation go through Paddle's customer portal: a Server Action creates a portal session for the organization's `paddle_customer_id` and subscription, owner only.
+- The billing page (replacing the mock) shows the plan, status, period, next charge, any scheduled cancellation, a `past_due` banner, seats, searches, schedule, history, and the credit balance (`get_organization_entitlements`, `get_ai_credit_balance`).
+
+**Tests.** pgTAP: `apply_paddle_subscription` for each status, out-of-order events, duplicate events, the access window (renewal margin, `past_due` grace), notifications, and that users cannot write the new tables. Vitest: status and plan mapping. End to end in sandbox with test cards, the webhook simulator, and a local tunnel: subscribe, fail a renewal, cancel at period end, pause, change plan.
 
 ---
 
@@ -391,7 +441,7 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 - **Detail panel (§12.3)**: keeps search/run/filters and scroll position; evidence, process data and change history, documents, official link, «Me interesa» / «No me interesa» with optional reason. Show the bid deadline with its time, the place of bid reception, and the contact prominently, and each product line's specifications in full from the process version (not `products_text`, which is capped). In Compra Menor the specifications often hold the only submission instructions: where or to which email to deliver, the reception hours, and what to present (161 of 482 open processes on 29 Sep 2026 mention a deadline there; the date matched `closes_at` in every case checked).
 - **Downloads**: CSV "todos" and "solo filtrados" streamed from a route handler with the user's session (counts shown on the buttons); frozen PDF rendered by the worker after the run completes, stored in the `reports` bucket per org.
 - **Email**: new notification types (`search_run.completed`, `opportunity.updated`) through the existing `private.notify()`; extend the outbox with a `template` + `payload` so the dispatcher can render the report email. `opportunity_notifications` enforces "no repeated opportunity unless it changed".
-- **Billing page**: replace the mock with the real plan, period, seats, searches, schedule, history, and credit balance from `get_organization_entitlements` / `get_ai_credit_balance`.
+- **Billing with Paddle** (7.5, D5, O9 to O12 decided): Paddle sandbox account and catalog, `plan_prices`, the subscription mirror and access changes, the webhook, checkout in Facturación and onboarding (with a field for the pilot discount code), plan changes, the customer portal, and the real billing page.
 
 **Done when (spec §13):** a run produces PDF, CSV, and history with ingestion date and coverage; selecting a search and run updates the table without losing history; "Ejecutar ahora" shows progress and never duplicates; facets do not change the saved search; "Descargar todos" includes all pages and "solo filtrados" respects facets; a date change or new annex creates an update alert without repeating the original alert; plan limits apply per organization.
 
@@ -411,9 +461,9 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 
 - Deploy: Supabase Cloud (migrations, Vault secrets, function secrets, pg_cron); Railway `web` and `worker` with health checks and separate staging/production environments; AI Gateway key per environment with budgets and role fallbacks.
 - Observability: sync health, pages/processes per run, download and OCR errors, analysis latency, AI usage and cost per role and model, failed deliveries; alerts to the team when the source fails or goes stale.
-- Admin project integration: plan activation (already supported), sync monitoring views, `ai_model_rates` editing, support lookups.
-- Legal/access review (O7), retention policy (O8), provider data-handling review (5.6), Spanish marketing site and pricing copy (prices still out of scope).
-- Pilot plans configured from the admin app; first customers onboarded manually.
+- Admin project integration: sync monitoring views, `ai_model_rates` editing, support lookups, plan limits and `plan_prices`. Plans are no longer activated there (D5).
+- Legal/access review (O7), retention policy (O8), provider data-handling review (5.6), Spanish marketing site and pricing page with the O10 prices (Paddle's domain review requires them).
+- Paddle live: account verification and domain review of the public site (needs the Spanish marketing site with pricing, terms, refund, and privacy pages, and O7), live catalog and `plan_prices`, live webhook destination. Pilots subscribe through Paddle (O9); first customers are onboarded with help.
 
 ---
 
@@ -468,4 +518,4 @@ Failed jobs retry with backoff via pgmq visibility timeouts; after N attempts th
 
 ## 12. Out of Scope for the MVP (spec §3)
 
-Submitting offers, automatic eligibility claims, sources other than HonduCompras 1.0, real-time promises before measuring latency, WhatsApp/SMS/CRM/webhooks, award prediction and competitor analysis, automatic recurring billing before choosing a payment provider (pilots are activated from the admin app).
+Submitting offers, automatic eligibility claims, sources other than HonduCompras 1.0, real-time promises before measuring latency, WhatsApp/SMS/CRM/webhooks, award prediction and competitor analysis, self-built billing screens for what Paddle's checkout and customer portal already cover (invoices, payment methods, cancellation).

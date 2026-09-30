@@ -5,6 +5,7 @@ import { OnboardingStepper } from "@/features/onboarding/components/onboarding-s
 import { listMyPendingInvitationsService } from "@/features/invitations/services";
 import { listOrganizationsByUserService } from "@/features/organizations/services";
 import { OnboardingSkeleton } from "@/components/shared/onboarding-skeleton";
+import { getImprovementsRemainingService } from "@/features/company-profile/services";
 
 async function OnboardingContent() {
     const { user, profile } = await getCurrentUserWithProfile();
@@ -13,9 +14,10 @@ async function OnboardingContent() {
         redirect("/organizations");
     }
 
-    const [pendingInvitations, organizations] = await Promise.all([
+    const [pendingInvitations, organizations, improvementsRemaining] = await Promise.all([
         listMyPendingInvitationsService(),
         listOrganizationsByUserService({ userId: user.sub }),
+        getImprovementsRemainingService(),
     ]);
 
     return (
@@ -34,6 +36,7 @@ async function OnboardingContent() {
                 token: invitation.token,
             }))}
             hasExistingMembership={organizations.length > 0}
+            improvementsRemaining={improvementsRemaining}
         />
     );
 }

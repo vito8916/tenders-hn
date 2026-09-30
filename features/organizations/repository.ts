@@ -178,17 +178,12 @@ export async function listOrganizationsByUser(params: { userId: string }): Promi
 export async function checkSlugAvailability(slug: string): Promise<{ isAvailable: boolean }> {
     const supabase = await createClient();
 
-    const { data, error } = await supabase
-        .from("organizations")
-        .select("id")
-        .eq("slug", slug)
-        .maybeSingle();
+    // An RPC, not a select: RLS shows users only their own organizations.
+    const { data, error } = await supabase.rpc("is_organization_slug_available", { candidate: slug });
 
     if (error) throw error;
 
-    return {
-        isAvailable: data === null,
-    };
+    return { isAvailable: data };
 }
 
 // ========== MUTATIONS ==========

@@ -1,29 +1,8 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
-import {
-    companyProfileSchema,
-    searchRunMatchSchema,
-    searchRunSchema,
-    type CompanyProfile,
-    type SearchRun,
-    type SearchRunMatch,
-} from "./schemas";
+import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
 
 // ========== QUERIES ==========
-
-export async function getCompanyProfile(orgId: string): Promise<CompanyProfile | null> {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-        .from("company_profiles")
-        .select("description, version, updated_at")
-        .eq("org_id", orgId)
-        .maybeSingle();
-
-    if (error) throw error;
-    if (!data) return null;
-
-    return companyProfileSchema.parse({ description: data.description, version: data.version, updatedAt: data.updated_at });
-}
 
 export async function getLatestSearchRun(orgId: string): Promise<SearchRun | null> {
     const supabase = await createClient();
@@ -84,13 +63,10 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
 
 // ========== MUTATIONS ==========
 
-/** Saves the profile and queues a run; raises not_owner, empty_profile, or run_in_progress. */
-export async function requestSearchRun(params: { orgId: string; description: string }): Promise<string> {
+/** Queues a run for the saved profile; raises not_owner, no_profile, or run_in_progress. */
+export async function requestSearchRun(orgId: string): Promise<string> {
     const supabase = await createClient();
-    const { data, error } = await supabase.rpc("request_search_run", {
-        target_org: params.orgId,
-        profile_description: params.description,
-    });
+    const { data, error } = await supabase.rpc("request_search_run", { target_org: orgId });
 
     if (error) throw error;
     return data;

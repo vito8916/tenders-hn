@@ -6,6 +6,7 @@ export const EVENT_LABELS: Record<string, string> = {
 	[APP_EVENTS.ORGANIZATION_UPDATED]: "Organización actualizada",
 	[APP_EVENTS.ORGANIZATION_DELETED]: "Organización eliminada",
 	[APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED]: "Propiedad transferida",
+	[APP_EVENTS.COMPANY_PROFILE_UPDATED]: "Perfil de la empresa actualizado",
 	[APP_EVENTS.INVITATION_SENT]: "Invitaciones enviadas",
 	[APP_EVENTS.INVITATION_ACCEPTED]: "Invitación aceptada",
 	[APP_EVENTS.INVITATION_REVOKED]: "Invitación revocada",
@@ -41,6 +42,7 @@ export function eventDetail(event: AppEvent): string | null {
 	if (typeof metadata.role === "string") return roleLabel(metadata.role);
 	if (typeof metadata.plan_id === "string") return metadata.plan_id;
 	if (typeof metadata.slug === "string") return metadata.slug;
+	if (typeof metadata.version === "number") return `Versión ${metadata.version}`;
 
 	return null;
 }
@@ -60,6 +62,7 @@ export const EVENT_FILTER_GROUPS = [
 			APP_EVENTS.ORGANIZATION_UPDATED,
 			APP_EVENTS.ORGANIZATION_DELETED,
 			APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED,
+			APP_EVENTS.COMPANY_PROFILE_UPDATED,
 		],
 	},
 	{

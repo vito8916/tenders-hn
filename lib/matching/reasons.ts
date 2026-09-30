@@ -52,8 +52,19 @@ function quotedTerms(terms: string[]) {
 
 const pages = (start: number, end: number) => (start === end ? `pág. ${start}` : `págs. ${start}–${end}`);
 
-export function buildReasons(candidate: RetrievedEvidence): Reason[] {
+/**
+ * @param matchedExclusions the company's exclusions the process object matches
+ * (`public.match_exclusions`); they come first, since they decide the level.
+ */
+export function buildReasons(candidate: RetrievedEvidence, matchedExclusions: string[] = []): Reason[] {
     const reasons: Reason[] = [];
+
+    if (matchedExclusions.length > 0) {
+        reasons.push({
+            text: `El objeto coincide con ${quotedTerms(matchedExclusions)}, que su empresa excluyó.`,
+            source: { kind: "field", field: "object" },
+        });
+    }
 
     for (const field of Object.keys(FIELD_NAMES) as ProcessField[]) {
         const terms = candidate.field_terms[field];

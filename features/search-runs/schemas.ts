@@ -6,13 +6,6 @@ export type Relevance = z.infer<typeof RelevanceSchema>;
 export const SearchRunStatusSchema = z.enum(["queued", "running", "completed", "partial", "failed"]);
 export type SearchRunStatus = z.infer<typeof SearchRunStatusSchema>;
 
-export const companyProfileSchema = z.object({
-    description: z.string(),
-    version: z.number().int(),
-    updatedAt: z.string(),
-});
-export type CompanyProfile = z.infer<typeof companyProfileSchema>;
-
 export const searchRunSchema = z.object({
     id: z.uuid(),
     status: SearchRunStatusSchema,
@@ -45,5 +38,4 @@ export type SearchRunMatch = z.infer<typeof searchRunMatchSchema>;
 export const requestSearchRunSchema = z.object({
     orgId: z.uuid(),
     orgSlug: z.string().min(1),
-    description: z.string().trim().min(1, "Describa a qué se dedica la empresa."),
 });

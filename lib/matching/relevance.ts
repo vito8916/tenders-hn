@@ -11,8 +11,14 @@ export const DESCARTADA_MAX_IN_SCOPE = 0.3;
 /**
  * @param inScope Jev's probability for `in_scope`, or null when the
  * evaluation failed after its retries.
+ * @param excluded the process object matches one of the company's
+ * exclusions: a verifiable exclusion prevails over Jev (spec §5), and the
+ * process stays reviewable like any other descartada.
  */
-export function composeRelevance(inScope: number | null): Relevance {
+export function composeRelevance(inScope: number | null, { excluded = false }: { excluded?: boolean } = {}): Relevance {
+    if (excluded) {
+        return "descartada";
+    }
     if (inScope === null) {
         return "pendiente";
     }

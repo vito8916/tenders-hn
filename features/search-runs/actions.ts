@@ -6,12 +6,11 @@ import { requestSearchRunSchema } from "./schemas";
 import { requestSearchRunService } from "./services";
 
 /**
- * Server Action that saves the company profile and starts a search run
+ * Server Action that starts a search run for the saved company profile
  */
 export async function requestSearchRunAction(input: {
     orgId: string;
     orgSlug: string;
-    description: string;
 }): Promise<{ success: boolean; error?: string }> {
     try {
         await getCurrentUser();
@@ -21,7 +20,7 @@ export async function requestSearchRunAction(input: {
             return { success: false, error: parsed.error.issues[0]?.message ?? "Datos no válidos." };
         }
 
-        await requestSearchRunService({ orgId: parsed.data.orgId, description: parsed.data.description });
+        await requestSearchRunService(parsed.data.orgId);
 
         revalidatePath(`/organizations/${parsed.data.orgSlug}/inbox`);
 

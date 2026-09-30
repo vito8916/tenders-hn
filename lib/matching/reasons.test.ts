@@ -100,4 +100,13 @@ describe("buildReasons", () => {
         expect(buildReasons(candidate({ object_similarity: 0.6, matched_unspsc: ["43231505"] }))).toHaveLength(1);
         expect(buildReasons(candidate({}))).toEqual([]);
     });
+
+    it("puts the matched exclusions first", () => {
+        const reasons = buildReasons(candidate({ field_terms: { object: ["computadoras"] } }), ["impresoras", "tóner"]);
+        expect(reasons.map((reason) => reason.text)).toEqual([
+            'El objeto coincide con "impresoras" y "tóner", que su empresa excluyó.',
+            'Coincide con "computadoras" en el objeto.',
+        ]);
+        expect(reasons[0].source).toEqual({ kind: "field", field: "object" });
+    });
 });

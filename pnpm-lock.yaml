@@ -68,6 +68,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      ai:
+        specifier: 7.0.113
+        version: 7.0.113(zod@4.1.13)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1

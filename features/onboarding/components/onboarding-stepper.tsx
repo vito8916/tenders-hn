@@ -19,16 +19,23 @@ import {
 import { ProfileStep } from "./steps/profile-step";
 import { ThemeStep } from "./steps/theme-step";
 import { OrganizationStep } from "./steps/organization-step";
+import { CompanyStep } from "./steps/company-step";
 import { InvitesStep } from "./steps/invites-step";
 import { JoinStep, type JoinableInvitation } from "./steps/join-step";
 import { completeOnboardingAction, completeOnboardingWithoutOrgAction } from "../actions";
 import { checkSlugAvailabilityAction } from "@/features/organizations/actions";
+import {
+    companyProfileInputSchema,
+    EMPTY_COMPANY_PROFILE,
+    type ImprovementsRemaining,
+} from "@/features/company-profile/schemas";
 import { ChevronRight, Loader2 } from "lucide-react";
 
 const CREATE_STEPS = [
     { value: "profile" },
     { value: "theme" },
     { value: "organization" },
+    { value: "company" },
     { value: "invites" },
 ];
 
@@ -67,6 +74,7 @@ const onboardingFormSchema = z.object({
             role: z.enum(["owner", "admin", "member", "viewer"], "Seleccione un rol"),
         })
     ),
+    ...companyProfileInputSchema.shape,
 });
 
 type OnboardingFormData = z.infer<typeof onboardingFormSchema>;
@@ -80,12 +88,14 @@ interface OnboardingStepperProps {
     };
     pendingInvitations: JoinableInvitation[];
     hasExistingMembership: boolean;
+    improvementsRemaining: ImprovementsRemaining;
 }
 
 export function OnboardingStepper({
     defaultProfile,
     pendingInvitations,
     hasExistingMembership,
+    improvementsRemaining,
 }: OnboardingStepperProps) {
     // Invited users join their team instead of creating an organization
     const [mode, setMode] = useState<"join" | "create">(
@@ -113,6 +123,7 @@ export function OnboardingStepper({
                 { id: crypto.randomUUID(), email: "", role: "member" },
                 { id: crypto.randomUUID(), email: "", role: "member" },
             ],
+            ...EMPTY_COMPANY_PROFILE,
         },
     });
 
@@ -145,6 +156,8 @@ export function OnboardingStepper({
                     setIsCheckingSlug(false);
                 }
             }
+            case "company":
+                return form.trigger(["description", "offerings", "exclusions", "locations"]);
             default:
                 return true;
         }
@@ -179,10 +192,26 @@ export function OnboardingStepper({
                 )
             );
             if (orgLogoFile) formData.set("orgLogoFile", orgLogoFile);
+            formData.set(
+                "companyProfile",
+                JSON.stringify({
+                    description: values.description,
+                    offerings: values.offerings,
+                    exclusions: values.exclusions,
+                    locations: values.locations,
+                })
+            );
 
             const result = await completeOnboardingAction(formData);
 
-            if (result && !result.success) {
+            if (result?.slugTaken) {
+                setStep("organization");
+                form.setError("orgSlug", {
+                    type: "manual",
+                    message: "Este identificador en la URL ya está en uso. Elija otro.",
+                });
+                toast.error("El identificador en la URL ya está en uso");
+            } else if (result && !result.success) {
                 toast.error(result.error || "No se pudo completar la configuración inicial");
             }
         } catch (error) {
@@ -252,6 +281,10 @@ export function OnboardingStepper({
                                     logoFile={orgLogoFile}
                                     onLogoFileChange={setOrgLogoFile}
                                 />
+                            </StepperContent>
+
+                            <StepperContent value="company">
+                                <CompanyStep improvementsRemaining={improvementsRemaining} />
                             </StepperContent>
 
                             <StepperContent value="invites">

@@ -178,6 +178,7 @@ export type Database = {
           reference: Json | null
           role: string
           status: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -191,6 +192,7 @@ export type Database = {
           reference?: Json | null
           role: string
           status: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -204,6 +206,7 @@ export type Database = {
           reference?: Json | null
           role?: string
           status?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -250,11 +253,55 @@ export type Database = {
           },
         ]
       }
+      company_profile_versions: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string
+          exclusions: string[]
+          locations: string[]
+          offerings: string[]
+          org_id: string
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description: string
+          exclusions: string[]
+          locations: string[]
+          offerings: string[]
+          org_id: string
+          version: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          exclusions?: string[]
+          locations?: string[]
+          offerings?: string[]
+          org_id?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_profile_versions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       company_profiles: {
         Row: {
           description: string
+          exclusions: string[]
           extracted_profile: Json | null
           extraction_version: string | null
+          locations: string[]
+          offerings: string[]
           org_id: string
           updated_at: string
           updated_by: string | null
@@ -262,8 +309,11 @@ export type Database = {
         }
         Insert: {
           description: string
+          exclusions?: string[]
           extracted_profile?: Json | null
           extraction_version?: string | null
+          locations?: string[]
+          offerings?: string[]
           org_id: string
           updated_at?: string
           updated_by?: string | null
@@ -271,8 +321,11 @@ export type Database = {
         }
         Update: {
           description?: string
+          exclusions?: string[]
           extracted_profile?: Json | null
           extraction_version?: string | null
+          locations?: string[]
+          offerings?: string[]
           org_id?: string
           updated_at?: string
           updated_by?: string | null
@@ -1668,6 +1721,13 @@ export type Database = {
           isSetofReturn: true
         }
       }
+      claim_profile_improvement: {
+        Args: { target_field: string; target_org?: string; used_model: string }
+        Returns: {
+          event_id: number
+          remaining: number
+        }[]
+      }
       commit_ai_credits: {
         Args: { p_amount?: number; p_reservation_id: string }
         Returns: {
@@ -1690,6 +1750,18 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      finish_profile_improvement: {
+        Args: {
+          error_message?: string
+          response_model?: string
+          succeeded: boolean
+          target_event: number
+          used_input_tokens?: number
+          used_latency_ms?: number
+          used_output_tokens?: number
+        }
+        Returns: undefined
       }
       get_ai_credit_balance: {
         Args: { target_org: string }
@@ -1734,6 +1806,10 @@ export type Database = {
           subscription_status: string
         }[]
       }
+      is_organization_slug_available: {
+        Args: { candidate: string }
+        Returns: boolean
+      }
       list_my_pending_invitations: {
         Args: never
         Returns: {
@@ -1751,6 +1827,20 @@ export type Database = {
       log_app_event: {
         Args: { p_event_name: string; p_metadata?: Json; p_org_id?: string }
         Returns: undefined
+      }
+      match_exclusions: {
+        Args: { exclusions: string[]; process_ids: string[] }
+        Returns: {
+          matched_exclusions: string[]
+          process_id: string
+        }[]
+      }
+      profile_improvements_remaining: {
+        Args: never
+        Returns: {
+          field: string
+          remaining: number
+        }[]
       }
       release_ai_credits: {
         Args: { p_reservation_id: string }
@@ -1775,10 +1865,7 @@ export type Database = {
           isSetofReturn: false
         }
       }
-      request_search_run: {
-        Args: { profile_description: string; target_org: string }
-        Returns: string
-      }
+      request_search_run: { Args: { target_org: string }; Returns: string }
       reserve_ai_credits: {
         Args: {
           p_amount: number
@@ -1832,6 +1919,16 @@ export type Database = {
           process_id: string
           score: number
         }[]
+      }
+      save_company_profile: {
+        Args: {
+          profile_description: string
+          profile_exclusions?: string[]
+          profile_locations?: string[]
+          profile_offerings?: string[]
+          target_org: string
+        }
+        Returns: number
       }
       transfer_organization_ownership: {
         Args: { new_owner_user_id: string; target_org: string }

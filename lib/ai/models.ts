@@ -2,7 +2,7 @@
 // Keep this file free of package imports: the worker's Docker image only
 // installs the worker's dependencies, and it imports this file directly.
 
-export const AI_ROLES = ["evaluate", "chat", "embed", "rerank", "vision", "extract"] as const;
+export const AI_ROLES = ["evaluate", "chat", "embed", "rerank", "vision", "extract", "rewrite"] as const;
 
 export type AiRole = (typeof AI_ROLES)[number];
 
@@ -22,6 +22,8 @@ const DEFAULT_MODELS: Record<AiRole, string | null> = {
     // business, keywords, UNSPSC families). Provisional until profile
     // extraction is compared on the labeled set.
     extract: "openai/gpt-6-luna",
+    // «Mejorar con IA» on the company profile's text fields in onboarding and settings.
+    rewrite: "openai/gpt-6-luna",
 };
 
 // document_chunks.embedding is halfvec(1024): every embed model must produce this size.

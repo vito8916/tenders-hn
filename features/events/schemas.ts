@@ -9,6 +9,8 @@ export const APP_EVENTS = {
     ORGANIZATION_UPDATED: "organization.updated",
     ORGANIZATION_DELETED: "organization.deleted",
     ORGANIZATION_OWNERSHIP_TRANSFERRED: "organization.ownership_transferred",
+    // Logged by save_company_profile
+    COMPANY_PROFILE_UPDATED: "company_profile.updated",
     INVITATION_SENT: "invitation.sent",
     INVITATION_ACCEPTED: "invitation.accepted",
     INVITATION_REVOKED: "invitation.revoked",

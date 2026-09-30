@@ -14,4 +14,10 @@ describe("composeRelevance", () => {
         expect(composeRelevance(0.29)).toBe("descartada");
         expect(composeRelevance(0)).toBe("descartada");
     });
+
+    it("discards a process whose object matches an exclusion, whatever Jev said", () => {
+        expect(composeRelevance(0.95, { excluded: true })).toBe("descartada");
+        expect(composeRelevance(null, { excluded: true })).toBe("descartada");
+        expect(composeRelevance(0.95, { excluded: false })).toBe("muy_relevante");
+    });
 });

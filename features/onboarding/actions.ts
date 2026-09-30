@@ -14,8 +14,10 @@ import {
     markOnboardingCompleteService,
 } from "@/features/profiles/services";
 import { updateProfileInputSchema } from "@/features/profiles/schemas";
+import { companyProfileInputSchema } from "@/features/company-profile/schemas";
+import { saveCompanyProfileService } from "@/features/company-profile/services";
 import { uploadProfilePicture } from "@/features/profiles/repository";
-import { userErrorMessage } from "@/lib/errors";
+import { databaseErrorCode, userErrorMessage } from "@/lib/errors";
 
 const IMAGE_MAX_BYTES = 2 * 1024 * 1024;
 const IMAGE_TYPES = ["image/jpeg", "image/png"];
@@ -54,12 +56,15 @@ async function processImageFile(
 
 /**
  * Server action to complete the onboarding flow.
- * Updates profile, creates organization with invites, marks onboarding complete.
+ * Updates profile, creates organization with invites, saves the company profile,
+ * marks onboarding complete.
  */
 export async function completeOnboardingAction(formData: FormData): Promise<{
     success: boolean;
     redirectUrl?: string;
     error?: string;
+    // Another organization took the slug after the organization step checked it.
+    slugTaken?: boolean;
 }> {
     try {
         const { sub: userId } = await getCurrentUser();
@@ -69,6 +74,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         const orgName = formData.get("orgName") ? String(formData.get("orgName")) : "";
         const orgSlug = formData.get("orgSlug") ? String(formData.get("orgSlug")) : "";
         const invitesJson = formData.get("invites") ? String(formData.get("invites")) : "[]";
+        const companyProfileJson = formData.get("companyProfile") ? String(formData.get("companyProfile")) : "{}";
         const avatarFile = formData.get("avatarFile") as File | null;
         const orgLogoFile = formData.get("orgLogoFile") as File | null;
 
@@ -100,6 +106,20 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
             return {
                 success: false,
                 error: "Revise el nombre y el identificador en la URL de la organización.",
+            };
+        }
+
+        let companyProfileData: unknown;
+        try {
+            companyProfileData = JSON.parse(companyProfileJson);
+        } catch {
+            return { success: false, error: "El perfil de la empresa no tiene un formato válido." };
+        }
+        const companyProfileInput = companyProfileInputSchema.safeParse(companyProfileData);
+        if (!companyProfileInput.success) {
+            return {
+                success: false,
+                error: companyProfileInput.error.issues[0]?.message ?? "Revise el perfil de la empresa.",
             };
         }
 
@@ -137,6 +157,8 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
             invites,
         });
 
+        await saveCompanyProfileService({ orgId: organization.id, input: companyProfileInput.data });
+
         await markOnboardingCompleteService({ userId });
 
         redirect(`/organizations/${organization.slug}`);
@@ -148,6 +170,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         return {
             success: false,
             error: userErrorMessage(error, ONBOARDING_ERROR_MESSAGE),
+            slugTaken: databaseErrorCode(error) === "organizations_slug_key",
         };
     }
 }

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { Inbox } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,7 +8,8 @@ import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
 import { canUseInternalInbox, getInboxService } from "@/features/search-runs/services";
-import { ProfileForm } from "@/features/search-runs/components/profile-form";
+import { CompanyProfileSummary } from "@/features/company-profile/components/company-profile-summary";
+import { RunSearchButton } from "@/features/search-runs/components/run-search-button";
 import { RunStatus } from "@/features/search-runs/components/run-status";
 import { MatchList } from "@/features/search-runs/components/match-list";
 
@@ -26,18 +28,31 @@ async function InboxContent({ params }: { params: Promise<{ orgSlug: string }> }
 
     const { profile, run, matches } = await getInboxService(organization.id);
     const runActive = run?.status === "queued" || run?.status === "running";
+    const profileSettingsHref = `/organizations/${orgSlug}/settings/company`;
 
     return (
         <>
-            <section className="max-w-3xl">
-                <ProfileForm
-                    // Remount with the saved text after a run starts.
-                    key={profile?.version ?? 0}
-                    orgId={organization.id}
-                    orgSlug={orgSlug}
-                    defaultDescription={profile?.description ?? ""}
-                    runActive={runActive}
-                />
+            <section className="max-w-3xl space-y-4">
+                {profile ? (
+                    <>
+                        <CompanyProfileSummary profile={profile} />
+                        <div className="flex items-center gap-3">
+                            <RunSearchButton orgId={organization.id} orgSlug={orgSlug} runActive={runActive} />
+                            <Link href={profileSettingsHref} className="text-sm text-primary hover:underline">
+                                Editar el perfil
+                            </Link>
+                            {runActive ? <span className="text-sm text-muted-foreground">Hay una búsqueda en curso.</span> : null}
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-sm text-muted-foreground">
+                        La organización todavía no tiene un perfil.{" "}
+                        <Link href={profileSettingsHref} className="text-primary hover:underline">
+                            Defínalo en Configuración
+                        </Link>{" "}
+                        para ejecutar una búsqueda.
+                    </p>
+                )}
             </section>
             {run ? <RunStatus run={run} /> : null}
             {matches.length > 0 ? <MatchList matches={matches} /> : null}

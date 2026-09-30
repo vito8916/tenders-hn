@@ -1,5 +1,6 @@
 import {
 	Bell,
+	BriefcaseBusiness,
 	Building2,
 	CreditCard,
 	KeyRound,
@@ -53,6 +54,12 @@ export const settingsNavGroups: SettingsNavGroup[] = [
 				label: "General",
 				icon: Building2,
 				description: "Nombre, identificador en la URL, logo y zona de riesgo.",
+			},
+			{
+				segment: "company",
+				label: "Perfil de la empresa",
+				icon: BriefcaseBusiness,
+				description: "Lo que vende la empresa, exclusiones y departamentos.",
 			},
 			{
 				segment: "billing",

@@ -19,15 +19,22 @@
 // Writes labeled-set/<set>/pools.json (for the harness) and, under
 // worker/.eval-page/<set>/, the documents the labeling page reads: one per
 // profile, and the product lines, document links, and excerpts per process.
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { embedMany } from "ai";
+import { mkdir, writeFile } from "node:fs/promises";
 import { Pool } from "pg";
-import { EMBEDDING_DIMENSIONS, modelForRole } from "@/lib/ai/models";
+import { modelForRole } from "@/lib/ai/models";
 import { env } from "../env";
 import type { ProcessDetail } from "../honducompras/parse";
-import { EXTRACTION_VERSION, type LineOfBusiness } from "../matching/profile";
-import { lineQueryText } from "../matching/unspsc";
-import { embedProfile, labeledSetUrl, loadLabeledSet, loadPopulation, loadProfiles, retrieveCandidates, type LabeledSetVersion, type Pools } from "./labeled-set";
+import {
+    labeledSetUrl,
+    loadExtractedLines,
+    loadLabeledSet,
+    loadPopulation,
+    loadProfiles,
+    retrieveByMethod,
+    type LabeledSetVersion,
+    type Pools,
+    type RetrievalMethod,
+} from "./labeled-set";
 import type { PoolItem } from "./retrieval";
 
 const argument = (name: string) => process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
@@ -48,11 +55,8 @@ const shuffle = <T>(items: T[]) => {
 };
 
 const profiles = await loadProfiles(set);
-const extractedFile = `extracted-profiles-${EXTRACTION_VERSION}.json`;
-const extracted: Record<string, { profile: { linesOfBusiness: (LineOfBusiness & { unspscClasses: { code: string }[] })[] } }> = JSON.parse(
-    await readFile(new URL(extractedFile, labeledSetUrl(set)), "utf8"),
-).profiles;
-const missing = profiles.filter((profile) => !extracted[profile.key]);
+const { file: extractedFile, lines: extractedLines } = await loadExtractedLines(set);
+const missing = profiles.filter((profile) => !extractedLines[profile.key]);
 if (missing.length) {
     console.error(`${extractedFile} has no extraction for ${missing.map((profile) => profile.key).join(", ")}. Run eval:extract-profiles first.`);
     process.exit(1);
@@ -60,7 +64,7 @@ if (missing.length) {
 const v1 = await loadLabeledSet("v1");
 const model = modelForRole("embed");
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: 1 });
-const { populationIds } = await loadPopulation(pool, v1.pools, v1.labels, model);
+const { populationIds } = await loadPopulation(pool, v1.pools, v1.labels.relevant, model);
 
 const pools: Pools & { builtAt: string; retrieval: Record<string, unknown> } = {
     generatedAt: v1.pools.generatedAt,
@@ -78,37 +82,15 @@ const pools: Pools & { builtAt: string; retrieval: Record<string, unknown> } = {
 };
 
 for (const profile of profiles) {
-    const retrieve = async (embedding: number[], terms = profile.offerings, unspsc = profile.unspsc) =>
-        (await retrieveCandidates(pool, { terms, model, embedding, unspsc, populationIds })).map((candidate) => candidate.process_id);
-    const embedQueries = async (values: string[]) =>
-        (await embedMany({ model, values, providerOptions: { voyage: { inputType: "query", outputDimension: EMBEDDING_DIMENSIONS } } })).embeddings;
-    // Reciprocal-rank fusion of several ranked lists, best first.
-    const fuse = (lists: string[][]) => {
-        const scores = new Map<string, number>();
-        for (const list of lists) {
-            for (const [index, processId] of list.entries()) {
-                scores.set(processId, (scores.get(processId) ?? 0) + 1 / (60 + index + 1));
-            }
-        }
-        return [...scores.entries()].sort((a, b) => b[1] - a[1]).map(([processId]) => processId);
-    };
-
-    const wholeRanked = (await retrieve(await embedProfile(profile, model))).slice(0, retrievedLimit);
-
+    const lines = extractedLines[profile.key];
+    const ranked = async (method: RetrievalMethod) =>
+        (await retrieveByMethod(pool, { method, profile, lines, model, populationIds }))
+            .slice(0, retrievedLimit)
+            .map((candidate) => candidate.process_id);
+    const wholeRanked = await ranked("whole");
+    const paragraphRanked = await ranked("paragraphs");
+    const profileRanked = await ranked("profile");
     const paragraphs = profile.description.split(/\n\s*\n/).filter((paragraph) => paragraph.trim());
-    const paragraphLists = [];
-    for (const embedding of await embedQueries(paragraphs)) {
-        paragraphLists.push(await retrieve(embedding));
-    }
-    const paragraphRanked = fuse(paragraphLists).slice(0, retrievedLimit);
-
-    const lines = extracted[profile.key].profile.linesOfBusiness;
-    const lineEmbeddings = await embedQueries(lines.map(lineQueryText));
-    const lineLists = [];
-    for (const [index, line] of lines.entries()) {
-        lineLists.push(await retrieve(lineEmbeddings[index], line.keywords, line.unspscClasses.map((item) => item.code)));
-    }
-    const profileRanked = fuse(lineLists).slice(0, retrievedLimit);
 
     const wholeRank = new Map(wholeRanked.map((processId, index) => [processId, index + 1]));
     const paragraphRank = new Map(paragraphRanked.map((processId, index) => [processId, index + 1]));

@@ -5,7 +5,13 @@
 // ones it removes. Evaluations are stored in match_evaluations, so a rerun
 // with the same model and questions reuses them instead of calling Jev.
 //
-//   DATABASE_URL=<production> pnpm --filter worker eval:jev [--top=100] [--concurrency=4]
+//   DATABASE_URL=<production> pnpm --filter worker eval:jev [--set=v2] [--view=relevant] [--method=profile] [--top=100] [--concurrency=4]
+//
+// Candidates come from one retrieval method (labeled-set.ts; v2 defaults to
+// the extracted profile, v1 to the whole profile). --view picks the labels the
+// tables use; the report keeps every view's label per candidate. Each new
+// evaluation is a Jev call through the AI Gateway, which costs money: confirm
+// the estimate first.
 import { mkdir, writeFile } from "node:fs/promises";
 import { Pool } from "pg";
 import { modelForRole } from "@/lib/ai/models";
@@ -13,22 +19,40 @@ import { env } from "../env";
 import { errorMessage } from "../log";
 import { evaluateMatch, QUESTIONS_VERSION } from "../matching/evaluate";
 import { countDecisions, type JudgedCandidate } from "./classification";
-import { embedProfile, loadLabeledSet, loadPopulation, retrieveCandidates } from "./labeled-set";
+import {
+    LABEL_VIEWS,
+    loadExtractedLines,
+    loadLabeledSet,
+    loadPopulation,
+    retrieveByMethod,
+    type LabeledSetVersion,
+    type LabelView,
+    type RetrievalMethod,
+} from "./labeled-set";
 
-const numberArgument = (name: string, fallback: number) =>
-    Number(process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback);
-const top = numberArgument("top", 100);
-const concurrency = numberArgument("concurrency", 4);
+const argument = (name: string) => process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
+const top = Number(argument("top") ?? 100);
+const concurrency = Number(argument("concurrency") ?? 4);
+const set = (argument("set") ?? "v2") as LabeledSetVersion;
+const view = (argument("view") ?? "relevant") as LabelView;
+const method = (argument("method") ?? (set === "v1" ? "whole" : "profile")) as RetrievalMethod;
+if (!["v1", "v2"].includes(set) || !LABEL_VIEWS.includes(view) || !["whole", "paragraphs", "profile"].includes(method) || (set === "v1" && method === "profile")) {
+    console.error(`Sets: v1, v2. Views: ${LABEL_VIEWS.join(", ")}. Methods: whole, paragraphs, profile (v2 only).`);
+    process.exit(1);
+}
 
 const IN_SCOPE_THRESHOLDS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7];
 const STRENGTH_THRESHOLDS = [0.5, 1, 1.5, 2];
 
-const { profiles, pools, labels } = await loadLabeledSet("v1");
+const { profiles, pools, labels: labelsByView } = await loadLabeledSet(set);
+const labels = labelsByView[view];
+const { lines } = await loadExtractedLines(set);
 const embedModel = modelForRole("embed");
 const pool = new Pool({ connectionString: env.DATABASE_URL, max: concurrency + 1 });
 const { populationIds } = await loadPopulation(pool, pools, labels, embedModel);
 
 interface EvaluatedCandidate extends JudgedCandidate {
+    processId: string;
     profile: string;
     rank: number;
     evaluationId: string | null;
@@ -40,9 +64,8 @@ const evaluated: EvaluatedCandidate[] = [];
 const relevantBeyondTop: Record<string, string[]> = {};
 
 for (const profile of profiles) {
-    const embedding = await embedProfile(profile, embedModel);
     const candidates = (
-        await retrieveCandidates(pool, { terms: profile.offerings, model: embedModel, embedding, unspsc: profile.unspsc, populationIds })
+        await retrieveByMethod(pool, { method, profile, lines: lines[profile.key] ?? [], model: embedModel, populationIds })
     ).slice(0, top);
     const labelById = new Map(labels[profile.key].map((item) => [item.processId, item]));
     const candidateIds = new Set(candidates.map((candidate) => candidate.process_id));
@@ -63,6 +86,7 @@ for (const profile of profiles) {
         if (!candidate) return;
 
         const base = {
+            processId: candidate.process_id,
             profile: profile.key,
             rank: index + 1,
             expediente: expedienteById.get(candidate.process_id) ?? candidate.process_id,
@@ -188,7 +212,13 @@ if (failures.length) {
 
 const resultsUrl = new URL("./results/", import.meta.url);
 await mkdir(resultsUrl, { recursive: true });
-const reportUrl = new URL(`jev-${new Date().toISOString().slice(0, 10)}-${QUESTIONS_VERSION}-top${top}.json`, resultsUrl);
+const reportUrl = new URL(`jev-${new Date().toISOString().slice(0, 10)}-${set}-${method}-${QUESTIONS_VERSION}-top${top}.json`, resultsUrl);
+const viewLabels = Object.fromEntries(
+    LABEL_VIEWS.map((labelView) => [
+        labelView,
+        new Map(Object.entries(labelsByView[labelView]).flatMap(([profile, items]) => items.map((item) => [`${profile}--${item.processId}`, item.label]))),
+    ]),
+);
 await writeFile(
     reportUrl,
     JSON.stringify(
@@ -197,14 +227,17 @@ await writeFile(
             evaluateModel: modelForRole("evaluate"),
             embedModel,
             questionsVersion: QUESTIONS_VERSION,
+            set,
+            method,
+            view,
             top,
             usage,
             relevantBeyondTop,
-            candidates: evaluated.map(({ evaluationId, profile, rank, expediente, label, inScope, strength, insufficient, error }) => ({
+            candidates: evaluated.map(({ evaluationId, processId, profile, rank, expediente, inScope, strength, insufficient, error }) => ({
                 profile,
                 rank,
                 expediente,
-                label: label ?? null,
+                labels: Object.fromEntries(LABEL_VIEWS.map((labelView) => [labelView, viewLabels[labelView].get(`${profile}--${processId}`) ?? null])),
                 inScope,
                 strength,
                 insufficient,

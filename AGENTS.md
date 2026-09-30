@@ -28,7 +28,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Prefer fetching data in RSC (page can still be static)
 - Use next/font + next/script when applicable
-- next/image above the fold should have 'sync / 'eager" / use 'priority' sparingly
+- next/image above the fold: `loading="eager"` or `fetchPriority="high"`; `preload` only for the single LCP image (`priority` is deprecated)
 - Be mindful of serialized prop size for RSC → child components
 
 ## TypeScript
@@ -38,13 +38,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## About this project.
 
-You are helping maintain and extend a **multi-tenant SaaS template** built with:
+Tenders HN finds public procurement opportunities in Honduras for each customer company: it collects the processes published on HonduCompras, reads their documents, and matches them against what the company sells. The product spec is `documentation/MVP_Specification.md`; the build plan, its current status, and the Spanish UI conventions (§6.1.1) are in `documentation/mvp-implementation-plan.md`. The UI is Spanish-only.
+
+It is built on a multi-tenant foundation:
 
 - Next.js (App Router, TypeScript)
 - Supabase (Postgres + Auth + Storage, heavy use of RLS)
 - Tailwind CSS + shadcn/ui
 - Resend + React Email
 - Claims-based auth (`supabase.auth.getClaims()`)
+- A background worker in `worker/` (Supabase Queues) for ingestion, documents, and matching
 
 Your primary goals:
 
@@ -69,13 +72,7 @@ Your primary goals:
       - `/app/organizations/[orgSlug]/...` (org-scoped app, with sidebar and settings).
 
 - **Supabase**
-  - Postgres DB with RLS enabled on:
-    - `profiles`
-    - `organizations`
-    - `organization_members`
-    - `organization_invitations`
-    - `projects`
-    - `app_events`
+  - Postgres DB with RLS enabled on every table in `public`; new tables get RLS in the migration that creates them.
   - Auth via Supabase **JWT claims** (`getClaims()`) – see section 2.
   - Storage buckets:
     - `profile-pictures` (per-user folders).
@@ -88,21 +85,16 @@ Your primary goals:
   - shadcn/ui components under `components/ui`.
 ---
 
-## 2. Auth Model – USE CLAIMS, NOT getUser()
+## 2. Auth Model – claims, not getUser()
 
-**IMPORTANT RULE:**
-
-- On the server (Server Components, Server Actions, Repository layer):
-  - **Use** `supabase.auth.getClaims()` from our `createClient()` helper.
-  - **The authenticated user id is always**: `claims.sub`.
-
-Example pattern (follow this everywhere):
+On the server (Server Components, Server Actions, repository layer), read the user from `supabase.auth.getClaims()` on the `createClient()` from `lib/supabase/server.ts`, and take the user id from `claims.sub`. getClaims verifies the JWT without a round trip to the Auth server, which getUser() makes on every call.
 
 ```ts
-const supabase = createClient();
+const supabase = await createClient();
 const { data } = await supabase.auth.getClaims();
 const userId = data?.claims?.sub;
 
 if (!userId) {
   // not authenticated
 }
+```

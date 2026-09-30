@@ -103,7 +103,7 @@ for (const model of chatModels) {
             const { text, usage, response } = await generateText({
                 model,
                 prompt: "Responde en una sola oración: ¿qué es una licitación pública?",
-                maxOutputTokens: 256,
+                maxOutputTokens: 2048,
             });
 
             return {

@@ -58,6 +58,8 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
         .from("search_run_matches")
         .select("process_id, retrieval_rank, relevance, in_scope, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url")
         .eq("run_id", runId)
+        // Within each relevance level, the ones closing soonest first (plan, Phase 3).
+        .order("closes_at", { ascending: true, nullsFirst: false })
         .order("retrieval_rank");
 
     if (error) throw error;

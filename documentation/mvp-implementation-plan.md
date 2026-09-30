@@ -333,6 +333,15 @@ Rough sizes: **S** ≤ 3 days, **M** 1–2 weeks, **L** 2–4 weeks, for one dev
 
 **Done when (spec §13):** the software profile finds the IHSS SAP opportunity with visible evidence; the unrelated profile does not get it as high relevance; Jev decisions are stored with model, questions, probabilities, and inputs; uncertain cases stay `posible`, failed ones `pendiente`; the Jev vs no-Jev comparison is documented with miss rate, false positives, latency, and cost.
 
+**Status (30 Sep 2026): done.**
+- IHSS SAP: the software profile's inbox run finds LPN-008-2026 at retrieval position 29, muy relevante, with pliego pages 23–24, 27–28 and 51 and UNSPSC 43231505 as reasons. Its `in_scope` sits at the threshold (0.80 locally, 0.69 in the 30 Sep production eval, which makes it posible), so its level is borderline while it is always found.
+- Unrelated profiles: LPN-008-2026 is outside the top 100 for lab, roads, and uniforms (30 Sep Jev report), so they never show it.
+- Stored decisions: every `match_evaluations` row keeps the requested and returned model, questions version, full request, evidence, per-question probabilities, tokens, and latency.
+- `posible` / `pendiente`: `composeRelevance` and its tests; the `search_run` job leaves a failed evaluation `pendiente` and the run `partial`.
+- Jev vs no-Jev on labeled set v2 (extracted profile, top 100 per profile): without Jev, all 400 candidates go to review, with 220 of 280 relevant among them and 174 labeled not relevant. With Jev, `descartada` (`in_scope < 0.3`) removes 85 of those 174 (49%) and no relevant process in any label view, and `muy relevante` (`in_scope >= 0.8`) is 116 relevant of 117. Misses are retrieval's, not Jev's: the 60 relevant outside the top 100 never reach it. Latency p50 333 ms, p95 587 ms per evaluation; a full inbox run with 100 new evaluations took 42 s locally. Cost about $0.04 per run of 100 new evaluations (8,800 input tokens each at $0.042 per million); stored evaluations are reused.
+- Matches are ordered by relevance level, then by closing date, soonest first.
+- Deferred: the retrieval + rules arm and verifiable exclusions need the profile's exclusions (Phase 4); O4 still needs the answer from TypeSafe/Vercel on versioned Jev ids (`response_model` returns `typesafe-ai/jev` without a version); the thresholds stay provisional until profiles not used to pick them are labeled.
+
 ### Phase 4 — Product: profiles, searches, runs, Home, reports, email (L) — spec §4, §7, §12
 
 Start with the Spanish pass (D1) over existing screens, validation messages, notification texts, and auth emails, so everything new is written in Spanish from the start.

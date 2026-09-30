@@ -18,6 +18,7 @@ RUN pnpm install --frozen-lockfile --filter ./worker
 # import packages: only the worker's dependencies are installed in this image.
 COPY types ./types
 COPY lib/ai ./lib/ai
+COPY lib/matching ./lib/matching
 COPY worker ./worker
 
 WORKDIR /app/worker

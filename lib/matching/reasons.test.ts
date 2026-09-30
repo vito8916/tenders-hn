@@ -64,6 +64,23 @@ describe("buildReasons", () => {
         ]);
     });
 
+    it("gives one reason per document and page range, and never the same sentence twice", () => {
+        const reasons = buildReasons(
+            candidate({
+                fragments: [
+                    fragment({ matched_terms: ["sistemas de información"], page_start: 1, page_end: 1 }),
+                    fragment({ matched_terms: ["sistemas de información", "software"], page_start: 1, page_end: 1 }),
+                    fragment({ matched_terms: ["SAP"], document_version_id: "other", page_start: 5, page_end: 5 }),
+                    fragment({ matched_terms: ["SAP"], document_version_id: "third", page_start: 5, page_end: 5 }),
+                ],
+            }),
+        );
+        expect(reasons.map((reason) => reason.text)).toEqual([
+            'Coincide con "sistemas de información" y "software" en Pliego LPN-008-2026.pdf, pág. 1.',
+            'Coincide con "SAP" en Pliego LPN-008-2026.pdf, pág. 5.',
+        ]);
+    });
+
     it("points to the most similar passage when no passage matched a term", () => {
         const reasons = buildReasons(candidate({ fragments: [fragment({ similarity: 0.7 }), fragment({ similarity: 0.6, page_start: 2, page_end: 2 })] }));
         expect(reasons.map((reason) => reason.text)).toEqual(["Un pasaje de Pliego LPN-008-2026.pdf, pág. 12 es similar a lo que ofrece su empresa."]);

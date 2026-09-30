@@ -4,6 +4,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { ThemeSwitcher } from "@/components/shared/theme-switcher";
 import { getOrganizationBySlugService, listOrganizationsByUserService } from "@/features/organizations/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
+import { canUseInternalInbox } from "@/features/search-runs/services";
 import { redirect } from "next/navigation";
 import { OrgProvider } from "@/contexts/org-context";
 import { HeaderNotifications, HeaderNotificationsFallback } from "@/features/notifications/components/header-notifications";
@@ -39,7 +40,7 @@ export async function OrgLayoutContent({
     return (
         <OrgProvider org={organization} organizations={organizations}>
             <SidebarProvider>
-                <AppSidebar profile={profile} />
+                <AppSidebar profile={profile} showInternalInbox={canUseInternalInbox(role)} />
                 <SidebarInset className="bg-background overflow-x-hidden">
                     <header className="flex h-14 shrink-0 items-center justify-between gap-2 border-b border-border transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
                         <div className="flex items-center gap-2 px-6">

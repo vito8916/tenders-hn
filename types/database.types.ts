@@ -250,6 +250,255 @@ export type Database = {
           },
         ]
       }
+      company_profiles: {
+        Row: {
+          description: string
+          extracted_profile: Json | null
+          extraction_version: string | null
+          org_id: string
+          updated_at: string
+          updated_by: string | null
+          version: number
+        }
+        Insert: {
+          description: string
+          extracted_profile?: Json | null
+          extraction_version?: string | null
+          org_id: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Update: {
+          description?: string
+          extracted_profile?: Json | null
+          extraction_version?: string | null
+          org_id?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_profiles_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: true
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      document_chunks: {
+        Row: {
+          content: string
+          document_version_id: string
+          embedding: unknown
+          embedding_model: string
+          id: number
+          ordinal: number
+          page_end: number
+          page_start: number
+          tsv: unknown
+        }
+        Insert: {
+          content: string
+          document_version_id: string
+          embedding: unknown
+          embedding_model: string
+          id?: never
+          ordinal: number
+          page_end: number
+          page_start: number
+          tsv?: unknown
+        }
+        Update: {
+          content?: string
+          document_version_id?: string
+          embedding?: unknown
+          embedding_model?: string
+          id?: never
+          ordinal?: number
+          page_end?: number
+          page_start?: number
+          tsv?: unknown
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_chunks_document_version_id_fkey"
+            columns: ["document_version_id"]
+            isOneToOne: false
+            referencedRelation: "document_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      document_pages: {
+        Row: {
+          document_version_id: string
+          method: string
+          ocr_confidence: number | null
+          page_number: number
+          text: string
+        }
+        Insert: {
+          document_version_id: string
+          method: string
+          ocr_confidence?: number | null
+          page_number: number
+          text: string
+        }
+        Update: {
+          document_version_id?: string
+          method?: string
+          ocr_confidence?: number | null
+          page_number?: number
+          text?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_pages_document_version_id_fkey"
+            columns: ["document_version_id"]
+            isOneToOne: false
+            referencedRelation: "document_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      document_versions: {
+        Row: {
+          byte_size: number
+          document_id: string
+          downloaded_at: string
+          extracted_at: string | null
+          extraction_error: string | null
+          extraction_status: string
+          id: string
+          mime_type: string
+          page_count: number | null
+          sha256: string
+          storage_path: string
+        }
+        Insert: {
+          byte_size: number
+          document_id: string
+          downloaded_at?: string
+          extracted_at?: string | null
+          extraction_error?: string | null
+          extraction_status?: string
+          id?: string
+          mime_type: string
+          page_count?: number | null
+          sha256: string
+          storage_path: string
+        }
+        Update: {
+          byte_size?: number
+          document_id?: string
+          downloaded_at?: string
+          extracted_at?: string | null
+          extraction_error?: string | null
+          extraction_status?: string
+          id?: string
+          mime_type?: string
+          page_count?: number | null
+          sha256?: string
+          storage_path?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_versions_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "source_documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      match_evaluations: {
+        Row: {
+          answers: Json | null
+          attempts: number
+          created_at: string
+          error: string | null
+          evaluated_at: string
+          evidence: Json
+          id: string
+          input_hash: string
+          input_tokens: number | null
+          latency_ms: number | null
+          model: string
+          output_tokens: number | null
+          process_id: string
+          process_version_id: string
+          questions_version: string
+          request: Json
+          response_model: string | null
+          status: string
+        }
+        Insert: {
+          answers?: Json | null
+          attempts?: number
+          created_at?: string
+          error?: string | null
+          evaluated_at?: string
+          evidence: Json
+          id?: string
+          input_hash: string
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model: string
+          output_tokens?: number | null
+          process_id: string
+          process_version_id: string
+          questions_version: string
+          request: Json
+          response_model?: string | null
+          status: string
+        }
+        Update: {
+          answers?: Json | null
+          attempts?: number
+          created_at?: string
+          error?: string | null
+          evaluated_at?: string
+          evidence?: Json
+          id?: string
+          input_hash?: string
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model?: string
+          output_tokens?: number | null
+          process_id?: string
+          process_version_id?: string
+          questions_version?: string
+          request?: Json
+          response_model?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_evaluations_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "match_evaluations_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "match_evaluations_process_version_id_fkey"
+            columns: ["process_version_id"]
+            isOneToOne: false
+            referencedRelation: "process_versions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notification_deliveries: {
         Row: {
           action_url: string | null
@@ -695,6 +944,13 @@ export type Database = {
             foreignKeyName: "process_events_process_id_fkey"
             columns: ["process_id"]
             isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "process_events_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
             referencedRelation: "procurement_processes"
             referencedColumns: ["id"]
           },
@@ -734,6 +990,13 @@ export type Database = {
             foreignKeyName: "process_versions_process_id_fkey"
             columns: ["process_id"]
             isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "process_versions_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
             referencedRelation: "procurement_processes"
             referencedColumns: ["id"]
           },
@@ -745,6 +1008,7 @@ export type Database = {
           buyer_entity: string
           closes_at: string | null
           current_version_id: string | null
+          detail_unavailable_at: string | null
           detail_url: string
           expediente: string
           first_seen_at: string
@@ -752,7 +1016,10 @@ export type Database = {
           last_checked_at: string | null
           last_seen_at: string
           modality: string | null
+          object_embedding: unknown
+          object_embedding_model: string | null
           ocid: string | null
+          products_text: string | null
           purchase_unit: string | null
           search_tsv: unknown
           source: string
@@ -760,12 +1027,14 @@ export type Database = {
           source_start_at: string | null
           stage: string | null
           title: string
+          unspsc_codes: string[]
         }
         Insert: {
           acquisition_type?: string | null
           buyer_entity: string
           closes_at?: string | null
           current_version_id?: string | null
+          detail_unavailable_at?: string | null
           detail_url: string
           expediente: string
           first_seen_at?: string
@@ -773,7 +1042,10 @@ export type Database = {
           last_checked_at?: string | null
           last_seen_at?: string
           modality?: string | null
+          object_embedding?: unknown
+          object_embedding_model?: string | null
           ocid?: string | null
+          products_text?: string | null
           purchase_unit?: string | null
           search_tsv?: unknown
           source: string
@@ -781,12 +1053,14 @@ export type Database = {
           source_start_at?: string | null
           stage?: string | null
           title: string
+          unspsc_codes?: string[]
         }
         Update: {
           acquisition_type?: string | null
           buyer_entity?: string
           closes_at?: string | null
           current_version_id?: string | null
+          detail_unavailable_at?: string | null
           detail_url?: string
           expediente?: string
           first_seen_at?: string
@@ -794,7 +1068,10 @@ export type Database = {
           last_checked_at?: string | null
           last_seen_at?: string
           modality?: string | null
+          object_embedding?: unknown
+          object_embedding_model?: string | null
           ocid?: string | null
+          products_text?: string | null
           purchase_unit?: string | null
           search_tsv?: unknown
           source?: string
@@ -802,6 +1079,7 @@ export type Database = {
           source_start_at?: string | null
           stage?: string | null
           title?: string
+          unspsc_codes?: string[]
         }
         Relationships: [
           {
@@ -852,11 +1130,175 @@ export type Database = {
         }
         Relationships: []
       }
+      search_run_matches: {
+        Row: {
+          buyer_entity: string
+          closes_at: string | null
+          detail_url: string
+          evaluation_id: string | null
+          expediente: string
+          in_scope: number | null
+          modality: string | null
+          org_id: string
+          process_id: string
+          process_version_id: string | null
+          reasons: Json
+          relevance: string
+          retrieval_rank: number
+          run_id: string
+          stage: string | null
+          title: string
+        }
+        Insert: {
+          buyer_entity: string
+          closes_at?: string | null
+          detail_url: string
+          evaluation_id?: string | null
+          expediente: string
+          in_scope?: number | null
+          modality?: string | null
+          org_id: string
+          process_id: string
+          process_version_id?: string | null
+          reasons?: Json
+          relevance: string
+          retrieval_rank: number
+          run_id: string
+          stage?: string | null
+          title: string
+        }
+        Update: {
+          buyer_entity?: string
+          closes_at?: string | null
+          detail_url?: string
+          evaluation_id?: string | null
+          expediente?: string
+          in_scope?: number | null
+          modality?: string | null
+          org_id?: string
+          process_id?: string
+          process_version_id?: string | null
+          reasons?: Json
+          relevance?: string
+          retrieval_rank?: number
+          run_id?: string
+          stage?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "search_run_matches_evaluation_id_fkey"
+            columns: ["evaluation_id"]
+            isOneToOne: false
+            referencedRelation: "match_evaluations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_run_matches_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_run_matches_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "search_run_matches_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_run_matches_process_version_id_fkey"
+            columns: ["process_version_id"]
+            isOneToOne: false
+            referencedRelation: "process_versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_run_matches_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "search_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      search_runs: {
+        Row: {
+          candidates: number | null
+          completed_at: string | null
+          config_snapshot: Json
+          coverage: Json
+          created_at: string
+          created_by: string | null
+          error: string | null
+          id: string
+          matches_count: number | null
+          org_id: string
+          profile_version: number
+          started_at: string | null
+          status: string
+          trigger: string
+        }
+        Insert: {
+          candidates?: number | null
+          completed_at?: string | null
+          config_snapshot?: Json
+          coverage?: Json
+          created_at?: string
+          created_by?: string | null
+          error?: string | null
+          id?: string
+          matches_count?: number | null
+          org_id: string
+          profile_version: number
+          started_at?: string | null
+          status?: string
+          trigger?: string
+        }
+        Update: {
+          candidates?: number | null
+          completed_at?: string | null
+          config_snapshot?: Json
+          coverage?: Json
+          created_at?: string
+          created_by?: string | null
+          error?: string | null
+          id?: string
+          matches_count?: number | null
+          org_id?: string
+          profile_version?: number
+          started_at?: string | null
+          status?: string
+          trigger?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "search_runs_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       source_documents: {
         Row: {
+          current_version_id: string | null
+          download_error: string | null
+          etag: string | null
           first_seen_at: string
           id: string
           kind: string
+          last_checked_at: string | null
+          last_modified: string | null
           last_seen_at: string
           process_id: string
           removed_at: string | null
@@ -864,9 +1306,14 @@ export type Database = {
           title: string
         }
         Insert: {
+          current_version_id?: string | null
+          download_error?: string | null
+          etag?: string | null
           first_seen_at?: string
           id?: string
           kind: string
+          last_checked_at?: string | null
+          last_modified?: string | null
           last_seen_at?: string
           process_id: string
           removed_at?: string | null
@@ -874,9 +1321,14 @@ export type Database = {
           title: string
         }
         Update: {
+          current_version_id?: string | null
+          download_error?: string | null
+          etag?: string | null
           first_seen_at?: string
           id?: string
           kind?: string
+          last_checked_at?: string | null
+          last_modified?: string | null
           last_seen_at?: string
           process_id?: string
           removed_at?: string | null
@@ -884,6 +1336,20 @@ export type Database = {
           title?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "source_documents_current_version_id_fkey"
+            columns: ["current_version_id"]
+            isOneToOne: false
+            referencedRelation: "document_versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "source_documents_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
           {
             foreignKeyName: "source_documents_process_id_fkey"
             columns: ["process_id"]
@@ -925,6 +1391,27 @@ export type Database = {
           sync_run_id?: number
         }
         Relationships: [
+          {
+            foreignKeyName: "source_pages_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["first_seen_run_id"]
+          },
+          {
+            foreignKeyName: "source_pages_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_health"
+            referencedColumns: ["last_success_run_id"]
+          },
+          {
+            foreignKeyName: "source_pages_sync_run_id_fkey"
+            columns: ["sync_run_id"]
+            isOneToOne: false
+            referencedRelation: "source_health"
+            referencedColumns: ["latest_run_id"]
+          },
           {
             foreignKeyName: "source_pages_sync_run_id_fkey"
             columns: ["sync_run_id"]
@@ -982,6 +1469,71 @@ export type Database = {
         }
         Relationships: []
       }
+      unspsc_catalog: {
+        Row: {
+          code: string
+          first_seen_at: string
+          last_seen_at: string
+          level: number
+          name: string
+          parent_code: string | null
+        }
+        Insert: {
+          code: string
+          first_seen_at?: string
+          last_seen_at?: string
+          level: number
+          name: string
+          parent_code?: string | null
+        }
+        Update: {
+          code?: string
+          first_seen_at?: string
+          last_seen_at?: string
+          level?: number
+          name?: string
+          parent_code?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "unspsc_catalog_parent_code_fkey"
+            columns: ["parent_code"]
+            isOneToOne: false
+            referencedRelation: "unspsc_catalog"
+            referencedColumns: ["code"]
+          },
+        ]
+      }
+      unspsc_terms: {
+        Row: {
+          code: string
+          created_at: string
+          embedding: unknown
+          embedding_model: string
+          id: number
+          kind: string
+          text: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          embedding: unknown
+          embedding_model: string
+          id?: never
+          kind: string
+          text: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          embedding?: unknown
+          embedding_model?: string
+          id?: never
+          kind?: string
+          text?: string
+        }
+        Relationships: []
+      }
       worker_heartbeats: {
         Row: {
           last_heartbeat_at: string
@@ -1003,9 +1555,78 @@ export type Database = {
         }
         Relationships: []
       }
+      worker_job_failures: {
+        Row: {
+          attempts: number
+          enqueued_at: string
+          error: string
+          failed_at: string
+          id: number
+          job_type: string | null
+          message: Json | null
+          msg_id: number
+          queue: string
+        }
+        Insert: {
+          attempts: number
+          enqueued_at: string
+          error: string
+          failed_at?: string
+          id?: never
+          job_type?: string | null
+          message?: Json | null
+          msg_id: number
+          queue: string
+        }
+        Update: {
+          attempts?: number
+          enqueued_at?: string
+          error?: string
+          failed_at?: string
+          id?: never
+          job_type?: string | null
+          message?: Json | null
+          msg_id?: number
+          queue?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      process_arrivals: {
+        Row: {
+          appearance_lag: string | null
+          expediente: string | null
+          first_seen_at: string | null
+          first_seen_run_id: number | null
+          first_seen_run_window_days: number | null
+          process_id: string | null
+          source: string | null
+          source_start_at: string | null
+          start_days_before_first_seen: number | null
+        }
+        Relationships: []
+      }
+      source_health: {
+        Row: {
+          failed_runs_last_24h: number | null
+          last_success_age: string | null
+          last_success_at: string | null
+          last_success_pages: number | null
+          last_success_processes: number | null
+          last_success_run_id: number | null
+          latest_run_error: string | null
+          latest_run_finished_at: string | null
+          latest_run_id: number | null
+          latest_run_pages_expected: number | null
+          latest_run_pages_fetched: number | null
+          latest_run_started_at: string | null
+          latest_run_status: string | null
+          processes_without_detail: number | null
+          source: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       accept_invitation: {
@@ -1154,6 +1775,10 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      request_search_run: {
+        Args: { profile_description: string; target_org: string }
+        Returns: string
+      }
       reserve_ai_credits: {
         Args: {
           p_amount: number
@@ -1184,6 +1809,29 @@ export type Database = {
           isOneToOne: true
           isSetofReturn: false
         }
+      }
+      retrieve_candidates: {
+        Args: {
+          fragments_per_process?: number
+          model: string
+          open_only?: boolean
+          process_ids?: string[]
+          query_embedding?: unknown
+          search_terms: string[]
+          unspsc_prefixes?: string[]
+          vector_chunk_limit?: number
+          vector_process_limit?: number
+        }
+        Returns: {
+          field_terms: Json
+          fragments: Json
+          matched_fields: string[]
+          matched_terms: string[]
+          matched_unspsc: string[]
+          object_similarity: number
+          process_id: string
+          score: number
+        }[]
       }
       transfer_organization_ownership: {
         Args: { new_owner_user_id: string; target_org: string }

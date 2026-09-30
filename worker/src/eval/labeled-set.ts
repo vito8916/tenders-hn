@@ -6,7 +6,7 @@ import { embed, embedMany } from "ai";
 import type { Pool } from "pg";
 import { EMBEDDING_DIMENSIONS } from "@/lib/ai/models";
 import { EXTRACTION_VERSION, type LineOfBusiness } from "../matching/profile";
-import { lineQueryText } from "../matching/unspsc";
+import { fuseCandidates, retrieveCandidates, retrieveForLines } from "../matching/retrieve";
 import type { Label, LabeledProcess, PoolItem } from "./retrieval";
 
 export interface Profile {
@@ -28,24 +28,6 @@ export interface Pools {
     profiles: Record<string, { population: number; notRetrieved: number; sampleWeight: number; items: PoolItem[] }>;
 }
 
-export interface Candidate {
-    process_id: string;
-    matched_terms: string[];
-    matched_fields: string[];
-    matched_unspsc: string[];
-    fragments: { chunk_id: number }[];
-}
-
-// The arms score relevant / not relevant / unsure. v2 labels are core /
-// adjacent / not relevant / unsure, and firstLabel keeps the blind label where
-// the review against the model's second opinion changed it, so a view maps
-// v2 labels onto that scale:
-//   relevant  core or adjacent is relevant (the final labels)
-//   core      only core is relevant; adjacent is left out, like unsure
-//   blind     core or adjacent is relevant, by the blind labels, the check
-//             that does not lean on a model (use it for arms that classify
-//             with a Claude model)
-// v1 labels are already on that scale and read the same in every view.
 export const LABEL_VIEWS = ["relevant", "core", "blind"] as const;
 export type LabelView = (typeof LABEL_VIEWS)[number];
 
@@ -154,45 +136,6 @@ export async function embedProfile(profile: Profile, model: string) {
     return embedding;
 }
 
-/** retrieve_candidates within the population, best first. Empty inputs switch a signal off. */
-export async function retrieveCandidates(
-    pool: Pool,
-    { terms, model, embedding, unspsc, populationIds }: { terms: string[]; model: string; embedding: number[] | null; unspsc: string[]; populationIds: string[] },
-) {
-    const { rows } = await pool.query<Candidate>(
-        `select process_id, matched_terms, matched_fields, matched_unspsc, fragments
-         from public.retrieve_candidates(
-           search_terms => $1, model => $2, query_embedding => $3::extensions.halfvec,
-           unspsc_prefixes => $4, open_only => false, process_ids => $5::uuid[]
-         )`,
-        [terms, model, embedding && JSON.stringify(embedding), unspsc, populationIds],
-    );
-    return rows;
-}
-
-/** Reciprocal-rank fusion of ranked lists, best first; a process found by several lists keeps all its matches. */
-export function fuseCandidates(lists: Candidate[][]): Candidate[] {
-    const fused = new Map<string, { candidate: Candidate; score: number }>();
-    for (const list of lists) {
-        for (const [index, candidate] of list.entries()) {
-            const entry = fused.get(candidate.process_id);
-            const score = 1 / (60 + index + 1);
-            if (!entry) {
-                fused.set(candidate.process_id, { candidate: { ...candidate }, score });
-                continue;
-            }
-            const merged = entry.candidate;
-            entry.score += score;
-            merged.matched_terms = [...new Set([...merged.matched_terms, ...candidate.matched_terms])];
-            merged.matched_fields = [...new Set([...merged.matched_fields, ...candidate.matched_fields])];
-            merged.matched_unspsc = [...new Set([...merged.matched_unspsc, ...candidate.matched_unspsc])];
-            const chunkIds = new Set(merged.fragments.map((fragment) => fragment.chunk_id));
-            merged.fragments = [...merged.fragments, ...candidate.fragments.filter((fragment) => !chunkIds.has(fragment.chunk_id))];
-        }
-    }
-    return [...fused.values()].sort((a, b) => b.score - a.score).map((entry) => entry.candidate);
-}
-
 // How a profile becomes queries (see build-pools.ts):
 //   whole       the whole text as one query, with the offerings as terms and the profile's codes
 //   paragraphs  each paragraph as its own query, fused
@@ -217,6 +160,10 @@ export async function retrieveByMethod(
         signals = ALL_SIGNALS,
     }: { method: RetrievalMethod; profile: Profile; lines: ExtractedLine[]; model: string; populationIds: string[]; signals?: Signals },
 ) {
+    if (method === "profile") {
+        return retrieveForLines(pool, { lines, model, processIds: populationIds }, signals);
+    }
+
     const embedQueries = async (values: string[]) =>
         signals.semantic
             ? (await embedMany({ model, values, providerOptions: { voyage: { inputType: "query", outputDimension: EMBEDDING_DIMENSIONS } } })).embeddings
@@ -227,7 +174,7 @@ export async function retrieveByMethod(
             model,
             embedding,
             unspsc: signals.codes ? unspsc : [],
-            populationIds,
+            processIds: populationIds,
         });
 
     if (method === "whole") {
@@ -235,17 +182,11 @@ export async function retrieveByMethod(
         return retrieve(embedding, profile.offerings, profile.unspsc);
     }
 
-    const queries =
-        method === "paragraphs"
-            ? profile.description
-                  .split(/\n\s*\n/)
-                  .filter((paragraph) => paragraph.trim())
-                  .map((paragraph) => ({ text: paragraph, terms: profile.offerings, unspsc: profile.unspsc }))
-            : lines.map((line) => ({ text: lineQueryText(line), terms: line.keywords, unspsc: line.unspscClasses.map((item) => item.code) }));
-    const embeddings = await embedQueries(queries.map((query) => query.text));
+    const paragraphs = profile.description.split(/\n\s*\n/).filter((paragraph) => paragraph.trim());
+    const embeddings = await embedQueries(paragraphs);
     const lists = [];
-    for (const [index, query] of queries.entries()) {
-        lists.push(await retrieve(embeddings[index], query.terms, query.unspsc));
+    for (const embedding of embeddings) {
+        lists.push(await retrieve(embedding, profile.offerings, profile.unspsc));
     }
     return fuseCandidates(lists);
 }

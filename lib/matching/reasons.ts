@@ -62,16 +62,27 @@ export function buildReasons(candidate: RetrievedEvidence): Reason[] {
         }
     }
 
-    const termFragments = candidate.fragments.filter((fragment) => fragment.matched_terms.length > 0);
+    // Chunks overlap, so one page often yields several fragments: one reason per document and page range.
+    const byPages = new Map<string, RetrievedEvidence["fragments"][number]>();
+    for (const fragment of candidate.fragments) {
+        if (fragment.matched_terms.length === 0) continue;
+        const key = `${fragment.document_version_id}:${fragment.page_start}:${fragment.page_end}`;
+        const seen = byPages.get(key);
+        byPages.set(key, seen ? { ...seen, matched_terms: [...new Set([...seen.matched_terms, ...fragment.matched_terms])] } : fragment);
+    }
+    const termFragments = [...byPages.values()];
     // Without a term match, the passage retrieval found most similar still shows where to look.
     const documentFragments = termFragments.length > 0 ? termFragments.slice(0, MAX_DOCUMENT_REASONS) : candidate.fragments.slice(0, 1);
     for (const fragment of documentFragments) {
         const where = `${fragment.document_title}, ${pages(fragment.page_start, fragment.page_end)}`;
+        const text =
+            fragment.matched_terms.length > 0
+                ? `Coincide con ${quotedTerms(fragment.matched_terms)} en ${where}.`
+                : `Un pasaje de ${where} es similar a lo que ofrece su empresa.`;
+        // Two documents with the same title can still produce the same sentence; it adds nothing twice.
+        if (reasons.some((reason) => reason.text === text)) continue;
         reasons.push({
-            text:
-                fragment.matched_terms.length > 0
-                    ? `Coincide con ${quotedTerms(fragment.matched_terms)} en ${where}.`
-                    : `Un pasaje de ${where} es similar a lo que ofrece su empresa.`,
+            text,
             source: {
                 kind: "document",
                 documentId: fragment.document_id,

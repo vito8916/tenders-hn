@@ -6,6 +6,7 @@ import {useParams, usePathname} from "next/navigation"
 import {
     ChevronRight,
     Home,
+    Inbox,
     Settings,
     Users,
     type LucideIcon,
@@ -36,7 +37,7 @@ interface MenuItem {
     items?: MenuItem[];
 }
 
-export function NavMain() {
+export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
     const pathname = usePathname()
     const params = useParams();
     const orgSlug = params.orgSlug
@@ -47,6 +48,13 @@ export function NavMain() {
             url: `/organizations/${orgSlug}`,
             icon: Home,
         },
+        ...(showInternalInbox
+            ? [{
+                title: "Bandeja interna",
+                url: `/organizations/${orgSlug}/inbox`,
+                icon: Inbox,
+            }]
+            : []),
         {
             title: "Members",
             url: `/organizations/${orgSlug}/members`,

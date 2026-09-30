@@ -19,9 +19,10 @@ import { Profile } from "@/features/profiles/schemas";
 
 interface AppSidebarProps extends ComponentProps<typeof Sidebar> {
 	profile: Profile;
+	showInternalInbox: boolean;
 }
 
-export function AppSidebar({ profile, ...props }: AppSidebarProps) {
+export function AppSidebar({ profile, showInternalInbox, ...props }: AppSidebarProps) {
 	const pathname = usePathname();
 	const isSettings = pathname.includes("/settings");
 	const { organizations } = useOrgContext();
@@ -36,7 +37,7 @@ export function AppSidebar({ profile, ...props }: AppSidebarProps) {
 						<TeamSwitcher organizations={organizations} />
 					</SidebarHeader>
 					<SidebarContent>
-						<NavMain />
+						<NavMain showInternalInbox={showInternalInbox} />
 					</SidebarContent>
 					<SidebarFooter>
 						<NavUser profile={profile} />

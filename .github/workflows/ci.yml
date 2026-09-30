@@ -33,7 +33,7 @@ jobs:
       - uses: supabase/setup-cli@v1
         with:
           # Keep in sync with the `supabase` devDependency.
-          version: 2.85.0
+          version: 2.111.0
       # Postgres, Auth, Storage, and the API gateway (the CLI seeds storage through it) are needed.
       - run: supabase start -x realtime,imgproxy,mailpit,postgrest,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
       - run: supabase test db

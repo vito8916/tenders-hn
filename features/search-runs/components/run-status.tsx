@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { isRunActive, type SearchRun, type SearchRunStatus } from "../schemas";
-import { RefreshWhileActive } from "./refresh-while-active";
+import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 
 export const RUN_STATUS_LABELS: Record<SearchRunStatus, string> = {
     queued: "En cola",

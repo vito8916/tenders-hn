@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 const REFRESH_MS = 5_000;
 
-/** Re-renders the page every few seconds while a run is queued or running, so its result appears without a reload. */
+/** Re-renders the page every few seconds while something is in progress (a search run, a plan being activated), so its result appears without a reload. */
 export function RefreshWhileActive() {
     const router = useRouter();
 

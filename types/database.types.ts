@@ -834,42 +834,60 @@ export type Database = {
       }
       organization_subscriptions: {
         Row: {
+          billing_interval: string | null
           canceled_at: string | null
           created_at: string
           current_period_end: string | null
           current_period_start: string
+          next_billed_at: string | null
           org_id: string
+          paddle_customer_id: string | null
+          paddle_price_id: string | null
+          paddle_subscription_id: string | null
+          paddle_updated_at: string | null
+          past_due_since: string | null
           plan_id: string
+          scheduled_change: Json | null
           source: string
           status: string
-          stripe_customer_id: string | null
-          stripe_subscription_id: string | null
           updated_at: string
         }
         Insert: {
+          billing_interval?: string | null
           canceled_at?: string | null
           created_at?: string
           current_period_end?: string | null
           current_period_start?: string
+          next_billed_at?: string | null
           org_id: string
+          paddle_customer_id?: string | null
+          paddle_price_id?: string | null
+          paddle_subscription_id?: string | null
+          paddle_updated_at?: string | null
+          past_due_since?: string | null
           plan_id: string
+          scheduled_change?: Json | null
           source?: string
           status: string
-          stripe_customer_id?: string | null
-          stripe_subscription_id?: string | null
           updated_at?: string
         }
         Update: {
+          billing_interval?: string | null
           canceled_at?: string | null
           created_at?: string
           current_period_end?: string | null
           current_period_start?: string
+          next_billed_at?: string | null
           org_id?: string
+          paddle_customer_id?: string | null
+          paddle_price_id?: string | null
+          paddle_subscription_id?: string | null
+          paddle_updated_at?: string | null
+          past_due_since?: string | null
           plan_id?: string
+          scheduled_change?: Json | null
           source?: string
           status?: string
-          stripe_customer_id?: string | null
-          stripe_subscription_id?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -879,6 +897,13 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "organizations"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organization_subscriptions_paddle_price_id_fkey"
+            columns: ["paddle_price_id"]
+            isOneToOne: false
+            referencedRelation: "plan_prices"
+            referencedColumns: ["paddle_price_id"]
           },
           {
             foreignKeyName: "organization_subscriptions_plan_id_fkey"
@@ -918,6 +943,62 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      paddle_webhook_events: {
+        Row: {
+          event_id: string
+          event_type: string
+          occurred_at: string
+          payload: Json
+          received_at: string
+        }
+        Insert: {
+          event_id: string
+          event_type: string
+          occurred_at: string
+          payload: Json
+          received_at?: string
+        }
+        Update: {
+          event_id?: string
+          event_type?: string
+          occurred_at?: string
+          payload?: Json
+          received_at?: string
+        }
+        Relationships: []
+      }
+      plan_prices: {
+        Row: {
+          billing_interval: string
+          created_at: string
+          is_active: boolean
+          paddle_price_id: string
+          plan_id: string
+        }
+        Insert: {
+          billing_interval: string
+          created_at?: string
+          is_active?: boolean
+          paddle_price_id: string
+          plan_id: string
+        }
+        Update: {
+          billing_interval?: string
+          created_at?: string
+          is_active?: boolean
+          paddle_price_id?: string
+          plan_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plan_prices_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       plans: {
         Row: {
@@ -1965,6 +2046,10 @@ export type Database = {
           process_id: string
         }[]
       }
+      plan_change_blockers: {
+        Args: { target_org: string; target_plan: string }
+        Returns: string[]
+      }
       profile_improvements_remaining: {
         Args: never
         Returns: {
@@ -1972,6 +2057,7 @@ export type Database = {
           remaining: number
         }[]
       }
+      record_paddle_event: { Args: { event: Json }; Returns: boolean }
       release_ai_credits: {
         Args: { p_reservation_id: string }
         Returns: {

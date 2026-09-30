@@ -67,20 +67,17 @@ set full_name = 'Test User',
     onboarding_completed_at = now()
 where id = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
 
--- Placeholder plans for local development. Real plans and limits are
--- managed from the platform admin app.
-insert into public.plans (
-  id, name, description, max_members, max_active_searches,
-  min_schedule_interval, history_months, monthly_ai_credits, sort_order
-)
-values
-  ('pilot', 'Piloto', 'Plan piloto activado manualmente.', 5, 5, interval '1 day', 12, 500, 0),
-  ('basic', 'Básico', 'Una línea de negocio, reportes diarios.', 3, 2, interval '1 day', 3, 100, 1),
-  ('pro', 'Pro', 'Varias líneas de negocio, reportes varias veces al día.', 10, 10, interval '6 hours', 12, 1000, 2)
-on conflict (id) do nothing;
+-- Paddle sandbox prices (created 30 Sep 2026; live ids differ and are set per environment).
+insert into public.plan_prices (paddle_price_id, plan_id, billing_interval) values
+  ('pri_01m3sxrnnkk4scnem6e2fp0p1n', 'basic', 'month'),
+  ('pri_01m3sxrnvayctvxhdb085eg2cp', 'estandar', 'month'),
+  ('pri_01m3sxrp4a8bffa5hebjhejpww', 'pro', 'month')
+on conflict (paddle_price_id) do nothing;
 
--- Test organization on an active pilot plan. The org trigger creates the
--- owner membership; the subscription trigger grants this cycle's AI credits.
+-- Test organization on the Estándar plan (created by the Paddle billing
+-- migration) through a manual subscription, so local development needs no
+-- Paddle checkout. The org trigger creates the owner membership; the
+-- subscription trigger grants this cycle's AI credits.
 insert into public.organizations (id, name, slug, owner_id)
 values (
   '5b1f7a3e-2c4d-4e6f-8a9b-0c1d2e3f4a5b',
@@ -93,7 +90,7 @@ on conflict (id) do nothing;
 insert into public.organization_subscriptions (org_id, plan_id, status, current_period_start, current_period_end)
 values (
   '5b1f7a3e-2c4d-4e6f-8a9b-0c1d2e3f4a5b',
-  'pilot',
+  'estandar',
   'active',
   now(),
   now() + interval '1 year'

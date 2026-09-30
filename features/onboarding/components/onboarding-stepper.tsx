@@ -18,7 +18,6 @@ import {
     StepperPrev,
 } from "@/components/ui/stepper";
 import { ProfileStep } from "./steps/profile-step";
-import { ThemeStep } from "./steps/theme-step";
 import { OrganizationStep } from "./steps/organization-step";
 import { CompanyStep } from "./steps/company-step";
 import { InvitesStep } from "./steps/invites-step";
@@ -39,7 +38,6 @@ import { ChevronRight, Loader2 } from "lucide-react";
 
 const CREATE_STEPS = [
     { value: "profile" },
-    { value: "theme" },
     { value: "organization" },
     { value: "company" },
     { value: "plan" },
@@ -50,7 +48,6 @@ const PLAN_POLL_MS = 3_000;
 
 const JOIN_STEPS = [
     { value: "profile" },
-    { value: "theme" },
     { value: "join" },
 ];
 
@@ -341,10 +338,6 @@ export function OnboardingStepper({
                             avatarFile={avatarFile}
                             onAvatarFileChange={setAvatarFile}
                         />
-                    </StepperContent>
-
-                    <StepperContent value="theme">
-                        <ThemeStep />
                     </StepperContent>
 
                     {mode === "join" ? (

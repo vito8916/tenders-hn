@@ -15,8 +15,6 @@ export const onboardingProfileSchema = z.object({
     email: z.string().email("Ingrese un correo electrónico válido"),
 });
 
-export const onboardingThemeSchema = z.enum(["light", "dark", "system"], "Seleccione un tema");
-
 export const onboardingOrganizationSchema = z.object({
     name: z
         .string()
@@ -40,6 +38,5 @@ export const onboardingInvitesSchema = z
     .max(10, "Puede enviar hasta 10 invitaciones a la vez");
 
 export type OnboardingProfile = z.infer<typeof onboardingProfileSchema>;
-export type OnboardingTheme = z.infer<typeof onboardingThemeSchema>;
 export type OnboardingOrganization = z.infer<typeof onboardingOrganizationSchema>;
 export type OnboardingInvite = z.infer<typeof onboardingInviteSchema>;

@@ -211,5 +211,17 @@ select throws_ok(
 );
 reset role;
 
+-- The landing page reads the catalog without a session.
+update public.plan_prices set is_active = false where paddle_price_id = 'pri_pro00000000000000000000000';
+set local role anon;
+select ok(not exists (select 1 from public.plans where is_archived), 'visitors do not see archived plans');
+select ok(exists (select 1 from public.plans where id = 'basic'), 'visitors see the plans for sale');
+select is(
+  (select count(*)::int from public.plan_prices where paddle_price_id in ('pri_basic000000000000000000000', 'pri_pro00000000000000000000000')),
+  1, 'visitors see only active prices'
+);
+select throws_ok($$select * from public.organization_subscriptions$$, '42501', null, 'visitors cannot read subscriptions');
+reset role;
+
 select * from finish();
 rollback;

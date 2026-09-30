@@ -14,10 +14,12 @@ insert into public.organization_subscriptions (org_id, plan_id, status, current_
 values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'test_plan', 'active', now() + interval '30 days');
 
 -- ---------- Grants ----------
+-- The one exception is the plan catalog, which the landing page reads (20260930210000).
 select is(
-  (select count(*)::int from information_schema.role_table_grants where grantee = 'anon' and table_schema = 'public'),
-  0,
-  'anon has no privileges on public tables'
+  (select array_agg(table_name || ':' || privilege_type order by table_name)::text[]
+   from information_schema.role_table_grants where grantee = 'anon' and table_schema = 'public'),
+  array['plan_prices:SELECT', 'plans:SELECT'],
+  'anon has no privileges on public tables except reading the plan catalog'
 );
 select ok(not has_schema_privilege('authenticated', 'pgmq', 'usage'), 'authenticated cannot use the queue schema');
 select ok(not has_schema_privilege('anon', 'pgmq', 'usage'), 'anon cannot use the queue schema');

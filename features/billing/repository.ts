@@ -1,6 +1,8 @@
 import "server-only";
 import { z } from "zod";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import type { Database } from "@/types/database.types";
 import { planOptionSchema, subscriptionSchema, usageSchema, type PlanChangeBlocker, type PlanOption, type Subscription, type Usage } from "./schemas";
 
 // ========== QUERIES ==========
@@ -33,13 +35,16 @@ export async function getSubscription(orgId: string): Promise<Subscription | nul
     });
 }
 
-/** The plans for sale with their monthly Paddle price, cheapest first. */
-export async function listPlanOptions(): Promise<PlanOption[]> {
-    const supabase = await createClient();
+/**
+ * The plans for sale with their monthly Paddle price, cheapest first. The
+ * landing page passes a client without a session (anon reads the catalog).
+ */
+export async function listPlanOptions(client?: SupabaseClient<Database>): Promise<PlanOption[]> {
+    const supabase = client ?? (await createClient());
     const { data, error } = await supabase
         .from("plan_prices")
         .select(
-            "paddle_price_id, plans!inner (id, name, description, max_members, max_active_searches, history_months, monthly_ai_credits, sort_order, is_archived)",
+            "paddle_price_id, plans!inner (id, name, description, max_members, max_active_searches, history_months, monthly_ai_credits, min_schedule_interval, sort_order, is_archived)",
         )
         .eq("is_active", true)
         .eq("billing_interval", "month")
@@ -55,13 +60,18 @@ export async function listPlanOptions(): Promise<PlanOption[]> {
         max_active_searches: z.number().nullable(),
         history_months: z.number().nullable(),
         monthly_ai_credits: z.number(),
+        // Postgres prints the interval as "1 day" or "06:00:00".
+        min_schedule_interval: z.string(),
         sort_order: z.number(),
     });
     return data
         .map((row) => ({ priceId: row.paddle_price_id, plan: planRowSchema.parse(row.plans) }))
         .sort((a, b) => a.plan.sort_order - b.plan.sort_order)
-        .map(({ priceId, plan }) =>
-            planOptionSchema.parse({
+        .map(({ priceId, plan }) => {
+            const scheduleHours = plan.min_schedule_interval.includes("day")
+                ? 24 * Number.parseInt(plan.min_schedule_interval)
+                : Number.parseInt(plan.min_schedule_interval);
+            return planOptionSchema.parse({
                 planId: plan.id,
                 name: plan.name,
                 description: plan.description,
@@ -69,9 +79,10 @@ export async function listPlanOptions(): Promise<PlanOption[]> {
                 maxActiveSearches: plan.max_active_searches,
                 historyMonths: plan.history_months,
                 monthlyAiCredits: plan.monthly_ai_credits,
+                reportsPerDay: Math.max(1, Math.floor(24 / scheduleHours)),
                 priceId,
-            }),
-        );
+            });
+        });
 }
 
 export async function getPlanIdForPrice(priceId: string): Promise<string | null> {

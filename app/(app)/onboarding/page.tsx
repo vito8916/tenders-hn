@@ -6,18 +6,23 @@ import { listMyPendingInvitationsService } from "@/features/invitations/services
 import { listOrganizationsByUserService } from "@/features/organizations/services";
 import { OnboardingSkeleton } from "@/components/shared/onboarding-skeleton";
 import { getImprovementsRemainingService } from "@/features/company-profile/services";
+import { listPlansForSaleService } from "@/features/billing/services";
 
-async function OnboardingContent() {
-    const { user, profile } = await getCurrentUserWithProfile();
+// ?plan= carries the plan chosen on the landing page through sign-up and email verification.
+type OnboardingSearchParams = Promise<{ plan?: string }>;
+
+async function OnboardingContent({ searchParams }: { searchParams: OnboardingSearchParams }) {
+    const [{ user, profile }, { plan }] = await Promise.all([getCurrentUserWithProfile(), searchParams]);
 
     if (profile.onboardingCompletedAt) {
         redirect("/organizations");
     }
 
-    const [pendingInvitations, organizations, improvementsRemaining] = await Promise.all([
+    const [pendingInvitations, organizations, improvementsRemaining, plans] = await Promise.all([
         listMyPendingInvitationsService(),
         listOrganizationsByUserService({ userId: user.sub }),
         getImprovementsRemainingService(),
+        listPlansForSaleService(),
     ]);
 
     return (
@@ -37,14 +42,16 @@ async function OnboardingContent() {
             }))}
             hasExistingMembership={organizations.length > 0}
             improvementsRemaining={improvementsRemaining}
+            plans={plans}
+            preselectedPlanId={plans.some((option) => option.planId === plan) ? (plan ?? null) : null}
         />
     );
 }
 
-export default function OnboardingPage() {
+export default function OnboardingPage({ searchParams }: { searchParams: OnboardingSearchParams }) {
     return (
         <Suspense fallback={<OnboardingSkeleton />}>
-            <OnboardingContent />
+            <OnboardingContent searchParams={searchParams} />
         </Suspense>
     );
 }

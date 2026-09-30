@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { CheckoutEventNames, initializePaddle, type Environments, type Paddle } from "@paddle/paddle-js";
-import { Check } from "lucide-react";
 import { toast } from "sonner";
 import {
     AlertDialog,
@@ -17,56 +15,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { changePlanAction, prepareCheckoutAction, previewPlanChangeAction } from "../actions";
-import type { PlanChangePreview, PlanOption } from "../schemas";
+import type { PlanChangePreview, PlanWithPrice } from "../schemas";
 import { formatMoney } from "./format-money";
-
-type PlanWithPrice = PlanOption & { price: { amount: string; currencyCode: string } | null };
-
-/** Paddle.js, loaded once for this page; checkout.completed sends the page to «Activando su plan…» until the webhook arrives. */
-function usePaddle() {
-    const router = useRouter();
-    const [paddle, setPaddle] = useState<Paddle | null>(null);
-
-    useEffect(() => {
-        const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
-        if (!token) return;
-        initializePaddle({
-            token,
-            environment: (process.env.NEXT_PUBLIC_PADDLE_ENV ?? "sandbox") as Environments,
-            checkout: { settings: { locale: "es", variant: "one-page", showAddDiscounts: true, allowLogout: false } },
-            eventCallback: (event) => {
-                if (event.name === CheckoutEventNames.CHECKOUT_COMPLETED) {
-                    router.replace("?activando=1");
-                } else if (event.name === CheckoutEventNames.CHECKOUT_ERROR) {
-                    toast.error("No se pudo abrir el pago. Intente de nuevo en unos minutos.");
-                }
-            },
-        }).then((instance) => instance && setPaddle(instance));
-    }, [router]);
-
-    return paddle;
-}
-
-function PlanFeatures({ plan }: { plan: PlanOption }) {
-    const features = [
-        plan.maxActiveSearches === null ? "Búsquedas ilimitadas" : `${plan.maxActiveSearches} búsquedas activas`,
-        plan.maxMembers === null ? "Usuarios ilimitados" : `${plan.maxMembers} usuarios`,
-        plan.historyMonths === null ? "Historial completo" : `${plan.historyMonths} meses de historial`,
-        `${plan.monthlyAiCredits} créditos de IA al mes`,
-    ];
-    return (
-        <ul className="space-y-1.5 text-sm">
-            {features.map((feature) => (
-                <li key={feature} className="flex items-center gap-2">
-                    <Check className="size-4 text-muted-foreground" />
-                    {feature}
-                </li>
-            ))}
-        </ul>
-    );
-}
+import { PlanCard } from "./plan-card";
+import { usePaddle } from "./use-paddle";
 
 /**
  * The plans for sale. Without a live subscription a plan opens Paddle's
@@ -89,7 +42,8 @@ export function PlanOptions({
     canManage: boolean;
 }) {
     const router = useRouter();
-    const paddle = usePaddle();
+    // The page shows «Actualizando su plan…» until the webhook arrives.
+    const paddle = usePaddle(() => router.replace("?activando=1"));
     const [isPending, startTransition] = useTransition();
     const [pendingChange, setPendingChange] = useState<{ plan: PlanWithPrice; preview: PlanChangePreview | null } | null>(null);
 
@@ -133,20 +87,7 @@ export function PlanOptions({
                 {plans.map((plan) => {
                     const isCurrent = plan.priceId === currentPriceId && hasLiveSubscription;
                     return (
-                        <div key={plan.planId} className={cn("flex flex-col gap-4 rounded-lg border p-5", isCurrent && "border-primary")}>
-                            <div className="space-y-1">
-                                <div className="flex items-center justify-between gap-2">
-                                    <h3 className="font-semibold">{plan.name}</h3>
-                                    {isCurrent ? <Badge>Plan actual</Badge> : null}
-                                </div>
-                                <p className="text-2xl font-semibold tracking-tight">
-                                    {plan.price ? formatMoney(plan.price.amount, plan.price.currencyCode) : "—"}
-                                    <span className="text-sm font-normal text-muted-foreground"> al mes</span>
-                                </p>
-                                <p className="text-xs text-muted-foreground">Impuestos incluidos</p>
-                                {plan.description ? <p className="text-sm text-muted-foreground">{plan.description}</p> : null}
-                            </div>
-                            <PlanFeatures plan={plan} />
+                        <PlanCard key={plan.planId} plan={plan} highlighted={isCurrent} badge={isCurrent ? <Badge>Plan actual</Badge> : null}>
                             {canManage && !isCurrent ? (
                                 <Button
                                     className="mt-auto"
@@ -157,7 +98,7 @@ export function PlanOptions({
                                     {hasLiveSubscription ? `Cambiar a ${plan.name}` : `Elegir ${plan.name}`}
                                 </Button>
                             ) : null}
-                        </div>
+                        </PlanCard>
                     );
                 })}
             </div>

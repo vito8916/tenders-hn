@@ -2,7 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
-import type { InviteItem } from "@/features/invitations/schemas";
+import { createInvitationsInputSchema, type InviteItem } from "@/features/invitations/schemas";
+import { inviteMembersService } from "@/features/invitations/services";
 import {
     createOrganizationInputSchema,
 } from "@/features/organizations/schemas";
@@ -55,17 +56,20 @@ async function processImageFile(
 }
 
 /**
- * Server action to complete the onboarding flow.
- * Updates profile, creates organization with invites, saves the company profile,
- * marks onboarding complete.
+ * Server action for the plan step: updates the profile, creates the organization,
+ * saves the company profile, and marks onboarding complete, so Paddle's checkout
+ * can carry the organization's id. Invitations wait for the plan (they need one),
+ * in finishOnboardingAction.
  */
-export async function completeOnboardingAction(formData: FormData): Promise<{
-    success: boolean;
-    redirectUrl?: string;
-    error?: string;
-    // Another organization took the slug after the organization step checked it.
-    slugTaken?: boolean;
-}> {
+export async function createOnboardingOrganizationAction(formData: FormData): Promise<
+    | { success: true; orgId: string; orgSlug: string }
+    | {
+          success: false;
+          error: string;
+          // Another organization took the slug after the organization step checked it.
+          slugTaken?: boolean;
+      }
+> {
     try {
         const { sub: userId } = await getCurrentUser();
 
@@ -73,18 +77,9 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         const phone = formData.get("phone") ? String(formData.get("phone")) : "";
         const orgName = formData.get("orgName") ? String(formData.get("orgName")) : "";
         const orgSlug = formData.get("orgSlug") ? String(formData.get("orgSlug")) : "";
-        const invitesJson = formData.get("invites") ? String(formData.get("invites")) : "[]";
         const companyProfileJson = formData.get("companyProfile") ? String(formData.get("companyProfile")) : "{}";
         const avatarFile = formData.get("avatarFile") as File | null;
         const orgLogoFile = formData.get("orgLogoFile") as File | null;
-
-        let invites: InviteItem[] = [];
-        try {
-            const parsedInvites = JSON.parse(invitesJson);
-            invites = parsedInvites.filter((inv: InviteItem) => inv.email && inv.email.trim() !== "");
-        } catch {
-            return { success: false, error: "Las invitaciones no tienen un formato válido." };
-        }
 
         const profileInput = updateProfileInputSchema.safeParse({
             fullName: fullName.trim(),
@@ -154,18 +149,15 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         const organization = await createOrganizationWithInvitesService({
             organizationInput: orgInput.data,
             logoFile: logoFileData ? logoFileData : undefined,
-            invites,
+            invites: [],
         });
 
         await saveCompanyProfileService({ orgId: organization.id, input: companyProfileInput.data });
 
         await markOnboardingCompleteService({ userId });
 
-        redirect(`/organizations/${organization.slug}`);
+        return { success: true, orgId: organization.id, orgSlug: organization.slug };
     } catch (error) {
-        if (error && typeof error === "object" && "digest" in error) {
-            throw error;
-        }
         console.error("Onboarding completion error:", error);
         return {
             success: false,
@@ -173,6 +165,32 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
             slugTaken: databaseErrorCode(error) === "organizations_slug_key",
         };
     }
+}
+
+/**
+ * Server action for the last step: sends the invitations, now that the plan is
+ * active, and opens the organization.
+ */
+export async function finishOnboardingAction(input: { orgId: string; orgSlug: string; invites: InviteItem[] }): Promise<{
+    success: false;
+    error: string;
+}> {
+    try {
+        const { sub: userId } = await getCurrentUser();
+
+        if (input.invites.length > 0) {
+            const parsed = createInvitationsInputSchema.safeParse({ orgId: input.orgId, invites: input.invites });
+            if (!parsed.success) {
+                return { success: false, error: parsed.error.issues[0]?.message ?? "Revise las invitaciones." };
+            }
+            await inviteMembersService({ orgId: parsed.data.orgId, userId, invites: parsed.data.invites });
+        }
+    } catch (error) {
+        console.error("Onboarding invitations error:", error);
+        return { success: false, error: userErrorMessage(error, "No se pudieron enviar las invitaciones. Intente de nuevo.") };
+    }
+
+    redirect(`/organizations/${encodeURIComponent(input.orgSlug)}`);
 }
 
 /**

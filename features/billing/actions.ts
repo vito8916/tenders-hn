@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { userErrorMessage } from "@/lib/errors";
 import { checkoutInputSchema, planChangeInputSchema, portalInputSchema, type CheckoutOptions, type PlanChangePreview } from "./schemas";
-import { changePlanService, getCustomerPortalUrlService, prepareCheckoutService, previewPlanChangeService } from "./services";
+import { changePlanService, getCustomerPortalUrlService, hasActivePlanService, prepareCheckoutService, previewPlanChangeService } from "./services";
 
 type ActionResult<T> = { success: true; data: T } | { success: false; error: string };
 
@@ -81,5 +81,22 @@ export async function getCustomerPortalUrlAction(input: { orgId: string }): Prom
     } catch (error) {
         console.error("Error opening customer portal:", error);
         return { success: false, error: userErrorMessage(error, "No se pudo abrir el portal de pagos. Intente de nuevo.") };
+    }
+}
+
+/**
+ * Server Action that tells onboarding whether Paddle's webhook has activated the plan
+ */
+export async function getPlanActiveAction(input: { orgId: string }): Promise<ActionResult<boolean>> {
+    try {
+        await getCurrentUser();
+
+        const parsed = portalInputSchema.safeParse(input);
+        if (!parsed.success) return invalidInput(parsed.error.issues);
+
+        return { success: true, data: await hasActivePlanService(parsed.data.orgId) };
+    } catch (error) {
+        console.error("Error reading plan status:", error);
+        return { success: false, error: userErrorMessage(error, "No se pudo consultar el plan.") };
     }
 }

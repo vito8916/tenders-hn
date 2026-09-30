@@ -30,9 +30,25 @@ export const planOptionSchema = z.object({
     maxActiveSearches: z.number().int().nullable(),
     historyMonths: z.number().int().nullable(),
     monthlyAiCredits: z.number().int(),
+    /** How many scheduled runs a day the plan allows, from min_schedule_interval. */
+    reportsPerDay: z.number().int(),
     priceId: z.string(),
 });
 export type PlanOption = z.infer<typeof planOptionSchema>;
+
+/** A plan for sale with its monthly amount in Paddle (tax included, O10); null when Paddle did not return it. */
+export type PlanWithPrice = PlanOption & { price: { amount: string; currencyCode: string } | null };
+
+/** The limits a plan card lists, the same on the landing page, onboarding, and Facturación. */
+export function planFeatures(plan: PlanOption): string[] {
+    return [
+        plan.maxActiveSearches === null ? "Búsquedas ilimitadas" : `${plan.maxActiveSearches} búsquedas activas`,
+        plan.reportsPerDay === 1 ? "Reportes diarios" : `Hasta ${plan.reportsPerDay} reportes al día`,
+        plan.maxMembers === null ? "Usuarios ilimitados" : `${plan.maxMembers} usuarios`,
+        plan.historyMonths === null ? "Historial completo" : `${plan.historyMonths} meses de historial`,
+        `${plan.monthlyAiCredits.toLocaleString("es-HN")} créditos de IA al mes`,
+    ];
+}
 
 export const usageSchema = z.object({
     hasAccess: z.boolean(),

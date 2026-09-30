@@ -12,12 +12,13 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { XIcon } from "lucide-react";
+import { CheckIcon, Loader2, XIcon } from "lucide-react";
 import { ROLE_LABELS } from "@/features/memberships/schemas";
 
 const MAX_INVITES = 10;
 
-export function InvitesStep() {
+/** Runs after checkout: the invitations are sent once Paddle's webhook activates the plan, which usually takes a few seconds. */
+export function InvitesStep({ planActive }: { planActive: boolean }) {
     const form = useFormContext();
     const { fields, append, remove } = useFieldArray({
         control: form.control,
@@ -32,6 +33,19 @@ export function InvitesStep() {
                 <h2 className="text-2xl font-bold">Invite a su equipo</h2>
                 <p className="text-muted-foreground mt-1">
                     Agregue a los miembros de su equipo para comenzar. Puede invitar a más personas más adelante.
+                </p>
+                <p className="mt-3 flex items-center gap-2 text-sm">
+                    {planActive ? (
+                        <>
+                            <CheckIcon className="h-4 w-4 text-primary" />
+                            Su plan está activo.
+                        </>
+                    ) : (
+                        <>
+                            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                            Activando su plan… Las invitaciones se envían cuando esté activo.
+                        </>
+                    )}
                 </p>
             </div>
 

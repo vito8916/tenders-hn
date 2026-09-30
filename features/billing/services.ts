@@ -1,10 +1,13 @@
 import "server-only";
+import { cacheLife } from "next/cache";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { getUserOrgRole } from "@/features/memberships/repository";
 import { getPaddle } from "@/lib/paddle/server";
 import { UserFacingError } from "@/lib/errors";
 import { canManageBilling } from "./rbac";
 import { getPlanChangeBlockers, getPlanIdForPrice, getSubscription, getUsage, listPlanOptions } from "./repository";
-import { isLiveSubscription, type CheckoutOptions, type PlanChangeBlocker, type PlanChangePreview } from "./schemas";
+import type { Database } from "@/types/database.types";
+import { isLiveSubscription, type CheckoutOptions, type PlanChangeBlocker, type PlanChangePreview, type PlanOption, type PlanWithPrice } from "./schemas";
 
 const BLOCKER_MESSAGES: Record<PlanChangeBlocker, string> = {
     members: "quite miembros o invitaciones pendientes",
@@ -12,16 +15,39 @@ const BLOCKER_MESSAGES: Record<PlanChangeBlocker, string> = {
     schedules: "cambie a una frecuencia menor las búsquedas que se ejecutan varias veces al día",
 };
 
-/** Plan, usage, and the plans for sale with their monthly amount in Paddle (tax included, O10). */
-export async function getBillingPageService(orgId: string) {
-    const [subscription, plans, usage] = await Promise.all([getSubscription(orgId), listPlanOptions(), getUsage(orgId)]);
+/** Adds each plan's monthly amount in Paddle (tax included, O10). */
+async function withPrices(plans: PlanOption[]): Promise<PlanWithPrice[]> {
     const prices = await Promise.all(plans.map((plan) => getPaddle().prices.get(plan.priceId)));
     const amounts = new Map(prices.map((price) => [price.id, { amount: price.unitPrice.amount, currencyCode: price.unitPrice.currencyCode }]));
-    return {
-        subscription,
-        usage,
-        plans: plans.map((plan) => ({ ...plan, price: amounts.get(plan.priceId) ?? null })),
-    };
+    return plans.map((plan) => ({ ...plan, price: amounts.get(plan.priceId) ?? null }));
+}
+
+/** Plan, usage, and the plans for sale with their prices. */
+export async function getBillingPageService(orgId: string) {
+    const [subscription, plans, usage] = await Promise.all([getSubscription(orgId), listPlanOptions(), getUsage(orgId)]);
+    return { subscription, usage, plans: await withPrices(plans) };
+}
+
+/** The plans for sale with their prices, for the onboarding plan step. */
+export async function listPlansForSaleService() {
+    return withPrices(await listPlanOptions());
+}
+
+/** The plans for sale on the landing page, read without a session and cached for an hour, so visits do not call Paddle. */
+export async function getPublicPlansService() {
+    "use cache";
+    cacheLife("hours");
+    const supabase = createSupabaseClient<Database>(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
+        { auth: { persistSession: false, autoRefreshToken: false } },
+    );
+    return withPrices(await listPlanOptions(supabase));
+}
+
+/** Whether the organization's plan gives access yet; onboarding waits for Paddle's webhook with it. */
+export async function hasActivePlanService(orgId: string) {
+    return (await getUsage(orgId)).hasAccess;
 }
 
 async function assertOwner(userId: string, orgId: string) {

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -22,8 +23,13 @@ import { OrganizationStep } from "./steps/organization-step";
 import { CompanyStep } from "./steps/company-step";
 import { InvitesStep } from "./steps/invites-step";
 import { JoinStep, type JoinableInvitation } from "./steps/join-step";
-import { completeOnboardingAction, completeOnboardingWithoutOrgAction } from "../actions";
+import { PlanStep } from "./steps/plan-step";
+import { completeOnboardingWithoutOrgAction, createOnboardingOrganizationAction, finishOnboardingAction } from "../actions";
 import { checkSlugAvailabilityAction } from "@/features/organizations/actions";
+import { getPlanActiveAction, prepareCheckoutAction } from "@/features/billing/actions";
+import { usePaddle } from "@/features/billing/components/use-paddle";
+import type { PlanWithPrice } from "@/features/billing/schemas";
+import { InviteRoleSchema } from "@/features/invitations/schemas";
 import {
     companyProfileInputSchema,
     EMPTY_COMPANY_PROFILE,
@@ -36,8 +42,11 @@ const CREATE_STEPS = [
     { value: "theme" },
     { value: "organization" },
     { value: "company" },
+    { value: "plan" },
     { value: "invites" },
 ];
+
+const PLAN_POLL_MS = 3_000;
 
 const JOIN_STEPS = [
     { value: "profile" },
@@ -71,7 +80,7 @@ const onboardingFormSchema = z.object({
         z.object({
             id: z.string(),
             email: z.string(),
-            role: z.enum(["owner", "admin", "member", "viewer"], "Seleccione un rol"),
+            role: InviteRoleSchema,
         })
     ),
     ...companyProfileInputSchema.shape,
@@ -89,6 +98,8 @@ interface OnboardingStepperProps {
     pendingInvitations: JoinableInvitation[];
     hasExistingMembership: boolean;
     improvementsRemaining: ImprovementsRemaining;
+    plans: PlanWithPrice[];
+    preselectedPlanId: string | null;
 }
 
 export function OnboardingStepper({
@@ -96,7 +107,10 @@ export function OnboardingStepper({
     pendingInvitations,
     hasExistingMembership,
     improvementsRemaining,
+    plans,
+    preselectedPlanId,
 }: OnboardingStepperProps) {
+    const router = useRouter();
     // Invited users join their team instead of creating an organization
     const [mode, setMode] = useState<"join" | "create">(
         pendingInvitations.length > 0 || hasExistingMembership ? "join" : "create"
@@ -107,6 +121,25 @@ export function OnboardingStepper({
     const [orgLogoFile, setOrgLogoFile] = useState<File | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isCheckingSlug, setIsCheckingSlug] = useState(false);
+    // Created at the plan step, since Paddle's checkout carries its id; from then on the earlier steps are saved.
+    const [organization, setOrganization] = useState<{ id: string; slug: string } | null>(null);
+    const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+    const [planActive, setPlanActive] = useState(false);
+
+    const paddle = usePaddle(() => {
+        setCheckoutCompleted(true);
+        setStep("invites");
+    });
+
+    // Paddle's webhook activates the plan a few seconds after checkout; invitations need it.
+    useEffect(() => {
+        if (!checkoutCompleted || !organization || planActive) return;
+        const interval = setInterval(async () => {
+            const result = await getPlanActiveAction({ orgId: organization.id });
+            if (result.success && result.data) setPlanActive(true);
+        }, PLAN_POLL_MS);
+        return () => clearInterval(interval);
+    }, [checkoutCompleted, organization, planActive]);
 
     const STEPS = mode === "join" ? JOIN_STEPS : CREATE_STEPS;
 
@@ -130,7 +163,7 @@ export function OnboardingStepper({
     const stepIndex = STEPS.findIndex((s) => s.value === step);
 
     const handleValidate = async (_targetValue: string, direction: "next" | "prev"): Promise<boolean> => {
-        if (direction === "prev") return true;
+        if (direction === "prev") return organization === null;
 
         switch (step) {
             case "profile":
@@ -158,62 +191,64 @@ export function OnboardingStepper({
             }
             case "company":
                 return form.trigger(["description", "offerings", "exclusions", "locations"]);
+            case "plan":
+                return checkoutCompleted;
             default:
                 return true;
         }
     };
 
-    const handleFinish = async () => {
+    const pendingInvites = form
+        .watch("invites")
+        .filter((invite) => invite.email.trim() !== "")
+        .map((invite) => ({ email: invite.email.trim(), role: invite.role }));
+
+    /** Creates the organization once; choosing another plan after closing the checkout reuses it. */
+    const ensureOrganization = async () => {
+        if (organization) return organization;
+
         const values = form.getValues();
-        setIsSubmitting(true);
-        try {
-            const formData = new FormData();
-            formData.set("fullName", values.fullName.trim());
-            formData.set("phone", values.phone?.trim() || "");
-            if (avatarFile) formData.set("avatarFile", avatarFile);
+        const formData = new FormData();
+        formData.set("fullName", values.fullName.trim());
+        formData.set("phone", values.phone?.trim() || "");
+        if (avatarFile) formData.set("avatarFile", avatarFile);
+        formData.set("orgName", values.orgName.trim());
+        formData.set("orgSlug", values.orgSlug.trim());
+        if (orgLogoFile) formData.set("orgLogoFile", orgLogoFile);
+        formData.set(
+            "companyProfile",
+            JSON.stringify({
+                description: values.description,
+                offerings: values.offerings,
+                exclusions: values.exclusions,
+                locations: values.locations,
+            })
+        );
 
-            if (mode === "join") {
-                if (joinedOrgSlug) formData.set("joinedOrgSlug", joinedOrgSlug);
-                const result = await completeOnboardingWithoutOrgAction(formData);
-                if (result && !result.success) {
-                    toast.error(result.error || "No se pudo completar la configuración inicial");
-                }
-                return;
-            }
-
-            formData.set("orgName", values.orgName.trim());
-            formData.set("orgSlug", values.orgSlug.trim());
-            formData.set(
-                "invites",
-                JSON.stringify(
-                    values.invites
-                        .filter((inv) => inv.email.trim() !== "")
-                        .map((inv) => ({ email: inv.email.trim(), role: inv.role }))
-                )
-            );
-            if (orgLogoFile) formData.set("orgLogoFile", orgLogoFile);
-            formData.set(
-                "companyProfile",
-                JSON.stringify({
-                    description: values.description,
-                    offerings: values.offerings,
-                    exclusions: values.exclusions,
-                    locations: values.locations,
-                })
-            );
-
-            const result = await completeOnboardingAction(formData);
-
-            if (result?.slugTaken) {
+        const result = await createOnboardingOrganizationAction(formData);
+        if (!result.success) {
+            if (result.slugTaken) {
                 setStep("organization");
                 form.setError("orgSlug", {
                     type: "manual",
                     message: "Este identificador en la URL ya está en uso. Elija otro.",
                 });
                 toast.error("El identificador en la URL ya está en uso");
-            } else if (result && !result.success) {
-                toast.error(result.error || "No se pudo completar la configuración inicial");
+            } else {
+                toast.error(result.error);
             }
+            return null;
+        }
+
+        const created = { id: result.orgId, slug: result.orgSlug };
+        setOrganization(created);
+        return created;
+    };
+
+    const withSubmitting = async (work: () => Promise<void>) => {
+        setIsSubmitting(true);
+        try {
+            await work();
         } catch (error) {
             if (error && typeof error === "object" && "digest" in error) {
                 throw error;
@@ -225,8 +260,58 @@ export function OnboardingStepper({
         }
     };
 
+    const choosePlan = (plan: PlanWithPrice) =>
+        withSubmitting(async () => {
+            const org = await ensureOrganization();
+            if (!org || !paddle) return;
+
+            const result = await prepareCheckoutAction({ orgId: org.id, orgSlug: org.slug, priceId: plan.priceId });
+            if (!result.success) {
+                toast.error(result.error);
+                return;
+            }
+            const { priceId, customData, customer } = result.data;
+            paddle.Checkout.open({ items: [{ priceId, quantity: 1 }], customData, ...(customer && { customer }) });
+        });
+
+    // Without a plan the organization is read-only; Facturación offers the same plans.
+    const choosePlanLater = () =>
+        withSubmitting(async () => {
+            const org = await ensureOrganization();
+            if (org) router.push(`/organizations/${org.slug}/settings/billing`);
+        });
+
+    const handleFinish = () =>
+        withSubmitting(async () => {
+            const values = form.getValues();
+
+            if (mode === "join") {
+                const formData = new FormData();
+                formData.set("fullName", values.fullName.trim());
+                formData.set("phone", values.phone?.trim() || "");
+                if (avatarFile) formData.set("avatarFile", avatarFile);
+                if (joinedOrgSlug) formData.set("joinedOrgSlug", joinedOrgSlug);
+                const result = await completeOnboardingWithoutOrgAction(formData);
+                if (result && !result.success) {
+                    toast.error(result.error || "No se pudo completar la configuración inicial");
+                }
+                return;
+            }
+
+            if (!organization) return;
+            const result = await finishOnboardingAction({
+                orgId: organization.id,
+                orgSlug: organization.slug,
+                invites: pendingInvites,
+            });
+            if (result && !result.success) {
+                toast.error(result.error);
+            }
+        });
+
     // Joining requires at least one accepted invitation or a prior membership
     const canFinishJoin = mode !== "join" || joinedOrgSlug !== null || hasExistingMembership;
+    const canFinishCreate = mode !== "create" || pendingInvites.length === 0 || planActive;
 
     return (
         <Form {...form}>
@@ -287,22 +372,35 @@ export function OnboardingStepper({
                                 <CompanyStep improvementsRemaining={improvementsRemaining} />
                             </StepperContent>
 
+                            <StepperContent value="plan">
+                                <PlanStep
+                                    plans={plans}
+                                    preselectedPlanId={preselectedPlanId}
+                                    disabled={isSubmitting || !paddle}
+                                    onChoose={choosePlan}
+                                />
+                            </StepperContent>
+
                             <StepperContent value="invites">
-                                <InvitesStep />
+                                <InvitesStep planActive={planActive} />
                             </StepperContent>
                         </>
                     )}
 
                     <div className="flex justify-between items-center pt-4">
-                        {stepIndex > 0 ? (
+                        {stepIndex > 0 && !organization ? (
                             <StepperPrev asChild>
                                 <Button variant="outline">Anterior</Button>
                             </StepperPrev>
                         ) : (
                             <div />
                         )}
-                        {stepIndex === STEPS.length - 1 ? (
-                            <Button onClick={handleFinish} disabled={isSubmitting || !canFinishJoin}>
+                        {step === "plan" ? (
+                            <Button variant="ghost" onClick={choosePlanLater} disabled={isSubmitting}>
+                                Elegir el plan más tarde
+                            </Button>
+                        ) : stepIndex === STEPS.length - 1 ? (
+                            <Button onClick={handleFinish} disabled={isSubmitting || !canFinishJoin || !canFinishCreate}>
                                 {isSubmitting && (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                 )}

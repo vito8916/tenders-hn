@@ -69,6 +69,16 @@ select results_eq(
   $$values (array['soporte SAP'], array['object'], array['43231505'])$$,
   'a candidate lists the terms, fields, and codes that matched'
 );
+select is(
+  (select field_terms from results where process_id = 'c0000000-0000-4000-8000-00000000000a'),
+  '{"object": ["soporte SAP"]}'::jsonb,
+  'field_terms names the field each term was found in'
+);
+select is(
+  (select field_terms from results where process_id = 'c0000000-0000-4000-8000-00000000000d'),
+  '{}'::jsonb,
+  'terms found only in documents are attributed to no field'
+);
 select ok(
   (select object_similarity > 0.9 from results where process_id = 'c0000000-0000-4000-8000-00000000000a'),
   'a candidate found semantically carries its similarity'

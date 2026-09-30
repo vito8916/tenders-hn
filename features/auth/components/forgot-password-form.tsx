@@ -34,10 +34,10 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
             }
 
             form.reset();
-            toast.success("Password reset email sent");
+            toast.success("Le enviamos un correo para restablecer su contraseña");
             setSuccess(true);
         } catch {
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
         }
     }
 
@@ -45,23 +45,23 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-2xl">Reset Your Password</CardTitle>
+                    <CardTitle className="text-2xl">Restablecer contraseña</CardTitle>
                     <CardDescription>
-                        Type in your email and we&apos;ll send you a link to reset your password
+                        Ingrese su correo electrónico y le enviaremos un enlace para restablecer su contraseña.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     {success ? (
                         <div className="space-y-4">
                             <div className="p-4 text-sm text-green-600 bg-green-50 border border-green-200 rounded-md">
-                                Password reset email sent successfully! Check your email and follow the instructions to
-                                reset your password.
+                                Le enviamos un correo con un enlace para restablecer su contraseña. Revise su bandeja de
+                                entrada y siga las instrucciones.
                             </div>
                             <div className="text-center">
                                 <Link
                                     href="/login"
                                     className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4">
-                                    Back to login
+                                    Volver a iniciar sesión
                                 </Link>
                             </div>
                         </div>
@@ -73,11 +73,11 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Correo electrónico</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="email"
-                                                    placeholder="m@example.com"
+                                                    placeholder="nombre@empresa.hn"
                                                     disabled={form.formState.isSubmitting}
                                                     {...field}
                                                 />
@@ -91,10 +91,10 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                                     {form.formState.isSubmitting ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Sending...
+                                            Enviando…
                                         </>
                                     ) : (
-                                        "Reset Password"
+                                        "Restablecer contraseña"
                                     )}
                                 </Button>
                             </form>
@@ -103,15 +103,15 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                 </CardContent>
             </Card>
             <div className="text-center text-xs text-muted-foreground">
-                You can also{" "}
+                También puede{" "}
                 <Link href="/login" className="underline underline-offset-4 hover:text-primary">
-                    sign in
+                    iniciar sesión
                 </Link>{" "}
-                or{" "}
+                o{" "}
                 <Link href="/sign-up" className="underline underline-offset-4 hover:text-primary">
-                    sign up
+                    crear una cuenta
                 </Link>{" "}
-                if you don&apos;t have an account.
+                si aún no tiene una.
             </div>
         </div>
     );

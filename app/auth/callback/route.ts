@@ -5,38 +5,29 @@ import { type NextRequest } from "next/server";
 /**
  * Handle Supabase OAuth callback. Exchanges the `code` for a session
  * and then redirects the user to the desired `next` path or organizations.
+ * Errors go to /error with the Supabase error code, which the page maps to Spanish text.
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
   const error = searchParams.get("error");
-  const error_description = searchParams.get("error_description");
+  const errorCode = searchParams.get("error_code");
   const next = searchParams.get("next") ?? "/organizations";
 
-  // Handle OAuth errors returned by Supabase
-  if (error || error_description) {
-    const errorMessage = error_description || error || "OAuth authentication failed";
-    redirect(`/error?error=${encodeURIComponent(errorMessage)}`);
+  if (error || errorCode) {
+    redirect(`/error?error=${encodeURIComponent(errorCode ?? "bad_oauth_callback")}`);
   }
 
-  // Handle missing code
   if (!code) {
-    redirect("/error?error=Missing%20OAuth%20code");
+    redirect("/error?error=bad_oauth_callback");
   }
 
-  try {
-    const supabase = await createClient();
-    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-    
-    if (exchangeError) {
-      redirect(`/error?error=${encodeURIComponent(exchangeError.message)}`);
-    }
+  const supabase = await createClient();
+  const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
-    redirect(next);
-  } catch (err) {
-    // Catch any unexpected errors during the exchange process
-    const message = err instanceof Error ? err.message : "An unexpected error occurred";
-    redirect(`/error?error=${encodeURIComponent(message)}`);
+  if (exchangeError) {
+    redirect(`/error?error=${encodeURIComponent(exchangeError.code ?? "bad_oauth_callback")}`);
   }
+
+  redirect(next);
 }
-

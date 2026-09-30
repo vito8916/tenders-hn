@@ -1,4 +1,5 @@
 import 'server-only';
+import { UserFacingError } from "@/lib/errors";
 import { getProfilePictureUrl } from "@/lib/utils/storage";
 import {
     getProfileById,
@@ -49,7 +50,7 @@ export async function updateProfileService(params: {
     const existingProfile = await getProfileById({ userId: params.userId });
 
     if (!existingProfile) {
-        throw new Error("Profile not found");
+        throw new UserFacingError("No encontramos su perfil.");
     }
 
     // 2. Update the profile via repository

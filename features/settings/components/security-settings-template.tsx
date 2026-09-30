@@ -15,16 +15,16 @@ const mockSessions = [
 	{
 		id: "1",
 		device: "MacBook Pro",
-		location: "San Francisco, US",
-		lastActive: "Active now",
+		location: "Tegucigalpa, HN",
+		lastActive: "Activo ahora",
 		current: true,
 		icon: Laptop,
 	},
 	{
 		id: "2",
 		device: "iPhone 15",
-		location: "San Francisco, US",
-		lastActive: "2 days ago",
+		location: "Tegucigalpa, HN",
+		lastActive: "Hace 2 días",
 		current: false,
 		icon: Smartphone,
 	},
@@ -33,28 +33,28 @@ const mockSessions = [
 export function SecuritySettingsTemplate() {
 	return (
 		<SettingsTemplatePage
-			title="Security"
-			description="Manage authentication, active sessions, and account protection."
+			title="Seguridad"
+			description="Administre el acceso, las sesiones activas y la protección de su cuenta."
 		>
 			<SettingsTemplateNotice />
 
 			<SettingsTemplateSection
-				title="Two-factor authentication"
-				description="Add an extra layer of security to your account."
+				title="Verificación en dos pasos"
+				description="Agregue una capa extra de seguridad a su cuenta."
 			>
 				<SettingsRow
-					label="Authenticator app"
-					description="Use an app like 1Password or Google Authenticator."
+					label="Aplicación de autenticación"
+					description="Use una aplicación como 1Password o Google Authenticator."
 				>
 					<Button variant="outline" size="sm" disabled>
-						Enable
+						Activar
 					</Button>
 				</SettingsRow>
 			</SettingsTemplateSection>
 
 			<SettingsTemplateSection
-				title="Active sessions"
-				description="Devices currently signed in to your account."
+				title="Sesiones activas"
+				description="Dispositivos con sesión iniciada en su cuenta."
 			>
 				<div className="divide-y divide-border/60">
 					{mockSessions.map((session) => (
@@ -71,7 +71,7 @@ export function SecuritySettingsTemplate() {
 										<p className="text-sm font-medium">{session.device}</p>
 										{session.current ? (
 											<Badge variant="secondary" className="text-[10px]">
-												Current
+												Actual
 											</Badge>
 										) : null}
 									</div>
@@ -82,7 +82,7 @@ export function SecuritySettingsTemplate() {
 							</div>
 							{!session.current ? (
 								<Button variant="outline" size="sm" disabled>
-									Revoke
+									Revocar
 								</Button>
 							) : null}
 						</div>

@@ -4,13 +4,13 @@ import { z } from "zod";
  * Invitation role schema for organization invitations
  * Matches the roles available in organization_members
  */
-export const InviteRoleSchema = z.enum(["member", "admin", "viewer"]);
+export const InviteRoleSchema = z.enum(["member", "admin", "viewer"], "Seleccione un rol");
 
 /**
  * Schema for a single invitation item (email + role)
  */
 export const inviteItemSchema = z.object({
-    email: z.string().email("Enter a valid email address"),
+    email: z.string().email("Ingrese un correo electrónico válido"),
     role: InviteRoleSchema,
 });
 
@@ -19,11 +19,11 @@ export const inviteItemSchema = z.object({
  * Used in Server Actions and Services
  */
 export const createInvitationsInputSchema = z.object({
-    orgId: z.uuid(),
+    orgId: z.uuid("Solicitud no válida"),
     invites: z
         .array(inviteItemSchema)
-        .min(1, "At least one invitation is required")
-        .max(10, "Maximum 10 invitations allowed"),
+        .min(1, "Agregue al menos una invitación")
+        .max(10, "Puede enviar hasta 10 invitaciones a la vez"),
 });
 
 /**

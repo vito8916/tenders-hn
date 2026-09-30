@@ -8,6 +8,7 @@ import { APP_EVENTS } from "@/features/events/schemas";
 import { uploadOrganizationLogo } from "./repository";
 import { getOrganizationLogoUrl } from "@/lib/utils/storage";
 import type { InviteItem } from "@/features/invitations/schemas";
+import { UserFacingError } from "@/lib/errors";
 import {
     createOrganization,
     updateOrganization,
@@ -78,12 +79,12 @@ export async function updateOrganizationService(params: {
     const role = await getUserOrgRole({ userId, orgId });
 
     if (!role) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
 
     // 2. Check RBAC permissions
     if (!canUpdateOrganization(role)) {
-        throw new Error(`Insufficient permissions: ${role} cannot update organization`);
+        throw new UserFacingError("Su rol no le permite editar la organización.");
     }
 
     // 3. Upload new logo if provided; the storage path (not a signed URL) is persisted
@@ -127,12 +128,12 @@ export async function deleteOrganizationService(params: {
     const role = await getUserOrgRole({ userId, orgId });
 
     if (!role) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
 
     // 2. Check RBAC permissions (only owner can delete)
     if (!canDeleteOrganization(role)) {
-        throw new Error(`Insufficient permissions: only owner can delete organization`);
+        throw new UserFacingError("Solo el propietario puede eliminar la organización.");
     }
 
     // 3. Delete the organization via repository
@@ -292,7 +293,7 @@ export async function getOrganizationOverviewService(params: {
 
     const role = await getUserOrgRole({ userId, orgId });
     if (!role) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
 
     const [membersCount, pendingInvitationsCount] = await Promise.all([
@@ -319,7 +320,7 @@ export async function transferOwnershipService(params: {
 
     const role = await getUserOrgRole({ userId, orgId });
     if (!role || !canTransferOwnership(role)) {
-        throw new Error("Insufficient permissions: only the owner can transfer ownership");
+        throw new UserFacingError("Solo el propietario puede transferir la propiedad.");
     }
 
     await transferOwnership({ orgId, newOwnerUserId });

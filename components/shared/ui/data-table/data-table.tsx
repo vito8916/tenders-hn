@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
   data,
   onDelete,
   filterColumn = "name",
-  filterPlaceholder = "Filter...",
+  filterPlaceholder = "Filtrar…",
   facetedFilters = [],
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
@@ -136,7 +136,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Sin resultados.
                 </TableCell>
               </TableRow>
             )}

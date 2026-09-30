@@ -11,7 +11,7 @@ export function OrgHeader() {
 
 	return (
 		<span className="truncate text-sm font-medium">
-			{isSettings ? "Settings" : currentOrg.name}
+			{isSettings ? "Configuración" : currentOrg.name}
 		</span>
 	);
 }

@@ -55,7 +55,7 @@ select ok(
   'accepting creates the membership'
 );
 select ok(
-  exists (select 1 from public.notifications where user_id = '11111111-1111-4111-8111-111111111111' and type_id = 'organization.member_joined' and title like 'Mia Member joined%'),
+  exists (select 1 from public.notifications where user_id = '11111111-1111-4111-8111-111111111111' and type_id = 'organization.member_joined' and title like 'Mia Member se unió a%'),
   'the owner is told who joined'
 );
 

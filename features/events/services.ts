@@ -80,7 +80,7 @@ async function enrichEventsWithActors(events: AppEvent[]): Promise<AuditLogEntry
                       fullName: profile.fullName,
                       email: profile.email,
                   })
-                : "System",
+                : "Sistema",
         };
     });
 }

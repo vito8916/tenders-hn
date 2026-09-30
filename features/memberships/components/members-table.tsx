@@ -32,7 +32,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Crown, Trash2 } from "lucide-react";
-import type { OrgMember } from "../schemas";
+import { ROLE_LABELS, type OrgMember } from "../schemas";
 import { changeMemberRoleAction, removeMemberAction } from "../actions";
 import { transferOwnershipAction } from "@/features/organizations/actions";
 
@@ -72,9 +72,9 @@ export function MembersTable({
         startTransition(async () => {
             const result = await changeMemberRoleAction({ orgId, orgSlug, membershipId, newRole });
             if (result.success) {
-                toast.success("Role updated");
+                toast.success("Se actualizó el rol.");
             } else {
-                toast.error(result.error ?? "Failed to change role");
+                toast.error(result.error ?? "No se pudo cambiar el rol.");
             }
         });
     }
@@ -83,9 +83,9 @@ export function MembersTable({
         startTransition(async () => {
             const result = await removeMemberAction({ orgId, orgSlug, membershipId });
             if (result.success) {
-                toast.success("Member removed");
+                toast.success("Se quitó al miembro.");
             } else {
-                toast.error(result.error ?? "Failed to remove member");
+                toast.error(result.error ?? "No se pudo quitar al miembro.");
             }
         });
     }
@@ -94,9 +94,9 @@ export function MembersTable({
         startTransition(async () => {
             const result = await transferOwnershipAction({ orgId, orgSlug, newOwnerUserId });
             if (result.success) {
-                toast.success("Ownership transferred");
+                toast.success("Se transfirió la propiedad.");
             } else {
-                toast.error(result.error ?? "Failed to transfer ownership");
+                toast.error(result.error ?? "No se pudo transferir la propiedad.");
             }
         });
     }
@@ -106,9 +106,9 @@ export function MembersTable({
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Member</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Joined</TableHead>
+                        <TableHead>Miembro</TableHead>
+                        <TableHead>Rol</TableHead>
+                        <TableHead>Miembro desde</TableHead>
                         <TableHead className="w-16" />
                     </TableRow>
                 </TableHeader>
@@ -130,9 +130,9 @@ export function MembersTable({
                                         </Avatar>
                                         <div>
                                             <p className="text-sm font-medium">
-                                                {member.fullName ?? "Unnamed user"}
+                                                {member.fullName ?? "Usuario sin nombre"}
                                                 {isSelf ? (
-                                                    <span className="ml-1 text-muted-foreground">(you)</span>
+                                                    <span className="ml-1 text-muted-foreground">(usted)</span>
                                                 ) : null}
                                             </p>
                                             <p className="text-xs text-muted-foreground">{member.email}</p>
@@ -150,19 +150,19 @@ export function MembersTable({
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="admin">Admin</SelectItem>
-                                                <SelectItem value="member">Member</SelectItem>
-                                                <SelectItem value="viewer">Viewer</SelectItem>
+                                                <SelectItem value="admin">{ROLE_LABELS.admin}</SelectItem>
+                                                <SelectItem value="member">{ROLE_LABELS.member}</SelectItem>
+                                                <SelectItem value="viewer">{ROLE_LABELS.viewer}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     ) : (
-                                        <Badge variant={isOwner ? "default" : "secondary"} className="capitalize">
-                                            {member.role}
+                                        <Badge variant={isOwner ? "default" : "secondary"}>
+                                            {ROLE_LABELS[member.role]}
                                         </Badge>
                                     )}
                                 </TableCell>
                                 <TableCell className="text-sm text-muted-foreground">
-                                    {member.createdAt.toLocaleDateString()}
+                                    {member.createdAt.toLocaleDateString("es-HN")}
                                 </TableCell>
                                 <TableCell>
                                     {showTransfer ? (
@@ -170,22 +170,22 @@ export function MembersTable({
                                             <AlertDialogTrigger asChild>
                                                 <Button variant="ghost" size="icon" disabled={isPending}>
                                                     <Crown className="size-4" />
-                                                    <span className="sr-only">Transfer ownership</span>
+                                                    <span className="sr-only">Transferir la propiedad</span>
                                                 </Button>
                                             </AlertDialogTrigger>
                                             <AlertDialogContent>
                                                 <AlertDialogHeader>
-                                                    <AlertDialogTitle>Transfer ownership</AlertDialogTitle>
+                                                    <AlertDialogTitle>¿Transferir la propiedad?</AlertDialogTitle>
                                                     <AlertDialogDescription>
-                                                        {member.fullName ?? member.email} will become the owner of
-                                                        this organization and you will become an admin. This can
-                                                        only be undone by the new owner.
+                                                        {member.fullName ?? member.email} será el nuevo propietario de
+                                                        esta organización y usted pasará a ser administrador. Solo el
+                                                        nuevo propietario podrá revertir este cambio.
                                                     </AlertDialogDescription>
                                                 </AlertDialogHeader>
                                                 <AlertDialogFooter>
-                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
                                                     <AlertDialogAction onClick={() => handleTransferOwnership(member.userId)}>
-                                                        Transfer
+                                                        Transferir
                                                     </AlertDialogAction>
                                                 </AlertDialogFooter>
                                             </AlertDialogContent>
@@ -196,21 +196,21 @@ export function MembersTable({
                                             <AlertDialogTrigger asChild>
                                                 <Button variant="ghost" size="icon" disabled={isPending}>
                                                     <Trash2 className="size-4" />
-                                                    <span className="sr-only">Remove member</span>
+                                                    <span className="sr-only">Quitar miembro</span>
                                                 </Button>
                                             </AlertDialogTrigger>
                                             <AlertDialogContent>
                                                 <AlertDialogHeader>
-                                                    <AlertDialogTitle>Remove member</AlertDialogTitle>
+                                                    <AlertDialogTitle>¿Quitar a este miembro?</AlertDialogTitle>
                                                     <AlertDialogDescription>
-                                                        {member.fullName ?? member.email} will lose access to this
-                                                        organization and all of its data.
+                                                        {member.fullName ?? member.email} perderá el acceso a esta
+                                                        organización y a todos sus datos.
                                                     </AlertDialogDescription>
                                                 </AlertDialogHeader>
                                                 <AlertDialogFooter>
-                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
                                                     <AlertDialogAction onClick={() => handleRemove(member.id)}>
-                                                        Remove
+                                                        Quitar
                                                     </AlertDialogAction>
                                                 </AlertDialogFooter>
                                             </AlertDialogContent>

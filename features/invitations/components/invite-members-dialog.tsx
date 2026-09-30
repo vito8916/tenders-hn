@@ -21,6 +21,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Loader2, Plus, UserPlus, X } from "lucide-react";
+import { ROLE_LABELS } from "@/features/memberships/schemas";
 import { inviteItemSchema, type InviteRole } from "../schemas";
 import { inviteMembersAction } from "../actions";
 
@@ -49,14 +50,14 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
     function handleSubmit() {
         const invites = rows.filter((row) => row.email.trim() !== "");
         if (invites.length === 0) {
-            toast.error("Add at least one email address");
+            toast.error("Agregue al menos un correo electrónico");
             return;
         }
 
         for (const invite of invites) {
             const parsed = inviteItemSchema.safeParse(invite);
             if (!parsed.success) {
-                toast.error(`Invalid email: ${invite.email}`);
+                toast.error(`Correo electrónico no válido: ${invite.email}`);
                 return;
             }
         }
@@ -65,16 +66,16 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
             const result = await inviteMembersAction({ orgId, orgSlug, invites });
 
             if (!result.success) {
-                toast.error(result.error ?? "Failed to send invitations");
+                toast.error(result.error ?? "No se pudieron enviar las invitaciones");
                 return;
             }
 
             if (result.failedEmails && result.failedEmails.length > 0) {
                 toast.warning(
-                    `Invitations created, but emails to ${result.failedEmails.join(", ")} could not be sent. Use resend from the pending list.`
+                    `Se crearon las invitaciones, pero no se pudo enviar el correo a ${result.failedEmails.join(", ")}. Reenvíelo desde la lista de invitaciones pendientes.`
                 );
             } else {
-                toast.success("Invitations sent");
+                toast.success("Invitaciones enviadas");
             }
 
             setRows([{ email: "", role: "member" }]);
@@ -87,14 +88,14 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
             <DialogTrigger asChild>
                 <Button>
                     <UserPlus className="mr-2 size-4" />
-                    Invite members
+                    Invitar miembros
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-lg">
                 <DialogHeader>
-                    <DialogTitle>Invite members</DialogTitle>
+                    <DialogTitle>Invitar miembros</DialogTitle>
                     <DialogDescription>
-                        Each person receives an email with a link to join this organization.
+                        Cada persona recibirá un correo electrónico con un enlace para unirse a esta organización.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -103,7 +104,7 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
                         <div key={index} className="flex items-center gap-2">
                             <Input
                                 type="email"
-                                placeholder="colleague@company.com"
+                                placeholder="colega@empresa.hn"
                                 value={row.email}
                                 disabled={isPending}
                                 onChange={(event) => updateRow(index, { email: event.target.value })}
@@ -113,13 +114,13 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
                                 disabled={isPending}
                                 onValueChange={(value) => updateRow(index, { role: value as InviteRole })}
                             >
-                                <SelectTrigger className="w-28 shrink-0" size="sm">
+                                <SelectTrigger className="w-36 shrink-0" size="sm" aria-label="Rol">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="admin">Admin</SelectItem>
-                                    <SelectItem value="member">Member</SelectItem>
-                                    <SelectItem value="viewer">Viewer</SelectItem>
+                                    <SelectItem value="admin">{ROLE_LABELS.admin}</SelectItem>
+                                    <SelectItem value="member">{ROLE_LABELS.member}</SelectItem>
+                                    <SelectItem value="viewer">{ROLE_LABELS.viewer}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <Button
@@ -131,7 +132,7 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
                                 onClick={() => removeRow(index)}
                             >
                                 <X className="size-4" />
-                                <span className="sr-only">Remove row</span>
+                                <span className="sr-only">Quitar fila</span>
                             </Button>
                         </div>
                     ))}
@@ -144,22 +145,22 @@ export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug
                         onClick={() => setRows((current) => [...current, { email: "", role: "member" }])}
                     >
                         <Plus className="mr-1 size-4" />
-                        Add another
+                        Agregar otro
                     </Button>
                 </div>
 
                 <DialogFooter>
                     <Button variant="outline" disabled={isPending} onClick={() => setOpen(false)}>
-                        Cancel
+                        Cancelar
                     </Button>
                     <Button onClick={handleSubmit} disabled={isPending}>
                         {isPending ? (
                             <>
                                 <Loader2 className="mr-2 size-4 animate-spin" />
-                                Sending...
+                                Enviando…
                             </>
                         ) : (
-                            "Send invitations"
+                            "Enviar invitaciones"
                         )}
                     </Button>
                 </DialogFooter>

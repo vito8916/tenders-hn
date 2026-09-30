@@ -65,10 +65,10 @@ export default function HomePage({
 		<div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">
 			<PageHeader
 				icon={ChartBar}
-				title="Dashboard"
+				title="Inicio"
 				description={
 					<>
-						Overview of <OrgName />.
+						Resumen de <OrgName />.
 					</>
 				}
 			/>

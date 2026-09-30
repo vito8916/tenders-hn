@@ -6,6 +6,7 @@ import { type NextRequest } from "next/server";
 /**
  * Handle Supabase email OTP verification for auth flows.
  * Accepts `token_hash`, `type`, and optional `next` from query params.
+ * Errors go to /error with the Supabase error code, which the page maps to Spanish text.
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -25,10 +26,10 @@ export async function GET(request: NextRequest) {
       redirect(next);
     } else {
       // redirect the user to an error page with some instructions
-      redirect(`/error?error=${encodeURIComponent(error.message)}`);
+      redirect(`/error?error=${encodeURIComponent(error.code ?? "otp_expired")}`);
     }
   }
 
   // redirect the user to an error page with some instructions
-  redirect("/error?error=Missing%20token%20hash%20or%20type");
+  redirect("/error?error=otp_expired");
 }

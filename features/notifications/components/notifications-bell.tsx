@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
+import { es } from "date-fns/locale";
 import { Bell } from "lucide-react";
 import { toast } from "sonner";
 
@@ -92,7 +93,7 @@ export function NotificationsBell({
     const result = await markNotificationReadAction({ notificationId: notification.id });
     if (!result.success) {
       setReadAt(ids, null, 1);
-      toast.error(result.error ?? "Could not mark the notification as read");
+      toast.error(result.error ?? "No se pudo marcar la notificación como leída");
     }
   };
 
@@ -104,7 +105,7 @@ export function NotificationsBell({
     const result = await markAllNotificationsReadAction();
     if (!result.success) {
       setReadAt(ids, null, previousUnreadCount);
-      toast.error(result.error ?? "Could not mark notifications as read");
+      toast.error(result.error ?? "No se pudieron marcar las notificaciones como leídas");
     }
   };
 
@@ -117,8 +118,8 @@ export function NotificationsBell({
           className="relative size-9"
           aria-label={
             inbox.unreadCount
-              ? `Notifications, ${inbox.unreadCount} unread`
-              : "Notifications"
+              ? `Notificaciones, ${inbox.unreadCount} sin leer`
+              : "Notificaciones"
           }
         >
           <Bell className="size-4" aria-hidden="true" />
@@ -132,7 +133,7 @@ export function NotificationsBell({
       <DropdownMenuContent className="w-80 p-0" align="end">
         <DropdownMenuLabel className="px-3 py-2 text-sm font-normal">
           <div className="flex items-center justify-between gap-2">
-            <span className="font-semibold">Notifications</span>
+            <span className="font-semibold">Notificaciones</span>
             {inbox.unreadCount > 0 ? (
               <button
                 type="button"
@@ -142,7 +143,7 @@ export function NotificationsBell({
                   markAllRead();
                 }}
               >
-                Mark all as read
+                Marcar todo como leído
               </button>
             ) : null}
           </div>
@@ -150,7 +151,7 @@ export function NotificationsBell({
         <DropdownMenuSeparator />
         {inbox.notifications.length === 0 ? (
           <p className="text-muted-foreground px-3 py-8 text-center text-sm">
-            No notifications yet.
+            Aún no tiene notificaciones.
           </p>
         ) : (
           <ScrollArea className="h-[min(320px,50vh)]">
@@ -168,7 +169,7 @@ export function NotificationsBell({
         <DropdownMenuSeparator className="my-0" />
         <DropdownMenuItem asChild className="justify-center rounded-none py-2 text-xs">
           <Link href={`/organizations/${orgSlug}/settings/notifications`}>
-            Notification settings
+            Configuración de notificaciones
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -195,7 +196,7 @@ function NotificationItem({
           className="text-muted-foreground shrink-0 text-[10px] whitespace-nowrap"
           suppressHydrationWarning
         >
-          {formatDistanceToNow(notification.createdAt, { addSuffix: true })}
+          {formatDistanceToNow(notification.createdAt, { addSuffix: true, locale: es })}
         </span>
       </div>
       {notification.body ? (

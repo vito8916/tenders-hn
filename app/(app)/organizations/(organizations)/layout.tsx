@@ -11,18 +11,18 @@ export default function OrganizationsLayout({ children }: { children: React.Reac
             <header className="flex flex-col items-center justify-center pt-12 pb-8">
                 <div className="flex items-center gap-2 font-bold text-xl">
                     <SupaNextLogo className="h-8 w-8" />
-                    <span>Multi-Tenant SupaNext Kit</span>
+                    <span>Tenders HN</span>
                 </div>
             </header>
             <main className="flex-1 w-full max-w-3xl px-6 flex flex-col items-center">
                 {children}
             </main>
             <footer className="w-full py-8 flex items-center justify-center gap-6 text-sm text-muted-foreground mt-auto">
-                <span>&copy; <Suspense fallback={null}><CopyrightYear /></Suspense> Multi-Tenant SupaNext Kit</span>
-                <Link href="#" className="hover:underline hover:text-foreground transition-colors">Terms of Use</Link>
-                <Link href="#" className="hover:underline hover:text-foreground transition-colors">Privacy Policy</Link>
+                <span>&copy; <Suspense fallback={null}><CopyrightYear /></Suspense> Tenders HN</span>
+                <Link href="#" className="hover:underline hover:text-foreground transition-colors">Términos de uso</Link>
+                <Link href="#" className="hover:underline hover:text-foreground transition-colors">Política de privacidad</Link>
                 <div className="flex items-center gap-4 ml-2">
-                    <LogoutButton variant="ghost" className="text-muted-foreground hover:text-foreground p-0 h-auto hover:bg-transparent font-normal">Sign out</LogoutButton>
+                    <LogoutButton variant="ghost" className="text-muted-foreground hover:text-foreground p-0 h-auto hover:bg-transparent font-normal">Cerrar sesión</LogoutButton>
                     <ThemeSwitcher />
                 </div>
             </footer>

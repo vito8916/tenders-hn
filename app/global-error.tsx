@@ -8,10 +8,10 @@ export default function GlobalError({
 }) {
     return (
         // global-error must include html and body tags
-        <html>
+        <html lang="es">
         <body>
-        <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
+        <h2>Algo salió mal</h2>
+        <button onClick={() => reset()}>Intentar de nuevo</button>
         </body>
         </html>
     )

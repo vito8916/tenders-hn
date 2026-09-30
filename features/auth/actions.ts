@@ -15,6 +15,7 @@ import {
   type UpdatePasswordFormValues,
   type VerifyEmailFormValues,
 } from "./schemas";
+import { authErrorMessage } from "./errors";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { cache } from "react";
@@ -47,7 +48,7 @@ export async function signUpAction(values: SignUpFormValues) {
     const validatedFields = signUpSchema.safeParse(values);
 
     if (!validatedFields.success) {
-        return { error: "Invalid fields" };
+        return { error: "Revise los datos ingresados." };
     }
 
     const { fullName, email, password } = validatedFields.data;
@@ -64,7 +65,7 @@ export async function signUpAction(values: SignUpFormValues) {
     });
 
     if (error) {
-        return { error: error.message };
+        return { error: authErrorMessage(error.code) };
     }
 
     return { data };
@@ -81,7 +82,7 @@ export async function verifyEmailAction(values: VerifyEmailFormValues) {
     const validatedFields = verifyEmailSchema.safeParse(values);
 
     if (!validatedFields.success) {
-        return { error: "Invalid fields" };
+        return { error: "Revise los datos ingresados." };
     }
 
     const { email, token } = validatedFields.data;
@@ -93,7 +94,7 @@ export async function verifyEmailAction(values: VerifyEmailFormValues) {
     });
 
     if (error) {
-        return { error: error.message };
+        return { error: authErrorMessage(error.code) };
     }
 
     return { data };
@@ -109,7 +110,7 @@ export async function resendConfirmationEmailAction(values: ResendConfirmationEm
     const validatedFields = resendConfirmationEmailSchema.safeParse(values);
 
     if (!validatedFields.success) {
-        return { error: "Invalid fields" };
+        return { error: "Revise los datos ingresados." };
     }
 
     const { error } = await supabase.auth.resend({
@@ -118,7 +119,7 @@ export async function resendConfirmationEmailAction(values: ResendConfirmationEm
     });
 
     if (error) {
-        return { error: error.message };
+        return { error: authErrorMessage(error.code) };
     }
 
     return { success: true };
@@ -136,7 +137,7 @@ export async function signInAction(values: SignInFormValues) {
 
     if (!validatedFields.success) {
         return {
-            error: "Invalid fields",
+            error: "Revise los datos ingresados.",
         };
     }
 
@@ -151,7 +152,7 @@ export async function signInAction(values: SignInFormValues) {
     if (error) {
         console.error('Error signing in:', error);
         return {
-            error: error.message,
+            error: authErrorMessage(error.code),
             code: error.code,
         };
     }
@@ -183,7 +184,7 @@ export async function signInWithOAuthAction(
   });
 
   if (error) {
-    return { error: error.message } as const;
+    return { error: authErrorMessage(error.code) } as const;
   }
 
   // If a URL is returned, return it so the client can navigate.
@@ -191,7 +192,7 @@ export async function signInWithOAuthAction(
     return { url: data.url } as const;
   }
 
-  return { error: "Unable to start OAuth flow" } as const;
+  return { error: "No se pudo iniciar sesión con el proveedor. Intente de nuevo." } as const;
 }
 
 /**
@@ -218,7 +219,7 @@ export async function forgotPasswordAction(values: ForgotPasswordFormValues) {
 
     if (!validatedFields.success) {
         return {
-            error: "Invalid fields",
+            error: "Revise los datos ingresados.",
         };
     }
 
@@ -230,7 +231,7 @@ export async function forgotPasswordAction(values: ForgotPasswordFormValues) {
     });
 
     if (error) {
-        return { error: error.message };
+        return { error: authErrorMessage(error.code) };
     }
 
     return { data };
@@ -247,13 +248,13 @@ export async function updatePasswordAction(values: UpdatePasswordFormValues) {
     const validatedFields = updatePasswordSchema.safeParse(values);
 
     if (!validatedFields.success) {
-        return { error: "Invalid fields" };
+        return { error: "Revise los datos ingresados." };
     }
 
     const { password, confirmPassword } = validatedFields.data;
 
     if (password !== confirmPassword) {
-        return { error: "Passwords do not match" };
+        return { error: "Las contraseñas no coinciden." };
     }
 
     // Commit the password change to Supabase auth.
@@ -262,7 +263,7 @@ export async function updatePasswordAction(values: UpdatePasswordFormValues) {
     });
 
     if (error) {
-        return { error: error.message };
+        return { error: authErrorMessage(error.code) };
     }
 
     return { data };

@@ -12,8 +12,8 @@ async function NotificationsSettingsContent() {
 
 	return (
 		<SettingsTemplatePage
-			title="Notifications"
-			description="Choose how you hear about activity. These preferences apply to your account in every organization."
+			title="Notificaciones"
+			description="Elija cómo quiere enterarse de la actividad. Estas preferencias aplican a su cuenta en todas sus organizaciones."
 		>
 			<NotificationPreferencesForm preferences={preferences} />
 		</SettingsTemplatePage>

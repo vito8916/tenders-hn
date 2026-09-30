@@ -47,3 +47,11 @@ export type OrgRole = z.infer<typeof OrgRoleSchema>;
 export type MembershipRole = z.infer<typeof membershipRoleSchema>;
 export type AssignableRole = z.infer<typeof AssignableRoleSchema>;
 export type OrgMember = z.infer<typeof orgMemberSchema>;
+
+/** How each role is named in the UI and in emails (plan §6.1.1). */
+export const ROLE_LABELS: Record<OrgRole, string> = {
+    owner: "Propietario",
+    admin: "Administrador",
+    member: "Miembro",
+    viewer: "Observador",
+};

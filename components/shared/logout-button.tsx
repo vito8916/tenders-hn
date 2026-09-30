@@ -14,5 +14,5 @@ export function LogoutButton({ children, ...props }: React.ComponentProps<typeof
     router.push("/login");
   };
 
-  return <Button onClick={logout} {...props}>{children || "Logout"}</Button>;
+  return <Button onClick={logout} {...props}>{children || "Cerrar sesión"}</Button>;
 }

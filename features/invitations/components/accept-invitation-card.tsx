@@ -13,12 +13,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
+import { ROLE_LABELS } from "@/features/memberships/schemas";
 import { acceptInvitationAction } from "../actions";
+import type { InviteRole } from "../schemas";
 
 interface AcceptInvitationCardProps {
     token: string;
     orgName: string;
-    role: string;
+    role: InviteRole;
     invitedEmail: string;
 }
 
@@ -41,15 +43,15 @@ export function AcceptInvitationCard({ token, orgName, role, invitedEmail }: Acc
     return (
         <Card className="w-full max-w-md">
             <CardHeader>
-                <CardTitle className="text-2xl">Join {orgName}</CardTitle>
+                <CardTitle className="text-2xl">Únase a {orgName}</CardTitle>
                 <CardDescription>
-                    You have been invited to join <strong>{orgName}</strong> as{" "}
-                    <Badge variant="secondary">{role}</Badge>
+                    Lo invitaron a unirse a <strong>{orgName}</strong> con el rol{" "}
+                    <Badge variant="secondary">{ROLE_LABELS[role]}</Badge>
                 </CardDescription>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-                This invitation was sent to <strong>{invitedEmail}</strong>. Accepting
-                it will add you to the organization with the role above.
+                Esta invitación se envió a <strong>{invitedEmail}</strong>. Al aceptarla,
+                se unirá a la organización con el rol indicado.
                 {error ? <p className="mt-3 text-destructive">{error}</p> : null}
             </CardContent>
             <CardFooter>
@@ -57,10 +59,10 @@ export function AcceptInvitationCard({ token, orgName, role, invitedEmail }: Acc
                     {isPending ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Joining...
+                            Uniéndose…
                         </>
                     ) : (
-                        "Accept invitation"
+                        "Aceptar invitación"
                     )}
                 </Button>
             </CardFooter>

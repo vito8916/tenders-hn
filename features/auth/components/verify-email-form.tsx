@@ -34,10 +34,10 @@ export function VerifyEmailForm({ email }: { email: string }) {
                 toast.error(result.error);
                 return;
             }
-            toast.success("Email confirmed");
+            toast.success("Correo electrónico confirmado");
             router.push(nextPath ?? "/organizations");
         } catch {
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
         }
     }
 
@@ -49,9 +49,9 @@ export function VerifyEmailForm({ email }: { email: string }) {
                 toast.error(result.error);
                 return;
             }
-            toast.success("We sent you a new code");
+            toast.success("Le enviamos un código nuevo");
         } catch {
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
         } finally {
             setIsResending(false);
         }
@@ -60,9 +60,9 @@ export function VerifyEmailForm({ email }: { email: string }) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="text-2xl">Confirm your email</CardTitle>
+                <CardTitle className="text-2xl">Confirme su correo electrónico</CardTitle>
                 <CardDescription>
-                    Enter the 6-digit code we sent to <span className="font-medium text-foreground">{email}</span>
+                    Ingrese el código de 6 dígitos que enviamos a <span className="font-medium text-foreground">{email}</span>
                 </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
@@ -73,7 +73,7 @@ export function VerifyEmailForm({ email }: { email: string }) {
                             name="token"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Code</FormLabel>
+                                    <FormLabel>Código</FormLabel>
                                     <FormControl>
                                         <Input
                                             inputMode="numeric"
@@ -95,17 +95,17 @@ export function VerifyEmailForm({ email }: { email: string }) {
                             {form.formState.isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Confirming...
+                                    Confirmando…
                                 </>
                             ) : (
-                                "Confirm email"
+                                "Confirmar correo electrónico"
                             )}
                         </Button>
                     </form>
                 </Form>
 
                 <div className="text-center text-sm text-muted-foreground">
-                    Didn&apos;t get the code?{" "}
+                    ¿No recibió el código?{" "}
                     <Button
                         type="button"
                         variant="link"
@@ -113,7 +113,7 @@ export function VerifyEmailForm({ email }: { email: string }) {
                         onClick={handleResend}
                         disabled={isResending || form.formState.isSubmitting}
                     >
-                        {isResending ? "Sending..." : "Send a new one"}
+                        {isResending ? "Enviando…" : "Enviar uno nuevo"}
                     </Button>
                 </div>
             </CardContent>

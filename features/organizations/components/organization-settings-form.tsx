@@ -21,20 +21,11 @@ import { LoaderCircle } from "lucide-react";
 import { SettingsSectionFooter } from "@/components/settings/settings-section";
 import { OrganizationLogoUpload } from "./organization-logo-upload";
 import { updateOrganizationAction } from "../actions";
-import type { Organization } from "../schemas";
+import { organizationNameField, organizationSlugField, type Organization } from "../schemas";
 
 const organizationSettingsSchema = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(2, "Organization name must be at least 2 characters")
-        .max(100, "Organization name cannot exceed 100 characters"),
-    slug: z
-        .string()
-        .trim()
-        .min(2, "Slug must be at least 2 characters")
-        .max(50, "Slug cannot exceed 50 characters")
-        .regex(/^[a-z0-9-]+$/, "Slug can only contain lowercase letters, numbers, and hyphens"),
+    name: organizationNameField,
+    slug: organizationSlugField,
 });
 
 type OrganizationSettingsValues = z.infer<typeof organizationSettingsSchema>;
@@ -62,11 +53,11 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
         const result = await updateOrganizationAction(formData, organization.id);
 
         if (!result.success) {
-            toast.error(result.error ?? "Failed to update organization");
+            toast.error(result.error ?? "No se pudo actualizar la organización.");
             return;
         }
 
-        toast.success("Organization updated");
+        toast.success("Se actualizó la organización.");
 
         if (result.slug && result.slug !== organization.slug) {
             router.push(`/organizations/${result.slug}/settings/organization`);
@@ -94,7 +85,7 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Name</FormLabel>
+                            <FormLabel>Nombre</FormLabel>
                             <FormControl>
                                 <Input disabled={isSubmitting} {...field} />
                             </FormControl>
@@ -108,12 +99,12 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
                     name="slug"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Slug</FormLabel>
+                            <FormLabel>Identificador en la URL</FormLabel>
                             <FormControl>
                                 <Input disabled={isSubmitting} {...field} />
                             </FormControl>
                             <FormDescription>
-                                Used in URLs. Changing it breaks existing links to this organization.
+                                Se usa en la dirección web. Si lo cambia, los enlaces existentes a esta organización dejarán de funcionar.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -126,10 +117,10 @@ export function OrganizationSettingsForm({ organization }: { organization: Organ
                     {isSubmitting ? (
                         <>
                             <LoaderCircle className="mr-2 size-4 animate-spin" />
-                            Saving...
+                            Guardando…
                         </>
                     ) : (
-                        "Save"
+                        "Guardar"
                     )}
                 </Button>
                 </SettingsSectionFooter>

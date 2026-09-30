@@ -8,7 +8,7 @@ async function CreateOrganizationContent() {
 
     return (
         <div className="mx-auto w-full max-w-2xl">
-            <h1 className="mb-2 text-2xl font-bold">Create Organization</h1>
+            <h1 className="mb-2 text-2xl font-bold">Crear organización</h1>
             <AddOrganizationStepperForm />
         </div>
     );

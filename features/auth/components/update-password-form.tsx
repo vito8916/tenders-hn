@@ -37,13 +37,12 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                 toast.error(result.error);
                 return;
             }
-            toast.success("Password updated successfully");
+            toast.success("Contraseña actualizada");
             setSuccess(true);
             form.reset();
-            // Update this route to redirect to an authenticated route. The user already has an active session.
-            router.push("/dashboard");
+            router.push("/organizations");
         } catch {
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
         }
     }
 
@@ -51,20 +50,20 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-                    <CardDescription>Please enter your new password below.</CardDescription>
+                    <CardTitle className="text-2xl">Restablecer contraseña</CardTitle>
+                    <CardDescription>Ingrese su nueva contraseña.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {success ? (
                         <div className="space-y-4">
                             <div className="p-4 text-sm text-green-600 bg-green-50 border border-green-200 rounded-md">
-                                Your password has been updated successfully! You will be redirected shortly.
+                                Su contraseña se actualizó. En un momento lo llevaremos a su cuenta.
                             </div>
                             <div className="text-center">
                                 <Link
                                     href="/login"
                                     className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4">
-                                    Back to login
+                                    Volver a iniciar sesión
                                 </Link>
                             </div>
                         </div>
@@ -76,12 +75,12 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                                     name="password"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>New Password</FormLabel>
+                                            <FormLabel>Nueva contraseña</FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         type={showPassword ? "text" : "password"}
-                                                        placeholder="Enter your new password"
+                                                        placeholder="Ingrese su nueva contraseña"
                                                         disabled={form.formState.isSubmitting}
                                                         {...field}
                                                     />
@@ -92,7 +91,7 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                                                         className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                                                         onClick={() => setShowPassword(!showPassword)}
                                                         disabled={form.formState.isSubmitting}
-                                                        aria-label={showPassword ? "Hide password" : "Show password"}>
+                                                        aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}>
                                                         {showPassword ? (
                                                             <EyeOff className="h-4 w-4 text-muted-foreground" />
                                                         ) : (
@@ -111,12 +110,12 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                                     name="confirmPassword"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Confirm New Password</FormLabel>
+                                            <FormLabel>Confirmar nueva contraseña</FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         type={showConfirmPassword ? "text" : "password"}
-                                                        placeholder="Confirm your new password"
+                                                        placeholder="Repita su nueva contraseña"
                                                         disabled={form.formState.isSubmitting}
                                                         {...field}
                                                     />
@@ -128,7 +127,7 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                                                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                                         disabled={form.formState.isSubmitting}
                                                         aria-label={
-                                                            showConfirmPassword ? "Hide password" : "Show password"
+                                                            showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"
                                                         }>
                                                         {showConfirmPassword ? (
                                                             <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -147,10 +146,10 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                                     {form.formState.isSubmitting ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Updating...
+                                            Actualizando…
                                         </>
                                     ) : (
-                                        "Update Password"
+                                        "Actualizar contraseña"
                                     )}
                                 </Button>
                             </form>

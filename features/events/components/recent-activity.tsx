@@ -1,4 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
+import { es } from "date-fns/locale";
 import { Activity } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,13 +12,13 @@ export function RecentActivity({ events }: { events: AppEvent[] }) {
 			<CardHeader>
 				<CardTitle className="flex items-center gap-2 text-base">
 					<Activity className="size-4" />
-					Recent activity
+					Actividad reciente
 				</CardTitle>
-				<CardDescription>Latest events in this organization.</CardDescription>
+				<CardDescription>Últimos eventos de esta organización.</CardDescription>
 			</CardHeader>
 			<CardContent>
 				{events.length === 0 ? (
-					<p className="text-sm text-muted-foreground">No activity yet.</p>
+					<p className="text-sm text-muted-foreground">Aún no hay actividad.</p>
 				) : (
 					<ul className="space-y-3">
 						{events.map((event) => {
@@ -34,7 +35,7 @@ export function RecentActivity({ events }: { events: AppEvent[] }) {
 										) : null}
 									</span>
 									<span className="shrink-0 text-xs text-muted-foreground">
-										{formatDistanceToNow(event.createdAt, { addSuffix: true })}
+										{formatDistanceToNow(event.createdAt, { addSuffix: true, locale: es })}
 									</span>
 								</li>
 							);

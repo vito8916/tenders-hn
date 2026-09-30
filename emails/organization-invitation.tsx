@@ -1,20 +1,23 @@
 import {
     Body,
     Button,
+    Column,
     Container,
     Head,
     Heading,
-    Hr,
     Html,
+    Link,
     Preview,
+    Row,
     Section,
     Text,
 } from "@react-email/components";
+import { ROLE_LABELS, type OrgRole } from "@/features/memberships/schemas";
 
 interface OrganizationInvitationEmailProps {
     orgName: string;
     inviterName?: string | null;
-    role: string;
+    role: OrgRole;
     acceptUrl: string;
     expiresAt: Date;
 }
@@ -26,105 +29,201 @@ export default function OrganizationInvitationEmail({
     acceptUrl,
     expiresAt,
 }: OrganizationInvitationEmailProps) {
-    const invitedBy = inviterName ? `${inviterName} has invited you` : "You have been invited";
-    const expiryDate = expiresAt.toLocaleDateString("en-US", {
+    const invitedBy = inviterName ? `${inviterName} lo invitó` : "Lo invitaron";
+    const expiryDate = expiresAt.toLocaleDateString("es-HN", {
+        day: "2-digit",
+        month: "2-digit",
         year: "numeric",
-        month: "long",
-        day: "numeric",
+        timeZone: "America/Tegucigalpa",
     });
+    const details = [
+        { label: "Organización", value: orgName },
+        { label: "Rol", value: ROLE_LABELS[role] },
+        { label: "Vence", value: expiryDate },
+    ];
 
     return (
-        <Html>
-            <Head />
-            <Preview>{`${invitedBy} to join ${orgName}`}</Preview>
+        <Html lang="es">
+            <Head>
+                <meta name="color-scheme" content="light" />
+                <meta name="supported-color-schemes" content="light" />
+            </Head>
+            <Preview>{`${invitedBy} a unirse a ${orgName} en Tenders HN`}</Preview>
             <Body style={body}>
                 <Container style={container}>
-                    <Heading style={heading}>Join {orgName}</Heading>
-                    <Text style={paragraph}>
-                        {invitedBy} to join <strong>{orgName}</strong> as{" "}
-                        <strong>{role}</strong>.
-                    </Text>
-                    <Section style={buttonSection}>
-                        <Button style={button} href={acceptUrl}>
-                            Accept invitation
-                        </Button>
+                    <Section style={card}>
+                        <Section style={header}>
+                            <Text style={wordmark}>
+                                Tenders<span style={wordmarkAccent}> HN</span>
+                            </Text>
+                        </Section>
+                        <Section style={content}>
+                            <Heading as="h1" style={heading}>
+                                Únase a {orgName}
+                            </Heading>
+                            <Text style={paragraph}>
+                                {invitedBy} a colaborar en Tenders HN, donde su equipo revisa las oportunidades de
+                                HonduCompras que corresponden a lo que vende su empresa.
+                            </Text>
+                            <Section style={detailsPanel}>
+                                {details.map((detail) => (
+                                    <Row key={detail.label} style={detailRow}>
+                                        <Column style={detailLabel}>{detail.label}</Column>
+                                        <Column style={detailValue}>{detail.value}</Column>
+                                    </Row>
+                                ))}
+                            </Section>
+                            <Section style={buttonSection}>
+                                <Button style={button} href={acceptUrl}>
+                                    Aceptar invitación
+                                </Button>
+                            </Section>
+                            <Text style={fallback}>
+                                Si el botón no funciona, copie y pegue este enlace en su navegador:
+                                <br />
+                                <Link href={acceptUrl} style={fallbackLink}>
+                                    {acceptUrl}
+                                </Link>
+                            </Text>
+                            <Text style={note}>Si no esperaba esta invitación, puede ignorar este correo.</Text>
+                        </Section>
                     </Section>
-                    <Text style={paragraph}>
-                        Or copy and paste this link into your browser:
-                    </Text>
-                    <Text style={link}>{acceptUrl}</Text>
-                    <Hr style={hr} />
-                    <Text style={footer}>
-                        This invitation expires on {expiryDate}. If you were not
-                        expecting it, you can safely ignore this email.
-                    </Text>
+                    <Text style={footer}>Tenders HN · Oportunidades de compras públicas en Honduras</Text>
                 </Container>
             </Body>
         </Html>
     );
 }
 
+// Shared with supabase/templates/*.html and the send-notification-emails function; keep them in step.
+const fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+
 const body = {
-    backgroundColor: "#f6f6f6",
-    fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-    padding: "24px 0",
+    backgroundColor: "#f4f4f5",
+    fontFamily,
+    margin: 0,
+    padding: "32px 12px",
 };
 
 const container = {
-    backgroundColor: "#ffffff",
-    borderRadius: "8px",
     margin: "0 auto",
-    maxWidth: "480px",
-    padding: "40px",
+    maxWidth: "560px",
+    width: "100%",
+};
+
+const card = {
+    backgroundColor: "#ffffff",
+    border: "1px solid #e4e4e7",
+    borderRadius: "12px",
+};
+
+const header = {
+    borderBottom: "1px solid #f4f4f5",
+    padding: "20px 32px",
+};
+
+const wordmark = {
+    color: "#09090b",
+    fontSize: "18px",
+    fontWeight: 700 as const,
+    letterSpacing: "-0.01em",
+    lineHeight: "24px",
+    margin: 0,
+};
+
+const wordmarkAccent = {
+    color: "#2563eb",
+};
+
+const content = {
+    padding: "32px",
 };
 
 const heading = {
-    color: "#111111",
+    color: "#09090b",
     fontSize: "22px",
     fontWeight: 600 as const,
-    margin: "0 0 16px",
+    letterSpacing: "-0.01em",
+    lineHeight: "30px",
+    margin: "0 0 12px",
 };
 
 const paragraph = {
-    color: "#333333",
+    color: "#3f3f46",
+    fontSize: "15px",
+    lineHeight: "24px",
+    margin: "0 0 24px",
+};
+
+const detailsPanel = {
+    backgroundColor: "#fafafa",
+    border: "1px solid #e4e4e7",
+    borderRadius: "8px",
+    padding: "8px 16px",
+};
+
+const detailRow = {
+    width: "100%",
+};
+
+const detailLabel = {
+    color: "#71717a",
     fontSize: "14px",
-    lineHeight: "22px",
-    margin: "0 0 16px",
+    lineHeight: "20px",
+    padding: "6px 0",
+    width: "120px",
+};
+
+const detailValue = {
+    color: "#09090b",
+    fontSize: "14px",
+    fontWeight: 500 as const,
+    lineHeight: "20px",
+    padding: "6px 0",
 };
 
 const buttonSection = {
-    margin: "24px 0",
-    textAlign: "center" as const,
+    margin: "28px 0",
 };
 
 const button = {
-    backgroundColor: "#111111",
-    borderRadius: "6px",
+    backgroundColor: "#09090b",
+    borderRadius: "8px",
     color: "#ffffff",
     display: "inline-block",
-    fontSize: "14px",
+    fontSize: "15px",
     fontWeight: 600 as const,
+    lineHeight: "20px",
     padding: "12px 24px",
     textDecoration: "none",
 };
 
-const link = {
-    color: "#2563eb",
-    fontSize: "12px",
-    lineHeight: "18px",
+const fallback = {
+    color: "#71717a",
+    fontSize: "13px",
+    lineHeight: "20px",
     margin: "0 0 16px",
+};
+
+const fallbackLink = {
+    color: "#2563eb",
+    textDecoration: "underline",
     wordBreak: "break-all" as const,
 };
 
-const hr = {
-    borderColor: "#e5e5e5",
-    margin: "24px 0 16px",
+const note = {
+    borderTop: "1px solid #f4f4f5",
+    color: "#71717a",
+    fontSize: "13px",
+    lineHeight: "20px",
+    margin: 0,
+    paddingTop: "16px",
 };
 
 const footer = {
-    color: "#888888",
+    color: "#a1a1aa",
     fontSize: "12px",
     lineHeight: "18px",
-    margin: 0,
+    margin: "16px 0 0",
+    textAlign: "center" as const,
 };

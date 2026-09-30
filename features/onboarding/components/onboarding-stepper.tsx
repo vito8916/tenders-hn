@@ -39,24 +39,32 @@ const JOIN_STEPS = [
 ];
 
 const onboardingFormSchema = z.object({
-    fullName: z.string().min(1, "Name is required").max(100).trim(),
+    fullName: z
+        .string()
+        .min(1, "Ingrese su nombre")
+        .max(100, "El nombre no puede tener más de 100 caracteres")
+        .trim(),
     phone: z
         .string()
-        .regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format")
+        .regex(/^\+?[1-9]\d{1,14}$/, "Ingrese un número de teléfono válido, por ejemplo +50499998888")
         .optional()
         .or(z.literal("")),
-    email: z.string().email(),
-    orgName: z.string().min(2, "Organization name is too short").max(100).trim(),
+    email: z.string().email("Ingrese un correo electrónico válido"),
+    orgName: z
+        .string()
+        .min(2, "El nombre de la organización debe tener al menos 2 caracteres")
+        .max(100, "El nombre de la organización no puede tener más de 100 caracteres")
+        .trim(),
     orgSlug: z
         .string()
-        .min(2, "Slug is too short")
-        .max(50, "Slug is too long")
-        .regex(/^[a-z0-9-]+$/, "Only lowercase letters, numbers, and dashes"),
+        .min(2, "El identificador en la URL debe tener al menos 2 caracteres")
+        .max(50, "El identificador en la URL no puede tener más de 50 caracteres")
+        .regex(/^[a-z0-9-]+$/, "Use solo letras minúsculas, números y guiones"),
     invites: z.array(
         z.object({
             id: z.string(),
             email: z.string(),
-            role: z.enum(["owner", "admin", "member", "viewer"]),
+            role: z.enum(["owner", "admin", "member", "viewer"], "Seleccione un rol"),
         })
     ),
 });
@@ -127,9 +135,9 @@ export function OnboardingStepper({
                     if (!isAvailable) {
                         form.setError("orgSlug", {
                             type: "manual",
-                            message: "This slug is already taken. Please choose another.",
+                            message: "Este identificador en la URL ya está en uso. Elija otro.",
                         });
-                        toast.error("This organization slug is already taken");
+                        toast.error("El identificador en la URL ya está en uso");
                         return false;
                     }
                     return true;
@@ -155,7 +163,7 @@ export function OnboardingStepper({
                 if (joinedOrgSlug) formData.set("joinedOrgSlug", joinedOrgSlug);
                 const result = await completeOnboardingWithoutOrgAction(formData);
                 if (result && !result.success) {
-                    toast.error(result.error || "Failed to complete onboarding");
+                    toast.error(result.error || "No se pudo completar la configuración inicial");
                 }
                 return;
             }
@@ -175,13 +183,13 @@ export function OnboardingStepper({
             const result = await completeOnboardingAction(formData);
 
             if (result && !result.success) {
-                toast.error(result.error || "Failed to complete onboarding");
+                toast.error(result.error || "No se pudo completar la configuración inicial");
             }
         } catch (error) {
             if (error && typeof error === "object" && "digest" in error) {
                 throw error;
             }
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
             console.error(error);
         } finally {
             setIsSubmitting(false);
@@ -197,7 +205,7 @@ export function OnboardingStepper({
                 <div className="w-full space-y-8">
                     <div className="space-y-2">
                         <p className="text-muted-foreground text-sm">
-                            Step {stepIndex + 1} of {STEPS.length}
+                            Paso {stepIndex + 1} de {STEPS.length}
                         </p>
                         <StepperList className="flex gap-1">
                             {STEPS.map((s) => (
@@ -255,7 +263,7 @@ export function OnboardingStepper({
                     <div className="flex justify-between items-center pt-4">
                         {stepIndex > 0 ? (
                             <StepperPrev asChild>
-                                <Button variant="outline">Previous</Button>
+                                <Button variant="outline">Anterior</Button>
                             </StepperPrev>
                         ) : (
                             <div />
@@ -265,7 +273,7 @@ export function OnboardingStepper({
                                 {isSubmitting && (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                 )}
-                                Finish
+                                Finalizar
                             </Button>
                         ) : (
                             <StepperNext asChild disabled={isCheckingSlug}>
@@ -273,7 +281,7 @@ export function OnboardingStepper({
                                     {isCheckingSlug && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
-                                    Next step
+                                    Siguiente
                                     <ChevronRight className="h-4 w-4" />
                                 </Button>
                             </StepperNext>

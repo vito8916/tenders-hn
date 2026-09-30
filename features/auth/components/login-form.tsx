@@ -43,7 +43,7 @@ export function LoginForm({
             if (result.code === "email_not_confirmed") {
                 const verifyParams = new URLSearchParams({ email: data.email });
                 if (nextPath) verifyParams.set("next", nextPath);
-                toast.info("Confirm your email to continue");
+                toast.info("Confirme su correo electrónico para continuar");
                 router.push(`/verify-email?${verifyParams}`);
                 return;
             }
@@ -55,11 +55,11 @@ export function LoginForm({
 
             if (result.data) {
                 // On success, inform the user and navigate to the destination.
-                toast.success("Login successful");
+                toast.success("Sesión iniciada");
                 router.push(destination);
             }
         } catch {
-            toast.error("Something went wrong. Please try again.");
+            toast.error("Algo salió mal. Intente de nuevo.");
         }
     }
 
@@ -75,7 +75,7 @@ export function LoginForm({
                 window.location.href = result.url;
             }
         } catch {
-            toast.error("OAuth sign-in failed. Please try again.");
+            toast.error("No se pudo iniciar sesión con el proveedor. Intente de nuevo.");
         } finally {
             setIsOauthLoading(null);
         }
@@ -85,12 +85,9 @@ export function LoginForm({
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-2xl">Login</CardTitle>
+                    <CardTitle className="text-2xl">Iniciar sesión</CardTitle>
                     <CardDescription>
-                        Enter your email below to login to your account. <br /> <br />
-                        Testing account: <br />
-                        Email: test@mtsupanextkit.app <br />
-                        Password: 12345678
+                        Ingrese su correo electrónico y contraseña para acceder a su cuenta.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-6">
@@ -101,11 +98,11 @@ export function LoginForm({
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Correo electrónico</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="email"
-                                                    placeholder="m@example.com"
+                                                    placeholder="nombre@empresa.hn"
                                                     disabled={form.formState.isSubmitting}
                                                     {...field}
                                                 />
@@ -121,19 +118,19 @@ export function LoginForm({
                                     render={({ field }) => (
                                         <FormItem>
                                             <div className="flex items-center justify-between">
-                                                <FormLabel>Password</FormLabel>
+                                                <FormLabel>Contraseña</FormLabel>
                                                 <Link
                                                     href="/forgot-password"
                                                     className="text-sm text-muted-foreground hover:text-primary underline underline-offset-4"
                                                 >
-                                                    Forgot password?
+                                                    ¿Olvidó su contraseña?
                                                 </Link>
                                             </div>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         type={showPassword ? "text" : "password"}
-                                                        placeholder="Enter your password"
+                                                        placeholder="Ingrese su contraseña"
                                                         disabled={form.formState.isSubmitting}
                                                         {...field}
                                                     />
@@ -144,7 +141,7 @@ export function LoginForm({
                                                         className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                                                         onClick={() => setShowPassword(!showPassword)}
                                                         disabled={form.formState.isSubmitting}
-                                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                                        aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                                                     >
                                                         {showPassword ? (
                                                             <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -167,10 +164,10 @@ export function LoginForm({
                                     {form.formState.isSubmitting ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Signing in...
+                                            Iniciando sesión…
                                         </>
                                     ) : (
-                                        "Sign in"
+                                        "Iniciar sesión"
                                     )}
                                 </Button>
                             </form>
@@ -182,7 +179,7 @@ export function LoginForm({
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
                                 <span className="bg-background px-2 text-muted-foreground">
-                                    Or continue with
+                                    O continúe con
                                 </span>
                             </div>
                         </div>
@@ -204,12 +201,12 @@ export function LoginForm({
                         </div>
 
                         <div className="text-center text-sm">
-                            Don&apos;t have an account?{" "}
+                            ¿No tiene una cuenta?{" "}
                             <Link
                                 href={authPathWithNext("/sign-up", nextPath)}
                                 className="underline underline-offset-4 hover:text-primary"
                             >
-                                Sign up
+                                Crear cuenta
                             </Link>
                         </div>
                 </CardContent>

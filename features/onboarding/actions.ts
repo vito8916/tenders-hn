@@ -15,22 +15,30 @@ import {
 } from "@/features/profiles/services";
 import { updateProfileInputSchema } from "@/features/profiles/schemas";
 import { uploadProfilePicture } from "@/features/profiles/repository";
+import { userErrorMessage } from "@/lib/errors";
 
 const IMAGE_MAX_BYTES = 2 * 1024 * 1024;
 const IMAGE_TYPES = ["image/jpeg", "image/png"];
 
-async function validateAndProcessImageFile(
+const PROFILE_ERROR_MESSAGE = "Revise su nombre y teléfono.";
+const ONBOARDING_ERROR_MESSAGE = "No se pudo completar la configuración inicial. Intente de nuevo.";
+
+/**
+ * Returns a Spanish error when an uploaded image is too large or not PNG/JPEG.
+ * Checked before any write so a bad file never leaves a half-created organization.
+ */
+function imageFileError(file: File | null, label: string): string | null {
+    if (!file || file.size === 0) return null;
+    if (file.size > IMAGE_MAX_BYTES) return `${label} debe pesar 2 MB o menos.`;
+    if (!IMAGE_TYPES.includes(file.type)) return `${label} debe ser PNG o JPEG.`;
+    return null;
+}
+
+async function processImageFile(
     file: File | null,
     fieldName: string
 ): Promise<{ buffer: Buffer; fileName: string; contentType: string } | null> {
     if (!file || file.size === 0) return null;
-
-    if (file.size > IMAGE_MAX_BYTES) {
-        throw new Error(`${fieldName} must be 2 MB or smaller.`);
-    }
-    if (!IMAGE_TYPES.includes(file.type)) {
-        throw new Error(`${fieldName} must be PNG or JPEG.`);
-    }
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
@@ -69,7 +77,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
             const parsedInvites = JSON.parse(invitesJson);
             invites = parsedInvites.filter((inv: InviteItem) => inv.email && inv.email.trim() !== "");
         } catch {
-            return { success: false, error: "Invalid invites format" };
+            return { success: false, error: "Las invitaciones no tienen un formato válido." };
         }
 
         const profileInput = updateProfileInputSchema.safeParse({
@@ -78,7 +86,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         });
 
         if (!profileInput.success) {
-            return { success: false, error: profileInput.error.message };
+            return { success: false, error: PROFILE_ERROR_MESSAGE };
         }
 
         const orgInput = createOrganizationInputSchema.safeParse({
@@ -89,10 +97,20 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         });
 
         if (!orgInput.success) {
-            return { success: false, error: orgInput.error.message };
+            return {
+                success: false,
+                error: "Revise el nombre y el identificador en la URL de la organización.",
+            };
         }
 
-        const avatarFileData = await validateAndProcessImageFile(avatarFile, "avatar");
+        const imageError =
+            imageFileError(avatarFile, "La foto de perfil") ??
+            imageFileError(orgLogoFile, "El logo de la organización");
+        if (imageError) {
+            return { success: false, error: imageError };
+        }
+
+        const avatarFileData = await processImageFile(avatarFile, "avatar");
         let avatarPath: string | undefined;
         if (avatarFileData) {
             avatarPath = await uploadProfilePicture({
@@ -111,7 +129,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
             },
         });
 
-        const logoFileData = await validateAndProcessImageFile(orgLogoFile, "logo");
+        const logoFileData = await processImageFile(orgLogoFile, "logo");
 
         const organization = await createOrganizationWithInvitesService({
             organizationInput: orgInput.data,
@@ -129,7 +147,7 @@ export async function completeOnboardingAction(formData: FormData): Promise<{
         console.error("Onboarding completion error:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to complete onboarding",
+            error: userErrorMessage(error, ONBOARDING_ERROR_MESSAGE),
         };
     }
 }
@@ -159,10 +177,15 @@ export async function completeOnboardingWithoutOrgAction(formData: FormData): Pr
         });
 
         if (!profileInput.success) {
-            return { success: false, error: profileInput.error.message };
+            return { success: false, error: PROFILE_ERROR_MESSAGE };
         }
 
-        const avatarFileData = await validateAndProcessImageFile(avatarFile, "avatar");
+        const imageError = imageFileError(avatarFile, "La foto de perfil");
+        if (imageError) {
+            return { success: false, error: imageError };
+        }
+
+        const avatarFileData = await processImageFile(avatarFile, "avatar");
         let avatarPath: string | undefined;
         if (avatarFileData) {
             avatarPath = await uploadProfilePicture({
@@ -193,7 +216,7 @@ export async function completeOnboardingWithoutOrgAction(formData: FormData): Pr
         console.error("Onboarding completion error:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to complete onboarding",
+            error: userErrorMessage(error, ONBOARDING_ERROR_MESSAGE),
         };
     }
 

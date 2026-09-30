@@ -12,14 +12,14 @@ interface SettingsTemplateNoticeProps {
 }
 
 export function SettingsTemplateNotice({
-	title = "Template placeholder",
-	description = "This section is scaffolded for the template. Wire it to Supabase when you are ready to persist settings.",
+	title = "Próximamente",
+	description = "Esta sección aún no está disponible. Los datos que ve son de ejemplo.",
 }: SettingsTemplateNoticeProps) {
 	return (
 		<div className="mb-6 rounded-lg border border-dashed border-border/80 bg-muted/20 px-4 py-3">
 			<div className="flex flex-wrap items-center gap-2">
 				<Badge variant="outline" className="font-mono text-[10px] uppercase">
-					Template
+					Vista previa
 				</Badge>
 				<p className="text-sm font-medium">{title}</p>
 			</div>

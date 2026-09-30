@@ -1,14 +1,17 @@
 import { z } from "zod";
 
+const PASSWORD_TOO_SHORT_MESSAGE = "La contraseña debe tener al menos 8 caracteres";
+const PASSWORD_TOO_LONG_MESSAGE = "La contraseña es demasiado larga";
+
 export const passwordFormSchema = z.object({
-  password: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
-  confirmPassword: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
+  password: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
+  confirmPassword: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
 });
 
 export const profileSchema = z.object({
-  fullName: z.string().min(1, "Name is required").max(100, "Name is too long"),
-  email: z.string().email("Invalid email address"),
-  bio: z.string().max(500, "Bio is too long").optional(),
+  fullName: z.string().min(1, "Ingrese su nombre").max(100, "El nombre es demasiado largo"),
+  email: z.string().email("Ingrese un correo electrónico válido"),
+  bio: z.string().max(500, "La biografía es demasiado larga").optional(),
 });
 
 export type PasswordFormValues = z.infer<typeof passwordFormSchema>;

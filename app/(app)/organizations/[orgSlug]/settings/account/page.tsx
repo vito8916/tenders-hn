@@ -16,12 +16,12 @@ async function AccountSettingsContent() {
 
 	return (
 		<SettingsTemplatePage
-			title="Account"
-			description="Manage your personal profile, credentials, and appearance."
+			title="Cuenta"
+			description="Administre su perfil, su contraseña y la apariencia de la aplicación."
 		>
 			<SettingsSection
-				title="Profile"
-				description="How you appear to other members in this organization."
+				title="Perfil"
+				description="Así lo ven los demás miembros de esta organización."
 			>
 				<SettingsSectionBody className="py-0">
 					<ProfileForm profileInfo={profile} />
@@ -29,8 +29,8 @@ async function AccountSettingsContent() {
 			</SettingsSection>
 
 			<SettingsSection
-				title="Password"
-				description="Update the password used to sign in to your account."
+				title="Contraseña"
+				description="Cambie la contraseña con la que inicia sesión."
 			>
 				<SettingsSectionBody className="py-0">
 					<PasswordForm />
@@ -38,8 +38,8 @@ async function AccountSettingsContent() {
 			</SettingsSection>
 
 			<SettingsSection
-				title="Appearance"
-				description="Choose how the app looks on this device."
+				title="Apariencia"
+				description="Elija cómo se ve la aplicación en este dispositivo."
 			>
 				<SettingsSectionBody>
 					<AppearanceForm />

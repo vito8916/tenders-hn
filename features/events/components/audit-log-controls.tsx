@@ -62,10 +62,10 @@ export function AuditLogControls({
 				}}
 			>
 				<SelectTrigger size="sm" className="w-full sm:w-[240px]">
-					<SelectValue placeholder="All event types" />
+					<SelectValue placeholder="Todos los tipos de evento" />
 				</SelectTrigger>
 				<SelectContent>
-					<SelectItem value="all">All event types</SelectItem>
+					<SelectItem value="all">Todos los tipos de evento</SelectItem>
 					{EVENT_FILTER_GROUPS.map((group) => (
 						<SelectGroup key={group.label}>
 							<SelectLabel>{group.label}</SelectLabel>
@@ -82,21 +82,21 @@ export function AuditLogControls({
 			<div className="flex items-center justify-between gap-3 sm:justify-end">
 				<p className="text-sm text-muted-foreground">
 					{total === 0
-						? "No events"
-						: `Showing ${rangeStart}–${rangeEnd} of ${total}`}
+						? "Sin eventos"
+						: `Mostrando ${rangeStart}–${rangeEnd} de ${total}`}
 				</p>
 				<div className="flex items-center gap-1">
 					{page > 1 ? (
 						<Button asChild variant="outline" size="sm">
 							<Link href={prevHref}>
 								<ChevronLeft className="size-4" />
-								Previous
+								Anterior
 							</Link>
 						</Button>
 					) : (
 						<Button variant="outline" size="sm" disabled>
 							<ChevronLeft className="size-4" />
-							Previous
+							Anterior
 						</Button>
 					)}
 					<span className="min-w-16 text-center text-sm text-muted-foreground">
@@ -105,13 +105,13 @@ export function AuditLogControls({
 					{page < totalPages ? (
 						<Button asChild variant="outline" size="sm">
 							<Link href={nextHref}>
-								Next
+								Siguiente
 								<ChevronRight className="size-4" />
 							</Link>
 						</Button>
 					) : (
 						<Button variant="outline" size="sm" disabled>
-							Next
+							Siguiente
 							<ChevronRight className="size-4" />
 						</Button>
 					)}

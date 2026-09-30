@@ -87,7 +87,7 @@ async function MembersContent({
 
             {showInvitations ? (
                 <section className="space-y-3">
-                    <h2 className="text-lg font-medium">Pending invitations</h2>
+                    <h2 className="text-lg font-medium">Invitaciones pendientes</h2>
                     <PendingInvitationsTable
                         invitations={pendingInvitations}
                         orgId={organization.id}
@@ -108,8 +108,8 @@ export default function MembersPage({
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
             <PageHeader
                 icon={Users}
-                title="Members"
-                description="Manage who has access to this organization."
+                title="Miembros"
+                description="Administre quién tiene acceso a esta organización."
                 action={
                     <Suspense fallback={<Skeleton className="h-9 w-36" />}>
                         <InviteMembersAction params={params} />

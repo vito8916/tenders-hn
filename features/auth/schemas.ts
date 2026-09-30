@@ -3,47 +3,51 @@ import { z } from "zod";
 /**
  * Schemas for authentication-related forms.
  */
+const INVALID_EMAIL_MESSAGE = "Ingrese un correo electrónico válido";
+const PASSWORD_TOO_SHORT_MESSAGE = "La contraseña debe tener al menos 8 caracteres";
+const PASSWORD_TOO_LONG_MESSAGE = "La contraseña es demasiado larga";
+
 export const signInSchema = z.object({
-    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
+    email: z.string().email(INVALID_EMAIL_MESSAGE).trim().toLowerCase(),
     password: z
       .string()
-      .min(8, "Password must be at least 8 characters long")
-      .max(100, "Password is too long"),
+      .min(8, PASSWORD_TOO_SHORT_MESSAGE)
+      .max(100, PASSWORD_TOO_LONG_MESSAGE),
   })
 
 export const signUpSchema = z.object({
-    fullName: z.string().min(1, "Full name is required").trim().toLowerCase(),
-    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
+    fullName: z.string().min(1, "Ingrese su nombre completo").trim(),
+    email: z.string().email(INVALID_EMAIL_MESSAGE).trim().toLowerCase(),
     password: z
       .string()
-      .min(8, "Password must be at least 8 characters long")
-      .max(20, "Password is too long"),
+      .min(8, PASSWORD_TOO_SHORT_MESSAGE)
+      .max(20, PASSWORD_TOO_LONG_MESSAGE),
   })
 
 export const resendConfirmationEmailSchema = z.object({
-    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
+    email: z.string().email(INVALID_EMAIL_MESSAGE).trim().toLowerCase(),
   });
 
 export const verifyEmailSchema = z.object({
-    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
-    token: z.string().trim().regex(/^\d{6}$/, "Enter the 6-digit code from the email"),
+    email: z.string().email(INVALID_EMAIL_MESSAGE).trim().toLowerCase(),
+    token: z.string().trim().regex(/^\d{6}$/, "Ingrese el código de 6 dígitos del correo"),
   });
 
 export const forgotPasswordSchema = z.object({
-    email: z.string().email("Please enter a valid email address").trim().toLowerCase(),
+    email: z.string().email(INVALID_EMAIL_MESSAGE).trim().toLowerCase(),
   });
 
 export const updatePasswordSchema = z.object({
-    password: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
-    confirmPassword: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
+    password: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
+    confirmPassword: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
   });
 
 export const changePasswordSchema = z.object({
-    currentPassword: z.string().min(1, "Current password is required"),
-    newPassword: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
-    confirmPassword: z.string().min(8, "Password must be at least 8 characters long").max(20, "Password is too long"),
+    currentPassword: z.string().min(1, "Ingrese su contraseña actual"),
+    newPassword: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
+    confirmPassword: z.string().min(8, PASSWORD_TOO_SHORT_MESSAGE).max(20, PASSWORD_TOO_LONG_MESSAGE),
   }).refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: "Las contraseñas no coinciden",
     path: ["confirmPassword"],
   });
 

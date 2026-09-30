@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "lucide-react";
+import { ROLE_LABELS } from "@/features/memberships/schemas";
 
 const MAX_INVITES = 10;
 
@@ -28,17 +29,17 @@ export function InvitesStep() {
     return (
         <div className="w-full space-y-8">
             <div>
-                <h2 className="text-2xl font-bold">Invite your team</h2>
+                <h2 className="text-2xl font-bold">Invite a su equipo</h2>
                 <p className="text-muted-foreground mt-1">
-                    Add team members to get started. You can always invite more people later.
+                    Agregue a los miembros de su equipo para comenzar. Puede invitar a más personas más adelante.
                 </p>
             </div>
 
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                    <div className="grid grid-cols-[1fr_110px] gap-4 w-full max-w-xl">
-                        <Label className="text-muted-foreground">Email address</Label>
-                        <Label className="text-muted-foreground">Role</Label>
+                    <div className="grid grid-cols-[1fr_150px] gap-4 w-full max-w-xl">
+                        <Label className="text-muted-foreground">Correo electrónico</Label>
+                        <Label className="text-muted-foreground">Rol</Label>
                     </div>
                     <Button
                         type="button"
@@ -49,7 +50,7 @@ export function InvitesStep() {
                         }
                         disabled={!canAddMore}
                     >
-                        + Add invitation
+                        + Agregar invitación
                     </Button>
                 </div>
 
@@ -63,7 +64,7 @@ export function InvitesStep() {
                                     <FormItem className="flex-1">
                                         <FormControl>
                                             <Input
-                                                placeholder="user@email.com"
+                                                placeholder="colega@empresa.hn"
                                                 type="email"
                                                 {...field}
                                             />
@@ -76,20 +77,20 @@ export function InvitesStep() {
                                 control={form.control}
                                 name={`invites.${index}.role`}
                                 render={({ field }) => (
-                                    <FormItem className="w-[110px]">
+                                    <FormItem className="w-[150px]">
                                         <Select
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
                                         >
                                             <FormControl>
                                                 <SelectTrigger>
-                                                    <SelectValue placeholder="Role" />
+                                                    <SelectValue placeholder="Rol" />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="member">Member</SelectItem>
-                                                <SelectItem value="admin">Admin</SelectItem>
-                                                <SelectItem value="viewer">Viewer</SelectItem>
+                                                <SelectItem value="member">{ROLE_LABELS.member}</SelectItem>
+                                                <SelectItem value="admin">{ROLE_LABELS.admin}</SelectItem>
+                                                <SelectItem value="viewer">{ROLE_LABELS.viewer}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
@@ -105,6 +106,7 @@ export function InvitesStep() {
                                     onClick={() => remove(index)}
                                 >
                                     <XIcon className="h-4 w-4" />
+                                    <span className="sr-only">Quitar invitación</span>
                                 </Button>
                             )}
                         </div>

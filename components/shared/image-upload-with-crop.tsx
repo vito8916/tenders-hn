@@ -93,9 +93,9 @@ export function ImageUploadWithCrop({
         onDropRejected: (rejections) => {
             const err = rejections[0]?.errors[0];
             if (err?.code === "file-too-large") {
-                toast.error(`File too large. Maximum size is ${maxFileSize / 1024 / 1024} MB.`);
+                toast.error(`El archivo es demasiado grande. El tamaño máximo es de ${maxFileSize / 1024 / 1024} MB.`);
             } else if (err?.code === "file-invalid-type") {
-                toast.error("Invalid file type. Please upload a PNG or JPEG image.");
+                toast.error("Tipo de archivo no válido. Suba una imagen PNG o JPEG.");
             }
         },
     });
@@ -120,7 +120,7 @@ export function ImageUploadWithCrop({
             setUserRemoved(false);
             onFileSelect?.(file);
         } catch (error) {
-            toast.error("Failed to crop image");
+            toast.error("No se pudo recortar la imagen");
             console.error(error);
         } finally {
             URL.revokeObjectURL(imageToCrop);
@@ -156,7 +156,7 @@ export function ImageUploadWithCrop({
         <Dialog open={cropModalOpen} onOpenChange={(open) => { if (!open) handleCropCancel(); }}>
             <DialogContent className="max-w-lg">
                 <DialogHeader>
-                    <DialogTitle>Crop image</DialogTitle>
+                    <DialogTitle>Recortar imagen</DialogTitle>
                 </DialogHeader>
                 {imageToCrop && (
                     <div className="relative h-80 w-full">
@@ -186,9 +186,9 @@ export function ImageUploadWithCrop({
                 </div>
                 <DialogFooter>
                     <Button variant="outline" onClick={handleCropCancel}>
-                        Cancel
+                        Cancelar
                     </Button>
-                    <Button onClick={handleCropConfirm}>Apply</Button>
+                    <Button onClick={handleCropConfirm}>Aplicar</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
@@ -211,20 +211,21 @@ export function ImageUploadWithCrop({
                         {/* eslint-disable-next-line @next/next/no-img-element -- blob/object URL preview, next/image cannot optimize it */}
                         <img
                             src={displayUrl}
-                            alt="Upload preview"
+                            alt="Vista previa de la imagen"
                             className="w-full h-full object-cover"
                         />
                     </div>
                     <button
                         type="button"
                         onClick={handleDelete}
+                        aria-label="Quitar imagen"
                         className="absolute -bottom-1 -right-1 bg-background p-1.5 rounded-full border shadow-sm cursor-pointer hover:bg-muted transition-colors"
                     >
                         <Trash2 className="h-3.5 w-3.5 text-muted-foreground" />
                     </button>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                    Click to remove and upload a different image
+                    Haga clic en el ícono para quitar la imagen y subir otra
                 </p>
                 {cropDialog}
             </div>
@@ -248,13 +249,13 @@ export function ImageUploadWithCrop({
                     <>
                         <ImageIcon className="h-8 w-8 text-muted-foreground" />
                         {/* <span className="text-sm font-medium text-center">
-                            Upload your {shape === "circle" ? "photo" : "logo"}
+                            Suba su {shape === "circle" ? "foto" : "logo"}
                         </span> */}
                     </>
                 )}
             </div>
             <p className="text-xs text-muted-foreground">
-                *.png, *.jpeg files up to {maxFileSize / 1024 / 1024} MB
+                Archivos *.png o *.jpeg de hasta {maxFileSize / 1024 / 1024} MB
             </p>
             {cropDialog}
         </div>

@@ -6,12 +6,14 @@ import { Building2, Check, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { acceptInvitationDuringOnboardingAction } from "@/features/invitations/actions";
+import type { InviteRole } from "@/features/invitations/schemas";
+import { ROLE_LABELS } from "@/features/memberships/schemas";
 
 export interface JoinableInvitation {
     id: string;
     orgName: string;
     orgSlug: string;
-    role: string;
+    role: InviteRole;
     token: string;
 }
 
@@ -41,9 +43,9 @@ export function JoinStep({
             if (result.success && result.orgSlug) {
                 setJoinedIds((current) => [...current, invitation.id]);
                 onJoined(result.orgSlug);
-                toast.success(`Joined ${result.orgName ?? invitation.orgName}`);
+                toast.success(`Se unió a ${result.orgName ?? invitation.orgName}`);
             } else {
-                toast.error(result.error ?? "Failed to join the organization");
+                toast.error(result.error ?? "No se pudo unir a la organización");
             }
         });
     }
@@ -51,11 +53,11 @@ export function JoinStep({
     return (
         <div className="w-full space-y-8">
             <div>
-                <h2 className="text-2xl font-bold">Join your team</h2>
+                <h2 className="text-2xl font-bold">Únase a su equipo</h2>
                 <p className="text-muted-foreground mt-1">
                     {invitations.length > 0
-                        ? "You have pending invitations. Join your team to get started."
-                        : "You are already a member of an organization, so there is nothing else to set up."}
+                        ? "Tiene invitaciones pendientes. Únase a su equipo para comenzar."
+                        : "Usted ya es miembro de una organización, así que no hay nada más que configurar."}
                 </p>
             </div>
 
@@ -76,15 +78,13 @@ export function JoinStep({
                                     </div>
                                     <div>
                                         <p className="font-medium">{invitation.orgName}</p>
-                                        <Badge variant="secondary" className="capitalize">
-                                            {invitation.role}
-                                        </Badge>
+                                        <Badge variant="secondary">{ROLE_LABELS[invitation.role]}</Badge>
                                     </div>
                                 </div>
                                 {joined ? (
                                     <span className="flex items-center gap-1 text-sm font-medium text-green-600">
                                         <Check className="size-4" />
-                                        Joined
+                                        Se unió
                                     </span>
                                 ) : (
                                     <Button
@@ -94,10 +94,10 @@ export function JoinStep({
                                         {isJoining ? (
                                             <>
                                                 <Loader2 className="mr-2 size-4 animate-spin" />
-                                                Joining...
+                                                Uniéndose…
                                             </>
                                         ) : (
-                                            "Join"
+                                            "Unirse"
                                         )}
                                     </Button>
                                 )}
@@ -109,7 +109,7 @@ export function JoinStep({
 
             {hasExistingMembership && invitations.length === 0 ? (
                 <p className="rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">
-                    Finish to go to your organizations.
+                    Seleccione «Finalizar» para ir a sus organizaciones.
                 </p>
             ) : null}
 
@@ -118,7 +118,7 @@ export function JoinStep({
                 onClick={onCreateInstead}
                 className="text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
             >
-                I want to create my own organization instead
+                Prefiero crear mi propia organización
             </button>
         </div>
     );

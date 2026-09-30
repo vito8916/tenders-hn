@@ -41,10 +41,11 @@ export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
     const pathname = usePathname()
     const params = useParams();
     const orgSlug = params.orgSlug
+    const settingsPathPrefix = `/organizations/${orgSlug}/settings`
 
     const items: MenuItem[] = [
         {
-            title: "Dashboard",
+            title: "Inicio",
             url: `/organizations/${orgSlug}`,
             icon: Home,
         },
@@ -56,28 +57,25 @@ export function NavMain({showInternalInbox}: { showInternalInbox: boolean }) {
             }]
             : []),
         {
-            title: "Members",
+            title: "Miembros",
             url: `/organizations/${orgSlug}/members`,
             icon: Users,
         },
         {
-            title: "Settings",
-            url: `/organizations/${orgSlug}/settings/account`,
+            title: "Configuración",
+            url: `${settingsPathPrefix}/account`,
             icon: Settings,
         },
     ]
 
     return (
         <SidebarGroup>
-            <SidebarGroupLabel>Menu</SidebarGroupLabel>
+            <SidebarGroupLabel>Menú</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => {
-                    const isActive =
-                        item.title === "Settings"
-                            ? pathname.startsWith(
-                                  `/organizations/${orgSlug}/settings`
-                              )
-                            : pathname === item.url;
+                    const isActive = item.url.startsWith(settingsPathPrefix)
+                        ? pathname.startsWith(settingsPathPrefix)
+                        : pathname === item.url;
 
                     return item.items ? (
                         <Collapsible

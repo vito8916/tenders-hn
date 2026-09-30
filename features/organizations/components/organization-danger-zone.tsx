@@ -40,14 +40,9 @@ export function OrganizationDangerZone({
 
 	function handleDelete() {
 		startTransition(async () => {
-			try {
-				await deleteOrganizationAction(orgId);
-			} catch (error) {
-				toast.error(
-					error instanceof Error
-						? error.message
-						: "Failed to delete organization"
-				);
+			const result = await deleteOrganizationAction(orgId);
+			if (result?.error) {
+				toast.error(result.error);
 			}
 		});
 	}
@@ -64,35 +59,35 @@ export function OrganizationDangerZone({
 	return (
 		<SettingsSection
 			variant="danger"
-			title="Danger zone"
+			title="Zona de riesgo"
 			description={
 				isOwner
-					? "Irreversible actions that affect this organization and all its data."
-					: "Actions that remove your access to this organization."
+					? "Acciones irreversibles que afectan a esta organización y a todos sus datos."
+					: "Acciones que eliminan su acceso a esta organización."
 			}
 		>
 			<SettingsSectionBody className="py-0">
 				<SettingsRow
-					label={isOwner ? "Delete organization" : "Leave organization"}
+					label={isOwner ? "Eliminar la organización" : "Salir de la organización"}
 					description={
 						isOwner
-							? "Permanently removes all members, invitations, and organization data."
-							: "You will lose access until an admin invites you again."
+							? "Elimina de forma permanente los miembros, las invitaciones y los datos de la organización."
+							: "Perderá el acceso hasta que un administrador lo vuelva a invitar."
 					}
 				>
 					{isOwner ? (
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
 								<Button variant="destructive" size="sm" disabled={isPending}>
-									Delete
+									Eliminar
 								</Button>
 							</AlertDialogTrigger>
 							<AlertDialogContent>
 								<AlertDialogHeader>
-									<AlertDialogTitle>Delete {orgName}</AlertDialogTitle>
+									<AlertDialogTitle>¿Eliminar {orgName}?</AlertDialogTitle>
 									<AlertDialogDescription>
-										Type <strong>{orgName}</strong> to confirm. All data
-										belonging to this organization will be permanently deleted.
+										Escriba <strong>{orgName}</strong> para confirmar. Todos los datos
+										de esta organización se eliminarán de forma permanente.
 									</AlertDialogDescription>
 								</AlertDialogHeader>
 								<Input
@@ -102,13 +97,13 @@ export function OrganizationDangerZone({
 								/>
 								<AlertDialogFooter>
 									<AlertDialogCancel onClick={() => setConfirmation("")}>
-										Cancel
+										Cancelar
 									</AlertDialogCancel>
 									<AlertDialogAction
 										disabled={confirmation !== orgName || isPending}
 										onClick={handleDelete}
 									>
-										Delete permanently
+										Eliminar de forma permanente
 									</AlertDialogAction>
 								</AlertDialogFooter>
 							</AlertDialogContent>
@@ -117,20 +112,20 @@ export function OrganizationDangerZone({
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
 								<Button variant="destructive" size="sm" disabled={isPending}>
-									Leave
+									Salir
 								</Button>
 							</AlertDialogTrigger>
 							<AlertDialogContent>
 								<AlertDialogHeader>
-									<AlertDialogTitle>Leave {orgName}</AlertDialogTitle>
+									<AlertDialogTitle>¿Salir de {orgName}?</AlertDialogTitle>
 									<AlertDialogDescription>
-										You will lose access to this organization and its data.
+										Perderá el acceso a esta organización y a sus datos.
 									</AlertDialogDescription>
 								</AlertDialogHeader>
 								<AlertDialogFooter>
-									<AlertDialogCancel>Cancel</AlertDialogCancel>
+									<AlertDialogCancel>Cancelar</AlertDialogCancel>
 									<AlertDialogAction disabled={isPending} onClick={handleLeave}>
-										Leave
+										Salir
 									</AlertDialogAction>
 								</AlertDialogFooter>
 							</AlertDialogContent>

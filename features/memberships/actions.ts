@@ -4,6 +4,7 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
+import { userErrorMessage } from "@/lib/errors";
 import { AssignableRoleSchema } from "./schemas";
 import {
     changeMemberRoleService,
@@ -38,7 +39,7 @@ export async function changeMemberRoleAction(input: {
 
         const parsed = changeMemberRoleActionSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Los datos ingresados no son válidos." };
         }
 
         await changeMemberRoleService({
@@ -55,7 +56,7 @@ export async function changeMemberRoleAction(input: {
         console.error("Error changing member role:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to change role",
+            error: userErrorMessage(error, "No se pudo cambiar el rol. Intente de nuevo."),
         };
     }
 }
@@ -73,7 +74,7 @@ export async function removeMemberAction(input: {
 
         const parsed = memberTargetSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Los datos ingresados no son válidos." };
         }
 
         await removeMemberService({
@@ -89,7 +90,7 @@ export async function removeMemberAction(input: {
         console.error("Error removing member:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to remove member",
+            error: userErrorMessage(error, "No se pudo quitar al miembro. Intente de nuevo."),
         };
     }
 }
@@ -109,7 +110,7 @@ export async function leaveOrganizationAction(input: {
 
     const parsed = leaveOrganizationActionSchema.safeParse(input);
     if (!parsed.success) {
-        return { success: false, error: "Invalid input" };
+        return { success: false, error: "Los datos ingresados no son válidos." };
     }
 
     try {
@@ -118,7 +119,7 @@ export async function leaveOrganizationAction(input: {
         console.error("Error leaving organization:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to leave organization",
+            error: userErrorMessage(error, "No se pudo salir de la organización. Intente de nuevo."),
         };
     }
 

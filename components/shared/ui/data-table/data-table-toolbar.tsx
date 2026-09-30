@@ -27,7 +27,7 @@ export function DataTableToolbar<TData>({
   table,
   facetedFilters = [],
   filterColumn = "name",
-  filterPlaceholder = "Filter...",
+  filterPlaceholder = "Filtrar…",
   onDelete,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
@@ -60,7 +60,7 @@ export function DataTableToolbar<TData>({
             size="sm"
             onClick={() => table.resetColumnFilters()}
           >
-            Reset
+            Limpiar
             <X />
           </Button>
         )}

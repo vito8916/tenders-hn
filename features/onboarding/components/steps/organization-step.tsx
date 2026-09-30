@@ -24,10 +24,10 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
     return (
         <div className="w-full space-y-8">
             <div>
-                <h2 className="text-2xl font-bold">Add your organization</h2>
+                <h2 className="text-2xl font-bold">Agregue su organización</h2>
                 <p className="text-muted-foreground mt-1">
-                    We just need some basic info to get your organization set up. You&apos;ll be
-                    able to edit this later.
+                    Solo necesitamos algunos datos básicos para configurar su organización. Podrá
+                    editarlos más adelante.
                 </p>
             </div>
 
@@ -42,7 +42,7 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
                         size={64}
                     />
                     <p className="text-xs text-muted-foreground">
-                        *.png, *.jpeg files up to 2 MB
+                        Archivos PNG o JPEG de hasta 2 MB
                     </p>
                 </div>
 
@@ -51,7 +51,7 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
                     name="orgName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Name*</FormLabel>
+                            <FormLabel>Nombre*</FormLabel>
                             <FormControl>
                                 <Input
                                     placeholder="Constructora Norte"
@@ -59,6 +59,8 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
                                     onChange={(e) => {
                                         field.onChange(e);
                                         const slug = e.target.value
+                                            .normalize("NFD")
+                                            .replace(/[\u0300-\u036f]/g, "")
                                             .toLowerCase()
                                             .replace(/[^a-z0-9-]/g, "-")
                                             .replace(/-+/g, "-")
@@ -77,7 +79,7 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
                     name="orgSlug"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Slug*</FormLabel>
+                            <FormLabel>Identificador en la URL*</FormLabel>
                             <FormControl>
                                 <InputGroup>
                                     <InputGroupAddon align="inline-start" className="pr-1">
@@ -86,7 +88,7 @@ export function OrganizationStep({ logoFile, onLogoFileChange }: OrganizationSte
                                         </InputGroupText>
                                     </InputGroupAddon>
                                     <InputGroupInput
-                                        placeholder="acme-inc"
+                                        placeholder="constructora-norte"
                                         className="pl-1"
                                         {...field}
                                     />

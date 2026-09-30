@@ -23,7 +23,7 @@ function InvitationNotice({ title, description }: { title: string; description: 
             </CardHeader>
             <CardContent>
                 <Button asChild variant="outline" className="w-full">
-                    <Link href="/organizations">Go to your organizations</Link>
+                    <Link href="/organizations">Ir a sus organizaciones</Link>
                 </Button>
             </CardContent>
         </Card>
@@ -39,8 +39,8 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
     if (!invitation) {
         return (
             <InvitationNotice
-                title="Invitation not found"
-                description="This invitation link is invalid. Ask the organization admin to send you a new one."
+                title="Invitación no encontrada"
+                description="Este enlace de invitación no es válido. Pida al administrador de la organización que le envíe uno nuevo."
             />
         );
     }
@@ -48,8 +48,8 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
     if (invitation.acceptedAt) {
         return (
             <InvitationNotice
-                title="Already accepted"
-                description={`This invitation to ${invitation.orgName} has already been accepted.`}
+                title="Invitación ya aceptada"
+                description={`Esta invitación a ${invitation.orgName} ya fue aceptada.`}
             />
         );
     }
@@ -57,8 +57,8 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
     if (invitation.expiresAt < new Date()) {
         return (
             <InvitationNotice
-                title="Invitation expired"
-                description={`This invitation to ${invitation.orgName} has expired. Ask the organization admin to send you a new one.`}
+                title="Invitación vencida"
+                description={`Esta invitación a ${invitation.orgName} está vencida. Pida al administrador de la organización que le envíe una nueva.`}
             />
         );
     }
@@ -66,8 +66,8 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
     if (user.email?.toLowerCase() !== invitation.email.toLowerCase()) {
         return (
             <InvitationNotice
-                title="Different email address"
-                description={`This invitation was sent to ${invitation.email}, but you are signed in as ${user.email}. Sign in with the invited email to accept it.`}
+                title="Correo electrónico distinto"
+                description={`Esta invitación se envió a ${invitation.email}, pero usted inició sesión como ${user.email}. Inicie sesión con el correo invitado para aceptarla.`}
             />
         );
     }

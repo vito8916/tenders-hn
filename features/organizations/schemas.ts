@@ -4,18 +4,23 @@ import { InviteRoleSchema } from "@/features/invitations/schemas";
 /**
  * Reusable field definitions for organizations
  */
-const organizationNameField = z
+export const organizationNameField = z
     .string()
     .trim()
-    .min(2, "Organization name must be at least 2 characters")
-    .max(100, "Organization name cannot exceed 100 characters");
+    .min(2, "El nombre de la organización debe tener al menos 2 caracteres.")
+    .max(100, "El nombre de la organización no puede tener más de 100 caracteres.");
 
-const organizationSlugField = z
+export const organizationSlugField = z
     .string()
     .trim()
-    .min(2, "Slug must be at least 2 characters")
-    .max(50, "Slug cannot exceed 50 characters")
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug must be lowercase letters, numbers, and hyphens");
+    .min(2, "El identificador en la URL debe tener al menos 2 caracteres.")
+    .max(50, "El identificador en la URL no puede tener más de 50 caracteres.")
+    .regex(
+        /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+        "El identificador en la URL solo puede tener letras minúsculas, números y guiones."
+    );
+
+const organizationLogoUrlField = z.string().url("La dirección del logo no es válida.");
 
 /**
  * Full organization entity schema (matches database table)
@@ -46,19 +51,10 @@ export const organizationListItemSchema = z.object({
  * Used in Server Actions and Services
  */
 export const createOrganizationInputSchema = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(2, "Organization name must be at least 2 characters")
-        .max(100, "Organization name cannot exceed 100 characters"),
-    slug: z
-        .string()
-        .trim()
-        .min(2, "Slug must be at least 2 characters")
-        .max(50, "Slug cannot exceed 50 characters")
-        .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug must be lowercase letters, numbers, and hyphens"),
+    name: organizationNameField,
+    slug: organizationSlugField,
     ownerId: z.uuid(),
-    orgLogoUrl: z.string().url().nullable().optional(),
+    orgLogoUrl: organizationLogoUrlField.nullable().optional(),
 });
 
 /**
@@ -66,30 +62,23 @@ export const createOrganizationInputSchema = z.object({
  * Used in UI components for form validation
  */
 export const createOrganizationWithInvitesFormSchema = z.object({
-    orgName: z
-        .string()
-        .min(2, "Organization name is too short")
-        .max(100, "Organization name is too long"),
-    orgSlug: z
-        .string()
-        .min(2, "Slug is too short")
-        .max(50, "Slug is too long")
-        .regex(/^[a-z0-9-]+$/, "Only lowercase letters, numbers, and dashes"),
+    orgName: organizationNameField,
+    orgSlug: organizationSlugField,
     invites: z
         .array(
             z.object({
-                email: z.string().email("Enter a valid email address").or(z.literal("")),
+                email: z.string().email("Ingrese un correo electrónico válido.").or(z.literal("")),
                 role: InviteRoleSchema,
             })
         )
-        .max(10, "Maximum 10 invitations allowed")
+        .max(10, "Puede enviar hasta 10 invitaciones.")
         .refine(
             (invites) => {
                 const nonEmptyInvites = invites.filter((inv) => inv.email.trim() !== "");
                 return nonEmptyInvites.length <= 10;
             },
             {
-                message: "Maximum 10 invitations allowed",
+                message: "Puede enviar hasta 10 invitaciones.",
             }
         ),
 });
@@ -100,23 +89,12 @@ export const createOrganizationWithInvitesFormSchema = z.object({
  */
 export const updateOrganizationInputSchema = z
     .object({
-        name: z
-            .string()
-            .trim()
-            .min(2, "Organization name must be at least 2 characters")
-            .max(100, "Organization name cannot exceed 100 characters")
-            .optional(),
-        slug: z
-            .string()
-            .trim()
-            .min(2, "Slug must be at least 2 characters")
-            .max(50, "Slug cannot exceed 50 characters")
-            .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug must be lowercase letters, numbers, and hyphens")
-            .optional(),
-        orgLogoUrl: z.string().url().nullable().optional(),
+        name: organizationNameField.optional(),
+        slug: organizationSlugField.optional(),
+        orgLogoUrl: organizationLogoUrlField.nullable().optional(),
     })
     .refine((data) => Object.keys(data).length > 0, {
-        message: "At least one field must be provided for update",
+        message: "Indique al menos un dato para actualizar.",
     });
 
 // Exported types inferred from schemas

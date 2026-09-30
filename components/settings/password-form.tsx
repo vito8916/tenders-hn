@@ -49,12 +49,12 @@ export function PasswordForm() {
 			}
 
 			if (result.data) {
-				toast.success("Password updated successfully");
+				toast.success("Contraseña actualizada");
 				form.reset(defaultValues);
 			}
 		} catch (error) {
 			console.error("Password update error:", error);
-			toast.error("Failed to update password. Please try again later.");
+			toast.error("No se pudo actualizar la contraseña. Intente de nuevo más tarde.");
 		} finally {
 			setIsLoading(false);
 		}
@@ -69,13 +69,12 @@ export function PasswordForm() {
 						name="password"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>New password</FormLabel>
+								<FormLabel>Nueva contraseña</FormLabel>
 								<FormControl>
 									<Input type="password" placeholder="••••••••" {...field} />
 								</FormControl>
 								<FormDescription>
-									At least 8 characters with uppercase, lowercase, number, and
-									special character.
+									Entre 8 y 20 caracteres.
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -86,7 +85,7 @@ export function PasswordForm() {
 						name="confirmPassword"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Confirm password</FormLabel>
+								<FormLabel>Confirmar contraseña</FormLabel>
 								<FormControl>
 									<Input type="password" placeholder="••••••••" {...field} />
 								</FormControl>
@@ -100,7 +99,7 @@ export function PasswordForm() {
 						{isLoading ? (
 							<LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
 						) : null}
-						Update password
+						Actualizar contraseña
 					</Button>
 				</SettingsSectionFooter>
 			</form>

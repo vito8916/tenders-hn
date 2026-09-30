@@ -37,15 +37,61 @@ function escapeHtml(value: string): string {
 function renderEmail(delivery: Delivery) {
   const actionUrl = delivery.action_url ? `${appUrl}${delivery.action_url}` : null;
 
+  // Same design as emails/organization-invitation.tsx and supabase/templates/*.html; keep them in step.
+  const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
   const html = `<!doctype html>
-<html>
-  <body style="margin:0;padding:24px;background:#f6f6f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#111827">
-    <div style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:8px;padding:32px">
-      <h1 style="margin:0 0 12px;font-size:20px;line-height:28px">${escapeHtml(delivery.title)}</h1>
-      ${delivery.body ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#374151">${escapeHtml(delivery.body)}</p>` : ""}
-      ${actionUrl ? `<a href="${escapeHtml(actionUrl)}" style="display:inline-block;background:#111827;color:#ffffff;text-decoration:none;font-size:14px;padding:10px 16px;border-radius:6px">Open</a>` : ""}
-      <p style="margin:32px 0 0;font-size:12px;line-height:18px;color:#6b7280">You can change which emails you receive in your notification settings.</p>
-    </div>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>${escapeHtml(delivery.title)}</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f4f4f5;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${escapeHtml(delivery.body ?? delivery.title)}</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f5;">
+      <tr>
+        <td align="center" style="padding:32px 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;">
+            <tr>
+              <td style="background-color:#ffffff;border:1px solid #e4e4e7;border-radius:12px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="padding:20px 32px;border-bottom:1px solid #f4f4f5;font-family:${font};font-size:18px;line-height:24px;font-weight:700;letter-spacing:-0.01em;color:#09090b;">
+                      Tenders<span style="color:#2563eb;"> HN</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:32px;font-family:${font};">
+                      <h1 style="margin:0 0 12px;font-size:22px;line-height:30px;font-weight:600;letter-spacing:-0.01em;color:#09090b;">${escapeHtml(delivery.title)}</h1>
+                      ${delivery.body ? `<p style="margin:0 0 28px;font-size:15px;line-height:24px;color:#3f3f46;">${escapeHtml(delivery.body)}</p>` : ""}
+                      ${
+                        actionUrl
+                          ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td bgcolor="#09090b" style="border-radius:8px;">
+                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">Ver en Tenders HN</a>
+                          </td>
+                        </tr>
+                      </table>`
+                          : ""
+                      }
+                      <p style="margin:28px 0 0;padding-top:16px;border-top:1px solid #f4f4f5;font-size:13px;line-height:20px;color:#71717a;">Recibe este correo por sus preferencias de notificación. Puede cambiarlas en Configuración → Notificaciones.</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:16px 0 0;font-family:${font};font-size:12px;line-height:18px;color:#a1a1aa;">
+                Tenders HN · Oportunidades de compras públicas en Honduras
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>`;
 

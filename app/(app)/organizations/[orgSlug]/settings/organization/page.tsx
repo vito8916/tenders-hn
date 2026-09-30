@@ -37,14 +37,14 @@ async function OrganizationSettingsContent({
 	return (
 		<SettingsTemplatePage
 			title="General"
-			description="Organization profile, branding, and destructive actions."
+			description="Datos de la organización, logo y acciones irreversibles."
 		>
 			<SettingsSection
 				title="General"
 				description={
 					canUpdateOrganization(role)
-						? "Update your organization's name, slug, and logo."
-						: "Organization details. Only owners and admins can edit them."
+						? "Actualice el nombre, el identificador en la URL y el logo de su organización."
+						: "Datos de la organización. Solo los propietarios y administradores pueden editarlos."
 				}
 			>
 				<SettingsSectionBody className="py-0">
@@ -53,11 +53,11 @@ async function OrganizationSettingsContent({
 					) : (
 						<dl className="divide-y divide-border/60">
 							<div className="flex items-center justify-between py-4 first:pt-0">
-								<dt className="text-sm text-muted-foreground">Name</dt>
+								<dt className="text-sm text-muted-foreground">Nombre</dt>
 								<dd className="text-sm font-medium">{organization.name}</dd>
 							</div>
 							<div className="flex items-center justify-between py-4">
-								<dt className="text-sm text-muted-foreground">Slug</dt>
+								<dt className="text-sm text-muted-foreground">Identificador en la URL</dt>
 								<dd className="font-mono text-sm">{organization.slug}</dd>
 							</div>
 						</dl>

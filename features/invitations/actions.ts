@@ -4,6 +4,7 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
+import { userErrorMessage } from "@/lib/errors";
 import { inviteItemSchema } from "./schemas";
 import {
     inviteMembersService,
@@ -12,19 +13,21 @@ import {
     acceptInvitationService,
 } from "./services";
 
+const INVALID_REQUEST_MESSAGE = "Solicitud no válida.";
+
 const inviteMembersActionSchema = z.object({
-    orgId: z.uuid(),
-    orgSlug: z.string().min(1),
+    orgId: z.uuid(INVALID_REQUEST_MESSAGE),
+    orgSlug: z.string().min(1, INVALID_REQUEST_MESSAGE),
     invites: z
         .array(inviteItemSchema)
-        .min(1, "At least one invitation is required")
-        .max(10, "Maximum 10 invitations allowed"),
+        .min(1, "Agregue al menos una invitación.")
+        .max(10, "Puede enviar hasta 10 invitaciones a la vez."),
 });
 
 const invitationTargetSchema = z.object({
-    orgId: z.uuid(),
-    orgSlug: z.string().min(1),
-    invitationId: z.uuid(),
+    orgId: z.uuid(INVALID_REQUEST_MESSAGE),
+    orgSlug: z.string().min(1, INVALID_REQUEST_MESSAGE),
+    invitationId: z.uuid(INVALID_REQUEST_MESSAGE),
 });
 
 /**
@@ -41,7 +44,7 @@ export async function inviteMembersAction(input: {
 
         const parsed = inviteMembersActionSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: parsed.error.issues[0]?.message ?? "Invalid input" };
+            return { success: false, error: parsed.error.issues[0]?.message ?? "Revise los datos ingresados." };
         }
 
         const { failedEmails } = await inviteMembersService({
@@ -57,7 +60,7 @@ export async function inviteMembersAction(input: {
         console.error("Error inviting members:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to send invitations",
+            error: userErrorMessage(error, "No se pudieron enviar las invitaciones. Intente de nuevo."),
         };
     }
 }
@@ -75,7 +78,7 @@ export async function revokeInvitationAction(input: {
 
         const parsed = invitationTargetSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Revise los datos ingresados." };
         }
 
         await revokeInvitationService({
@@ -91,7 +94,7 @@ export async function revokeInvitationAction(input: {
         console.error("Error revoking invitation:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to revoke invitation",
+            error: userErrorMessage(error, "No se pudo revocar la invitación. Intente de nuevo."),
         };
     }
 }
@@ -109,7 +112,7 @@ export async function resendInvitationAction(input: {
 
         const parsed = invitationTargetSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Revise los datos ingresados." };
         }
 
         await resendInvitationService({
@@ -123,23 +126,25 @@ export async function resendInvitationAction(input: {
         console.error("Error resending invitation:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to resend invitation",
+            error: userErrorMessage(error, "No se pudo reenviar la invitación. Intente de nuevo."),
         };
     }
 }
 
 const ACCEPT_ERROR_MESSAGES: Record<string, string> = {
-    invitation_not_found: "This invitation does not exist.",
-    invitation_already_accepted: "This invitation has already been accepted.",
-    invitation_expired: "This invitation has expired. Ask for a new one.",
+    invitation_not_found: "Esta invitación no existe.",
+    invitation_already_accepted: "Esta invitación ya fue aceptada.",
+    invitation_expired: "Esta invitación está vencida. Solicite una nueva.",
     invitation_email_mismatch:
-        "This invitation was sent to a different email address. Sign in with the invited email.",
+        "Esta invitación se envió a otro correo electrónico. Inicie sesión con el correo invitado.",
 };
 
 function toAcceptErrorMessage(error: unknown): string {
     const raw = error instanceof Error ? error.message : String(error);
     const known = Object.keys(ACCEPT_ERROR_MESSAGES).find((key) => raw.includes(key));
-    return known ? ACCEPT_ERROR_MESSAGES[known] : "Failed to accept the invitation.";
+    return known
+        ? ACCEPT_ERROR_MESSAGES[known]
+        : userErrorMessage(error, "No se pudo aceptar la invitación. Intente de nuevo.");
 }
 
 /**

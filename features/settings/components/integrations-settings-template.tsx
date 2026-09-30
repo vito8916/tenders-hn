@@ -15,51 +15,51 @@ import {
 export function IntegrationsSettingsTemplate() {
 	return (
 		<SettingsTemplatePage
-			title="Integrations"
-			description="API keys and webhooks for connecting external services."
+			title="Integraciones"
+			description="Claves de API y webhooks para conectar servicios externos."
 		>
-			<SettingsTemplateNotice description="Store API keys hashed in Supabase and sign webhook payloads before enabling these actions." />
+			<SettingsTemplateNotice description="Las claves de API y los webhooks aún no están disponibles. Los datos que ve son de ejemplo." />
 
 			<SettingsTemplateSection
-				title="API keys"
-				description="Create keys for server-to-server access scoped to this organization."
+				title="Claves de API"
+				description="Cree claves para que sus sistemas accedan a los datos de esta organización."
 			>
 				<div className="mb-4 flex justify-end">
 					<Button size="sm" disabled>
 						<Plus className="size-4" />
-						Create key
+						Crear clave
 					</Button>
 				</div>
 				<div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border/80 py-10 text-center">
-					<p className="text-sm font-medium">No API keys</p>
+					<p className="text-sm font-medium">No hay claves de API</p>
 					<p className="mt-1 max-w-sm text-sm text-muted-foreground">
-						Generate a key to authenticate requests from your backend or CI.
+						Genere una clave para autenticar las solicitudes de sus sistemas.
 					</p>
 				</div>
 			</SettingsTemplateSection>
 
 			<SettingsTemplateSection
 				title="Webhooks"
-				description="Receive HTTP callbacks when events happen in your organization."
+				description="Reciba avisos HTTP cuando ocurran eventos en su organización."
 			>
 				<SettingsRow
-					label="Endpoint URL"
-					description="We will POST signed payloads to this URL."
+					label="URL de destino"
+					description="Enviaremos solicitudes firmadas a esta URL."
 				>
 					<div className="flex w-full max-w-sm gap-2 sm:w-auto">
 						<Input
-							placeholder="https://api.example.com/webhooks"
+							placeholder="https://api.ejemplo.com/webhooks"
 							disabled
 							className="font-mono text-xs"
 						/>
-						<Button variant="outline" size="icon" disabled>
+						<Button variant="outline" size="icon" disabled aria-label="Copiar">
 							<Copy className="size-4" />
 						</Button>
 					</div>
 				</SettingsRow>
 				<SettingsRow
-					label="Signing secret"
-					description="Verify webhook authenticity with this secret."
+					label="Secreto de firma"
+					description="Use este secreto para verificar que los webhooks son auténticos."
 				>
 					<Badge variant="outline" className="font-mono text-xs">
 						whsec_••••••••
@@ -67,7 +67,7 @@ export function IntegrationsSettingsTemplate() {
 				</SettingsRow>
 				<div className="flex justify-end pt-2">
 					<Button size="sm" disabled>
-						Save webhook
+						Guardar webhook
 					</Button>
 				</div>
 			</SettingsTemplateSection>

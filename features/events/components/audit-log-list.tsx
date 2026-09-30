@@ -1,4 +1,5 @@
 import { format, formatDistanceToNow } from "date-fns";
+import { es } from "date-fns/locale";
 import { ScrollText } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -25,8 +26,8 @@ export function AuditLogList({
 			<AuditLogControls orgSlug={orgSlug} {...data} />
 
 			<SettingsSection
-				title="Recent activity"
-				description="Events recorded for this organization, newest first."
+				title="Actividad reciente"
+				description="Eventos registrados en esta organización, del más reciente al más antiguo."
 			>
 				<SettingsSectionBody className="py-0">
 					{entries.length === 0 ? (
@@ -35,12 +36,12 @@ export function AuditLogList({
 								<ScrollText className="size-4 text-muted-foreground" />
 							</div>
 							<p className="text-sm font-medium">
-								{hasFilter ? "No matching events" : "No activity yet"}
+								{hasFilter ? "No hay eventos que coincidan" : "Aún no hay actividad"}
 							</p>
 							<p className="mt-1 max-w-sm text-sm text-muted-foreground">
 								{hasFilter
-									? "Try another event type or clear the filter to see all activity."
-									: "Events appear here when members send invitations, change roles, or update organization settings."}
+									? "Pruebe con otro tipo de evento o quite el filtro para ver toda la actividad."
+									: "Los eventos aparecen aquí cuando los miembros envían invitaciones, cambian roles o actualizan la configuración de la organización."}
 							</p>
 						</div>
 					) : (
@@ -76,10 +77,11 @@ export function AuditLogList({
 											</p>
 										</div>
 										<div className="shrink-0 text-right text-xs text-muted-foreground">
-											<p>{format(event.createdAt, "MMM d, yyyy · h:mm a")}</p>
+											<p>{format(event.createdAt, "d MMM yyyy · HH:mm", { locale: es })}</p>
 											<p className="mt-0.5">
 												{formatDistanceToNow(event.createdAt, {
 													addSuffix: true,
+													locale: es,
 												})}
 											</p>
 										</div>

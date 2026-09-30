@@ -7,6 +7,7 @@ import { logAppEventService } from "@/features/events/services";
 import { APP_EVENTS } from "@/features/events/schemas";
 import { sendEmail } from "@/lib/email/resend";
 import OrganizationInvitationEmail from "@/emails/organization-invitation";
+import { UserFacingError } from "@/lib/errors";
 import {
     listPendingInvitations,
     listMyPendingInvitations,
@@ -37,7 +38,7 @@ async function sendInvitationEmail(params: {
 }): Promise<void> {
     await sendEmail({
         to: params.invitation.email,
-        subject: `Join ${params.orgName}`,
+        subject: `Invitación a ${params.orgName} en Tenders HN`,
         react: OrganizationInvitationEmail({
             orgName: params.orgName,
             inviterName: params.inviterName,
@@ -72,10 +73,10 @@ export async function inviteMembersService(params: {
     // 1. RBAC: only owner/admin can invite
     const role = await getUserOrgRole({ userId, orgId });
     if (!role) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
     if (!canInviteMembers(role)) {
-        throw new Error(`Insufficient permissions: ${role} cannot invite members`);
+        throw new UserFacingError("Su rol no le permite invitar miembros.");
     }
 
     // 2. Resolve org and inviter for the email content
@@ -85,7 +86,7 @@ export async function inviteMembersService(params: {
     ]);
 
     if (!organization) {
-        throw new Error("Organization not found");
+        throw new UserFacingError("No se encontró la organización.");
     }
 
     // 3. Create invitation rows
@@ -142,7 +143,7 @@ export async function listPendingInvitationsService(params: {
 
     const role = await getUserOrgRole({ userId, orgId });
     if (!role || !canManageMembers(role)) {
-        throw new Error("Insufficient permissions to view invitations");
+        throw new UserFacingError("Su rol no le permite ver las invitaciones.");
     }
 
     const invitations = await listPendingInvitations({ orgId });
@@ -163,15 +164,15 @@ export async function revokeInvitationService(params: {
 
     const role = await getUserOrgRole({ userId, orgId });
     if (!role || !canInviteMembers(role)) {
-        throw new Error("Insufficient permissions to revoke invitations");
+        throw new UserFacingError("Su rol no le permite revocar invitaciones.");
     }
 
     const invitation = await getInvitationById({ invitationId });
     if (!invitation || invitation.orgId !== orgId) {
-        throw new Error("Invitation not found in this organization");
+        throw new UserFacingError("No se encontró la invitación en esta organización.");
     }
     if (invitation.acceptedAt) {
-        throw new Error("Invitation was already accepted");
+        throw new UserFacingError("Esta invitación ya fue aceptada.");
     }
 
     await deleteInvitation({ invitationId });
@@ -198,18 +199,18 @@ export async function resendInvitationService(params: {
 
     const role = await getUserOrgRole({ userId, orgId });
     if (!role || !canInviteMembers(role)) {
-        throw new Error("Insufficient permissions to resend invitations");
+        throw new UserFacingError("Su rol no le permite reenviar invitaciones.");
     }
 
     const invitation = await getInvitationById({ invitationId });
     if (!invitation || invitation.orgId !== orgId) {
-        throw new Error("Invitation not found in this organization");
+        throw new UserFacingError("No se encontró la invitación en esta organización.");
     }
     if (invitation.acceptedAt) {
-        throw new Error("Invitation was already accepted");
+        throw new UserFacingError("Esta invitación ya fue aceptada.");
     }
     if (invitation.expiresAt < new Date()) {
-        throw new Error("Invitation has expired: revoke it and send a new one");
+        throw new UserFacingError("La invitación está vencida. Revóquela y envíe una nueva.");
     }
 
     const [organization, inviterProfile] = await Promise.all([
@@ -218,7 +219,7 @@ export async function resendInvitationService(params: {
     ]);
 
     if (!organization) {
-        throw new Error("Organization not found");
+        throw new UserFacingError("No se encontró la organización.");
     }
 
     await sendInvitationEmail({

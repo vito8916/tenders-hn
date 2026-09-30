@@ -18,7 +18,7 @@ export async function HeaderNotifications({ userId }: { userId: string }) {
 
 export function HeaderNotificationsFallback() {
     return (
-        <Button variant="outline" size="icon" className="size-9" disabled aria-label="Notifications">
+        <Button variant="outline" size="icon" className="size-9" disabled aria-label="Notificaciones">
             <Bell className="size-4" aria-hidden="true" />
         </Button>
     );

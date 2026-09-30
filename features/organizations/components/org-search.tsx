@@ -27,7 +27,8 @@ export function OrgSearch() {
     <div className="relative flex-1">
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <Input
-        placeholder="Search..."
+        placeholder="Buscar…"
+        aria-label="Buscar organizaciones"
         className="pl-9"
         defaultValue={searchParams.get("search")?.toString()}
         onChange={(e) => handleSearch(e.target.value)}

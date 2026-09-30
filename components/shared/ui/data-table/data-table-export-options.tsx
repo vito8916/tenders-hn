@@ -4,6 +4,7 @@ import { Download } from 'lucide-react'
 import React from 'react'
 import { toast } from 'sonner'
 import { format } from 'date-fns'
+import { es } from 'date-fns/locale'
 
 export default function DataTableExportOptions<TData>({ table }: { table: Table<TData> }) {
     const columns = table.getAllColumns()
@@ -11,7 +12,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
         const rowCount = table.getRowCount()
     
         if (rowCount === 0) {
-          toast.info("There are no rows to export.")
+          toast.info("No hay filas para exportar.")
           return
         }
     
@@ -26,7 +27,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
           )
     
           if (exportableColumns.length === 0) {
-            toast.error("No exportable columns found.")
+            toast.error("No hay columnas para exportar.")
             return
           }
     
@@ -38,7 +39,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
             // For non-string headers, use the accessor key as fallback
             const accessorKey =
               "accessorKey" in column ? column.accessorKey : ""
-            return accessorKey ? String(accessorKey) : "Unknown"
+            return accessorKey ? String(accessorKey) : "Desconocido"
           })
     
           // Process rows with proper data handling
@@ -56,7 +57,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
               // Handle date formatting
               if (accessorKey === "createdAt" && value) {
                 try {
-                  value = format(new Date(value as string), "dd MMM, yyyy")
+                  value = format(new Date(value as string), "d MMM yyyy", { locale: es })
                 } catch (error) {
                   console.warn("Date formatting error:", error)
                 }
@@ -106,7 +107,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
           // Generate filename with timestamp
           const now = new Date()
           const timestamp = format(now, "yyyy-MM-dd_HH-mm-ss")
-          link.download = `export_${timestamp}.csv`
+          link.download = `exportacion_${timestamp}.csv`
     
           // Trigger download
           document.body.appendChild(link)
@@ -117,19 +118,19 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
           URL.revokeObjectURL(link.href)
     
           // Show success notification
-          toast.success("Export completed!", {
-            description: `Exported ${rowCount} item${
-              rowCount !== 1 ? "s" : ""
-            } to CSV.`,
+          toast.success("Exportación completada", {
+            description: rowCount === 1
+              ? "Se exportó 1 fila a CSV."
+              : `Se exportaron ${rowCount} filas a CSV.`,
             duration: 3000,
           })
         } catch (error) {
           console.error("Export error:", error)
-          toast.error("Export failed", {
+          toast.error("No se pudo exportar", {
             description:
               error instanceof Error
                 ? error.message
-                : "An unexpected error occurred during export.",
+                : "Ocurrió un error inesperado al exportar.",
             duration: 5000,
           })
         }
@@ -143,7 +144,7 @@ export default function DataTableExportOptions<TData>({ table }: { table: Table<
         disabled={table.getRowCount() === 0}
       >
         <Download className="mr-2 h-4 w-4" />
-        Export CSV
+        Exportar CSV
       </Button>
     </div>
   )

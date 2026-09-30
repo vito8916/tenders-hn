@@ -21,16 +21,16 @@ export function ProfileStep({
     return (
         <div className="w-full space-y-8">
             <div>
-                <h2 className="text-2xl font-bold">Set up your profile</h2>
+                <h2 className="text-2xl font-bold">Configure su perfil</h2>
                 <p className="text-muted-foreground mt-1">
-                    Check if the profile information is correct. You&apos;ll be able to change this
-                    later in the account settings page.
+                    Revise que los datos de su perfil sean correctos. Podrá cambiarlos más adelante
+                    en la configuración de su cuenta.
                 </p>
             </div>
 
             <div className="space-y-6">
                 <div className="space-y-2">
-                    <FormLabel>Profile picture</FormLabel>
+                    <FormLabel>Foto de perfil</FormLabel>
                     <ImageUploadWithCrop
                         onFileSelect={onAvatarFileChange}
                         selectedFile={avatarFile}
@@ -46,9 +46,9 @@ export function ProfileStep({
                     name="fullName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Name*</FormLabel>
+                            <FormLabel>Nombre*</FormLabel>
                             <FormControl>
-                                <Input placeholder="Your name" {...field} />
+                                <Input placeholder="Su nombre" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -60,9 +60,9 @@ export function ProfileStep({
                     name="phone"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Phone</FormLabel>
+                            <FormLabel>Teléfono</FormLabel>
                             <FormControl>
-                                <Input placeholder="+1234567890" {...field} />
+                                <Input placeholder="+50499998888" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -74,7 +74,7 @@ export function ProfileStep({
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email*</FormLabel>
+                            <FormLabel>Correo electrónico*</FormLabel>
                             <FormControl>
                                 <Input readOnly disabled className="bg-muted" {...field} />
                             </FormControl>

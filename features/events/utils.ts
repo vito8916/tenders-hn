@@ -1,25 +1,31 @@
+import { OrgRoleSchema, ROLE_LABELS } from "@/features/memberships/schemas";
 import { APP_EVENTS, type AppEvent } from "./schemas";
 
 export const EVENT_LABELS: Record<string, string> = {
-	[APP_EVENTS.ORGANIZATION_CREATED]: "Organization created",
-	[APP_EVENTS.ORGANIZATION_UPDATED]: "Organization updated",
-	[APP_EVENTS.ORGANIZATION_DELETED]: "Organization deleted",
-	[APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED]: "Ownership transferred",
-	[APP_EVENTS.INVITATION_SENT]: "Invitations sent",
-	[APP_EVENTS.INVITATION_ACCEPTED]: "Invitation accepted",
-	[APP_EVENTS.INVITATION_REVOKED]: "Invitation revoked",
-	[APP_EVENTS.MEMBER_ROLE_CHANGED]: "Member role changed",
-	[APP_EVENTS.MEMBER_REMOVED]: "Member removed",
-	[APP_EVENTS.MEMBER_LEFT]: "Member left",
-	[APP_EVENTS.SUBSCRIPTION_ACTIVATED]: "Plan activated",
-	[APP_EVENTS.SUBSCRIPTION_RENEWED]: "Plan renewed",
-	[APP_EVENTS.SUBSCRIPTION_PLAN_CHANGED]: "Plan changed",
-	[APP_EVENTS.SUBSCRIPTION_CANCELED]: "Plan canceled",
-	[APP_EVENTS.SUBSCRIPTION_EXPIRED]: "Plan expired",
+	[APP_EVENTS.ORGANIZATION_CREATED]: "Organización creada",
+	[APP_EVENTS.ORGANIZATION_UPDATED]: "Organización actualizada",
+	[APP_EVENTS.ORGANIZATION_DELETED]: "Organización eliminada",
+	[APP_EVENTS.ORGANIZATION_OWNERSHIP_TRANSFERRED]: "Propiedad transferida",
+	[APP_EVENTS.INVITATION_SENT]: "Invitaciones enviadas",
+	[APP_EVENTS.INVITATION_ACCEPTED]: "Invitación aceptada",
+	[APP_EVENTS.INVITATION_REVOKED]: "Invitación revocada",
+	[APP_EVENTS.MEMBER_ROLE_CHANGED]: "Rol cambiado",
+	[APP_EVENTS.MEMBER_REMOVED]: "Miembro quitado",
+	[APP_EVENTS.MEMBER_LEFT]: "Miembro salió",
+	[APP_EVENTS.SUBSCRIPTION_ACTIVATED]: "Plan activado",
+	[APP_EVENTS.SUBSCRIPTION_RENEWED]: "Plan renovado",
+	[APP_EVENTS.SUBSCRIPTION_PLAN_CHANGED]: "Plan cambiado",
+	[APP_EVENTS.SUBSCRIPTION_CANCELED]: "Plan cancelado",
+	[APP_EVENTS.SUBSCRIPTION_EXPIRED]: "Plan vencido",
 };
 
 export function eventLabel(eventName: string) {
 	return EVENT_LABELS[eventName] ?? eventName;
+}
+
+function roleLabel(role: string) {
+	const parsed = OrgRoleSchema.safeParse(role);
+	return parsed.success ? ROLE_LABELS[parsed.data] : role;
 }
 
 export function eventDetail(event: AppEvent): string | null {
@@ -30,9 +36,9 @@ export function eventDetail(event: AppEvent): string | null {
 	if (typeof metadata.email === "string") return metadata.email;
 	if (Array.isArray(metadata.emails)) return metadata.emails.join(", ");
 	if (typeof metadata.from === "string" && typeof metadata.to === "string") {
-		return `${metadata.from} → ${metadata.to}`;
+		return `${roleLabel(metadata.from)} → ${roleLabel(metadata.to)}`;
 	}
-	if (typeof metadata.role === "string") return metadata.role;
+	if (typeof metadata.role === "string") return roleLabel(metadata.role);
 	if (typeof metadata.plan_id === "string") return metadata.plan_id;
 	if (typeof metadata.slug === "string") return metadata.slug;
 
@@ -43,12 +49,12 @@ export function formatActorName(params: {
 	fullName: string | null;
 	email: string | null;
 }) {
-	return params.fullName?.trim() || params.email || "Unknown user";
+	return params.fullName?.trim() || params.email || "Usuario desconocido";
 }
 
 export const EVENT_FILTER_GROUPS = [
 	{
-		label: "Organization",
+		label: "Organización",
 		events: [
 			APP_EVENTS.ORGANIZATION_CREATED,
 			APP_EVENTS.ORGANIZATION_UPDATED,
@@ -57,7 +63,7 @@ export const EVENT_FILTER_GROUPS = [
 		],
 	},
 	{
-		label: "Invitations",
+		label: "Invitaciones",
 		events: [
 			APP_EVENTS.INVITATION_SENT,
 			APP_EVENTS.INVITATION_ACCEPTED,
@@ -65,7 +71,7 @@ export const EVENT_FILTER_GROUPS = [
 		],
 	},
 	{
-		label: "Members",
+		label: "Miembros",
 		events: [
 			APP_EVENTS.MEMBER_ROLE_CHANGED,
 			APP_EVENTS.MEMBER_REMOVED,
@@ -73,7 +79,7 @@ export const EVENT_FILTER_GROUPS = [
 		],
 	},
 	{
-		label: "Billing",
+		label: "Facturación",
 		events: [
 			APP_EVENTS.SUBSCRIPTION_ACTIVATED,
 			APP_EVENTS.SUBSCRIPTION_RENEWED,

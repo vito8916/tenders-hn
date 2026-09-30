@@ -13,13 +13,13 @@ import type { NotificationPreference } from "../schemas";
 const CATEGORY_SECTIONS = [
 	{
 		category: "organization",
-		title: "Organizations",
-		description: "Membership, role, and invitation activity.",
+		title: "Organizaciones",
+		description: "Actividad de membresías, roles e invitaciones.",
 	},
 	{
 		category: "billing",
-		title: "Billing",
-		description: "Plan changes for organizations you own or administer.",
+		title: "Facturación",
+		description: "Cambios de plan en las organizaciones de las que usted es propietario o administrador.",
 	},
 ] as const;
 
@@ -48,7 +48,7 @@ export function NotificationPreferencesForm({
 
 		if (!result.success) {
 			setChannel(pref.typeId, channel, !enabled);
-			toast.error(result.error ?? "Could not save your preference");
+			toast.error(result.error ?? "No se pudo guardar su preferencia");
 		}
 	};
 
@@ -65,13 +65,13 @@ export function NotificationPreferencesForm({
 						<div className="flex items-center gap-6">
 							<ChannelSwitch
 								id={`${pref.typeId}-in-app`}
-								label="In-app"
+								label="En la aplicación"
 								checked={pref.inApp}
 								onCheckedChange={(enabled) => toggle(pref, "inApp", enabled)}
 							/>
 							<ChannelSwitch
 								id={`${pref.typeId}-email`}
-								label="Email"
+								label="Correo electrónico"
 								checked={pref.email}
 								onCheckedChange={(enabled) => toggle(pref, "email", enabled)}
 							/>

@@ -8,7 +8,7 @@ export const profileSchema = z.object({
     fullName: z.string().nullable(),
     avatarUrl: z.string().nullable().or(z.literal("")),
     bio: z.string().nullable(),
-    email: z.string().email().nullable(),
+    email: z.string().email("El correo electrónico no es válido.").nullable(),
     phone: z.string().nullable(),
     status: z.string().nullable(),
     onboardingCompletedAt: z.coerce.date().nullable(),
@@ -23,7 +23,7 @@ export const profileSummarySchema = z.object({
     id: z.string().uuid(),
     fullName: z.string().nullable(),
     avatarUrl: z.string().nullable().or(z.literal("")),
-    email: z.string().email().nullable(),
+    email: z.string().email("El correo electrónico no es válido.").nullable(),
 });
 
 /**
@@ -31,7 +31,7 @@ export const profileSummarySchema = z.object({
  */
 export const authUserSchema = z.object({
     sub: z.string().uuid(),
-    email: z.string().email().optional(),
+    email: z.string().email("El correo electrónico no es válido.").optional(),
     role: z.string().optional(),
     aud: z.string().optional(),
 });
@@ -48,10 +48,15 @@ export const userWithProfileSchema = z.object({
  * Schema for updating user profile information
  */
 export const updateProfileInputSchema = z.object({
-    fullName: z.string().min(1, "Full name is required").max(100).trim().optional(),
-    bio: z.string().max(500, "Bio must be 500 characters or less").trim().optional(),
-    phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format").optional(),
-    avatarUrl: z.string().min(1).optional(),
+    fullName: z
+        .string()
+        .min(1, "Ingrese su nombre completo.")
+        .max(100, "El nombre no puede tener más de 100 caracteres.")
+        .trim()
+        .optional(),
+    bio: z.string().max(500, "La biografía no puede tener más de 500 caracteres.").trim().optional(),
+    phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "El número de teléfono no es válido.").optional(),
+    avatarUrl: z.string().min(1, "La foto de perfil no es válida.").optional(),
 });
 
 /**
@@ -59,9 +64,15 @@ export const updateProfileInputSchema = z.object({
  */
 export const createProfileInputSchema = z.object({
     id: z.string().uuid(),
-    fullName: z.string().min(1).max(100).trim().nullable().optional(),
-    email: z.string().email(),
-    avatarUrl: z.string().url().nullable().optional(),
+    fullName: z
+        .string()
+        .min(1, "Ingrese su nombre completo.")
+        .max(100, "El nombre no puede tener más de 100 caracteres.")
+        .trim()
+        .nullable()
+        .optional(),
+    email: z.string().email("El correo electrónico no es válido."),
+    avatarUrl: z.string().url("La dirección de la foto de perfil no es válida.").nullable().optional(),
 });
 
 export type Profile = z.infer<typeof profileSchema>;

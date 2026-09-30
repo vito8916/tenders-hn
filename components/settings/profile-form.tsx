@@ -50,7 +50,7 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 			}
 		} catch (error) {
 			console.error("Profile update error:", error);
-			toast.error("Failed to update profile. Please try again later.");
+			toast.error("No se pudo actualizar el perfil. Intente de nuevo más tarde.");
 		} finally {
 			router.refresh();
 		}
@@ -67,12 +67,12 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 						name="fullName"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Name</FormLabel>
+								<FormLabel>Nombre</FormLabel>
 								<FormControl>
-									<Input placeholder="Your name" {...field} />
+									<Input placeholder="Su nombre" {...field} />
 								</FormControl>
 								<FormDescription>
-									This is your public display name.
+									Así lo verán los demás miembros.
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -83,17 +83,17 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email</FormLabel>
+								<FormLabel>Correo electrónico</FormLabel>
 								<FormControl>
 									<Input
-										placeholder="Your email"
+										placeholder="Su correo electrónico"
 										{...field}
 										disabled
 										readOnly
 									/>
 								</FormControl>
 								<FormDescription>
-									Your email address is used for notifications.
+									Aquí le enviamos las notificaciones.
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -104,16 +104,16 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 						name="bio"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Bio</FormLabel>
+								<FormLabel>Biografía</FormLabel>
 								<FormControl>
 									<Textarea
-										placeholder="Tell us a little bit about yourself"
+										placeholder="Cuéntenos un poco sobre usted"
 										className="resize-none"
 										{...field}
 									/>
 								</FormControl>
 								<FormDescription>
-									You can <span>@mention</span> other users and organizations.
+									Máximo 500 caracteres.
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -125,7 +125,7 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 						{isSubmitting ? (
 							<LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
 						) : null}
-						Save
+						Guardar
 					</Button>
 				</SettingsSectionFooter>
 			</form>

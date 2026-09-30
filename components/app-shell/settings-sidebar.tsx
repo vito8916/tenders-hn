@@ -31,15 +31,15 @@ export function SettingsSidebar({ profile }: { profile: Profile }) {
 	return (
 		<>
 			<SidebarHeader className="flex flex-row items-center border-b border-sidebar-border px-2">
-				<SidebarMenuButton asChild tooltip="Back to dashboard" className="size-8">
+				<SidebarMenuButton asChild tooltip="Volver al inicio" className="size-8">
 					<Link
 						href={`/organizations/${orgSlug}`}
-						aria-label="Back to dashboard"
+						aria-label="Volver al inicio"
 					>
 						<ArrowLeft className="size-4" />
 					</Link>
 				</SidebarMenuButton>
-				<h2 className="flex-1 text-center text-sm font-medium">Settings</h2>
+				<h2 className="flex-1 text-center text-sm font-medium">Configuración</h2>
 				<div className="size-8 shrink-0" aria-hidden />
 			</SidebarHeader>
 

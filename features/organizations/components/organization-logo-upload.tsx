@@ -31,13 +31,13 @@ export function OrganizationLogoUpload({
   const handleFile = useCallback((file: File) => {
     // Validate file type
     if (!ALLOWED_TYPES.includes(file.type)) {
-      toast.error("Invalid file type. Please upload a JPEG, PNG, or WebP image.");
+      toast.error("Tipo de archivo no válido. Suba una imagen JPEG, PNG o WebP.");
       return;
     }
 
     // Validate file size
     if (file.size > maxFileSize) {
-      toast.error(`File too large. Maximum size is ${maxFileSize / 1024 / 1024}MB.`);
+      toast.error(`El archivo es muy grande. El tamaño máximo es ${maxFileSize / 1024 / 1024} MB.`);
       return;
     }
 
@@ -108,19 +108,20 @@ export function OrganizationLogoUpload({
             {/* eslint-disable-next-line @next/next/no-img-element -- blob/object URL preview, next/image cannot optimize it */}
             <img
               src={previewUrl}
-              alt="Organization logo"
+              alt="Logo de la organización"
               className="h-full w-full object-cover"
             />
           </div>
           <button
             type="button"
             onClick={handleDelete}
+            aria-label="Quitar logo"
             className="absolute -top-2 -right-2 bg-background p-1 rounded-full border shadow-sm cursor-pointer hover:bg-muted transition-colors"
           >
             <Trash2 className="h-3 w-3 text-muted-foreground" />
           </button>
         </div>
-        <p className="text-xs text-muted-foreground">Click X to remove and upload a different logo</p>
+        <p className="text-xs text-muted-foreground">Quite el logo para subir uno diferente.</p>
       </div>
     );
   }
@@ -150,8 +151,8 @@ export function OrganizationLogoUpload({
             <Building2 className="h-5 w-5 text-muted-foreground" />
           </div>
           <div className="text-left flex-1">
-            <p className="text-sm font-medium">Upload your logo</p>
-            <p className="text-xs text-muted-foreground">*.png, *.jpeg files up to {maxFileSize / 1024 / 1024} MB</p>
+            <p className="text-sm font-medium">Suba su logo</p>
+            <p className="text-xs text-muted-foreground">Archivos PNG, JPEG o WebP de hasta {maxFileSize / 1024 / 1024} MB</p>
           </div>
           <Upload className="h-5 w-5 text-muted-foreground" />
         </div>

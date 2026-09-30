@@ -53,7 +53,7 @@ export function SignUpForm({
       if (nextPath) verifyParams.set("next", nextPath);
       router.push(`/verify-email?${verifyParams}`);
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Algo salió mal. Intente de nuevo.");
     }
   }
 
@@ -69,7 +69,7 @@ export function SignUpForm({
         router.push(result.url);
       }
     } catch {
-      toast.error("OAuth sign-in failed. Please try again.");
+      toast.error("No se pudo iniciar sesión con el proveedor. Intente de nuevo.");
     } finally {
       setIsOauthLoading(null);
     }
@@ -108,8 +108,8 @@ export function SignUpForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>Create a new account</CardDescription>
+          <CardTitle className="text-2xl">Crear cuenta</CardTitle>
+          <CardDescription>Cree su cuenta en Tenders HN</CardDescription>
         </CardHeader>
         <CardContent>
         <div className="grid gap-6">
@@ -120,10 +120,10 @@ export function SignUpForm({
                                     name="fullName"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Full Name</FormLabel>
+                                            <FormLabel>Nombre completo</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="John Doe"
+                                                    placeholder="María López"
                                                     disabled={form.formState.isSubmitting}
                                                     {...field}
                                                 />
@@ -138,11 +138,11 @@ export function SignUpForm({
                                     name="email"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Email</FormLabel>
+                                            <FormLabel>Correo electrónico</FormLabel>
                                             <FormControl>
                                                 <Input
                                                     type="email"
-                                                    placeholder="m@example.com"
+                                                    placeholder="nombre@empresa.hn"
                                                     disabled={form.formState.isSubmitting}
                                                     {...field}
                                                 />
@@ -157,12 +157,12 @@ export function SignUpForm({
                                     name="password"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Password</FormLabel>
+                                            <FormLabel>Contraseña</FormLabel>
                                             <FormControl>
                                                 <div className="relative">
                                                     <Input
                                                         type={showPassword ? "text" : "password"}
-                                                        placeholder="Enter your password"
+                                                        placeholder="Ingrese una contraseña"
                                                         disabled={form.formState.isSubmitting}
                                                         {...field}
                                                     />
@@ -173,7 +173,7 @@ export function SignUpForm({
                                                         className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                                                         onClick={() => setShowPassword(!showPassword)}
                                                         disabled={form.formState.isSubmitting}
-                                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                                        aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
                                                     >
                                                         {showPassword ? (
                                                             <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -184,7 +184,7 @@ export function SignUpForm({
                                                 </div>
                                             </FormControl>
                                             <FormDescription>
-                                                Password must be at least 8 characters
+                                                Debe tener al menos 8 caracteres
                                             </FormDescription>
                                             <FormMessage />
                                         </FormItem>
@@ -199,10 +199,10 @@ export function SignUpForm({
                                     {form.formState.isSubmitting ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Creating account...
+                                            Creando cuenta…
                                         </>
                                     ) : (
-                                        "Create account"
+                                        "Crear cuenta"
                                     )}
                                 </Button>
                             </form>
@@ -214,7 +214,7 @@ export function SignUpForm({
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
                                 <span className="bg-background px-2 text-muted-foreground">
-                                    Or continue with
+                                    O continúe con
                                 </span>
                             </div>
                         </div>
@@ -236,12 +236,12 @@ export function SignUpForm({
                         </div>
 
                         <div className="text-center text-sm">
-                            Already have an account?{" "}
+                            ¿Ya tiene una cuenta?{" "}
                             <Link
                                 href={authPathWithNext("/login", nextPath)}
                                 className="underline underline-offset-4 hover:text-primary"
                             >
-                                Sign in
+                                Iniciar sesión
                             </Link>
                         </div>
                     </div>

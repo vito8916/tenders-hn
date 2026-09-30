@@ -32,6 +32,7 @@ import { capitalizeText, getInitials } from "@/lib/utils";
 import Link from "next/link";
 import ProfilePicture from "@/components/app-shell/profile-picture";
 import { Profile } from "@/features/profiles/schemas"
+import { useOrg } from "@/contexts/org-context"
 
 interface NavUserProps {
     profile: Profile;
@@ -43,6 +44,8 @@ interface NavUserProps {
  */
 export function NavUser({ profile }: NavUserProps) {
     const { isMobile } = useSidebar()
+    const currentOrg = useOrg()
+    const settingsPath = `/organizations/${currentOrg.slug}/settings`
 
     return (
         <SidebarMenu>
@@ -91,21 +94,23 @@ export function NavUser({ profile }: NavUserProps) {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <Link className="flex items-center gap-2 w-full" href="/settings">
+                            <DropdownMenuItem asChild>
+                                <Link href={`${settingsPath}/account`}>
                                     <BadgeCheck />
-                                    Settings
+                                    Configuración
                                 </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Bell />
-                                Notifications
+                            <DropdownMenuItem asChild>
+                                <Link href={`${settingsPath}/notifications`}>
+                                    <Bell />
+                                    Notificaciones
+                                </Link>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => signOutAction()}>
                             <LogOut />
-                            Log out
+                            Cerrar sesión
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

@@ -83,10 +83,10 @@ async function OrganizationsList({
                         <EmptyMedia variant="icon">
                             <Building2 />
                         </EmptyMedia>
-                        <EmptyTitle>No matches found</EmptyTitle>
+                        <EmptyTitle>Sin resultados</EmptyTitle>
                         <EmptyDescription>
-                            No organizations match your search. Try a different term or clear your
-                            search.
+                            Ninguna organización coincide con su búsqueda. Pruebe con otro término o
+                            borre la búsqueda.
                         </EmptyDescription>
                     </EmptyHeader>
                 </Empty>
@@ -98,16 +98,16 @@ async function OrganizationsList({
                         <EmptyMedia variant="icon">
                             <Building2 />
                         </EmptyMedia>
-                        <EmptyTitle>No organizations yet</EmptyTitle>
+                        <EmptyTitle>Aún no tiene organizaciones</EmptyTitle>
                         <EmptyDescription>
-                            Create your first organization to start collaborating with your team.
+                            Cree su primera organización para empezar a trabajar con su equipo.
                         </EmptyDescription>
                     </EmptyHeader>
                     <EmptyContent>
                         <Button asChild>
                             <Link href="/organizations/create">
                                 <Plus className="mr-2 h-4 w-4" />
-                                Create organization
+                                Crear organización
                             </Link>
                         </Button>
                     </EmptyContent>
@@ -124,9 +124,9 @@ export default function OrganizationsPage({
 }) {
     return (
         <div className="flex w-full max-w-2xl flex-col items-center">
-            <h1 className="mb-2 text-2xl font-bold">Organizations</h1>
+            <h1 className="mb-2 text-2xl font-bold">Organizaciones</h1>
             <p className="mb-8 text-center text-muted-foreground">
-                Jump into an existing organization or add a new one.
+                Entre a una de sus organizaciones o cree una nueva.
             </p>
 
             <div className="mb-6 flex w-full items-center gap-4">
@@ -136,7 +136,7 @@ export default function OrganizationsPage({
                 <Button asChild>
                     <Link href="/organizations/create">
                         <Plus className="mr-2 h-4 w-4" />
-                        Add organization
+                        Crear organización
                     </Link>
                 </Button>
             </div>

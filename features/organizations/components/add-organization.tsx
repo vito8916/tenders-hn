@@ -47,6 +47,7 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2, XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ROLE_LABELS } from "@/features/memberships/schemas";
 
 const MAX_INVITES = 10;
 
@@ -55,14 +56,14 @@ type FormSchema = z.infer<typeof createOrganizationWithInvitesFormSchema>;
 const steps = [
   {
     value: "organization",
-    title: "Organization Details",
-    description: "Enter organization info",
+    title: "Datos de la organización",
+    description: "Ingrese los datos de la organización",
     fields: ["orgName", "orgSlug"] as const,
   },
   {
     value: "invites",
-    title: "Invite Members",
-    description: "Invite your team",
+    title: "Invitar miembros",
+    description: "Invite a su equipo",
     fields: ["invites"] as const,
   },
 ];
@@ -141,9 +142,9 @@ export function AddOrganizationStepperForm() {
         if (!isAvailable) {
           form.setError("orgSlug", {
             type: "manual",
-            message: "This slug is already taken. Please choose another.",
+            message: "Este identificador en la URL ya está en uso. Elija otro.",
           });
-          toast.error("This organization slug is already taken");
+          toast.error("Este identificador en la URL ya está en uso.");
           return false;
         }
       }
@@ -169,13 +170,13 @@ export function AddOrganizationStepperForm() {
       const result = await createOrganizationWithInvitesAction(formData);
 
       if (result.success && result.redirectUrl) {
-        toast.success("Organization created successfully");
+        toast.success("Se creó la organización.");
         router.push(result.redirectUrl);
       } else {
-        toast.error(result.error || "Failed to create organization");
+        toast.error(result.error || "No se pudo crear la organización.");
       }
     } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Algo salió mal. Intente de nuevo.");
       console.error(error);
     }
   }, [orgLogoFile, router]);
@@ -186,7 +187,7 @@ export function AddOrganizationStepperForm() {
         <Stepper value={step} onValueChange={setStep} onValidate={onValidate}>
         <div className="space-y-2 w-48">
             <p className="text-muted-foreground text-sm">
-              Step {stepIndex + 1} of {steps.length}
+              Paso {stepIndex + 1} de {steps.length}
             </p>
             <StepperList className="flex gap-2">
               {steps.map((step) => (
@@ -226,7 +227,7 @@ export function AddOrganizationStepperForm() {
                   name="orgName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Organization Name</FormLabel>
+                      <FormLabel>Nombre de la organización</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Constructora Norte"
@@ -247,7 +248,7 @@ export function AddOrganizationStepperForm() {
                   name="orgSlug"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Organization Slug</FormLabel>
+                      <FormLabel>Identificador en la URL</FormLabel>
                       <FormControl>
                         <InputGroup>
                           <InputGroupAddon align="inline-start" className="pr-1!">
@@ -255,7 +256,7 @@ export function AddOrganizationStepperForm() {
                           </InputGroupAddon>
                           <InputGroupInput
                             {...field}
-                            placeholder="acme-inc"
+                            placeholder="constructora-norte"
                             readOnly
                             className="bg-muted text-muted-foreground cursor-not-allowed pl-1!"
                           />
@@ -267,7 +268,7 @@ export function AddOrganizationStepperForm() {
                         </InputGroup>
                       </FormControl>
                       <FormDescription>
-                        A unique identifier for your organization URL.
+                        Identifica a su organización en la dirección web. Debe ser único.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -281,7 +282,7 @@ export function AddOrganizationStepperForm() {
             <div className="space-y-4">
               <FieldSet className="gap-4">
                 <div className="flex items-center justify-between">
-                  <FieldLegend variant="label">Team Members</FieldLegend>
+                  <FieldLegend variant="label">Miembros del equipo</FieldLegend>
                   <Button
                     type="button"
                     variant="ghost"
@@ -289,11 +290,11 @@ export function AddOrganizationStepperForm() {
                     onClick={() => append({ email: "", role: "member" })}
                     disabled={!canAddMoreInvites}
                   >
-                    + Add invitation
+                    + Agregar invitación
                   </Button>
                 </div>
                 <UiFieldDescription>
-                  Add up to {MAX_INVITES} email addresses to invite team members.
+                  Agregue hasta {MAX_INVITES} correos electrónicos para invitar a su equipo.
                 </UiFieldDescription>
                 <FieldGroup className="gap-4">
                   {fields.map((field, index) => (
@@ -306,7 +307,7 @@ export function AddOrganizationStepperForm() {
                             <FormControl>
                               <Input
                                 {...emailField}
-                                placeholder="colleague@example.com"
+                                placeholder="colega@empresa.hn"
                                 type="email"
                               />
                             </FormControl>
@@ -326,13 +327,13 @@ export function AddOrganizationStepperForm() {
                             >
                               <FormControl>
                                 <SelectTrigger className="w-[110px]">
-                                  <SelectValue placeholder="Role" />
+                                  <SelectValue placeholder="Rol" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="member">Member</SelectItem>
-                                <SelectItem value="admin">Admin</SelectItem>
-                                <SelectItem value="viewer">Viewer</SelectItem>
+                                <SelectItem value="member">{ROLE_LABELS.member}</SelectItem>
+                                <SelectItem value="admin">{ROLE_LABELS.admin}</SelectItem>
+                                <SelectItem value="viewer">{ROLE_LABELS.viewer}</SelectItem>
                               </SelectContent>
                             </Select>
                             <FormMessage />
@@ -347,6 +348,7 @@ export function AddOrganizationStepperForm() {
                           size="icon"
                           className="h-10 w-10 shrink-0 text-muted-foreground hover:text-foreground"
                           onClick={() => remove(index)}
+                          aria-label="Quitar invitación"
                         >
                           <XIcon className="h-4 w-4" />
                         </Button>
@@ -360,21 +362,21 @@ export function AddOrganizationStepperForm() {
 
           <div className="mt-8 flex justify-between">
             <StepperPrev asChild>
-              <Button variant="outline">Previous</Button>
+              <Button variant="outline">Anterior</Button>
             </StepperPrev>
             <div className="text-muted-foreground text-sm">
-              Step {stepIndex + 1} of {steps.length}
+              Paso {stepIndex + 1} de {steps.length}
             </div>
             {stepIndex === steps.length - 1 ? (
               <Button type="submit" disabled={form.formState.isSubmitting}>
                 {form.formState.isSubmitting && (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Finish
+                Finalizar
               </Button>
             ) : (
               <StepperNext asChild>
-                <Button>Next</Button>
+                <Button>Siguiente</Button>
               </StepperNext>
             )}
           </div>

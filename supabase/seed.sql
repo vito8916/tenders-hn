@@ -74,9 +74,9 @@ insert into public.plans (
   min_schedule_interval, history_months, monthly_ai_credits, sort_order
 )
 values
-  ('pilot', 'Pilot', 'Manually activated pilot plan.', 5, 5, interval '1 day', 12, 500, 0),
-  ('basic', 'Basic', 'One business line, daily reports.', 3, 2, interval '1 day', 3, 100, 1),
-  ('pro', 'Pro', 'Several business lines, reports several times a day.', 10, 10, interval '6 hours', 12, 1000, 2)
+  ('pilot', 'Piloto', 'Plan piloto activado manualmente.', 5, 5, interval '1 day', 12, 500, 0),
+  ('basic', 'Básico', 'Una línea de negocio, reportes diarios.', 3, 2, interval '1 day', 3, 100, 1),
+  ('pro', 'Pro', 'Varias líneas de negocio, reportes varias veces al día.', 10, 10, interval '6 hours', 12, 1000, 2)
 on conflict (id) do nothing;
 
 -- Test organization on an active pilot plan. The org trigger creates the

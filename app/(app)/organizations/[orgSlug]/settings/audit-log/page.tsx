@@ -55,8 +55,8 @@ async function AuditLogSettingsContent({
 
 	return (
 		<SettingsTemplatePage
-			title="Audit log"
-			description="Track changes and activity across your organization."
+			title="Registro de actividad"
+			description="Consulte los cambios y la actividad de su organización."
 		>
 			<AuditLogList orgSlug={orgSlug} data={data} />
 		</SettingsTemplatePage>

@@ -7,6 +7,7 @@ import {
 } from "@/features/organizations/rbac";
 import { logAppEventService } from "@/features/events/services";
 import { APP_EVENTS } from "@/features/events/schemas";
+import { UserFacingError } from "@/lib/errors";
 import { getProfilePictureUrl } from "@/lib/utils/storage";
 import {
     getUserOrgRole,
@@ -48,7 +49,7 @@ export async function listOrgMembersService(params: {
 }): Promise<OrgMember[]> {
     const role = await getUserOrgRole(params);
     if (!role) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
 
     const members = await listOrgMembers({ orgId: params.orgId });
@@ -64,7 +65,7 @@ async function getTargetMembership(params: {
 }): Promise<OrganizationMembership> {
     const membership = await getMembershipById({ membershipId: params.membershipId });
     if (!membership || membership.orgId !== params.orgId) {
-        throw new Error("Member not found in this organization");
+        throw new UserFacingError("No encontramos a este miembro en la organización.");
     }
     return membership;
 }
@@ -86,15 +87,15 @@ export async function changeMemberRoleService(params: {
 
     const actorRole = await getUserOrgRole({ userId, orgId });
     if (!actorRole || !canChangeMemberRole(actorRole)) {
-        throw new Error("Insufficient permissions: only the owner can change roles");
+        throw new UserFacingError("Solo el propietario puede cambiar los roles.");
     }
 
     const target = await getTargetMembership({ orgId, membershipId });
     if (target.role === "owner") {
-        throw new Error("The owner's role cannot be changed");
+        throw new UserFacingError("No se puede cambiar el rol del propietario.");
     }
     if (target.userId === userId) {
-        throw new Error("You cannot change your own role");
+        throw new UserFacingError("No puede cambiar su propio rol.");
     }
 
     const updated = await updateMemberRole({ membershipId, role: newRole });
@@ -123,15 +124,15 @@ export async function removeMemberService(params: {
 
     const actorRole = await getUserOrgRole({ userId, orgId });
     if (!actorRole || !canManageMembers(actorRole) || !canRemoveMembers(actorRole)) {
-        throw new Error("Insufficient permissions to remove members");
+        throw new UserFacingError("Su rol no le permite quitar miembros.");
     }
 
     const target = await getTargetMembership({ orgId, membershipId });
     if (target.role === "owner") {
-        throw new Error("The organization owner cannot be removed");
+        throw new UserFacingError("No se puede quitar al propietario de la organización.");
     }
     if (target.userId === userId) {
-        throw new Error("Use leave organization to remove yourself");
+        throw new UserFacingError("Para quitarse de la organización, use «Salir de la organización».");
     }
 
     await removeMember({ membershipId });
@@ -159,10 +160,10 @@ export async function leaveOrganizationService(params: {
     const members = await listOrgMembers({ orgId });
     const own = members.find((member) => member.userId === userId);
     if (!own) {
-        throw new Error("User is not a member of this organization");
+        throw new UserFacingError("Usted no es miembro de esta organización.");
     }
     if (!canLeaveOrganization(own.role)) {
-        throw new Error("The owner cannot leave the organization");
+        throw new UserFacingError("El propietario no puede salir de la organización. Transfiera la propiedad primero.");
     }
 
     await removeMember({ membershipId: own.id });

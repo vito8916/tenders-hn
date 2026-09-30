@@ -183,6 +183,32 @@ Company profiles and chat questions are private customer data. Before a provider
 | D3 | **AI SDK** for every model call | `streamText`/`useChat` for chat, `embedMany` for embeddings, `rerank`, `experimental_evaluate` for Jev. |
 | D4 | **Multi-provider by design** | Role-based registry, per-environment overrides, `ai_usage_events`, provider-neutral credits and citations (section 5). |
 
+### 6.1.1 Spanish UI conventions (D1)
+
+- Formal «usted», sentence case (no English-style title case), opening «¿» and «¡», short sentences. Dates with `es-HN` / date-fns `es`, times in `America/Tegucigalpa`; dates inside notification and email text as `DD/MM/YYYY`.
+- Brand: **Tenders HN**. Terms, used everywhere:
+
+| English | Español | English | Español |
+|---|---|---|---|
+| Dashboard | Inicio | Organization | Organización |
+| Members / member | Miembros / miembro | Owner / admin / member / viewer | Propietario / Administrador / Miembro / Observador |
+| Invite, invitation | Invitar, invitación | Pending invitations | Invitaciones pendientes |
+| Revoke | Revocar | Expires / expired | Vence / vencida |
+| Settings | Configuración | Account / profile / appearance | Cuenta / perfil / apariencia |
+| Theme: light / dark / system | Tema: claro / oscuro / sistema | Password | Contraseña |
+| Security / billing / integrations | Seguridad / facturación / integraciones | Notifications | Notificaciones |
+| Audit log | Registro de actividad | In-app / email (channel) | En la aplicación / correo electrónico |
+| Sign in / sign up / sign out | Iniciar sesión / crear cuenta / cerrar sesión | Forgot password? | ¿Olvidó su contraseña? |
+| Reset password | Restablecer contraseña | Email (field) | Correo electrónico |
+| Save / saving… | Guardar / guardando… | Cancel / delete / remove | Cancelar / eliminar / quitar |
+| Leave (organization) | Salir de la organización | Transfer ownership | Transferir la propiedad |
+| Danger zone | Zona de riesgo | Slug | Identificador en la URL |
+| Seats | Usuarios (del plan) | Plan / credits | Plan / créditos |
+| Next / previous / back / finish | Siguiente / anterior / volver / finalizar | Search / loading / close | Buscar / cargando / cerrar |
+| Mark all as read | Marcar todo como leído | Something went wrong / try again | Algo salió mal / intentar de nuevo |
+| (you) / unnamed user / unknown user | (usted) / usuario sin nombre / usuario desconocido | System / someone | Sistema / alguien |
+| Opportunity / tender | Oportunidad / proceso | Search / run | Búsqueda / ejecución |
+
 ### 6.2 Open
 
 | # | Decision | Recommendation | Needed by |
@@ -345,6 +371,10 @@ Rough sizes: **S** ≤ 3 days, **M** 1–2 weeks, **L** 2–4 weeks, for one dev
 ### Phase 4 — Product: profiles, searches, runs, Home, reports, email (L) — spec §4, §7, §12
 
 Start with the Spanish pass (D1) over existing screens, validation messages, notification texts, and auth emails, so everything new is written in Spanish from the start.
+
+- ~~Spanish pass~~ **Done (30 Sep 2026)** with the conventions in 6.1.1: every screen outside the marketing site, the UI kit's screen-reader labels, validation and action messages, activity-log labels, dates (`es` / `es-HN`), the invitation email, the notification email, and the local Supabase auth emails (confirmation, and a new recovery template). Migration `20260930120000_spanish_notifications` rewrites notification types and the texts the triggers write; notifications already stored stay in English. Database error codes (`lib/errors.ts`) and Supabase Auth error codes (`features/auth/errors.ts`) map to Spanish messages; raw error text no longer reaches the UI. Template leftovers removed or fixed: the kit brand, the login test account, unused app-shell files, the user menu's broken links, the password-reset redirect to `/dashboard`, and OAuth logins that ended on `/error?error=NEXT_REDIRECT`.
+  - Emails share one design (white card, Tenders HN wordmark, one black button, fallback link, footer) across `emails/organization-invitation.tsx`, `supabase/templates/*.html`, and the `send-notification-emails` function. The hosted Supabase project has the confirmation and recovery templates (30 Sep 2026).
+  - Found, not fixed: a new organization has no subscription, so invitations sent while creating it fail with `subscription_inactive` after the organization exists (now shown in Spanish). Settle with plan activation in onboarding.
 
 - **Company profile** in onboarding and settings (natural-language description, concrete offerings, exclusions, geography; UNSPSC optional).
 - **Saved searches**: create/edit, inherit profile, extra criteria, schedule, delivery preferences; entitlement triggers from 7.4.

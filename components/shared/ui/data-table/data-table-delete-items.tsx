@@ -15,8 +15,8 @@ export default function DataTableDeleteItems<TData>({
 	table: Table<TData>;
 	onDelete?: (ids: string[]) => Promise<void>;
 }) {
-	
-	
+
+
 	const handleDeleteRows = async () => {
 		const selectedRows = table.getSelectedRowModel().rows;
 		const selectedIds = selectedRows.map((row) => {
@@ -26,21 +26,21 @@ export default function DataTableDeleteItems<TData>({
 		if (onDelete) {
 			try {
 				const loadingToast = toast.loading(
-					`Deleting ${selectedIds.length} item${
-						selectedIds.length > 1 ? "s" : ""
-					}...`
+					`Eliminando ${selectedIds.length} ${
+						selectedIds.length === 1 ? "elemento" : "elementos"
+					}…`
 				);
 				await onDelete(selectedIds);
 				toast.dismiss(loadingToast);
 				toast.success(
-					`${selectedIds.length} item${
-						selectedIds.length > 1 ? "s" : ""
-					} deleted`
+					`${selectedIds.length} ${
+						selectedIds.length === 1 ? "elemento eliminado" : "elementos eliminados"
+					}`
 				);
 				table.resetRowSelection();
 			} catch (error) {
 				console.error("Error deleting items:", error);
-				toast.error("Failed to delete items");
+				toast.error("No se pudieron eliminar los elementos");
 			}
 		}
 		table.resetRowSelection();
@@ -60,7 +60,7 @@ export default function DataTableDeleteItems<TData>({
 						strokeWidth={2}
 						aria-hidden="true"
 					/>
-					Delete
+					Eliminar
 					<span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
 						{table.getSelectedRowModel().rows.length}
 					</span>
@@ -80,23 +80,20 @@ export default function DataTableDeleteItems<TData>({
 					</div>
 					<AlertDialogHeader>
 						<AlertDialogTitle>
-							Are you absolutely sure?
+							¿Está seguro?
 						</AlertDialogTitle>
 						<AlertDialogDescription>
-							This action cannot be undone. This will permanently
-							delete {table.getSelectedRowModel().rows.length}{" "}
-							selected{" "}
+							Esta acción no se puede deshacer.{" "}
 							{table.getSelectedRowModel().rows.length === 1
-								? "row"
-								: "rows"}
-							.
+								? "Se eliminará permanentemente 1 fila seleccionada."
+								: `Se eliminarán permanentemente ${table.getSelectedRowModel().rows.length} filas seleccionadas.`}
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 				</div>
 				<AlertDialogFooter>
-					<AlertDialogCancel>Cancel</AlertDialogCancel>
+					<AlertDialogCancel>Cancelar</AlertDialogCancel>
 					<AlertDialogAction onClick={handleDeleteRows}>
-						Delete
+						Eliminar
 					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>

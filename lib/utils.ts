@@ -16,16 +16,6 @@ export const hasEnvVars =
     return words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
   }
   
-  export const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-  
   export const getInitials = (name?: string | null) => {
     if (!name) return 'N/A';
     return name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'N/A';

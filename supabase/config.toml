@@ -235,8 +235,14 @@ otp_expiry = 3600
 
 # Sign-up confirmation sends a 6-digit code entered on /verify-email instead of a link.
 [auth.email.template.confirmation]
-subject = "Your confirmation code"
+subject = "Su código de confirmación de Tenders HN"
 content_path = "./supabase/templates/confirmation.html"
+
+# Password reset link goes through /auth/confirm (token hash flow), which signs the user in
+# and sends them to /update-password.
+[auth.email.template.recovery]
+subject = "Restablezca su contraseña de Tenders HN"
+content_path = "./supabase/templates/recovery.html"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]

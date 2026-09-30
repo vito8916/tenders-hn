@@ -23,21 +23,21 @@ export function OverviewCards({
 }: OverviewCardsProps) {
     const cards: StatCard[] = [
         {
-            title: "Members",
+            title: "Miembros",
             value: membersCount,
             icon: Users,
             href: `/organizations/${orgSlug}/members`,
-            hint: "People with access",
+            hint: "Personas con acceso",
         },
     ];
 
     if (pendingInvitationsCount !== null) {
         cards.push({
-            title: "Pending invitations",
+            title: "Invitaciones pendientes",
             value: pendingInvitationsCount,
             icon: Mail,
             href: `/organizations/${orgSlug}/members`,
-            hint: "Waiting to be accepted",
+            hint: "En espera de aceptación",
         });
     }
 

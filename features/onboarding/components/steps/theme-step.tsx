@@ -5,9 +5,9 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const themes = [
-    { value: "light" as const, label: "Light" },
-    { value: "dark" as const, label: "Dark" },
-    { value: "system" as const, label: "System" },
+    { value: "light" as const, label: "Claro" },
+    { value: "dark" as const, label: "Oscuro" },
+    { value: "system" as const, label: "Sistema" },
 ];
 
 export function ThemeStep() {
@@ -17,9 +17,9 @@ export function ThemeStep() {
     return (
         <div className="w-full space-y-8">
             <div>
-                <h2 className="text-2xl font-bold">Choose your theme</h2>
+                <h2 className="text-2xl font-bold">Elija su tema</h2>
                 <p className="text-muted-foreground mt-1">
-                    Select the theme for the application. You&apos;ll be able to change this later.
+                    Seleccione el tema de la aplicación. Podrá cambiarlo más adelante.
                 </p>
             </div>
 

@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 import { useMounted } from "@/hooks/use-mounted";
 
 const themes = [
-	{ value: "light", label: "Light", icon: Sun },
-	{ value: "dark", label: "Dark", icon: Moon },
-	{ value: "system", label: "System", icon: Monitor },
+	{ value: "light", label: "Claro", appliedName: "claro", icon: Sun },
+	{ value: "dark", label: "Oscuro", appliedName: "oscuro", icon: Moon },
+	{ value: "system", label: "Sistema", appliedName: "del sistema", icon: Monitor },
 ] as const;
 
 export function AppearanceForm() {
@@ -22,8 +22,8 @@ export function AppearanceForm() {
 
 	return (
 		<SettingsRow
-			label="Theme"
-			description="Select your preferred color scheme for the interface."
+			label="Tema"
+			description="Elija el esquema de colores de la interfaz."
 		>
 			<div className="inline-flex rounded-lg border border-border bg-muted/30 p-1">
 				{themes.map((option) => {
@@ -35,8 +35,8 @@ export function AppearanceForm() {
 							type="button"
 							onClick={() => {
 								setTheme(option.value);
-								toast("Theme updated", {
-									description: `Your theme has been set to ${option.value}.`,
+								toast("Tema actualizado", {
+									description: `Se aplicó el tema ${option.appliedName}.`,
 								});
 							}}
 							className={cn(

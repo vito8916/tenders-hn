@@ -17,6 +17,7 @@ import {
     createOrganizationWithInvitesService,
     transferOwnershipService,
 } from "./services";
+import { userErrorMessage } from "@/lib/errors";
 
 /**
  * Server Action for creating a new organization
@@ -38,7 +39,7 @@ export async function createOrganizationAction(formData: FormData) {
     });
 
     if (!parsed.success) {
-        throw new Error(parsed.error.message);
+        throw new Error(parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos.");
     }
 
     // 3. Call service layer
@@ -71,7 +72,7 @@ export async function updateOrganizationAction(
         });
 
         if (!parsed.success) {
-            return { success: false, error: parsed.error.issues[0]?.message ?? "Invalid input" };
+            return { success: false, error: parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos." };
         }
 
         // 3. Process logo file if provided
@@ -82,7 +83,7 @@ export async function updateOrganizationAction(
 
         if (orgLogoFile && orgLogoFile.size > 0) {
             if (orgLogoFile.size > ORG_LOGO_MAX_BYTES) {
-                return { success: false, error: "Organization logo must be 2 MB or smaller." };
+                return { success: false, error: "El logo de la organización debe pesar 2 MB o menos." };
             }
             const arrayBuffer = await orgLogoFile.arrayBuffer();
             const extension = orgLogoFile.name.split('.').pop() || 'png';
@@ -110,7 +111,7 @@ export async function updateOrganizationAction(
         console.error("Error updating organization:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to update organization",
+            error: userErrorMessage(error, "No se pudo actualizar la organización. Intente de nuevo."),
         };
     }
 }
@@ -121,21 +122,29 @@ export async function updateOrganizationAction(
  * Only the owner can delete the organization
  *
  * @param orgId - Organization ID to delete
- * @throws Redirects on success, throws error on failure
+ * @returns Redirects on success, returns the error message on failure
  */
-export async function deleteOrganizationAction(orgId: string) {
+export async function deleteOrganizationAction(orgId: string): Promise<{ success: false; error: string }> {
     // 1. Resolve authenticated user
     const { sub: userId } = await getCurrentUser();
 
     // 2. Call service layer (handles RBAC and repository)
-    await deleteOrganizationService({ orgId, userId });
+    try {
+        await deleteOrganizationService({ orgId, userId });
+    } catch (error) {
+        console.error("Error deleting organization:", error);
+        return {
+            success: false,
+            error: userErrorMessage(error, "No se pudo eliminar la organización. Intente de nuevo."),
+        };
+    }
 
     // 3. Redirect to organizations list
     redirect("/organizations");
 }
 
 const checkSlugAvailabilitySchema = z.object({
-    slug: z.string().min(1, "Slug is required"),
+    slug: z.string().min(1, "Ingrese el identificador en la URL."),
 });
 
 /**
@@ -151,7 +160,7 @@ export async function checkSlugAvailabilityAction(slug: string): Promise<{ isAva
     const parsed = checkSlugAvailabilitySchema.safeParse({ slug });
 
     if (!parsed.success) {
-        throw new Error(parsed.error.message);
+        throw new Error(parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos.");
     }
 
     // Call service layer
@@ -188,7 +197,7 @@ export async function createOrganizationWithInvitesAction(formData: FormData): P
         } catch {
             return {
                 success: false,
-                error: "Invalid invites format",
+                error: "Las invitaciones no tienen un formato válido.",
             };
         }
 
@@ -203,7 +212,7 @@ export async function createOrganizationWithInvitesAction(formData: FormData): P
         if (!parsed.success) {
             return {
                 success: false,
-                error: parsed.error.message,
+                error: parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos.",
             };
         }
 
@@ -220,7 +229,7 @@ export async function createOrganizationWithInvitesAction(formData: FormData): P
             if (orgLogoFile.size > ORG_LOGO_MAX_BYTES) {
                 return {
                     success: false,
-                    error: "Organization logo must be 2 MB or smaller.",
+                    error: "El logo de la organización debe pesar 2 MB o menos.",
                 };
             }
             const arrayBuffer = await orgLogoFile.arrayBuffer();
@@ -254,7 +263,7 @@ export async function createOrganizationWithInvitesAction(formData: FormData): P
         console.error("Error creating organization with invites:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to create organization",
+            error: userErrorMessage(error, "No se pudo crear la organización. Intente de nuevo."),
         };
     }
 }
@@ -266,9 +275,9 @@ const transferOwnershipActionSchema = z.object({
 });
 
 const TRANSFER_ERROR_MESSAGES: Record<string, string> = {
-    not_owner: "Only the owner can transfer ownership.",
-    target_not_member: "The new owner must be a member of the organization.",
-    transfer_to_self: "You already own this organization.",
+    not_owner: "Solo el propietario puede transferir la propiedad.",
+    target_not_member: "El nuevo propietario debe ser miembro de la organización.",
+    transfer_to_self: "Usted ya es el propietario de esta organización.",
 };
 
 /**
@@ -285,7 +294,7 @@ export async function transferOwnershipAction(input: {
 
         const parsed = transferOwnershipActionSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Los datos ingresados no son válidos." };
         }
 
         await transferOwnershipService({
@@ -304,7 +313,9 @@ export async function transferOwnershipAction(input: {
         const known = Object.keys(TRANSFER_ERROR_MESSAGES).find((key) => raw.includes(key));
         return {
             success: false,
-            error: known ? TRANSFER_ERROR_MESSAGES[known] : "Failed to transfer ownership",
+            error: known
+                ? TRANSFER_ERROR_MESSAGES[known]
+                : userErrorMessage(error, "No se pudo transferir la propiedad. Intente de nuevo."),
         };
     }
 }

@@ -20,7 +20,7 @@ export async function markNotificationReadAction(input: {
 
         const parsed = z.object({ notificationId: z.uuid() }).safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Datos no válidos" };
         }
 
         await markNotificationReadService({ userId, notificationId: parsed.data.notificationId });
@@ -30,7 +30,7 @@ export async function markNotificationReadAction(input: {
         console.error("Error marking notification as read:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to mark notification as read",
+            error: error instanceof Error ? error.message : "No se pudo marcar la notificación como leída",
         };
     }
 }
@@ -49,7 +49,7 @@ export async function markAllNotificationsReadAction(): Promise<{ success: boole
         console.error("Error marking all notifications as read:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to mark notifications as read",
+            error: error instanceof Error ? error.message : "No se pudieron marcar las notificaciones como leídas",
         };
     }
 }
@@ -67,7 +67,7 @@ export async function updateNotificationPreferenceAction(input: {
 
         const parsed = updateNotificationPreferenceInputSchema.safeParse(input);
         if (!parsed.success) {
-            return { success: false, error: "Invalid input" };
+            return { success: false, error: "Datos no válidos" };
         }
 
         await updateNotificationPreferenceService({ userId, ...parsed.data });
@@ -77,7 +77,7 @@ export async function updateNotificationPreferenceAction(input: {
         console.error("Error updating notification preference:", error);
         return {
             success: false,
-            error: error instanceof Error ? error.message : "Failed to update notification preference",
+            error: error instanceof Error ? error.message : "No se pudo guardar la preferencia de notificación",
         };
     }
 }

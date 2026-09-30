@@ -16,11 +16,11 @@ export default function OnboardingLayout({
                     className="text-muted-foreground hover:text-foreground p-0 h-auto hover:bg-transparent font-normal gap-1"
                 >
                     <ChevronLeft className="h-4 w-4" />
-                    Sign out
+                    Cerrar sesión
                 </LogoutButton>
                 <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-bold text-xl">
                     <SupaNextLogo className="h-8 w-8" />
-                    <span>Multi-Tenant SupaNext Kit</span>
+                    <span>Tenders HN</span>
                 </div>
                 <div className="w-20" />
             </header>

@@ -7,16 +7,23 @@ import type { JobHandler } from "../queue";
 const embedProcessMessageSchema = z.object({ processId: z.uuid() });
 
 /**
- * Embeds a process's object (title, entity, products) so retrieval can find
- * it semantically even when it has no documents. Queued when a new detail
- * version is stored.
+ * Embeds a process's object (title, entity, product descriptions) so retrieval
+ * can find it semantically even when it has no documents. Queued when a new
+ * detail version is stored. Specifications are searchable by text but left out
+ * here: many open with submission instructions, which pulled relevant
+ * processes down in the 30 Sep retrieval eval.
  */
 export const embedProcess: JobHandler = async (message, { pool }) => {
     const { processId } = embedProcessMessageSchema.parse(message);
     const model = modelForRole("embed");
 
-    const { rows } = await pool.query<{ title: string; buyer_entity: string; purchase_unit: string | null; products_text: string | null }>(
-        "select title, buyer_entity, purchase_unit, products_text from public.procurement_processes where id = $1",
+    const { rows } = await pool.query<{ title: string; buyer_entity: string; purchase_unit: string | null; product_descriptions: string | null }>(
+        `select p.title, p.buyer_entity, p.purchase_unit,
+                (select string_agg(item ->> 'description', '; ' order by position)
+                 from jsonb_array_elements(v.detail -> 'products') with ordinality as product (item, position)) as product_descriptions
+         from public.procurement_processes p
+         left join public.process_versions v on v.id = p.current_version_id
+         where p.id = $1`,
         [processId],
     );
     const process = rows[0];
@@ -27,7 +34,7 @@ export const embedProcess: JobHandler = async (message, { pool }) => {
     const value = [
         process.title,
         `Entidad: ${[process.buyer_entity, process.purchase_unit].filter(Boolean).join(" · ")}`,
-        process.products_text && `Productos: ${process.products_text}`,
+        process.product_descriptions && `Productos: ${process.product_descriptions}`,
     ]
         .filter(Boolean)
         .join("\n");

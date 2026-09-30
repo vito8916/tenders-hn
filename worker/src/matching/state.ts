@@ -52,7 +52,7 @@ export const STATE_TOKEN_BUDGET = 24_000;
 // Conservative for Spanish (accents and long words tokenize into more pieces than English).
 const CHARS_PER_TOKEN = 3;
 // One long technical specification must not crowd out the other products.
-const SPECIFICATION_CHARS = 600;
+export const SPECIFICATION_CHARS = 600;
 
 const estimateTokens = (value: unknown) => Math.ceil(JSON.stringify(value).length / CHARS_PER_TOKEN);
 

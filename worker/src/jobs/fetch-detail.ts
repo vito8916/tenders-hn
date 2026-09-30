@@ -4,6 +4,7 @@ import { fetchDetailPage } from "../honducompras/client";
 import { diffDetails } from "../honducompras/events";
 import { parseDetailPage, type ProcessDetail } from "../honducompras/parse";
 import { log } from "../log";
+import { SPECIFICATION_CHARS } from "../matching/state";
 import type { JobHandler } from "../queue";
 
 const fetchDetailMessageSchema = z.object({ processId: z.uuid() });
@@ -81,7 +82,16 @@ export const fetchDetail: JobHandler = async (message, { pool }) => {
                 detail.startsAt,
                 detail.bidsDueAt,
                 versionId,
-                detail.products.map((product) => product.description).join("; ") || null,
+                // The description is the catalog name, often generic or wrong in Compra Menor;
+                // the specifications say what is bought. The SQL backfill in
+                // 20260930040000_products_text_specifications.sql builds the same text.
+                detail.products
+                    .map(({ description, specifications }) =>
+                        specifications && specifications.toLowerCase() !== description.toLowerCase()
+                            ? `${description}: ${specifications.slice(0, SPECIFICATION_CHARS)}`
+                            : description,
+                    )
+                    .join("; ") || null,
                 [...new Set(detail.products.map((product) => product.unspsc))],
             ],
         );

@@ -1,6 +1,10 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { DetailSheet } from "@/features/opportunities/components/detail-sheet";
+import { OpportunityDetail } from "@/features/opportunities/components/opportunity-detail";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 import { SearchCriteria } from "@/features/saved-searches/components/search-criteria";
 import type { SavedSearch } from "@/features/saved-searches/schemas";
@@ -79,18 +83,35 @@ function Pager({ page, pageCount, params, homeHref }: { page: number; pageCount:
     );
 }
 
+function DetailSkeleton() {
+    return (
+        <div className="space-y-4 p-6">
+            <Skeleton className="h-5 w-40" />
+            <Skeleton className="h-7 w-full" />
+            <Skeleton className="h-28 w-full" />
+            <Skeleton className="h-40 w-full" />
+        </div>
+    );
+}
+
 function Results({
+    orgId,
+    orgSlug,
     shownRun,
     matches,
     params,
     homeHref,
     editHref,
+    canDecide,
 }: {
+    orgId: string;
+    orgSlug: string;
     shownRun: SearchRun | null;
     matches: SearchRunMatch[];
     params: SearchParamsRecord;
     homeHref: string;
     editHref: string | null;
+    canDecide: boolean;
 }) {
     if (!shownRun) {
         return <p className="text-sm text-muted-foreground">Esta búsqueda todavía no tiene resultados.</p>;
@@ -103,6 +124,8 @@ function Results({
     const { filtered, rows, page, pageCount, facets } = applyResultView(matches, view);
     const relevant = matches.filter((match) => match.relevance === "muy_relevante" || match.relevance === "posible");
     const filters = hasFilters(view);
+    // Only an opportunity of the shown run opens, so a stale or edited link just closes the panel.
+    const detailMatch = typeof params.detalle === "string" ? matches.find((match) => match.processId === params.detalle) : undefined;
 
     return (
         <section className="space-y-4" aria-label="Resultados">
@@ -132,6 +155,13 @@ function Results({
                     <Pager page={page} pageCount={pageCount} params={params} homeHref={homeHref} />
                 </>
             ) : null}
+            {detailMatch ? (
+                <DetailSheet title={detailMatch.title}>
+                    <Suspense key={detailMatch.processId} fallback={<DetailSkeleton />}>
+                        <OpportunityDetail orgId={orgId} orgSlug={orgSlug} match={detailMatch} canDecide={canDecide} />
+                    </Suspense>
+                </DetailSheet>
+            ) : null}
         </section>
     );
 }
@@ -142,6 +172,7 @@ function Results({
  * shown run, and its results.
  */
 export function SearchWorkspace({
+    orgId,
     orgSlug,
     search,
     latestRun,
@@ -151,8 +182,10 @@ export function SearchWorkspace({
     params,
     latestIngestionAt,
     canManage,
+    canDecide,
     hasActivePlan,
 }: {
+    orgId: string;
     orgSlug: string;
     search: SavedSearch;
     latestRun: SearchRun | null;
@@ -163,6 +196,8 @@ export function SearchWorkspace({
     params: SearchParamsRecord;
     latestIngestionAt: string | null;
     canManage: boolean;
+    /** Whether the user may mark opportunities («Me interesa»). */
+    canDecide: boolean;
     hasActivePlan: boolean;
 }) {
     const homeHref = `/organizations/${orgSlug}`;
@@ -204,7 +239,16 @@ export function SearchWorkspace({
 
             <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
             {shownRun ? <RunStatus run={shownRun} /> : null}
-            <Results shownRun={shownRun} matches={matches} params={params} homeHref={homeHref} editHref={editHref} />
+            <Results
+                orgId={orgId}
+                orgSlug={orgSlug}
+                shownRun={shownRun}
+                matches={matches}
+                params={params}
+                homeHref={homeHref}
+                editHref={editHref}
+                canDecide={canDecide}
+            />
         </div>
     );
 }

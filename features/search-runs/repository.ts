@@ -149,7 +149,7 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("search_run_matches")
-        .select("process_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count")
+        .select("process_id, process_version_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count")
         .eq("run_id", runId)
         // Within each relevance level, the ones closing soonest first (plan, Phase 3).
         .order("closes_at", { ascending: true, nullsFirst: false })
@@ -160,6 +160,7 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
     return data.map((row) =>
         searchRunMatchSchema.parse({
             processId: row.process_id,
+            processVersionId: row.process_version_id,
             retrievalRank: row.retrieval_rank,
             relevance: row.relevance,
             matchState: row.match_state,

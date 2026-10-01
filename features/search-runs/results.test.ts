@@ -4,6 +4,7 @@ import type { SearchRunMatch } from "./schemas";
 
 const match = (overrides: Partial<SearchRunMatch>): SearchRunMatch => ({
     processId: crypto.randomUUID(),
+    processVersionId: null,
     retrievalRank: 1,
     relevance: "posible",
     matchState: "nueva",

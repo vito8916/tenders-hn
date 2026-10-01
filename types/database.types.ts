@@ -759,6 +759,55 @@ export type Database = {
           },
         ]
       }
+      opportunity_feedback: {
+        Row: {
+          decided_at: string
+          decided_by: string | null
+          decision: string
+          org_id: string
+          process_id: string
+          reason: string | null
+        }
+        Insert: {
+          decided_at?: string
+          decided_by?: string | null
+          decision: string
+          org_id: string
+          process_id: string
+          reason?: string | null
+        }
+        Update: {
+          decided_at?: string
+          decided_by?: string | null
+          decision?: string
+          org_id?: string
+          process_id?: string
+          reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_feedback_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_feedback_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "opportunity_feedback_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organization_invitations: {
         Row: {
           accepted_at: string | null

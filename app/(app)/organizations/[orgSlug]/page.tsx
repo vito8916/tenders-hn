@@ -9,6 +9,7 @@ import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
 import { canManageSearches } from "@/features/saved-searches/rbac";
+import { canDecideOpportunity } from "@/features/opportunities/rbac";
 import { getSearchLimitsService } from "@/features/saved-searches/services";
 import { getHomeService } from "@/features/search-runs/services";
 import { SearchesPane } from "@/features/search-runs/components/searches-pane";
@@ -103,6 +104,7 @@ async function HomeContent({
 				) : null}
 				{selected ? (
 					<SearchWorkspace
+						orgId={organization.id}
 						orgSlug={orgSlug}
 						search={selected.search}
 						latestRun={selected.latestRun}
@@ -112,6 +114,7 @@ async function HomeContent({
 						params={query}
 						latestIngestionAt={home.latestIngestionAt}
 						canManage={canManage}
+						canDecide={canDecideOpportunity(role)}
 						hasActivePlan={limits.hasActivePlan}
 					/>
 				) : (

@@ -33,6 +33,8 @@ export type SearchRun = z.infer<typeof searchRunSchema>;
 
 export const searchRunMatchSchema = z.object({
     processId: z.uuid(),
+    /** The process version the run evaluated. */
+    processVersionId: z.uuid().nullable(),
     retrievalRank: z.number().int(),
     relevance: RelevanceSchema,
     matchState: MatchStateSchema.nullable(),

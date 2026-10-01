@@ -168,6 +168,8 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     openRows.length,
                 ],
             );
+            // The frozen PDF, once the run is committed as finished.
+            await client.query("select pgmq.send('match', jsonb_build_object('type', 'render_report', 'runId', $1::uuid))", [runId]);
             await client.query("commit");
         } catch (error) {
             await client.query("rollback");

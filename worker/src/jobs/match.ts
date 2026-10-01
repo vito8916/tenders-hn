@@ -1,5 +1,6 @@
 import type { QueueConsumer } from "../queue";
 import { evaluateMatchJob } from "./evaluate-match";
+import { renderReport } from "./render-report";
 import { searchRun } from "./search-run";
 
 // Jev calls take seconds and never touch the portal or OCR, so matching has
@@ -11,5 +12,6 @@ export const matchConsumer: QueueConsumer = {
     handlers: {
         evaluate_match: evaluateMatchJob,
         search_run: searchRun,
+        render_report: renderReport,
     },
 };

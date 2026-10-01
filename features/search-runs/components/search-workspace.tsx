@@ -10,6 +10,7 @@ import { SearchCriteria } from "@/features/saved-searches/components/search-crit
 import type { SavedSearch } from "@/features/saved-searches/schemas";
 import { applyResultView, hasFilters, parseResultView, withParams, type SearchParamsRecord } from "../results";
 import { isRunActive, isRunFinished, type SearchRun, type SearchRunMatch } from "../schemas";
+import { DownloadMenu } from "./download-menu";
 import { ResultsTable } from "./results-table";
 import { ResultsToolbar } from "./results-toolbar";
 import { RunSearchButton } from "./run-search-button";
@@ -144,9 +145,19 @@ function Results({
             {matches.length > 0 ? (
                 <>
                     <ResultsToolbar view={view} facets={facets} filtered={filters} />
-                    <p className="text-sm text-muted-foreground">
-                        {filters ? `${filtered.length} de ${matches.length} oportunidades` : `${matches.length} oportunidades`}
-                    </p>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="text-sm text-muted-foreground">
+                            {filters ? `${filtered.length} de ${matches.length} oportunidades` : `${matches.length} oportunidades`}
+                        </p>
+                        <DownloadMenu
+                            runHref={`${homeHref}/runs/${shownRun.id}`}
+                            reportReady={shownRun.reportPath !== null}
+                            reportCount={matches.filter((match) => match.relevance !== "descartada").length}
+                            params={params}
+                            total={matches.length}
+                            filtered={filters ? filtered.length : null}
+                        />
+                    </div>
                     {rows.length > 0 ? (
                         <ResultsTable rows={rows} params={params} homeHref={homeHref} />
                     ) : (

@@ -2,8 +2,10 @@ import "server-only";
 import { z } from "zod";
 import { listSavedSearchesService } from "@/features/saved-searches/services";
 import {
+    createReportUrl,
     getLatestIngestionAt,
     getLatestRuns,
+    getOrgRun,
     getSearchRun,
     listLatestFinishedRuns,
     listLatestRuns,
@@ -65,6 +67,35 @@ export async function getHomeService(params: { orgId: string; searchId: string |
         latestIngestionAt,
         selected: { ...selectedItem, recentRuns, shownRun, latestFinished, matches },
     };
+}
+
+/** A finished run of the organization with its matches, for the downloads; null otherwise. */
+export async function getRunExportService(params: { orgId: string; runId: string }) {
+    if (!z.uuid().safeParse(params.runId).success) return null;
+    const found = await getOrgRun(params.orgId, params.runId);
+    if (!found || !isRunFinished(found.run.status)) return null;
+    return { ...found, matches: await listSearchRunMatches(found.run.id) };
+}
+
+const fileDate = new Intl.DateTimeFormat("sv-SE", { dateStyle: "short", timeZone: "America/Tegucigalpa" });
+
+/** «tenders-hn-<search>-<yyyy-mm-dd>»: the name of a run's downloads. */
+export function runFileName(searchName: string, createdAt: string) {
+    const slug = searchName
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+    return `tenders-hn-${slug}-${fileDate.format(new Date(createdAt))}`;
+}
+
+/** A link to the run's frozen PDF, or null when the run is not the organization's or the PDF is not ready. */
+export async function getRunReportUrlService(params: { orgId: string; runId: string }) {
+    if (!z.uuid().safeParse(params.runId).success) return null;
+    const found = await getOrgRun(params.orgId, params.runId);
+    if (!found?.run.reportPath) return null;
+    return createReportUrl(found.run.reportPath, `${runFileName(found.searchName, found.run.createdAt)}.pdf`);
 }
 
 /** Any member runs an active search; request_search_run enforces it. */

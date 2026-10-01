@@ -4,7 +4,7 @@ import type { Tables } from "@/types/database.types";
 import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
 
 const SEARCH_RUN_COLUMNS =
-    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, new_matches_count, coverage, source_synced_at, error, created_at, completed_at";
+    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, new_matches_count, coverage, source_synced_at, report_path, error, created_at, completed_at";
 
 type SearchRunRow = Pick<
     Tables<"search_runs">,
@@ -18,6 +18,7 @@ type SearchRunRow = Pick<
     | "new_matches_count"
     | "coverage"
     | "source_synced_at"
+    | "report_path"
     | "error"
     | "created_at"
     | "completed_at"
@@ -38,6 +39,7 @@ function mapSearchRunRow(row: SearchRunRow): SearchRun {
         newMatchesCount: row.new_matches_count,
         failedEvaluations: coverage?.failedEvaluations ?? 0,
         sourceSyncedAt: row.source_synced_at,
+        reportPath: row.report_path,
         error: row.error,
         createdAt: row.created_at,
         completedAt: row.completed_at,
@@ -101,6 +103,19 @@ export async function getSearchRun(searchId: string, runId: string): Promise<Sea
 
     if (error) throw error;
     return data ? mapSearchRunRow(data) : null;
+}
+
+/** A run of the organization with its search's name, or null (another organization's run or a hand-edited URL). */
+export async function getOrgRun(orgId: string, runId: string): Promise<{ run: SearchRun; searchName: string } | null> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("search_runs").select(SEARCH_RUN_COLUMNS).eq("org_id", orgId).eq("id", runId).maybeSingle();
+
+    if (error) throw error;
+    if (!data) return null;
+
+    const { data: search, error: searchError } = await supabase.from("saved_searches").select("name").eq("id", data.saved_search_id).single();
+    if (searchError) throw searchError;
+    return { run: mapSearchRunRow(data), searchName: search.name };
 }
 
 /**
@@ -178,6 +193,15 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
             documentsCount: row.documents_count,
         }),
     );
+}
+
+/** A short-lived link to a run's PDF, signed with the user's session so the bucket's policy applies. */
+export async function createReportUrl(path: string, fileName: string): Promise<string> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.storage.from("reports").createSignedUrl(path, 60, { download: fileName });
+
+    if (error) throw error;
+    return data.signedUrl;
 }
 
 // ========== MUTATIONS ==========

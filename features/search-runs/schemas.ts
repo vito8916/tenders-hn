@@ -25,6 +25,8 @@ export const searchRunSchema = z.object({
     newMatchesCount: z.number().int().nullable(),
     failedEvaluations: z.number().int(),
     sourceSyncedAt: z.string().nullable(),
+    /** The frozen PDF in the reports bucket; null until the worker renders it. */
+    reportPath: z.string().nullable(),
     error: z.string().nullable(),
     createdAt: z.string(),
     completedAt: z.string().nullable(),

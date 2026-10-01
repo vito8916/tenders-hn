@@ -18,12 +18,14 @@
     "@supabase/supabase-js": "^2.86.0",
     "ai": "7.0.113",
     "node-html-parser": "^9.0.4",
+    "pdfkit": "^0.17.2",
     "pg": "^8.23.0",
     "tsx": "^4.23.15",
     "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^20.19.25",
+    "@types/pdfkit": "^0.17.6",
     "@types/pg": "^8.23.1",
     "typescript": "^5.9.3"
   }

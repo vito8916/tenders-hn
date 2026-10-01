@@ -1526,6 +1526,7 @@ export type Database = {
           org_id: string
           processes_examined: number | null
           profile_version: number | null
+          report_path: string | null
           saved_search_id: string
           source_synced_at: string | null
           started_at: string | null
@@ -1547,6 +1548,7 @@ export type Database = {
           org_id: string
           processes_examined?: number | null
           profile_version?: number | null
+          report_path?: string | null
           saved_search_id: string
           source_synced_at?: string | null
           started_at?: string | null
@@ -1568,6 +1570,7 @@ export type Database = {
           org_id?: string
           processes_examined?: number | null
           profile_version?: number | null
+          report_path?: string | null
           saved_search_id?: string
           source_synced_at?: string | null
           started_at?: string | null

@@ -253,6 +253,153 @@ export type Database = {
           },
         ]
       }
+      chat_messages: {
+        Row: {
+          citations: Json
+          client_message_id: string | null
+          completed_at: string | null
+          content: string
+          created_at: string
+          credit_reservation_id: string | null
+          credits_charged: number | null
+          error: string | null
+          id: string
+          input_tokens: number | null
+          model: string | null
+          org_id: string
+          output_tokens: number | null
+          role: string
+          status: string
+          thread_id: string
+          unverified: boolean
+          user_id: string
+        }
+        Insert: {
+          citations?: Json
+          client_message_id?: string | null
+          completed_at?: string | null
+          content?: string
+          created_at?: string
+          credit_reservation_id?: string | null
+          credits_charged?: number | null
+          error?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          org_id: string
+          output_tokens?: number | null
+          role: string
+          status?: string
+          thread_id: string
+          unverified?: boolean
+          user_id: string
+        }
+        Update: {
+          citations?: Json
+          client_message_id?: string | null
+          completed_at?: string | null
+          content?: string
+          created_at?: string
+          credit_reservation_id?: string | null
+          credits_charged?: number | null
+          error?: string | null
+          id?: string
+          input_tokens?: number | null
+          model?: string | null
+          org_id?: string
+          output_tokens?: number | null
+          role?: string
+          status?: string
+          thread_id?: string
+          unverified?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_credit_reservation_id_fkey"
+            columns: ["credit_reservation_id"]
+            isOneToOne: false
+            referencedRelation: "ai_credit_reservations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_messages_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "chat_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_threads: {
+        Row: {
+          context_type: string
+          created_at: string
+          id: string
+          org_id: string
+          process_id: string | null
+          search_run_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          context_type: string
+          created_at?: string
+          id?: string
+          org_id: string
+          process_id?: string | null
+          search_run_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          context_type?: string
+          created_at?: string
+          id?: string
+          org_id?: string
+          process_id?: string | null
+          search_run_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_threads_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_threads_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "chat_threads_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_threads_search_run_id_fkey"
+            columns: ["search_run_id"]
+            isOneToOne: false
+            referencedRelation: "search_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       company_profile_versions: {
         Row: {
           created_at: string
@@ -2113,6 +2260,28 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      fail_chat_turn: {
+        Args: { error_message: string; target_message: string }
+        Returns: undefined
+      }
+      finish_chat_turn: {
+        Args: {
+          answer: string
+          answer_citations: Json
+          answer_unverified: boolean
+          query_embedding_model?: string
+          query_embedding_tokens?: number
+          response_model: string
+          target_message: string
+          used_input_tokens: number
+          used_latency_ms: number
+          used_output_tokens: number
+        }
+        Returns: {
+          credits_available: number
+          credits_charged: number
+        }[]
+      }
       finish_profile_improvement: {
         Args: {
           error_message?: string
@@ -2287,6 +2456,28 @@ export type Database = {
           score: number
         }[]
       }
+      retrieve_chat_passages: {
+        Args: {
+          max_passages?: number
+          query_embedding: unknown
+          query_text: string
+          target_model: string
+          target_processes: string[]
+        }
+        Returns: {
+          chunk_id: number
+          content: string
+          document_id: string
+          document_kind: string
+          document_title: string
+          document_version_id: string
+          page_end: number
+          page_start: number
+          process_id: string
+          score: number
+          source_url: string
+        }[]
+      }
       save_company_profile: {
         Args: {
           profile_description: string
@@ -2312,6 +2503,24 @@ export type Database = {
           kind: string
           open_processes: number
           value: string
+        }[]
+      }
+      start_chat_turn: {
+        Args: {
+          client_message_id: string
+          estimated_input_tokens: number
+          max_output_tokens: number
+          question: string
+          target_context: string
+          target_id: string
+          target_org: string
+          used_model: string
+        }
+        Returns: {
+          assistant_message_id: string
+          reserved_credits: number
+          thread_id: string
+          user_message_id: string
         }[]
       }
       transfer_organization_ownership: {

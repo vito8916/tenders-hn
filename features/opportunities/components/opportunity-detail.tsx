@@ -1,10 +1,14 @@
+import { Suspense } from "react";
 import { ExternalLink, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ContextChat } from "@/features/chat/components/context-chat";
 import { MatchStateBadge, RelevanceBadge } from "@/features/search-runs/components/results-table";
 import type { SearchRunMatch } from "@/features/search-runs/schemas";
 import { getOpportunityDetailService } from "../services";
-import { DOCUMENT_KIND_LABELS, type ProcessDetail, type ProcessEvent } from "../schemas";
+import { DOCUMENT_KIND_LABELS, type Feedback, type ProcessDetail, type ProcessEvent, type SourceDocument } from "../schemas";
 import { FeedbackButtons } from "./feedback-buttons";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "full", timeStyle: "short", timeZone: "America/Tegucigalpa" });
@@ -125,15 +129,30 @@ function describeEvent(event: ProcessEvent) {
     }
 }
 
-/** The opportunity beside the table (spec §12.3), loaded when the panel opens. */
+function ChatSkeleton() {
+    return (
+        <div className="space-y-3 p-6">
+            <Skeleton className="h-16 w-full" />
+            <Skeleton className="h-24 w-full" />
+        </div>
+    );
+}
+
+/**
+ * The opportunity beside the table (spec §12.3), loaded when the panel opens:
+ * its detail, and a tab to ask about its documents (spec §8).
+ */
 export async function OpportunityDetail({
     orgId,
     orgSlug,
+    runId,
     match,
     canDecide,
 }: {
     orgId: string;
     orgSlug: string;
+    /** The run the match belongs to. */
+    runId: string;
     match: SearchRunMatch;
     canDecide: boolean;
 }) {
@@ -142,8 +161,8 @@ export async function OpportunityDetail({
     const changedSinceRun = version !== null && match.processVersionId !== null && version.versionId !== match.processVersionId;
 
     return (
-        <article>
-            <header className="space-y-3 px-6 pt-6 pb-5">
+        <article className="flex min-h-0 flex-1 flex-col">
+            <header className="shrink-0 space-y-3 px-6 pt-6 pb-5">
                 <div className="flex flex-wrap items-center gap-1.5 pr-8">
                     <RelevanceBadge relevance={match.relevance} />
                     <MatchStateBadge match={match} />
@@ -162,8 +181,52 @@ export async function OpportunityDetail({
                         El proceso cambió después de esta ejecución: se muestran sus datos actuales.
                     </p>
                 ) : null}
-                <KeyFacts match={match} detail={detail} />
             </header>
+
+            <Tabs defaultValue="detalle" className="min-h-0 flex-1 gap-0">
+                <TabsList className="mx-6 mb-4">
+                    <TabsTrigger value="detalle">Detalle</TabsTrigger>
+                    <TabsTrigger value="preguntar">Preguntar</TabsTrigger>
+                </TabsList>
+                <TabsContent value="detalle" className="min-h-0 overflow-y-auto">
+                    <OpportunitySections match={match} detail={detail} documents={documents} events={events} feedback={feedback} orgId={orgId} orgSlug={orgSlug} canDecide={canDecide} />
+                </TabsContent>
+                {/* Kept mounted, so switching tabs does not cut an answer being written. */}
+                <TabsContent value="preguntar" forceMount className="min-h-0 border-t data-[state=inactive]:hidden">
+                    <Suspense fallback={<ChatSkeleton />}>
+                        <ContextChat orgId={orgId} orgSlug={orgSlug} context={{ type: "opportunity", processId: match.processId, runId }} />
+                    </Suspense>
+                </TabsContent>
+            </Tabs>
+        </article>
+    );
+}
+
+/** The detail tab: what a supplier needs first, the decision, why it matched, products, documents, data, and changes. */
+function OpportunitySections({
+    match,
+    detail,
+    documents,
+    events,
+    feedback,
+    orgId,
+    orgSlug,
+    canDecide,
+}: {
+    match: SearchRunMatch;
+    detail: ProcessDetail | null;
+    documents: SourceDocument[];
+    events: ProcessEvent[];
+    feedback: Feedback | null;
+    orgId: string;
+    orgSlug: string;
+    canDecide: boolean;
+}) {
+    return (
+        <>
+            <div className="px-6 pb-5">
+                <KeyFacts match={match} detail={detail} />
+            </div>
 
             <Section title="¿Le interesa?">
                 <FeedbackButtons orgId={orgId} orgSlug={orgSlug} processId={match.processId} feedback={feedback} canDecide={canDecide} />
@@ -223,6 +286,6 @@ export async function OpportunityDetail({
                     <p className="text-sm text-muted-foreground">Sin cambios desde que Tenders HN lo detectó.</p>
                 )}
             </Section>
-        </article>
+        </>
     );
 }

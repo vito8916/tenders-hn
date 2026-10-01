@@ -6,7 +6,7 @@ export class UserFacingError extends Error {}
 
 /**
  * Spanish messages for the exceptions the database raises in organization,
- * membership, invitation, company profile, and search flows (`raise exception '<code>'` in supabase/migrations).
+ * membership, invitation, company profile, search, and chat flows (`raise exception '<code>'` in supabase/migrations).
  * Postgres puts the code in the error message, so lookup is by substring.
  */
 const DATABASE_ERROR_MESSAGES: Record<string, string> = {
@@ -24,6 +24,11 @@ const DATABASE_ERROR_MESSAGES: Record<string, string> = {
     search_inactive: "La búsqueda está pausada. Reactívela para ejecutarla.",
     no_profile: "Guarde primero el perfil de la empresa.",
     run_in_progress: "Esta búsqueda ya se está ejecutando. Espere a que termine.",
+    insufficient_credits: "La organización no tiene créditos suficientes para esta pregunta.",
+    chat_turn_exists: "Esa pregunta ya se envió.",
+    chat_context_not_found: "El proceso o la ejecución no existe o ya no está disponible.",
+    chat_model_unavailable: "El asistente no está disponible en este momento.",
+    invalid_question: "Escriba una pregunta de hasta 2000 caracteres.",
 };
 
 /** The code of a known database error (a key of DATABASE_ERROR_MESSAGES) in the error's message. */

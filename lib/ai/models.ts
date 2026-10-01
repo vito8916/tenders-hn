@@ -10,8 +10,8 @@ export type AiRole = (typeof AI_ROLES)[number];
 // chosen by its evaluation set (documentation/mvp-implementation-plan.md §5).
 const DEFAULT_MODELS: Record<AiRole, string | null> = {
     evaluate: "typesafe-ai/jev",
-    // Provisional until the chat evaluation set picks a default (decision O5).
-    chat: "anthropic/claude-sonnet-5",
+    // Decided 30 Sep 2026 (O5); the chat evaluation set confirms it before the pilot.
+    chat: "openai/gpt-6-luna",
     // Provisional until retrieval recall on the labeled set picks one (decision O3).
     // Voyage 4 models share one embedding space, so moving within the series
     // does not require re-embedding.

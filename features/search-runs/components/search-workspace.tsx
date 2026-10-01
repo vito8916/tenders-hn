@@ -1,8 +1,11 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { MessageSquareText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ContextChat } from "@/features/chat/components/context-chat";
+import { ReportChatSheet } from "@/features/chat/components/report-chat-sheet";
 import { DetailSheet } from "@/features/opportunities/components/detail-sheet";
 import { OpportunityDetail } from "@/features/opportunities/components/opportunity-detail";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
@@ -149,14 +152,24 @@ function Results({
                         <p className="text-sm text-muted-foreground">
                             {filters ? `${filtered.length} de ${matches.length} oportunidades` : `${matches.length} oportunidades`}
                         </p>
-                        <DownloadMenu
-                            runHref={`${homeHref}/runs/${shownRun.id}`}
-                            reportReady={shownRun.reportPath !== null}
-                            reportCount={matches.filter((match) => match.relevance !== "descartada").length}
-                            params={params}
-                            total={matches.length}
-                            filtered={filters ? filtered.length : null}
-                        />
+                        <div className="flex flex-wrap items-center gap-2">
+                            {relevant.length > 0 ? (
+                                <Button variant="outline" asChild>
+                                    <Link href={`${homeHref}${withParams(params, { preguntar: "reporte" })}`} scroll={false}>
+                                        <MessageSquareText />
+                                        Preguntar sobre el reporte
+                                    </Link>
+                                </Button>
+                            ) : null}
+                            <DownloadMenu
+                                runHref={`${homeHref}/runs/${shownRun.id}`}
+                                reportReady={shownRun.reportPath !== null}
+                                reportCount={matches.filter((match) => match.relevance !== "descartada").length}
+                                params={params}
+                                total={matches.length}
+                                filtered={filters ? filtered.length : null}
+                            />
+                        </div>
                     </div>
                     {rows.length > 0 ? (
                         <ResultsTable rows={rows} params={params} homeHref={homeHref} />
@@ -166,10 +179,17 @@ function Results({
                     <Pager page={page} pageCount={pageCount} params={params} homeHref={homeHref} />
                 </>
             ) : null}
+            {params.preguntar === "reporte" && relevant.length > 0 ? (
+                <ReportChatSheet>
+                    <Suspense key={shownRun.id} fallback={<DetailSkeleton />}>
+                        <ContextChat orgId={orgId} orgSlug={orgSlug} context={{ type: "report", runId: shownRun.id }} />
+                    </Suspense>
+                </ReportChatSheet>
+            ) : null}
             {detailMatch ? (
                 <DetailSheet title={detailMatch.title}>
                     <Suspense key={detailMatch.processId} fallback={<DetailSkeleton />}>
-                        <OpportunityDetail orgId={orgId} orgSlug={orgSlug} match={detailMatch} canDecide={canDecide} />
+                        <OpportunityDetail orgId={orgId} orgSlug={orgSlug} runId={shownRun.id} match={detailMatch} canDecide={canDecide} />
                     </Suspense>
                 </DetailSheet>
             ) : null}

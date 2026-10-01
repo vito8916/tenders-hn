@@ -89,7 +89,15 @@ export function SearchesPane({
                                     </span>
                                 </Link>
                                 {isSelected && recentRuns.length > 0 ? (
-                                    <RunList homeHref={homeHref} searchId={search.id} runs={recentRuns} shownRunId={shownRunId} />
+                                    <>
+                                        <RunList homeHref={homeHref} searchId={search.id} runs={recentRuns} shownRunId={shownRunId} />
+                                        <Link
+                                            href={`${homeHref}/searches/${search.id}/historial`}
+                                            className="mt-1 ml-5 inline-block text-xs text-primary hover:underline"
+                                        >
+                                            Historial completo
+                                        </Link>
+                                    </>
                                 ) : null}
                             </li>
                         );

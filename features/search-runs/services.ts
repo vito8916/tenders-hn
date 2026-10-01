@@ -5,17 +5,20 @@ import {
     createReportUrl,
     getLatestIngestionAt,
     getLatestRuns,
+    getHistoryMonths,
     getOrgRun,
     getSearchRun,
     listLatestFinishedRuns,
     listLatestRuns,
     listRecentRuns,
+    listRunsPage,
     listSearchRunMatches,
     requestSearchRun,
 } from "./repository";
 import { isRunFinished } from "./schemas";
 
 const RECENT_RUNS = 10;
+const HISTORY_PAGE_SIZE = 25;
 
 export async function listLatestRunsService(orgId: string) {
     return listLatestRuns(orgId);
@@ -67,6 +70,15 @@ export async function getHomeService(params: { orgId: string; searchId: string |
         latestIngestionAt,
         selected: { ...selectedItem, recentRuns, shownRun, latestFinished, matches },
     };
+}
+
+/** «Historial completo» (spec §12.4): a page of the search's runs and how many months the plan keeps. */
+export async function getRunHistoryService(params: { orgId: string; searchId: string; page: number }) {
+    const [{ runs, total }, historyMonths] = await Promise.all([
+        listRunsPage(params.searchId, params.page, HISTORY_PAGE_SIZE),
+        getHistoryMonths(params.orgId),
+    ]);
+    return { runs, historyMonths, pageCount: Math.max(1, Math.ceil(total / HISTORY_PAGE_SIZE)) };
 }
 
 /** A finished run of the organization with its matches, for the downloads; null otherwise. */

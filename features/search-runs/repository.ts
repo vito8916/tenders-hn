@@ -91,6 +91,30 @@ export async function listRecentRuns(searchId: string, limit: number): Promise<S
     return data.map(mapSearchRunRow);
 }
 
+/** One page of the search's runs, newest first, with how many there are (RLS keeps them within the plan's history). */
+export async function listRunsPage(searchId: string, page: number, pageSize: number): Promise<{ runs: SearchRun[]; total: number }> {
+    const supabase = await createClient();
+    const { data, count, error } = await supabase
+        .from("search_runs")
+        .select(SEARCH_RUN_COLUMNS, { count: "exact" })
+        .eq("saved_search_id", searchId)
+        .order("created_at", { ascending: false })
+        .range((page - 1) * pageSize, page * pageSize - 1);
+
+    if (error) throw error;
+    return { runs: data.map(mapSearchRunRow), total: count ?? 0 };
+}
+
+/** Months of runs the organization's plan keeps; null for all of them. */
+export async function getHistoryMonths(orgId: string): Promise<number | null> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("organization_subscriptions").select("plans (history_months)").eq("org_id", orgId).maybeSingle();
+
+    if (error) throw error;
+    const plan = Array.isArray(data?.plans) ? data.plans[0] : data?.plans;
+    return plan?.history_months ?? null;
+}
+
 /** A run of the search, or null when the id belongs to another search (a hand-edited URL). */
 export async function getSearchRun(searchId: string, runId: string): Promise<SearchRun | null> {
     const supabase = await createClient();

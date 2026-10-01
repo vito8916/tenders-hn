@@ -2,7 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { processDetailSchema, sourceDocumentSchema } from "@/features/opportunities/schemas";
-import type { ContextProcess, DocumentReadability, Passage } from "./prompt";
+import { documentReadability, type ContextProcess, type Passage } from "./prompt";
 import { citationSchema, type ChatContext, type Citation } from "./schemas";
 
 export type StoredChatMessage = {
@@ -13,15 +13,6 @@ export type StoredChatMessage = {
     citations: Citation[];
     unverified: boolean;
     creditsCharged: number | null;
-};
-
-const READABILITY: Record<string, DocumentReadability> = {
-    text: "read",
-    ocr: "read",
-    partial: "partial",
-    pending: "pending",
-    failed: "unreadable",
-    unsupported: "unreadable",
 };
 
 const passageRowSchema = z.object({
@@ -89,11 +80,10 @@ export async function listContextProcesses(processIds: string[]): Promise<Omit<C
                 .map((document) => ({
                     title: document.title,
                     kind: sourceDocumentSchema.shape.kind.parse(document.kind),
-                    readability: document.current_version_id
-                        ? (READABILITY[statusByVersion.get(document.current_version_id) ?? "pending"] ?? "pending")
-                        : document.download_error
-                          ? "not_downloaded"
-                          : "pending",
+                    readability: documentReadability(
+                        document.current_version_id ? (statusByVersion.get(document.current_version_id) ?? null) : null,
+                        document.download_error,
+                    ),
                 })),
         };
     });

@@ -3,7 +3,8 @@ import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { userErrorMessage } from "@/lib/errors";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { chatRequestSchema, type ChatUIMessage } from "@/features/chat/schemas";
-import { MAX_OUTPUT_TOKENS, settleChatTurnService, startChatTurnService } from "@/features/chat/services";
+import { MAX_OUTPUT_TOKENS } from "@/features/chat/prompt";
+import { settleChatTurnService, startChatTurnService } from "@/features/chat/services";
 
 /**
  * A question to the chat (spec §8), with the user's session. The answer

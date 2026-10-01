@@ -1,0 +1,2689 @@
+{
+  "set": "v1",
+  "models": [
+    "anthropic/claude-sonnet-5",
+    "openai/gpt-6-luna",
+    "deepseek/deepseek-v4.1-flash"
+  ],
+  "embedModel": "voyage/voyage-4",
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5",
+      "answered": 24,
+      "failed": 0,
+      "answersWithUnknownIds": 0,
+      "unverified": 0,
+      "citedExpectedPages": "14/15",
+      "medianLatencyMs": 4963,
+      "inputTokens": 210518,
+      "outputTokens": 12341,
+      "costUsd": 0.54445
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "answered": 24,
+      "failed": 0,
+      "answersWithUnknownIds": 0,
+      "unverified": 0,
+      "citedExpectedPages": "14/15",
+      "medianLatencyMs": 3457,
+      "inputTokens": 121806,
+      "outputTokens": 5595,
+      "costUsd": 0.01498
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "answered": 24,
+      "failed": 0,
+      "answersWithUnknownIds": 0,
+      "unverified": 0,
+      "citedExpectedPages": "14/15",
+      "medianLatencyMs": 1777,
+      "inputTokens": 138030,
+      "outputTokens": 14879,
+      "costUsd": 0.05926
+    }
+  ],
+  "answers": [
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Buenos días. En caso de resultar adjudicados, ¿por qué monto y con qué vigencia debemos presentar la garantía de cumplimiento del contrato, y en qué momento se entrega?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Buenos días. Según el Pliego, la Garantía de Cumplimiento de Contrato tiene estas condiciones:\n\n- **Monto:** equivalente al 15% del valor del monto contractual estimado de los bienes y servicios a entregar durante el año, debiendo renovarse 30 días antes de cada vencimiento [S2].\n- **Vigencia:** hasta tres (3) meses después del plazo previsto para la prestación total de los servicios [S2].\n- **Forma:** debe presentarse en original, y solo se aceptan fianzas y garantías bancarias emitidas por instituciones autorizadas, cheques certificados o bonos del Estado conforme a la Ley de Crédito Público [S2].\n- **Lugar de entrega:** Subgerencia de Suministros Materiales y Compras [S2].\n\nSobre el **momento de entrega**, encontré dos referencias que no coinciden exactamente:\n\n- Las condiciones generales del pliego (CC-07) indican que debe presentarse **al momento de suscribir el contrato** [S2].\n- El modelo de cláusula contractual (Cláusula Sexta) señala que debe constituirse **dentro de los diez (10) días hábiles después de la notificación del aviso de adjudicado** [S3].\n\nDado que hay esta diferencia entre ambas secciones del mismo pliego, le recomiendo confirmar el plazo exacto directamente con la Lic. Delmi Reyes (delmi.reyes@ihss.hn, 2222-6922) [S1] o revisar nuevamente el documento oficial antes de la firma del contrato, ya que la garantía debe estar lista a tiempo para no perder los derechos de adjudicación [S5].\n\nAdicionalmente, tenga presente:\n- La no presentación de la garantía da lugar a la resolución del contrato, sin responsabilidad para el IHSS [S3].\n- Debe incluir textualmente la cláusula obligatoria de ejecución automática especificada en el pliego [S3, S7].\n- Existe también una Garantía de Calidad (cuando aplique) que puede sustituir a la de cumplimiento, por 5% del monto contractual, con vigencia de 12 meses desde la finalización del contrato, a presentarse dentro de los 30 días hábiles después de la recepción final de los bienes y servicios [S2, S6, S8].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 19,
+          "pageEnd": 20
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 47,
+          "pageEnd": 47
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 43,
+          "pageEnd": 44
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 20,
+          "pageEnd": 20
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 44,
+          "pageEnd": 45
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 11806,
+      "outputTokens": 1278,
+      "latencyMs": 12248,
+      "costUsd": 0.036392
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Buenos días. En caso de resultar adjudicados, ¿por qué monto y con qué vigencia debemos presentar la garantía de cumplimiento del contrato, y en qué momento se entrega?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Buenos días. Esto es lo que indican los documentos publicados del proceso LPN-008-2026:\n\n**Monto**\n- 15 % del valor total del contrato [S2, S3]. El pliego la define como equivalente al 15 % del monto contractual del valor estimado de los bienes y servicios a entregar durante el año [S2].\n- Esa garantía se incrementará en la misma proporción en que el valor del contrato llegue a aumentar [S2].\n\n**Vigencia**\n- Debe estar vigente hasta tres (3) meses después del plazo previsto para la prestación total de los servicios [S2, S3].\n- Debe renovarse treinta (30) días antes de cada vencimiento [S2].\n\n**Momento de entrega**\nAquí los documentos no coinciden del todo; conviene aclararlo con la institución:\n- El pliego señala que el proveedor debe presentarla **al momento de suscribir el contrato**, en original, en la Subgerencia de Suministros Materiales y Compras [S2].\n- La cláusula contractual indica **diez (10) días hábiles después de la notificación del aviso de adjudicado** [S3].\n\n**Otros puntos a tener en cuenta**\n- Se aceptan solo fianzas y garantías bancarias de instituciones autorizadas, cheques certificados y bonos del Estado conforme a la Ley de Crédito Público [S2].\n- Todas las garantías deben incluir textualmente la cláusula obligatoria (solidaria, incondicional, irrevocable y de realización automática) [S3, S7, S10].\n- Si no se constituye la garantía de cumplimiento o las demás a cargo del contratista en los plazos, es causa de resolución del contrato [S3, S11]; y da lugar a la resolución sin responsabilidad para el IHSS [S3].\n- El IHSS debe devolverla a más tardar dentro de los noventa (90) días calendario siguientes al cumplimiento de todas las obligaciones contractuales [S3].\n- Cuando aplique, la garantía de calidad sustituye la de cumplimiento: 5 % del monto contractual, vigencia de 12 meses desde la finalización del contrato, y se presenta dentro de los 30 días hábiles posteriores a la recepción final [S2, S6].\n- Plazo contractual: tres (3) años desde la firma del contrato y la orden de inicio [S5, S11].\n\nPara evitar riesgos por la diferencia de plazos entre [S2] y [S3], le sugiero confirmarlo con la institución por el contacto de la ficha: LIC. DELMI REYES, delmi.reyes@ihss.hn, 22226922 [S1]. El proceso está en etapa de Recepción de Ofertas, con fecha límite 10/11/2026, 10:00 a. m. [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 19,
+          "pageEnd": 20
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 47,
+          "pageEnd": 47
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 43,
+          "pageEnd": 44
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 43,
+          "pageEnd": 43
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 48,
+          "pageEnd": 48
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 20,
+          "pageEnd": 20
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7514,
+      "outputTokens": 1484,
+      "latencyMs": 5300,
+      "costUsd": 0.004035
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Buenos días. En caso de resultar adjudicados, ¿por qué monto y con qué vigencia debemos presentar la garantía de cumplimiento del contrato, y en qué momento se entrega?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "El pliego presenta una diferencia entre sus condiciones y el borrador de contrato:\n\n- En las condiciones generales, la garantía es por el **15% del valor contractual estimado de los servicios de un año**; debe renovarse 30 días antes de cada vencimiento y mantenerse vigente hasta tres meses después del plazo previsto para prestar el servicio. Se indica que se presenta **al suscribir el contrato**. [S2]\n- El borrador de contrato señala **15% del valor total del contrato** y entrega **dentro de los diez días hábiles posteriores a la notificación de adjudicación**; también establece vigencia hasta tres meses después del plazo previsto para el servicio. [S3]\n\nComo el monto base y el momento de entrega no coinciden, consulte la aclaración oficial con el IHSS antes de preparar la garantía. [S2, S3]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 19,
+          "pageEnd": 20
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 47,
+          "pageEnd": 47
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6554,
+      "outputTokens": 416,
+      "latencyMs": 5120,
+      "costUsd": 0.0008634
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "¿Cuáles son los tiempos de atención y de resolución que exige el Acuerdo de Nivel de Servicio (SLA) según la prioridad de los casos, y qué pasa si no se cumplen?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el Pliego, el Acuerdo de Nivel de Servicio (SLA) establece los siguientes tiempos según la prioridad del requerimiento registrado en el sistema SAP SOLMAN [S2]:\n\n| Prioridad | Tiempo de atención | Tiempo de resolución |\n|---|---|---|\n| Urgente | 2 horas | 6 horas |\n| Alta | 4 horas | 24 horas |\n| Media | 24 horas | 48 horas |\n| Baja | 48 horas | 72 horas |\n\nEl Pliego indica que es responsabilidad de todas las partes involucradas cumplir con estos tiempos para no poner en riesgo la operación institucional [S2].\n\nEn cuanto a las consecuencias por incumplimiento:\n- Si el contratista incurre en mora en sus obligaciones contractuales por causas que le sean imputables, se le impondrá una multa por cada día de retraso, calculada según la tasa fiscal vigente y conforme a las Disposiciones Generales de Ingresos y Egresos de la República de Honduras [S7].\n- El **incumplimiento reiterado de los SLAs** acarreará **deducciones porcentuales directas sobre la factura del mes correspondiente** [S7].\n\nNo se detalla en las fuentes disponibles el porcentaje exacto de esas deducciones; si necesita esa cifra específica, le sugiero revisar el Pliego completo o consultar directamente con la contacto del proceso, Lic. Delmi Reyes (delmi.reyes@ihss.hn, 2222-6922) [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 30,
+          "pageEnd": 30
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10029,
+      "outputTokens": 576,
+      "latencyMs": 5594,
+      "costUsd": 0.025818
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "¿Cuáles son los tiempos de atención y de resolución que exige el Acuerdo de Nivel de Servicio (SLA) según la prioridad de los casos, y qué pasa si no se cumplen?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según el Acuerdo de Nivel de Servicio (SLA), los tiempos se atienden de acuerdo con la prioridad de los requerimientos registrados en el Sistema SAP SOLMAN [S2]:\n\n| Prioridad | Resolución | Atención |\n|---|---|---|\n| Urgente | 6 horas | 2 horas |\n| Alta | 24 horas | 4 horas |\n| Media | 48 horas | 24 horas |\n| Baja | 72 horas | 48 horas |\n\nEs responsabilidad de todas las partes involucradas cumplir con los tiempos acordados para no poner en riesgo la operación institucional [S2].\n\nSi no se cumplen:\n- El incumplimiento reiterado de los SLAs acarrea deducciones porcentuales directas sobre la factura del mes correspondiente [S7].\n- Aparte, si el contratista incurre en mora por causas imputables a él, se le impone una multa por cada día de retraso en relación con el monto total del saldo del contrato, según la tasa fiscal vigente y conforme a las Disposiciones Generales de Ingresos y Egresos de la República; si el contrato surte efecto en otro ejercicio fiscal, aplica según lo establecido en las disposiciones de presupuesto vigentes al momento del incumplimiento [S7].\n\nPara el detalle exacto de los porcentajes de deducción, conviene revisar el pliego completo publicado en el enlace oficial del proceso [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 30,
+          "pageEnd": 30
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6634,
+      "outputTokens": 497,
+      "latencyMs": 3644,
+      "costUsd": 0.0025865999999999997
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "¿Cuáles son los tiempos de atención y de resolución que exige el Acuerdo de Nivel de Servicio (SLA) según la prioridad de los casos, y qué pasa si no se cumplen?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Los tiempos exigidos son [S2]:\n\n| Prioridad | Atención | Resolución |\n|---|---:|---:|\n| Urgente | 2 horas | 6 horas |\n| Alta | 4 horas | 24 horas |\n| Media | 24 horas | 48 horas |\n| Baja | 48 horas | 72 horas |\n\nEl pliego establece que el incumplimiento reiterado de los SLA acarreará deducciones porcentuales directas sobre la factura del mes correspondiente. [S7]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 30,
+          "pageEnd": 30
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 5817,
+      "outputTokens": 223,
+      "latencyMs": 3457,
+      "costUsd": 0.0006931999999999999
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Nuestra empresa tiene 3 años de fundada, somos partner SAP (aunque no Partner Center of Expertise) y hemos ejecutado dos contratos de soporte SAP con empresas privadas. ¿Calificamos para participar en esta licitación?",
+      "kind": "eligibility",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No puedo indicarle si su empresa califica o no, eso depende de la evaluación de la institución conforme al pliego. Sin embargo, le comparto los requisitos de idoneidad técnica que el pliego exige para que usted mismo los revise:\n\n**Sobre la certificación SAP (requisito 1):**\n- Debe presentar constancia oficial o certificado emitido directamente por SAP que lo acredite como **Partner Center of Expertise (PCoE) vigente**; **o bien**, contar con mesa de ayuda propuesta con personal certificado en **CompTIA Security+** (o equivalente en ciberseguridad) **e ISO/IEC 27001** (Implementer en Gestión de Seguridad de la Información), documentos debidamente autenticados [S2, S3, S6].\n- El pliego no detalla si un \"partner SAP\" sin nivel PCoE cumple esta condición; eso lo determinará la institución al evaluar los documentos. Le sugiero revisar con atención el texto completo del pliego o consultar directamente con la institución antes de la fecha límite de aclaraciones [S1].\n\n**Sobre personal clave y certificaciones por módulo:**\n- Debe presentar listado y documentación fehaciente (certificaciones oficiales vigentes emitidas por SAP) del personal clave, según los módulos objeto de soporte [S2, S3, S6].\n- Listado con nombre, especialidad y CV del equipo técnico y funcional propuesto [S2, S3, S6].\n\n**Sobre experiencia (requisito 5):**\n- Debe demostrar experiencia en servicios iguales o similares, ejecutados en los **últimos cinco (5) años**, mediante copias de contratos suscritos **más** constancias de cumplimiento satisfactorio emitidas por los clientes (públicos o privados), detallando objeto, monto y periodo de ejecución, conforme al Art. 35 del RLCE, incluyendo datos de contacto [S5, S10].\n- El pliego no especifica un número mínimo de contratos; menciona la evidencia documentada en general. Con dos contratos privados usted tendría elementos para presentar, pero la suficiencia la evaluará la institución [S5, S10].\n\n**Otros documentos de idoneidad técnica y declaración jurada:**\n- Declaración jurada original del representante legal comprometiéndose a cumplir las condiciones, infraestructura, confidencialidad y niveles de servicio (SLA) [S2, S3, S5, S10].\n\nLe recomiendo revisar el Pliego completo (especialmente las secciones de Evaluación Técnica, Fase III y IV) y, si tiene dudas puntuales sobre si el nivel de \"partner SAP\" que posee satisface el requisito PCoE, presentar una consulta formal a la institución antes del **26/10/2026, 04:00 p.m.** [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 14,
+          "pageEnd": 15
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 9
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 27,
+          "pageEnd": 28
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 10
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10076,
+      "outputTokens": 1172,
+      "latencyMs": 11520,
+      "costUsd": 0.031872
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Nuestra empresa tiene 3 años de fundada, somos partner SAP (aunque no Partner Center of Expertise) y hemos ejecutado dos contratos de soporte SAP con empresas privadas. ¿Calificamos para participar en esta licitación?",
+      "kind": "eligibility",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo determinar si su empresa califica ni emitir criterio sobre elegibilidad; solo puedo enumerarle lo que el pliego exige para que ustedes lo revisen.\n\n**Sobre lo que usted menciona**\n\n- No encontré en las fuentes ningún requisito de antigüedad mínima de la empresa fundada, por lo que los 3 años no se abordan en lo disponible.\n- El pliego no restringe la experiencia a clientes públicos: pide evidencia de servicios iguales o similares ejecutados en los últimos cinco (5) años, con copias de los contratos y sus constancias de cumplimiento satisfactorio emitidas por clientes públicos o privados, detallando objeto, monto, periodo y datos de contacto [S5, S10].\n- Sobre SAP: se exige constancia o certificado emitido directamente por SAP que acredite ser Partner Center of Expertise (PCoE) **vigente**, **o bien** contar con mesa de ayuda propuesta con personal certificado en CompTIA Security+ (o equivalente en ciberseguridad) e ISO/IEC 27001 (Implementer Gestión de Seguridad de la Información), debidamente autenticados [S2, S3, S6]. Es decir, la vía alterna a la PCoE existe en el texto.\n\n**Otros aspectos verificables que el pliego exige**\n\n- Certificaciones oficiales vigentes emitidas por SAP del personal clave, según los módulos objeto de soporte [S2, S6].\n- Listado con nombre, especialidad y curriculum vitae del equipo técnico y funcional propuesto [S2, S6, S9].\n- Certificar por documentación capacidad para los roles: Consultores Funcionales, ABAP, BASIS NetWeaver y Coordinador de Soporte; además, unidad especializada de soporte para casos escalados [S9].\n- Declaración jurada original, autenticada, del representante legal, con los compromisos de cumplimiento, infraestructura, confidencialidad y SLAs [S2, S5, S10].\n- Documentos legales: escritura de constitución y última reforma, poder del representante legal, DNI, RTN, solvencia municipal (del oferente y del representante legal), permiso de operación, inscripción en ONCAE (o constancia de trámite), antecedentes penales y constancia de la PGR [S7, S8].\n- Solvencia patronal original y vigente del IHSS a nombre de la empresa [S4, S7].\n- Fase financiera: balance general y estado de resultados auditados de los dos últimos años fiscales (o constancia de auditoría en proceso), dos constancias bancarias originales (línea de crédito y solvencia económica) y autorización original para verificar documentación [S3, S4].\n- Nota del pliego: todas las solvencias deben estar vigentes al momento de la apertura de ofertas y las fotocopias autenticadas por notario [S5].\n- El contrato previsto tendría una vigencia de tres (3) años desde la firma del contrato y la orden de inicio [S12].\n\n**Datos del proceso para su revisión**\n\n- Etapa actual: Recepción de Ofertas [S1].\n- Fecha límite de ofertas: 10/11/2026, 10:00 a. m. [S1].\n- Consultas y aclaraciones hasta: 26/10/2026, 04:00 p. m. [S1].\n- Contacto: LIC. DELMI REYES, delmi.reyes@ihss.hn, 22226922 [S1].\n\nLos documentos publicados son Aviso de Prensa, Pliego/Términos de Referencia y Anexos, todos marcados como leídos [S1], por lo que",
+      "citations": [
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 10
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 14,
+          "pageEnd": 15
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 9
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 27,
+          "pageEnd": 28
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 22,
+          "pageEnd": 23
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 13,
+          "pageEnd": 14
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 14,
+          "pageEnd": 14
+        },
+        {
+          "id": "S12",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 48,
+          "pageEnd": 48
+        },
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6767,
+      "outputTokens": 1500,
+      "latencyMs": 8919,
+      "costUsd": 0.0038301
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "question": "Nuestra empresa tiene 3 años de fundada, somos partner SAP (aunque no Partner Center of Expertise) y hemos ejecutado dos contratos de soporte SAP con empresas privadas. ¿Calificamos para participar en esta licitación?",
+      "kind": "eligibility",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Con esos datos no puedo confirmar si su empresa califica. El pliego no indica en los extractos disponibles una antigüedad mínima de la empresa, pero sí exige demostrar experiencia en servicios iguales o similares realizados durante los últimos cinco años, con contratos y constancias de cumplimiento satisfactorio que detallen objeto, monto, período y datos de contacto del cliente. [S5, S10]\n\nSer socio de SAP no sustituye por sí solo el requisito técnico indicado: el pliego pide acreditación vigente como Partner Center of Expertise (PCoE) **o**, como alternativa, una mesa de ayuda con personal certificado en CompTIA Security+ o equivalente en ciberseguridad e ISO/IEC 27001 Implementer, debidamente autenticados. También pide certificaciones SAP vigentes del personal para los módulos objeto del soporte y el listado y CV del equipo propuesto. [S2, S3]\n\nAdemás, revise los requisitos legales y financieros del pliego, incluidos estados financieros auditados, constancias bancarias y solvencias. [S3, S4, S7, S8] **La cantidad de contratos que menciona no permite determinar por sí sola el cumplimiento**; verifique que la evidencia de ambos reúna lo solicitado y consulte al IHSS si tiene dudas sobre la interpretación de los requisitos.",
+      "citations": [
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 10
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 14,
+          "pageEnd": 15
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 9,
+          "pageEnd": 9
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 14,
+          "pageEnd": 14
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 13,
+          "pageEnd": 14
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 5930,
+      "outputTokens": 515,
+      "latencyMs": 6222,
+      "costUsd": 0.0008504999999999999
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuántas computadoras de escritorio básicas solicitan y cuáles son las especificaciones mínimas que deben cumplir?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el pliego, se solicitan **65 unidades de computadoras de escritorio básicas** [S2].\n\nLas especificaciones mínimas que deben cumplir son [S3]:\n\n- **Procesador:** Intel Core i5 de 14ª generación o equivalente.\n- **Memoria RAM:** 16 GB DDR5 o mayor capacidad.\n- **Disco duro:** 480 GB SSD o mayor capacidad.\n- **Puertos:** USB 3.0 y DisplayPort.\n- **Conectividad:** Wi-Fi, Ethernet Gigabit (10/100/1000 Mbps) y Bluetooth 5.0 o superior.\n- **Monitor:** 21.5” Full HD (1920x1080), con puertos HDMI, VGA y DisplayPort.\n- **Sistema operativo:** Windows 11 Pro de 64 bits con licencia perpetua.\n- **Periféricos incluidos:** mouse, teclado y UPS.\n- **Garantía de fábrica:** mínimo un (1) año.\n\nLe recomiendo revisar el Pliego completo (Sección III. Especificaciones Técnicas) para confirmar cualquier detalle adicional antes de preparar su oferta.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 23,
+          "pageEnd": 24
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 11306,
+      "outputTokens": 1032,
+      "latencyMs": 9512,
+      "costUsd": 0.032932
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuántas computadoras de escritorio básicas solicitan y cuáles son las especificaciones mínimas que deben cumplir?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según el cuadro resumen del pliego, se solicitan **65 computadoras de escritorio básicas** [S2], y la ficha del proceso registra ese único producto como «Computadoras de sobremesa o escritorio», con especificaciones «Ver Pliego» [S1].\n\nLas especificaciones listadas para la cantidad de 65 unidades son [S3]:\n- Procesador: Intel Core i5, 14.ª generación o su equivalente.\n- Memoria RAM: 16 GB DDR5 o mayor capacidad.\n- Disco duro: 480 GB SSD o mayor capacidad.\n- Puertos: USB 3.0 y DisplayPort.\n- Conectividad: Wi-Fi y Ethernet Gigabit (10/100/1000 Mbps), Bluetooth 5.0 o superior.\n- Monitor: 21.5\" Full HD (1920x1080), con puertos HDMI, VGA y DisplayPort.\n- Sistema operativo: Windows 11 Pro de 64 bits con licencia perpetua.\n- Periféricos incluidos: mouse, teclado y UPS.\n- Garantía de fábrica: mínimo un (01) año.\n\nUna observación para que usted lo verifique: en el extracto del pliego, el bloque de especificaciones con cantidad 65 aparece bajo el encabezado «COMPUTADORAS PORTATILES», aunque la cantidad coincide con las computadoras de escritorio básicas del cuadro resumen [S2, S3]. Conviene confirmarlo en el documento oficial o consultar a la institución, al contacto Abg. Josue Urquia, licitaciones@sedena.gob.hn, 8873-6563 [S1].\n\nTome en cuenta que las consultas y aclaraciones se reciben hasta el 13/10/2026, 01:30 p. m., y la fecha límite de ofertas es el 13/11/2026, 10:15 a. m. [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE COMPUTADORAS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 23,
+          "pageEnd": 24
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7264,
+      "outputTokens": 867,
+      "latencyMs": 3811,
+      "costUsd": 0.0032196
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuántas computadoras de escritorio básicas solicitan y cuáles son las especificaciones mínimas que deben cumplir?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Solicitan **65 computadoras de escritorio básicas**. [S2]\n\nEl bloque del pliego con cantidad 65 especifica: procesador Intel Core i5 de 14.ª generación o equivalente; 16 GB de RAM DDR5 o más; SSD de 480 GB o más; puertos USB 3.0 y DisplayPort; Wi‑Fi, Ethernet Gigabit y Bluetooth 5.0 o superior; monitor Full HD de 21.5 pulgadas con HDMI, VGA y DisplayPort; Windows 11 Pro de 64 bits con licencia perpetua; mouse, teclado y UPS; y garantía de fábrica mínima de un año. [S3]\n\n**Nota:** en el extracto, ese bloque aparece bajo el rótulo «Computadoras portátiles», aunque indica cantidad 65. Conviene confirmar la correspondencia en el pliego oficial. [S3]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 23,
+          "pageEnd": 24
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6420,
+      "outputTokens": 640,
+      "latencyMs": 7258,
+      "costUsd": 0.000962
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿En qué plazo pagan al proveedor y qué multa se aplica si me atraso en la entrega?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el pliego del proceso LPN-023-2026-SDN:\n\n**Plazo de pago:**\n- La SEDENA pagará en un plazo no mayor de **45 días**, contados a partir de la recepción parcial y/o final y la presentación satisfactoria de los documentos de cobro [S2].\n\n**Multa por atraso:**\n- Si el contratista incurre en mora por causas imputables a él, se aplicará una multa diaria de **0.36%** sobre el monto total del saldo del contrato, conforme al artículo 72 de la Ley de Contratación del Estado [S2].\n- El modelo de contrato incluido en el pliego confirma este mismo porcentaje (0.36% diario sobre el saldo del contrato) por cada día de atraso no justificado [S3].\n- Importante: si el acumulado de multas llega al **20%** del valor del contrato, la institución podría considerar la resolución total del contrato [S3, S4].\n\nLe recomiendo revisar directamente estas cláusulas en el Pliego (secciones CC-08, CC-09 y la Cláusula Décima Segunda del modelo de contrato) para confirmar detalles adicionales antes de presentar su oferta.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 21,
+          "pageEnd": 23
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 46,
+          "pageEnd": 46
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 46,
+          "pageEnd": 47
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10249,
+      "outputTokens": 490,
+      "latencyMs": 5271,
+      "costUsd": 0.025398
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿En qué plazo pagan al proveedor y qué multa se aplica si me atraso en la entrega?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "**Plazo de pago**\n\n- El pago se hace en un plazo no mayor de **45 días**, contados a partir de la recepción parcial y/o final y de la presentación satisfactoria de los documentos de cobro [S2].\n- En el contrato se detalla que se cancela dentro de los **45 días calendario** posteriores a la entrega de los bienes, contra la factura, el recibo y el acta de entrega firmada por la comisión de recepción [S11].\n\n**Multa por atraso**\n\n- Se aplica **0.36% por cada día de retraso**, calculado sobre el saldo del monto del contrato [S2, S3].\n- Si la multa acumulada llega al **20% del valor del contrato**, la Secretaría de Defensa Nacional puede considerar la **resolución total** del contrato [S3, S4]; en ese caso también puede hacerse efectiva la garantía de cumplimiento [S4].\n\n**Dos advertencias para su revisión**\n\n- El pliego contiene varios espacios sin completar (por ejemplo, fechas de entrega, lugar de entrega y monto del contrato aparecen como “XXXX”) [S5, S7, S8]; conviene aclararlos por la vía de consultas.\n- Sobre la reposición de bienes no conformes hay dos plazos distintos en el pliego: **15 días calendario** [S7] y **5 días calendario** [S9].\n\nLa ficha del proceso está en etapa **Elaboración**, con consultas hasta el 13/10/2026 y ofertas hasta el 13/11/2026 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 21,
+          "pageEnd": 23
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 43,
+          "pageEnd": 44
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 46,
+          "pageEnd": 46
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 46,
+          "pageEnd": 47
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 44,
+          "pageEnd": 44
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 44,
+          "pageEnd": 45
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 43,
+          "pageEnd": 43
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 20,
+          "pageEnd": 20
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE COMPUTADORAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6548,
+      "outputTokens": 776,
+      "latencyMs": 11358,
+      "costUsd": 0.0028956
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿En qué plazo pagan al proveedor y qué multa se aplica si me atraso en la entrega?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "El pago se hará en un plazo no mayor de **45 días** desde la recepción parcial o final y la presentación satisfactoria de los documentos de cobro. [S2]\n\nSi el atraso en la entrega es imputable a usted, se aplica una multa diaria de **0.36% sobre el saldo del contrato**. [S2] Si las multas acumuladas llegan al 20% del valor del contrato, la institución podrá considerar resolverlo. [S3]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 21,
+          "pageEnd": 23
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 46,
+          "pageEnd": 46
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 5722,
+      "outputTokens": 276,
+      "latencyMs": 4504,
+      "costUsd": 0.0007101999999999999
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuál es el monto del presupuesto estimado para esta licitación? Quiero saber si mi precio queda por debajo.",
+      "kind": "absent",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No cuento con esa información en las fuentes disponibles. El pliego menciona que la administración puede declarar fracasado el proceso si las ofertas superan \"el presupuesto estimado por la administración\" [S2, S6], pero no se indica el monto específico de dicho presupuesto.\n\nLe sugiero:\n\n- Revisar el Pliego completo de condiciones (podría estar en alguna sección que no forma parte de los fragmentos citados aquí) [S10].\n- Consultar directamente con el contacto del proceso: Abg. Josue Urquia, licitaciones@sedena.gob.hn, 8873-6563 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 16,
+          "pageEnd": 17
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 1,
+          "pageEnd": 3
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE COMPUTADORAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10705,
+      "outputTokens": 214,
+      "latencyMs": 4362,
+      "costUsd": 0.023549999999999998
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuál es el monto del presupuesto estimado para esta licitación? Quiero saber si mi precio queda por debajo.",
+      "kind": "absent",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "El monto del presupuesto estimado no aparece en las fuentes que se me entregaron. Puedo indicarle lo siguiente:\n\n- La ficha del proceso no incluye ninguna cifra de presupuesto estimado; el único monto que consigna es el precio del pliego, Lps. 300.00 [S1]. No confunda ese valor con el presupuesto de la licitación.\n- El pliego sí menciona que existe un «presupuesto estimado por la administración», pero solo al regular causales: la Secretaría puede declarar fracasado el proceso si se presentan ofertas con precios considerablemente superiores a ese presupuesto, con base en el artículo 172 del Reglamento de la Ley de Contratación del Estado [S2, S6]. No se transcribe el monto.\n\nLos dos documentos publicados en la ficha (Aviso de Prensa y Pliego) están marcados como texto leído [S1], así que la cifra tampoco proviene de un documento pendiente; simplemente no está en estas fuentes.\n\nPor eso no puedo decirle si su precio queda por debajo. Le sugiero revisar el documento oficial en el enlace de HonduCompras [S1] o consultar directamente a la institución: Abg. Josue Urquia, licitaciones@sedena.gob.hn, 8873-6563 [S1]. Tenga presente que las consultas y aclaraciones se reciben hasta el 13/10/2026, 01:30 p. m. [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE COMPUTADORAS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 16,
+          "pageEnd": 17
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6971,
+      "outputTokens": 719,
+      "latencyMs": 1733,
+      "costUsd": 0.0029541
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "question": "¿Cuál es el monto del presupuesto estimado para esta licitación? Quiero saber si mi precio queda por debajo.",
+      "kind": "absent",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Las fuentes no indican el monto del presupuesto estimado, así que no puedo determinar si su precio queda por debajo. El pliego señala que la institución puede declarar fracasada la licitación si las ofertas superan considerablemente ese presupuesto, pero no publica su cifra en la información disponible. [S2]\n\nConsulte el pliego oficial o comuníquese con el contacto de la ficha: licitaciones@sedena.gob.hn, 8873-6563. [S1]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE COMPUTADORAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6108,
+      "outputTokens": 175,
+      "latencyMs": 2831,
+      "costUsd": 0.0006983
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "¿Cuántos colaboradores titulares incluye el censo inicial de asegurados y cuál es la suma asegurada del seguro de vida por persona?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "El censo de asegurados inicial es de **371 colaboradores titulares** y la suma asegurada fija del seguro de vida es de **L 500,000.00 por persona** [S2].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 11630,
+      "outputTokens": 63,
+      "latencyMs": 2158,
+      "costUsd": 0.023889999999999998
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "¿Cuántos colaboradores titulares incluye el censo inicial de asegurados y cuál es la suma asegurada del seguro de vida por persona?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Con los datos del pliego:\n\n- **Censo inicial de asegurados:** 371 colaboradores titulares [S2].\n- **Suma asegurada del seguro de vida:** L 500,000.00 por persona (suma asegurada fija) [S2, S3].\n\nSi necesita confirmar algún detalle adicional, puede consultar el pliego publicado en el proceso o contactar a la Sub Dirección de Compras, dmontalvan@pgr.gob.hn, 22352022 Ext. 1209 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S1",
+          "title": "SEGURO MÉDICO HOSPITALARIO COLECTIVO PARA LOS EMPLEADOS DE LA PROCURADURÍA GENERAL DE LA REPÚBLICA (PGR)",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7552,
+      "outputTokens": 203,
+      "latencyMs": 1052,
+      "costUsd": 0.0025092
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "¿Cuántos colaboradores titulares incluye el censo inicial de asegurados y cuál es la suma asegurada del seguro de vida por persona?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "El censo inicial incluye **371 colaboradores titulares** [S2]. La suma asegurada fija del seguro de vida es **L 500,000 por persona** [S2, S3].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6735,
+      "outputTokens": 44,
+      "latencyMs": 3608,
+      "costUsd": 0.0006954999999999999
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantía debemos presentar al firmar el contrato, por qué monto y con qué vigencia?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Si resulta adjudicado, al momento de suscribir el contrato debe presentar la **Garantía de Cumplimiento de Contrato**, con las siguientes condiciones [S2]:\n\n- **Monto:** al menos el 15% del valor contractual.\n- **Vigencia:** hasta al menos 30 días posteriores a la fecha de vencimiento de la vigencia del contrato.\n- **Forma:** debe presentarse en original, y solo se aceptan fianzas/garantías bancarias emitidas por instituciones autorizadas, cheques certificados o bonos del Estado conforme a la Ley de Crédito Público [S2].\n- Si el monto del contrato aumentara, la garantía se incrementará en la misma proporción [S2].\n\nAdemás, la firma del contrato debe realizarse dentro de los 30 días calendario siguientes a la notificación de adjudicación, y antes de firmar también deberá presentar [S5]:\n\n1. Solvencia Fiscal vigente (SAR).\n2. Constancia de no haber sido objeto de resolución firme de contrato con la Administración (emitida por la PGR).\n3. Constancia de estar al día con el IHSS.\n4. Certificación de inscripción en el Registro de Proveedores y Contratistas del Estado (ONCAE), solo si presentó constancia de trámite al ofertar.\n\nLe recomiendo revisar el pliego completo para confirmar el formato exacto de la garantía (hay un modelo de \"Formato Garantía de Cumplimiento\" en el documento) [S6].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 12,
+          "pageEnd": 13
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 35,
+          "pageEnd": 37
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 12291,
+      "outputTokens": 646,
+      "latencyMs": 6174,
+      "costUsd": 0.031042
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantía debemos presentar al firmar el contrato, por qué monto y con qué vigencia?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según el pliego:\n\n- **Garantía a presentar:** la Garantía de Cumplimiento de Contrato, que debe entregarse **al momento de suscribir el contrato** y **en original** [S2].\n- **Monto:** al menos el equivalente al **15 % del monto contractual**, y se incrementará en la misma proporción en que aumente el valor del contrato [S2].\n- **Vigencia:** hasta al menos **treinta (30) días posteriores** a la fecha de vencimiento de la vigencia del contrato [S2].\n- **Forma:** se aceptan solamente fianzas y garantías bancarias de instituciones debidamente autorizadas, cheques certificados y bonos del Estado emitidos conforme a la Ley de Crédito Público [S2, S9, S10]. El formato del pliego incluye una cláusula especial obligatoria de ejecución a simple requerimiento [S6].\n\nAdemás, antes de la firma del contrato el oferente ganador debe presentar, dentro de los treinta (30) días calendario siguientes a la notificación de adjudicación: solvencia fiscal vigente de la SAR; constancia de la PGR de no haber sido objeto de resolución firme de cualquier contrato con la Administración; constancia de estar al día con el IHSS; y certificación de inscripción en el registro de proveedores y contratistas de la ONCAE (solo si presentó constancia de estar en trámite al ofertar) [S5].\n\nDos advertencias sobre el documento:\n1. El pliego marca como **“NO APLICA”** la Garantía de Buen Suministro y la de fabricación; el texto de esa sección menciona una garantía de calidad que sustituiría la de cumplimiento por un 5 % del monto contractual, pero está dentro de un apartado no aplicable y con campos sin completar («[insertar...]») [S2, S4].\n2. Varios apartados del pliego tienen datos pendientes de llenar y la ficha no indica cambios posteriores al reporte [S1, S2, S4]. Conviene confirmar los montos y plazos definitivos con la Sub Dirección de Compras: dmontalvan@pgr.gob.hn, 22352022 Ext. 1209 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 4,
+          "pageEnd": 5
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 4,
+          "pageEnd": 4
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 35,
+          "pageEnd": 37
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 12,
+          "pageEnd": 13
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 16,
+          "pageEnd": 18
+        },
+        {
+          "id": "S1",
+          "title": "SEGURO MÉDICO HOSPITALARIO COLECTIVO PARA LOS EMPLEADOS DE LA PROCURADURÍA GENERAL DE LA REPÚBLICA (PGR)",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7995,
+      "outputTokens": 783,
+      "latencyMs": 1934,
+      "costUsd": 0.0033381
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantía debemos presentar al firmar el contrato, por qué monto y con qué vigencia?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Al firmar el contrato, deben presentar **en original la Garantía de Cumplimiento**, por un monto de al menos el **15% del valor contractual**. Debe mantenerse vigente hasta, como mínimo, **30 días después del vencimiento del contrato**. [S2]\n\nEl pliego acepta fianzas o garantías bancarias de instituciones autorizadas, cheques certificados y bonos del Estado. [S2]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 15,
+          "pageEnd": 16
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7054,
+      "outputTokens": 158,
+      "latencyMs": 3010,
+      "costUsd": 0.0007844
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Para calcular nuestra prima, ¿cuál es la siniestralidad histórica de la póliza actual de la Procuraduría y cuál es el presupuesto estimado para esta contratación?",
+      "kind": "absent",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No cuento con esa información en las fuentes disponibles. La ficha y el pliego no incluyen datos sobre la siniestralidad histórica de la póliza actual ni el presupuesto estimado para esta contratación [S1, S4, S13].\n\nLe sugiero:\n\n- Consultar directamente a la PGR a través del correo dmontalvan@pgr.gob.hn o al teléfono 22352022 Ext. 1209, antes del 23/10/2026 (fecha límite para aclaraciones) [S1, S11].\n- Enviar su consulta formalmente como \"Aclaración de los Documentos de Licitación\", ya que la respuesta se publicará en HonduCompras y se compartirá con todos los que hayan obtenido los pliegos [S11].\n\nSi existe un documento adicional con esos datos que no haya sido listado en la ficha, no tengo constancia de que esté publicado o leído, por lo que le recomiendo verificar directamente en el enlace oficial del proceso [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "SEGURO MÉDICO HOSPITALARIO COLECTIVO PARA LOS EMPLEADOS DE LA PROCURADURÍA GENERAL DE LA REPÚBLICA (PGR)",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S13",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10839,
+      "outputTokens": 337,
+      "latencyMs": 5121,
+      "costUsd": 0.025048
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Para calcular nuestra prima, ¿cuál es la siniestralidad histórica de la póliza actual de la Procuraduría y cuál es el presupuesto estimado para esta contratación?",
+      "kind": "absent",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo darle esas cifras: no aparecen en las fuentes disponibles.\n\n- **Siniestralidad histórica:** ninguna de las fuentes la menciona [S1–S13].\n- **Presupuesto estimado:** tampoco se publica. Lo único relacionado es que el pliego contempla declarar fracasada la licitación si todas las ofertas se reciben por precios considerablemente superiores «al presupuesto estimado por la administración», pero sin indicar el monto [S8]. El financiamiento proviene de Fondos Nacionales [S5, S6] y el precio del pliego es Lps. 0.00 [S1].\n\nAdemás, no hay documentos adicionales a los publicados: la ficha solo registra el Aviso de Prensa y el Pliego o Términos de Referencia, ambos con texto leído [S1]. Si esa información existiera en otro anexo o en el expediente interno, no está a mi alcance.\n\nLe sugiero solicitarla formalmente por la vía de aclaraciones, antes del **23 de octubre de 2026, 12:00 m.**, al correo **dmontalvan@pgr.gob.hn** (Sub Dirección de Compras, 2235-2022 Ext. 1209) [S1, S11]. La institución responde por escrito y publica las respuestas en HonduCompras [S11].\n\n¿Desea que le resuma los requisitos técnicos del seguro de gastos médicos y de vida que sí constan en el pliego [S4, S7, S12]?",
+      "citations": [
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 4,
+          "pageEnd": 5
+        },
+        {
+          "id": "S5",
+          "title": "Aviso de Prensa",
+          "pageStart": 1,
+          "pageEnd": 1
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S1",
+          "title": "SEGURO MÉDICO HOSPITALARIO COLECTIVO PARA LOS EMPLEADOS DE LA PROCURADURÍA GENERAL DE LA REPÚBLICA (PGR)",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S12",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 19,
+          "pageEnd": 21
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7174,
+      "outputTokens": 530,
+      "latencyMs": 1637,
+      "costUsd": 0.0027882
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "question": "Para calcular nuestra prima, ¿cuál es la siniestralidad histórica de la póliza actual de la Procuraduría y cuál es el presupuesto estimado para esta contratación?",
+      "kind": "absent",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Las fuentes compartidas no indican la siniestralidad histórica de la póliza actual ni el presupuesto estimado para esta contratación. [S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12, S13]\n\nPuede consultar esos datos con la Sub Dirección de Compras de la PGR: dmontalvan@pgr.gob.hn o 2235-2022, extensión 1209. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "SEGURO MÉDICO HOSPITALARIO COLECTIVO PARA LOS EMPLEADOS DE LA PROCURADURÍA GENERAL DE LA REPÚBLICA (PGR)",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 16,
+          "pageEnd": 18
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 2,
+          "pageEnd": 3
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 19
+        },
+        {
+          "id": "S5",
+          "title": "Aviso de Prensa",
+          "pageStart": 1,
+          "pageEnd": 1
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 4,
+          "pageEnd": 5
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 3,
+          "pageEnd": 3
+        },
+        {
+          "id": "S10",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 7
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        },
+        {
+          "id": "S12",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 19,
+          "pageEnd": 21
+        },
+        {
+          "id": "S13",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 18,
+          "pageEnd": 18
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6347,
+      "outputTokens": 389,
+      "latencyMs": 5935,
+      "costUsd": 0.0008292
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Qué especificaciones técnicas debe cumplir la camioneta en cuanto a año, combustible, cilindraje, tracción y transmisión, y qué garantía del producto se exige?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el Pliego de Especificaciones Técnicas, la camioneta debe cumplir con lo siguiente [S2]:\n\n- **Año:** mínimo año 2026 o superior\n- **Combustible:** gasolina/eléctrico\n- **Cilindraje:** rango de 1,800 a 3,000 cc\n- **Tracción:** 4X4\n- **Transmisión:** automática\n\nOtras especificaciones relevantes incluidas en el mismo lote [S2]:\n- Mínimo 5 pasajeros\n- Dirección electroasistida\n- Frenos de disco delanteros ventilados; frenos traseros de disco sólido con ABS\n- Tanque de combustible entre 45 y 60 litros\n- Sensores de proximidad delanteros y traseros\n- Monitor y cámara de reversa\n- 4 puertas laterales y 1 compuerta trasera\n\n**Garantía del producto exigida** [S2]:\n- Se requiere garantía por **100,000 km o 5 años**\n- Se requiere crédito para los mantenimientos durante el período de garantía\n\nLe recomiendo revisar el Pliego completo para verificar si hay requisitos adicionales u otras condiciones relacionadas que no estén detalladas en los extractos citados.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 55,
+          "pageEnd": 57
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 12855,
+      "outputTokens": 437,
+      "latencyMs": 4860,
+      "costUsd": 0.030080000000000003
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Qué especificaciones técnicas debe cumplir la camioneta en cuanto a año, combustible, cilindraje, tracción y transmisión, y qué garantía del producto se exige?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según las Especificaciones Técnicas del pliego [S2], la camioneta debe cumplir como mínimo con:\n\n- **Año:** modelo 2026 o superior [S2]\n- **Combustible:** gasolina/eléctrico [S2]\n- **Cilindraje:** entre 1800 y 3000 cc [S2]\n- **Tracción:** 4X4 [S2]\n- **Transmisión:** automática [S2]\n\nOtros requisitos del mismo ítem: mínimo 5 pasajeros, dirección electroasistida, frenos de disco delanteros ventilados, frenos traseros de disco sólido con ABS, tanque de combustible de 45 a 60 litros, sensores de proximidad delanteros y traseros, monitor y cámara de reversa, 4 puertas laterales y 1 compuerta trasera [S2].\n\n**Garantía del producto:** se requiere garantía por 100,000 km o 5 años [S2]. Además, el pliego establece que el período de validez de la garantía será de cinco (5) años y que el plazo para reparar o reemplazar los bienes es de seis (6) meses [S5].\n\nTambién se pide crédito para los mantenimientos durante el período de garantía [S2].\n\nNota: la ficha del proceso clasifica el producto como «Servicios de transporte de vehículos» y remite a «Ver Pliego» [S1]; el detalle anterior proviene del pliego.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 55,
+          "pageEnd": 57
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 84,
+          "pageEnd": 86
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICION DE UN VEHICULO AUTOMOTOR TIPO CAMIONETA 4 PUERTAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 8620,
+      "outputTokens": 710,
+      "latencyMs": 1696,
+      "costUsd": 0.0034379999999999997
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Qué especificaciones técnicas debe cumplir la camioneta en cuanto a año, combustible, cilindraje, tracción y transmisión, y qué garantía del producto se exige?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "La camioneta debe ser de año mínimo 2026, funcionar con gasolina o electricidad, tener cilindraje de 1,800 a 3,000 cc, tracción 4×4 y transmisión automática. [S2]\n\nSe exige garantía del producto por 100,000 km o 5 años. [S2]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 55,
+          "pageEnd": 57
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7721,
+      "outputTokens": 153,
+      "latencyMs": 2468,
+      "costUsd": 0.0008485999999999999
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "Si nos atrasamos en la entrega del vehículo, ¿qué multa aplicaría la Secretaría y cuál es el monto máximo?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el pliego, en caso de atraso en la entrega del vehículo:\n\n- **Multa diaria:** 0.36% del valor total del contrato por cada día de atraso, equivalente al valor relativo establecido en las Disposiciones Generales de Ingresos y Egresos de la República [S2].\n- **Monto máximo de la liquidación por daños y perjuicios:** 12.5% del valor del contrato, que corresponde aproximadamente a setenta (70) días de retraso en la entrega [S2].\n\nAdicionalmente, le menciono que, conforme a las Condiciones Generales del Contrato, si se alcanza ese máximo, el Comprador podría dar por terminado el contrato [S4]. También existe la posibilidad de que el Proveedor solicite una prórroga por causas justificadas (por ejemplo, fuerza mayor), en cuyo caso no se aplicaría la multa [S7, S8].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 84,
+          "pageEnd": 86
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 73,
+          "pageEnd": 74
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 76,
+          "pageEnd": 77
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 79,
+          "pageEnd": 80
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 12397,
+      "outputTokens": 351,
+      "latencyMs": 4099,
+      "costUsd": 0.028304
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "Si nos atrasamos en la entrega del vehículo, ¿qué multa aplicaría la Secretaría y cuál es el monto máximo?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Sobre la liquidación por daños y perjuicios por atraso en la entrega, el pliego establece:\n\n- **Multa diaria:** 0.36% del valor total del contrato por cada día de atraso [S2].\n- **Monto máximo:** 12.5%, que corresponde aproximadamente a setenta (70) días de retraso [S2].\n- Al alcanzar ese máximo, el Comprador puede dar por terminado el contrato conforme a la Cláusula 34 de las CGC [S4].\n- El Proveedor no queda sujeto a la ejecución de la Garantía de Cumplimiento, a esta liquidación ni a terminación por incumplimiento en la medida en que la demora sea resultado de un evento de Fuerza Mayor [S7]. También procede prórroga del plazo cuando el Comprador la acuerde y ambas partes la ratifiquen mediante enmienda al Contrato [S8].\n\nTenga en cuenta que estos son los datos de la ficha y del pliego publicados; el proceso está en etapa de Recepción de Ofertas, con fecha límite 03/11/2026 a las 10:15 a. m. [S1]. Los documentos publicados figuran como leídos (Aviso de Prensa y Pliego) [S1]. Para el detalle de cómo se aplica la multa a su caso, conviene revisar el texto completo del pliego y, si tiene dudas, consultar a la institución por los contactos de la ficha [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 84,
+          "pageEnd": 86
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 73,
+          "pageEnd": 74
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 76,
+          "pageEnd": 77
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 79,
+          "pageEnd": 80
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICION DE UN VEHICULO AUTOMOTOR TIPO CAMIONETA 4 PUERTAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 8326,
+      "outputTokens": 723,
+      "latencyMs": 2247,
+      "costUsd": 0.0033653999999999997
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "Si nos atrasamos en la entrega del vehículo, ¿qué multa aplicaría la Secretaría y cuál es el monto máximo?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "La multa sería del **0.36% del valor total del contrato por cada día de atraso**, hasta un máximo de **12.5%**. [S2] La cláusula indica que esto aplica salvo fuerza mayor o una prórroga acordada. [S8]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 84,
+          "pageEnd": 86
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 79,
+          "pageEnd": 80
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7452,
+      "outputTokens": 166,
+      "latencyMs": 3546,
+      "costUsd": 0.0008282
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Cuál es el presupuesto o precio estimado que tiene la Secretaría para la compra de esta camioneta?",
+      "kind": "absent",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No cuento con esa información en las fuentes disponibles. La ficha y los documentos del proceso [S1] no indican un presupuesto o precio estimado para la adquisición del vehículo; solo se detalla que el financiamiento proviene de Recursos Nacionales (Tesoro Nacional) [S1, S3].\n\nLe recomiendo consultar directamente con los contactos de la SDE señalados en la ficha [S1] o revisar si el pliego completo contiene esta información en alguna sección no citada aquí.",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICION DE UN VEHICULO AUTOMOTOR TIPO CAMIONETA 4 PUERTAS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 91,
+          "pageEnd": 93
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 12067,
+      "outputTokens": 175,
+      "latencyMs": 3561,
+      "costUsd": 0.025884
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Cuál es el presupuesto o precio estimado que tiene la Secretaría para la compra de esta camioneta?",
+      "kind": "absent",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No encontré en las fuentes el presupuesto ni el precio estimado para esta compra. Lo que sí aparece es lo siguiente:\n\n- El financiamiento proviene del presupuesto del Tesoro Nacional asignado a la SDE (Recursos Nacionales · Fondo Común) [S1, S2, S11].\n- El precio del pliego es de Lps. 0.00 [S1].\n- El proceso es para 1 vehículo tipo camioneta, Lote 1 [S2, S5, S11].\n\nEl monto estimado no figura en la ficha del proceso ni en los fragmentos del aviso y del pliego incluidos en las fuentes, así que no puedo dárselo sin inventarlo. Le sugiero:\n\n- Revisar directamente el pliego publicado en HonduCompras (enlace oficial en la ficha) [S1].\n- Consultar a la institución: las consultas y aclaraciones se reciben hasta el 19/10/2026, 3:00 p. m. [S1], al correo alejandro.borjas@sde.gob.hn con copia a arlen.urquia@sde.gob.hn y heydi.reyes@sde.gob.hn, o a los teléfonos 2242-8353 / 2242-8362 [S11].\n\nNota: la ficha indica que el aviso y el pliego están con «texto leído», pero eso no significa que el monto aparezca en ellos; en los extractos disponibles no consta [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICION DE UN VEHICULO AUTOMOTOR TIPO CAMIONETA 4 PUERTAS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Aviso de Prensa",
+          "pageStart": 1,
+          "pageEnd": 1
+        },
+        {
+          "id": "S11",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 55,
+          "pageEnd": 57
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 8082,
+      "outputTokens": 565,
+      "latencyMs": 3169,
+      "costUsd": 0.0031025999999999996
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "question": "¿Cuál es el presupuesto o precio estimado que tiene la Secretaría para la compra de esta camioneta?",
+      "kind": "absent",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Las fuentes no indican el presupuesto ni el precio estimado de la camioneta. El precio del pliego figura como Lps. 0.00, pero eso corresponde al costo de adquirir el pliego, no al presupuesto de compra. [S1] Para confirmarlo, consulte con la SDE o revise el expediente oficial.",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICION DE UN VEHICULO AUTOMOTOR TIPO CAMIONETA 4 PUERTAS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 7220,
+      "outputTokens": 144,
+      "latencyMs": 2361,
+      "costUsd": 0.000794
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Somos una empresa textil y no fabricamos calzado. ¿Podemos ofertar únicamente las partidas de camisas y pantalones, o la oferta debe cubrir todas las partidas?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según la información disponible, el Pliego divide el proceso en cuatro partidas: camisas, pantalones, textiles de seguridad y calzado [S2]. No encontré en las fuentes una cláusula explícita que indique si el oferente puede presentar oferta solo por partidas específicas o si debe cubrir la totalidad del proceso.\n\nLo único relacionado que aparece es que, entre los aspectos considerados \"sustanciales\" de una oferta (es decir, que no pueden modificarse vía aclaración), se menciona la distinción entre \"ofertas totales o parciales\" [S9], lo cual sugiere que el pliego contempla en algún punto esa posibilidad, pero el texto entregado no detalla las condiciones exactas.\n\nLe recomiendo:\n- Revisar la sección completa de Instrucciones a los Oferentes (IO) en el Pliego, especialmente donde se definan \"oferta total\" vs. \"oferta parcial\" por partida.\n- Si no encuentra la respuesta, enviar una consulta formal a la Dirección de Adquisiciones de la UNAH antes del 24/10/2026, 09:05 a. m. [S1], que es la fecha límite para consultas y aclaraciones.\n\nNo puedo confirmarle si es posible ofertar únicamente camisas y pantalones, ya que esa información no está disponible en las fuentes que tengo.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 52,
+          "pageEnd": 53
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 22,
+          "pageEnd": 22
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": false,
+      "retrievedExpected": true,
+      "inputTokens": 12513,
+      "outputTokens": 868,
+      "latencyMs": 10079,
+      "costUsd": 0.033706
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Somos una empresa textil y no fabricamos calzado. ¿Podemos ofertar únicamente las partidas de camisas y pantalones, o la oferta debe cubrir todas las partidas?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo confirmarle con las fuentes entregadas si se permite ofertar solo parte de las partidas. Esto es lo que sí consta:\n\n- El Formulario “A”: Lista de Precios está dividido en cuatro partidas (01 camisas, 02 pantalones, 03 textiles de seguridad, 04 calzado) y pide un «Valor total ofertado por la Partida» en cada una [S2].\n- El pliego menciona las «ofertas totales o parciales» como uno de los aspectos sustanciales de la oferta, es decir, que no se pueden modificar por la vía de aclaraciones [S9], pero no indica en el texto disponible si en este proceso se admiten ofertas parciales.\n- Las ofertas alternativas no se admiten y su presentación es causal de descalificación [S7].\n\nRecomendación: revise el pliego completo en el enlace oficial del proceso [S1] y, si no lo aclara, plantee la consulta formal a la Dirección de Adquisiciones, ya que el plazo de consultas y aclaraciones vence el 24/10/2026 a las 09:05 a. m. (hora de Honduras) [S1]. Contacto: adquisiciones@unah.edu.hn, 2216-6100, ext. 110115 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 52,
+          "pageEnd": 53
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 22,
+          "pageEnd": 22
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 7,
+          "pageEnd": 8
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": false,
+      "retrievedExpected": true,
+      "inputTokens": 8319,
+      "outputTokens": 653,
+      "latencyMs": 1777,
+      "costUsd": 0.0032792999999999997
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Somos una empresa textil y no fabricamos calzado. ¿Podemos ofertar únicamente las partidas de camisas y pantalones, o la oferta debe cubrir todas las partidas?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Las fuentes no confirman si se permiten ofertas parciales por partida. El pliego menciona ofertas totales o parciales «si fueren admisibles», pero no aclara aquí cuáles admite; por eso no puedo confirmar que puedan ofertar solo camisas y pantalones. [S9]\n\nConsúltelo con la Dirección de Adquisiciones de la UNAH: adquisiciones@unah.edu.hn o 2216-6100, extensión 110115. [S1]",
+      "citations": [
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 22,
+          "pageEnd": 22
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": false,
+      "retrievedExpected": true,
+      "inputTokens": 7285,
+      "outputTokens": 251,
+      "latencyMs": 3621,
+      "costUsd": 0.0008539999999999999
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantías debemos presentar después de firmar el contrato y cómo se nos pagaría?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el pliego de condiciones, si su empresa resulta adjudicada debe presentar lo siguiente después de la firma del contrato:\n\n**Garantías a presentar:**\n\n1. **Garantía de Cumplimiento de Contrato**\n - Monto: al menos 15% del valor total del contrato.\n - Plazo para presentarla: 10 días calendario desde la entrega material del contrato firmado.\n - Vigencia: mínimo 3 meses posteriores al plazo previsto para el suministro de los bienes.\n - Debe presentarse según el Formato “K” del pliego [S2].\n\n2. **Garantía de Calidad**\n - Monto: 5% del valor total del contrato.\n - Vigencia: mínimo 1 año, contado desde la recepción definitiva de los bienes (no la provisional).\n - Esta garantía sustituye a la de Cumplimiento una vez realizada la recepción final.\n - Debe presentarse según el Formato “L” del pliego [S6].\n\nAmbos documentos no deben venir perforados, grapados, pegados, foliados, con machones, tachaduras ni firmas o sellos adicionales a los propios [S2, S6].\n\n**Forma de pago:**\n\n- El pago se realiza en un **solo pago, no parcial**, en Lempiras, a través de la Tesorería General de la UNAH mediante crédito a cuenta [S4].\n- Para que se tramite el pago, su empresa debe presentar físicamente a la Dirección de Adquisiciones (DA):\n 1. Factura comercial original a nombre de la UNAH, libre de impuestos.\n 2. Recibo de pago original a nombre de la Tesorería General.\n 3. Constancia de Solvencia Fiscal original (SAR), vigente a la fecha de la factura.\n 4. Acta de Recepción Definitiva original, emitida por la Comisión Especial de Recepción.\n 5. Copia legible de la Garantía de Cumplimiento de Contrato (Formato “K”).\n 6. Copia legible de la Garantía de Calidad (Formato “L”) [S4, S9].\n\n- Si la documentación tiene errores, enmendaduras, tachaduras o está incompleta, la UNAH **no tramitará el pago** y el retraso será atribuible al proveedor [S9].\n\nLe recomiendo revisar el pliego completo (especialmente las cláusulas CC-07, CC-08 e IO-15) para confirmar todos los detalles antes de presentar su oferta.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 10983,
+      "outputTokens": 1335,
+      "latencyMs": 12325,
+      "costUsd": 0.035316
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantías debemos presentar después de firmar el contrato y cómo se nos pagaría?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Con base en el pliego publicado, esto es lo que corresponde:\n\n**Después de firmar el contrato**\n- **Garantía de Cumplimiento de Contrato:** por al menos el **15% del valor total del contrato**, presentada ante la Dirección de Adquisiciones (DA) dentro de **10 días calendario** contados desde la entrega material del contrato firmado por las partes. Debe estar vigente al menos **3 meses posteriores** al plazo de suministro y presentarse en el **Formato \"K\"**. Se incrementa en la misma proporción si el valor del contrato aumenta [S2]; el retiro de la oferta, no firmar el contrato en 30 días o no presentar esta garantía en 10 días se consideran incumplimiento [S5].\n- **Garantía de Calidad:** equivalente al **5% del valor total del contrato**, vigente al menos **1 año** desde la **recepción definitiva** (no la provisional). Sustituye la Garantía de Cumplimiento una vez efectuada la recepción final y se presenta en el **Formato \"L\"** [S6].\n- Además, dentro de los **30 días calendario** posteriores a la notificación de adjudicación debe presentar: constancia de la PGR de no haber sido objeto de resolución firme de contrato; constancia del IHSS de estar al día en cotizaciones; y certificación de inscripción en el registro de proveedores y contratistas del Estado de la ONCAE (original o copia autenticada) [S3].\n\n**Cómo se pagaría**\n- **Un solo pago, no parcial**, en lempiras, por la Tesorería General de la UNAH mediante crédito a cuenta [S4].\n- El pago solo se efectúa cuando el proveedor presente **físicamente** en la DA, de forma correcta y completa: factura comercial original a nombre de la UNAH (libre de impuestos); recibo de pago original a nombre de la Tesorería General; constancia de solvencia fiscal del SAR vigente a la fecha de la factura; acta de recepción definitiva original emitida por la Comisión Especial de Recepción (CER); copia legible de la Garantía de Cumplimiento (Formato \"K\"); y copia legible de la Garantía de Calidad (Formato \"L\") [S4, S9].\n- No se tramita el pago mientras no se presente la totalidad de esos documentos, ni si contienen errores, enmendaduras, tachaduras, manchas o son ilegibles; el retraso por esa causa es imputable al proveedor [S9].\n\nTenga en cuenta que el pliego también exige que las garantías se emitan sin perforaciones, grapas, foliado, tachaduras ni firmas o sellos ajenos, y con la cláusula especial obligatoria de cobro a simple requerimiento [S2, S7, S12]. Para cualquier excepción conviene revisar el documento oficial o consultar a la Dirección de Adquisiciones: adquisiciones@unah.edu.hn, 2216-6100 ext. 110115 [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S5",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 66,
+          "pageEnd": 67
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 23,
+          "pageEnd": 24
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        },
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 67,
+          "pageEnd": 67
+        },
+        {
+          "id": "S12",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 68,
+          "pageEnd": 68
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 7343,
+      "outputTokens": 1204,
+      "latencyMs": 3515,
+      "costUsd": 0.0036477
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "Si resultamos adjudicados, ¿qué garantías debemos presentar después de firmar el contrato y cómo se nos pagaría?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Si resultan adjudicados, el pliego establece:\n\n- **Garantía de cumplimiento:** equivalente, como mínimo, al **15% del valor total del contrato**. Debe entregarse a la Dirección de Adquisiciones dentro de los **10 días calendario desde la entrega material del contrato firmado** y mantenerse vigente al menos **3 meses después del plazo previsto para suministrar los bienes**, usando el Formato “K”. [S2]\n- **Garantía de calidad:** por el **5% del valor total del contrato**, vigente al menos **1 año desde la recepción definitiva** de los bienes. Sustituye la garantía de cumplimiento una vez realizada esa recepción; debe usarse el Formato “L”. [S6]\n\nEl pago sería **único, no parcial**, en lempiras y mediante crédito a cuenta, después de presentar físicamente la documentación requerida. [S4] El pliego enumera: factura comercial original a nombre de la UNAH; recibo original a nombre de la Tesorería General de la UNAH; constancia original de solvencia fiscal vigente; acta de recepción definitiva; y copias legibles de las garantías de cumplimiento y calidad. [S4, S9] La UNAH no tramitará el pago hasta recibir todos los documentos correctamente y completos. [S9]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S6",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S4",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S9",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 29
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6399,
+      "outputTokens": 519,
+      "latencyMs": 6377,
+      "costUsd": 0.0008994
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "¿Qué porcentaje de anticipo entrega la UNAH al firmar el contrato para comprar la tela?",
+      "kind": "absent",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No encuentro en las fuentes proporcionadas información sobre un porcentaje de anticipo al firmar el contrato.\n\nDe hecho, según la cláusula CC-08 de forma de pago, el pliego establece que el pago se efectuará **mediante un solo pago, no parcial**, una vez el proveedor haya entregado los bienes y presentado la documentación completa (factura, recibo, solvencia fiscal, acta de recepción definitiva, garantías, etc.) [S7]. Esto sugiere que no hay anticipo contemplado en este proceso, pero le recomiendo revisar el Pliego de Condiciones completo o consultar directamente con la Dirección de Adquisiciones de la UNAH (adquisiciones@unah.edu.hn, 2216-6100 ext. 110115) para confirmarlo con certeza [S1].",
+      "citations": [
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 11324,
+      "outputTokens": 288,
+      "latencyMs": 3509,
+      "costUsd": 0.025528
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "¿Qué porcentaje de anticipo entrega la UNAH al firmar el contrato para comprar la tela?",
+      "kind": "absent",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No encontré en las fuentes ningún anticipo ni porcentaje de anticipo para este proceso.\n\nLo que sí está establecido es lo contrario: el valor del contrato de suministro «se efectuará mediante un sólo pago, no parcial», en Lempiras, por crédito a cuenta vía Tesorería General de la UNAH, y solo después de que el proveedor presente físicamente en la Dirección de Adquisiciones (DA) la factura comercial, el recibo de pago, la solvencia fiscal del SAR, el Acta de Recepción Definitiva y copias de las garantías de cumplimiento y de calidad [S7]. Además, la Garantía de Cumplimiento de Contrato debe ser de al menos el 15% del valor total del contrato, pero eso es una garantía, no un anticipo [S3].\n\nLa ficha del proceso [S1] tampoco indica condiciones de anticipo; solo señala financiamiento con Recursos Nacionales.\n\nSi necesita confirmarlo, revise el pliego completo o consulte a la Dirección de Adquisiciones: adquisiciones@unah.edu.hn, 2216-6100, ext. 110115 [S1].",
+      "citations": [
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S3",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN DE UNIFORMES E INDUMENTARIA DE PROTECCIÓN PARA EL PERSONAL DE SERVICIO DE LA UNIVERSIDAD NACIONAL AUTÓNOMA DE HONDURAS (UNAH)»",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 7482,
+      "outputTokens": 411,
+      "latencyMs": 1560,
+      "costUsd": 0.0027378
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "question": "¿Qué porcentaje de anticipo entrega la UNAH al firmar el contrato para comprar la tela?",
+      "kind": "absent",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "El pliego no indica un porcentaje de anticipo para comprar la tela. Establece que la UNAH hará un solo pago, no parcial, después de la recepción definitiva y de presentar correctamente la documentación requerida. [S7, S8]",
+      "citations": [
+        {
+          "id": "S7",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 28,
+          "pageEnd": 28
+        },
+        {
+          "id": "S8",
+          "title": "Pliego o Terminos de Referencia",
+          "pageStart": 27,
+          "pageEnd": 27
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 6525,
+      "outputTokens": 113,
+      "latencyMs": 1852,
+      "costUsd": 0.000709
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Qué capacidad útil inicial debe tener la solución y hasta cuánto debe poder crecer?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "La solución debe cumplir con:\n\n- **Capacidad inicial mínima:** setenta terabytes (70 TB) útiles, sin considerar reducción por compresión o deduplicación [S2].\n- **Capacidad de crecimiento:** la arquitectura debe permitir escalar a al menos trescientos terabytes (300 TB) útiles, también sin considerar reducción por compresión o deduplicación [S2].\n\nAdicionalmente, se especifican requisitos de velocidad asociados:\n\n- Velocidad de ingestión inicial de hasta 7 TB/h [S2].\n- Velocidad de ingesta en las ampliaciones de hasta 150 TB/h [S2].\n\nLe recomiendo revisar el Pliego completo, ya que ese documento marca que no se pudo leer su texto y podría contener detalles adicionales no reflejados en estos extractos [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 3
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6353,
+      "outputTokens": 300,
+      "latencyMs": 5292,
+      "costUsd": 0.015706
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Qué capacidad útil inicial debe tener la solución y hasta cuánto debe poder crecer?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según las especificaciones técnicas:\n\n- Capacidad inicial mínima: **70 TB útiles**, sin considerar reducción por compresión o deduplicación [S2].\n- Crecimiento: la arquitectura debe permitir crecer a **al menos 300 TB útiles**, también sin considerar compresión o deduplicación [S2].\n\nAdemás, las ampliaciones deben soportar velocidades de ingesta de hasta 150 TB/h [S2], y la arquitectura requerida es de tipo horizontal (scale-out) [S3].\n\nNota: parte de los documentos publicados (el Pliego o Términos de Referencia y un Anexo) no se pudieron leer, por lo que podría haber condiciones adicionales ahí [S1].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 3
+        },
+        {
+          "id": "S3",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 1
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 4033,
+      "outputTokens": 210,
+      "latencyMs": 1296,
+      "costUsd": 0.0014619
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Qué capacidad útil inicial debe tener la solución y hasta cuánto debe poder crecer?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "La solución debe tener una capacidad inicial mínima de **70 TB útiles**, sin contar reducción por compresión o deduplicación. Debe poder crecer hasta al menos **300 TB útiles**, también sin contar esa reducción. [S2]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 3
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 3554,
+      "outputTokens": 51,
+      "latencyMs": 1763,
+      "costUsd": 0.0003809
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Cómo se ponderan los criterios de evaluación de las ofertas?",
+      "kind": "factual",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según el pliego, los criterios de evaluación y su ponderación son [S2]:\n\n- Experiencia: 20%\n- Soporte y SLA: 20%\n- Seguridad y Continuidad: 20%\n- Compatibilidad tecnológica: 15%\n- Escalabilidad: 10%\n- Servicios profesionales: 10%\n- Costo total: 5%\n\nEsto suma 100% [S2].",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 5,
+          "pageEnd": 5
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 6343,
+      "outputTokens": 147,
+      "latencyMs": 2629,
+      "costUsd": 0.014156
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Cómo se ponderan los criterios de evaluación de las ofertas?",
+      "kind": "factual",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según los anexos del pliego, los criterios de evaluación y su ponderación son [S2]:\n\n- Experiencia: 20%\n- Soporte y SLA: 20%\n- Seguridad y Continuidad: 20%\n- Compatibilidad tecnológica: 15%\n- Escalabilidad: 10%\n- Servicios profesionales: 10%\n- Costo total: 5%\n\nTome en cuenta que el Pliego o Términos de Referencia y uno de los anexos aparecen en la ficha como documentos cuyo texto no se pudo leer [S1], por lo que podría haber detalles adicionales ahí que conviene revisar en el enlace oficial del proceso.",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 5,
+          "pageEnd": 5
+        },
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 4029,
+      "outputTokens": 232,
+      "latencyMs": 803,
+      "costUsd": 0.0014871
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿Cómo se ponderan los criterios de evaluación de las ofertas?",
+      "kind": "factual",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Los criterios de evaluación se ponderan así:\n\n- Experiencia: 20%\n- Soporte y SLA: 20%\n- Seguridad y continuidad: 20%\n- Compatibilidad tecnológica: 15%\n- Escalabilidad: 10%\n- Servicios profesionales: 10%\n- Costo total: 5% [S2]",
+      "citations": [
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 5,
+          "pageEnd": 5
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": true,
+      "retrievedExpected": true,
+      "inputTokens": 3551,
+      "outputTokens": 94,
+      "latencyMs": 2149,
+      "costUsd": 0.00040209999999999996
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿De cuánto es la garantía de mantenimiento de oferta y qué documentos legales debo presentar?",
+      "kind": "unread",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No cuento con esa información en las fuentes disponibles.\n\n- El Pliego principal (que normalmente detalla garantías y requisitos legales) está marcado como **\"no se pudo leer su texto\"**, por lo que no puedo confirmarle el monto de la garantía de mantenimiento de oferta ni la lista completa de documentos legales exigidos [S1].\n- De los anexos que sí pude leer, solo identifico el **Formulario \"Conozca su Proveedor\"**, que solicita datos de la empresa, representante legal, accionistas, información financiera, referencias bancarias/comerciales y declaración PEP [S4, S5].\n- Los requisitos de experiencia del proveedor (distribuidor autorizado, casos de éxito, etc.) sí están descritos como parte de los criterios de evaluación, pero no corresponden a la garantía de oferta [S2].\n\n**Recomendación:** Para conocer el monto exacto de la garantía de mantenimiento de oferta y el listado completo de documentos legales, le sugiero:\n1. Descargar y revisar directamente el Pliego o Términos de Referencia en el enlace oficial del proceso [S1].\n2. Consultar a la contacto designada: **Anyi Flores**, floresa@grupoipm.hn, tel. 2239-1441 ext. 1252 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S4",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S5",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 2
+        },
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 5,
+          "pageEnd": 5
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 6353,
+      "outputTokens": 561,
+      "latencyMs": 6364,
+      "costUsd": 0.018316
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿De cuánto es la garantía de mantenimiento de oferta y qué documentos legales debo presentar?",
+      "kind": "unread",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo darle ese dato: en las fuentes que tengo no aparece el monto de la garantía de mantenimiento de oferta ni un listado de documentos legales a presentar.\n\nLo que sí le puedo indicar:\n\n- El pliego tiene precio de Lps. 0.00 [S1].\n- Los anexos leídos tratan aspectos técnicos: requisitos de la solución, soporte, capacitación, implementación, criterios de evaluación [S2, S3, S6, S7, S8, S9].\n- También hay un formulario «Conozca su Proveedor», que pide datos de la persona jurídica (RTN, dirección, actividad económica), del representante legal y su cónyuge, accionistas, información financiera, referencias bancarias y comerciales, y debida diligencia PEP [S4, S5]. Ese es un anexo, no necesariamente la lista completa de documentos legales.\n\nImportante: en la ficha del proceso, el «Pliego o Términos de Referencia» y uno de los anexos aparecen como documentos cuyo texto no se pudo leer [S1]. Es probable que la garantía y los requisitos legales estén en ellos, así que no puedo confirmarlo ni descartarlo.\n\nLe sugiero revisar el pliego y los anexos en el enlace oficial del proceso [S1], o consultar directamente a la unidad de compra: ANYI FLORES, floresa@grupoipm.hn, 22391441 ext. 1252 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Anexos al Pliego",
+          "pageStart": 5,
+          "pageEnd": 5
+        },
+        {
+          "id": "S3",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S6",
+          "title": "Anexos al Pliego",
+          "pageStart": 4,
+          "pageEnd": 5
+        },
+        {
+          "id": "S7",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 3
+        },
+        {
+          "id": "S8",
+          "title": "Anexos al Pliego",
+          "pageStart": 3,
+          "pageEnd": 4
+        },
+        {
+          "id": "S9",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 1
+        },
+        {
+          "id": "S4",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S5",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 2
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 4039,
+      "outputTokens": 466,
+      "latencyMs": 2692,
+      "costUsd": 0.0017709
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "question": "¿De cuánto es la garantía de mantenimiento de oferta y qué documentos legales debo presentar?",
+      "kind": "unread",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "En las fuentes disponibles no se indica el monto ni la vigencia de la garantía de mantenimiento de oferta. El pliego figura como publicado, pero no se pudo leer su texto; revise el pliego oficial o consulte al IPM para confirmar ese requisito. [S1]\n\nEntre los anexos sí aparece un formulario «Conozca su proveedor», que solicita datos de la empresa y su representante legal, información de accionistas y financiera, referencias, declaraciones sobre PEP y vínculos con personal del IPM, y firma y sello. Las fuentes no identifican esto como una lista completa de documentos legales requeridos. [S4, S5]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "ADQUISICIÓN E IMPLEMENTACIÓN DE UNA BOVEDA DE DATOS",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S4",
+          "title": "Anexos al Pliego",
+          "pageStart": 1,
+          "pageEnd": 2
+        },
+        {
+          "id": "S5",
+          "title": "Anexos al Pliego",
+          "pageStart": 2,
+          "pageEnd": 2
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 3556,
+      "outputTokens": 357,
+      "latencyMs": 5082,
+      "costUsd": 0.0005341
+    },
+    {
+      "expediente": "CM 39-019-2026",
+      "question": "¿Qué producto se solicita y dónde se entregan las ofertas?",
+      "kind": "no_documents",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según la ficha del proceso CM 39-019-2026:\n\n- **Producto solicitado**: Accesorios para centrifugadoras de laboratorio, cantidad 1 (sin especificaciones adicionales detalladas) [S1].\n- **Lugar de recepción de ofertas**: Coxen Hole, Entrada Col. Lomas Linda [S1].\n\nLe recuerdo que este proceso no tiene documentos publicados, por lo que solo contamos con estos datos generales de la ficha [S1]. Si necesita más detalles técnicos de las especificaciones, le sugiero consultar directamente con la institución (contacto: Martha Cecilia Medina, meferr03@yahoo.com, 445-0115) [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1238,
+      "outputTokens": 261,
+      "latencyMs": 3185,
+      "costUsd": 0.005086
+    },
+    {
+      "expediente": "CM 39-019-2026",
+      "question": "¿Qué producto se solicita y dónde se entregan las ofertas?",
+      "kind": "no_documents",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "- **Producto solicitado:** Accesorios para centrifugadoras de laboratorio, cantidad 1. Las especificaciones figuran como «Ninguna» [S1].\n- **Lugar de entrega de ofertas:** Coxen Hole, entrada Col. Lomas Linda [S1].\n\nTome en cuenta que la fecha límite para recibir ofertas es el 30/09/2026 a las 2:00 p. m. (hora de Honduras) [S1]. El proceso no tiene documentos publicados, así que solo se cuenta con los datos de la ficha [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 851,
+      "outputTokens": 201,
+      "latencyMs": 625,
+      "costUsd": 0.0004965
+    },
+    {
+      "expediente": "CM 39-019-2026",
+      "question": "¿Qué producto se solicita y dónde se entregan las ofertas?",
+      "kind": "no_documents",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Se solicita **accesorios para centrifugadoras de laboratorio**, cantidad 1. [S1]\n\nLas ofertas se reciben en **Coxen Hole, Entrada Col. Lomas Linda**. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 758,
+      "outputTokens": 49,
+      "latencyMs": 1184,
+      "costUsd": 0.0001003
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Cómo debo presentar la oferta?",
+      "kind": "no_documents",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según la ficha del proceso, las condiciones para presentar la oferta son [S1]:\n\n- Debe presentarla en la fecha y hora establecidas en el Requerimiento de Cotizaciones adjunto (fecha límite: 30/09/2026, 10:00 p. m., hora de Honduras) [S1].\n- Debe llevar firma y sello de la empresa [S1].\n- Debe presentarse en físico, dentro de un sobre sellado [S1].\n- El sobre debe indicar: nombre de la empresa, número de proceso, y nombre y teléfono de contacto (el texto de la ficha se corta en este punto, por lo que podría haber más requisitos en el sobre) [S1].\n- El lugar de recepción de ofertas es: 500 metros al norte del aeropuerto Toncontín [S1].\n\nAclaro que esta ficha no tiene documentos publicados, por lo que no puedo confirmarle si existen más detalles o anexos (como el \"Requerimiento de Cotizaciones\" mencionado) [S1]. Le recomiendo contactar directamente a la institución para obtener ese documento y verificar si hay requisitos adicionales:\n\n- Contacto: José Israel Navarro, havila@ahac.gob.hn, 2234-2503 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 2260,
+      "outputTokens": 455,
+      "latencyMs": 4697,
+      "costUsd": 0.00907
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Cómo debo presentar la oferta?",
+      "kind": "no_documents",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Según los datos del proceso [S1]:\n\n- La oferta debe presentarse en la fecha y hora establecidas en el Requerimiento de Cotizaciones adjunto [S1]; la fecha límite de ofertas de la ficha es el 30/09/2026 a las 10:00 p. m. (hora de Honduras) [S1].\n- Debe llevar firma y sello de la empresa [S1].\n- Se presenta en físico, en sobre sellado, indicando: nombre de la empresa, número de proceso y nombre y teléfono de contacto [S1]. (El texto de la ficha se corta en ese punto.)\n- Lugar de recepción de ofertas: 500 metros al norte del aeropuerto Toncontín [S1].\n\nTenga en cuenta que esta ficha no tiene documentos publicados, así que solo cuenta con los datos del proceso [S1]. Las condiciones completas están en el Requerimiento de Cotizaciones, que la ficha menciona como adjunto pero no aparece publicado; le conviene revisarlo en el enlace oficial o consultar a la institución (contacto: José Israel Navarro, havila@ahac.gob.hn, 2234-2503) [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1419,
+      "outputTokens": 464,
+      "latencyMs": 1854,
+      "costUsd": 0.0009824999999999999
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Cómo debo presentar la oferta?",
+      "kind": "no_documents",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "La oferta debe presentarse **en físico y en sobre sellado**, con firma y sello de la empresa. El sobre debe indicar el nombre de la empresa, el número del proceso y el nombre y teléfono de contacto. [S1]\n\nPreséntela en la fecha y hora establecidas en el requerimiento de cotizaciones. La ficha señala como fecha límite el **30/09/2026 a las 10:00 p. m.**, en **500 metros al norte del aeropuerto Toncontín**. [S1]\n\nNo hay documentos publicados; solo contamos con los datos de la ficha, así que confirme los detalles con la institución o en el enlace oficial. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1276,
+      "outputTokens": 238,
+      "latencyMs": 3796,
+      "costUsd": 0.0002466
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Qué condiciones de pago establece el Requerimiento de Cotizaciones adjunto?",
+      "kind": "no_documents",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No cuento con esa información en las fuentes disponibles. La ficha del proceso AHAC-CM-GC-155-2026 no indica condiciones de pago, y no hay documentos publicados ni descargados para el Requerimiento de Cotizaciones adjunto [S1].\n\nLe sugiero:\n- Contactar directamente a José Israel Navarro al correo havila@ahac.gob.hn o al teléfono 2234-2503 para solicitar el documento [S1].\n- Revisar el enlace oficial del proceso en HonduCompras por si se publica el anexo posteriormente [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 2278,
+      "outputTokens": 203,
+      "latencyMs": 3756,
+      "costUsd": 0.006586
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Qué condiciones de pago establece el Requerimiento de Cotizaciones adjunto?",
+      "kind": "no_documents",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo darle esa información: las condiciones de pago no aparecen en la ficha del proceso [S1], y esa ficha indica que **no hay documentos publicados**, por lo que solo se cuenta con los datos del proceso [S1]. El Requerimiento de Cotizaciones que se menciona como adjunto no está disponible ni figura como leído [S1].\n\nLe sugiero revisar el enlace oficial del proceso para ver si el documento se publica más adelante, o consultar directamente a la institución:\n\n- Contacto: José Israel Navarro, havila@ahac.gob.hn, 2234-2503 [S1]\n- Enlace oficial: el indicado en la ficha del proceso [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1428,
+      "outputTokens": 264,
+      "latencyMs": 903,
+      "costUsd": 0.0007452
+    },
+    {
+      "expediente": "AHAC-CM-GC-155-2026",
+      "question": "¿Qué condiciones de pago establece el Requerimiento de Cotizaciones adjunto?",
+      "kind": "no_documents",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "La ficha indica que no hay documentos publicados, así que no puedo confirmar las condiciones de pago del Requerimiento de Cotizaciones. Solo se cuenta con los datos del proceso; consulte el documento oficial o a la AHAC para confirmar ese punto. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1285,
+      "outputTokens": 107,
+      "latencyMs": 2871,
+      "costUsd": 0.000182
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "¿Qué características deben tener los informes y qué debo indicar en la cotización?",
+      "kind": "no_documents",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "Según la ficha del proceso, las especificaciones solicitadas para los 50 informes son [S1]:\n\n- **Cantidad:** 50 unidades.\n- **Tamaño:** Carta.\n- **Pasta:** Cartoncillo satinado.\n- **Interior:** 20 hojas por informe.\n- **Papel:** Satinado.\n- **Impresión:** Full color, según diseño y contenido que proporcionará la institución.\n\nEn cuanto a lo que debe indicar en su cotización, se solicita [S1]:\n\n- Precio unitario.\n- Precio total.\n- Tiempo de entrega.\n- Condiciones de pago.\n\nLe recuerdo que este proceso no tiene documentos publicados, por lo que solo contamos con estos datos de la ficha [S1]. Si necesita más detalle sobre el diseño o contenido, le sugiero contactar directamente a la institución:\n\n- Contacto: Fabián André Andino, fabianandino@cicesct.gob.hn, 3208-1593 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1493,
+      "outputTokens": 359,
+      "latencyMs": 3775,
+      "costUsd": 0.006576
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "¿Qué características deben tener los informes y qué debo indicar en la cotización?",
+      "kind": "no_documents",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Con gusto. Según los datos del proceso [S1]:\n\n**Características de los informes**\n- Cantidad: 50 unidades [S1].\n- Tamaño: carta [S1].\n- Pasta: cartoncillo satinado [S1].\n- Interior: 20 hojas por informe [S1].\n- Papel: satinado [S1].\n- Impresión: full color, según diseño y contenido que proporciona la institución [S1].\n\n**Qué debe indicar en la cotización**\n- Precio unitario [S1].\n- Precio total [S1].\n- Tiempo de entrega [S1].\n- Condiciones de pago [S1].\n\nTome en cuenta que el proceso no tiene documentos publicados, por lo que solo se cuenta con los datos de la ficha [S1]. Si tiene dudas, puede contactar a Fabian Andre Andino, fabianandino@cicesct.gob.hn, 3208-1593 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1016,
+      "outputTokens": 335,
+      "latencyMs": 1160,
+      "costUsd": 0.0007067999999999999
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "¿Qué características deben tener los informes y qué debo indicar en la cotización?",
+      "kind": "no_documents",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "Los informes solicitados deben ser **50 unidades**, tamaño carta, con pasta de cartoncillo satinado, 20 hojas por informe en papel satinado e impresión a todo color, según el diseño y contenido que proporcione la institución. [S1]\n\nEn la cotización debe indicar **precio unitario, precio total, tiempo de entrega y condiciones de pago**. [S1]\n\nNo hay documentos publicados; esta información proviene únicamente de los datos del proceso. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 897,
+      "outputTokens": 157,
+      "latencyMs": 3138,
+      "costUsd": 0.0001682
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "Tenemos una imprenta pequeña con un año de operación, ¿cumplimos los requisitos para participar?",
+      "kind": "eligibility",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "No puedo indicarle si cumple o no los requisitos para participar en este proceso, ya que eso implicaría una evaluación de elegibilidad que no me corresponde hacer.\n\nSegún la ficha disponible, el proceso CICESCT-CM-49-2026 no tiene documentos publicados [S1], por lo que no cuento con un pliego o términos de referencia donde normalmente se detallan requisitos como:\n\n- Años mínimos de operación\n- Capacidad de producción\n- Documentación legal o fiscal\n- Experiencia previa en trabajos similares\n\nLe recomiendo:\n\n- Contactar directamente a la institución para consultar si existen requisitos específicos de participación: Fabian Andre Andino, fabianandino@cicesct.gob.hn, 3208-1593 [S1].\n- Revisar si más adelante se publican documentos adicionales en el enlace oficial del proceso [S1].\n\nPor lo que se observa en la ficha, se trata de una solicitud de cotización sencilla (elaboración de 50 informes) sin precio de pliego [S1], pero esto no garantiza que no existan otros requisitos que la institución pueda solicitar al momento de cotizar.",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1504,
+      "outputTokens": 402,
+      "latencyMs": 4963,
+      "costUsd": 0.0070279999999999995
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "Tenemos una imprenta pequeña con un año de operación, ¿cumplimos los requisitos para participar?",
+      "kind": "eligibility",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "No puedo decirle si su empresa cumple o no los requisitos: eso no está en las fuentes y no me corresponde determinarlo.\n\nLo que sí consta:\n\n- El proceso CICESCT-CM-49-2026 **no tiene documentos publicados**; solo se cuenta con los datos del proceso, así que no hay pliego ni requisitos de participación que se puedan revisar [S1].\n- No aparece en la ficha ningún requisito de experiencia, tiempo de operación, ni condiciones de habilitación de proveedores [S1].\n- Lo que sí se pide en la solicitud de cotización es que el proveedor interesado presente cotización para la elaboración de 50 informes, e indique **precio unitario, precio total, tiempo de entrega y condiciones de pago** [S1].\n- Especificaciones señaladas: tamaño carta, pasta de cartoncillo satinado, interior de 20 hojas por informe, papel satinado, impresión full color según diseño y contenido que proporciona la institución [S1].\n\nPara confirmar requisitos de participación, lo indicado es consultar a la institución: Fabian Andre Andino, fabianandino@cicesct.gob.hn, 3208-1593 [S1]. Las consultas y aclaraciones se reciben hasta el 01/10/2026, 07:11 a. m. (hora de Honduras), y la fecha límite de ofertas es la misma [S1]. Las ofertas se reciben en el Centro Cívico Gubernamental, Torre 1 Piso 12, Tegucigalpa [S1]. El precio del pliego es Lps. 0.00 [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 1022,
+      "outputTokens": 593,
+      "latencyMs": 1745,
+      "costUsd": 0.0010182
+    },
+    {
+      "expediente": "CICESCT-CM-49-2026",
+      "question": "Tenemos una imprenta pequeña con un año de operación, ¿cumplimos los requisitos para participar?",
+      "kind": "eligibility",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "No se puede determinar si cumplen requisitos para participar: el proceso no tiene documentos publicados y solo se cuenta con los datos de la ficha. [S1]\n\nLa ficha solicita una cotización con precio unitario y total, tiempo de entrega y condiciones de pago. [S1] Para confirmar si hay requisitos adicionales, consulte al contacto del proceso: Fabian Andre Andino, fabianandino@cicesct.gob.hn, 3208-1593. [S1]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 902,
+      "outputTokens": 168,
+      "latencyMs": 2612,
+      "costUsd": 0.0001742
+    },
+    {
+      "expediente": "reporte (LPN-008-2026, CM 39-019-2026)",
+      "question": "¿Cuáles de estas oportunidades tienen documentos publicados y cuál vence primero?",
+      "kind": "report",
+      "model": "anthropic/claude-sonnet-5",
+      "responseModel": "anthropic/claude-sonnet-5",
+      "answer": "De las dos oportunidades de este reporte:\n\n**Con documentos publicados:**\n- **LPN-008-2026** (IHSS): cuenta con Aviso de Prensa, Pliego y Anexos, todos marcados como texto leído [S1].\n\n**Sin documentos publicados:**\n- **CM 39-019-2026** (SESAL): no tiene documentos publicados; solo se cuenta con los datos del proceso [S2].\n\n**¿Cuál vence primero?**\n- CM 39-019-2026 vence primero, el 30/09/2026 a las 2:00 p. m. [S2].\n- LPN-008-2026 vence después, el 10/11/2026 a las 10:00 a. m. [S1].",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 11626,
+      "outputTokens": 391,
+      "latencyMs": 3884,
+      "costUsd": 0.027162
+    },
+    {
+      "expediente": "reporte (LPN-008-2026, CM 39-019-2026)",
+      "question": "¿Cuáles de estas oportunidades tienen documentos publicados y cuál vence primero?",
+      "kind": "report",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "responseModel": "deepseek/deepseek-v4.1-flash",
+      "answer": "Con gusto. Así está el panorama:\n\n**Documentos publicados**\n- **LPN-008-2026** (IHSS): tiene publicados Aviso de Prensa, Pliego o Términos de Referencia y Anexos al Pliego, todos con texto leído [S1].\n- **CM 39-019-2026** (SESAL, Región Departamental de Salud de Islas de la Bahía No. 11): no tiene documentos publicados; solo se cuenta con los datos del proceso [S2].\n\n**Cuál vence primero**\n- **CM 39-019-2026**: fecha límite de ofertas el 30/09/2026, 02:00 p. m. (hora de Honduras) [S2].\n- **LPN-008-2026**: fecha límite de ofertas el 10/11/2026, 10:00 a. m. (hora de Honduras) [S1].\n\nPor lo tanto, vence primero el **CM 39-019-2026**, el 30 de septiembre de 2026 [S2]. Tenga en cuenta que en ese proceso las consultas y aclaraciones también cierran el 30/09/2026 a las 02:00 p. m. [S2], y que la ficha de LPN-008-2026 está en etapa de Recepción de Ofertas [S1].\n\nSi necesita el detalle de requisitos de alguno, puedo enumerar lo que exigen los documentos publicados.",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 7602,
+      "outputTokens": 489,
+      "latencyMs": 1183,
+      "costUsd": 0.0028674
+    },
+    {
+      "expediente": "reporte (LPN-008-2026, CM 39-019-2026)",
+      "question": "¿Cuáles de estas oportunidades tienen documentos publicados y cuál vence primero?",
+      "kind": "report",
+      "model": "openai/gpt-6-luna",
+      "responseModel": "openai/gpt-6-luna",
+      "answer": "- **LPN-008-2026 (IHSS):** tiene publicados aviso, pliego y anexos; sus textos fueron leídos. [S1]\n- **CM 39-019-2026 (SESAL):** no tiene documentos publicados; solo se cuenta con los datos del proceso. [S2]\n\nLa que vence primero es **CM 39-019-2026**, el **30/09/2026 a las 2:00 p. m.**; LPN-008-2026 vence el **10/11/2026 a las 10:00 a. m.** [S1, S2]",
+      "citations": [
+        {
+          "id": "S1",
+          "title": "“IHSS-GTIC-ADQUISICIÓN DE SOPORTE FUNCIONAL SAP PARA EL INSTITUTO HONDUREÑO DE SEGURIDAD SOCIAL (IHSS)”",
+          "pageStart": null,
+          "pageEnd": null
+        },
+        {
+          "id": "S2",
+          "title": "Compra Menor",
+          "pageStart": null,
+          "pageEnd": null
+        }
+      ],
+      "unknownIds": [],
+      "unverified": false,
+      "citedExpected": null,
+      "retrievedExpected": null,
+      "inputTokens": 6738,
+      "outputTokens": 192,
+      "latencyMs": 2408,
+      "costUsd": 0.0007698
+    }
+  ]
+}

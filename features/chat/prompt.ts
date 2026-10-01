@@ -25,6 +25,21 @@ export type ContextProcess = {
     snapshot: { stage: string | null; closesAt: string | null; runAt: string; relevance: Relevance } | null;
 };
 
+const READABILITY_BY_STATUS: Record<string, DocumentReadability> = {
+    text: "read",
+    ocr: "read",
+    partial: "partial",
+    pending: "pending",
+    failed: "unreadable",
+    unsupported: "unreadable",
+};
+
+/** A document's readability from its current version's extraction_status (null: no version yet) and its download error. */
+export function documentReadability(extractionStatus: string | null, downloadError: string | null): DocumentReadability {
+    if (extractionStatus) return READABILITY_BY_STATUS[extractionStatus] ?? "pending";
+    return downloadError ? "not_downloaded" : "pending";
+}
+
 export type Passage = {
     processId: string;
     documentId: string;
@@ -35,6 +50,12 @@ export type Passage = {
     pageEnd: number;
     content: string;
 };
+
+/** Answers stay short; the reservation covers this many output tokens. */
+export const MAX_OUTPUT_TOKENS = 1500;
+export const MAX_PASSAGES = 12;
+/** A report's context: its relevant opportunities, at most 20 (plan, Phase 5 decisions). */
+export const REPORT_PROCESSES = 20;
 
 export type HistoryMessage = { role: "user" | "assistant"; content: string; citations: Citation[] };
 
@@ -56,8 +77,10 @@ const READABILITY_LABELS: Record<DocumentReadability, string> = {
     not_downloaded: "no se pudo descargar, no leído",
 };
 
-// Long specifications are cut so one process cannot fill the prompt.
-const SPECIFICATIONS_LIMIT = 1500;
+// Very long specifications are cut so one process cannot fill the prompt. In
+// Compra Menor they often hold the only submission instructions, near the end
+// (the chat evaluation lost them at 1,500 characters).
+const SPECIFICATIONS_LIMIT = 6000;
 const COMPACT_PRODUCTS_LIMIT = 8;
 
 const sameInstant = (a: string | null, b: string | null) => (a && b ? new Date(a).getTime() === new Date(b).getTime() : a === b);

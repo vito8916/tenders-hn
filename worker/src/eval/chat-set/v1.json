@@ -1,0 +1,492 @@
+[
+  {
+    "processId": "8a5f0cd8-f3e9-4569-8cd3-2bd9f73786e3",
+    "expediente": "LPN-008-2026",
+    "question": "Buenos días. En caso de resultar adjudicados, ¿por qué monto y con qué vigencia debemos presentar la garantía de cumplimiento del contrato, y en qué momento se entrega?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Monto: 15% del monto contractual (valor estimado de los bienes y servicios a entregar durante el año), renovándose 30 días antes de cada vencimiento",
+      "Vigencia: hasta 3 meses después del plazo previsto para la prestación total de los servicios",
+      "Se presenta en original al momento de suscribir el contrato, en la Subgerencia de Suministros Materiales y Compras",
+      "Se aceptan fianzas y garantías bancarias de instituciones autorizadas, cheques certificados y bonos del Estado",
+      "Se incrementa en la misma proporción si aumenta el valor del contrato"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          20,
+          47
+        ]
+      }
+    ],
+    "evidence": "La garantía de cumplimiento del contrato deberá ser por el valor equivalente al quince por ciento (15%) de monto contractual",
+    "notes": "Main text is CC-07 'GARANTÍA DE CUMPLIMIENTO DE CONTRATO' in chunk p19-20 (#32); the page marker '19' precedes the heading, so it sits on page 20 (accept 19-20). The draft contract (cláusula SEXTA, p47) repeats 15% and 3 months but says it is constituted 'Diez días hábiles después de la notificación del aviso de adjudicado' and is returned within 90 calendar days after obligations are met; a good answer may mention this inconsistency with 'al momento de suscribir el contrato'. Also on p20: garantía de calidad 5% for 12 months (when applicable) replaces it. Must not confuse with the bid bond (2%)."
+  },
+  {
+    "processId": "8a5f0cd8-f3e9-4569-8cd3-2bd9f73786e3",
+    "expediente": "LPN-008-2026",
+    "question": "¿Cuáles son los tiempos de atención y de resolución que exige el Acuerdo de Nivel de Servicio (SLA) según la prioridad de los casos, y qué pasa si no se cumplen?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Urgente: atención 2 horas, resolución 6 horas",
+      "Alta: atención 4 horas, resolución 24 horas",
+      "Media: atención 24 horas, resolución 48 horas",
+      "Baja: atención 48 horas, resolución 72 horas",
+      "Prioridad según los requerimientos registrados en el sistema SAP SOLMAN; horario lunes a viernes 8:00 am a 5:00 pm (UTC-6); asistencia remota por VPN",
+      "El incumplimiento reiterado de los SLAs acarrea deducciones porcentuales directas sobre la factura del mes correspondiente"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          29,
+          21
+        ]
+      }
+    ],
+    "evidence": "Según la prioridad de los requerimientos registrados en el Sistema SAP SOLMAN, los tiempos de respuesta deberán ser atendidos de acuerdo con el nivel de servicio requerido (SLA)",
+    "notes": "SLA table (item 13) is in chunk p28-29 (#45), after the '28' page marker, so on page 29 (accept 28-29). The extracted table header reads 'Prioridad / Resolución / Atención' with values 'Urgente 6 horas 2 horas', i.e. resolución 6 h, atención 2 h. SLA deductions sentence is in CC-09 MULTAS, chunk p20-21 (#34), on page 21 (also repeated on p30, item 17). Horario (p22, item 3) and VPN (p28, item 12) are optional extras. Penalty for delay: daily multa on the contract balance per the tasa fiscal vigente (no fixed percentage stated)."
+  },
+  {
+    "processId": "8a5f0cd8-f3e9-4569-8cd3-2bd9f73786e3",
+    "expediente": "LPN-008-2026",
+    "question": "Nuestra empresa tiene 3 años de fundada, somos partner SAP (aunque no Partner Center of Expertise) y hemos ejecutado dos contratos de soporte SAP con empresas privadas. ¿Calificamos para participar en esta licitación?",
+    "kind": "eligibility",
+    "expectedFacts": [
+      "Does not give a yes/no verdict on whether the company qualifies; says the Comisión Evaluadora decides based on the full documentation",
+      "Lists the relevant technical requirements: constancia/certificado de SAP como Partner Center of Expertise (PCoE) vigente O mesa de ayuda con personal certificado en CompTIA Security+ (o equivalente) e ISO/IEC 27001 Implementer, debidamente autenticados",
+      "Experience: documented evidence of equal or similar services executed during the last 5 years, with copies of contracts and constancias de cumplimiento satisfactorio (públicos o privados) showing objeto, monto y periodo, plus client contact data",
+      "Key personnel with vigentes SAP certifications for the supported modules, plus list and CVs of the technical/functional team",
+      "Notes the documents do not set a minimum company age nor a minimum number of contracts"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          9,
+          10,
+          28
+        ]
+      }
+    ],
+    "evidence": "deberá presentar evidencia documentada que demuestre fehacientemente su experiencia en la prestación de servicios iguales o similares al objeto de la contratación, ejecutados durante los últimos cinco (5) años",
+    "notes": "Trap: eligibility verdict. Section 09.4 Información Técnica on p9 (#14: PCoE or CompTIA/ISO 27001 alternative; SAP certifications; CVs); experience item 5 is in chunk p9-10 (#16) after the '9' marker, so page 10. Repeated in the evaluation table (p14-16, #23-#24) and in Especificaciones Técnicas item 10 'Experiencia del oferente' (chunk p27-28 #43, after the '27' marker, page 28). Searched 'mínimo', 'al menos', 'antigüedad', 'fundad': no minimum years of incorporation or number of contracts. Not being PCoE is not disqualifying by itself because of the 'o contar con mesa de ayuda' alternative; the assistant should point this out without concluding."
+  },
+  {
+    "processId": "3c31e694-df1c-4d11-95b4-81132f3f993b",
+    "expediente": "LPN-023-2026-SDN",
+    "question": "¿Cuántas computadoras de escritorio básicas solicitan y cuáles son las especificaciones mínimas que deben cumplir?",
+    "kind": "factual",
+    "expectedFacts": [
+      "65 unidades de computadoras de escritorio básicas",
+      "Procesador Intel Core i5 de 14.ª generación o equivalente",
+      "Memoria RAM de 16 GB DDR5 o mayor",
+      "Disco de 480 GB SSD o mayor",
+      "Monitor de 21.5\" Full HD (1920x1080) con puertos HDMI, VGA y DisplayPort",
+      "Windows 11 Pro de 64 bits con licencia perpetua",
+      "Incluye mouse, teclado y UPS",
+      "Garantía de fábrica mínima de un (1) año"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          23
+        ]
+      },
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          19
+        ]
+      }
+    ],
+    "evidence": "Cantidad: 65 Procesador: Intel Core i5-14va generación o su equivalente. Memoria RAM: 16GB DDR5 o de mayor capacidad. Disco Duro: 480 GB SSD",
+    "notes": "Especificaciones en ET-01 (página impresa 20 = página PDF 23; chunk p23-24). La tabla no repite el nombre del ítem junto a cada bloque: el primer bloque (Cantidad 65) corresponde a «Computadoras básicas», confirmado por el cuadro resumen de CC-05 («Cómputadora de escritorio básicas 65», página PDF 19, chunk p18-19). No confundir con alto rendimiento (4 unidades, i7, dos monitores de 27\") ni portátiles (11 unidades). Otras cifras de la tabla de impresoras/escáneres son inconsistentes entre ET-01 y CC-05; no forman parte de esta pregunta."
+  },
+  {
+    "processId": "3c31e694-df1c-4d11-95b4-81132f3f993b",
+    "expediente": "LPN-023-2026-SDN",
+    "question": "¿En qué plazo pagan al proveedor y qué multa se aplica si me atraso en la entrega?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Pago en un plazo no mayor de 45 días contados desde la recepción parcial y/o final y la presentación satisfactoria de los documentos de cobro (CC-08)",
+      "Multa diaria de 0.36% por cada día de retraso, sobre el monto total del saldo del contrato (CC-09, art. 72 de la Ley de Contratación del Estado)",
+      "El modelo de contrato indica 45 días calendario posteriores a la entrega, contra factura, recibo y acta de entrega firmada por la comisión de recepción"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          22
+        ]
+      },
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          44
+        ]
+      }
+    ],
+    "evidence": "pagará en un plazo no mayor de cuarenta y cinco (45) días, contados a partir de la recepción parcial y/o final y presentación satisfactoria de los documentos de cobro",
+    "notes": "CC-08 y CC-09 están en la página impresa 19 = página PDF 22 (chunk p21-23). La cláusula de pago del modelo de contrato está en la página PDF 44 (chunk p43-44, tras el marcador impreso 40). Texto de la multa: «la multa diaria aplicable se fija en cero puntos treinta y seis por ciento (0.36%) por cada día de retraso». Una respuesta que cite solo la página 22 es suficiente."
+  },
+  {
+    "processId": "3c31e694-df1c-4d11-95b4-81132f3f993b",
+    "expediente": "LPN-023-2026-SDN",
+    "question": "¿Cuál es el monto del presupuesto estimado para esta licitación? Quiero saber si mi precio queda por debajo.",
+    "kind": "absent",
+    "expectedFacts": [
+      "Debe decir que los documentos no publican el monto del presupuesto estimado ni un precio de referencia",
+      "Puede mencionar que el pliego sí alude a un «presupuesto estimado por la administración» y que el proceso puede declararse fracasado si las ofertas lo superan considerablemente (art. 172 del Reglamento de la LCE)",
+      "Puede mencionar que el financiamiento es de Fondos del Tesoro Nacional / recursos nacionales",
+      "No debe inventar una cifra ni deducirla; puede sugerir consultar a licitaciones@sedena.gob.hn antes del 13 de octubre de 2026"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          16
+        ]
+      }
+    ],
+    "evidence": "cuando se presenten ofertas por precios considerablemente superiores al presupuesto estimado por la administración con base al artículo 172 del Reglamento",
+    "notes": "Ausencia verificada con búsquedas de presupuest, techo, precio base, monto máximo, estimad, valor referencial y cifras con separador de miles en ambos documentos: la única cifra en lempiras es el pago de L.300.00 por el pliego (Aviso de Prensa). El modelo de contrato deja el valor y las entregas como XXXX. La mención del presupuesto estimado está en IO-13 numeral 6 (página impresa 13 = página PDF 16; chunk p15-16). La segunda parte de la pregunta (si el precio queda por debajo) no se puede responder."
+  },
+  {
+    "processId": "24e59493-0fc8-42a3-bb34-5172e5e69a31",
+    "expediente": "LPN-PGR-01-2026",
+    "question": "¿Cuántos colaboradores titulares incluye el censo inicial de asegurados y cuál es la suma asegurada del seguro de vida por persona?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Censo de asegurados inicial: 371 colaboradores titulares",
+      "Seguro de vida: suma asegurada fija de L 500,000.00 por persona",
+      "Titulares elegibles: empleados activos y permanentes, edad de ingreso de 18 a 70 años"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          18
+        ]
+      }
+    ],
+    "evidence": "Censo de Asegurados Inicial: 371 COLABORADORES TITULARES. […] Suma Asegurada Fija: L 500,000.00 por persona.",
+    "notes": "Sección III, numerales 2 y 3.1 (chunks ordinal 22 y 23, ambos p18). No confundir con el Máximo Vitalicio de gastos médicos, que también es L 500,000.00 por asegurado (chunk ordinal 24, p18-19). La sección III se titula «Seguro colectivo de vida y gastos médicos» aunque el objeto del proceso dice «seguro médico hospitalario»; una respuesta que mencione ambas coberturas es correcta. El documento no da el número de dependientes."
+  },
+  {
+    "processId": "24e59493-0fc8-42a3-bb34-5172e5e69a31",
+    "expediente": "LPN-PGR-01-2026",
+    "question": "Si resultamos adjudicados, ¿qué garantía debemos presentar al firmar el contrato, por qué monto y con qué vigencia?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Garantía de Cumplimiento de Contrato, presentada en original al momento de suscribir el contrato",
+      "Valor: al menos el 15% del monto contractual",
+      "Vigencia: hasta al menos 30 días posteriores al vencimiento de la vigencia del contrato",
+      "Se incrementa en la misma proporción si aumenta el valor del contrato",
+      "Se aceptan solo fianzas y garantías bancarias de instituciones autorizadas, cheques certificados y bonos del Estado"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          15,
+          16
+        ]
+      }
+    ],
+    "evidence": "Valor: La garantía de cumplimiento del contrato deberá ser al menos, por el valorequivalente al quince por ciento (15%) de monto contractual.",
+    "notes": "Cláusula CC-07 a) (chunk ordinal 20, p15-16: los tipos de garantía aceptados están antes del pie «Página 15», el valor y la vigencia después, en la p16). La Garantía de Buen Suministro (5%) y el certificado de fabricación están marcados «NO APLICA» (chunk ordinal 20-21) y no deben presentarse como requisitos. Contexto opcional: el contrato dura un (1) año a partir de su firma (CC-02, chunk ordinal 19, p13-15); la garantía de mantenimiento de oferta es 2% (IO-07, p4), pero la pregunta no es sobre ella."
+  },
+  {
+    "processId": "24e59493-0fc8-42a3-bb34-5172e5e69a31",
+    "expediente": "LPN-PGR-01-2026",
+    "question": "Para calcular nuestra prima, ¿cuál es la siniestralidad histórica de la póliza actual de la Procuraduría y cuál es el presupuesto estimado para esta contratación?",
+    "kind": "absent",
+    "expectedFacts": [
+      "Debe decir que los documentos no incluyen siniestralidad histórica, primas actuales, aseguradora actual ni el monto del presupuesto estimado",
+      "No debe inventar cifras de siniestralidad, primas ni presupuesto",
+      "Puede mencionar los datos que sí existen para cotizar: censo de 371 titulares (p18) y que el financiamiento es de fondos nacionales",
+      "Puede sugerir pedir esa información como aclaración por correo a dmontalvan@pgr.gob.hn antes del 23 de octubre de 2026 (IO-10, p8)"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          8
+        ]
+      }
+    ],
+    "evidence": "Para efectos de recibir aclaraciones las mismas será admitidas antes del 23 de octubre de 2026",
+    "notes": "Verificado sobre los 50 chunks (Aviso de Prensa y Pliego): no aparecen «siniestralidad», «histórico», primas vigentes ni aseguradora actual. «Presupuesto estimado» solo aparece en IO-07.1 d) como causa de licitación fracasada (chunk ordinal 6, p4-5), sin monto; «recorte presupuestario» es una cláusula genérica del contrato (p32). El detalle del proceso tampoco tiene monto estimado. expectedPages es opcional: solo aplica si la respuesta sugiere el canal de aclaraciones (chunk ordinal 11, p7-8; el texto está después del pie «Página 7», es decir en la p8)."
+  },
+  {
+    "processId": "dbf0b43b-6045-42ba-a76f-eff67c89ded7",
+    "expediente": "LPN-SDE-003-2026",
+    "question": "¿Qué especificaciones técnicas debe cumplir la camioneta en cuanto a año, combustible, cilindraje, tracción y transmisión, y qué garantía del producto se exige?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Un (1) vehículo tipo camioneta, mínimo 5 pasajeros",
+      "Año 2026 o superior",
+      "Combustible gasolina/eléctrico (no se menciona diésel)",
+      "Cilindraje entre 1800 y 3000 cc",
+      "Tracción 4X4 y transmisión automática",
+      "4 puertas laterales y 1 compuerta trasera; tanque de 45 a 60 litros",
+      "Garantía del producto por 100,000 km o 5 años, con crédito para los mantenimientos durante el período de garantía"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          55,
+          56,
+          57
+        ]
+      }
+    ],
+    "evidence": "Mínimo 5 pasajeros, mínimo año 2026 o superior, combustible gasolina/eléctrico, cilindraje rango de 1800 a 3000 cc",
+    "notes": "Sección VI, Especificaciones Técnicas (chunk 50, páginas 55-57). Otras especificaciones en el mismo pasaje: dirección electroasistida, frenos de disco delanteros ventilados y traseros de disco sólido con ABS, sensores de proximidad, monitor y cámara de reversa. El encabezado dice por error «Lote No. 1: Computadoras de escritorio»; la respuesta no debe repetirlo como si fuera el objeto. La CGC 27.3 (páginas 84-86) también fija la validez de la garantía en cinco (5) años, lo cual es coherente."
+  },
+  {
+    "processId": "dbf0b43b-6045-42ba-a76f-eff67c89ded7",
+    "expediente": "LPN-SDE-003-2026",
+    "question": "Si nos atrasamos en la entrega del vehículo, ¿qué multa aplicaría la Secretaría y cuál es el monto máximo?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Multa diaria del 0.36% del valor total del contrato por cada día de atraso",
+      "Monto máximo de la liquidación por daños y perjuicios: 12.5%",
+      "Ese máximo corresponde aproximadamente a setenta (70) días de retraso"
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          84,
+          85,
+          86
+        ]
+      }
+    ],
+    "evidence": "multa diaria, equivalente al valor relativo que se encuentra establecido en las Disposiciones Generales de ingresos y egresos de la República 0.36% por día",
+    "notes": "CGC 26.1 en las Condiciones Especiales del Contrato (chunk 79, páginas 84-86). Contexto opcional en el chunk 78 (páginas 83-84): garantía de cumplimiento del 15% y garantía de calidad del 5% por un año. El plazo de entrega no se puede leer en el texto extraído (la tabla de la Lista de Requisitos sale ilegible por OCR), por eso no se usa en esta pregunta."
+  },
+  {
+    "processId": "dbf0b43b-6045-42ba-a76f-eff67c89ded7",
+    "expediente": "LPN-SDE-003-2026",
+    "question": "¿Cuál es el presupuesto o precio estimado que tiene la Secretaría para la compra de esta camioneta?",
+    "kind": "absent",
+    "expectedFacts": [
+      "Debe decir que los documentos no publican el presupuesto ni un precio estimado o de referencia",
+      "Puede indicar que el financiamiento proviene del presupuesto del Tesoro Nacional asignado a la SDE (Fondo Común, recursos nacionales), sin monto",
+      "No debe inventar ni estimar una cifra; puede sugerir consultar a la Gerencia Administrativa de la SDE dentro del plazo de aclaraciones (hasta el 19 de octubre de 2026, 3:00 p.m.)"
+    ],
+    "expectedPages": [],
+    "evidence": "El financiamiento para la realización del presente proceso proviene del presupuesto del Tesoro Nacional asignado a la Secretaría de Desarrollo Económico.",
+    "notes": "Verificado: ningún chunk contiene un monto en lempiras ni un precio de referencia. «presupuesto estimado» solo aparece en la causal genérica para declarar desierta la licitación (páginas 24-25), y los demás «monto» son porcentajes (garantía de oferta 2%, cumplimiento 15%, multa máx. 12.5%). La cita sobre el financiamiento es del Aviso de Prensa, página 1 (también en el Pliego, páginas 91-93); citarla es aceptable, pero no debe presentarse como el presupuesto. El costo del pliego es L 0.00, lo que no es el presupuesto."
+  },
+  {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "question": "Somos una empresa textil y no fabricamos calzado. ¿Podemos ofertar únicamente las partidas de camisas y pantalones, o la oferta debe cubrir todas las partidas?",
+    "kind": "factual",
+    "expectedFacts": [
+      "La oferta debe presentarse de Forma Total, según la Sección III (Especificaciones Técnicas); la adjudicación también es total, no parcial (IO-03-01).",
+      "La adjudicación se hace a la oferta de precio más bajo que cumpla los requisitos, conforme a la IO-03-01 «Forma de Participación» (IO-13).",
+      "La Sección III incluye la Partida 04: Calzado para Personal de Servicio (botas de PVC negras y blancas, zapatos de vestir casual y zapatos tenis industriales), además de camisas (Partida 01), pantalones (Partida 02) y textiles de seguridad (Partida 03).",
+      "Por tanto, una oferta solo por camisas y pantalones no se ajusta a la forma de participación exigida; tampoco se admiten ofertas alternativas (IO-05-01 numeral 6)."
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          6,
+          23,
+          49,
+          50
+        ]
+      }
+    ],
+    "evidence": "Los oferentes deben presentar la oferta de Forma Total, según lo indicado en la SECCIÓN III “ESPECIFICACIONES TÉCNICAS”, siendo su adjudicación de esa forma, no parcial.",
+    "notes": "IO-03-01 en p. 6 (chunk 7). IO-13 en p. 23 (chunk 44, texto tras el pie «pág. 22»). Partida 04 Calzado empieza en p. 49 y termina en p. 50 (chunks 75-76). Prohibición de ofertas alternativas en p. 8 (chunk 11). El Formulario A (pp. 52-53) muestra un «Valor total ofertado» por partida, lo que podría inducir a pensar en ofertas por partida; la respuesta correcta es que no. El asistente puede sugerir consorcio (IO-05-02, p. 8) como opción, pero no debe afirmar que se aceptan ofertas parciales."
+  },
+  {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "question": "Si resultamos adjudicados, ¿qué garantías debemos presentar después de firmar el contrato y cómo se nos pagaría?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Garantía de Cumplimiento de Contrato: al menos 15% del valor total del contrato, presentada a la Dirección de Adquisiciones dentro de 10 días calendario desde la entrega del contrato firmado, vigente al menos 3 meses después del plazo de suministro (Formato «K»).",
+      "Garantía de Calidad: 5% del valor total del contrato, vigente al menos 1 año desde la recepción definitiva (no la provisional); sustituye a la de cumplimiento tras la recepción final (Formato «L»).",
+      "Pago: un solo pago, no parcial, en Lempiras, por la Tesorería General de la UNAH mediante crédito a cuenta.",
+      "El pago exige presentar físicamente a la DA: factura original libre de impuestos, recibo, solvencia fiscal del SAR vigente, acta de recepción definitiva de la CER y copias de las garantías de cumplimiento y de calidad."
+    ],
+    "expectedPages": [
+      {
+        "document": "Pliego o Terminos de Referencia",
+        "pages": [
+          28,
+          29
+        ]
+      }
+    ],
+    "evidence": "el valor del contrato de suministro que se suscriba, se efectuará mediante un sólo pago, no parcial.",
+    "notes": "CC-07 numerales 2 y 3 y CC-08 en p. 28 (chunks 52-54); la lista de documentos para el pago continúa en p. 29 (chunk 55: copias de garantías K y L). Cita adicional de p. 28: «por un valor equivalente por lo menos al 15% del valor total del contrato». La garantía de mantenimiento de oferta (2%, 150 días) es previa a la firma y no es lo que se pregunta, aunque mencionarla no es un error."
+  },
+  {
+    "processId": "c2609491-c063-422c-9c8a-4bfd770ebaa8",
+    "expediente": "UNAH-SEAF-LPN-009-2026",
+    "question": "¿Qué porcentaje de anticipo entrega la UNAH al firmar el contrato para comprar la tela?",
+    "kind": "absent",
+    "expectedFacts": [
+      "El asistente debe decir que los documentos no mencionan ningún anticipo ni porcentaje de anticipo.",
+      "No debe inventar un porcentaje (por ejemplo 15%, 20% o 30%).",
+      "Puede señalar que la forma de pago (CC-08) establece un solo pago, no parcial, después de presentar el acta de recepción definitiva y los demás documentos, y sugerir consultar a la Dirección de Adquisiciones (adquisiciones@unah.edu.hn) por nota de aclaración."
+    ],
+    "expectedPages": [],
+    "evidence": "",
+    "notes": "Verificado con búsquedas en los dos documentos (Aviso de Prensa y Pliego): «anticip», «adelant», «avance» y «pago inicial» no aparecen. Si el asistente cita la forma de pago, la página correcta es la 28 del Pliego (CC-08). Las aclaraciones se piden hasta 10 días calendario antes de la apertura (IO-10, p. 13)."
+  },
+  {
+    "processId": "4659c4a3-73d4-4666-aff9-46b353bba134",
+    "expediente": "IPM-LPN-GC-2026-018",
+    "question": "¿Qué capacidad útil inicial debe tener la solución y hasta cuánto debe poder crecer?",
+    "kind": "factual",
+    "expectedFacts": [
+      "70 TB útiles iniciales sin contar compresión ni deduplicación",
+      "crecimiento a al menos 300 TB útiles"
+    ],
+    "expectedPages": [
+      {
+        "document": "Anexos al Pliego",
+        "pages": [
+          2,
+          3
+        ]
+      }
+    ],
+    "evidence": "capacidad inicial mínima de setenta terabytes (70 TB) útiles ... crecimiento a al menos trecientos (300) Terabytes",
+    "notes": "Only the specifications annex is readable"
+  },
+  {
+    "processId": "4659c4a3-73d4-4666-aff9-46b353bba134",
+    "expediente": "IPM-LPN-GC-2026-018",
+    "question": "¿Cómo se ponderan los criterios de evaluación de las ofertas?",
+    "kind": "factual",
+    "expectedFacts": [
+      "Experiencia 20%",
+      "Soporte y SLA 20%",
+      "Seguridad y continuidad 20%",
+      "Compatibilidad tecnológica 15%",
+      "Escalabilidad 10%",
+      "Servicios profesionales 10%",
+      "Costo total 5%"
+    ],
+    "expectedPages": [
+      {
+        "document": "Anexos al Pliego",
+        "pages": [
+          5
+        ]
+      }
+    ],
+    "evidence": "8. CRITERIOS DE EVALUACIÓN ... Costo total 5%",
+    "notes": ""
+  },
+  {
+    "processId": "4659c4a3-73d4-4666-aff9-46b353bba134",
+    "expediente": "IPM-LPN-GC-2026-018",
+    "question": "¿De cuánto es la garantía de mantenimiento de oferta y qué documentos legales debo presentar?",
+    "kind": "unread",
+    "expectedFacts": [
+      "says the pliego (and one annex) could not be read, so it cannot confirm the bid bond or legal documents",
+      "does not invent a percentage or a list"
+    ],
+    "expectedPages": [],
+    "evidence": "",
+    "notes": "Pliego o Terminos de Referencia is extraction_status unsupported"
+  },
+  {
+    "processId": "9ce718a8-57d8-41de-9cfd-9d52d809b720",
+    "expediente": "CM 39-019-2026",
+    "question": "¿Qué producto se solicita y dónde se entregan las ofertas?",
+    "kind": "no_documents",
+    "expectedFacts": [
+      "accesorios para centrifugadoras de laboratorio, cantidad 1",
+      "recepción en Coxen Hole, entrada Col. Lomas Linda",
+      "no hay documentos publicados"
+    ],
+    "expectedPages": [],
+    "evidence": "",
+    "notes": "Process detail only"
+  },
+  {
+    "processId": "28afa868-e374-4285-a076-91eca01f7598",
+    "expediente": "AHAC-CM-GC-155-2026",
+    "question": "¿Cómo debo presentar la oferta?",
+    "kind": "no_documents",
+    "expectedFacts": [
+      "en físico, en sobre sellado con nombre de la empresa, número de proceso, nombre y teléfono de contacto",
+      "con firma y sello de la empresa",
+      "en la Sección de Compras del Departamento Administrativo y Financiero de la AHAC",
+      "fecha límite 30/09/2026 10:00 p. m."
+    ],
+    "expectedPages": [],
+    "evidence": "La oferta deberá presentarse en físico, en sobre sellado",
+    "notes": "From the product specifications in the process detail"
+  },
+  {
+    "processId": "28afa868-e374-4285-a076-91eca01f7598",
+    "expediente": "AHAC-CM-GC-155-2026",
+    "question": "¿Qué condiciones de pago establece el Requerimiento de Cotizaciones adjunto?",
+    "kind": "no_documents",
+    "expectedFacts": [
+      "says the Requerimiento de Cotizaciones is mentioned but not published / not available, so it cannot say",
+      "does not invent payment terms"
+    ],
+    "expectedPages": [],
+    "evidence": "Se adjunta el Requerimiento de Cotizaciones",
+    "notes": "The detail mentions an attachment that HonduCompras does not publish"
+  },
+  {
+    "processId": "3e1ad93f-a851-4d5b-99ae-d2a51621de07",
+    "expediente": "CICESCT-CM-49-2026",
+    "question": "¿Qué características deben tener los informes y qué debo indicar en la cotización?",
+    "kind": "no_documents",
+    "expectedFacts": [
+      "50 informes tamaño carta",
+      "pasta de cartoncillo satinado, 20 hojas por informe, papel satinado, impresión full color",
+      "indicar precio unitario, precio total, tiempo de entrega y condiciones de pago"
+    ],
+    "expectedPages": [],
+    "evidence": "Agradecemos indicar en la cotización el precio unitario, precio total, tiempo de entrega y condiciones de pago",
+    "notes": ""
+  },
+  {
+    "processId": "3e1ad93f-a851-4d5b-99ae-d2a51621de07",
+    "expediente": "CICESCT-CM-49-2026",
+    "question": "Tenemos una imprenta pequeña con un año de operación, ¿cumplimos los requisitos para participar?",
+    "kind": "eligibility",
+    "expectedFacts": [
+      "does not give an eligibility verdict",
+      "may list what the process asks for"
+    ],
+    "expectedPages": [],
+    "evidence": "",
+    "notes": ""
+  },
+  {
+    "runId": "08dfc7a9-2abf-4f33-818d-fb6e611b7b5a",
+    "expediente": "reporte (LPN-008-2026, CM 39-019-2026)",
+    "question": "¿Cuáles de estas oportunidades tienen documentos publicados y cuál vence primero?",
+    "kind": "report",
+    "expectedFacts": [
+      "LPN-008-2026 tiene documentos (3)",
+      "CM 39-019-2026 no tiene documentos",
+      "CM 39-019-2026 vence primero: 30/09/2026 2:00 p. m.; LPN-008-2026 el 10/11/2026 10:00 a. m."
+    ],
+    "expectedPages": [],
+    "evidence": "",
+    "notes": "The hand-inserted test run"
+  }
+]

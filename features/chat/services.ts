@@ -6,7 +6,7 @@ import { getOrgRun, listSearchRunMatches } from "@/features/search-runs/reposito
 import type { SearchRunMatch } from "@/features/search-runs/schemas";
 import { UserFacingError } from "@/lib/errors";
 import { validateCitations } from "./citations";
-import { buildPrompt, buildSources, type ContextProcess } from "./prompt";
+import { buildPrompt, buildSources, MAX_OUTPUT_TOKENS, MAX_PASSAGES, REPORT_PROCESSES, type ContextProcess } from "./prompt";
 import {
     failChatTurn,
     finishChatTurn,
@@ -20,12 +20,7 @@ import {
 import { canChat } from "./rbac";
 import type { ChatContext, ChatMessageMetadata, ChatRequest, ChatUIMessage } from "./schemas";
 
-/** Answers stay short; the reservation covers this many output tokens. */
-export const MAX_OUTPUT_TOKENS = 1500;
-const MAX_PASSAGES = 12;
 const HISTORY_MESSAGES = 6;
-/** A report's context: its relevant opportunities, at most 20 (plan, Phase 5 decisions). */
-const REPORT_PROCESSES = 20;
 // A typical answer, for the cost shown before asking.
 const TYPICAL_INPUT_TOKENS = 12_000;
 const TYPICAL_OUTPUT_TOKENS = 800;

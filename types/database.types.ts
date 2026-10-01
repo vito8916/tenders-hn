@@ -1349,9 +1349,12 @@ export type Database = {
       }
       search_run_matches: {
         Row: {
+          acquisition_type: string | null
           buyer_entity: string
           closes_at: string | null
           detail_url: string
+          detected_at: string | null
+          documents_count: number
           evaluation_id: string | null
           expediente: string
           in_scope: number | null
@@ -1365,12 +1368,16 @@ export type Database = {
           retrieval_rank: number
           run_id: string
           stage: string | null
+          starts_at: string | null
           title: string
         }
         Insert: {
+          acquisition_type?: string | null
           buyer_entity: string
           closes_at?: string | null
           detail_url: string
+          detected_at?: string | null
+          documents_count?: number
           evaluation_id?: string | null
           expediente: string
           in_scope?: number | null
@@ -1384,12 +1391,16 @@ export type Database = {
           retrieval_rank: number
           run_id: string
           stage?: string | null
+          starts_at?: string | null
           title: string
         }
         Update: {
+          acquisition_type?: string | null
           buyer_entity?: string
           closes_at?: string | null
           detail_url?: string
+          detected_at?: string | null
+          documents_count?: number
           evaluation_id?: string | null
           expediente?: string
           in_scope?: number | null
@@ -1403,6 +1414,7 @@ export type Database = {
           retrieval_rank?: number
           run_id?: string
           stage?: string | null
+          starts_at?: string | null
           title?: string
         }
         Relationships: [

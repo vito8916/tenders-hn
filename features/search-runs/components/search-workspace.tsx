@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 import { SearchCriteria } from "@/features/saved-searches/components/search-criteria";
 import type { SavedSearch } from "@/features/saved-searches/schemas";
+import { applyResultView, hasFilters, parseResultView, withParams, type SearchParamsRecord } from "../results";
 import { isRunActive, isRunFinished, type SearchRun, type SearchRunMatch } from "../schemas";
-import { MatchList } from "./match-list";
+import { ResultsTable } from "./results-table";
+import { ResultsToolbar } from "./results-toolbar";
 import { RunSearchButton } from "./run-search-button";
 import { RunStatus } from "./run-status";
 
@@ -55,13 +57,39 @@ function RunNotices({
     );
 }
 
+function Pager({ page, pageCount, params, homeHref }: { page: number; pageCount: number; params: SearchParamsRecord; homeHref: string }) {
+    if (pageCount <= 1) return null;
+    const href = (target: number) => `${homeHref}${withParams(params, { pagina: target === 1 ? null : String(target) })}`;
+    return (
+        <nav aria-label="Páginas de resultados" className="flex items-center justify-between gap-2 text-sm">
+            <Button variant="outline" size="sm" asChild className={page === 1 ? "pointer-events-none opacity-50" : undefined}>
+                <Link href={href(page - 1)} scroll={false} aria-disabled={page === 1}>
+                    Anterior
+                </Link>
+            </Button>
+            <span className="text-muted-foreground">
+                Página {page} de {pageCount}
+            </span>
+            <Button variant="outline" size="sm" asChild className={page === pageCount ? "pointer-events-none opacity-50" : undefined}>
+                <Link href={href(page + 1)} scroll={false} aria-disabled={page === pageCount}>
+                    Siguiente
+                </Link>
+            </Button>
+        </nav>
+    );
+}
+
 function Results({
     shownRun,
     matches,
+    params,
+    homeHref,
     editHref,
 }: {
     shownRun: SearchRun | null;
     matches: SearchRunMatch[];
+    params: SearchParamsRecord;
+    homeHref: string;
     editHref: string | null;
 }) {
     if (!shownRun) {
@@ -71,9 +99,13 @@ function Results({
         return null;
     }
 
+    const view = parseResultView(params);
+    const { filtered, rows, page, pageCount, facets } = applyResultView(matches, view);
     const relevant = matches.filter((match) => match.relevance === "muy_relevante" || match.relevance === "posible");
+    const filters = hasFilters(view);
+
     return (
-        <>
+        <section className="space-y-4" aria-label="Resultados">
             {relevant.length === 0 ? (
                 <p className="text-sm text-muted-foreground">
                     Esta ejecución examinó {shownRun.processesExamined ?? 0} procesos abiertos
@@ -86,8 +118,21 @@ function Results({
                     ) : null}
                 </p>
             ) : null}
-            {matches.length > 0 ? <MatchList matches={matches} /> : null}
-        </>
+            {matches.length > 0 ? (
+                <>
+                    <ResultsToolbar view={view} facets={facets} filtered={filters} />
+                    <p className="text-sm text-muted-foreground">
+                        {filters ? `${filtered.length} de ${matches.length} oportunidades` : `${matches.length} oportunidades`}
+                    </p>
+                    {rows.length > 0 ? (
+                        <ResultsTable rows={rows} params={params} homeHref={homeHref} />
+                    ) : (
+                        <p className="rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">Ningún resultado con estos filtros.</p>
+                    )}
+                    <Pager page={page} pageCount={pageCount} params={params} homeHref={homeHref} />
+                </>
+            ) : null}
+        </section>
     );
 }
 
@@ -103,6 +148,7 @@ export function SearchWorkspace({
     shownRun,
     latestFinished,
     matches,
+    params,
     latestIngestionAt,
     canManage,
     hasActivePlan,
@@ -113,6 +159,8 @@ export function SearchWorkspace({
     shownRun: SearchRun | null;
     latestFinished: SearchRun | null;
     matches: SearchRunMatch[];
+    /** The page's query: the shown run's filters, sort, page, and detail. */
+    params: SearchParamsRecord;
     latestIngestionAt: string | null;
     canManage: boolean;
     hasActivePlan: boolean;
@@ -156,7 +204,7 @@ export function SearchWorkspace({
 
             <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
             {shownRun ? <RunStatus run={shownRun} /> : null}
-            <Results shownRun={shownRun} matches={matches} editHref={editHref} />
+            <Results shownRun={shownRun} matches={matches} params={params} homeHref={homeHref} editHref={editHref} />
         </div>
     );
 }

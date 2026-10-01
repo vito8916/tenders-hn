@@ -44,6 +44,10 @@ export const searchRunMatchSchema = z.object({
     stage: z.string().nullable(),
     closesAt: z.string().nullable(),
     detailUrl: z.string(),
+    acquisitionType: z.string().nullable(),
+    startsAt: z.string().nullable(),
+    detectedAt: z.string().nullable(),
+    documentsCount: z.number().int(),
 });
 export type SearchRunMatch = z.infer<typeof searchRunMatchSchema>;
 

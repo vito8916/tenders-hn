@@ -118,9 +118,12 @@ export const searchRun: JobHandler = async (message, { pool }) => {
             await client.query(
                 `insert into public.search_run_matches
                    (run_id, org_id, process_id, process_version_id, retrieval_rank, relevance, in_scope, reasons, evaluation_id,
-                    expediente, title, buyer_entity, modality, stage, closes_at, detail_url)
+                    expediente, title, buyer_entity, modality, stage, closes_at, detail_url,
+                    acquisition_type, starts_at, detected_at, documents_count)
                  select $1, $2, p.id, p.current_version_id, m.retrieval_rank, m.relevance, m.in_scope, m.reasons, m.evaluation_id,
-                        p.expediente, p.title, p.buyer_entity, p.modality, p.stage, p.closes_at, p.detail_url
+                        p.expediente, p.title, p.buyer_entity, p.modality, p.stage, p.closes_at, p.detail_url,
+                        p.acquisition_type, p.source_start_at, p.first_seen_at,
+                        (select count(*) from public.source_documents d where d.process_id = p.id and d.removed_at is null)
                  from jsonb_to_recordset($3::jsonb) as m
                    (process_id uuid, retrieval_rank integer, relevance text, in_scope double precision, reasons jsonb, evaluation_id uuid)
                  join public.procurement_processes p on p.id = m.process_id`,

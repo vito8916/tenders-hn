@@ -14,8 +14,10 @@ import { getHomeService } from "@/features/search-runs/services";
 import { SearchesPane } from "@/features/search-runs/components/searches-pane";
 import { SearchesSheet } from "@/features/search-runs/components/searches-sheet";
 import { SearchWorkspace } from "@/features/search-runs/components/search-workspace";
+import type { SearchParamsRecord } from "@/features/search-runs/results";
 
-type HomeSearchParams = Promise<{ busqueda?: string; ejecucion?: string }>;
+// busqueda and ejecucion select the search and run; the rest is the results table's view (features/search-runs/results.ts).
+type HomeSearchParams = Promise<SearchParamsRecord>;
 
 function NoSearches({ newSearchHref }: { newSearchHref: string | null }) {
 	return (
@@ -48,7 +50,9 @@ async function HomeContent({
 	params: Promise<{ orgSlug: string }>;
 	searchParams: HomeSearchParams;
 }) {
-	const [{ orgSlug }, { busqueda, ejecucion }] = await Promise.all([params, searchParams]);
+	const [{ orgSlug }, query] = await Promise.all([params, searchParams]);
+	const busqueda = typeof query.busqueda === "string" ? query.busqueda : undefined;
+	const ejecucion = typeof query.ejecucion === "string" ? query.ejecucion : undefined;
 	const [{ sub: userId }, organization] = await Promise.all([getCurrentUser(), getOrganizationBySlugService(orgSlug)]);
 
 	if (!organization) {
@@ -105,6 +109,7 @@ async function HomeContent({
 						shownRun={selected.shownRun}
 						latestFinished={selected.latestFinished}
 						matches={selected.matches}
+						params={query}
 						latestIngestionAt={home.latestIngestionAt}
 						canManage={canManage}
 						hasActivePlan={limits.hasActivePlan}

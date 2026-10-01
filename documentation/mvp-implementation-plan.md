@@ -218,7 +218,7 @@ Company profiles and chat questions are private customer data. Before a provider
 | O2 | OCR | Text layer first (`pdftotext`), Tesseract `spa` for pages without usable text; add the `vision` role only if measured OCR quality blocks matching. | Phase 2 |
 | O3 | Embedding model | **Provisional default `voyage/voyage-4` at 1024 dimensions (28 Sep 2026)**: multilingual, $0.06 per million tokens, and Voyage 4 models share one embedding space, so voyage-4-lite or voyage-4-large can replace it without re-embedding. Confirm by retrieval recall on the labeled set. The column is `halfvec(1024)`, so any other model must output 1024 dimensions and means re-embedding (tracked by `embedding_model`). | Phase 2 |
 | O4 | Jev version pinning | Record the model version returned on every evaluation; ask TypeSafe/Vercel whether versioned ids exist and pin during calibration so thresholds stay valid. | Phase 3 |
-| O5 | Default chat model | Chosen by the chat evaluation set (5.5) among Claude, GPT-6 Luna, DeepSeek, and others, subject to 5.6. | Phase 5 |
+| O5 | Default chat model | **Decided 30 Sep 2026: GPT-6 Luna (`openai/gpt-6-luna`)** answers the chat (`lib/ai/models.ts` still says `anthropic/claude-sonnet-5`; change it when Phase 5 starts). The chat evaluation set (5.5) still runs before the pilot to confirm it and document cost per answer, subject to 5.6 and the user's approval of the run's cost. | Phase 5 |
 | O6 | Central sync cadence | Start every **3 hours** with a 7-day overlap window (spec §6) plus a daily 30-day sync while measuring; adjust after the measurement ends on 1 Oct 2026. | Phase 1 |
 | O7 | Access and content use | Review HonduCompras terms and attribution before operating commercially (spec §14.5). Always link the official source. | Before the pilot |
 | O8 | Retention | Keep source documents and texts during the pilot; define the deletion policy before commercial launch (spec §10). | Phase 6 |
@@ -464,6 +464,15 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 - Citation validation after each response (section 5.4) before the message is stored and rendered.
 - Credits per section 5.3; the UI shows estimated cost, balance, and a clear state when credits run out.
 - Run the chat evaluation set across candidate models and set the `chat` default (O5).
+
+**Decisions (30 Sep 2026), not built yet:**
+
+- **Who sees a conversation:** only its author. Threads belong to the organization (RLS by membership) and to one user; other members, admins included, do not read them.
+- **Credits:** a provisional rate of about **1 credit ≈ US$0.01 of model cost**, recorded in `ai_model_rates` for the chat model (empty today, also in the hosted project); adjust after measuring real answers. Plans keep 100 / 500 / 1,000 credits a month.
+- **Model:** GPT-6 Luna (O5).
+- **Report context:** a run's relevant opportunities (muy relevante and posible), at most 20, so the source budget holds.
+- **UI:** AI SDK UI (`@ai-sdk/react`, `useChat`) for state and streaming, with only the AI Elements components it needs, added through the shadcn registry into `components/ai-elements/` and translated to Spanish (6.1.1): Conversation, Message, Prompt Input, Inline Citation (renders the server-validated `[S#]` ids of 5.4), Sources, Suggestion, and possibly Context adapted to show credits. Review each component's code and dependencies when adding it; no unused ones.
+- **Design outline:** retrieval embeds the question (`embed` role) and runs a hybrid search (vector + `spanish` tsvector) over `document_chunks` of the context's processes only, keeping 8–12 passages within a token budget; `[S0]` is always the latest process version's detail (dates, stage, contact, products); documents that could not be read (`unsupported`, `failed`) are listed so the model never claims to have read them. Prompt order: Spanish rules, sources, history, question. Flow: estimate → reserve credits (org-checked wrappers over `reserve_ai_credits` / `commit_ai_credits` / `release_ai_credits`, which only the service role can call today) → `streamText` → validate citations → store `chat_messages` with citations and usage → commit, or release on error or abort. Development uses the AI SDK mock model; any real call waits for the user's approval of model and cost.
 
 **Done when (spec §13):** answers show verified sources and respect the chosen context; `CM 39-019-2026` chat says it only has the process detail; the chat never claims to have read unprocessed documents; retries and aborted streams never double-charge credits; at least two providers have been evaluated on the golden set and the choice is documented.
 

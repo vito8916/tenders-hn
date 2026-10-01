@@ -142,6 +142,8 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     ),
                 ],
             );
+            // nueva / actualizada / conocida against the search's earlier runs, and the run's count of new matches.
+            await client.query("select private.set_match_states($1)", [runId]);
             await client.query(
                 `update public.search_runs
                  set status = $2, candidates = $3, processes_examined = $6,

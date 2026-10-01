@@ -20,7 +20,8 @@ export async function requestSearchRunAction(input: { searchId: string; orgSlug:
 
         await requestSearchRunService(parsed.data.searchId);
 
-        revalidatePath(`/organizations/${parsed.data.orgSlug}/searches`, "layout");
+        // The Home and the search pages both show runs.
+        revalidatePath(`/organizations/${parsed.data.orgSlug}`, "layout");
 
         return { success: true };
     } catch (error) {

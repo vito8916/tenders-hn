@@ -1,80 +1,150 @@
 import { Suspense } from "react";
-import { ChartBar } from "lucide-react";
-import { PageHeader } from "@/components/shared/page-header";
-import { OrgName } from "@/components/shared/org-name";
-import { PageSectionSkeleton } from "@/components/shared/page-section-skeleton";
-import { OverviewCards } from "@/features/organizations/components/overview-cards";
-import { RecentActivity } from "@/features/events/components/recent-activity";
-import { getCurrentUser } from "@/lib/auth/get-current-user";
-import {
-	getOrganizationBySlugService,
-	getOrganizationOverviewService,
-} from "@/features/organizations/services";
-import { getUserOrgRoleService } from "@/features/memberships/services";
-import { canViewSettings } from "@/features/organizations/rbac";
-import { listRecentEventsService } from "@/features/events/services";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getCurrentUser } from "@/lib/auth/get-current-user";
+import { getOrganizationBySlugService } from "@/features/organizations/services";
+import { getUserOrgRoleService } from "@/features/memberships/services";
+import { canManageSearches } from "@/features/saved-searches/rbac";
+import { getSearchLimitsService } from "@/features/saved-searches/services";
+import { getHomeService } from "@/features/search-runs/services";
+import { SearchesPane } from "@/features/search-runs/components/searches-pane";
+import { SearchesSheet } from "@/features/search-runs/components/searches-sheet";
+import { SearchWorkspace } from "@/features/search-runs/components/search-workspace";
 
-async function DashboardContent({
+type HomeSearchParams = Promise<{ busqueda?: string; ejecucion?: string }>;
+
+function NoSearches({ newSearchHref }: { newSearchHref: string | null }) {
+	return (
+		<Empty className="border">
+			<EmptyHeader>
+				<EmptyMedia variant="icon">
+					<Search />
+				</EmptyMedia>
+				<EmptyTitle>Todavía no hay búsquedas</EmptyTitle>
+				<EmptyDescription>
+					Una búsqueda revisa los procesos abiertos de HonduCompras con lo que vende su empresa y le muestra los que le
+					interesan.
+				</EmptyDescription>
+			</EmptyHeader>
+			{newSearchHref ? (
+				<EmptyContent>
+					<Button asChild>
+						<Link href={newSearchHref}>Crear la primera búsqueda</Link>
+					</Button>
+				</EmptyContent>
+			) : null}
+		</Empty>
+	);
+}
+
+async function HomeContent({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ orgSlug: string }>;
+	searchParams: HomeSearchParams;
 }) {
-	const { orgSlug } = await params;
-	const [{ sub: userId }, organization] = await Promise.all([
-		getCurrentUser(),
-		getOrganizationBySlugService(orgSlug),
-	]);
+	const [{ orgSlug }, { busqueda, ejecucion }] = await Promise.all([params, searchParams]);
+	const [{ sub: userId }, organization] = await Promise.all([getCurrentUser(), getOrganizationBySlugService(orgSlug)]);
 
 	if (!organization) {
 		redirect("/organizations");
 	}
 
-	const role = await getUserOrgRoleService({ userId, orgId: organization.id });
+	const [role, limits, home] = await Promise.all([
+		getUserOrgRoleService({ userId, orgId: organization.id }),
+		getSearchLimitsService(organization.id),
+		getHomeService({ orgId: organization.id, searchId: busqueda ?? null, runId: ejecucion ?? null }),
+	]);
 	if (!role) {
 		redirect("/organizations");
 	}
 
-	const isAdmin = canViewSettings(role);
-	const [{ membersCount, pendingInvitationsCount }, recentEvents] =
-		await Promise.all([
-			getOrganizationOverviewService({ orgId: organization.id, userId }),
-			isAdmin
-				? listRecentEventsService({ orgId: organization.id, userId, limit: 10 })
-				: Promise.resolve(null),
-		]);
+	const canManage = canManageSearches(role);
+	const underLimit = limits.maxActiveSearches === null || limits.activeSearches < limits.maxActiveSearches;
+	const canCreate = canManage && limits.hasActivePlan && underLimit;
+	const { selected } = home;
+
+	const pane = (
+		<SearchesPane
+			orgSlug={orgSlug}
+			items={home.items}
+			selectedSearchId={selected?.search.id ?? null}
+			recentRuns={selected?.recentRuns ?? []}
+			shownRunId={selected?.shownRun?.id ?? null}
+			canCreate={canCreate}
+		/>
+	);
 
 	return (
-		<>
-			<OverviewCards
-				orgSlug={orgSlug}
-				membersCount={membersCount}
-				pendingInvitationsCount={pendingInvitationsCount}
-			/>
-			{recentEvents ? <RecentActivity events={recentEvents} /> : null}
-		</>
+		<div className="flex flex-1">
+			<aside className="hidden w-72 shrink-0 border-r lg:block">
+				<div className="sticky top-0 max-h-svh overflow-y-auto">{pane}</div>
+			</aside>
+			<div className="min-w-0 flex-1 space-y-4 p-4 lg:p-6">
+				<div className="lg:hidden">
+					<SearchesSheet>{pane}</SearchesSheet>
+				</div>
+				{!limits.hasActivePlan ? (
+					<p className="rounded-lg border border-dashed p-3 text-sm text-muted-foreground">
+						La organización no tiene un plan activo: puede consultar sus búsquedas y resultados, pero no crear ni ejecutar búsquedas.{" "}
+						<Link href={`/organizations/${orgSlug}/settings/billing`} className="text-primary hover:underline">
+							Ver planes
+						</Link>
+					</p>
+				) : null}
+				{selected ? (
+					<SearchWorkspace
+						orgSlug={orgSlug}
+						search={selected.search}
+						latestRun={selected.latestRun}
+						shownRun={selected.shownRun}
+						latestFinished={selected.latestFinished}
+						matches={selected.matches}
+						latestIngestionAt={home.latestIngestionAt}
+						canManage={canManage}
+						hasActivePlan={limits.hasActivePlan}
+					/>
+				) : (
+					<NoSearches newSearchHref={canCreate ? `/organizations/${orgSlug}/searches/new` : null} />
+				)}
+			</div>
+		</div>
 	);
 }
 
+function HomeSkeleton() {
+	return (
+		<div className="flex flex-1">
+			<div className="hidden w-72 shrink-0 space-y-2 border-r p-4 lg:block">
+				<Skeleton className="h-8 w-full" />
+				<Skeleton className="h-12 w-full" />
+				<Skeleton className="h-12 w-full" />
+			</div>
+			<div className="flex-1 space-y-4 p-4 lg:p-6">
+				<Skeleton className="h-9 w-64" />
+				<Skeleton className="h-16 w-full max-w-3xl" />
+				<Skeleton className="h-64 w-full max-w-3xl" />
+			</div>
+		</div>
+	);
+}
+
+/** The Home (spec §12.1): saved searches on the left, the selected search and run on the right. */
 export default function HomePage({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ orgSlug: string }>;
+	searchParams: HomeSearchParams;
 }) {
 	return (
-		<div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">
-			<PageHeader
-				icon={ChartBar}
-				title="Inicio"
-				description={
-					<>
-						Resumen de <OrgName />.
-					</>
-				}
-			/>
-			<Suspense fallback={<PageSectionSkeleton cards={3} />}>
-				<DashboardContent params={params} />
-			</Suspense>
-		</div>
+		<Suspense fallback={<HomeSkeleton />}>
+			<HomeContent params={params} searchParams={searchParams} />
+		</Suspense>
 	);
 }

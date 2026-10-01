@@ -1355,6 +1355,7 @@ export type Database = {
           evaluation_id: string | null
           expediente: string
           in_scope: number | null
+          match_state: string | null
           modality: string | null
           org_id: string
           process_id: string
@@ -1373,6 +1374,7 @@ export type Database = {
           evaluation_id?: string | null
           expediente: string
           in_scope?: number | null
+          match_state?: string | null
           modality?: string | null
           org_id: string
           process_id: string
@@ -1391,6 +1393,7 @@ export type Database = {
           evaluation_id?: string | null
           expediente?: string
           in_scope?: number | null
+          match_state?: string | null
           modality?: string | null
           org_id?: string
           process_id?: string
@@ -1458,6 +1461,7 @@ export type Database = {
           error: string | null
           id: string
           matches_count: number | null
+          new_matches_count: number | null
           org_id: string
           processes_examined: number | null
           profile_version: number | null
@@ -1478,6 +1482,7 @@ export type Database = {
           error?: string | null
           id?: string
           matches_count?: number | null
+          new_matches_count?: number | null
           org_id: string
           processes_examined?: number | null
           profile_version?: number | null
@@ -1498,6 +1503,7 @@ export type Database = {
           error?: string | null
           id?: string
           matches_count?: number | null
+          new_matches_count?: number | null
           org_id?: string
           processes_examined?: number | null
           profile_version?: number | null

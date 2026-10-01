@@ -4,7 +4,7 @@ import type { Tables } from "@/types/database.types";
 import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
 
 const SEARCH_RUN_COLUMNS =
-    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, coverage, source_synced_at, error, created_at, completed_at";
+    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, new_matches_count, coverage, source_synced_at, error, created_at, completed_at";
 
 type SearchRunRow = Pick<
     Tables<"search_runs">,
@@ -15,6 +15,7 @@ type SearchRunRow = Pick<
     | "processes_examined"
     | "candidates"
     | "matches_count"
+    | "new_matches_count"
     | "coverage"
     | "source_synced_at"
     | "error"
@@ -34,6 +35,7 @@ function mapSearchRunRow(row: SearchRunRow): SearchRun {
         processesExamined: row.processes_examined,
         candidates: row.candidates,
         matchesCount: row.matches_count,
+        newMatchesCount: row.new_matches_count,
         failedEvaluations: coverage?.failedEvaluations ?? 0,
         sourceSyncedAt: row.source_synced_at,
         error: row.error,
@@ -56,6 +58,49 @@ export async function listLatestRuns(orgId: string): Promise<SearchRun[]> {
 
     if (error) throw error;
     return data.flatMap((search) => search.search_runs.map(mapSearchRunRow));
+}
+
+/** The latest finished run of each of the organization's searches that has one: its new matches feed the Home's indicator. */
+export async function listLatestFinishedRuns(orgId: string): Promise<SearchRun[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("saved_searches")
+        .select(`search_runs (${SEARCH_RUN_COLUMNS})`)
+        .eq("org_id", orgId)
+        .in("search_runs.status", ["completed", "partial"])
+        .order("created_at", { referencedTable: "search_runs", ascending: false })
+        .limit(1, { referencedTable: "search_runs" });
+
+    if (error) throw error;
+    return data.flatMap((search) => search.search_runs.map(mapSearchRunRow));
+}
+
+/** The search's most recent runs, newest first. */
+export async function listRecentRuns(searchId: string, limit: number): Promise<SearchRun[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("search_runs")
+        .select(SEARCH_RUN_COLUMNS)
+        .eq("saved_search_id", searchId)
+        .order("created_at", { ascending: false })
+        .limit(limit);
+
+    if (error) throw error;
+    return data.map(mapSearchRunRow);
+}
+
+/** A run of the search, or null when the id belongs to another search (a hand-edited URL). */
+export async function getSearchRun(searchId: string, runId: string): Promise<SearchRun | null> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("search_runs")
+        .select(SEARCH_RUN_COLUMNS)
+        .eq("saved_search_id", searchId)
+        .eq("id", runId)
+        .maybeSingle();
+
+    if (error) throw error;
+    return data ? mapSearchRunRow(data) : null;
 }
 
 /**
@@ -104,7 +149,7 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("search_run_matches")
-        .select("process_id, retrieval_rank, relevance, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url")
+        .select("process_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url")
         .eq("run_id", runId)
         // Within each relevance level, the ones closing soonest first (plan, Phase 3).
         .order("closes_at", { ascending: true, nullsFirst: false })
@@ -117,6 +162,7 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
             processId: row.process_id,
             retrievalRank: row.retrieval_rank,
             relevance: row.relevance,
+            matchState: row.match_state,
             reasons: row.reasons,
             expediente: row.expediente,
             title: row.title,

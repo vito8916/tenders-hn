@@ -41,7 +41,7 @@ export function SavedSearchList({
                     <li key={search.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0 space-y-1">
                             <div className="flex items-center gap-2">
-                                <Link href={`/organizations/${orgSlug}/searches/${search.id}`} className="font-medium hover:underline">
+                                <Link href={`/organizations/${orgSlug}?busqueda=${search.id}`} className="font-medium hover:underline">
                                     {search.name}
                                 </Link>
                                 {search.isActive ? null : <Badge variant="outline">Pausada</Badge>}

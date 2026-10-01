@@ -154,19 +154,3 @@ export async function removeMember(params: { membershipId: string }): Promise<vo
 
     if (error) throw error;
 }
-
-/**
- * Counts members of an organization
- * @throws Supabase error if query fails or RLS denies access
- */
-export async function countOrgMembers(params: { orgId: string }): Promise<number> {
-    const supabase = await createClient();
-
-    const { count, error } = await supabase
-        .from("organization_members")
-        .select("*", { count: "exact", head: true })
-        .eq("org_id", params.orgId);
-
-    if (error) throw error;
-    return count ?? 0;
-}

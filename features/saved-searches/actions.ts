@@ -19,7 +19,8 @@ const saveSavedSearchActionSchema = searchRefSchema.extend({
     search: savedSearchInputSchema,
 });
 
-const revalidateSearches = (orgSlug: string) => revalidatePath(`/organizations/${orgSlug}/searches`, "layout");
+// The Home lists the searches too.
+const revalidateSearches = (orgSlug: string) => revalidatePath(`/organizations/${orgSlug}`, "layout");
 
 /**
  * Server Action that creates or updates a saved search and returns its id

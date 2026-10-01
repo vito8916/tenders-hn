@@ -7,6 +7,12 @@ export const SearchRunStatusSchema = z.enum(["queued", "running", "completed", "
 export type SearchRunStatus = z.infer<typeof SearchRunStatusSchema>;
 
 export const isRunActive = (status: SearchRunStatus) => status === "queued" || status === "running";
+/** Completed or partial: a run whose results can be shown. */
+export const isRunFinished = (status: SearchRunStatus) => status === "completed" || status === "partial";
+
+/** Against the search's earlier finished runs (private.set_match_states); null on runs written before it existed. */
+export const MatchStateSchema = z.enum(["nueva", "actualizada", "conocida"]);
+export type MatchState = z.infer<typeof MatchStateSchema>;
 
 export const searchRunSchema = z.object({
     id: z.uuid(),
@@ -16,6 +22,7 @@ export const searchRunSchema = z.object({
     processesExamined: z.number().int().nullable(),
     candidates: z.number().int().nullable(),
     matchesCount: z.number().int().nullable(),
+    newMatchesCount: z.number().int().nullable(),
     failedEvaluations: z.number().int(),
     sourceSyncedAt: z.string().nullable(),
     error: z.string().nullable(),
@@ -28,6 +35,7 @@ export const searchRunMatchSchema = z.object({
     processId: z.uuid(),
     retrievalRank: z.number().int(),
     relevance: RelevanceSchema,
+    matchState: MatchStateSchema.nullable(),
     reasons: z.array(z.object({ text: z.string() })),
     expediente: z.string(),
     title: z.string(),

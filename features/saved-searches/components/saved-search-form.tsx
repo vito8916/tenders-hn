@@ -267,7 +267,7 @@ export function SavedSearchForm({
             return;
         }
         toast.success(search ? "Se guardaron los cambios." : "Se creó la búsqueda.");
-        router.push(`/organizations/${orgSlug}/searches/${result.searchId}`);
+        router.push(`/organizations/${orgSlug}?busqueda=${result.searchId}`);
     }
 
     const { isSubmitting } = form.formState;

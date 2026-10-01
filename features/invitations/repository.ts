@@ -204,23 +204,6 @@ export async function acceptInvitation(params: { token: string }): Promise<Accep
 }
 
 /**
- * Counts pending (not accepted) invitations of an organization
- * @throws Supabase error if query fails or RLS denies access
- */
-export async function countPendingInvitations(params: { orgId: string }): Promise<number> {
-    const supabase = await createClient();
-
-    const { count, error } = await supabase
-        .from("organization_invitations")
-        .select("*", { count: "exact", head: true })
-        .eq("org_id", params.orgId)
-        .is("accepted_at", null);
-
-    if (error) throw error;
-    return count ?? 0;
-}
-
-/**
  * Lists pending, non-expired invitations addressed to the current user's
  * email via SECURITY DEFINER RPC (a new user has no memberships, so plain
  * RLS would hide these rows)

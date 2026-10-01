@@ -40,25 +40,6 @@ export async function logAppEventService(params: {
     }
 }
 
-/**
- * Service layer for listing an organization's recent activity
- * Restricted to owner/admin, matching the app_events RLS policy
- *
- * @throws Error if the user lacks permission
- */
-export async function listRecentEventsService(params: {
-    orgId: string;
-    userId: string;
-    limit?: number;
-}): Promise<AppEvent[]> {
-    const role = await getUserOrgRole({ userId: params.userId, orgId: params.orgId });
-    if (!role || !canViewSettings(role)) {
-        throw new Error("Insufficient permissions to view organization activity");
-    }
-
-    return listRecentEvents({ orgId: params.orgId, limit: params.limit });
-}
-
 async function enrichEventsWithActors(events: AppEvent[]): Promise<AuditLogEntry[]> {
     const userIds = [
         ...new Set(events.map((event) => event.userId).filter((id): id is string => !!id)),

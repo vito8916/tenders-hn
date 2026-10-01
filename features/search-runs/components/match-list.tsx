@@ -15,6 +15,8 @@ function MatchItem({ match }: { match: SearchRunMatch }) {
     return (
         <li className="space-y-2 rounded-lg border p-4">
             <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                {match.matchState === "nueva" ? <Badge>Nueva</Badge> : null}
+                {match.matchState === "actualizada" ? <Badge variant="secondary">Actualizada</Badge> : null}
                 <span className="font-medium text-foreground">{match.expediente}</span>
                 <span>{match.buyerEntity}</span>
                 {match.modality ? <Badge variant="outline">{match.modality}</Badge> : null}
@@ -23,8 +25,9 @@ function MatchItem({ match }: { match: SearchRunMatch }) {
             <p className="font-medium">{match.title}</p>
             {match.reasons.length > 0 ? (
                 <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                    {match.reasons.map((reason) => (
-                        <li key={reason.text}>{reason.text}</li>
+                    {/* Two reasons can share a text (the same phrase in two documents), so the position is part of the key. */}
+                    {match.reasons.map((reason, index) => (
+                        <li key={`${index}-${reason.text}`}>{reason.text}</li>
                     ))}
                 </ul>
             ) : null}

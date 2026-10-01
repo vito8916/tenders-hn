@@ -1,7 +1,6 @@
 import 'server-only';
 import { cache } from "react";
-import { getUserOrgRole, countOrgMembers } from "@/features/memberships/repository";
-import { countPendingInvitations } from "@/features/invitations/repository";
+import { getUserOrgRole } from "@/features/memberships/repository";
 import { inviteMembersService } from "@/features/invitations/services";
 import { logAppEventService } from "@/features/events/services";
 import { APP_EVENTS } from "@/features/events/schemas";
@@ -21,7 +20,6 @@ import {
 import {
     canUpdateOrganization,
     canDeleteOrganization,
-    canViewSettings,
     canTransferOwnership,
 } from "./rbac";
 import type {
@@ -274,34 +272,6 @@ export async function createOrganizationWithInvitesService(params: {
         console.error("Error uploading logo or creating invitations:", error);
         throw error;
     }
-}
-
-/**
- * Service layer for the organization dashboard overview
- * Pending invitations are only counted for owner/admin (matching RLS)
- *
- * @throws Error if the user is not a member of the organization
- */
-export async function getOrganizationOverviewService(params: {
-    orgId: string;
-    userId: string;
-}): Promise<{
-    membersCount: number;
-    pendingInvitationsCount: number | null;
-}> {
-    const { orgId, userId } = params;
-
-    const role = await getUserOrgRole({ userId, orgId });
-    if (!role) {
-        throw new UserFacingError("Usted no es miembro de esta organización.");
-    }
-
-    const [membersCount, pendingInvitationsCount] = await Promise.all([
-        countOrgMembers({ orgId }),
-        canViewSettings(role) ? countPendingInvitations({ orgId }) : Promise.resolve(null),
-    ]);
-
-    return { membersCount, pendingInvitationsCount };
 }
 
 /**

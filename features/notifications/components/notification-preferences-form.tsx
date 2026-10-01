@@ -12,6 +12,12 @@ import type { NotificationPreference } from "../schemas";
 
 const CATEGORY_SECTIONS = [
 	{
+		category: "searches",
+		title: "Búsquedas",
+		description:
+			"Reportes de sus búsquedas y cambios en oportunidades marcadas con «Me interesa». Cada búsqueda decide además si envía su reporte por correo.",
+	},
+	{
 		category: "organization",
 		title: "Organizaciones",
 		description: "Actividad de membresías, roles e invitaciones.",

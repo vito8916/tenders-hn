@@ -566,11 +566,13 @@ export type Database = {
           next_attempt_at: string
           notification_id: string | null
           org_id: string | null
+          payload: Json
           provider_message_id: string | null
           recipient: string
           sent_at: string | null
           status: string
           subject: string
+          template: string | null
           title: string
           type_id: string
           user_id: string
@@ -588,11 +590,13 @@ export type Database = {
           next_attempt_at?: string
           notification_id?: string | null
           org_id?: string | null
+          payload?: Json
           provider_message_id?: string | null
           recipient: string
           sent_at?: string | null
           status?: string
           subject: string
+          template?: string | null
           title: string
           type_id: string
           user_id: string
@@ -610,11 +614,13 @@ export type Database = {
           next_attempt_at?: string
           notification_id?: string | null
           org_id?: string | null
+          payload?: Json
           provider_message_id?: string | null
           recipient?: string
           sent_at?: string | null
           status?: string
           subject?: string
+          template?: string | null
           title?: string
           type_id?: string
           user_id?: string
@@ -804,6 +810,76 @@ export type Database = {
             columns: ["process_id"]
             isOneToOne: false
             referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_notifications: {
+        Row: {
+          notified_at: string
+          org_id: string
+          process_id: string
+          process_version_id: string | null
+          run_id: string | null
+          saved_search_id: string
+        }
+        Insert: {
+          notified_at?: string
+          org_id: string
+          process_id: string
+          process_version_id?: string | null
+          run_id?: string | null
+          saved_search_id: string
+        }
+        Update: {
+          notified_at?: string
+          org_id?: string
+          process_id?: string
+          process_version_id?: string | null
+          run_id?: string | null
+          saved_search_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_notifications_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_notifications_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "opportunity_notifications_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_notifications_process_version_id_fkey"
+            columns: ["process_version_id"]
+            isOneToOne: false
+            referencedRelation: "process_versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_notifications_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "search_runs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_notifications_saved_search_id_fkey"
+            columns: ["saved_search_id"]
+            isOneToOne: false
+            referencedRelation: "saved_searches"
             referencedColumns: ["id"]
           },
         ]
@@ -1523,6 +1599,7 @@ export type Database = {
           id: string
           matches_count: number | null
           new_matches_count: number | null
+          notified_at: string | null
           org_id: string
           processes_examined: number | null
           profile_version: number | null
@@ -1545,6 +1622,7 @@ export type Database = {
           id?: string
           matches_count?: number | null
           new_matches_count?: number | null
+          notified_at?: string | null
           org_id: string
           processes_examined?: number | null
           profile_version?: number | null
@@ -1567,6 +1645,7 @@ export type Database = {
           id?: string
           matches_count?: number | null
           new_matches_count?: number | null
+          notified_at?: string | null
           org_id?: string
           processes_examined?: number | null
           profile_version?: number | null
@@ -1986,11 +2065,13 @@ export type Database = {
           next_attempt_at: string
           notification_id: string | null
           org_id: string | null
+          payload: Json
           provider_message_id: string | null
           recipient: string
           sent_at: string | null
           status: string
           subject: string
+          template: string | null
           title: string
           type_id: string
           user_id: string

@@ -33,7 +33,7 @@ export function mapNotificationRow(row: Tables<"notifications">): Notification {
     });
 }
 
-export const NotificationCategorySchema = z.enum(["organization", "billing"]);
+export const NotificationCategorySchema = z.enum(["searches", "organization", "billing"]);
 
 /**
  * A notification type with the user's effective channel choices

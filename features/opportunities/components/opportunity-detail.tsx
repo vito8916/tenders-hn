@@ -149,7 +149,8 @@ export async function OpportunityDetail({
                     <MatchStateBadge match={match} />
                     <span className="text-xs text-muted-foreground">{match.expediente}</span>
                 </div>
-                <h2 className="text-lg leading-snug font-semibold">{detail?.object ?? match.title}</h2>
+                {/* The detail's object is fuller, except in Compra Menor, where it is just «Compra Menor» and the match's title names the products. */}
+                <h2 className="text-lg leading-snug font-semibold">{detail?.object && detail.object !== "Compra Menor" ? detail.object : match.title}</h2>
                 <p className="text-sm text-muted-foreground">{match.buyerEntity}</p>
                 <Button variant="outline" size="sm" asChild>
                     <a href={match.detailUrl} target="_blank" rel="noreferrer">

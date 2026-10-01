@@ -121,12 +121,13 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     expediente, title, buyer_entity, modality, stage, closes_at, detail_url,
                     acquisition_type, starts_at, detected_at, documents_count)
                  select $1, $2, p.id, p.current_version_id, m.retrieval_rank, m.relevance, m.in_scope, m.reasons, m.evaluation_id,
-                        p.expediente, p.title, p.buyer_entity, p.modality, p.stage, p.closes_at, p.detail_url,
+                        p.expediente, private.process_display_title(p.title, v.detail), p.buyer_entity, p.modality, p.stage, p.closes_at, p.detail_url,
                         p.acquisition_type, p.source_start_at, p.first_seen_at,
                         (select count(*) from public.source_documents d where d.process_id = p.id and d.removed_at is null)
                  from jsonb_to_recordset($3::jsonb) as m
                    (process_id uuid, retrieval_rank integer, relevance text, in_scope double precision, reasons jsonb, evaluation_id uuid)
-                 join public.procurement_processes p on p.id = m.process_id`,
+                 join public.procurement_processes p on p.id = m.process_id
+                 left join public.process_versions v on v.id = p.current_version_id`,
                 [
                     runId,
                     run.org_id,
@@ -168,6 +169,8 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     openRows.length,
                 ],
             );
+            // The report to the members (once per run, following the search's delivery settings).
+            await client.query("select private.notify_search_run($1)", [runId]);
             // The frozen PDF, once the run is committed as finished.
             await client.query("select pgmq.send('match', jsonb_build_object('type', 'render_report', 'runId', $1::uuid))", [runId]);
             await client.query("commit");

@@ -5,6 +5,22 @@
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 
+type ReportOpportunity = {
+  expediente: string;
+  title: string;
+  buyerEntity: string;
+  relevance: "muy_relevante" | "posible";
+  state: "nueva" | "actualizada";
+  closesAt: string | null;
+  path: string;
+};
+
+// What private.notify_search_run puts in the payload of a search_run_report email.
+type ReportPayload = {
+  total: number;
+  opportunities: ReportOpportunity[];
+};
+
 type Delivery = {
   id: string;
   recipient: string;
@@ -13,6 +29,8 @@ type Delivery = {
   body: string | null;
   action_url: string | null;
   attempts: number;
+  template: "search_run_report" | null;
+  payload: ReportPayload | Record<string, never>;
 };
 
 const BATCH_SIZE = 25;
@@ -34,11 +52,46 @@ function escapeHtml(value: string): string {
     .replaceAll('"', "&quot;");
 }
 
+const RELEVANCE_LABELS = { muy_relevante: "Muy relevante", posible: "Posible" } as const;
+const STATE_LABELS = { nueva: "Nueva", actualizada: "Actualizada" } as const;
+
+/** The report's opportunities: state and relevance, expediente, the object linking to its detail, institution, and deadline. */
+function renderReport(payload: ReportPayload, font: string) {
+  if (!payload.opportunities?.length) return { html: "", text: "" };
+
+  const items = payload.opportunities
+    .map(
+      (opportunity) => `<tr>
+                        <td style="padding:14px 0;border-top:1px solid #f4f4f5;font-family:${font};">
+                          <p style="margin:0 0 4px;font-size:12px;line-height:18px;color:#71717a;">${STATE_LABELS[opportunity.state]} · ${RELEVANCE_LABELS[opportunity.relevance]} · ${escapeHtml(opportunity.expediente)}</p>
+                          <a href="${escapeHtml(`${appUrl}${opportunity.path}`)}" style="font-size:15px;line-height:22px;font-weight:600;color:#09090b;text-decoration:none;">${escapeHtml(opportunity.title)}</a>
+                          <p style="margin:4px 0 0;font-size:13px;line-height:20px;color:#52525b;">${escapeHtml(opportunity.buyerEntity)} · ${opportunity.closesAt ? `Cierra el ${escapeHtml(opportunity.closesAt)}` : "Sin fecha límite publicada"}</p>
+                        </td>
+                      </tr>`,
+    )
+    .join("");
+  const more = payload.total - payload.opportunities.length;
+
+  const html = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">${items}</table>
+                      ${more > 0 ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#3f3f46;">Y ${more} más en Tenders HN.</p>` : ""}`;
+  const text = [
+    ...payload.opportunities.map(
+      (opportunity) =>
+        `${STATE_LABELS[opportunity.state]} · ${RELEVANCE_LABELS[opportunity.relevance]} · ${opportunity.expediente}\n${opportunity.title}\n${opportunity.buyerEntity} · ${opportunity.closesAt ? `Cierra el ${opportunity.closesAt}` : "Sin fecha límite publicada"}\n${appUrl}${opportunity.path}`,
+    ),
+    more > 0 ? `Y ${more} más en Tenders HN.` : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+  return { html, text };
+}
+
 function renderEmail(delivery: Delivery) {
   const actionUrl = delivery.action_url ? `${appUrl}${delivery.action_url}` : null;
 
   // Same design as emails/organization-invitation.tsx and supabase/templates/*.html; keep them in step.
   const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
+  const report = delivery.template === "search_run_report" ? renderReport(delivery.payload as ReportPayload, font) : { html: "", text: "" };
   const html = `<!doctype html>
 <html lang="es">
   <head>
@@ -66,12 +119,13 @@ function renderEmail(delivery: Delivery) {
                     <td style="padding:32px;font-family:${font};">
                       <h1 style="margin:0 0 12px;font-size:22px;line-height:30px;font-weight:600;letter-spacing:-0.01em;color:#09090b;">${escapeHtml(delivery.title)}</h1>
                       ${delivery.body ? `<p style="margin:0 0 28px;font-size:15px;line-height:24px;color:#3f3f46;">${escapeHtml(delivery.body)}</p>` : ""}
+                      ${report.html}
                       ${
                         actionUrl
                           ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td bgcolor="#09090b" style="border-radius:8px;">
-                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">Ver en Tenders HN</a>
+                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">${delivery.template === "search_run_report" ? "Ver todos los resultados" : "Ver en Tenders HN"}</a>
                           </td>
                         </tr>
                       </table>`
@@ -95,7 +149,7 @@ function renderEmail(delivery: Delivery) {
   </body>
 </html>`;
 
-  const text = [delivery.title, delivery.body, actionUrl].filter(Boolean).join("\n\n");
+  const text = [delivery.title, delivery.body, report.text, actionUrl].filter(Boolean).join("\n\n");
 
   return { html, text };
 }

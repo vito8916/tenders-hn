@@ -17,7 +17,7 @@ insert into public.organization_members (org_id, user_id, role) values
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '33333333-3333-4333-8333-333333333333', 'admin'),
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '44444444-4444-4444-8444-444444444444', 'member');
 insert into public.plans (id, name, max_members, max_active_searches, min_schedule_interval, monthly_ai_credits)
-values ('test_searches', 'Test', 5, 2, interval '12 hours', 0);
+values ('test_searches', 'Test', 5, 3, interval '12 hours', 0);
 insert into public.source_sync_runs (id, source, window_start, window_end, status, started_at, finished_at)
 overriding system value values
   (901, 'honducompras_v1', '2026-09-20', '2026-09-27', 'succeeded', now() - interval '3 hours', now() - interval '170 minutes'),
@@ -57,6 +57,7 @@ select throws_ok(
 reset role;
 insert into public.organization_subscriptions (org_id, plan_id, status, current_period_end)
 values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'test_searches', 'active', now() + interval '30 days');
+-- Activating the plan created «Recomendadas», which counts toward the plan's three searches.
 
 -- ---------- Writing searches ----------
 set local role authenticated;
@@ -69,7 +70,7 @@ select lives_ok(
   'an admin creates a search'
 );
 select results_eq(
-  $$select name, keywords, entities, schedule, next_run_at > now(), created_by from public.saved_searches$$,
+  $$select name, keywords, entities, schedule, next_run_at > now(), created_by from public.saved_searches where not is_default$$,
   $$values ('Software'::text, array['SAP', 'Licencias'], array['IHSS'], 'daily'::text, true,
             '33333333-3333-4333-8333-333333333333'::uuid)$$,
   'names and lists are tidied, and a daily search is scheduled'
@@ -132,7 +133,7 @@ select ok(
 );
 
 select pg_temp.act_as('44444444-4444-4444-8444-444444444444');
-select is((select count(*)::int from public.saved_searches), 3, 'members read the searches');
+select is((select count(*)::int from public.saved_searches), 4, 'members read the searches');
 select throws_ok(
   $$insert into public.saved_searches (org_id, name, is_active) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Miembro', false)$$,
   '42501', null, 'members cannot create searches'
@@ -160,7 +161,7 @@ select pg_temp.act_as('44444444-4444-4444-8444-444444444444');
 select results_eq(
   $$select has_active_plan, max_active_searches, active_searches, allowed_schedules
     from public.saved_search_limits('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  $$values (true, 2, 2, array['manual', 'daily', 'twice_daily'])$$,
+  $$values (true, 3, 3, array['manual', 'daily', 'twice_daily'])$$,
   'members see what the plan allows'
 );
 select pg_temp.act_as('22222222-2222-4222-8222-222222222222');
@@ -272,7 +273,7 @@ delete from public.saved_searches;
 reset role;
 select is(
   (select count(*)::int from public.saved_searches where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
-  3,
+  4,
   'other organizations cannot delete the searches'
 );
 

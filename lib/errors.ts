@@ -24,6 +24,7 @@ const DATABASE_ERROR_MESSAGES: Record<string, string> = {
     search_inactive: "La búsqueda está pausada. Reactívela para ejecutarla.",
     no_profile: "Guarde primero el perfil de la empresa.",
     run_in_progress: "Esta búsqueda ya se está ejecutando. Espere a que termine.",
+    default_search_locked: "«Recomendadas» sigue el perfil de la empresa: no se puede eliminar, pausar ni renombrar.",
     insufficient_credits: "La organización no tiene créditos suficientes para esta pregunta.",
     chat_turn_exists: "Esa pregunta ya se envió.",
     chat_context_not_found: "El proceso o la ejecución no existe o ya no está disponible.",

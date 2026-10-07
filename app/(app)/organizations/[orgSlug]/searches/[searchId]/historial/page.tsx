@@ -10,7 +10,7 @@ import { getUserOrgRoleService } from "@/features/memberships/services";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { getSavedSearchService } from "@/features/saved-searches/services";
 import { RunStatusBadge } from "@/features/search-runs/components/run-status";
-import { isRunFinished } from "@/features/search-runs/schemas";
+import { isRunFinished, TRIGGER_LABELS } from "@/features/search-runs/schemas";
 import { getRunHistoryService } from "@/features/search-runs/services";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
@@ -91,7 +91,7 @@ async function HistoryContent({ params, searchParams }: { params: HistoryParams;
                                             <Link href={`${homeHref}?busqueda=${searchId}&ejecucion=${run.id}`} className="font-medium hover:underline">
                                                 {dateTime.format(new Date(run.createdAt))}
                                             </Link>
-                                            <span className="block text-xs text-muted-foreground">{run.trigger === "schedule" ? "Programada" : "Manual"}</span>
+                                            <span className="block text-xs text-muted-foreground">{TRIGGER_LABELS[run.trigger]}</span>
                                         </TableCell>
                                         <TableCell>
                                             <RunStatusBadge status={run.status} />
@@ -139,9 +139,9 @@ async function HistoryContent({ params, searchParams }: { params: HistoryParams;
     );
 }
 
-/** «Historial completo» (spec §12.4): every run of a search within the plan's history, with its results and downloads. */
 export const metadata = { title: "Historial de ejecuciones" };
 
+/** «Historial completo» (spec §12.4): every run of a search within the plan's history, with its results and downloads. */
 export default function RunHistoryPage({ params, searchParams }: { params: HistoryParams; searchParams: HistorySearchParams }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">

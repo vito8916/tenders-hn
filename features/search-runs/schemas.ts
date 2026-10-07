@@ -17,7 +17,8 @@ export type MatchState = z.infer<typeof MatchStateSchema>;
 export const searchRunSchema = z.object({
     id: z.uuid(),
     savedSearchId: z.uuid(),
-    trigger: z.enum(["schedule", "manual"]),
+    // Must match search_runs_trigger_check; «first» is the default search's run when the plan activates.
+    trigger: z.enum(["schedule", "manual", "first"]),
     status: SearchRunStatusSchema,
     processesExamined: z.number().int().nullable(),
     candidates: z.number().int().nullable(),
@@ -32,6 +33,8 @@ export const searchRunSchema = z.object({
     completedAt: z.string().nullable(),
 });
 export type SearchRun = z.infer<typeof searchRunSchema>;
+
+export const TRIGGER_LABELS: Record<SearchRun["trigger"], string> = { schedule: "Programada", manual: "Manual", first: "Primera" };
 
 export const searchRunMatchSchema = z.object({
     processId: z.uuid(),

@@ -25,9 +25,9 @@ export async function listLatestRunsService(orgId: string) {
 }
 
 /**
- * What the Home shows (spec §12.1): the searches, most recently run first,
+ * What the Home shows (spec §12.1): the searches, «Recomendadas» first and then the most recently run,
  * with the new matches of their latest finished run; and for the selected
- * search (the requested one, else the most recently run) its recent runs and
+ * search (the requested one, else «Recomendadas») its recent runs and
  * the shown run (the requested one, else the latest finished: a run in
  * progress never replaces finished results) with its matches.
  */
@@ -41,14 +41,18 @@ export async function getHomeService(params: { orgId: string; searchId: string |
 
     const latestBySearch = new Map(latestRuns.map((run) => [run.savedSearchId, run]));
     const finishedBySearch = new Map(finishedRuns.map((run) => [run.savedSearchId, run]));
-    // Searches come sorted by name, and the sort is stable, so the ones never run stay last in that order.
+    // «Recomendadas» first, then the most recently run; searches come sorted by name and the sort is stable, so the ones never run stay last in that order.
     const items = searches
         .map((search) => ({
             search,
             latestRun: latestBySearch.get(search.id) ?? null,
             newMatches: finishedBySearch.get(search.id)?.newMatchesCount ?? 0,
         }))
-        .sort((a, b) => (b.latestRun?.createdAt ?? "").localeCompare(a.latestRun?.createdAt ?? ""));
+        .sort(
+            (a, b) =>
+                Number(b.search.isDefault) - Number(a.search.isDefault) ||
+                (b.latestRun?.createdAt ?? "").localeCompare(a.latestRun?.createdAt ?? ""),
+        );
 
     const selectedItem = items.find((item) => item.search.id === params.searchId) ?? items[0];
     if (!selectedItem) {

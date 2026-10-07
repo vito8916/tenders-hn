@@ -70,7 +70,18 @@ function LinesField({
     );
 }
 
-function WhatFields({ hasProfile, profileSettingsHref, disabled }: { hasProfile: boolean; profileSettingsHref: string; disabled?: boolean }) {
+function WhatFields({
+    hasProfile,
+    profileSettingsHref,
+    disabled,
+    isDefault,
+}: {
+    hasProfile: boolean;
+    profileSettingsHref: string;
+    disabled?: boolean;
+    /** «Recomendadas» keeps its name and follows the profile. */
+    isDefault: boolean;
+}) {
     const form = useFormContext<SavedSearchInput>();
     const inheritsProfile = useWatch({ control: form.control, name: "inheritsProfile" });
 
@@ -83,7 +94,7 @@ function WhatFields({ hasProfile, profileSettingsHref, disabled }: { hasProfile:
                     <FormItem>
                         <FormLabel>Nombre*</FormLabel>
                         <FormControl>
-                            <Input placeholder="Por ejemplo: Soporte de software" disabled={disabled} {...field} />
+                            <Input placeholder="Por ejemplo: Soporte de software" disabled={disabled || isDefault} {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -97,7 +108,7 @@ function WhatFields({ hasProfile, profileSettingsHref, disabled }: { hasProfile:
                     <FormItem>
                         <FormLabel>¿Qué busca?</FormLabel>
                         <RadioGroup
-                            disabled={disabled}
+                            disabled={disabled || isDefault}
                             value={field.value ? "profile" : "own"}
                             onValueChange={(value) => field.onChange(value === "profile")}
                             className="gap-2 pt-1"
@@ -281,6 +292,7 @@ export function SavedSearchForm({
                             hasProfile={hasProfile}
                             profileSettingsHref={`/organizations/${orgSlug}/settings/company`}
                             disabled={isSubmitting}
+                            isDefault={search?.isDefault ?? false}
                         />
                     </SettingsSectionBody>
                 </SettingsSection>

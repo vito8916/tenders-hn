@@ -14,7 +14,7 @@ import {
 } from "./schemas";
 
 const SAVED_SEARCH_COLUMNS =
-    "id, name, inherits_profile, description, keywords, exclusions, entities, modalities, acquisition_types, schedule, next_run_at, deliver_by_email, email_when_empty, alert_on_changes, is_active";
+    "id, name, inherits_profile, description, keywords, exclusions, entities, modalities, acquisition_types, schedule, next_run_at, deliver_by_email, email_when_empty, alert_on_changes, is_active, is_default";
 
 type SavedSearchRow = Pick<
     Tables<"saved_searches">,
@@ -33,6 +33,7 @@ type SavedSearchRow = Pick<
     | "email_when_empty"
     | "alert_on_changes"
     | "is_active"
+    | "is_default"
 >;
 
 // ========== MAPPERS ==========
@@ -54,6 +55,7 @@ function mapSavedSearchRow(row: SavedSearchRow): SavedSearch {
         emailWhenEmpty: row.email_when_empty,
         alertOnChanges: row.alert_on_changes,
         isActive: row.is_active,
+        isDefault: row.is_default,
     });
 }
 
@@ -78,7 +80,9 @@ function toRow(input: SavedSearchInput) {
 
 export async function listSavedSearches(orgId: string): Promise<SavedSearch[]> {
     const supabase = await createClient();
-    const { data, error } = await supabase.from("saved_searches").select(SAVED_SEARCH_COLUMNS).eq("org_id", orgId).order("name");
+    const { data, error } = await supabase.from("saved_searches").select(SAVED_SEARCH_COLUMNS).eq("org_id", orgId)
+        .order("is_default", { ascending: false })
+        .order("name");
 
     if (error) throw error;
     return data.map(mapSavedSearchRow);

@@ -32,6 +32,8 @@ export const savedSearchSchema = z.object({
     emailWhenEmpty: z.boolean(),
     alertOnChanges: z.boolean(),
     isActive: z.boolean(),
+    /** «Recomendadas»: follows the company profile and cannot be deleted, paused, or renamed. */
+    isDefault: z.boolean(),
 });
 export type SavedSearch = z.infer<typeof savedSearchSchema>;
 

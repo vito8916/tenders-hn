@@ -1552,6 +1552,7 @@ export type Database = {
           id: string
           inherits_profile: boolean
           is_active: boolean
+          is_default: boolean
           keywords: string[]
           modalities: string[]
           name: string
@@ -1576,6 +1577,7 @@ export type Database = {
           id?: string
           inherits_profile?: boolean
           is_active?: boolean
+          is_default?: boolean
           keywords?: string[]
           modalities?: string[]
           name: string
@@ -1600,6 +1602,7 @@ export type Database = {
           id?: string
           inherits_profile?: boolean
           is_active?: boolean
+          is_default?: boolean
           keywords?: string[]
           modalities?: string[]
           name?: string

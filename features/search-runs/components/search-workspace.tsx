@@ -4,7 +4,9 @@ import { ChevronDown, MessageSquareText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
 import { ContextChat } from "@/features/chat/components/context-chat";
 import { ReportChatSheet } from "@/features/chat/components/report-chat-sheet";
 import { DetailSheet } from "@/features/opportunities/components/detail-sheet";
@@ -64,6 +66,27 @@ function RunNotices({
                 </p>
             ) : null}
         </div>
+    );
+}
+
+/** A search's first run, while it has no results yet: right after onboarding, the first thing the Home shows. */
+function FirstRunInProgress({ isDefault }: { isDefault: boolean }) {
+    return (
+        <Empty className="border">
+            <EmptyHeader>
+                <EmptyMedia variant="icon">
+                    <Spinner />
+                </EmptyMedia>
+                <EmptyTitle>Preparando sus oportunidades</EmptyTitle>
+                <EmptyDescription>
+                    {isDefault
+                        ? "Estamos revisando los procesos abiertos de HonduCompras con lo que vende su empresa."
+                        : "Estamos revisando los procesos abiertos de HonduCompras con los criterios de esta búsqueda."}{" "}
+                    Suele tardar uno o dos minutos; esta página se actualiza sola.
+                </EmptyDescription>
+            </EmptyHeader>
+            <RefreshWhileActive />
+        </Empty>
     );
 }
 
@@ -236,6 +259,7 @@ export function SearchWorkspace({
     const homeHref = `/organizations/${orgSlug}`;
     const editHref = canManage ? `${homeHref}/searches/${search.id}/edit` : null;
     const canRun = search.isActive && hasActivePlan;
+    const firstRunInProgress = latestFinished === null && latestRun !== null && isRunActive(latestRun.status);
 
     return (
         <div className="space-y-6">
@@ -273,18 +297,24 @@ export function SearchWorkspace({
                 </CollapsibleContent>
             </Collapsible>
 
-            <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
+            {firstRunInProgress ? (
+                <FirstRunInProgress isDefault={search.isDefault} />
+            ) : (
+                <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
+            )}
             {shownRun ? <RunStatus run={shownRun} /> : null}
-            <Results
-                orgId={orgId}
-                orgSlug={orgSlug}
-                shownRun={shownRun}
-                matches={matches}
-                params={params}
-                homeHref={homeHref}
-                editHref={editHref}
-                canDecide={canDecide}
-            />
+            {firstRunInProgress ? null : (
+                <Results
+                    orgId={orgId}
+                    orgSlug={orgSlug}
+                    shownRun={shownRun}
+                    matches={matches}
+                    params={params}
+                    homeHref={homeHref}
+                    editHref={editHref}
+                    canDecide={canDecide}
+                />
+            )}
         </div>
     );
 }

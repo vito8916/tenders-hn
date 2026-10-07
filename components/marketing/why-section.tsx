@@ -38,7 +38,7 @@ export default function WhySection() {
 		<section className="border-t py-20 md:py-28">
 			<div className="mx-auto max-w-6xl px-4 sm:px-6">
 				<SectionHeading
-					eyebrow="Por qué Tenders HN"
+					eyebrow="Por qué Licitaly"
 					title="Hecho para confiar en lo que le mostramos"
 					description="Le ayudamos a descubrir y priorizar. La decisión de ofertar, y la lectura de las bases oficiales, siguen siendo suyas."
 				/>

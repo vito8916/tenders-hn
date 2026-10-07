@@ -7,7 +7,7 @@ import { generateText, Output } from "ai";
 import { z } from "zod";
 import type { CompanyProfileInput, ImprovableField } from "./schemas";
 
-const COMMON = `Trabajas para Tenders HN, que busca para cada empresa hondureña las licitaciones de HonduCompras que corresponden a lo que vende. El sistema compara el perfil de la empresa con el objeto, los productos y los pliegos de cada proceso.
+const COMMON = `Trabajas para Licitaly, que busca para cada empresa hondureña las licitaciones de HonduCompras que corresponden a lo que vende. El sistema compara el perfil de la empresa con el objeto, los productos y los pliegos de cada proceso.
 
 Reglas:
 - Usa solo lo que la empresa escribió. No agregues bienes, servicios, marcas, clientes, años de experiencia ni certificaciones que el texto no mencione.

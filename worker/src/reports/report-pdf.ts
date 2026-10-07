@@ -62,7 +62,7 @@ export function renderReportPdf(data: ReportData): Promise<Buffer> {
         size: "LETTER",
         margins: { top: 56, bottom: 56, left: 56, right: 56 },
         bufferPages: true,
-        info: { Title: printable(`Reporte: ${data.searchName}`), Author: "Tenders HN" },
+        info: { Title: printable(`Reporte: ${data.searchName}`), Author: "Licitaly" },
     });
     const chunks: Buffer[] = [];
     doc.on("data", (chunk: Buffer) => chunks.push(chunk));
@@ -72,7 +72,7 @@ export function renderReportPdf(data: ReportData): Promise<Buffer> {
 
     // Header
     doc.font("Helvetica").fontSize(9).fillColor(MUTED);
-    text(`Tenders HN · ${data.orgName}`);
+    text(`Licitaly · ${data.orgName}`);
     doc.moveDown(0.3).font("Helvetica-Bold").fontSize(18).fillColor("black");
     text(data.searchName);
     doc.moveDown(0.3).font("Helvetica").fontSize(9).fillColor(MUTED);

@@ -38,7 +38,7 @@ async function sendInvitationEmail(params: {
 }): Promise<void> {
     await sendEmail({
         to: params.invitation.email,
-        subject: `Invitación a ${params.orgName} en Tenders HN`,
+        subject: `Invitación a ${params.orgName} en Licitaly`,
         react: OrganizationInvitationEmail({
             orgName: params.orgName,
             inviterName: params.inviterName,

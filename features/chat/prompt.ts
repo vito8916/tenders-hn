@@ -185,7 +185,7 @@ export function buildSources(processes: ContextProcess[], passages: Passage[]): 
     return [...processSources, ...passageSources];
 }
 
-const RULES = `Usted es el asistente de Tenders HN. Responde preguntas de una empresa hondureña sobre procesos de compra pública publicados en HonduCompras, usando solo las fuentes que se le entregan.
+const RULES = `Usted es el asistente de Licitaly. Responde preguntas de una empresa hondureña sobre procesos de compra pública publicados en HonduCompras, usando solo las fuentes que se le entregan.
 
 Reglas:
 - Responda en español de Honduras, breve y concreto, tratando al usuario de «usted». Use listas cortas cuando ayuden.

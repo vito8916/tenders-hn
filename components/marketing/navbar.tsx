@@ -22,7 +22,7 @@ export default function Navbar() {
 					className="flex items-center gap-2.5 text-sm font-semibold tracking-tight transition-opacity duration-150 hover:opacity-70"
 				>
 					<SupaNextLogo className="h-5 w-auto" />
-					Tenders HN
+					Licitaly
 				</Link>
 
 				<ul className="hidden items-center gap-1 text-sm md:flex">

@@ -19,18 +19,18 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"),
-  title: "Tenders HN · Licitaciones de Honduras para su empresa",
+  title: "Licitaly · Licitaciones de Honduras para su empresa",
   description,
   openGraph: {
-    title: "Tenders HN",
+    title: "Licitaly",
     description,
-    siteName: "Tenders HN",
+    siteName: "Licitaly",
     locale: "es_HN",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Tenders HN",
+    title: "Licitaly",
     description,
   },
 };

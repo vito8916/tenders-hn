@@ -42,7 +42,7 @@ const supabase = createClient(
 );
 
 const appUrl = (Deno.env.get("APP_URL") ?? "http://localhost:3001").replace(/\/$/, "");
-const emailFrom = Deno.env.get("EMAIL_FROM") ?? "Tenders HN <onboarding@resend.dev>";
+const emailFrom = Deno.env.get("EMAIL_FROM") ?? "Licitaly <onboarding@resend.dev>";
 
 function escapeHtml(value: string): string {
   return value
@@ -73,13 +73,13 @@ function renderReport(payload: ReportPayload, font: string) {
   const more = payload.total - payload.opportunities.length;
 
   const html = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">${items}</table>
-                      ${more > 0 ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#3f3f46;">Y ${more} más en Tenders HN.</p>` : ""}`;
+                      ${more > 0 ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#3f3f46;">Y ${more} más en Licitaly.</p>` : ""}`;
   const text = [
     ...payload.opportunities.map(
       (opportunity) =>
         `${STATE_LABELS[opportunity.state]} · ${RELEVANCE_LABELS[opportunity.relevance]} · ${opportunity.expediente}\n${opportunity.title}\n${opportunity.buyerEntity} · ${opportunity.closesAt ? `Cierra el ${opportunity.closesAt}` : "Sin fecha límite publicada"}\n${appUrl}${opportunity.path}`,
     ),
-    more > 0 ? `Y ${more} más en Tenders HN.` : "",
+    more > 0 ? `Y ${more} más en Licitaly.` : "",
   ]
     .filter(Boolean)
     .join("\n\n");
@@ -125,7 +125,7 @@ function renderEmail(delivery: Delivery) {
                           ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td bgcolor="#09090b" style="border-radius:8px;">
-                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">${delivery.template === "search_run_report" ? "Ver todos los resultados" : "Ver en Tenders HN"}</a>
+                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">${delivery.template === "search_run_report" ? "Ver todos los resultados" : "Ver en Licitaly"}</a>
                           </td>
                         </tr>
                       </table>`
@@ -139,7 +139,7 @@ function renderEmail(delivery: Delivery) {
             </tr>
             <tr>
               <td align="center" style="padding:16px 0 0;font-family:${font};font-size:12px;line-height:18px;color:#a1a1aa;">
-                Tenders HN · Oportunidades de compras públicas en Honduras
+                Licitaly · Oportunidades de compras públicas en Honduras
               </td>
             </tr>
           </table>

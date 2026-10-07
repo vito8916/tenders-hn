@@ -109,7 +109,7 @@ export function SignUpForm({
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Crear cuenta</CardTitle>
-          <CardDescription>Cree su cuenta en Tenders HN</CardDescription>
+          <CardDescription>Cree su cuenta en Licitaly</CardDescription>
         </CardHeader>
         <CardContent>
         <div className="grid gap-6">
@@ -244,6 +244,18 @@ export function SignUpForm({
                                 Iniciar sesión
                             </Link>
                         </div>
+
+                        <p className="text-center text-xs text-pretty text-muted-foreground">
+                            Al crear su cuenta acepta los{" "}
+                            <Link href="/terminos" className="underline underline-offset-4 hover:text-primary">
+                                Términos del servicio
+                            </Link>{" "}
+                            y la{" "}
+                            <Link href="/privacidad" className="underline underline-offset-4 hover:text-primary">
+                                Política de privacidad
+                            </Link>
+                            .
+                        </p>
                     </div>
         </CardContent>
       </Card>

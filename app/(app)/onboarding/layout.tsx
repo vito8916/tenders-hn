@@ -20,7 +20,7 @@ export default function OnboardingLayout({
                 </LogoutButton>
                 <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-bold text-xl">
                     <SupaNextLogo className="h-8 w-8" />
-                    <span>Tenders HN</span>
+                    <span>Licitaly</span>
                 </div>
                 <div className="w-20" />
             </header>

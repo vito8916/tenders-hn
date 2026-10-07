@@ -28,7 +28,7 @@ function StatusLine({ subscription }: { subscription: Subscription }) {
         return <>Se renueva el {date.format(new Date(subscription.nextBilledAt))}.</>;
     }
     if (subscription.source === "manual" && subscription.currentPeriodEnd) {
-        return <>Activado por Tenders HN hasta el {date.format(new Date(subscription.currentPeriodEnd))}.</>;
+        return <>Activado por Licitaly hasta el {date.format(new Date(subscription.currentPeriodEnd))}.</>;
     }
     return null;
 }

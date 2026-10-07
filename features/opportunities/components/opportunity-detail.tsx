@@ -84,7 +84,7 @@ function ProcessData({ match, detail }: { match: SearchRunMatch; detail: Process
                     {detail.bidDocumentPrice.currency} {detail.bidDocumentPrice.amount}
                 </Fact>
             ) : null}
-            <Fact label="Detectada por Tenders HN">{formatDate(match.detectedAt) ?? "—"}</Fact>
+            <Fact label="Detectada por Licitaly">{formatDate(match.detectedAt) ?? "—"}</Fact>
         </dl>
     );
 }
@@ -283,7 +283,7 @@ function OpportunitySections({
                         ))}
                     </ul>
                 ) : (
-                    <p className="text-sm text-muted-foreground">Sin cambios desde que Tenders HN lo detectó.</p>
+                    <p className="text-sm text-muted-foreground">Sin cambios desde que Licitaly lo detectó.</p>
                 )}
             </Section>
         </>

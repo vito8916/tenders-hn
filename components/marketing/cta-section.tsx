@@ -34,7 +34,7 @@ export default function CtaSection() {
 								<Mail className="size-4 text-muted-foreground" strokeWidth={1.5} />
 								<div className="min-w-0">
 									<p className="truncate text-sm font-medium">Nueva oportunidad para Soporte de software</p>
-									<p className="text-[11px] text-muted-foreground">Tenders HN · 7:00</p>
+									<p className="text-[11px] text-muted-foreground">Licitaly · 7:00</p>
 								</div>
 							</div>
 							<div className="flex flex-col gap-2 px-4 py-4">

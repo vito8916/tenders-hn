@@ -187,7 +187,7 @@ Company profiles and chat questions are private customer data. Before a provider
 ### 6.1.1 Spanish UI conventions (D1)
 
 - Formal «usted», sentence case (no English-style title case), opening «¿» and «¡», short sentences. Dates with `es-HN` / date-fns `es`, times in `America/Tegucigalpa`; dates inside notification and email text as `DD/MM/YYYY`.
-- Brand: **Tenders HN**. Terms, used everywhere:
+- Brand: **Licitaly** (licitaly.com; renamed from Tenders HN on 6 Oct 2026). Terms, used everywhere:
 
 | English | Español | English | Español |
 |---|---|---|---|

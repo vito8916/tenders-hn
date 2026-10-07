@@ -48,7 +48,7 @@ export default function OrganizationInvitationEmail({
                 <meta name="color-scheme" content="light" />
                 <meta name="supported-color-schemes" content="light" />
             </Head>
-            <Preview>{`${invitedBy} a unirse a ${orgName} en Tenders HN`}</Preview>
+            <Preview>{`${invitedBy} a unirse a ${orgName} en Licitaly`}</Preview>
             <Body style={body}>
                 <Container style={container}>
                     <Section style={card}>
@@ -62,7 +62,7 @@ export default function OrganizationInvitationEmail({
                                 Únase a {orgName}
                             </Heading>
                             <Text style={paragraph}>
-                                {invitedBy} a colaborar en Tenders HN, donde su equipo revisa las oportunidades de
+                                {invitedBy} a colaborar en Licitaly, donde su equipo revisa las oportunidades de
                                 HonduCompras que corresponden a lo que vende su empresa.
                             </Text>
                             <Section style={detailsPanel}>
@@ -88,7 +88,7 @@ export default function OrganizationInvitationEmail({
                             <Text style={note}>Si no esperaba esta invitación, puede ignorar este correo.</Text>
                         </Section>
                     </Section>
-                    <Text style={footer}>Tenders HN · Oportunidades de compras públicas en Honduras</Text>
+                    <Text style={footer}>Licitaly · Oportunidades de compras públicas en Honduras</Text>
                 </Container>
             </Body>
         </Html>

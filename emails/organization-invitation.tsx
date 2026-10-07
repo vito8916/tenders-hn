@@ -54,7 +54,7 @@ export default function OrganizationInvitationEmail({
                     <Section style={card}>
                         <Section style={header}>
                             <Text style={wordmark}>
-                                Tenders<span style={wordmarkAccent}> HN</span>
+                                Licitaly
                             </Text>
                         </Section>
                         <Section style={content}>
@@ -129,10 +129,6 @@ const wordmark = {
     letterSpacing: "-0.01em",
     lineHeight: "24px",
     margin: 0,
-};
-
-const wordmarkAccent = {
-    color: "#2563eb",
 };
 
 const content = {

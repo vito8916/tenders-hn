@@ -112,7 +112,7 @@ function renderEmail(delivery: Delivery) {
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                   <tr>
                     <td style="padding:20px 32px;border-bottom:1px solid #f4f4f5;font-family:${font};font-size:18px;line-height:24px;font-weight:700;letter-spacing:-0.01em;color:#09090b;">
-                      Tenders<span style="color:#2563eb;"> HN</span>
+                      Licitaly
                     </td>
                   </tr>
                   <tr>

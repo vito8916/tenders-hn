@@ -2,7 +2,6 @@ import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
 import { ScrollText } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import {
 	SettingsSection,
 	SettingsSectionBody,
@@ -47,21 +46,15 @@ export function AuditLogList({
 					) : (
 						<div className="divide-y divide-border/60">
 							{entries.map((event) => {
-								const detail = eventDetail(event);
+								const detail = eventDetail(event, data.planNames);
 
 								return (
 									<article
 										key={event.id}
-										className="flex flex-col gap-2 py-4 first:pt-0 sm:flex-row sm:items-start sm:justify-between"
+										className="flex flex-col gap-2 py-4 sm:flex-row sm:items-start sm:justify-between"
 									>
 										<div className="min-w-0 space-y-1.5">
 											<div className="flex flex-wrap items-center gap-2">
-												<Badge
-													variant="outline"
-													className="font-mono text-[10px] uppercase"
-												>
-													{event.eventName}
-												</Badge>
 												<span className="text-sm font-medium">
 													{eventLabel(event.eventName)}
 												</span>

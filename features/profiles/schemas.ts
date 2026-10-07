@@ -54,7 +54,6 @@ export const updateProfileInputSchema = z.object({
         .max(100, "El nombre no puede tener más de 100 caracteres.")
         .trim()
         .optional(),
-    bio: z.string().max(500, "La biografía no puede tener más de 500 caracteres.").trim().optional(),
     phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "El número de teléfono no es válido.").optional(),
     avatarUrl: z.string().min(1, "La foto de perfil no es válida.").optional(),
 });

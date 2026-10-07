@@ -22,7 +22,7 @@ export default async function PricingSection() {
 					description="El matching y los reportes van incluidos en todos los planes. Los créditos de IA solo se usan en el chat y en análisis que usted pida."
 				/>
 
-				<ul className="mx-auto mt-14 grid max-w-5xl gap-3 md:grid-cols-3">
+				<ul className="mx-auto mt-14 grid max-w-5xl gap-3 md:grid-cols-3 md:grid-rows-[auto_1fr]">
 					{plans.map((plan) => {
 						const featured = plan.planId === FEATURED_PLAN_ID;
 						// The plan survives sign-up and email verification in `next`, and preselects the onboarding plan step.
@@ -31,7 +31,7 @@ export default async function PricingSection() {
 							<li
 								key={plan.planId}
 								className={cn(
-									"flex flex-col rounded-2xl p-2",
+									"flex flex-col rounded-2xl p-2 md:row-span-2 md:grid md:grid-rows-subgrid",
 									featured ? "bg-foreground text-background" : "bg-background shadow-edge",
 								)}
 							>
@@ -47,7 +47,7 @@ export default async function PricingSection() {
 									<p className={cn("text-sm text-pretty", featured ? "text-background/70" : "text-muted-foreground")}>
 										{plan.description}
 									</p>
-									<p className="mt-4 text-xl font-semibold tracking-tight">
+									<p className="mt-auto pt-4 text-xl font-semibold tracking-tight">
 										{plan.price ? formatMoney(plan.price.amount, plan.price.currencyCode) : "—"}
 										<span className={cn("text-sm font-normal", featured ? "text-background/70" : "text-muted-foreground")}>
 											{" "}

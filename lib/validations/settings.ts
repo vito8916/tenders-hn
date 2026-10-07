@@ -11,7 +11,6 @@ export const passwordFormSchema = z.object({
 export const profileSchema = z.object({
   fullName: z.string().min(1, "Ingrese su nombre").max(100, "El nombre es demasiado largo"),
   email: z.string().email("Ingrese un correo electrónico válido"),
-  bio: z.string().max(500, "La biografía es demasiado larga").optional(),
 });
 
 export type PasswordFormValues = z.infer<typeof passwordFormSchema>;

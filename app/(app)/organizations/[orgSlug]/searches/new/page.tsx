@@ -44,6 +44,8 @@ async function NewSearchContent({ params }: { params: Promise<{ orgSlug: string 
     );
 }
 
+export const metadata = { title: "Nueva búsqueda" };
+
 export default function NewSearchPage({ params }: { params: Promise<{ orgSlug: string }> }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">

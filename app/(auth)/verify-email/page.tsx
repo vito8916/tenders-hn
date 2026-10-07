@@ -18,6 +18,8 @@ async function VerifyEmailContent({
     return <VerifyEmailForm email={email} />;
 }
 
+export const metadata = { title: "Verifique su correo" };
+
 export default function Page({
     searchParams,
 }: {

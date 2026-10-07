@@ -46,6 +46,8 @@ interface MembersTableProps {
     canTransferOwnership: boolean;
 }
 
+const memberSince = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeZone: "America/Tegucigalpa" });
+
 function memberInitials(member: OrgMember): string {
     const source = member.fullName ?? member.email ?? "?";
     return source
@@ -162,7 +164,7 @@ export function MembersTable({
                                     )}
                                 </TableCell>
                                 <TableCell className="text-sm text-muted-foreground">
-                                    {member.createdAt.toLocaleDateString("es-HN")}
+                                    {memberSince.format(member.createdAt)}
                                 </TableCell>
                                 <TableCell>
                                     {showTransfer ? (

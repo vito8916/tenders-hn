@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/marketing/legal-page";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-	title: "Política de privacidad · Licitaly",
+	title: "Política de privacidad",
 	description:
 		"Qué datos recopila Licitaly, para qué los usa, con qué proveedores los comparte y cómo puede acceder a ellos, corregirlos o eliminarlos.",
 };

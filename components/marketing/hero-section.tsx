@@ -54,7 +54,7 @@ export default function HeroSection() {
 						className="h-11 w-full has-[>svg]:ps-6 has-[>svg]:pe-5 transition-[scale,background-color] duration-150 ease-out active:scale-[0.96] sm:w-auto"
 					>
 						<Link href="/sign-up">
-							Solicitar acceso
+							Crear cuenta
 							<ArrowRight />
 						</Link>
 					</Button>

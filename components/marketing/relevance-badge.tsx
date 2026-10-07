@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export type Relevance = "high" | "possible" | "discarded";
+export type Relevance = "high" | "possible" | "pending" | "discarded";
 
 const relevanceStyles: Record<Relevance, { label: string; className: string }> = {
 	high: {
@@ -10,6 +10,10 @@ const relevanceStyles: Record<Relevance, { label: string; className: string }> =
 	possible: {
 		label: "Posible",
 		className: "bg-amber-500/10 text-amber-700 dark:text-amber-400",
+	},
+	pending: {
+		label: "Pendiente",
+		className: "border border-dashed border-border text-muted-foreground",
 	},
 	discarded: {
 		label: "Descartada",

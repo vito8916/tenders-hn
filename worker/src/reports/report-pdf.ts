@@ -1,4 +1,5 @@
 import PDFDocument from "pdfkit";
+import { formatOpportunityTitle } from "@/features/opportunities/title";
 
 export type ReportRelevance = "muy_relevante" | "posible" | "pendiente" | "descartada";
 
@@ -113,7 +114,7 @@ export function renderReportPdf(data: ReportData): Promise<Buffer> {
         const state = opportunity.matchState === "nueva" ? " · Nueva" : opportunity.matchState === "actualizada" ? " · Actualizada" : "";
         text(`${RELEVANCE_LABELS[opportunity.relevance].toUpperCase()}${state} · ${opportunity.expediente}`);
         doc.moveDown(0.2).font("Helvetica-Bold").fontSize(11).fillColor("black");
-        text(opportunity.title);
+        text(formatOpportunityTitle(opportunity.title));
         doc.moveDown(0.2).font("Helvetica").fontSize(9.5);
         text(opportunity.buyerEntity);
         doc.fillColor(MUTED);

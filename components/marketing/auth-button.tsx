@@ -20,7 +20,7 @@ export async function AuthButton() {
 				<Link href="/login">Iniciar sesión</Link>
 			</Button>
 			<Button asChild size="sm" className={pressable}>
-				<Link href="/sign-up">Solicitar acceso</Link>
+				<Link href="/sign-up">Crear cuenta</Link>
 			</Button>
 		</div>
 	);

@@ -80,6 +80,8 @@ async function BillingContent({ params, searchParams }: { params: Promise<{ orgS
 	);
 }
 
+export const metadata = { title: "Facturación" };
+
 export default function BillingSettingsPage({
 	params,
 	searchParams,

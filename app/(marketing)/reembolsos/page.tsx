@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/marketing/legal-page";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-	title: "Política de reembolsos y cancelación · Licitaly",
+	title: "Política de reembolsos y cancelación",
 	description:
 		"Cómo cancelar un plan de Licitaly, qué pasa con el acceso al cancelar y cuándo corresponde un reembolso.",
 };

@@ -3,7 +3,6 @@ import {
 	BriefcaseBusiness,
 	Building2,
 	CreditCard,
-	KeyRound,
 	ScrollText,
 	Shield,
 	User,
@@ -66,12 +65,6 @@ export const settingsNavGroups: SettingsNavGroup[] = [
 				label: "Facturación",
 				icon: CreditCard,
 				description: "Plan, uso y facturas.",
-			},
-			{
-				segment: "integrations",
-				label: "Integraciones",
-				icon: KeyRound,
-				description: "Claves de API y webhooks.",
 			},
 			{
 				segment: "audit-log",

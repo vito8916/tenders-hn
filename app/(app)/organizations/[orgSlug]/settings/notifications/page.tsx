@@ -20,6 +20,8 @@ async function NotificationsSettingsContent() {
 	);
 }
 
+export const metadata = { title: "Notificaciones" };
+
 export default function NotificationsSettingsPage() {
 	return (
 		<Suspense fallback={<SettingsFormSkeleton sections={2} />}>

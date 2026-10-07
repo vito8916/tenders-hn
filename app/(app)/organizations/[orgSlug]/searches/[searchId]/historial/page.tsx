@@ -140,6 +140,8 @@ async function HistoryContent({ params, searchParams }: { params: HistoryParams;
 }
 
 /** «Historial completo» (spec §12.4): every run of a search within the plan's history, with its results and downloads. */
+export const metadata = { title: "Historial de ejecuciones" };
+
 export default function RunHistoryPage({ params, searchParams }: { params: HistoryParams; searchParams: HistorySearchParams }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 lg:p-6">

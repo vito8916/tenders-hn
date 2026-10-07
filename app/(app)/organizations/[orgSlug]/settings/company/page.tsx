@@ -37,7 +37,7 @@ async function CompanyProfileSettingsContent({ params }: { params: Promise<{ org
 			description="Lo que vende la empresa. Con este perfil se buscan y se ordenan las oportunidades."
 		>
 			<SettingsSection
-				title="Perfil de la empresa"
+				title="Qué vende la empresa"
 				description={
 					canEdit
 						? "Cuanto más concreto, mejores resultados. Los cambios se aplican en la próxima búsqueda."
@@ -64,6 +64,8 @@ async function CompanyProfileSettingsContent({ params }: { params: Promise<{ org
 		</SettingsTemplatePage>
 	);
 }
+
+export const metadata = { title: "Perfil de la empresa" };
 
 export default function CompanyProfileSettingsPage({ params }: { params: Promise<{ orgSlug: string }> }) {
 	return (

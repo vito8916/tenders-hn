@@ -18,7 +18,6 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { updateProfileAction } from "@/features/profiles/actions";
 import { Profile } from "@/features/profiles/schemas";
 import { profileSchema, ProfileFormValues } from "@/lib/validations/settings";
@@ -31,7 +30,6 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 		defaultValues: {
 			fullName: profileInfo?.fullName || "",
 			email: profileInfo?.email || "",
-			bio: profileInfo?.bio || "",
 		},
 		mode: "onChange",
 	});
@@ -94,26 +92,6 @@ export function ProfileForm({ profileInfo }: { profileInfo: Profile }) {
 								</FormControl>
 								<FormDescription>
 									Aquí le enviamos las notificaciones.
-								</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="bio"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Biografía</FormLabel>
-								<FormControl>
-									<Textarea
-										placeholder="Cuéntenos un poco sobre usted"
-										className="resize-none"
-										{...field}
-									/>
-								</FormControl>
-								<FormDescription>
-									Máximo 500 caracteres.
 								</FormDescription>
 								<FormMessage />
 							</FormItem>

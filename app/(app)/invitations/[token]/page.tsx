@@ -82,6 +82,8 @@ async function InvitationContent({ params }: { params: Promise<{ token: string }
     );
 }
 
+export const metadata = { title: "Invitación" };
+
 export default function InvitationPage({ params }: { params: Promise<{ token: string }> }) {
     return (
         <main className="flex min-h-svh items-center justify-center p-6">

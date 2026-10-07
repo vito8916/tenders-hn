@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/marketing/legal-page";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-	title: "Términos del servicio · Licitaly",
+	title: "Términos del servicio",
 	description:
 		"Condiciones de uso de Licitaly: el servicio, las cuentas y organizaciones, los planes y pagos, el uso aceptable y los límites de responsabilidad.",
 };

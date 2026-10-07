@@ -37,7 +37,7 @@ async function SearchesContent({ params }: { params: Promise<{ orgSlug: string }
     const newSearchHref = `/organizations/${orgSlug}/searches/new`;
 
     return (
-        <div className="max-w-4xl space-y-4">
+        <div className="space-y-4">
             {limits.hasActivePlan ? (
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="text-sm text-muted-foreground">
@@ -88,9 +88,11 @@ async function SearchesContent({ params }: { params: Promise<{ orgSlug: string }
     );
 }
 
+export const metadata = { title: "Búsquedas" };
+
 export default function SearchesPage({ params }: { params: Promise<{ orgSlug: string }> }) {
     return (
-        <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
+        <div className="flex w-full max-w-5xl flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
             <PageHeader icon={Search} title="Búsquedas" description="Lo que su organización busca en HonduCompras y cuándo lo revisa." />
             <Suspense fallback={<PageSectionSkeleton cards={1} />}>
                 <SearchesContent params={params} />

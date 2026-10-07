@@ -74,6 +74,8 @@ async function OrganizationSettingsContent({
 	);
 }
 
+export const metadata = { title: "General" };
+
 export default function OrganizationSettingsPage({
 	params,
 }: {

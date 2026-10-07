@@ -58,12 +58,7 @@ async function OrganizationsList({
                                     name={org.name}
                                     className="h-10 w-10"
                                 />
-                                <div className="flex flex-col">
-                                    <span className="font-medium text-foreground">{org.name}</span>
-                                    <span className="text-sm text-muted-foreground">
-                                        /organizations/{org.slug}
-                                    </span>
-                                </div>
+                                <span className="font-medium text-foreground">{org.name}</span>
                             </div>
 
                             <div className="flex items-center gap-4 text-muted-foreground">
@@ -116,6 +111,8 @@ async function OrganizationsList({
         </div>
     );
 }
+
+export const metadata = { title: "Organizaciones" };
 
 export default function OrganizationsPage({
     searchParams,

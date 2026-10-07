@@ -32,7 +32,7 @@ function roleLabel(role: string) {
 	return parsed.success ? ROLE_LABELS[parsed.data] : role;
 }
 
-export function eventDetail(event: AppEvent): string | null {
+export function eventDetail(event: AppEvent, planNames: Record<string, string>): string | null {
 	const metadata = event.metadata;
 	if (!metadata) return null;
 
@@ -43,7 +43,7 @@ export function eventDetail(event: AppEvent): string | null {
 		return `${roleLabel(metadata.from)} → ${roleLabel(metadata.to)}`;
 	}
 	if (typeof metadata.role === "string") return roleLabel(metadata.role);
-	if (typeof metadata.plan_id === "string") return metadata.plan_id;
+	if (typeof metadata.plan_id === "string") return planNames[metadata.plan_id] ?? metadata.plan_id;
 	if (typeof metadata.slug === "string") return metadata.slug;
 	if (typeof metadata.version === "number") return `Versión ${metadata.version}`;
 

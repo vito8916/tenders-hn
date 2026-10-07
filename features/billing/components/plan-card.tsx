@@ -16,7 +16,7 @@ export function PlanCard({
     children?: React.ReactNode;
 }) {
     return (
-        <div className={cn("flex flex-col gap-4 rounded-lg border p-5", highlighted && "border-primary")}>
+        <div className={cn("@container flex flex-col gap-4 rounded-lg border p-5", highlighted && "border-primary")}>
             <div className="space-y-1">
                 <div className="flex items-center justify-between gap-2">
                     <h3 className="font-semibold">{plan.name}</h3>
@@ -29,7 +29,7 @@ export function PlanCard({
                 <p className="text-xs text-muted-foreground">Impuestos incluidos</p>
                 {plan.description ? <p className="text-sm text-muted-foreground">{plan.description}</p> : null}
             </div>
-            <ul className="space-y-1.5 text-sm">
+            <ul className="grid gap-1.5 text-sm @md:grid-cols-2">
                 {planFeatures(plan).map((feature) => (
                     <li key={feature} className="flex items-center gap-2">
                         <Check className="size-4 text-muted-foreground" />

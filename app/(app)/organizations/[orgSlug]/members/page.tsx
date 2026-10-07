@@ -99,13 +99,15 @@ async function MembersContent({
     );
 }
 
+export const metadata = { title: "Miembros" };
+
 export default function MembersPage({
     params,
 }: {
     params: Promise<{ orgSlug: string }>;
 }) {
     return (
-        <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
+        <div className="flex w-full max-w-5xl flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
             <PageHeader
                 icon={Users}
                 title="Miembros"

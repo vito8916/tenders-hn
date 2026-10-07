@@ -49,6 +49,8 @@ async function AccountSettingsContent() {
 	);
 }
 
+export const metadata = { title: "Cuenta" };
+
 export default function AccountSettingsPage() {
 	return (
 		<Suspense fallback={<SettingsFormSkeleton sections={3} />}>

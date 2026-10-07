@@ -79,7 +79,7 @@ export function SearchesPane({
                                 >
                                     <span className="flex items-center justify-between gap-2">
                                         <span className="truncate text-sm font-medium">{search.name}</span>
-                                        {newMatches > 0 ? <Badge className="shrink-0">{newMatches === 1 ? "1 nueva" : `${newMatches} nuevas`}</Badge> : null}
+                                        {newMatches > 0 ? <Badge variant="secondary" className="shrink-0 rounded-full px-1.5 text-[11px] text-muted-foreground">{newMatches === 1 ? "1 nueva" : `${newMatches} nuevas`}</Badge> : null}
                                     </span>
                                     <span className="text-xs text-muted-foreground">
                                         {latestRun

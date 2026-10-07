@@ -43,14 +43,14 @@ export default function ExamplesSection() {
 					description="Perfiles de ejemplo junto a procesos publicados en HonduCompras el 22 de septiembre de 2026."
 				/>
 
-				<ul className="-mx-4 mt-14 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0">
+				<ul className="-mx-4 mt-14 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:grid-rows-[auto_1fr] lg:overflow-visible lg:px-0">
 					{examples.map((example) => (
 						<li
 							key={example.code}
-							className="flex w-72 shrink-0 snap-start flex-col rounded-2xl bg-background p-2 shadow-edge lg:w-auto"
+							className="flex w-72 shrink-0 snap-start flex-col rounded-2xl bg-background p-2 shadow-edge lg:row-span-2 lg:grid lg:w-auto lg:grid-rows-subgrid"
 						>
 							<blockquote className="px-4 pt-4 pb-6 text-sm text-pretty">«{example.business}»</blockquote>
-							<div className="mt-auto flex flex-col gap-2 rounded-lg bg-muted/50 px-4 py-3.5">
+							<div className="mt-auto flex flex-col gap-2 rounded-lg bg-muted/50 px-4 py-3.5 lg:mt-0">
 								<RelevanceBadge relevance="high" />
 								<p className="text-sm font-medium text-pretty">{example.title}</p>
 								<p className="text-xs text-pretty text-muted-foreground">{example.entity}</p>

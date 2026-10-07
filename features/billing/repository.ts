@@ -85,6 +85,14 @@ export async function listPlanOptions(client?: SupabaseClient<Database>): Promis
         });
 }
 
+/** Every plan's display name by id, archived plans included: past events still name them. */
+export async function getPlanNames(): Promise<Record<string, string>> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("plans").select("id, name");
+    if (error) throw error;
+    return Object.fromEntries(data.map((plan) => [plan.id, plan.name]));
+}
+
 export async function getPlanIdForPrice(priceId: string): Promise<string | null> {
     const supabase = await createClient();
     const { data, error } = await supabase.from("plan_prices").select("plan_id").eq("paddle_price_id", priceId).eq("is_active", true).maybeSingle();

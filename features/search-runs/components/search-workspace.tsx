@@ -1,12 +1,14 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { MessageSquareText } from "lucide-react";
+import { ChevronDown, MessageSquareText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ContextChat } from "@/features/chat/components/context-chat";
 import { ReportChatSheet } from "@/features/chat/components/report-chat-sheet";
 import { DetailSheet } from "@/features/opportunities/components/detail-sheet";
+import { formatOpportunityTitle } from "@/features/opportunities/title";
 import { OpportunityDetail } from "@/features/opportunities/components/opportunity-detail";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 import { SearchCriteria } from "@/features/saved-searches/components/search-criteria";
@@ -187,7 +189,7 @@ function Results({
                 </ReportChatSheet>
             ) : null}
             {detailMatch ? (
-                <DetailSheet title={detailMatch.title}>
+                <DetailSheet title={formatOpportunityTitle(detailMatch.title)}>
                     <Suspense key={detailMatch.processId} fallback={<DetailSkeleton />}>
                         <OpportunityDetail orgId={orgId} orgSlug={orgSlug} runId={shownRun.id} match={detailMatch} canDecide={canDecide} />
                     </Suspense>
@@ -261,12 +263,15 @@ export function SearchWorkspace({
                 </div>
             </div>
 
-            <details className="rounded-lg border p-4">
-                <summary className="cursor-pointer text-sm font-medium">Criterios de la búsqueda</summary>
-                <div className="mt-3">
+            <Collapsible className="group/criteria rounded-lg border">
+                <CollapsibleTrigger className="flex w-full items-center justify-between gap-2 rounded-lg px-4 py-3 text-sm font-medium hover:bg-muted/50">
+                    Criterios de la búsqueda
+                    <ChevronDown className="size-4 text-muted-foreground transition-transform group-data-[state=open]/criteria:rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="border-t px-4 py-3">
                     <SearchCriteria search={search} />
-                </div>
-            </details>
+                </CollapsibleContent>
+            </Collapsible>
 
             <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
             {shownRun ? <RunStatus run={shownRun} /> : null}

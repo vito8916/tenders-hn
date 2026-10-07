@@ -138,9 +138,6 @@ export async function updateProfile(params: {
     if (params.input.fullName !== undefined) {
         dbInput.full_name = params.input.fullName;
     }
-    if (params.input.bio !== undefined) {
-        dbInput.bio = params.input.bio;
-    }
     if (params.input.phone !== undefined) {
         dbInput.phone = params.input.phone;
     }

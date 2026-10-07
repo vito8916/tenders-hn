@@ -14,6 +14,8 @@ async function CreateOrganizationContent() {
     );
 }
 
+export const metadata = { title: "Crear organización" };
+
 export default function CreateOrganizationPage() {
     return (
         <Suspense fallback={<CreateOrganizationSkeleton />}>

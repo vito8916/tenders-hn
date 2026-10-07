@@ -143,6 +143,8 @@ function HomeSkeleton() {
 }
 
 /** The Home (spec §12.1): saved searches on the left, the selected search and run on the right. */
+export const metadata = { title: "Inicio" };
+
 export default function HomePage({
 	params,
 	searchParams,

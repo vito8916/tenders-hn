@@ -68,6 +68,8 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
     );
 }
 
+export const metadata = { title: "Editar búsqueda" };
+
 export default function EditSearchPage({ params }: { params: Promise<{ orgSlug: string; searchId: string }> }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">

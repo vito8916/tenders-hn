@@ -5,16 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ContextChat } from "@/features/chat/components/context-chat";
-import { MatchStateBadge, RelevanceBadge } from "@/features/search-runs/components/results-table";
+import { cn } from "@/lib/utils";
+import { RelevanceBadge } from "@/features/search-runs/components/relevance-badge";
+import { ClosedBadge, isClosed, MatchStateBadge } from "@/features/search-runs/components/results-table";
 import type { SearchRunMatch } from "@/features/search-runs/schemas";
 import { getOpportunityDetailService } from "../services";
 import { DOCUMENT_KIND_LABELS, type Feedback, type ProcessDetail, type ProcessEvent, type SourceDocument } from "../schemas";
 import { FeedbackButtons } from "./feedback-buttons";
+import { formatOpportunityTitle } from "../title";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "full", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 const shortDateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 
-const formatDate = (value: string | null | undefined, format = shortDateTime) => (value ? format.format(new Date(value)) : null);
+const KEEP_TIME_TOGETHER = /\s(?=[ap]\.\s?m\.)|(?<=[ap]\.)\s(?=m\.)/g;
+const formatDate = (value: string | null | undefined, format = shortDateTime) =>
+    value ? format.format(new Date(value)).replace(KEEP_TIME_TOGETHER, "\u00a0") : null;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (
@@ -37,11 +42,15 @@ function Fact({ label, children }: { label: string; children: React.ReactNode })
 /** The deadline, where and to whom bids go: what a supplier needs first (plan, Phase 4). */
 function KeyFacts({ match, detail }: { match: SearchRunMatch; detail: ProcessDetail | null }) {
     const deadline = detail?.bidsDueAt ?? match.closesAt;
+    const closed = isClosed(deadline);
     const contact = detail?.contact;
     return (
         <dl className="grid gap-4 rounded-lg border bg-muted/40 p-4 sm:grid-cols-2">
             <Fact label="Fecha límite de ofertas">
-                <span className="font-medium">{formatDate(deadline, dateTime) ?? "No publicada"}</span>
+                <span className="flex flex-wrap items-center gap-2">
+                    <span className={cn("font-medium", closed && "text-muted-foreground")}>{formatDate(deadline, dateTime) ?? "No publicada"}</span>
+                    {closed ? <ClosedBadge /> : null}
+                </span>
             </Fact>
             <Fact label="Recepción de ofertas">{detail?.bidReceptionPlace ?? "No indicada en el detalle; revise los documentos"}</Fact>
             <Fact label="Contacto">
@@ -169,7 +178,7 @@ export async function OpportunityDetail({
                     <span className="text-xs text-muted-foreground">{match.expediente}</span>
                 </div>
                 {/* The detail's object is fuller, except in Compra Menor, where it is just «Compra Menor» and the match's title names the products. */}
-                <h2 className="text-lg leading-snug font-semibold">{detail?.object && detail.object !== "Compra Menor" ? detail.object : match.title}</h2>
+                <h2 className="text-lg leading-snug font-semibold">{formatOpportunityTitle(detail?.object && detail.object !== "Compra Menor" ? detail.object : match.title)}</h2>
                 <p className="text-sm text-muted-foreground">{match.buyerEntity}</p>
                 <Button variant="outline" size="sm" asChild>
                     <a href={match.detailUrl} target="_blank" rel="noreferrer">

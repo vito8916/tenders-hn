@@ -22,7 +22,7 @@ export default function CtaSection() {
 							className="mt-4 h-11 transition-[scale,background-color] duration-150 ease-out active:scale-[0.96] has-[>svg]:ps-6 has-[>svg]:pe-5"
 						>
 							<Link href="/sign-up">
-								Solicitar acceso
+								Crear cuenta
 								<ArrowRight />
 							</Link>
 						</Button>

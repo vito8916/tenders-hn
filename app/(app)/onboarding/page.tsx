@@ -48,6 +48,8 @@ async function OnboardingContent({ searchParams }: { searchParams: OnboardingSea
     );
 }
 
+export const metadata = { title: "Bienvenida" };
+
 export default function OnboardingPage({ searchParams }: { searchParams: OnboardingSearchParams }) {
     return (
         <Suspense fallback={<OnboardingSkeleton />}>

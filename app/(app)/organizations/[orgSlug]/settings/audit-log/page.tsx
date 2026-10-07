@@ -63,6 +63,8 @@ async function AuditLogSettingsContent({
 	);
 }
 
+export const metadata = { title: "Registro de actividad" };
+
 export default function AuditLogSettingsPage({
 	params,
 	searchParams,

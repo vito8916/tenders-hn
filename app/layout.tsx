@@ -19,7 +19,10 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3001"),
-  title: "Licitaly · Licitaciones de Honduras para su empresa",
+  title: {
+    default: "Licitaly · Licitaciones de Honduras para su empresa",
+    template: "%s · Licitaly",
+  },
   description,
   openGraph: {
     title: "Licitaly",

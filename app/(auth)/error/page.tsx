@@ -28,6 +28,8 @@ async function ErrorContent({
 	);
 }
 
+export const metadata = { title: "Error" };
+
 export default function Page({
 	searchParams,
 }: {

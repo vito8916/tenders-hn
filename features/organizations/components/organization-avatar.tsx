@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn, getInitials } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import Image from 'next/image'
 
@@ -17,7 +17,7 @@ export default function OrganizationAvatar({ src, name, className }: { src: stri
         />
       ) : null}
       <AvatarFallback className="rounded-md text-primary uppercase font-bold">
-        {name.substring(0, 2)}
+        {getInitials(name)}
       </AvatarFallback>
     </Avatar>
   );

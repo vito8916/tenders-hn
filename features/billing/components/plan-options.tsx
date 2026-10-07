@@ -83,7 +83,7 @@ export function PlanOptions({
 
     return (
         <>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4">
                 {plans.map((plan) => {
                     const isCurrent = plan.priceId === currentPriceId && hasLiveSubscription;
                     return (

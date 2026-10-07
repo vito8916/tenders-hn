@@ -1,4 +1,5 @@
 import 'server-only';
+import { getPlanNames } from "@/features/billing/repository";
 import { getUserOrgRole } from "@/features/memberships/repository";
 import { getProfileSummariesByIds } from "@/features/profiles/repository";
 import { canViewSettings } from "@/features/organizations/rbac";
@@ -22,6 +23,7 @@ export type AuditLogPage = {
     pageSize: number;
     totalPages: number;
     eventName: AppEventName | null;
+    planNames: Record<string, string>;
 };
 
 /**
@@ -99,7 +101,7 @@ export async function listAuditLogPageService(params: {
         eventName: eventName ?? undefined,
     });
 
-    const entries = await enrichEventsWithActors(events);
+    const [entries, planNames] = await Promise.all([enrichEventsWithActors(events), getPlanNames()]);
 
     return {
         entries,
@@ -108,6 +110,7 @@ export async function listAuditLogPageService(params: {
         pageSize,
         totalPages,
         eventName,
+        planNames,
     };
 }
 

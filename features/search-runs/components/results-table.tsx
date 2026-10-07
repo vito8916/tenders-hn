@@ -2,31 +2,24 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { formatOpportunityTitle } from "@/features/opportunities/title";
 import { cn } from "@/lib/utils";
-import { MATCH_STATE_LABELS, RELEVANCE_LABELS, withParams, type SearchParamsRecord } from "../results";
-import type { Relevance, SearchRunMatch } from "../schemas";
+import { MATCH_STATE_LABELS, withParams, type SearchParamsRecord } from "../results";
+import type { SearchRunMatch } from "../schemas";
+import { RelevanceBadge } from "./relevance-badge";
 
 const deadline = new Intl.DateTimeFormat("es-HN", { day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/Tegucigalpa" });
 const day = new Intl.DateTimeFormat("es-HN", { day: "numeric", month: "short", year: "numeric", timeZone: "America/Tegucigalpa" });
 
-const RELEVANCE_VARIANTS: Record<Relevance, "default" | "secondary" | "outline"> = {
-    muy_relevante: "default",
-    posible: "secondary",
-    pendiente: "outline",
-    descartada: "outline",
-};
-
-export function RelevanceBadge({ relevance }: { relevance: Relevance }) {
-    return (
-        <Badge variant={RELEVANCE_VARIANTS[relevance]} className={cn(relevance === "descartada" && "text-muted-foreground")}>
-            {RELEVANCE_LABELS[relevance]}
-        </Badge>
-    );
-}
-
 export function MatchStateBadge({ match }: { match: SearchRunMatch }) {
     if (match.matchState !== "nueva" && match.matchState !== "actualizada") return null;
     return <Badge variant="outline">{MATCH_STATE_LABELS[match.matchState]}</Badge>;
+}
+
+export const isClosed = (closesAt: string | null) => closesAt !== null && new Date(closesAt).getTime() < Date.now();
+
+export function ClosedBadge() {
+    return <Badge variant="outline">Cerrada</Badge>;
 }
 
 const formatDeadline = (match: SearchRunMatch) => (match.closesAt ? deadline.format(new Date(match.closesAt)) : "Sin fecha");
@@ -64,7 +57,7 @@ export function ResultsTable({ rows, params, homeHref }: { rows: SearchRunMatch[
                                 <TableCell className="max-w-0 align-top whitespace-normal">
                                     <Link href={detailHref(match)} scroll={false} className="group block space-y-0.5">
                                         <span className="block text-xs text-muted-foreground group-hover:underline">{match.expediente}</span>
-                                        <span className="line-clamp-2 font-medium group-hover:underline">{match.title}</span>
+                                        <span className="line-clamp-2 font-medium group-hover:underline">{formatOpportunityTitle(match.title)}</span>
                                         <span className="block truncate text-xs text-muted-foreground">{match.buyerEntity}</span>
                                     </Link>
                                 </TableCell>
@@ -72,7 +65,10 @@ export function ResultsTable({ rows, params, homeHref }: { rows: SearchRunMatch[
                                     <span className="block min-w-36">{match.modality ?? "—"}</span>
                                     <span className="block text-muted-foreground">{match.stage ?? "—"}</span>
                                 </TableCell>
-                                <TableCell className="align-top text-xs">{formatDeadline(match)}</TableCell>
+                                <TableCell className={cn("align-top text-xs", isClosed(match.closesAt) && "text-muted-foreground")}>
+                                    <span className="block">{formatDeadline(match)}</span>
+                                    {isClosed(match.closesAt) ? <ClosedBadge /> : null}
+                                </TableCell>
                                 <TableCell className="text-right align-top text-xs tabular-nums">{match.documentsCount > 0 ? match.documentsCount : "—"}</TableCell>
                                 <TableCell className="align-top text-xs">{match.detectedAt ? day.format(new Date(match.detectedAt)) : "—"}</TableCell>
                             </TableRow>
@@ -90,10 +86,11 @@ export function ResultsTable({ rows, params, homeHref }: { rows: SearchRunMatch[
                                 <MatchStateBadge match={match} />
                                 <span className="text-xs text-muted-foreground">{match.expediente}</span>
                             </div>
-                            <p className="line-clamp-2 text-sm font-medium">{match.title}</p>
+                            <p className="line-clamp-2 text-sm font-medium">{formatOpportunityTitle(match.title)}</p>
                             <p className="truncate text-xs text-muted-foreground">{match.buyerEntity}</p>
                             <p className="flex items-center gap-3 text-xs text-muted-foreground">
                                 <span>Cierra: {formatDeadline(match)}</span>
+                                {isClosed(match.closesAt) ? <ClosedBadge /> : null}
                                 {match.documentsCount > 0 ? (
                                     <span className="inline-flex items-center gap-1">
                                         <FileText className="size-3" />

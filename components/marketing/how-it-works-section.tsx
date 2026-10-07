@@ -11,7 +11,7 @@ export default function HowItWorksSection() {
 				<SectionHeading
 					eyebrow="Cómo funciona"
 					title="Tres pasos y su equipo deja de revisar a mano"
-					description="Lo configura una vez. Después, los reportes llegan solos con la frecuencia que usted elija."
+					description="Lo configura una vez. Después, los reportes llegan solos a las horas que usted elija."
 				/>
 
 				<ol className="mt-14 grid gap-3 md:grid-cols-3">
@@ -39,20 +39,24 @@ export default function HowItWorksSection() {
 					<Step
 						number={2}
 						title="Guarde sus búsquedas"
-						description="Una por línea de negocio, cada una con su frecuencia y forma de entrega."
+						description="Una por línea de negocio. A las horas que elija, todas se actualizan y le llega un correo con un Excel."
 					>
 						<div className="flex h-full flex-col justify-center gap-2 px-4">
 							{[
-								{ name: "Soporte de software", schedule: "Diaria, 7:00" },
-								{ name: "Equipos de cómputo", schedule: "Lunes, 7:00" },
+								{ name: "Soporte de software", times: "Activa" },
+								{ name: "Equipos de cómputo", times: "Activa" },
 							].map((search) => (
 								<div key={search.name} className="flex items-center justify-between gap-2 rounded-md px-3 py-2.5 shadow-edge">
 									<span className="truncate text-xs font-medium">{search.name}</span>
-									<span className="shrink-0 text-[11px] text-muted-foreground tabular-nums">{search.schedule}</span>
+									<span className="shrink-0 text-[11px] text-muted-foreground">{search.times}</span>
 								</div>
 							))}
+							<div className="flex items-center justify-between gap-2 rounded-md bg-muted px-3 py-2 text-[11px] text-muted-foreground">
+								<span>Reportes</span>
+								<span className="tabular-nums">7:00 · 13:00 · 16:00</span>
+							</div>
 							<div className="flex gap-3 px-1 pt-1 text-[11px] text-muted-foreground">
-								{["Correo", "PDF", "CSV"].map((channel) => (
+								{["Correo", "Excel", "PDF"].map((channel) => (
 									<span key={channel} className="flex items-center gap-1">
 										<Check className="size-3 text-accent-blue" />
 										{channel}

@@ -189,6 +189,7 @@ function Results({
                             <DownloadMenu
                                 runHref={`${homeHref}/runs/${shownRun.id}`}
                                 reportReady={shownRun.reportPath !== null}
+                                excelReady={shownRun.excelPath !== null}
                                 reportCount={matches.filter((match) => match.relevance !== "descartada").length}
                                 params={params}
                                 total={matches.length}

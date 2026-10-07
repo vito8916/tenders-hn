@@ -19,6 +19,7 @@ RUN pnpm install --frozen-lockfile --filter ./worker
 COPY types ./types
 COPY lib/ai ./lib/ai
 COPY lib/matching ./lib/matching
+COPY features/opportunities/title.ts ./features/opportunities/title.ts
 COPY worker ./worker
 
 WORKDIR /app/worker

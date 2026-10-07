@@ -1031,6 +1031,44 @@ export type Database = {
           },
         ]
       }
+      org_reports: {
+        Row: {
+          created_at: string
+          excel_path: string | null
+          finished_at: string | null
+          id: string
+          notified_at: string | null
+          org_id: string
+          trigger: string
+        }
+        Insert: {
+          created_at?: string
+          excel_path?: string | null
+          finished_at?: string | null
+          id?: string
+          notified_at?: string | null
+          org_id: string
+          trigger: string
+        }
+        Update: {
+          created_at?: string
+          excel_path?: string | null
+          finished_at?: string | null
+          id?: string
+          notified_at?: string | null
+          org_id?: string
+          trigger?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_reports_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organization_invitations: {
         Row: {
           accepted_at: string | null
@@ -1280,6 +1318,7 @@ export type Database = {
           id: string
           is_archived: boolean
           max_active_searches: number | null
+          max_daily_reports: number | null
           max_members: number | null
           min_schedule_interval: string | null
           monthly_ai_credits: number
@@ -1294,6 +1333,7 @@ export type Database = {
           id: string
           is_archived?: boolean
           max_active_searches?: number | null
+          max_daily_reports?: number | null
           max_members?: number | null
           min_schedule_interval?: string | null
           monthly_ai_credits?: number
@@ -1308,6 +1348,7 @@ export type Database = {
           id?: string
           is_archived?: boolean
           max_active_searches?: number | null
+          max_daily_reports?: number | null
           max_members?: number | null
           min_schedule_interval?: string | null
           monthly_ai_credits?: number
@@ -1536,15 +1577,48 @@ export type Database = {
         }
         Relationships: []
       }
+      report_schedules: {
+        Row: {
+          email_when_empty: boolean
+          hours: number[]
+          next_report_at: string | null
+          org_id: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          email_when_empty?: boolean
+          hours: number[]
+          next_report_at?: string | null
+          org_id: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          email_when_empty?: boolean
+          hours?: number[]
+          next_report_at?: string | null
+          org_id?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_schedules_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: true
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       saved_searches: {
         Row: {
           acquisition_types: string[]
           alert_on_changes: boolean
           created_at: string
           created_by: string | null
-          deliver_by_email: boolean
           description: string | null
-          email_when_empty: boolean
           entities: string[]
           exclusions: string[]
           extracted_profile: Json | null
@@ -1556,9 +1630,7 @@ export type Database = {
           keywords: string[]
           modalities: string[]
           name: string
-          next_run_at: string | null
           org_id: string
-          schedule: string
           updated_at: string
           updated_by: string | null
         }
@@ -1567,9 +1639,7 @@ export type Database = {
           alert_on_changes?: boolean
           created_at?: string
           created_by?: string | null
-          deliver_by_email?: boolean
           description?: string | null
-          email_when_empty?: boolean
           entities?: string[]
           exclusions?: string[]
           extracted_profile?: Json | null
@@ -1581,9 +1651,7 @@ export type Database = {
           keywords?: string[]
           modalities?: string[]
           name: string
-          next_run_at?: string | null
           org_id: string
-          schedule?: string
           updated_at?: string
           updated_by?: string | null
         }
@@ -1592,9 +1660,7 @@ export type Database = {
           alert_on_changes?: boolean
           created_at?: string
           created_by?: string | null
-          deliver_by_email?: boolean
           description?: string | null
-          email_when_empty?: boolean
           entities?: string[]
           exclusions?: string[]
           extracted_profile?: Json | null
@@ -1606,9 +1672,7 @@ export type Database = {
           keywords?: string[]
           modalities?: string[]
           name?: string
-          next_run_at?: string | null
           org_id?: string
-          schedule?: string
           updated_at?: string
           updated_by?: string | null
         }
@@ -1746,13 +1810,14 @@ export type Database = {
           created_at: string
           created_by: string | null
           error: string | null
+          excel_path: string | null
           id: string
           matches_count: number | null
           new_matches_count: number | null
-          notified_at: string | null
           org_id: string
           processes_examined: number | null
           profile_version: number | null
+          report_id: string | null
           report_path: string | null
           saved_search_id: string
           source_synced_at: string | null
@@ -1769,13 +1834,14 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           error?: string | null
+          excel_path?: string | null
           id?: string
           matches_count?: number | null
           new_matches_count?: number | null
-          notified_at?: string | null
           org_id: string
           processes_examined?: number | null
           profile_version?: number | null
+          report_id?: string | null
           report_path?: string | null
           saved_search_id: string
           source_synced_at?: string | null
@@ -1792,13 +1858,14 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           error?: string | null
+          excel_path?: string | null
           id?: string
           matches_count?: number | null
           new_matches_count?: number | null
-          notified_at?: string | null
           org_id?: string
           processes_examined?: number | null
           profile_version?: number | null
+          report_id?: string | null
           report_path?: string | null
           saved_search_id?: string
           source_synced_at?: string | null
@@ -1813,6 +1880,13 @@ export type Database = {
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "search_runs_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "org_reports"
             referencedColumns: ["id"]
           },
           {
@@ -2495,9 +2569,9 @@ export type Database = {
         Args: { target_org: string }
         Returns: {
           active_searches: number
-          allowed_schedules: string[]
           has_active_plan: boolean
           max_active_searches: number
+          max_daily_reports: number
         }[]
       }
       search_filter_options: {
@@ -2507,6 +2581,14 @@ export type Database = {
           open_processes: number
           value: string
         }[]
+      }
+      set_report_schedule: {
+        Args: {
+          report_hours: number[]
+          send_when_empty: boolean
+          target_org: string
+        }
+        Returns: string
       }
       start_chat_turn: {
         Args: {

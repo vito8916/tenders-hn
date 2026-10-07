@@ -4,7 +4,7 @@ import type { Tables } from "@/types/database.types";
 import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
 
 const SEARCH_RUN_COLUMNS =
-    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, new_matches_count, coverage, source_synced_at, report_path, error, created_at, completed_at";
+    "id, saved_search_id, trigger, status, processes_examined, candidates, matches_count, new_matches_count, coverage, source_synced_at, report_path, excel_path, error, created_at, completed_at";
 
 type SearchRunRow = Pick<
     Tables<"search_runs">,
@@ -19,6 +19,7 @@ type SearchRunRow = Pick<
     | "coverage"
     | "source_synced_at"
     | "report_path"
+    | "excel_path"
     | "error"
     | "created_at"
     | "completed_at"
@@ -40,6 +41,7 @@ function mapSearchRunRow(row: SearchRunRow): SearchRun {
         failedEvaluations: coverage?.failedEvaluations ?? 0,
         sourceSyncedAt: row.source_synced_at,
         reportPath: row.report_path,
+        excelPath: row.excel_path,
         error: row.error,
         createdAt: row.created_at,
         completedAt: row.completed_at,
@@ -219,7 +221,7 @@ export async function listSearchRunMatches(runId: string): Promise<SearchRunMatc
     );
 }
 
-/** A short-lived link to a run's PDF, signed with the user's session so the bucket's policy applies. */
+/** A short-lived link to a run's PDF or Excel file, signed with the user's session so the bucket's policy applies. */
 export async function createReportUrl(path: string, fileName: string): Promise<string> {
     const supabase = await createClient();
     const { data, error } = await supabase.storage.from("reports").createSignedUrl(path, 60, { download: fileName });

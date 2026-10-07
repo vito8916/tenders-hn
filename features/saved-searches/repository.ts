@@ -14,7 +14,7 @@ import {
 } from "./schemas";
 
 const SAVED_SEARCH_COLUMNS =
-    "id, name, inherits_profile, description, keywords, exclusions, entities, modalities, acquisition_types, schedule, next_run_at, deliver_by_email, email_when_empty, alert_on_changes, is_active, is_default";
+    "id, name, inherits_profile, description, keywords, exclusions, entities, modalities, acquisition_types, alert_on_changes, is_active, is_default";
 
 type SavedSearchRow = Pick<
     Tables<"saved_searches">,
@@ -27,10 +27,6 @@ type SavedSearchRow = Pick<
     | "entities"
     | "modalities"
     | "acquisition_types"
-    | "schedule"
-    | "next_run_at"
-    | "deliver_by_email"
-    | "email_when_empty"
     | "alert_on_changes"
     | "is_active"
     | "is_default"
@@ -49,10 +45,6 @@ function mapSavedSearchRow(row: SavedSearchRow): SavedSearch {
         entities: row.entities,
         modalities: row.modalities,
         acquisitionTypes: row.acquisition_types,
-        schedule: row.schedule,
-        nextRunAt: row.next_run_at,
-        deliverByEmail: row.deliver_by_email,
-        emailWhenEmpty: row.email_when_empty,
         alertOnChanges: row.alert_on_changes,
         isActive: row.is_active,
         isDefault: row.is_default,
@@ -69,9 +61,6 @@ function toRow(input: SavedSearchInput) {
         entities: input.entities,
         modalities: input.modalities,
         acquisition_types: input.acquisitionTypes,
-        schedule: input.schedule,
-        deliver_by_email: input.deliverByEmail,
-        email_when_empty: input.emailWhenEmpty,
         alert_on_changes: input.alertOnChanges,
     };
 }
@@ -112,7 +101,7 @@ export async function getSearchLimits(orgId: string): Promise<SearchLimits> {
         hasActivePlan: row.has_active_plan,
         maxActiveSearches: row.max_active_searches,
         activeSearches: row.active_searches,
-        allowedSchedules: row.allowed_schedules,
+        maxDailyReports: row.max_daily_reports,
     });
 }
 
@@ -133,7 +122,7 @@ export async function listFilterOptions(): Promise<FilterOptions> {
 
 // ========== MUTATIONS ==========
 
-/** Raises subscription_inactive, search_limit_reached, schedule_interval_not_allowed, or saved_searches_org_name_key. */
+/** Raises subscription_inactive, search_limit_reached, or saved_searches_org_name_key. */
 export async function createSavedSearch(orgId: string, input: SavedSearchInput): Promise<string> {
     const supabase = await createClient();
     const { data, error } = await supabase

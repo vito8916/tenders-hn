@@ -3,6 +3,7 @@ import {
 	BriefcaseBusiness,
 	Building2,
 	CreditCard,
+	FileSpreadsheet,
 	ScrollText,
 	Shield,
 	User,
@@ -59,6 +60,12 @@ export const settingsNavGroups: SettingsNavGroup[] = [
 				label: "Perfil de la empresa",
 				icon: BriefcaseBusiness,
 				description: "Lo que vende la empresa, exclusiones y departamentos.",
+			},
+			{
+				segment: "reports",
+				label: "Reportes",
+				icon: FileSpreadsheet,
+				description: "Horarios de los reportes con Excel por correo.",
 			},
 			{
 				segment: "billing",

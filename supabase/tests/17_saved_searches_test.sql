@@ -1,5 +1,5 @@
 -- Saved searches and their runs: owners and admins write searches within
--- their plan, any member runs one now, pg_cron queues the ones that are due,
+-- their plan, any member runs one now,
 -- and other organizations see nothing.
 begin;
 create extension if not exists pgtap with schema extensions;
@@ -17,7 +17,7 @@ insert into public.organization_members (org_id, user_id, role) values
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '33333333-3333-4333-8333-333333333333', 'admin'),
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '44444444-4444-4444-8444-444444444444', 'member');
 insert into public.plans (id, name, max_members, max_active_searches, min_schedule_interval, monthly_ai_credits)
-values ('test_searches', 'Test', 5, 3, interval '12 hours', 0);
+values ('test_searches', 'Test', 5, 3, null, 0);
 insert into public.source_sync_runs (id, source, window_start, window_end, status, started_at, finished_at)
 overriding system value values
   (901, 'honducompras_v1', '2026-09-20', '2026-09-27', 'succeeded', now() - interval '3 hours', now() - interval '170 minutes'),
@@ -31,20 +31,6 @@ $$;
 create function pg_temp.search_id(search_name text) returns uuid language sql as $$
   select id from public.saved_searches where name = search_name;
 $$;
-
--- ---------- Schedules ----------
-select is(
-  private.next_search_run_at('twice_daily', '2026-09-30 18:30+00'),
-  '2026-09-30 19:00+00'::timestamptz,
-  'twice a day: 12:30 in Honduras runs next at 13:00'
-);
-select is(
-  private.next_search_run_at('four_times_daily', '2026-09-30 22:00+00'),
-  '2026-10-01 13:00+00'::timestamptz,
-  'after the last run of the day comes 07:00 the next day'
-);
-select is(private.next_search_run_at('manual', now()), null, 'manual searches have no next run');
-select is(private.search_schedule_interval('twice_daily'), interval '12 hours', 'twice a day counts as every 12 hours');
 
 -- ---------- Plan ----------
 set local role authenticated;
@@ -70,10 +56,9 @@ select lives_ok(
   'an admin creates a search'
 );
 select results_eq(
-  $$select name, keywords, entities, schedule, next_run_at > now(), created_by from public.saved_searches where not is_default$$,
-  $$values ('Software'::text, array['SAP', 'Licencias'], array['IHSS'], 'daily'::text, true,
-            '33333333-3333-4333-8333-333333333333'::uuid)$$,
-  'names and lists are tidied, and a daily search is scheduled'
+  $$select name, keywords, entities, created_by from public.saved_searches where not is_default$$,
+  $$values ('Software'::text, array['SAP', 'Licencias'], array['IHSS'], '33333333-3333-4333-8333-333333333333'::uuid)$$,
+  'names and lists are tidied'
 );
 select throws_ok(
   $$insert into public.saved_searches (org_id, name) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'SOFTWARE')$$,
@@ -83,15 +68,10 @@ select throws_ok(
   $$insert into public.saved_searches (org_id, name, inherits_profile) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Cómputo', false)$$,
   '23514', null, 'a search that does not inherit the profile needs a description'
 );
-select throws_ok(
-  $$insert into public.saved_searches (org_id, name, schedule) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Cómputo', 'four_times_daily')$$,
-  'P0001', 'schedule_interval_not_allowed', 'schedules more frequent than the plan allows are rejected'
-);
 select lives_ok(
-  $$insert into public.saved_searches (org_id, name, inherits_profile, description, schedule)
-    values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Cómputo', false,
-            'Computadoras y equipo de red', 'twice_daily')$$,
-  'twice a day is within the plan'
+  $$insert into public.saved_searches (org_id, name, inherits_profile, description)
+    values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Cómputo', false, 'Computadoras y equipo de red')$$,
+  'a search with its own description is created'
 );
 select throws_ok(
   $$insert into public.saved_searches (org_id, name) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Tercera')$$,
@@ -106,11 +86,6 @@ select throws_ok(
   $$update public.saved_searches set is_active = true where id = pg_temp.search_id('Tercera')$$,
   'P0001', 'search_limit_reached', 'activating one past the limit is rejected'
 );
-select is(
-  (select next_run_at from public.saved_searches where id = pg_temp.search_id('Tercera')),
-  null,
-  'paused searches are not scheduled'
-);
 
 select throws_ok(
   $$update public.saved_searches set extracted_profile = '{}' where id = pg_temp.search_id('Cómputo')$$,
@@ -120,7 +95,7 @@ reset role;
 update public.saved_searches set extracted_profile = '{}', extraction_version = 'v2' where id = pg_temp.search_id('Cómputo');
 set local role authenticated;
 select pg_temp.act_as('33333333-3333-4333-8333-333333333333');
-update public.saved_searches set schedule = 'daily' where id = pg_temp.search_id('Cómputo');
+update public.saved_searches set keywords = array['Redes'] where id = pg_temp.search_id('Cómputo');
 select ok(
   (select extracted_profile is not null from public.saved_searches where id = pg_temp.search_id('Cómputo')),
   'the extraction is kept when the description does not change'
@@ -145,8 +120,8 @@ select is(
   'members cannot edit searches'
 );
 select throws_ok(
-  $$update public.saved_searches set next_run_at = now() where id = pg_temp.search_id('Software')$$,
-  '42501', null, 'the schedule is not writable directly'
+  $$update public.saved_searches set is_default = true where id = pg_temp.search_id('Software')$$,
+  '42501', null, 'which search is the default is not writable'
 );
 reset role;
 
@@ -159,9 +134,9 @@ select is(
 set local role authenticated;
 select pg_temp.act_as('44444444-4444-4444-8444-444444444444');
 select results_eq(
-  $$select has_active_plan, max_active_searches, active_searches, allowed_schedules
+  $$select has_active_plan, max_active_searches, active_searches, max_daily_reports
     from public.saved_search_limits('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  $$values (true, 3, 3, array['manual', 'daily', 'twice_daily'])$$,
+  $$values (true, 3, 3, 8)$$,
   'members see what the plan allows'
 );
 select pg_temp.act_as('22222222-2222-4222-8222-222222222222');
@@ -227,32 +202,9 @@ select is(
   'both runs are queued for the worker'
 );
 
--- ---------- Scheduled runs ----------
+-- ---------- Without a plan ----------
 update public.search_runs set status = 'completed';
-update public.saved_searches set next_run_at = now() - interval '1 minute' where id = pg_temp.search_id('Cómputo');
-
-select is(private.enqueue_due_searches(), 1, 'the due search is queued');
-select ok(
-  (select next_run_at > now() from public.saved_searches where id = pg_temp.search_id('Cómputo')),
-  'and moves to its next time'
-);
-select is(
-  (select trigger from public.search_runs where saved_search_id = pg_temp.search_id('Cómputo') and status = 'queued'),
-  'schedule',
-  'the run is marked as scheduled'
-);
-
-update public.saved_searches set next_run_at = now() - interval '1 minute' where id = pg_temp.search_id('Cómputo');
-select is(private.enqueue_due_searches(), 0, 'a search with a run in flight waits for its next time');
-
-update public.search_runs set status = 'completed';
-update public.saved_searches set next_run_at = now() - interval '1 minute' where id = pg_temp.search_id('Cómputo');
 update public.organization_subscriptions set status = 'expired' where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
-select is(private.enqueue_due_searches(), 0, 'organizations without an active plan are skipped');
-select ok(
-  (select next_run_at > now() from public.saved_searches where id = pg_temp.search_id('Cómputo')),
-  'and their searches move to the next time'
-);
 
 set local role authenticated;
 select pg_temp.act_as('44444444-4444-4444-8444-444444444444');

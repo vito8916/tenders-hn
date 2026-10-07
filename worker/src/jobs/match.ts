@@ -1,5 +1,6 @@
 import type { QueueConsumer } from "../queue";
 import { evaluateMatchJob } from "./evaluate-match";
+import { renderOrgReport } from "./render-org-report";
 import { renderReport } from "./render-report";
 import { searchRun } from "./search-run";
 
@@ -13,5 +14,6 @@ export const matchConsumer: QueueConsumer = {
         evaluate_match: evaluateMatchJob,
         search_run: searchRun,
         render_report: renderReport,
+        render_org_report: renderOrgReport,
     },
 };

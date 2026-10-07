@@ -12,7 +12,7 @@ import { isLiveSubscription, type CheckoutOptions, type PlanChangeBlocker, type 
 const BLOCKER_MESSAGES: Record<PlanChangeBlocker, string> = {
     members: "quite miembros o invitaciones pendientes",
     searches: "pause búsquedas activas",
-    schedules: "cambie a una frecuencia menor las búsquedas que se ejecutan varias veces al día",
+    report_times: "elija menos horarios de reporte en Configuración › Reportes",
 };
 
 /** Adds each plan's monthly amount in Paddle (tax included, O10). */

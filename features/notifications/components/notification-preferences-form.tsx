@@ -15,7 +15,7 @@ const CATEGORY_SECTIONS = [
 		category: "searches",
 		title: "Búsquedas",
 		description:
-			"Reportes de sus búsquedas y cambios en oportunidades marcadas con «Me interesa». Cada búsqueda decide además si envía su reporte por correo.",
+			"Reportes de sus búsquedas y cambios en oportunidades marcadas con «Me interesa». Los horarios de los reportes se eligen en Configuración › Reportes.",
 	},
 	{
 		category: "organization",

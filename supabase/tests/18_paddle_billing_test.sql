@@ -189,14 +189,14 @@ insert into public.organization_members (org_id, user_id, role) values
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '44444444-4444-4444-8444-444444444444', 'member');
 -- On Pro now, so the fixture's searches fit; the question is whether they fit Básico.
 update public.organization_subscriptions set plan_id = 'pro' where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
-insert into public.saved_searches (org_id, name, schedule)
-values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Uno', 'four_times_daily'), ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Dos', 'daily'),
-       ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Tres', 'daily');
+insert into public.saved_searches (org_id, name)
+values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Uno'), ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Dos');
+update public.report_schedules set hours = array[7, 10, 13, 16] where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
 set local role authenticated;
 select is(
   public.plan_change_blockers('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'basic'),
-  array['members', 'searches', 'schedules'],
-  'a downgrade lists what does not fit: members, active searches, and schedules'
+  array['members', 'searches', 'report_times'],
+  'a downgrade lists what does not fit: members, active searches (with «Recomendadas»), and report times'
 );
 select is(public.plan_change_blockers('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'pro'), '{}'::text[], 'an upgrade fits');
 select throws_ok(

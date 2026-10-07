@@ -3,7 +3,7 @@ import { z } from "zod";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import type { Database } from "@/types/database.types";
-import { planOptionSchema, subscriptionSchema, usageSchema, type PlanChangeBlocker, type PlanOption, type Subscription, type Usage } from "./schemas";
+import { PLAN_CHANGE_BLOCKERS, planOptionSchema, subscriptionSchema, usageSchema, type PlanChangeBlocker, type PlanOption, type Subscription, type Usage } from "./schemas";
 
 // ========== QUERIES ==========
 
@@ -44,7 +44,7 @@ export async function listPlanOptions(client?: SupabaseClient<Database>): Promis
     const { data, error } = await supabase
         .from("plan_prices")
         .select(
-            "paddle_price_id, plans!inner (id, name, description, max_members, max_active_searches, history_months, monthly_ai_credits, min_schedule_interval, sort_order, is_archived)",
+            "paddle_price_id, plans!inner (id, name, description, max_members, max_active_searches, history_months, monthly_ai_credits, max_daily_reports, sort_order, is_archived)",
         )
         .eq("is_active", true)
         .eq("billing_interval", "month")
@@ -60,18 +60,14 @@ export async function listPlanOptions(client?: SupabaseClient<Database>): Promis
         max_active_searches: z.number().nullable(),
         history_months: z.number().nullable(),
         monthly_ai_credits: z.number(),
-        // Postgres prints the interval as "1 day" or "06:00:00".
-        min_schedule_interval: z.string(),
+        max_daily_reports: z.number().nullable(),
         sort_order: z.number(),
     });
     return data
         .map((row) => ({ priceId: row.paddle_price_id, plan: planRowSchema.parse(row.plans) }))
         .sort((a, b) => a.plan.sort_order - b.plan.sort_order)
-        .map(({ priceId, plan }) => {
-            const scheduleHours = plan.min_schedule_interval.includes("day")
-                ? 24 * Number.parseInt(plan.min_schedule_interval)
-                : Number.parseInt(plan.min_schedule_interval);
-            return planOptionSchema.parse({
+        .map(({ priceId, plan }) =>
+            planOptionSchema.parse({
                 planId: plan.id,
                 name: plan.name,
                 description: plan.description,
@@ -79,10 +75,10 @@ export async function listPlanOptions(client?: SupabaseClient<Database>): Promis
                 maxActiveSearches: plan.max_active_searches,
                 historyMonths: plan.history_months,
                 monthlyAiCredits: plan.monthly_ai_credits,
-                reportsPerDay: Math.max(1, Math.floor(24 / scheduleHours)),
+                maxDailyReports: plan.max_daily_reports,
                 priceId,
-            });
-        });
+            }),
+        );
 }
 
 /** Every plan's display name by id, archived plans included: past events still name them. */
@@ -135,5 +131,5 @@ export async function getPlanChangeBlockers(orgId: string, planId: string): Prom
     const { data, error } = await supabase.rpc("plan_change_blockers", { target_org: orgId, target_plan: planId });
 
     if (error) throw error;
-    return z.array(z.enum(["members", "searches", "schedules"])).parse(data ?? []);
+    return z.array(z.enum(PLAN_CHANGE_BLOCKERS)).parse(data ?? []);
 }

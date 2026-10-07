@@ -30,8 +30,8 @@ export const planOptionSchema = z.object({
     maxActiveSearches: z.number().int().nullable(),
     historyMonths: z.number().int().nullable(),
     monthlyAiCredits: z.number().int(),
-    /** How many scheduled runs a day the plan allows, from min_schedule_interval. */
-    reportsPerDay: z.number().int(),
+    /** Report times a day the plan allows; null = every sync (up to 8). */
+    maxDailyReports: z.number().int().nullable(),
     priceId: z.string(),
 });
 export type PlanOption = z.infer<typeof planOptionSchema>;
@@ -43,7 +43,7 @@ export type PlanWithPrice = PlanOption & { price: { amount: string; currencyCode
 export function planFeatures(plan: PlanOption): string[] {
     return [
         plan.maxActiveSearches === null ? "Búsquedas ilimitadas" : `${plan.maxActiveSearches} búsquedas activas`,
-        plan.reportsPerDay === 1 ? "Reportes diarios" : `Hasta ${plan.reportsPerDay} reportes al día`,
+        plan.maxDailyReports === null ? "Un reporte en cada actualización (hasta 8 al día)" : `${plan.maxDailyReports} reportes al día con Excel`,
         plan.maxMembers === null ? "Usuarios ilimitados" : `${plan.maxMembers} usuarios`,
         plan.historyMonths === null ? "Historial completo" : `${plan.historyMonths} meses de historial`,
         `${plan.monthlyAiCredits.toLocaleString("es-HN")} créditos de IA al mes`,
@@ -61,7 +61,7 @@ export const usageSchema = z.object({
 });
 export type Usage = z.infer<typeof usageSchema>;
 
-export const PLAN_CHANGE_BLOCKERS = ["members", "searches", "schedules"] as const;
+export const PLAN_CHANGE_BLOCKERS = ["members", "searches", "report_times"] as const;
 export type PlanChangeBlocker = (typeof PLAN_CHANGE_BLOCKERS)[number];
 
 const priceRefSchema = z.object({ orgId: z.uuid(), orgSlug: z.string().min(1), priceId: z.string().regex(/^pri_[a-z0-9]{26}$/) });

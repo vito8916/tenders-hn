@@ -40,8 +40,6 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
                     orgSlug={orgSlug}
                     search={search}
                     filterOptions={filterOptions}
-                    // A schedule the plan no longer allows can be kept, not chosen again.
-                    allowedSchedules={limits.allowedSchedules.includes(search.schedule) ? limits.allowedSchedules : [...limits.allowedSchedules, search.schedule]}
                     hasProfile={profile !== null}
                 />
             ) : (

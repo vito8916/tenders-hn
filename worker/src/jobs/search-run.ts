@@ -169,9 +169,8 @@ export const searchRun: JobHandler = async (message, { pool }) => {
                     openRows.length,
                 ],
             );
-            // The report to the members (once per run, following the search's delivery settings).
-            await client.query("select private.notify_search_run($1)", [runId]);
-            // The frozen PDF, once the run is committed as finished.
+            // The run's PDF and Excel file, once it is committed as finished. A run of a report also
+            // finishes the report when it is the last one (trigger search_runs_finish_report).
             await client.query("select pgmq.send('match', jsonb_build_object('type', 'render_report', 'runId', $1::uuid))", [runId]);
             await client.query("commit");
         } catch (error) {

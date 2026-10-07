@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { RunSearchButton } from "@/features/search-runs/components/run-search-button";
 import { RunStatusBadge } from "@/features/search-runs/components/run-status";
 import { isRunActive, type SearchRun } from "@/features/search-runs/schemas";
-import { SCHEDULE_LABELS, type SavedSearch } from "../schemas";
+import type { SavedSearch } from "../schemas";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 
@@ -48,7 +48,6 @@ export function SavedSearchList({
                             </div>
                             <p className="text-sm text-muted-foreground">
                                 {search.inheritsProfile ? "Perfil de la empresa" : "Descripción propia"}
-                                {search.isActive ? ` · ${SCHEDULE_LABELS[search.schedule]}` : ""}
                             </p>
                             <div className="text-sm text-muted-foreground">
                                 <LatestRun run={latestRun} />

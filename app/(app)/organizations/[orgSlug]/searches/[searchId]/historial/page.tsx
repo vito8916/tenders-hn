@@ -113,6 +113,11 @@ async function HistoryContent({ params, searchParams }: { params: HistoryParams;
                                                     PDF
                                                 </a>
                                             ) : null}
+                                            {run.excelPath ? (
+                                                <a href={`${homeHref}/runs/${run.id}/xlsx`} className="text-primary hover:underline">
+                                                    Excel
+                                                </a>
+                                            ) : null}
                                         </TableCell>
                                     </TableRow>
                                 );

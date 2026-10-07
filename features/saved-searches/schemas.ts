@@ -1,16 +1,5 @@
 import { z } from "zod";
 
-// Must match saved_searches_schedule_check and private.search_schedule_hours.
-export const SEARCH_SCHEDULES = ["manual", "daily", "twice_daily", "four_times_daily"] as const;
-export type SearchSchedule = (typeof SEARCH_SCHEDULES)[number];
-
-export const SCHEDULE_LABELS: Record<SearchSchedule, string> = {
-    manual: "Solo cuando la ejecute",
-    daily: "Una vez al día (7:00)",
-    twice_daily: "Dos veces al día (7:00 y 13:00)",
-    four_times_daily: "Cuatro veces al día (7:00, 10:00, 13:00 y 16:00)",
-};
-
 export const FILTER_KINDS = ["entity", "modality", "acquisition_type"] as const;
 export type FilterKind = (typeof FILTER_KINDS)[number];
 export type FilterOption = { value: string; openProcesses: number };
@@ -26,10 +15,6 @@ export const savedSearchSchema = z.object({
     entities: z.array(z.string()),
     modalities: z.array(z.string()),
     acquisitionTypes: z.array(z.string()),
-    schedule: z.enum(SEARCH_SCHEDULES),
-    nextRunAt: z.string().nullable(),
-    deliverByEmail: z.boolean(),
-    emailWhenEmpty: z.boolean(),
     alertOnChanges: z.boolean(),
     isActive: z.boolean(),
     /** «Recomendadas»: follows the company profile and cannot be deleted, paused, or renamed. */
@@ -41,7 +26,7 @@ export const searchLimitsSchema = z.object({
     hasActivePlan: z.boolean(),
     maxActiveSearches: z.number().int().nullable(),
     activeSearches: z.number().int(),
-    allowedSchedules: z.array(z.enum(SEARCH_SCHEDULES)),
+    maxDailyReports: z.number().int(),
 });
 export type SearchLimits = z.infer<typeof searchLimitsSchema>;
 
@@ -68,9 +53,6 @@ export const savedSearchInputSchema = z
         entities: z.array(z.string()),
         modalities: z.array(z.string()),
         acquisitionTypes: z.array(z.string()),
-        schedule: z.enum(SEARCH_SCHEDULES),
-        deliverByEmail: z.boolean(),
-        emailWhenEmpty: z.boolean(),
         alertOnChanges: z.boolean(),
     })
     .refine((input) => input.inheritsProfile || input.description.length > 0, {
@@ -88,8 +70,5 @@ export const EMPTY_SAVED_SEARCH: SavedSearchInput = {
     entities: [],
     modalities: [],
     acquisitionTypes: [],
-    schedule: "daily",
-    deliverByEmail: true,
-    emailWhenEmpty: false,
     alertOnChanges: true,
 };

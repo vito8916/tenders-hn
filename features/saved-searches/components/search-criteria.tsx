@@ -1,6 +1,4 @@
-import { SCHEDULE_LABELS, type SavedSearch } from "../schemas";
-
-const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
+import type { SavedSearch } from "../schemas";
 
 function CriteriaItem({ label, children }: { label: string; children: React.ReactNode }) {
     return (
@@ -13,7 +11,7 @@ function CriteriaItem({ label, children }: { label: string; children: React.Reac
 
 const listOr = (items: string[], empty: string) => (items.length > 0 ? items.join(" · ") : empty);
 
-/** What a search looks for and when it runs, read-only. */
+/** What a search looks for, read-only. */
 export function SearchCriteria({ search }: { search: SavedSearch }) {
     return (
         <dl className="space-y-3 text-sm">
@@ -29,20 +27,10 @@ export function SearchCriteria({ search }: { search: SavedSearch }) {
             <CriteriaItem label="Instituciones">{listOr(search.entities, "Todas")}</CriteriaItem>
             <CriteriaItem label="Modalidades">{listOr(search.modalities, "Todas")}</CriteriaItem>
             <CriteriaItem label="Tipos de adquisición">{listOr(search.acquisitionTypes, "Todos")}</CriteriaItem>
-            <CriteriaItem label="Frecuencia">
-                {search.isActive ? SCHEDULE_LABELS[search.schedule] : "Pausada"}
-                {search.nextRunAt ? (
-                    <span className="text-muted-foreground"> · próxima el {dateTime.format(new Date(search.nextRunAt))}</span>
-                ) : null}
+            <CriteriaItem label="Avisos">
+                {search.alertOnChanges ? "Avisa cuando cambia una oportunidad ya enviada" : "No avisa cambios de oportunidades enviadas"}
             </CriteriaItem>
-            <CriteriaItem label="Entrega">
-                {search.deliverByEmail
-                    ? search.emailWhenEmpty
-                        ? "Por correo, aunque no haya coincidencias nuevas"
-                        : "Por correo cuando haya coincidencias nuevas"
-                    : "Solo se guarda en la plataforma"}
-                {search.alertOnChanges ? "; avisa cambios de oportunidades enviadas" : ""}
-            </CriteriaItem>
+            {search.isActive ? null : <CriteriaItem label="Estado">Pausada</CriteriaItem>}
         </dl>
     );
 }

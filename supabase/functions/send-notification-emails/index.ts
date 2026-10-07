@@ -15,8 +15,23 @@ type ReportOpportunity = {
   path: string;
 };
 
-// What private.notify_search_run puts in the payload of a search_run_report email.
-type ReportPayload = {
+// What private.notify_org_report puts in the payload of an org_report email:
+// each search with its unreported opportunities, and the report's Excel file.
+type ReportSection = {
+  searchName: string;
+  total: number;
+  opportunities: ReportOpportunity[];
+};
+
+type OrgReportPayload = {
+  total: number;
+  sections: ReportSection[];
+  excelPath: string | null;
+  excelName: string;
+};
+
+// Reports emailed before org reports (search_run_report) listed one search.
+type RunReportPayload = {
   total: number;
   opportunities: ReportOpportunity[];
 };
@@ -29,8 +44,8 @@ type Delivery = {
   body: string | null;
   action_url: string | null;
   attempts: number;
-  template: "search_run_report" | null;
-  payload: ReportPayload | Record<string, never>;
+  template: "search_run_report" | "org_report" | null;
+  payload: OrgReportPayload | RunReportPayload | Record<string, never>;
 };
 
 const BATCH_SIZE = 25;
@@ -55,11 +70,9 @@ function escapeHtml(value: string): string {
 const RELEVANCE_LABELS = { muy_relevante: "Muy relevante", posible: "Posible" } as const;
 const STATE_LABELS = { nueva: "Nueva", actualizada: "Actualizada" } as const;
 
-/** The report's opportunities: state and relevance, expediente, the object linking to its detail, institution, and deadline. */
-function renderReport(payload: ReportPayload, font: string) {
-  if (!payload.opportunities?.length) return { html: "", text: "" };
-
-  const items = payload.opportunities
+/** Opportunities as rows: state and relevance, expediente, the object linking to its detail, institution, and deadline. */
+function renderOpportunities(opportunities: ReportOpportunity[], font: string) {
+  const html = opportunities
     .map(
       (opportunity) => `<tr>
                         <td style="padding:14px 0;border-top:1px solid #f4f4f5;font-family:${font};">
@@ -70,20 +83,55 @@ function renderReport(payload: ReportPayload, font: string) {
                       </tr>`,
     )
     .join("");
-  const more = payload.total - payload.opportunities.length;
-
-  const html = `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">${items}</table>
-                      ${more > 0 ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#3f3f46;">Y ${more} más en Licitaly.</p>` : ""}`;
-  const text = [
-    ...payload.opportunities.map(
-      (opportunity) =>
-        `${STATE_LABELS[opportunity.state]} · ${RELEVANCE_LABELS[opportunity.relevance]} · ${opportunity.expediente}\n${opportunity.title}\n${opportunity.buyerEntity} · ${opportunity.closesAt ? `Cierra el ${opportunity.closesAt}` : "Sin fecha límite publicada"}\n${appUrl}${opportunity.path}`,
-    ),
-    more > 0 ? `Y ${more} más en Licitaly.` : "",
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+  const text = opportunities.map(
+    (opportunity) =>
+      `${STATE_LABELS[opportunity.state]} · ${RELEVANCE_LABELS[opportunity.relevance]} · ${opportunity.expediente}\n${opportunity.title}\n${opportunity.buyerEntity} · ${opportunity.closesAt ? `Cierra el ${opportunity.closesAt}` : "Sin fecha límite publicada"}\n${appUrl}${opportunity.path}`,
+  );
   return { html, text };
+}
+
+/** A report email's list: each search with what it found, the first 20 opportunities over all of them, and how many more are in the Excel file. */
+function renderReport(delivery: Delivery, font: string) {
+  const sections: ReportSection[] =
+    delivery.template === "org_report"
+      ? (delivery.payload as OrgReportPayload).sections ?? []
+      : [{ searchName: "", ...(delivery.payload as RunReportPayload) }];
+  const listed = sections.filter((section) => section.opportunities?.length);
+  if (listed.length === 0) return { html: "", text: "" };
+
+  let remaining = 20;
+  const html: string[] = [];
+  const text: string[] = [];
+  for (const section of listed) {
+    const shown = section.opportunities.slice(0, remaining);
+    remaining -= shown.length;
+    const rows = renderOpportunities(shown, font);
+    const more = section.total - shown.length;
+    const heading = section.searchName
+      ? `<p style="margin:0 0 4px;font-size:13px;line-height:20px;font-weight:600;color:#09090b;">${escapeHtml(section.searchName)} · ${section.total} ${section.total === 1 ? "oportunidad" : "oportunidades"}</p>`
+      : "";
+    html.push(`${heading}<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 ${more > 0 ? 8 : 24}px;">${rows.html}</table>
+                      ${more > 0 ? `<p style="margin:0 0 24px;font-size:14px;line-height:22px;color:#3f3f46;">Y ${more} más${delivery.template === "org_report" ? " en el Excel adjunto" : " en Licitaly"}.</p>` : ""}`);
+    text.push([section.searchName ? `${section.searchName} · ${section.total}` : "", ...rows.text, more > 0 ? `Y ${more} más.` : ""].filter(Boolean).join("\n\n"));
+    if (remaining === 0) break;
+  }
+  return { html: html.join(""), text: text.join("\n\n") };
+}
+
+/** The report's Excel file from the reports bucket, as base64, or null when there is none. */
+async function excelAttachment(delivery: Delivery): Promise<{ filename: string; content: string } | null> {
+  if (delivery.template !== "org_report") return null;
+  const payload = delivery.payload as OrgReportPayload;
+  if (!payload.excelPath) return null;
+
+  const { data, error } = await supabase.storage.from("reports").download(payload.excelPath);
+  if (error) throw new Error(`Excel ${payload.excelPath}: ${error.message}`);
+  const bytes = new Uint8Array(await data.arrayBuffer());
+  let binary = "";
+  for (let index = 0; index < bytes.length; index += 0x8000) {
+    binary += String.fromCharCode(...bytes.subarray(index, index + 0x8000));
+  }
+  return { filename: payload.excelName, content: btoa(binary) };
 }
 
 function renderEmail(delivery: Delivery) {
@@ -91,7 +139,8 @@ function renderEmail(delivery: Delivery) {
 
   // Same design as emails/organization-invitation.tsx and supabase/templates/*.html; keep them in step.
   const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
-  const report = delivery.template === "search_run_report" ? renderReport(delivery.payload as ReportPayload, font) : { html: "", text: "" };
+  const isReport = delivery.template === "search_run_report" || delivery.template === "org_report";
+  const report = isReport ? renderReport(delivery, font) : { html: "", text: "" };
   const html = `<!doctype html>
 <html lang="es">
   <head>
@@ -125,7 +174,7 @@ function renderEmail(delivery: Delivery) {
                           ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td bgcolor="#09090b" style="border-radius:8px;">
-                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">${delivery.template === "search_run_report" ? "Ver todos los resultados" : "Ver en Licitaly"}</a>
+                            <a href="${escapeHtml(actionUrl)}" style="display:inline-block;padding:12px 24px;font-size:15px;line-height:20px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:8px;">${isReport ? "Ver todos los resultados" : "Ver en Licitaly"}</a>
                           </td>
                         </tr>
                       </table>`
@@ -156,6 +205,7 @@ function renderEmail(delivery: Delivery) {
 
 async function sendWithResend(delivery: Delivery, apiKey: string): Promise<string> {
   const { html, text } = renderEmail(delivery);
+  const attachment = await excelAttachment(delivery);
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -170,6 +220,7 @@ async function sendWithResend(delivery: Delivery, apiKey: string): Promise<strin
       subject: delivery.subject,
       html,
       text,
+      ...(attachment ? { attachments: [attachment] } : {}),
     }),
   });
 
@@ -183,6 +234,7 @@ async function sendWithResend(delivery: Delivery, apiKey: string): Promise<strin
 
 async function sendWithMailpit(delivery: Delivery, mailpitUrl: string): Promise<string> {
   const { html, text } = renderEmail(delivery);
+  const attachment = await excelAttachment(delivery);
   const response = await fetch(`${mailpitUrl.replace(/\/$/, "")}/api/v1/send`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -192,6 +244,7 @@ async function sendWithMailpit(delivery: Delivery, mailpitUrl: string): Promise<
       Subject: delivery.subject,
       HTML: html,
       Text: text,
+      ...(attachment ? { Attachments: [{ Filename: attachment.filename, Content: attachment.content }] } : {}),
     }),
   });
 

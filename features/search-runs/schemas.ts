@@ -28,6 +28,8 @@ export const searchRunSchema = z.object({
     sourceSyncedAt: z.string().nullable(),
     /** The frozen PDF in the reports bucket; null until the worker renders it. */
     reportPath: z.string().nullable(),
+    /** The run's Excel file in the reports bucket; null until the worker renders it. */
+    excelPath: z.string().nullable(),
     error: z.string().nullable(),
     createdAt: z.string(),
     completedAt: z.string().nullable(),

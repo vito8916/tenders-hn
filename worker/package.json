@@ -23,6 +23,7 @@
     "pdfkit": "^0.17.2",
     "pg": "^8.23.0",
     "tsx": "^4.23.15",
+    "write-excel-file": "4.1.1",
     "zod": "^4.1.13"
   },
   "devDependencies": {

@@ -15,19 +15,21 @@ import { withParams, type SearchParamsRecord } from "../results";
 /**
  * The run's downloads (spec §12.2), each with the number of rows it holds:
  * every result of the run, or only the filtered ones, as CSV, and the
- * run's frozen PDF once the worker has rendered it.
+ * run's frozen PDF and Excel file once the worker has rendered them.
  */
 export function DownloadMenu({
     runHref,
     reportReady,
+    excelReady,
     reportCount,
     params,
     total,
     filtered,
 }: {
-    /** /organizations/<org>/runs/<run>, under which the csv and pdf routes live. */
+    /** /organizations/<org>/runs/<run>, under which the csv, pdf, and xlsx routes live. */
     runHref: string;
     reportReady: boolean;
+    excelReady: boolean;
     /** Opportunities in the PDF: all but the discarded ones. */
     reportCount: number;
     params: SearchParamsRecord;
@@ -68,6 +70,15 @@ export function DownloadMenu({
                     </DropdownMenuItem>
                 ) : (
                     <DropdownMenuItem disabled>El reporte se está preparando…</DropdownMenuItem>
+                )}
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Excel</DropdownMenuLabel>
+                {excelReady ? (
+                    <DropdownMenuItem asChild>
+                        <a href={`${runHref}/xlsx`}>Excel (.xlsx) de la ejecución</a>
+                    </DropdownMenuItem>
+                ) : (
+                    <DropdownMenuItem disabled>El Excel se está preparando…</DropdownMenuItem>
                 )}
             </DropdownMenuContent>
         </DropdownMenu>

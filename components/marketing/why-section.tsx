@@ -28,7 +28,7 @@ const strengths = [
 const deliveryChannels = [
 	{ icon: Mail, label: "Correo" },
 	{ icon: FileText, label: "Reporte PDF" },
-	{ icon: FileSpreadsheet, label: "CSV para Excel" },
+	{ icon: FileSpreadsheet, label: "Excel en cada reporte, y CSV" },
 	{ icon: LayoutList, label: "Bandeja en la plataforma" },
 	{ icon: MessageSquareText, label: "Chat con fuentes" },
 ];

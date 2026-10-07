@@ -38,9 +38,9 @@ insert into public.organization_subscriptions (org_id, plan_id, status, current_
 values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'test_default', 'active', now() + interval '30 days');
 
 select results_eq(
-  $$select name, inherits_profile, is_active, schedule, created_by from public.saved_searches
+  $$select name, inherits_profile, is_active, created_by from public.saved_searches
     where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'$$,
-  $$values ('Recomendadas'::text, true, true, 'daily'::text, '11111111-1111-4111-8111-111111111111'::uuid)$$,
+  $$values ('Recomendadas'::text, true, true, '11111111-1111-4111-8111-111111111111'::uuid)$$,
   'activating the plan creates «Recomendadas» for the owner, following the profile'
 );
 select results_eq(
@@ -48,6 +48,12 @@ select results_eq(
     where saved_search_id = pg_temp.default_search('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
   $$values ('first'::text, 'queued'::text, 1, null::uuid)$$,
   'and starts its first run on the saved profile'
+);
+select is(
+  (select r.trigger from public.org_reports r join public.search_runs run on run.report_id = r.id
+   where run.org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+  'first',
+  'as a report of its own, so its email goes out with the first results'
 );
 select is(
   (select count(*)::int from pgmq.q_match

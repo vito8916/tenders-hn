@@ -12,19 +12,15 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { SettingsSection, SettingsSectionBody } from "@/components/settings/settings-section";
 import { saveSavedSearchAction } from "../actions";
 import {
     EMPTY_SAVED_SEARCH,
-    SCHEDULE_LABELS,
-    SEARCH_SCHEDULES,
     savedSearchInputSchema,
     type FilterOptions,
     type SavedSearch,
     type SavedSearchInput,
-    type SearchSchedule,
 } from "../schemas";
 import { CheckboxFilterField, EntityFilterField } from "./filter-fields";
 
@@ -177,61 +173,22 @@ function WhatFields({
     );
 }
 
-function DeliveryFields({ allowedSchedules, disabled }: { allowedSchedules: SearchSchedule[]; disabled?: boolean }) {
+function AlertField({ disabled }: { disabled?: boolean }) {
     const form = useFormContext<SavedSearchInput>();
-    const deliverByEmail = useWatch({ control: form.control, name: "deliverByEmail" });
 
-    const checkbox = (name: "deliverByEmail" | "emailWhenEmpty" | "alertOnChanges", label: string, fieldDisabled?: boolean) => (
+    return (
         <FormField
             control={form.control}
-            name={name}
+            name="alertOnChanges"
             render={({ field }) => (
                 <FormItem>
                     <Label className="font-normal">
-                        <Checkbox disabled={disabled || fieldDisabled} checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} />
-                        {label}
+                        <Checkbox disabled={disabled} checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} />
+                        Avisar cuando cambie una oportunidad ya enviada (fechas, documentos, etapa)
                     </Label>
                 </FormItem>
             )}
         />
-    );
-
-    return (
-        <div className="space-y-6">
-            <FormField
-                control={form.control}
-                name="schedule"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Frecuencia</FormLabel>
-                        <Select value={field.value} onValueChange={field.onChange} disabled={disabled}>
-                            <FormControl>
-                                <SelectTrigger className="w-full sm:w-96">
-                                    <SelectValue />
-                                </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                {SEARCH_SCHEDULES.map((schedule) => (
-                                    <SelectItem key={schedule} value={schedule} disabled={!allowedSchedules.includes(schedule)}>
-                                        {SCHEDULE_LABELS[schedule]}
-                                        {allowedSchedules.includes(schedule) ? "" : " · no incluida en su plan"}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <FormDescription>
-                            Hora de Honduras. Cada ejecución usa la última sincronización completa con HonduCompras.
-                        </FormDescription>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-            <div className="space-y-3">
-                {checkbox("deliverByEmail", "Enviar el reporte por correo")}
-                {checkbox("emailWhenEmpty", "Enviarlo aunque no haya coincidencias nuevas", !deliverByEmail)}
-                {checkbox("alertOnChanges", "Avisar cuando cambie una oportunidad ya enviada (fechas, documentos, etapa)")}
-            </div>
-        </div>
     );
 }
 
@@ -240,14 +197,12 @@ export function SavedSearchForm({
     orgSlug,
     search,
     filterOptions,
-    allowedSchedules,
     hasProfile,
 }: {
     orgId: string;
     orgSlug: string;
     search: SavedSearch | null;
     filterOptions: FilterOptions;
-    allowedSchedules: SearchSchedule[];
     hasProfile: boolean;
 }) {
     const router = useRouter();
@@ -263,12 +218,9 @@ export function SavedSearchForm({
                   entities: search.entities,
                   modalities: search.modalities,
                   acquisitionTypes: search.acquisitionTypes,
-                  schedule: search.schedule,
-                  deliverByEmail: search.deliverByEmail,
-                  emailWhenEmpty: search.emailWhenEmpty,
                   alertOnChanges: search.alertOnChanges,
               }
-            : { ...EMPTY_SAVED_SEARCH, schedule: allowedSchedules.includes("daily") ? "daily" : "manual" },
+            : EMPTY_SAVED_SEARCH,
     });
 
     async function onSubmit(values: SavedSearchInput) {
@@ -310,9 +262,12 @@ export function SavedSearchForm({
                     </SettingsSectionBody>
                 </SettingsSection>
 
-                <SettingsSection title="Frecuencia y entrega">
+                <SettingsSection
+                    title="Avisos"
+                    description="Cuándo se ejecutan las búsquedas y se envía el correo con el Excel se define en Configuración › Reportes."
+                >
                     <SettingsSectionBody>
-                        <DeliveryFields allowedSchedules={allowedSchedules} disabled={isSubmitting} />
+                        <AlertField disabled={isSubmitting} />
                     </SettingsSectionBody>
                 </SettingsSection>
 

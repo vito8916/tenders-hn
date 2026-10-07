@@ -95,7 +95,7 @@ export async function getRunExportService(params: { orgId: string; runId: string
 
 const fileDate = new Intl.DateTimeFormat("sv-SE", { dateStyle: "short", timeZone: "America/Tegucigalpa" });
 
-/** «tenders-hn-<search>-<yyyy-mm-dd>»: the name of a run's downloads. */
+/** «licitaly-<search>-<yyyy-mm-dd>»: the name of a run's downloads. */
 export function runFileName(searchName: string, createdAt: string) {
     const slug = searchName
         .normalize("NFD")
@@ -103,7 +103,7 @@ export function runFileName(searchName: string, createdAt: string) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-|-$/g, "");
-    return `tenders-hn-${slug}-${fileDate.format(new Date(createdAt))}`;
+    return `licitaly-${slug}-${fileDate.format(new Date(createdAt))}`;
 }
 
 /** A link to the run's frozen PDF, or null when the run is not the organization's or the PDF is not ready. */
@@ -112,6 +112,14 @@ export async function getRunReportUrlService(params: { orgId: string; runId: str
     const found = await getOrgRun(params.orgId, params.runId);
     if (!found?.run.reportPath) return null;
     return createReportUrl(found.run.reportPath, `${runFileName(found.searchName, found.run.createdAt)}.pdf`);
+}
+
+/** A link to the run's Excel file, or null when the run is not the organization's or the file is not ready. */
+export async function getRunExcelUrlService(params: { orgId: string; runId: string }) {
+    if (!z.uuid().safeParse(params.runId).success) return null;
+    const found = await getOrgRun(params.orgId, params.runId);
+    if (!found?.run.excelPath) return null;
+    return createReportUrl(found.run.excelPath, `${runFileName(found.searchName, found.run.createdAt)}.xlsx`);
 }
 
 /** Any member runs an active search; request_search_run enforces it. */

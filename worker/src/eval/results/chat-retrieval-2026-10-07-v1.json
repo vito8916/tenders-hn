@@ -1,0 +1,700 @@
+{
+  "set": "v1",
+  "embedModel": "voyage/voyage-4",
+  "summary": [
+    {
+      "passages": 12,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "13/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "27/31",
+      "pagesIdf": "28/31",
+      "medianChars": 20585
+    },
+    {
+      "passages": 16,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "14/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "27/31",
+      "pagesIdf": "29/31",
+      "medianChars": 27375
+    },
+    {
+      "passages": 20,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "14/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "29/31",
+      "pagesIdf": "29/31",
+      "medianChars": 33786
+    },
+    {
+      "passages": 24,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "14/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "30/31",
+      "pagesIdf": "29/31",
+      "medianChars": 39562
+    },
+    {
+      "passages": 30,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "14/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "30/31",
+      "pagesIdf": "29/31",
+      "medianChars": 49417
+    },
+    {
+      "passages": 40,
+      "anyPage": "15/15",
+      "everyPage": "14/15",
+      "pages": "28/31",
+      "everyPageIdf": "15/15",
+      "everyPageBoth": "14/15",
+      "pagesBoth": "30/31",
+      "pagesIdf": "31/31",
+      "medianChars": 65163
+    }
+  ],
+  "results": [
+    {
+      "expediente": "LPN-008-2026",
+      "kind": "factual",
+      "question": "Buenos días. En caso de resultar adjudicados, ¿por qué monto y con qué vigencia debemos presentar la garantía de cumplimiento del contrato, y en qué momento se entrega?",
+      "processes": 1,
+      "chunks": 98,
+      "expectedChunks": 7,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 20,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 47,
+          "functionRank": 2,
+          "fusedRank": 2,
+          "idfFusedRank": 7,
+          "bothFusedRank": 3,
+          "idfRank": 11,
+          "semanticRank": 4,
+          "lexicalRank": 3
+        }
+      ],
+      "charsAt": {
+        "12": 21002,
+        "16": 27375,
+        "20": 33791,
+        "24": 39253,
+        "30": 49720,
+        "40": 64647
+      }
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "kind": "factual",
+      "question": "¿Cuáles son los tiempos de atención y de resolución que exige el Acuerdo de Nivel de Servicio (SLA) según la prioridad de los casos, y qué pasa si no se cumplen?",
+      "processes": 1,
+      "chunks": 98,
+      "expectedChunks": 4,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 29,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 21,
+          "functionRank": 2,
+          "fusedRank": 2,
+          "idfFusedRank": 2,
+          "bothFusedRank": 2,
+          "idfRank": 2,
+          "semanticRank": 2,
+          "lexicalRank": 2
+        }
+      ],
+      "charsAt": {
+        "12": 19477,
+        "16": 26796,
+        "20": 33954,
+        "24": 39669,
+        "30": 49046,
+        "40": 65764
+      }
+    },
+    {
+      "expediente": "LPN-008-2026",
+      "kind": "eligibility",
+      "question": "Nuestra empresa tiene 3 años de fundada, somos partner SAP (aunque no Partner Center of Expertise) y hemos ejecutado dos contratos de soporte SAP con empresas privadas. ¿Calificamos para participar en esta licitación?",
+      "processes": 1,
+      "chunks": 98,
+      "expectedChunks": 9,
+      "fusedRank": 2,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 9,
+          "functionRank": 2,
+          "fusedRank": 2,
+          "idfFusedRank": 3,
+          "bothFusedRank": 3,
+          "idfRank": 3,
+          "semanticRank": 2,
+          "lexicalRank": 7
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 10,
+          "functionRank": 4,
+          "fusedRank": 5,
+          "idfFusedRank": 3,
+          "bothFusedRank": 5,
+          "idfRank": 5,
+          "semanticRank": 2,
+          "lexicalRank": 28
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 28,
+          "functionRank": 5,
+          "fusedRank": 6,
+          "idfFusedRank": 6,
+          "bothFusedRank": 4,
+          "idfRank": 4,
+          "semanticRank": 23,
+          "lexicalRank": 5
+        }
+      ],
+      "charsAt": {
+        "12": 20612,
+        "16": 25919,
+        "20": 32245,
+        "24": 38850,
+        "30": 47885,
+        "40": 65445
+      }
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "kind": "factual",
+      "question": "¿Cuántas computadoras de escritorio básicas solicitan y cuáles son las especificaciones mínimas que deben cumplir?",
+      "processes": 1,
+      "chunks": 75,
+      "expectedChunks": 4,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 23,
+          "functionRank": 2,
+          "fusedRank": 2,
+          "idfFusedRank": 4,
+          "bothFusedRank": 4,
+          "idfRank": 5,
+          "semanticRank": 2,
+          "lexicalRank": 4
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 19,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 20565,
+        "16": 27960,
+        "20": 32005,
+        "24": 39562,
+        "30": 50327,
+        "40": 62877
+      }
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "kind": "factual",
+      "question": "¿En qué plazo pagan al proveedor y qué multa se aplica si me atraso en la entrega?",
+      "processes": 1,
+      "chunks": 75,
+      "expectedChunks": 4,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 22,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 2,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 44,
+          "functionRank": 4,
+          "fusedRank": 4,
+          "idfFusedRank": 8,
+          "bothFusedRank": 8,
+          "idfRank": 13,
+          "semanticRank": 5,
+          "lexicalRank": 3
+        }
+      ],
+      "charsAt": {
+        "12": 19141,
+        "16": 26717,
+        "20": 31542,
+        "24": 38006,
+        "30": 49016,
+        "40": 64616
+      }
+    },
+    {
+      "expediente": "LPN-023-2026-SDN",
+      "kind": "absent",
+      "question": "¿Cuál es el monto del presupuesto estimado para esta licitación? Quiero saber si mi precio queda por debajo.",
+      "processes": 1,
+      "chunks": 75,
+      "expectedChunks": 2,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 16,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 2
+        }
+      ],
+      "charsAt": {
+        "12": 19361,
+        "16": 26186,
+        "20": 33320,
+        "24": 39238,
+        "30": 47448,
+        "40": 63541
+      }
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "kind": "factual",
+      "question": "¿Cuántos colaboradores titulares incluye el censo inicial de asegurados y cuál es la suma asegurada del seguro de vida por persona?",
+      "processes": 1,
+      "chunks": 50,
+      "expectedChunks": 4,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 18,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 20585,
+        "16": 27425,
+        "20": 32504,
+        "24": 39991,
+        "30": 48673,
+        "40": 65370
+      }
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "kind": "factual",
+      "question": "Si resultamos adjudicados, ¿qué garantía debemos presentar al firmar el contrato, por qué monto y con qué vigencia?",
+      "processes": 1,
+      "chunks": 50,
+      "expectedChunks": 3,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 15,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 4,
+          "bothFusedRank": 1,
+          "idfRank": 10,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 16,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 4,
+          "bothFusedRank": 1,
+          "idfRank": 10,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 21618,
+        "16": 27869,
+        "20": 35212,
+        "24": 39494,
+        "30": 50641,
+        "40": 65163
+      }
+    },
+    {
+      "expediente": "LPN-PGR-01-2026",
+      "kind": "absent",
+      "question": "Para calcular nuestra prima, ¿cuál es la siniestralidad histórica de la póliza actual de la Procuraduría y cuál es el presupuesto estimado para esta contratación?",
+      "processes": 1,
+      "chunks": 50,
+      "expectedChunks": 2,
+      "fusedRank": 12,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 8,
+          "functionRank": 11,
+          "fusedRank": 12,
+          "idfFusedRank": 14,
+          "bothFusedRank": 11,
+          "idfRank": 9,
+          "semanticRank": 27,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 20350,
+        "16": 27802,
+        "20": 35117,
+        "24": 41227,
+        "30": 49417,
+        "40": 63928
+      }
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "kind": "factual",
+      "question": "¿Qué especificaciones técnicas debe cumplir la camioneta en cuanto a año, combustible, cilindraje, tracción y transmisión, y qué garantía del producto se exige?",
+      "processes": 1,
+      "chunks": 91,
+      "expectedChunks": 3,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 55,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 56,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 57,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 22763,
+        "16": 30091,
+        "20": 37598,
+        "24": 45248,
+        "30": 56649,
+        "40": 75326
+      }
+    },
+    {
+      "expediente": "LPN-SDE-003-2026",
+      "kind": "factual",
+      "question": "Si nos atrasamos en la entrega del vehículo, ¿qué multa aplicaría la Secretaría y cuál es el monto máximo?",
+      "processes": 1,
+      "chunks": 91,
+      "expectedChunks": 3,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 84,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 85,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 86,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 22273,
+        "16": 30120,
+        "20": 37633,
+        "24": 44553,
+        "30": 56044,
+        "40": 74857
+      }
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "kind": "factual",
+      "question": "Somos una empresa textil y no fabricamos calzado. ¿Podemos ofertar únicamente las partidas de camisas y pantalones, o la oferta debe cubrir todas las partidas?",
+      "processes": 1,
+      "chunks": 106,
+      "expectedChunks": 8,
+      "fusedRank": 10,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 6,
+          "functionRank": 12,
+          "fusedRank": 10,
+          "idfFusedRank": 34,
+          "bothFusedRank": 22,
+          "idfRank": 61,
+          "semanticRank": 13,
+          "lexicalRank": 13
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 23,
+          "functionRank": null,
+          "fusedRank": null,
+          "idfFusedRank": 37,
+          "bothFusedRank": 49,
+          "idfRank": 20,
+          "semanticRank": 58,
+          "lexicalRank": 42
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 49,
+          "functionRank": null,
+          "fusedRank": 46,
+          "idfFusedRank": 7,
+          "bothFusedRank": 19,
+          "idfRank": 3,
+          "semanticRank": 26,
+          "lexicalRank": 42
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 50,
+          "functionRank": null,
+          "fusedRank": 45,
+          "idfFusedRank": 7,
+          "bothFusedRank": 19,
+          "idfRank": 3,
+          "semanticRank": 25,
+          "lexicalRank": 42
+        }
+      ],
+      "charsAt": {
+        "12": 22294,
+        "16": 29250,
+        "20": 36951,
+        "24": 44455,
+        "30": 54320,
+        "40": 70479
+      }
+    },
+    {
+      "expediente": "UNAH-SEAF-LPN-009-2026",
+      "kind": "factual",
+      "question": "Si resultamos adjudicados, ¿qué garantías debemos presentar después de firmar el contrato y cómo se nos pagaría?",
+      "processes": 1,
+      "chunks": 106,
+      "expectedChunks": 6,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 28,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 3,
+          "bothFusedRank": 3,
+          "idfRank": 5,
+          "semanticRank": 1,
+          "lexicalRank": 2
+        },
+        {
+          "document": "Pliego o Terminos de Referencia",
+          "page": 29,
+          "functionRank": 8,
+          "fusedRank": 8,
+          "idfFusedRank": 3,
+          "bothFusedRank": 6,
+          "idfRank": 5,
+          "semanticRank": 6,
+          "lexicalRank": 15
+        }
+      ],
+      "charsAt": {
+        "12": 20690,
+        "16": 26682,
+        "20": 33786,
+        "24": 41336,
+        "30": 50133,
+        "40": 66189
+      }
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "kind": "factual",
+      "question": "¿Qué capacidad útil inicial debe tener la solución y hasta cuánto debe poder crecer?",
+      "processes": 1,
+      "chunks": 8,
+      "expectedChunks": 5,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Anexos al Pliego",
+          "page": 2,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        },
+        {
+          "document": "Anexos al Pliego",
+          "page": 3,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 11026,
+        "16": 11026,
+        "20": 11026,
+        "24": 11026,
+        "30": 11026,
+        "40": 11026
+      }
+    },
+    {
+      "expediente": "IPM-LPN-GC-2026-018",
+      "kind": "factual",
+      "question": "¿Cómo se ponderan los criterios de evaluación de las ofertas?",
+      "processes": 1,
+      "chunks": 8,
+      "expectedChunks": 2,
+      "fusedRank": 1,
+      "pages": [
+        {
+          "document": "Anexos al Pliego",
+          "page": 5,
+          "functionRank": 1,
+          "fusedRank": 1,
+          "idfFusedRank": 1,
+          "bothFusedRank": 1,
+          "idfRank": 1,
+          "semanticRank": 1,
+          "lexicalRank": 1
+        }
+      ],
+      "charsAt": {
+        "12": 11026,
+        "16": 11026,
+        "20": 11026,
+        "24": 11026,
+        "30": 11026,
+        "40": 11026
+      }
+    }
+  ]
+}

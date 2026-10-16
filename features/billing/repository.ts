@@ -97,21 +97,30 @@ export async function getPlanIdForPrice(priceId: string): Promise<string | null>
     return data?.plan_id ?? null;
 }
 
+const entitlementsSchema = z
+    .array(z.object({ is_active: z.boolean(), seats_used: z.number(), max_members: z.number().nullable(), max_active_searches: z.number().nullable() }))
+    .length(1);
+
+/** The organization's plan limits and whether its plan is active; seats count members and pending invitations. */
+export async function getEntitlements(orgId: string) {
+    const supabase = await createClient();
+    const { data, error } = await supabase.rpc("get_organization_entitlements", { target_org: orgId });
+    if (error) throw error;
+
+    const [plan] = entitlementsSchema.parse(data);
+    return plan;
+}
+
 export async function getUsage(orgId: string): Promise<Usage> {
     const supabase = await createClient();
-    const [entitlements, credits, searches] = await Promise.all([
-        supabase.rpc("get_organization_entitlements", { target_org: orgId }),
+    const [plan, credits, searches] = await Promise.all([
+        getEntitlements(orgId),
         supabase.rpc("get_ai_credit_balance", { target_org: orgId }),
         supabase.from("saved_searches").select("id", { count: "exact", head: true }).eq("org_id", orgId).eq("is_active", true),
     ]);
-    if (entitlements.error) throw entitlements.error;
     if (credits.error) throw credits.error;
     if (searches.error) throw searches.error;
 
-    const [plan] = z
-        .array(z.object({ is_active: z.boolean(), seats_used: z.number(), max_members: z.number().nullable(), max_active_searches: z.number().nullable() }))
-        .length(1)
-        .parse(entitlements.data);
     const [balance] = z.array(z.object({ available: z.number(), granted: z.number() })).parse(credits.data);
 
     return usageSchema.parse({

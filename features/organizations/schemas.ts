@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { InviteRoleSchema } from "@/features/invitations/schemas";
+import { companyProfileInputSchema } from "@/features/company-profile/schemas";
 
 /**
  * Reusable field definitions for organizations
@@ -58,29 +58,12 @@ export const createOrganizationInputSchema = z.object({
 });
 
 /**
- * Form schema for creating organization with invites (client-side validation)
- * Used in UI components for form validation
+ * Input schema for creating an organization with what the company sells (onboarding and «Crear organización»);
+ * the URL identifier is generated from the name
  */
-export const createOrganizationWithInvitesFormSchema = z.object({
-    orgName: organizationNameField,
-    orgSlug: organizationSlugField,
-    invites: z
-        .array(
-            z.object({
-                email: z.string().email("Ingrese un correo electrónico válido.").or(z.literal("")),
-                role: InviteRoleSchema,
-            })
-        )
-        .max(10, "Puede enviar hasta 10 invitaciones.")
-        .refine(
-            (invites) => {
-                const nonEmptyInvites = invites.filter((inv) => inv.email.trim() !== "");
-                return nonEmptyInvites.length <= 10;
-            },
-            {
-                message: "Puede enviar hasta 10 invitaciones.",
-            }
-        ),
+export const createOrganizationWithCompanyInputSchema = z.object({
+    name: organizationNameField,
+    companyProfile: companyProfileInputSchema,
 });
 
 /**
@@ -102,4 +85,4 @@ export type Organization = z.infer<typeof organizationSchema>;
 export type OrganizationListItem = z.infer<typeof organizationListItemSchema>;
 export type CreateOrganizationInput = z.infer<typeof createOrganizationInputSchema>;
 export type UpdateOrganizationInput = z.infer<typeof updateOrganizationInputSchema>;
-export type CreateOrganizationWithInvitesFormInput = z.infer<typeof createOrganizationWithInvitesFormSchema>;
+export type CreateOrganizationWithCompanyInput = z.infer<typeof createOrganizationWithCompanyInputSchema>;

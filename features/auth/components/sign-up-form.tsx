@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
-import { Eye, EyeOff, Github, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { signUpAction, signInWithOAuthAction } from "../actions";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ export function SignUpForm({
 }: React.ComponentPropsWithoutRef<"div">) {
 
   const [showPassword, setShowPassword] = useState(false);
-  const [isOauthLoading, setIsOauthLoading] = useState<"github" | "google" | null>(null);
+  const [isOauthLoading, setIsOauthLoading] = useState<"google" | null>(null);
   const router = useRouter();
   const nextPath = useAuthNextPath();
   const destination = nextPath ?? "/organizations";
@@ -57,7 +57,7 @@ export function SignUpForm({
     }
   }
 
-  async function handleOAuth(provider: "github" | "google") {
+  async function handleOAuth(provider: "google") {
     try {
       setIsOauthLoading(provider);
       const result = await signInWithOAuthAction(provider, destination);
@@ -219,11 +219,7 @@ export function SignUpForm({
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <Button variant="outline" disabled={form.formState.isSubmitting || isOauthLoading !== null} onClick={() => handleOAuth("github")}>
-                                <Github className="mr-2 h-4 w-4" />
-                                GitHub
-                            </Button>
+                        <div className="grid gap-4">
                             <Button variant="outline" disabled={form.formState.isSubmitting || isOauthLoading !== null} onClick={() => handleOAuth("google")}>
                                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                                     <path

@@ -8,6 +8,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { getOrganizationBySlugService } from "@/features/organizations/services";
 import { getUserOrgRoleService } from "@/features/memberships/services";
+import { canInviteMembers } from "@/features/organizations/rbac";
+import { getSeatsUsedService } from "@/features/billing/services";
+import { InviteTeamBanner } from "@/features/invitations/components/invite-team-banner";
 import { canManageSearches } from "@/features/saved-searches/rbac";
 import { canDecideOpportunity } from "@/features/opportunities/rbac";
 import { getSearchLimitsService } from "@/features/saved-searches/services";
@@ -60,10 +63,11 @@ async function HomeContent({
 		redirect("/organizations");
 	}
 
-	const [role, limits, home] = await Promise.all([
+	const [role, limits, home, seatsUsed] = await Promise.all([
 		getUserOrgRoleService({ userId, orgId: organization.id }),
 		getSearchLimitsService(organization.id),
 		getHomeService({ orgId: organization.id, searchId: busqueda ?? null, runId: ejecucion ?? null }),
+		getSeatsUsedService(organization.id),
 	]);
 	if (!role) {
 		redirect("/organizations");
@@ -73,6 +77,8 @@ async function HomeContent({
 	const underLimit = limits.maxActiveSearches === null || limits.activeSearches < limits.maxActiveSearches;
 	const canCreate = canManage && limits.hasActivePlan && underLimit;
 	const { selected } = home;
+	// A single seat means no other member and no pending invitation.
+	const showInviteBanner = canInviteMembers(role) && seatsUsed === 1;
 
 	const pane = (
 		<SearchesPane
@@ -94,14 +100,7 @@ async function HomeContent({
 				<div className="lg:hidden">
 					<SearchesSheet>{pane}</SearchesSheet>
 				</div>
-				{!limits.hasActivePlan ? (
-					<p className="rounded-lg border border-dashed p-3 text-sm text-muted-foreground">
-						La organización no tiene un plan activo: puede consultar sus búsquedas y resultados, pero no crear ni ejecutar búsquedas.{" "}
-						<Link href={`/organizations/${orgSlug}/settings/billing`} className="text-primary hover:underline">
-							Ver planes
-						</Link>
-					</p>
-				) : null}
+				{showInviteBanner ? <InviteTeamBanner orgId={organization.id} orgSlug={orgSlug} /> : null}
 				{selected ? (
 					<SearchWorkspace
 						orgId={organization.id}

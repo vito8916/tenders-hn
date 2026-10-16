@@ -165,7 +165,7 @@ export async function signInAction(values: SignInFormValues) {
  * Redirects the user to the provider's consent screen.
  */
 export async function signInWithOAuthAction(
-  provider: "github" | "google",
+  provider: "google",
   nextPath?: string,
 ) {
   const supabase = await createClient();

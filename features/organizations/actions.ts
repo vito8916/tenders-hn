@@ -4,17 +4,16 @@ import { z } from "zod";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
-import type { InviteItem } from "@/features/invitations/schemas";
 import {
     createOrganizationInputSchema,
+    createOrganizationWithCompanyInputSchema,
     updateOrganizationInputSchema,
 } from "./schemas";
 import {
     createOrganizationService,
+    createOrganizationWithCompanyProfileService,
     updateOrganizationService,
     deleteOrganizationService,
-    checkSlugAvailabilityService,
-    createOrganizationWithInvitesService,
     transferOwnershipService,
 } from "./services";
 import { userErrorMessage } from "@/lib/errors";
@@ -143,128 +142,27 @@ export async function deleteOrganizationAction(orgId: string): Promise<{ success
     redirect("/organizations");
 }
 
-const checkSlugAvailabilitySchema = z.object({
-    slug: z.string().min(1, "Ingrese el identificador en la URL."),
-});
-
 /**
- * Server Action for checking organization slug availability
- * Entry point from UI components
- *
- * @param slug - The slug to check
- * @returns Object with isAvailable boolean
- * @throws Error on failure
+ * Server Action for «Crear organización»: creates the organization with what the company sells.
+ * The plan comes next: the organization's pages ask the owner to choose one.
  */
-export async function checkSlugAvailabilityAction(slug: string): Promise<{ isAvailable: boolean }> {
-    // Validate input
-    const parsed = checkSlugAvailabilitySchema.safeParse({ slug });
-
-    if (!parsed.success) {
-        throw new Error(parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos.");
-    }
-
-    // Call service layer
-    return await checkSlugAvailabilityService(parsed.data.slug);
-}
-
-/**
- * Server Action for creating an organization with invitations
- * Entry point from UI components
- *
- * @param formData - Form data from client containing name, slug, invites (JSON), and optional orgLogoFile
- * @returns Object with success status, redirectUrl, and optional error message
- */
-export async function createOrganizationWithInvitesAction(formData: FormData): Promise<{
-    success: boolean;
-    redirectUrl?: string;
-    error?: string;
-}> {
+export async function createOrganizationWithCompanyAction(input: unknown): Promise<
+    { success: true; redirectUrl: string } | { success: false; error: string }
+> {
     try {
-        // 1. Resolve authenticated user
         const { sub: userId } = await getCurrentUser();
 
-        // 2. Parse form data
-        const name = formData.get("name") ? String(formData.get("name")) : "";
-        const slug = formData.get("slug") ? String(formData.get("slug")) : "";
-        const invitesJson = formData.get("invites") ? String(formData.get("invites")) : "[]";
-        const orgLogoFile = formData.get("orgLogoFile") as File | null;
-
-        // 3. Parse and validate invites
-        let invites: InviteItem[] = [];
-        try {
-            const parsedInvites = JSON.parse(invitesJson);
-            invites = parsedInvites.filter((inv: InviteItem) => inv.email && inv.email.trim() !== "");
-        } catch {
-            return {
-                success: false,
-                error: "Las invitaciones no tienen un formato válido.",
-            };
-        }
-
-        // 4. Validate organization input
-        const parsed = createOrganizationInputSchema.safeParse({
-            name: name.trim(),
-            slug: slug.trim(),
-            ownerId: userId,
-            orgLogoUrl: null, // Will be set after upload if file provided
-        });
-
+        const parsed = createOrganizationWithCompanyInputSchema.safeParse(input);
         if (!parsed.success) {
-            return {
-                success: false,
-                error: parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos.",
-            };
+            return { success: false, error: parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos." };
         }
 
-        // 5. Process logo file if provided
-        const ORG_LOGO_MAX_BYTES = 2 * 1024 * 1024; // 2MB
+        const organization = await createOrganizationWithCompanyProfileService({ ownerId: userId, input: parsed.data });
 
-        let logoFileData: {
-            buffer: Buffer;
-            fileName: string;
-            contentType: string;
-        } | undefined;
-
-        if (orgLogoFile && orgLogoFile.size > 0) {
-            if (orgLogoFile.size > ORG_LOGO_MAX_BYTES) {
-                return {
-                    success: false,
-                    error: "El logo de la organización debe pesar 2 MB o menos.",
-                };
-            }
-            const arrayBuffer = await orgLogoFile.arrayBuffer();
-            const buffer = Buffer.from(arrayBuffer);
-
-            // Generate a safe filename
-            const originalName = orgLogoFile.name;
-            const extension = originalName.split('.').pop() || 'png';
-            const fileName = `logo.${extension}`;
-
-            logoFileData = {
-                buffer,
-                fileName,
-                contentType: orgLogoFile.type || 'image/png',
-            };
-        }
-
-        // 6. Call service layer
-        const organization = await createOrganizationWithInvitesService({
-            organizationInput: parsed.data,
-            logoFile: logoFileData,
-            invites,
-        });
-
-        // 7. Return success with redirect URL
-        return {
-            success: true,
-            redirectUrl: `/organizations/${organization.slug}`,
-        };
+        return { success: true, redirectUrl: `/organizations/${organization.slug}` };
     } catch (error) {
-        console.error("Error creating organization with invites:", error);
-        return {
-            success: false,
-            error: userErrorMessage(error, "No se pudo crear la organización. Intente de nuevo."),
-        };
+        console.error("Error creating organization:", error);
+        return { success: false, error: userErrorMessage(error, "No se pudo crear la organización. Intente de nuevo.") };
     }
 }
 

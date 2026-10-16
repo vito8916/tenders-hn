@@ -27,12 +27,6 @@ async function OnboardingContent({ searchParams }: { searchParams: OnboardingSea
 
     return (
         <OnboardingStepper
-            defaultProfile={{
-                fullName: profile.fullName || "",
-                phone: profile.phone || "",
-                email: user.email || "",
-                avatarUrl: profile.avatarUrl,
-            }}
             pendingInvitations={pendingInvitations.map((invitation) => ({
                 id: invitation.id,
                 orgName: invitation.orgName,

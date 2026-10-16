@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { NavMain } from "@/components/app-shell/nav-main";
 import { NavUser } from "@/components/app-shell/nav-user";
+import { SidebarPinButton } from "@/components/app-shell/sidebar-pin-button";
 import { SettingsSidebar } from "@/components/app-shell/settings-sidebar";
 import { TeamSwitcher } from "@/components/app-shell/team-switcher";
 import {
@@ -39,6 +40,7 @@ export function AppSidebar({ profile, ...props }: AppSidebarProps) {
 						<NavMain />
 					</SidebarContent>
 					<SidebarFooter>
+						<SidebarPinButton />
 						<NavUser profile={profile} />
 					</SidebarFooter>
 				</>

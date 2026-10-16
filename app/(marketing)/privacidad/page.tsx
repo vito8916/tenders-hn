@@ -27,7 +27,7 @@ export default function PrivacyPage() {
 			<ul>
 				<li>
 					<strong>Datos de su cuenta:</strong> nombre, correo electrónico y foto de perfil. Si inicia sesión con
-					Google o GitHub, recibimos de ese proveedor su nombre, correo y foto.
+					Google, recibimos de Google su nombre, correo y foto.
 				</li>
 				<li>
 					<strong>Datos de la organización:</strong> nombre, logotipo, miembros, roles e invitaciones (incluido
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
 					empresa y responden las preguntas del chat. Su contenido se les envía solo para prestarle el servicio.
 				</li>
 				<li>
-					<strong>Google y GitHub:</strong> solo si usted decide iniciar sesión con ellos.
+					<strong>Google:</strong> solo si usted decide iniciar sesión con Google.
 				</li>
 				<li>
 					<strong>{siteConfig.merchantOfRecord}:</strong> procesa los pagos, emite las facturas y gestiona los

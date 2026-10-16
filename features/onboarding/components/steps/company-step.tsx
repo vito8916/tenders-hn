@@ -1,6 +1,6 @@
 "use client";
 
-import { CompanyProfileFields } from "@/features/company-profile/components/company-profile-fields";
+import { OrganizationCompanyFields } from "@/features/organizations/components/organization-company-fields";
 import type { ImprovementsRemaining } from "@/features/company-profile/schemas";
 
 export function CompanyStep({ improvementsRemaining }: { improvementsRemaining: ImprovementsRemaining }) {
@@ -14,7 +14,7 @@ export function CompanyStep({ improvementsRemaining }: { improvementsRemaining: 
                 </p>
             </div>
 
-            <CompanyProfileFields orgId={null} improvementsRemaining={improvementsRemaining} />
+            <OrganizationCompanyFields improvementsRemaining={improvementsRemaining} />
         </div>
     );
 }

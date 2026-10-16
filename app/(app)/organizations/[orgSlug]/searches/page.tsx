@@ -55,11 +55,7 @@ async function SearchesContent({ params }: { params: Promise<{ orgSlug: string }
                         )
                     ) : null}
                 </div>
-            ) : (
-                <p className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-                    La organización no tiene un plan activo: puede consultar sus búsquedas, pero no crearlas ni ejecutarlas.
-                </p>
-            )}
+            ) : null}
 
             {searches.length > 0 ? (
                 <SavedSearchList orgSlug={orgSlug} searches={searches} latestRuns={latestRuns} canRun={limits.hasActivePlan} />

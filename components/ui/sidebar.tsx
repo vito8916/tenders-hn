@@ -40,6 +40,8 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void
   isMobile: boolean
   toggleSidebar: () => void
+  hoverOpen: boolean
+  setHoverOpen: (open: boolean) => void
 }
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null)
@@ -68,6 +70,7 @@ function SidebarProvider({
 }) {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
+  const [hoverOpen, setHoverOpen] = React.useState(false)
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
@@ -76,6 +79,7 @@ function SidebarProvider({
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === "function" ? value(open) : value
+      setHoverOpen(false)
       if (setOpenProp) {
         setOpenProp(openState)
       } else {
@@ -111,7 +115,7 @@ function SidebarProvider({
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
-  const state = open ? "expanded" : "collapsed"
+  const state = open || hoverOpen ? "expanded" : "collapsed"
 
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
@@ -122,8 +126,10 @@ function SidebarProvider({
       openMobile,
       setOpenMobile,
       toggleSidebar,
+      hoverOpen,
+      setHoverOpen,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar, hoverOpen]
   )
 
   return (
@@ -163,7 +169,32 @@ function Sidebar({
   variant?: "sidebar" | "floating" | "inset"
   collapsible?: "offcanvas" | "icon" | "none"
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+  const { isMobile, state, open, openMobile, setOpenMobile, hoverOpen, setHoverOpen } =
+    useSidebar()
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const isHoverExpanded = !open && hoverOpen
+
+  // Collapses the hover-expanded sidebar once the pointer leaves it, unless the
+  // pointer is over one of its menus (portaled) or one of them is still open.
+  React.useEffect(() => {
+    if (!isHoverExpanded) return
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const container = containerRef.current
+      const target = event.target as Element
+      if (
+        container?.contains(target) ||
+        target.closest?.("[data-radix-popper-content-wrapper]") ||
+        container?.querySelector('[aria-haspopup][aria-expanded="true"]')
+      ) {
+        return
+      }
+      setHoverOpen(false)
+    }
+
+    document.addEventListener("pointermove", handlePointerMove)
+    return () => document.removeEventListener("pointermove", handlePointerMove)
+  }, [isHoverExpanded, setHoverOpen])
 
   if (collapsible === "none") {
     return (
@@ -223,11 +254,18 @@ function Sidebar({
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
+          isHoverExpanded && "w-(--sidebar-width-icon)"
         )}
       />
       <div
+        ref={containerRef}
         data-slot="sidebar-container"
+        onPointerMove={(event) => {
+          if (event.pointerType === "mouse" && collapsible === "icon" && !open && !hoverOpen) {
+            setHoverOpen(true)
+          }
+        }}
         className={cn(
           "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
           side === "left"
@@ -237,6 +275,7 @@ function Sidebar({
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          isHoverExpanded && "z-30 shadow-lg",
           className
         )}
         {...props}

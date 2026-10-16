@@ -22,12 +22,17 @@ import { MembersTable } from "@/features/memberships/components/members-table";
 import { PendingInvitationsTable } from "@/features/invitations/components/pending-invitations-table";
 import { InviteMembersDialog } from "@/features/invitations/components/invite-members-dialog";
 
+// invitar opens the invite dialog, which the Home's invitation banner links to.
+type MembersSearchParams = Promise<{ invitar?: string }>;
+
 async function InviteMembersAction({
     params,
+    searchParams,
 }: {
     params: Promise<{ orgSlug: string }>;
+    searchParams: MembersSearchParams;
 }) {
-    const { orgSlug } = await params;
+    const [{ orgSlug }, { invitar }] = await Promise.all([params, searchParams]);
     const [{ sub: userId }, organization] = await Promise.all([
         getCurrentUser(),
         getOrganizationBySlugService(orgSlug),
@@ -42,7 +47,7 @@ async function InviteMembersAction({
         return null;
     }
 
-    return <InviteMembersDialog orgId={organization.id} orgSlug={orgSlug} />;
+    return <InviteMembersDialog orgId={organization.id} orgSlug={orgSlug} defaultOpen={invitar !== undefined} />;
 }
 
 async function MembersContent({
@@ -103,8 +108,10 @@ export const metadata = { title: "Miembros" };
 
 export default function MembersPage({
     params,
+    searchParams,
 }: {
     params: Promise<{ orgSlug: string }>;
+    searchParams: MembersSearchParams;
 }) {
     return (
         <div className="flex w-full max-w-5xl flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
@@ -114,7 +121,7 @@ export default function MembersPage({
                 description="Administre quién tiene acceso a esta organización."
                 action={
                     <Suspense fallback={<Skeleton className="h-9 w-36" />}>
-                        <InviteMembersAction params={params} />
+                        <InviteMembersAction params={params} searchParams={searchParams} />
                     </Suspense>
                 }
             />

@@ -1,12 +1,11 @@
 import 'server-only';
 import { cache } from "react";
 import { getUserOrgRole } from "@/features/memberships/repository";
-import { inviteMembersService } from "@/features/invitations/services";
+import { saveCompanyProfileService } from "@/features/company-profile/services";
 import { logAppEventService } from "@/features/events/services";
 import { APP_EVENTS } from "@/features/events/schemas";
 import { uploadOrganizationLogo } from "./repository";
 import { getOrganizationLogoUrl } from "@/lib/utils/storage";
-import type { InviteItem } from "@/features/invitations/schemas";
 import { UserFacingError } from "@/lib/errors";
 import {
     createOrganization,
@@ -27,6 +26,7 @@ import type {
     UpdateOrganizationInput,
     Organization,
     OrganizationListItem,
+    CreateOrganizationWithCompanyInput,
 } from "./schemas";
 
 /**
@@ -201,77 +201,46 @@ export async function listOrganizationsByUserService(params: { userId: string })
     return organizationsWithSignedUrls;
 }
 
-/**
- * Service layer for checking organization slug availability
- *
- * @param slug - The slug to check
- * @returns Object with isAvailable boolean
- * @throws Error if query fails
- */
-export async function checkSlugAvailabilityService(
-    slug: string
-): Promise<{ isAvailable: boolean }> {
-    return checkSlugAvailability(slug);
+const MAX_SLUG_ATTEMPTS = 50;
+
+/** A URL identifier from the organization's name; a numeric suffix keeps it unique when another organization has it. */
+async function generateOrganizationSlug(name: string): Promise<string> {
+    const readable = name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+        .slice(0, 40)
+        .replace(/-$/, "");
+    const base = readable.length >= 2 ? readable : "organizacion";
+
+    for (let attempt = 1; attempt <= MAX_SLUG_ATTEMPTS; attempt++) {
+        const candidate = attempt === 1 ? base : `${base}-${attempt}`;
+        if ((await checkSlugAvailability(candidate)).isAvailable) return candidate;
+    }
+    throw new UserFacingError("No se pudo generar la dirección de la organización. Pruebe con otro nombre.");
 }
 
 /**
- * Service layer for creating an organization with invitations
- * Orchestrates: org creation -> logo upload (if provided) -> org update -> invitation creation
+ * Service layer for creating an organization from its name and what the company sells,
+ * which is what «Recomendadas» needs to run once the plan is active
  *
- * @param params - Object containing organization data, optional logo file, and invitations
- * @returns The created organization entity
  * @throws Error if any step fails
  */
-export async function createOrganizationWithInvitesService(params: {
-    organizationInput: CreateOrganizationInput;
-    logoFile?: {
-        buffer: Buffer;
-        fileName: string;
-        contentType: string;
-    };
-    invites: InviteItem[];
+export async function createOrganizationWithCompanyProfileService(params: {
+    ownerId: string;
+    input: CreateOrganizationWithCompanyInput;
 }): Promise<Organization> {
-    // Step 1: Create organization (without logo initially)
-    const orgInputWithoutLogo: CreateOrganizationInput = {
-        ...params.organizationInput,
+    const organization = await createOrganizationService({
+        name: params.input.name,
+        slug: await generateOrganizationSlug(params.input.name),
+        ownerId: params.ownerId,
         orgLogoUrl: null,
-    };
-    let organization = await createOrganizationService(orgInputWithoutLogo);
+    });
+    await saveCompanyProfileService({ orgId: organization.id, input: params.input.companyProfile });
 
-    try {
-        // Step 2: Upload logo if provided and update organization
-        // The storage path is persisted; signed URLs are generated on read
-        if (params.logoFile) {
-            const logoPath = await uploadOrganizationLogo({
-                orgId: organization.id,
-                file: params.logoFile.buffer,
-                fileName: params.logoFile.fileName,
-                contentType: params.logoFile.contentType,
-            });
-
-            organization = await updateOrganization(organization.id, {
-                orgLogoUrl: logoPath,
-            });
-        }
-
-        // Step 3: Create invitations and send emails if any
-        if (params.invites.length > 0) {
-            await inviteMembersService({
-                orgId: organization.id,
-                userId: params.organizationInput.ownerId,
-                invites: params.invites,
-            });
-        }
-
-        return organization;
-    } catch (error) {
-        // If logo upload or invitation creation fails, the org is already created
-        // This is acceptable - the org exists, just without logo/invitations
-        // In a production system, you might want to rollback the org creation
-        // For now, we'll let it succeed and log the error
-        console.error("Error uploading logo or creating invitations:", error);
-        throw error;
-    }
+    return organization;
 }
 
 /**

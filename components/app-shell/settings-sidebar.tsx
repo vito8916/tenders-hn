@@ -5,6 +5,7 @@ import { useParams, usePathname } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { NavUser } from "@/components/app-shell/nav-user";
+import { SidebarPinButton } from "@/components/app-shell/sidebar-pin-button";
 import {
 	SidebarContent,
 	SidebarFooter,
@@ -30,7 +31,7 @@ export function SettingsSidebar({ profile }: { profile: Profile }) {
 
 	return (
 		<>
-			<SidebarHeader className="flex flex-row items-center border-b border-sidebar-border px-2">
+			<SidebarHeader className="flex h-14 shrink-0 flex-row items-center border-b border-sidebar-border px-2 py-0">
 				<SidebarMenuButton asChild tooltip="Volver al inicio" className="size-8">
 					<Link
 						href={`/organizations/${orgSlug}`}
@@ -39,8 +40,8 @@ export function SettingsSidebar({ profile }: { profile: Profile }) {
 						<ArrowLeft className="size-4" />
 					</Link>
 				</SidebarMenuButton>
-				<h2 className="flex-1 text-center text-sm font-medium">Configuración</h2>
-				<div className="size-8 shrink-0" aria-hidden />
+				<h2 className="flex-1 truncate text-center text-sm font-medium group-data-[collapsible=icon]:hidden">Configuración</h2>
+				<div className="size-8 shrink-0 group-data-[collapsible=icon]:hidden" aria-hidden />
 			</SidebarHeader>
 
 			<SidebarContent>
@@ -55,7 +56,7 @@ export function SettingsSidebar({ profile }: { profile: Profile }) {
 
 									return (
 										<SidebarMenuItem key={item.segment}>
-											<SidebarMenuButton asChild isActive={isActive}>
+											<SidebarMenuButton asChild isActive={isActive} tooltip={item.label}>
 												<Link prefetch href={href}>
 													<item.icon className="size-4" />
 													<span>{item.label}</span>
@@ -71,6 +72,7 @@ export function SettingsSidebar({ profile }: { profile: Profile }) {
 			</SidebarContent>
 
 			<SidebarFooter>
+				<SidebarPinButton />
 				<NavUser profile={profile} />
 			</SidebarFooter>
 		</>

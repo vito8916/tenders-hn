@@ -7,6 +7,10 @@ export const SearchRunStatusSchema = z.enum(["queued", "running", "completed", "
 export type SearchRunStatus = z.infer<typeof SearchRunStatusSchema>;
 
 export const isRunActive = (status: SearchRunStatus) => status === "queued" || status === "running";
+const STALE_RUN_MS = 30 * 60_000;
+/** Still queued or running half an hour after it was created: the worker is likely down, so the page stops refreshing itself. */
+export const isRunStale = (run: { status: SearchRunStatus; createdAt: string }) =>
+    isRunActive(run.status) && Date.now() - new Date(run.createdAt).getTime() > STALE_RUN_MS;
 /** Completed or partial: a run whose results can be shown. */
 export const isRunFinished = (status: SearchRunStatus) => status === "completed" || status === "partial";
 

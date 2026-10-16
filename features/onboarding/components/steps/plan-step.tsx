@@ -22,12 +22,12 @@ export function PlanStep({
             <div>
                 <h2 className="text-2xl font-bold">Elija su plan</h2>
                 <p className="text-muted-foreground mt-1">
-                    Precios mensuales en dólares, con impuestos incluidos. Si tiene un código de piloto, ingréselo al
+                    Precios mensuales en dólares. Si tiene un código de piloto, ingréselo al
                     pagar. Puede cambiar de plan o cancelar cuando quiera en Configuración › Facturación.
                 </p>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-4">
                 {plans.map((plan) => {
                     const isPreselected = plan.planId === preselectedPlanId;
                     return (

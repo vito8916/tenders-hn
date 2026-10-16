@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Eye, EyeOff, GithubIcon, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { signInAction, signInWithOAuthAction } from "../actions";
 import { useAuthNextPath, authPathWithNext } from "@/hooks/use-auth-next-path";
 
@@ -21,7 +21,7 @@ export function LoginForm({
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
     const [showPassword, setShowPassword] = useState(false);
-    const [isOauthLoading, setIsOauthLoading] = useState<"github" | "google" | null>(null);
+    const [isOauthLoading, setIsOauthLoading] = useState<"google" | null>(null);
     const router = useRouter();
     const nextPath = useAuthNextPath();
     const destination = nextPath ?? "/organizations";
@@ -63,7 +63,7 @@ export function LoginForm({
         }
     }
 
-    async function handleOAuth(provider: "github" | "google") {
+    async function handleOAuth(provider: "google") {
         try {
             setIsOauthLoading(provider);
             const result = await signInWithOAuthAction(provider, destination);
@@ -184,11 +184,7 @@ export function LoginForm({
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <Button variant="outline" disabled={form.formState.isSubmitting || isOauthLoading !== null} onClick={() => handleOAuth("github")}>
-                                <GithubIcon className="mr-2 h-4 w-4" />
-                                GitHub
-                            </Button>
+                        <div className="grid gap-4">
                             <Button variant="outline" disabled={form.formState.isSubmitting || isOauthLoading !== null} onClick={() => handleOAuth("google")}>
                                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                                     <path

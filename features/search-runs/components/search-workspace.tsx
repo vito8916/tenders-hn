@@ -16,12 +16,12 @@ import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 import { SearchCriteria } from "@/features/saved-searches/components/search-criteria";
 import type { SavedSearch } from "@/features/saved-searches/schemas";
 import { applyResultView, hasFilters, parseResultView, withParams, type SearchParamsRecord } from "../results";
-import { isRunActive, isRunFinished, type SearchRun, type SearchRunMatch } from "../schemas";
+import { isRunActive, isRunFinished, isRunStale, type SearchRun, type SearchRunMatch } from "../schemas";
 import { DownloadMenu } from "./download-menu";
 import { ResultsTable } from "./results-table";
 import { ResultsToolbar } from "./results-toolbar";
 import { RunSearchButton } from "./run-search-button";
-import { RunStatus } from "./run-status";
+import { RunStatus, STALE_RUN_NOTICE } from "./run-status";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 const relativeTime = new Intl.RelativeTimeFormat("es", { numeric: "auto" });
@@ -53,8 +53,15 @@ function RunNotices({
         <div className="space-y-1 rounded-lg border border-dashed p-3 text-sm text-muted-foreground">
             {runInProgress ? (
                 <p>
-                    Hay una ejecución en curso desde el {dateTime.format(new Date(latestRun.createdAt))}. Sus resultados aparecen aquí al terminar.
-                    <RefreshWhileActive />
+                    Hay una ejecución en curso desde el {dateTime.format(new Date(latestRun.createdAt))}.{" "}
+                    {isRunStale(latestRun) ? (
+                        STALE_RUN_NOTICE
+                    ) : (
+                        <>
+                            Sus resultados aparecen aquí al terminar.
+                            <RefreshWhileActive />
+                        </>
+                    )}
                 </p>
             ) : null}
             {viewingOlderRun ? (
@@ -70,7 +77,7 @@ function RunNotices({
 }
 
 /** A search's first run, while it has no results yet: right after onboarding, the first thing the Home shows. */
-function FirstRunInProgress({ isDefault }: { isDefault: boolean }) {
+function FirstRunInProgress({ isDefault, stale }: { isDefault: boolean; stale: boolean }) {
     return (
         <Empty className="border">
             <EmptyHeader>
@@ -82,10 +89,10 @@ function FirstRunInProgress({ isDefault }: { isDefault: boolean }) {
                     {isDefault
                         ? "Estamos revisando los procesos abiertos de HonduCompras con lo que vende su empresa."
                         : "Estamos revisando los procesos abiertos de HonduCompras con los criterios de esta búsqueda."}{" "}
-                    Suele tardar uno o dos minutos; esta página se actualiza sola.
+                    {stale ? STALE_RUN_NOTICE : "Suele tardar uno o dos minutos; esta página se actualiza sola."}
                 </EmptyDescription>
             </EmptyHeader>
-            <RefreshWhileActive />
+            {stale ? null : <RefreshWhileActive />}
         </Empty>
     );
 }
@@ -299,7 +306,7 @@ export function SearchWorkspace({
             </Collapsible>
 
             {firstRunInProgress ? (
-                <FirstRunInProgress isDefault={search.isDefault} />
+                <FirstRunInProgress isDefault={search.isDefault} stale={isRunStale(latestRun)} />
             ) : (
                 <RunNotices homeHref={homeHref} searchId={search.id} latestRun={latestRun} shownRun={shownRun} latestFinished={latestFinished} />
             )}

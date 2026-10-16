@@ -5,7 +5,7 @@ import { getUserOrgRole } from "@/features/memberships/repository";
 import { getPaddle } from "@/lib/paddle/server";
 import { UserFacingError } from "@/lib/errors";
 import { canManageBilling } from "./rbac";
-import { getPlanChangeBlockers, getPlanIdForPrice, getSubscription, getUsage, listPlanOptions } from "./repository";
+import { getEntitlements, getPlanChangeBlockers, getPlanIdForPrice, getSubscription, getUsage, listPlanOptions } from "./repository";
 import type { Database } from "@/types/database.types";
 import { isLiveSubscription, type CheckoutOptions, type PlanChangeBlocker, type PlanChangePreview, type PlanOption, type PlanWithPrice } from "./schemas";
 
@@ -45,9 +45,14 @@ export async function getPublicPlansService() {
     return withPrices(await listPlanOptions(supabase));
 }
 
-/** Whether the organization's plan gives access yet; onboarding waits for Paddle's webhook with it. */
+/** Whether the organization's plan gives access yet; the app gate and onboarding (which waits for Paddle's webhook) read it. */
 export async function hasActivePlanService(orgId: string) {
-    return (await getUsage(orgId)).hasAccess;
+    return (await getEntitlements(orgId)).is_active;
+}
+
+/** Members plus pending invitations, which is how the plan counts seats. */
+export async function getSeatsUsedService(orgId: string) {
+    return (await getEntitlements(orgId)).seats_used;
 }
 
 async function assertOwner(userId: string, orgId: string) {

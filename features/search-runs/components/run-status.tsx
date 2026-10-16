@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { isRunActive, type SearchRun, type SearchRunStatus } from "../schemas";
+import { isRunActive, isRunStale, type SearchRun, type SearchRunStatus } from "../schemas";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
 
 export const RUN_STATUS_LABELS: Record<SearchRunStatus, string> = {
@@ -9,6 +9,8 @@ export const RUN_STATUS_LABELS: Record<SearchRunStatus, string> = {
     partial: "Completada con pendientes",
     failed: "Falló",
 };
+
+export const STALE_RUN_NOTICE = "Está tardando más de lo normal; vuelva a cargar la página más tarde.";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Tegucigalpa" });
 
@@ -40,7 +42,8 @@ export function RunStatus({ run }: { run: SearchRun }) {
             ) : null}
             {run.failedEvaluations > 0 ? <span className="text-muted-foreground">{run.failedEvaluations} sin evaluar por errores</span> : null}
             {run.status === "failed" ? <span className="text-destructive">No se pudo completar. Intente ejecutarla de nuevo.</span> : null}
-            {active ? (
+            {active && isRunStale(run) ? <span className="text-muted-foreground">{STALE_RUN_NOTICE}</span> : null}
+            {active && !isRunStale(run) ? (
                 <>
                     <span className="text-muted-foreground">La página se actualiza sola; puede tardar unos minutos.</span>
                     <RefreshWhileActive />

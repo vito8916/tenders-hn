@@ -32,8 +32,8 @@ interface InviteRow {
 
 const MAX_INVITES = 10;
 
-export function InviteMembersDialog({ orgId, orgSlug }: { orgId: string; orgSlug: string }) {
-    const [open, setOpen] = useState(false);
+export function InviteMembersDialog({ orgId, orgSlug, defaultOpen = false }: { orgId: string; orgSlug: string; defaultOpen?: boolean }) {
+    const [open, setOpen] = useState(defaultOpen);
     const [rows, setRows] = useState<InviteRow[]>([{ email: "", role: "member" }]);
     const [isPending, startTransition] = useTransition();
 

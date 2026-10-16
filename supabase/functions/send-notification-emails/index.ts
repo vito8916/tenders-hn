@@ -119,6 +119,8 @@ function renderReport(delivery: Delivery, font: string) {
 }
 
 /** The report's Excel file from the reports bucket, as base64, or null when there is none. */
+const EXCEL_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
 async function excelAttachment(delivery: Delivery): Promise<{ filename: string; content: string } | null> {
   if (delivery.template !== "org_report") return null;
   const payload = delivery.payload as OrgReportPayload;
@@ -220,7 +222,7 @@ async function sendWithResend(delivery: Delivery, apiKey: string): Promise<strin
       subject: delivery.subject,
       html,
       text,
-      ...(attachment ? { attachments: [attachment] } : {}),
+      ...(attachment ? { attachments: [{ ...attachment, content_type: EXCEL_TYPE }] } : {}),
     }),
   });
 
@@ -244,7 +246,7 @@ async function sendWithMailpit(delivery: Delivery, mailpitUrl: string): Promise<
       Subject: delivery.subject,
       HTML: html,
       Text: text,
-      ...(attachment ? { Attachments: [{ Filename: attachment.filename, Content: attachment.content }] } : {}),
+      ...(attachment ? { Attachments: [{ Filename: attachment.filename, Content: attachment.content, ContentType: EXCEL_TYPE }] } : {}),
     }),
   });
 

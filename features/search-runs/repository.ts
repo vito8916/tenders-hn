@@ -132,11 +132,14 @@ export async function getLatestIngestionAt(): Promise<string | null> {
 }
 
 const MATCH_COLUMNS =
-    "run_id, process_id, process_version_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count";
+    "run_id, process_id, process_version_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count, procurement_processes (closes_at)";
+
+/** A run's match with the process's deadline today, which an extension may have moved since the run. */
+export type MatchWithCurrentDeadline = SearchRunMatch & { currentClosesAt: string | null };
 
 /** The matches of each run, keyed by run id, in one query. */
-export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, SearchRunMatch[]>> {
-    const byRun = new Map<string, SearchRunMatch[]>(runIds.map((runId) => [runId, []]));
+export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, MatchWithCurrentDeadline[]>> {
+    const byRun = new Map<string, MatchWithCurrentDeadline[]>(runIds.map((runId) => [runId, []]));
     if (runIds.length === 0) return byRun;
 
     const supabase = await createClient();
@@ -151,8 +154,8 @@ export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, 
     if (error) throw error;
 
     for (const row of data) {
-        byRun.get(row.run_id)?.push(
-            searchRunMatchSchema.parse({
+        byRun.get(row.run_id)?.push({
+            ...searchRunMatchSchema.parse({
                 processId: row.process_id,
                 processVersionId: row.process_version_id,
                 retrievalRank: row.retrieval_rank,
@@ -171,12 +174,13 @@ export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, 
                 detectedAt: row.detected_at,
                 documentsCount: row.documents_count,
             }),
-        );
+            currentClosesAt: (Array.isArray(row.procurement_processes) ? row.procurement_processes[0] : row.procurement_processes)?.closes_at ?? null,
+        });
     }
     return byRun;
 }
 
-export async function listSearchRunMatches(runId: string): Promise<SearchRunMatch[]> {
+export async function listSearchRunMatches(runId: string): Promise<MatchWithCurrentDeadline[]> {
     return (await listMatchesForRuns([runId])).get(runId) ?? [];
 }
 

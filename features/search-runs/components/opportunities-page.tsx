@@ -12,7 +12,8 @@ import { getSeatsUsedService } from "@/features/billing/services";
 import { InviteTeamBanner } from "@/features/invitations/components/invite-team-banner";
 import { canManageSearches } from "@/features/saved-searches/rbac";
 import { canDecideOpportunity } from "@/features/opportunities/rbac";
-import { getSearchLimitsService } from "@/features/saved-searches/services";
+import { getSearchLimitsService, listFilterOptionsService } from "@/features/saved-searches/services";
+import { getCompanyProfileService } from "@/features/company-profile/services";
 import { homeViewPath, type HomeView } from "../opportunities";
 import { withParams, type SearchParamsRecord } from "../results";
 import { isRunActive } from "../schemas";
@@ -57,11 +58,14 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 		redirect("/organizations");
 	}
 
-	const [role, limits, home, seatsUsed] = await Promise.all([
+	const [role, limits, home, seatsUsed, filterOptions, profile] = await Promise.all([
 		getUserOrgRoleService({ userId, orgId: organization.id }),
 		getSearchLimitsService(organization.id),
 		getHomeService({ orgId: organization.id, view: viewOf(kind, ids) }),
 		getSeatsUsedService(organization.id),
+		// «Nueva lista» opens in a dialog from the pane.
+		listFilterOptionsService(),
+		getCompanyProfileService(organization.id),
 	]);
 	if (!role) {
 		redirect("/organizations");
@@ -138,7 +142,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					isActive: search.isActive,
 					newMatches: latestFinished?.newMatchesCount ?? 0,
 				}))}
-			canCreate={canManage && limits.hasActivePlan && underLimit}
+			newList={canManage && limits.hasActivePlan && underLimit ? { orgId: organization.id, filterOptions, hasProfile: profile !== null } : null}
 		/>
 	);
 

@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { SettingsSection, SettingsSectionBody } from "@/components/settings/settings-section";
+import { cn } from "@/lib/utils";
 import { saveSavedSearchAction } from "../actions";
 import {
     EMPTY_SAVED_SEARCH,
@@ -70,13 +71,10 @@ function WhatFields({
     hasProfile,
     profileSettingsHref,
     disabled,
-    isDefault,
 }: {
     hasProfile: boolean;
     profileSettingsHref: string;
     disabled?: boolean;
-    /** «Recomendadas» keeps its name and follows the profile. */
-    isDefault: boolean;
 }) {
     const form = useFormContext<SavedSearchInput>();
     const inheritsProfile = useWatch({ control: form.control, name: "inheritsProfile" });
@@ -90,7 +88,7 @@ function WhatFields({
                     <FormItem>
                         <FormLabel>Nombre*</FormLabel>
                         <FormControl>
-                            <Input placeholder="Por ejemplo: Soporte de software" disabled={disabled || isDefault} {...field} />
+                            <Input placeholder="Por ejemplo: Soporte de software" disabled={disabled} {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -104,7 +102,7 @@ function WhatFields({
                     <FormItem>
                         <FormLabel>¿Qué busca?</FormLabel>
                         <RadioGroup
-                            disabled={disabled || isDefault}
+                            disabled={disabled}
                             value={field.value ? "profile" : "own"}
                             onValueChange={(value) => field.onChange(value === "profile")}
                             className="gap-2 pt-1"
@@ -192,18 +190,53 @@ function AlertField({ disabled }: { disabled?: boolean }) {
     );
 }
 
+/** A part of the form: a card on a page, a plain heading inside a dialog, which is already a card. */
+function FormSection({
+    title,
+    description,
+    plain,
+    className,
+    children,
+}: {
+    title: string;
+    description: string;
+    plain: boolean;
+    className?: string;
+    children: React.ReactNode;
+}) {
+    if (!plain) {
+        return (
+            <SettingsSection title={title} description={description}>
+                <SettingsSectionBody className={className}>{children}</SettingsSectionBody>
+            </SettingsSection>
+        );
+    }
+    return (
+        <section className="space-y-4 border-t pt-6 first:border-t-0 first:pt-0">
+            <header>
+                <h3 className="text-sm font-semibold">{title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+            </header>
+            <div className={className}>{children}</div>
+        </section>
+    );
+}
+
 export function SavedSearchForm({
     orgId,
     orgSlug,
     search,
     filterOptions,
     hasProfile,
+    onClose,
 }: {
     orgId: string;
     orgSlug: string;
     search: SavedSearch | null;
     filterOptions: FilterOptions;
     hasProfile: boolean;
+    /** Inside a dialog: closes it on «Cancelar» and once the list is saved. A page goes back instead. */
+    onClose?: () => void;
 }) {
     const router = useRouter();
     const form = useForm<SavedSearchInput>({
@@ -230,49 +263,45 @@ export function SavedSearchForm({
             return;
         }
         toast.success(search ? "Se guardaron los cambios." : "Se creó la lista.");
+        onClose?.();
         router.push(`/organizations/${orgSlug}/lists/${result.searchId}`);
     }
 
     const { isSubmitting } = form.formState;
+    const inDialog = onClose !== undefined;
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <SettingsSection title="Qué busca" description="Los procesos se evalúan contra esta descripción.">
-                    <SettingsSectionBody>
-                        <WhatFields
-                            hasProfile={hasProfile}
-                            profileSettingsHref={`/organizations/${orgSlug}/settings/company`}
-                            disabled={isSubmitting}
-                            isDefault={search?.isDefault ?? false}
-                        />
-                    </SettingsSectionBody>
-                </SettingsSection>
+                <FormSection title="Qué busca" description="Los procesos se evalúan contra esta descripción." plain={inDialog}>
+                    <WhatFields
+                        hasProfile={hasProfile}
+                        profileSettingsHref={`/organizations/${orgSlug}/settings/company`}
+                        disabled={isSubmitting}
+                    />
+                </FormSection>
 
-                <SettingsSection title="Filtros" description="Opcionales. Limitan los procesos que se examinan.">
-                    <SettingsSectionBody className="space-y-6">
-                        <EntityFilterField options={filterOptions.entity} disabled={isSubmitting} />
-                        <CheckboxFilterField name="modalities" label="Modalidades" options={filterOptions.modality} disabled={isSubmitting} />
-                        <CheckboxFilterField
-                            name="acquisitionTypes"
-                            label="Tipos de adquisición"
-                            options={filterOptions.acquisition_type}
-                            disabled={isSubmitting}
-                        />
-                    </SettingsSectionBody>
-                </SettingsSection>
+                <FormSection title="Filtros" description="Opcionales. Limitan los procesos que se examinan." plain={inDialog} className="space-y-6">
+                    <EntityFilterField options={filterOptions.entity} disabled={isSubmitting} />
+                    <CheckboxFilterField name="modalities" label="Modalidades" options={filterOptions.modality} disabled={isSubmitting} />
+                    <CheckboxFilterField
+                        name="acquisitionTypes"
+                        label="Tipos de adquisición"
+                        options={filterOptions.acquisition_type}
+                        disabled={isSubmitting}
+                    />
+                </FormSection>
 
-                <SettingsSection
+                <FormSection
                     title="Avisos"
                     description="Cuándo se actualizan las listas y se envía el correo con el Excel se define en Configuración › Reportes."
+                    plain={inDialog}
                 >
-                    <SettingsSectionBody>
-                        <AlertField disabled={isSubmitting} />
-                    </SettingsSectionBody>
-                </SettingsSection>
+                    <AlertField disabled={isSubmitting} />
+                </FormSection>
 
-                <div className="flex justify-end gap-2">
-                    <Button type="button" variant="outline" disabled={isSubmitting} onClick={() => router.back()}>
+                <div className={cn("flex justify-end gap-2", inDialog && "border-t pt-6")}>
+                    <Button type="button" variant="outline" disabled={isSubmitting} onClick={onClose ?? (() => router.back())}>
                         Cancelar
                     </Button>
                     <Button type="submit" disabled={isSubmitting}>

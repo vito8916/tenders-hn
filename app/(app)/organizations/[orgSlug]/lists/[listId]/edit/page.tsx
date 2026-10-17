@@ -48,23 +48,21 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
                     La organización no tiene un plan activo: no se pueden modificar las listas.
                 </p>
             )}
-            {search.isDefault ? null : (
-                <SettingsSection
-                    variant="danger"
-                    title="Pausar o eliminar"
-                    description="Una lista pausada no se actualiza ni cuenta en el límite de su plan, y conserva su historial."
-                >
-                    <SettingsSectionBody>
-                        <SearchStateActions
-                            orgId={organization.id}
-                            orgSlug={orgSlug}
-                            searchId={search.id}
-                            searchName={search.name}
-                            isActive={search.isActive}
-                        />
-                    </SettingsSectionBody>
-                </SettingsSection>
-            )}
+            <SettingsSection
+                variant="danger"
+                title="Pausar o eliminar"
+                description="Una lista pausada no se actualiza ni cuenta en el límite de su plan, y conserva su historial."
+            >
+                <SettingsSectionBody>
+                    <SearchStateActions
+                        orgId={organization.id}
+                        orgSlug={orgSlug}
+                        searchId={search.id}
+                        searchName={search.name}
+                        isActive={search.isActive}
+                    />
+                </SettingsSectionBody>
+            </SettingsSection>
         </div>
     );
 }

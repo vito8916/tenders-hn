@@ -12,20 +12,22 @@ import {
     listLatestRuns,
     listMatchesForRuns,
     listRunsPage,
+    type MatchWithCurrentDeadline,
     requestSearchRun,
 } from "./repository";
-import { isRunFinished, type SearchRun, type SearchRunMatch } from "./schemas";
+import { isRunFinished, type SearchRun } from "./schemas";
 import { composeOpportunities, type HomeView } from "./opportunities";
 
 const HISTORY_PAGE_SIZE = 25;
 
 type HomeItem = { search: SavedSearch; latestRun: SearchRun | null; latestFinished: SearchRun | null };
 
-const runMatches = (item: HomeItem & { latestFinished: SearchRun }, matchesByRun: Map<string, SearchRunMatch[]>) => ({
+/** A live view's matches carry the process's deadline today, so an extension published after the run keeps it open. */
+const runMatches = (item: HomeItem & { latestFinished: SearchRun }, matchesByRun: Map<string, MatchWithCurrentDeadline[]>) => ({
     searchId: item.search.id,
     runId: item.latestFinished.id,
     isDefault: item.search.isDefault,
-    matches: matchesByRun.get(item.latestFinished.id) ?? [],
+    matches: (matchesByRun.get(item.latestFinished.id) ?? []).map(({ currentClosesAt, ...match }) => ({ ...match, closesAt: currentClosesAt ?? match.closesAt })),
 });
 
 /**
@@ -92,7 +94,12 @@ export async function getHomeService(params: { orgId: string; view: HomeView }) 
         snapshot: snapshot
             ? {
                   run: snapshot,
-                  matches: (matchesByRun.get(snapshot.id) ?? []).map((match) => ({ ...match, runId: snapshot.id, searchId: snapshot.savedSearchId })),
+                  // An update keeps the deadlines it saw.
+                  matches: (matchesByRun.get(snapshot.id) ?? []).map(({ currentClosesAt: _current, ...match }) => ({
+                      ...match,
+                      runId: snapshot.id,
+                      searchId: snapshot.savedSearchId,
+                  })),
               }
             : null,
         latestIngestionAt,

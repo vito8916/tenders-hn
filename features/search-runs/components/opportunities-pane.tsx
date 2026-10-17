@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Ban, Hash, Layers, Plus, Star, type LucideIcon } from "lucide-react";
+import { Ban, Hash, Layers, Star, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { NewListDialog } from "@/features/saved-searches/components/new-list-dialog";
+import type { FilterOptions } from "@/features/saved-searches/schemas";
 import { homeViewPath } from "../opportunities";
 
 export type PaneList = { id: string; name: string; isActive: boolean; newMatches: number };
@@ -60,14 +61,15 @@ export function OpportunitiesPane({
     current,
     counts,
     lists,
-    canCreate,
+    newList,
 }: {
     orgSlug: string;
     /** The view or list shown: «recomendadas», «todas», «descartadas», or a list's id (an update marks its list). */
     current: string;
     counts: { recomendadas: number; todas: number };
     lists: PaneList[];
-    canCreate: boolean;
+    /** What «Nueva lista» needs; null when the user may not create one (role, plan, or limit). */
+    newList: { orgId: string; filterOptions: FilterOptions; hasProfile: boolean } | null;
 }) {
     return (
         <nav aria-label="Oportunidades" className="space-y-2 p-2">
@@ -88,16 +90,17 @@ export function OpportunitiesPane({
                     <PaneLink href={homeViewPath(orgSlug, { kind: "descartadas" })} icon={Ban} label="Descartadas" current={current === "descartadas"} />
                 </ul>
             </Section>
-            {lists.length > 0 || canCreate ? (
+            {lists.length > 0 || newList ? (
                 <Section
                     title="Listas"
                     action={
-                        canCreate ? (
-                            <Button variant="ghost" size="icon" className="size-6" asChild>
-                                <Link href={`/organizations/${orgSlug}/lists/new`} aria-label="Nueva lista">
-                                    <Plus />
-                                </Link>
-                            </Button>
+                        newList ? (
+                            <NewListDialog
+                                orgId={newList.orgId}
+                                orgSlug={orgSlug}
+                                filterOptions={newList.filterOptions}
+                                hasProfile={newList.hasProfile}
+                            />
                         ) : null
                     }
                 >

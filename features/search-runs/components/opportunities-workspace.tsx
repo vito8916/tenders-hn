@@ -35,6 +35,25 @@ function ingestionAge(finishedAt: string) {
     return relativeTime.format(Math.round(minutes / (24 * 60)), "day");
 }
 
+// Syncs run every three hours (spec §6); older data means the source or the worker is failing.
+const STALE_SOURCE_MS = 12 * 60 * 60_000;
+
+const isSourceStale = (latestIngestionAt: string | null) =>
+    latestIngestionAt === null || Date.now() - new Date(latestIngestionAt).getTime() > STALE_SOURCE_MS;
+
+/** Old HonduCompras data, said plainly (spec §6): new processes and changed deadlines may be missing. */
+function StaleSourceNotice({ latestIngestionAt }: { latestIngestionAt: string | null }) {
+    if (!isSourceStale(latestIngestionAt)) return null;
+    return (
+        <p role="status" className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-sm">
+            {latestIngestionAt
+                ? `Última sincronización con HonduCompras: ${dateTime.format(new Date(latestIngestionAt))}`
+                : "Todavía no hay datos de HonduCompras."}{" "}
+            Puede haber procesos nuevos o fechas límite cambiadas que aún no se ven aquí.
+        </p>
+    );
+}
+
 /** The search behind a view (Recomendadas or a list) with its latest and latest finished run. */
 export type ViewSearch = { search: SavedSearch; latestRun: SearchRun | null; latestFinished: SearchRun | null };
 
@@ -345,6 +364,8 @@ export function OpportunitiesWorkspace({
                     </CollapsibleContent>
                 </Collapsible>
             ) : null}
+
+            {snapshotRun ? null : <StaleSourceNotice latestIngestionAt={latestIngestionAt} />}
 
             {snapshotRun ? (
                 <div className="space-y-3">

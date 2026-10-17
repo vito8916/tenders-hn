@@ -1,9 +1,11 @@
 # Plataforma de oportunidades de compras públicas — MVP Specification
 
-**Versión:** 0.3 — borrador de producto  
-**Fecha:** 23 de septiembre de 2026  
+**Versión:** 0.4 — borrador de producto  
+**Fecha:** 16 de octubre de 2026 (0.3: 23 de septiembre de 2026)  
 **Ámbito inicial:** procesos publicados en HonduCompras 1.0, Honduras  
 **Estado:** propuesta para discusión; los parámetros comerciales y la frecuencia de monitoreo requieren validación
+
+**Cambios de la 0.4:** la plataforma se organiza alrededor de **oportunidades**, no de búsquedas y ejecuciones (decisión D7 del plan de implementación). Licitaly es quien busca: recolecta HonduCompras, cruza cada proceso con lo que vende cada organización y mantiene esa lista al día. La organización describe su empresa, revisa sus oportunidades y les da seguimiento en equipo. Las búsquedas adicionales pasan a llamarse **listas**; las ejecuciones dejan de ser navegación y quedan como registro. Incorpora además los reportes por organización (D6) y el cobro mediante un proveedor de pagos (D5).
 
 ## 1. Problema y propuesta de valor
 
@@ -35,55 +37,60 @@ El producto ayuda a **descubrir y priorizar**. No certifica que una empresa reú
 | Área | Incluido en el MVP |
 | --- | --- |
 | Acceso | Registro por correo e inicio de sesión; cuenta individual o empresa representada como organización. |
-| Organización | Un administrador y miembros con acceso a búsquedas y reportes de su organización; límites de asientos por plan. |
-| Perfil de empresa | Descripción de bienes/servicios, palabras y sinónimos relevantes, exclusiones, categorías/códigos conocidos, ubicaciones y preferencias de modalidad o entidad. |
-| Búsquedas guardadas | Cada organización configura una o más búsquedas con criterios propios y frecuencia de ejecución; botón «Ejecutar ahora». |
+| Organización | Propietario, administradores, miembros y lectores con acceso a las oportunidades, listas y reportes de su organización; límites de asientos por plan. |
+| Perfil de empresa | Descripción de bienes/servicios, ejemplos concretos de lo que ofrece, exclusiones, categorías/códigos conocidos y ubicaciones. Es el criterio de «Recomendadas». |
+| Oportunidades | Cada proceso de HonduCompras que coincide con el perfil de la empresa o con una de sus listas. Se mantienen al día con cada actualización; las nuevas y las que cambiaron se distinguen. Vistas principales: «Recomendadas» y «Todas». |
+| Listas | Criterios guardados por tema (otra línea de negocio, instituciones, modalidades). Son de la organización; cada miembro elige cuáles sigue. Cantidad limitada por plan. Reemplazan a las búsquedas guardadas. |
+| Seguimiento | Un estado por oportunidad y organización (Nueva, En evaluación, Preparando oferta, Presentada, Ganada, Perdida, Descartada), responsable, notas del equipo y motivo de descarte. |
+| Búsqueda libre | Consulta por texto y filtros sobre todos los procesos recolectados, coincidan o no con la organización. |
 | Descubrimiento | Recolección central de procesos de HonduCompras: listado completo, paginación, detalle y enlaces a documentos. |
 | Evaluación | Recuperación amplia de candidatos y ranking por coincidencia con el perfil de la empresa. Jev de TypeSafe AI evalúa la relevancia semántica de los candidatos mediante decisiones estructuradas, combinadas con filtros verificables y evidencia del detalle y documentos. |
-| Resultados | Bandeja con estados «muy relevante», «posible» y «descartada», motivos de coincidencia y acceso a la fuente. El usuario puede marcar «me interesa» o «no me interesa». |
-| Reportes | Una ejecución genera un registro inmutable de resultados y un PDF descargable; CSV descargable para análisis. |
-| Notificaciones | Reporte en la plataforma y envío por correo configurable por búsqueda. No se envía una misma oportunidad repetidamente salvo cambios significativos. |
-| Historial | Lista de ejecuciones, filtros aplicados, resultados, fecha de captura, estado de la fuente y descarga del reporte original. |
+| Relevancia | Niveles «muy relevante», «posible», «descartada» y «pendiente», con motivos de coincidencia y acceso a la fuente. Lo descartado se muestra en su propia vista, nunca se oculta. |
+| Reportes | A las horas que elige la organización (según su plan) se actualizan sus oportunidades y se envía un correo con lo nuevo y un Excel. Cada actualización guarda un registro inmutable con PDF y Excel descargables. |
+| Notificaciones | Cada miembro recibe lo de las listas que sigue. Avisos de cambios (fecha, documentos, etapa) en oportunidades en seguimiento. No se envía una misma oportunidad repetidamente salvo cambios significativos. |
+| Historial | Registro de actualizaciones con fecha, cobertura, estado de la fuente y descarga de los reportes; disponible como consulta, no como navegación principal. |
 | Documentos | Metadatos y enlaces oficiales; descarga, extracción de texto y OCR cuando sea necesario y viable. |
 | Chat | Preguntas sobre una oportunidad y sus documentos procesados, con referencia al archivo y página/sección cuando pueda identificarse. |
-| Suscripción | Planes con límites de búsquedas, frecuencia, miembros, historial y uso de IA; control de acceso y consumo. |
-| Créditos IA | Saldo mensual para chat y análisis documentales solicitados por el usuario. El matching base y los reportes básicos están incluidos en el plan. |
+| Suscripción | Planes con límites de listas, reportes al día, miembros, historial y funciones de IA; sin plan activo la organización solo ve la selección de plan. |
+| Créditos IA | Saldo mensual para chat y análisis documentales solicitados por el usuario, en los planes que los incluyen. El matching y los reportes están incluidos en todos los planes. |
 | Administración | Estado de recolectores y trabajos, fallos, calidad de extracción, uso, límites de planes y soporte a cuentas. |
 
 ### Fuera del MVP
 
-- Preparar, presentar o enviar ofertas a la institución compradora.
+- Preparar, presentar o enviar ofertas a la institución compradora. El seguimiento registra el trabajo del equipo («Preparando oferta», «Presentada»), no lo realiza.
 - Afirmar automáticamente que una empresa es legal o técnicamente elegible para ofertar.
 - Monitoreo de otras fuentes además de HonduCompras 1.0.
 - Integración prometida «en tiempo real» o notificaciones instantáneas sin medición previa de latencia.
 - WhatsApp, SMS, integraciones de CRM y webhooks para clientes.
 - Predicción de adjudicación, análisis de competidores y generación automática de propuestas.
-- Facturación y cobro recurrente completamente automáticos antes de elegir y validar un proveedor de pagos. Para un piloto, las suscripciones pueden activarse desde administración.
+- Pantallas propias de facturación para lo que ya cubren el checkout y el portal del proveedor de pagos (facturas, métodos de pago, cancelación).
 
 ## 4. Usuarios y recorrido principal
 
 ### Roles propuestos
 
-- **Administrador de organización:** define perfil, búsquedas, miembros, canal de entrega y plan.
-- **Miembro:** revisa oportunidades, consulta documentos, guarda decisiones y usa créditos disponibles según permisos de su organización.
+- **Propietario y administradores de organización:** definen perfil, listas, horas de reporte, miembros y plan.
+- **Miembro:** revisa oportunidades, les da seguimiento (estado, responsable, notas), elige qué listas sigue, consulta documentos y usa créditos disponibles.
+- **Lector:** consulta oportunidades y seguimiento sin modificarlos.
 - **Administrador de plataforma:** supervisa ingesta, pagos/planes, fallos y soporte; no accede a documentos privados de clientes sin motivo operativo y control de acceso.
 
 ### Flujo
 
 1. El cliente crea su cuenta y describe lo que vende, por ejemplo «soporte de software empresarial, licencias SAP y desarrollo de integraciones».
-2. Configura una búsqueda con restricciones opcionales y elige la periodicidad del reporte.
+2. Elige un plan. Al activarse, Licitaly calcula sus primeras oportunidades («Recomendadas»).
 3. Un recolector central consulta HonduCompras y almacena procesos, detalles, documentos y versiones observadas.
 4. El evaluador recupera candidatos mediante búsqueda amplia y usa Jev para valorar el encaje semántico con el perfil. Ordena las oportunidades junto con señales verificables y evidencias de la fuente.
-5. El cliente recibe un reporte que prioriza resultados relevantes, explica cada coincidencia y enlaza a la publicación oficial.
-6. En el detalle puede consultar fechas, archivos, cambios y chat documental; marca oportunidades de interés y descarta falsos positivos.
+5. A las horas de reporte de la organización, sus oportunidades se actualizan y cada miembro recibe por correo lo nuevo de las listas que sigue, con un Excel.
+6. El equipo revisa las oportunidades nuevas, las descarta o les da seguimiento (responsable, notas, estado hasta presentada, ganada o perdida). En el detalle consulta fechas, archivos, cambios y chat documental.
+7. Opcionalmente crea listas por tema y consulta todos los procesos en la búsqueda libre.
 
-## 5. Perfil, búsquedas y ranking
+## 5. Perfil, listas y ranking
 
 ### Perfil de empresa
 
 Campos mínimos: nombre, descripción de productos/servicios en lenguaje natural, ejemplos concretos de lo que sí ofrece, términos que no desea recibir y ámbito geográfico. Categorías y códigos UNSPSC se podrán agregar cuando el usuario los conozca; no serán requisito para empezar.
 
-El usuario puede crear búsquedas distintas para líneas de negocio diferentes. Ejemplo: «soporte de software» y «equipos de cómputo». Cada búsqueda puede heredar el perfil de la organización y añadir términos, exclusiones, entidades, modalidad y tipo de adquisición.
+«Recomendadas» sigue el perfil de la empresa: existe en toda organización, no se borra ni se pausa y no cuenta como lista. La organización puede crear **listas** para temas distintos. Ejemplo: «equipos de cómputo» o «solo Secretaría de Salud». Cada lista puede heredar el perfil de la organización o usar su propia descripción, y añadir términos, exclusiones, entidades, modalidad y tipo de adquisición. Una misma oportunidad puede aparecer en varias listas; su seguimiento es uno solo.
 
 ### Evaluación por etapas
 
@@ -102,13 +109,15 @@ Referencia para la integración: [documentación de Jev y tipos de preguntas de 
 
 Las etiquetas de relevancia representan **prioridad de revisión**, no probabilidad de adjudicación. Un resultado dudoso debe quedar en «posible» para revisión humana. El orden puede considerar grado de coincidencia, proximidad del cierre y estado del proceso. Si se usan límites para controlar costo de OCR o IA, estos deben declararse en la cobertura de cada ejecución y someterse a medición de falsos negativos.
 
-### Retroalimentación
+### Seguimiento y calidad
 
-El cliente puede marcar una recomendación como interesante o irrelevante y dejar un motivo opcional. El sistema registra esa señal para mejorar reglas y evaluar calidad; cualquier aprendizaje automático posterior requiere datos suficientes.
+El seguimiento es el trabajo del equipo sobre cada oportunidad: un estado por organización y proceso (Nueva, En evaluación, Preparando oferta, Presentada, Ganada, Perdida o Descartada), un responsable, notas y, al descartar, un motivo opcional. Una oportunidad sin acción del equipo es «Nueva». Los cambios de estado quedan en el registro de actividad. Los estados son fijos para todas las organizaciones.
+
+Las oportunidades que el sistema clasificó como muy relevantes y el equipo descartó, con sus motivos, miden la calidad del matching y sirven para mejorar reglas y umbrales. Este uso debe declararse en la política de privacidad antes de aplicarse; cualquier aprendizaje automático posterior requiere datos suficientes.
 
 ## 6. Ingesta y seguimiento de cambios
 
-La ingesta es **central**, independiente de las búsquedas guardadas. La frecuencia de ingesta determina qué tan frescos están los datos; la frecuencia de cada búsqueda determina cuándo se calcula y entrega su reporte.
+La ingesta es **central**, independiente de las organizaciones y sus listas. La frecuencia de ingesta determina qué tan frescos están los datos; las horas de reporte de cada organización determinan cuándo se recalculan sus oportunidades y se envía el correo.
 
 ### Reglas mínimas
 
@@ -116,19 +125,21 @@ La ingesta es **central**, independiente de las búsquedas guardadas. La frecuen
 - Reconsultar regularmente oportunidades aún abiertas, incluso si su fecha de inicio queda fuera de la ventana móvil, para detectar cambios de etapa, plazo y documentos.
 - Tratar el expediente como dato de presentación; identificar de forma estable cada proceso mediante su enlace/identificadores del portal y fuente. Mantener el `ocid` cuando pueda mapearse con OCDS, sin suponer que siempre está disponible.
 - Guardar `first_seen_at`, `last_seen_at`, `source_start_at`, `last_checked_at` y una versión/hash del detalle y de cada documento. `first_seen_at` es observación de la plataforma, no fecha oficial de publicación.
-- Cuando cambien fechas críticas, estado o documentos, registrar el evento y permitir una alerta de actualización.
+- Cuando cambien fechas críticas, estado o documentos, registrar el evento y avisar a las organizaciones que dan seguimiento a esa oportunidad.
 - Aplicar reintentos limitados, espera entre solicitudes, métricas y detección de cambios en el HTML. Evitar consultas por cada cliente y descargar archivos una vez por versión.
 - Si la fuente falla, mostrar la última captura válida y su antigüedad; no informar «sin nuevas oportunidades» como si la consulta hubiese terminado correctamente.
 
-**Frecuencia inicial propuesta:** comprobación central cada 2–4 horas durante la etapa piloto, condicionada a pruebas de estabilidad del sitio, volumen, disponibilidad y medición del tiempo de aparición. Los reportes por cliente pueden ser diarios y las ejecuciones manuales consultarán la última ingesta completa. La frecuencia comercial definitiva queda pendiente de la medición.
+**Frecuencia inicial propuesta:** comprobación central cada 2–4 horas durante la etapa piloto, condicionada a pruebas de estabilidad del sitio, volumen, disponibilidad y medición del tiempo de aparición. Los reportes de cada organización se ofrecen una hora después de cada sincronización, en la cantidad diaria que permita su plan, y las actualizaciones manuales consultan la última ingesta completa. La frecuencia comercial definitiva queda pendiente de la medición.
 
 ## 7. Reportes y entrega
 
-Cada ejecución crea un `search_run` con fecha, configuración congelada, versión del perfil, estado de ingesta utilizado, cantidad examinada, cantidad recomendada y resultados. La ejecución mantiene su fotografía histórica aunque más adelante cambie el proceso o el perfil.
+Cada actualización de «Recomendadas» o de una lista crea una ejecución (`search_run`) con fecha, configuración congelada, versión del perfil, estado de ingesta utilizado, cantidad examinada, cantidad recomendada y resultados. La ejecución mantiene su fotografía histórica aunque más adelante cambie el proceso o el perfil. Las vistas de oportunidades muestran el resultado más reciente de cada proceso; las ejecuciones se consultan en el historial.
+
+A cada hora de reporte elegida por la organización, se actualizan «Recomendadas» y todas sus listas sobre la última sincronización, y cada miembro recibe un correo con lo que no se le había reportado de las listas que sigue, con un Excel (una hoja por lista). Si no hay nada nuevo no se envía correo, salvo que la organización pida recibirlo igual. «Actualizar ahora» recalcula sin enviar correo.
 
 El PDF contiene un encabezado con fecha de generación y última sincronización de la fuente; resumen de oportunidades; una sección por oportunidad con expediente, institución, objeto, fechas, estado, nivel de relevancia, motivos y documentos considerados; enlace a detalle oficial; y una nota visible cuando falten archivos o el análisis sea parcial. El CSV contiene campos tabulares y URLs.
 
-Las preferencias por búsqueda incluyen «guardar solamente», «enviar por correo», «enviar incluso sin coincidencias» y «avisar cambios de oportunidades guardadas». Para evitar ruido, una oportunidad ya notificada reaparece en el correo únicamente si tiene un cambio relevante o el usuario solicita un reporte completo.
+Para evitar ruido, una oportunidad ya notificada reaparece en el correo únicamente si tiene un cambio relevante o el usuario solicita un reporte completo. Los cambios de fechas, documentos o etapa de una oportunidad en seguimiento generan un aviso propio en la plataforma y por correo.
 
 ## 8. Chat con fuentes (RAG)
 
@@ -144,37 +155,39 @@ Una suscripción pertenece a la organización. Los parámetros del plan son conf
 
 | Límite | Unidad sugerida |
 | --- | --- |
-| Búsquedas guardadas | Número simultáneo activo |
-| Frecuencia de entrega | Diaria o varias veces al día según plan y frescura medida |
+| Listas | Número de listas además de «Recomendadas» |
+| Reportes | Horas de reporte al día, entre las que siguen a cada sincronización |
 | Miembros | Asientos por organización |
 | Historial | Meses accesibles según plan |
-| IA | Créditos mensuales compartidos por organización |
+| IA | Funciones de IA a pedido (chat con fuentes, resúmenes) y créditos mensuales compartidos por organización, según plan |
 
-El matching automático con Jev necesario para generar recomendaciones y el PDF básico están incluidos en el plan y no consumen créditos visibles al usuario. Los créditos cubren preguntas al chat y análisis extensos solicitados expresamente. Mostrar costo estimado antes de la operación cuando sea posible, saldo actual, historial de consumo y estado al agotarse; reservar consumo para evitar cargos dobles ante reintentos. La equivalencia entre crédito y operación se definirá después de medir costos reales de texto, OCR y modelos.
+El plan de entrada ofrece el motor de oportunidades: matching, listas, seguimiento, reportes y avisos. Los planes superiores añaden funciones de IA a pedido, como el chat con fuentes. El matching automático con Jev y los reportes están incluidos en todos los planes y no consumen créditos visibles al usuario. Los créditos cubren preguntas al chat y análisis extensos solicitados expresamente. Mostrar costo estimado antes de la operación cuando sea posible, saldo actual, historial de consumo y estado al agotarse; reservar consumo para evitar cargos dobles ante reintentos. La equivalencia entre crédito y operación se definirá después de medir costos reales de texto, OCR y modelos.
 
-Para un piloto, el administrador puede activar manualmente un plan y registrar vigencia. La integración de checkout y renovaciones dependerá del proveedor de pagos elegido; la interfaz debe distinguir activación, vencimiento y cancelación aunque no haya cobro automático.
+Las suscripciones se contratan y renuevan mediante el proveedor de pagos, que actúa como comerciante registrado; los pilotos también. La interfaz distingue activación, renovación fallida, vencimiento y cancelación.
 
 ## 10. Modelo de datos propuesto
 
 | Entidad | Propósito |
 | --- | --- |
 | `users`, `organizations`, `organization_members` | Identidad, pertenencia y roles. |
-| `plans`, `subscriptions`, `ai_credit_ledger` | Límites, vigencia y movimientos auditables. |
-| `company_profiles`, `company_offerings` | Descripción y capacidades de la empresa. |
-| `saved_searches`, `search_schedules` | Criterios por línea de negocio y periodicidad de reporte. |
+| `plans`, `organization_subscriptions`, `ai_credit_ledger` | Límites, vigencia y movimientos auditables. |
+| `company_profiles`, `company_profile_versions` | Descripción y capacidades de la empresa, con versiones. |
+| `saved_searches`, `list_followers` | «Recomendadas» y las listas, con sus criterios; qué miembros sigue cada lista. |
+| `org_reports` | Horas de reporte de la organización y cada reporte enviado. |
 | `source_sync_runs`, `source_pages` | Ejecución del recolector, ventana, paginación, éxito y errores. |
 | `procurement_processes`, `process_versions`, `process_events` | Identidad del proceso, última vista y cambios observados. |
 | `source_documents`, `document_versions`, `document_chunks` | Enlaces, archivo/versiones, texto extraído y referencias para RAG. |
 | `search_runs`, `search_run_matches`, `reports` | Historial congelado, coincidencias, explicación y descargas. |
 | `match_evaluations` | Candidato evaluado por Jev, versión del modelo/preguntas, respuestas estructuradas, probabilidades, fragmentos de entrada, estado de procesamiento y puntuación compuesta. |
-| `opportunity_feedback`, `notification_deliveries` | Decisiones del cliente y trazabilidad de envíos. |
+| `opportunity_tracking`, `opportunity_notes` | Seguimiento por organización y proceso (estado, responsable, motivo de descarte) y notas del equipo. |
+| `opportunity_notifications`, `notification_deliveries` | Qué se reportó de cada oportunidad y trazabilidad de envíos. |
 | `chat_threads`, `chat_messages`, `ai_usage_events` | Conversaciones, fuentes usadas y consumo. |
 
 Reglas: separar datos públicos compartidos de datos privados por organización; permisos por organización en cada lectura; identificadores de proceso y documento únicos por fuente; procesamiento y envíos idempotentes; conservar versión original y texto derivado. La política de retención y borrado se configurará antes del lanzamiento comercial.
 
 ## 11. Arquitectura de referencia
 
-- **Web:** aplicación responsive para onboarding, bandeja, detalle, búsquedas, historial, suscripción y chat.
+- **Web:** aplicación responsive para onboarding, oportunidades, seguimiento, listas, búsqueda libre, detalle, historial, suscripción y chat.
 - **API y base de datos:** PostgreSQL para organizaciones, procesos, matching y auditoría. Índices de texto para filtros; búsqueda vectorial si la evaluación semántica lo necesita.
 - **Trabajadores y cola:** recolección, paginación, lectura de detalle, descarga/OCR, clasificación, reportes y correo como trabajos separados, reintentables e idempotentes.
 - **Almacenamiento de objetos:** PDFs oficiales descargados, versiones y reportes generados.
@@ -185,44 +198,45 @@ Una implementación compatible con la experiencia actual del equipo puede usar N
 
 ## 12. Pantallas mínimas y Home de trabajo
 
-### 12.1 Home de escritorio: organización tipo correo
+### 12.1 Home de escritorio: oportunidades
 
-El Home es el espacio principal de trabajo después del inicio de sesión. Su distribución tiene dos áreas persistentes:
+El Home es el espacio principal de trabajo después del inicio de sesión. Muestra oportunidades, no búsquedas ni ejecuciones. Su distribución tiene dos áreas persistentes:
 
 | Área | Contenido y acciones |
 | --- | --- |
-| Barra lateral izquierda | Nombre de la organización; botón «Nueva búsqueda»; lista de búsquedas guardadas ordenada por la fecha de su última ejecución, con indicador de nuevas coincidencias. Al seleccionar una búsqueda, aparecen sus ejecuciones recientes ordenadas por fecha descendente. Acceso al historial completo. |
-| Área derecha | Nombre y criterios resumidos de la búsqueda seleccionada; fecha/hora de ejecución y de última sincronización de HonduCompras; estado del trabajo; botón «Ejecutar ahora»; acciones de descarga; tabla de oportunidades pertenecientes a la ejecución seleccionada. |
+| Barra lateral izquierda | **Oportunidades:** «Recomendadas» (muy relevantes para el perfil de la empresa) y «Todas» (todo lo que coincidió con el perfil o con alguna lista, posibles incluidas), con contadores. **Seguimiento:** «Nuevas», «En seguimiento» y «Descartadas». **Listas:** las listas de la organización, marcando las que sigue el usuario, con indicador de oportunidades nuevas y acción «Nueva lista». **HonduCompras:** «Búsqueda libre». |
+| Área derecha | Nombre de la vista o lista; para una lista, sus criterios resumidos; fecha/hora de la última actualización y de la última sincronización de HonduCompras; «Actualizar ahora»; acciones de descarga; tabla de oportunidades. |
 
-Al entrar, se abre la búsqueda ejecutada más recientemente y su última ejecución **completada**. Si el usuario selecciona una ejecución anterior, ve la fotografía histórica de sus resultados. Una ejecución en curso se identifica por su estado y no sustituye los resultados completados hasta finalizar. Una ejecución sin coincidencias muestra cuántos procesos se evaluaron, cuándo se consultó la fuente y una opción para ajustar los criterios.
+Al entrar se abre «Recomendadas». Las vistas muestran el resultado más reciente de cada proceso abierto: una actualización en curso no sustituye los resultados hasta finalizar y se identifica por su estado. Las oportunidades en seguimiento permanecen en «En seguimiento» aunque el proceso cierre. «Descartadas» reúne lo que descartó el sistema y lo que descartó el equipo, y permite recuperarlo. Una vista sin oportunidades muestra cuántos procesos se evaluaron, cuándo se consultó la fuente y una opción para ajustar el perfil o los criterios.
 
-«Ejecutar ahora» crea una ejecución de la búsqueda seleccionada usando su configuración vigente y la última ingesta completa disponible. Muestra la antigüedad de esa ingesta para evitar que el usuario interprete la acción como una consulta instantánea a HonduCompras. Si ya hay una ejecución de esa misma búsqueda en curso, se muestra su progreso y se evita crear otra por un doble clic.
+«Actualizar ahora» recalcula «Recomendadas» o la lista seleccionada con su configuración vigente y la última ingesta completa disponible, sin enviar correo. Muestra la antigüedad de esa ingesta para evitar que el usuario interprete la acción como una consulta instantánea a HonduCompras. Si ya hay una actualización en curso, se muestra su progreso y se evita crear otra por un doble clic; si tarda mucho más de lo normal, se informa en lugar de esperar indefinidamente.
 
-### 12.2 Tabla de resultados
+### 12.2 Tabla de oportunidades
 
-Cada fila representa una oportunidad dentro de la ejecución seleccionada. Columnas propuestas: relevancia, estado de la coincidencia (nueva/actualizada/conocida), expediente, objeto de compra, institución, modalidad, etapa, fecha límite, documentos disponibles y fecha en que la plataforma la detectó. El objeto y el expediente abren el detalle.
+Cada fila representa una oportunidad. Columnas propuestas: relevancia, novedad (nueva/actualizada), expediente, objeto de compra, institución, modalidad, fecha límite con tiempo restante (destacado cuando el cierre es próximo), estado de seguimiento, responsable y documentos disponibles. El objeto y el expediente abren el detalle.
 
-La tabla se ordena inicialmente por relevancia; el usuario puede ordenar por fecha límite, fecha de inicio, institución y fecha de detección. Se pagina sin limitar las descargas al contenido de la página visible.
+La tabla se ordena inicialmente por relevancia y luego por cierre más próximo; el usuario puede ordenar por fecha límite, fecha de inicio, institución y fecha de detección. Se pagina sin limitar las descargas al contenido de la página visible.
 
-**Filtros por facetas:** relevancia; institución; modalidad; etapa; tipo de adquisición; estado de la coincidencia; rango de fecha límite; y disponibilidad de documentos. También hay búsqueda por texto dentro de los resultados y una acción «Limpiar filtros». Cada faceta muestra el recuento de resultados cuando los datos estén disponibles. Los filtros de esta tabla solo cambian la vista de la ejecución: no modifican el perfil de empresa, los criterios de la búsqueda guardada ni su programación.
+**Filtros por facetas:** relevancia; estado de seguimiento; responsable; lista; institución; modalidad; etapa; tipo de adquisición; novedad; rango de fecha límite; y disponibilidad de documentos. También hay búsqueda por texto dentro de los resultados y una acción «Limpiar filtros». Los filtros solo cambian la vista: no modifican el perfil de empresa ni los criterios de las listas.
 
-**Descarga:** el usuario puede descargar «Todos los resultados de esta ejecución» o «Solo resultados filtrados» en CSV, y el reporte PDF congelado de la ejecución. «Todos» significa todas las filas del resultado elegido, incluidas las que están en otras páginas de la tabla. Una fila individual permite abrir la fuente oficial y descargar sus documentos existentes; no se ofrece descarga de documentos cuando el proceso carece de ellos. Las opciones muestran el número de registros que contendrá cada descarga.
+**Descarga:** la vista actual completa o solo los resultados filtrados, en Excel o CSV, y los reportes PDF y Excel de cada actualización desde el historial. «Todos» incluye las filas de todas las páginas. Una fila individual permite abrir la fuente oficial y descargar sus documentos existentes; no se ofrece descarga de documentos cuando el proceso carece de ellos. Las opciones muestran el número de registros que contendrá cada descarga.
 
 ### 12.3 Detalle sin perder el contexto
 
-Al abrir una fila, un panel lateral o una vista de detalle conserva la búsqueda, la ejecución y los filtros desde los que llegó el usuario. Presenta el motivo de coincidencia con evidencia, los datos y cambios del proceso, documentos, enlace oficial, acciones «Me interesa»/«No me interesa» y acceso al chat contextual. Al cerrar el detalle se regresa a la misma posición de la tabla.
+Al abrir una fila, un panel lateral conserva la vista, la lista y los filtros desde los que llegó el usuario. Presenta el motivo de coincidencia con evidencia, los datos y cambios del proceso, documentos, enlace oficial, el seguimiento (estado, responsable, notas del equipo y motivo al descartar) y acceso al chat contextual en los planes que lo incluyen. Al cerrar el detalle se regresa a la misma posición de la tabla.
 
-En pantallas pequeñas, la lista de búsquedas se abre desde un menú y la tabla utiliza columnas esenciales más un resumen por fila; los filtros se muestran en un panel. La información y las descargas conservan el mismo alcance funcional.
+En pantallas pequeñas, la barra lateral se abre desde un menú y la tabla utiliza columnas esenciales más un resumen por fila; los filtros se muestran en un panel. La información y las descargas conservan el mismo alcance funcional.
 
 ### 12.4 Otras pantallas
 
 1. Registro e inicio de sesión.
-2. Crear organización y describir productos/servicios.
-3. Crear o editar búsqueda y configurar frecuencia y entrega.
-4. Historial completo de ejecuciones, accesible desde la barra lateral.
-5. Chat contextual y saldo de créditos.
-6. Configuración de organización, miembros, suscripción y notificaciones.
-7. Panel operativo interno de sincronizaciones y errores.
+2. Onboarding: nombre de la empresa y lo que vende, y selección de plan.
+3. Crear o editar una lista y elegir si se sigue.
+4. Búsqueda libre sobre todos los procesos recolectados, con opción de dar seguimiento a cualquiera.
+5. Historial de actualizaciones con sus reportes.
+6. Chat contextual y saldo de créditos.
+7. Configuración de organización, perfil de empresa, miembros, horas de reporte, suscripción y notificaciones.
+8. Panel operativo interno de sincronizaciones y errores (proyecto de administración aparte).
 
 ## 13. Criterios de aceptación del primer piloto
 
@@ -234,11 +248,14 @@ En pantallas pequeñas, la lista de búsquedas se abre desde un menú y la tabla
 - Se evalúa una muestra etiquetada manualmente de oportunidades pertinentes e irrelevantes; se mide especialmente la tasa de oportunidades relevantes omitidas antes de activar alertas pagadas.
 - Jev participa en la clasificación de candidatos del MVP; sus decisiones quedan registradas con modelo, preguntas, probabilidades y evidencia de entrada. El sistema conserva como «posibles» los casos inciertos y como «pendientes» aquellos en los que falló la evaluación.
 - La evaluación compara el flujo con Jev frente a reglas y búsqueda semántica sin Jev, usando el mismo conjunto etiquetado; se revisan oportunidades omitidas, falsos positivos, latencia y costo antes de fijar umbrales de alertas.
-- Una nueva ejecución produce PDF, CSV e historial; refleja fecha de última ingesta, cobertura y análisis incompleto donde corresponda.
-- En el Home, seleccionar una búsqueda y una ejecución actualiza la tabla sin perder el historial; «Ejecutar ahora» muestra progreso y evita ejecuciones duplicadas.
-- Los filtros por facetas no cambian la búsqueda guardada; «Descargar todos» incluye registros de todas las páginas y «Solo resultados filtrados» respeta las facetas aplicadas.
-- Un cambio de fecha o nuevo anexo queda registrado y genera una alerta como actualización, sin duplicar la alerta original.
-- Una falla del portal, de OCR o del correo queda registrada y visible; ninguna se presenta como búsqueda exitosa sin coincidencias.
+- Cada actualización produce PDF, Excel e historial; refleja fecha de última ingesta, cobertura y análisis incompleto donde corresponda.
+- El Home abre en «Recomendadas» y muestra cada oportunidad una sola vez, aunque haya varias actualizaciones con los mismos resultados; las nuevas y las actualizadas se distinguen.
+- «Descartadas» reúne lo descartado por el sistema y por el equipo, separado de las demás vistas y recuperable.
+- Un cambio de estado de seguimiento hecho desde cualquier lista se refleja en todas; el responsable y las notas quedan registrados con autor y fecha.
+- Cada miembro recibe en el correo de reporte solo lo de las listas que sigue; «Actualizar ahora» muestra progreso, evita actualizaciones duplicadas y no envía correo.
+- Los filtros por facetas no cambian el perfil ni las listas; «Descargar todos» incluye registros de todas las páginas y «Solo resultados filtrados» respeta las facetas aplicadas.
+- Un cambio de fecha o nuevo anexo de una oportunidad en seguimiento queda registrado y genera un aviso como actualización, sin duplicar la alerta original.
+- Una falla del portal, de OCR o del correo queda registrada y visible; ninguna se presenta como actualización exitosa sin coincidencias.
 - El chat muestra las fuentes de sus respuestas, respeta el contexto elegido y no afirma haber leído documentos no procesados.
 - Los límites de suscripción y el saldo de créditos se aplican por organización; no hay doble consumo por reintentos.
 
@@ -259,5 +276,6 @@ En pantallas pequeñas, la lista de búsquedas se abre desde un menú y la tabla
 3. Perfiles, búsquedas guardadas, ejecuciones, reportes y correo.
 4. RAG con citas y tratamiento de procesos sin documentos.
 5. Organizaciones, planes, créditos y panel administrativo para piloto pagado.
+6. Oportunidades como centro del Home, seguimiento en equipo, listas con seguidores y más avisos (versión 0.4).
 
 **Regla de producto para todas las fases:** el éxito no es capturar muchos procesos; es ayudar a una empresa a encontrar a tiempo las pocas oportunidades que sí merecen su revisión.

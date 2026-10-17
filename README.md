@@ -63,7 +63,7 @@ features/[domain]/
 
 Current domains: `auth`, `onboarding`, `organizations`, `memberships`, `invitations`, `profiles`, `events`, `notifications`, `settings`. Procurement domains (processes, documents, profiles, searches, runs, chat) arrive with the phases in the implementation plan.
 
-See `documentation/project-overview.md` for the full architecture snapshot.
+See `documentation/MVP_Specification.md` for the product and `documentation/mvp-implementation-plan.md` for the build plan and its decisions.
 
 ## Requirements
 

@@ -496,6 +496,19 @@ Start with the Spanish pass (D1) over existing screens, validation messages, not
 
 **Done when (spec §13):** answers show verified sources and respect the chosen context; `CM 39-019-2026` chat says it only has the process detail; the chat never claims to have read unprocessed documents; retries and aborted streams never double-charge credits; at least two providers have been evaluated on the golden set and the choice is documented.
 
+### Phase 5b — Opportunities, lists, and tracking (L) — D7, spec 0.4 §3, §5, §7, §12
+
+Built in four slices, each shippable on its own:
+
+1. **Opportunities as the center.** The Home opens on «Recomendadas» (muy relevantes for the company profile) and «Todas» (everything that matched the profile or a list, «posible» included), each process once, from its latest run, with «Nueva» and «Actualizada» from `match_state`. «Descartadas» is its own view. Runs leave the navigation: «Actualizado hoy 13:00» and «Actualizar ahora» (no email) remain, and the run history becomes a record with its PDF and Excel files. The sidebar takes the D7 layout (Seguimiento and Listas sections appear with their slices).
+2. **Tracking.** Migration renames `opportunity_feedback` to `opportunity_tracking` (indexes, constraints, and policies renamed too): `decision` → `status` (`en_evaluacion`, `preparando_oferta`, `presentada`, `ganada`, `perdida`, `descartada`; interesa → en_evaluacion, no_interesa → descartada), `reason` → `discard_reason`, `decided_by/at` → `updated_by/at`, plus `assigned_to`. No row means Nueva. `opportunity_notes` holds the team's notes with author and date; status changes go to `app_events`. Viewers read only. Change alerts (`opportunity.updated`) follow every tracked status except descartada instead of «Me interesa». Sidebar: Nuevas, En seguimiento, Descartadas; the table gains status and assignee columns and facets; the detail panel replaces the two buttons with status, assignee, notes, and discard reason. The privacy page's «Me interesa» wording changes with this slice.
+3. **Lists.** Extra saved searches become «Listas» (the table stays `saved_searches`; «Recomendadas» is the default one and does not count as a list). `list_followers` records who follows each list; members follow «Recomendadas» by default and choose the rest. Report emails (D6) carry, for each member, only the lists they follow. Plan limits read as lists. The landing, FAQ, and terms stop saying «búsquedas» once this ships.
+4. **More alerts.** Closing-date reminders for tracked opportunities, alerts to the assignee, and other channels later (WhatsApp, Slack, Teams are out of the MVP, spec §3).
+
+Also in this phase: «Búsqueda libre» over every collected process (text and facets, no evaluation), with «dar seguimiento» from any row.
+
+**Done when (spec 0.4 §13):** the Home shows each opportunity once however many runs found it; Descartadas is separate and recoverable; a status set from any list shows in all; each member's report email holds only the lists they follow; table 7.2 and section 2 describe what was built.
+
 ### Phase 6 — Pilot readiness (M)
 
 - Deploy: Supabase Cloud (migrations, Vault secrets, function secrets, pg_cron); Railway `web` and `worker` with health checks and separate staging/production environments; AI Gateway key per environment with budgets and role fallbacks.

@@ -33,7 +33,7 @@ export async function ContextChat({ orgId, orgSlug, context }: { orgId: string; 
             emptyDescription={
                 context.type === "opportunity"
                     ? "Las respuestas salen de los datos del proceso y de sus documentos, con la página de cada fuente. Solo usted ve esta conversación."
-                    : "Las respuestas cubren las oportunidades relevantes de esta ejecución (hasta 20), con la página de cada fuente. Solo usted ve esta conversación."
+                    : "Las respuestas cubren las oportunidades relevantes de esta actualización (hasta 20), con la página de cada fuente. Solo usted ve esta conversación."
             }
         />
     );

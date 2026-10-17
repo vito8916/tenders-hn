@@ -1,96 +1,143 @@
 import "server-only";
 import { z } from "zod";
 import { listSavedSearchesService } from "@/features/saved-searches/services";
+import type { SavedSearch } from "@/features/saved-searches/schemas";
+import { listNotInterestedProcessIdsService } from "@/features/opportunities/services";
 import {
     createReportUrl,
     getLatestIngestionAt,
-    getLatestRuns,
     getHistoryMonths,
     getOrgRun,
-    getSearchRun,
     listLatestFinishedRuns,
     listLatestRuns,
-    listRecentRuns,
+    listMatchesForRuns,
     listRunsPage,
-    listSearchRunMatches,
     requestSearchRun,
 } from "./repository";
-import { isRunFinished } from "./schemas";
+import { isRunFinished, type SearchRun, type SearchRunMatch } from "./schemas";
+import { composeOpportunities, type HomeView } from "./opportunities";
 
-const RECENT_RUNS = 10;
 const HISTORY_PAGE_SIZE = 25;
 
-export async function listLatestRunsService(orgId: string) {
-    return listLatestRuns(orgId);
-}
+type HomeItem = { search: SavedSearch; latestRun: SearchRun | null; latestFinished: SearchRun | null };
+
+const runMatches = (item: HomeItem & { latestFinished: SearchRun }, matchesByRun: Map<string, SearchRunMatch[]>) => ({
+    searchId: item.search.id,
+    runId: item.latestFinished.id,
+    isDefault: item.search.isDefault,
+    matches: matchesByRun.get(item.latestFinished.id) ?? [],
+});
 
 /**
- * What the Home shows (spec §12.1): the searches, «Recomendadas» first and then the most recently run,
- * with the new matches of their latest finished run; and for the selected
- * search (the requested one, else «Recomendadas») its recent runs and
- * the shown run (the requested one, else the latest finished: a run in
- * progress never replaces finished results) with its matches.
+ * What an opportunities page shows (plan D7, spec 0.4 §12.1): the organization's searches («Recomendadas»
+ * first, then the lists by name) with each one's latest and latest finished run, the views over the finished
+ * runs of the active ones, and for an update's page that run with its frozen matches. A run in progress never
+ * replaces finished results. Null when the list or the update is not the organization's, or the update has
+ * not finished. The default search's list is Recomendadas.
  */
-export async function getHomeService(params: { orgId: string; searchId: string | null; runId: string | null }) {
-    const [searches, latestRuns, finishedRuns, latestIngestionAt] = await Promise.all([
+export async function getHomeService(params: { orgId: string; view: HomeView }) {
+    const requestedRun =
+        params.view.kind === "update" ? (z.uuid().safeParse(params.view.runId).success ? await getOrgRun(params.orgId, params.view.runId) : null) : undefined;
+    if (requestedRun === null || (requestedRun && !isRunFinished(requestedRun.run.status))) return null;
+    if (params.view.kind === "lista" && !z.uuid().safeParse(params.view.searchId).success) return null;
+
+    const [searches, latestRuns, finishedRuns, latestIngestionAt, notInterested] = await Promise.all([
         listSavedSearchesService(params.orgId),
         listLatestRuns(params.orgId),
         listLatestFinishedRuns(params.orgId),
         getLatestIngestionAt(),
+        listNotInterestedProcessIdsService(params.orgId),
     ]);
 
     const latestBySearch = new Map(latestRuns.map((run) => [run.savedSearchId, run]));
     const finishedBySearch = new Map(finishedRuns.map((run) => [run.savedSearchId, run]));
-    // «Recomendadas» first, then the most recently run; searches come sorted by name and the sort is stable, so the ones never run stay last in that order.
-    const items = searches
-        .map((search) => ({
-            search,
-            latestRun: latestBySearch.get(search.id) ?? null,
-            newMatches: finishedBySearch.get(search.id)?.newMatchesCount ?? 0,
-        }))
-        .sort(
-            (a, b) =>
-                Number(b.search.isDefault) - Number(a.search.isDefault) ||
-                (b.latestRun?.createdAt ?? "").localeCompare(a.latestRun?.createdAt ?? ""),
-        );
+    // Searches come sorted by name and the sort is stable.
+    const items: HomeItem[] = searches
+        .map((search) => ({ search, latestRun: latestBySearch.get(search.id) ?? null, latestFinished: finishedBySearch.get(search.id) ?? null }))
+        .sort((a, b) => Number(b.search.isDefault) - Number(a.search.isDefault));
+    const defaultItem = items.find((item) => item.search.isDefault) ?? null;
 
-    const selectedItem = items.find((item) => item.search.id === params.searchId) ?? items[0];
-    if (!selectedItem) {
-        return { items, latestIngestionAt, selected: null };
+    const snapshot = requestedRun?.run ?? null;
+    const requestedId = params.view.kind === "lista" ? params.view.searchId : (snapshot?.savedSearchId ?? null);
+    const requestedItem = items.find((item) => item.search.id === requestedId);
+    if (requestedId && !requestedItem) return null;
+    const view: HomeView = params.view.kind === "lista" && requestedItem?.search.isDefault ? { kind: "recomendadas" } : params.view;
+
+    const finished = items.filter((item): item is HomeItem & { latestFinished: SearchRun } => item.latestFinished !== null);
+    const active = finished.filter((item) => item.search.isActive);
+    // A paused list is left out of Todas and Descartadas but still shows its own last results.
+    const pausedShown = view.kind === "lista" ? finished.find((item) => item.search.id === requestedId && !item.search.isActive) : undefined;
+
+    const matchesByRun = await listMatchesForRuns([
+        ...active.map((item) => item.latestFinished.id),
+        ...(pausedShown ? [pausedShown.latestFinished.id] : []),
+        ...(snapshot ? [snapshot.id] : []),
+    ]);
+    const now = new Date();
+    const opportunities = composeOpportunities({ runs: active.map((item) => runMatches(item, matchesByRun)), notInterested, now });
+    if (pausedShown) {
+        const paused = composeOpportunities({ runs: [runMatches(pausedShown, matchesByRun)], notInterested, now });
+        opportunities.byList.set(pausedShown.search.id, paused.byList.get(pausedShown.search.id) ?? []);
     }
 
-    const searchId = selectedItem.search.id;
-    const recentRuns = await listRecentRuns(searchId, RECENT_RUNS);
-    const latestFinished = recentRuns.find((run) => isRunFinished(run.status)) ?? (await getLatestRuns(searchId)).finished;
-    const requestedRun =
-        params.runId && z.uuid().safeParse(params.runId).success
-            ? (recentRuns.find((run) => run.id === params.runId) ?? (await getSearchRun(searchId, params.runId)))
-            : null;
-    const shownRun = requestedRun ?? latestFinished;
-    const matches = shownRun && isRunFinished(shownRun.status) ? await listSearchRunMatches(shownRun.id) : [];
+    const viewItem =
+        view.kind === "recomendadas" ? defaultItem : view.kind === "lista" || view.kind === "update" ? (requestedItem ?? null) : null;
 
     return {
         items,
+        view,
+        viewItem,
+        defaultItem,
+        opportunities,
+        snapshot: snapshot
+            ? {
+                  run: snapshot,
+                  matches: (matchesByRun.get(snapshot.id) ?? []).map((match) => ({ ...match, runId: snapshot.id, searchId: snapshot.savedSearchId })),
+              }
+            : null,
         latestIngestionAt,
-        selected: { ...selectedItem, recentRuns, shownRun, latestFinished, matches },
     };
 }
 
-/** «Historial completo» (spec §12.4): a page of the search's runs and how many months the plan keeps. */
-export async function getRunHistoryService(params: { orgId: string; searchId: string; page: number }) {
-    const [{ runs, total }, historyMonths] = await Promise.all([
-        listRunsPage(params.searchId, params.page, HISTORY_PAGE_SIZE),
-        getHistoryMonths(params.orgId),
-    ]);
-    return { runs, historyMonths, pageCount: Math.max(1, Math.ceil(total / HISTORY_PAGE_SIZE)) };
+export type HomeData = NonNullable<Awaited<ReturnType<typeof getHomeService>>>;
+
+/** The rows of the view: the page's table and its CSV download read the same ones. */
+export function homeViewRows(home: HomeData) {
+    const { view, opportunities, snapshot } = home;
+    switch (view.kind) {
+        case "recomendadas":
+            return opportunities.recomendadas;
+        case "todas":
+            return opportunities.todas;
+        case "descartadas":
+            return opportunities.descartadas;
+        case "lista":
+            return opportunities.byList.get(view.searchId) ?? [];
+        case "update":
+            return snapshot?.matches ?? [];
+    }
 }
 
-/** A finished run of the organization with its matches, for the downloads; null otherwise. */
-export async function getRunExportService(params: { orgId: string; runId: string }) {
-    if (!z.uuid().safeParse(params.runId).success) return null;
-    const found = await getOrgRun(params.orgId, params.runId);
-    if (!found || !isRunFinished(found.run.status)) return null;
-    return { ...found, matches: await listSearchRunMatches(found.run.id) };
+/** «licitaly-<view>-<yyyy-mm-dd>»: the name of a view's CSV; a snapshot keeps its run's date. */
+export function homeViewFileName(home: HomeData) {
+    const { view, viewItem, snapshot } = home;
+    const name = view.kind === "todas" ? "Todas" : view.kind === "descartadas" ? "Descartadas" : (viewItem?.search.name ?? "oportunidades");
+    return runFileName(name, snapshot?.run.createdAt ?? new Date().toISOString());
+}
+
+/** The history (spec 0.4 §12.4): a page of the organization's updates, of Recomendadas and every list, and how many months the plan keeps. */
+export async function getRunHistoryService(params: { orgId: string; page: number }) {
+    const [{ runs, total }, historyMonths, searches] = await Promise.all([
+        listRunsPage(params.orgId, params.page, HISTORY_PAGE_SIZE),
+        getHistoryMonths(params.orgId),
+        listSavedSearchesService(params.orgId),
+    ]);
+    const searchById = new Map(searches.map((search) => [search.id, search]));
+    return {
+        runs: runs.map((run) => ({ ...run, search: searchById.get(run.savedSearchId) ?? null })),
+        historyMonths,
+        pageCount: Math.max(1, Math.ceil(total / HISTORY_PAGE_SIZE)),
+    };
 }
 
 const fileDate = new Intl.DateTimeFormat("sv-SE", { dateStyle: "short", timeZone: "America/Tegucigalpa" });

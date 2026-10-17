@@ -13,9 +13,9 @@ import type { NotificationPreference } from "../schemas";
 const CATEGORY_SECTIONS = [
 	{
 		category: "searches",
-		title: "Búsquedas",
+		title: "Reportes",
 		description:
-			"Reportes de sus búsquedas y cambios en oportunidades marcadas con «Me interesa». Los horarios de los reportes se eligen en Configuración › Reportes.",
+			"Reportes de «Recomendadas» y sus listas, y cambios en oportunidades marcadas con «Me interesa». Los horarios de los reportes se eligen en Configuración › Reportes.",
 	},
 	{
 		category: "organization",

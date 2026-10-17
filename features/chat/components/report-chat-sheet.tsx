@@ -23,7 +23,7 @@ export function ReportChatSheet({ children }: { children: React.ReactNode }) {
             <SheetContent side="right" className="w-full gap-0 sm:max-w-2xl">
                 <SheetHeader className="border-b">
                     <SheetTitle>Preguntar sobre el reporte</SheetTitle>
-                    <SheetDescription>Consulte las oportunidades relevantes de esta ejecución.</SheetDescription>
+                    <SheetDescription>Consulte las oportunidades relevantes de esta actualización.</SheetDescription>
                 </SheetHeader>
                 <div className="min-h-0 flex-1">{children}</div>
             </SheetContent>

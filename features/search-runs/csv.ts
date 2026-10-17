@@ -3,7 +3,7 @@ import type { SearchRunMatch } from "./schemas";
 
 const HEADERS = [
     "Relevancia",
-    "Estado",
+    "Novedad",
     "Expediente",
     "Objeto",
     "Institución",

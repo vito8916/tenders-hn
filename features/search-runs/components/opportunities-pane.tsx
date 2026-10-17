@@ -1,0 +1,132 @@
+import Link from "next/link";
+import { Ban, Hash, Layers, Plus, Star, type LucideIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { homeViewPath } from "../opportunities";
+
+export type PaneList = { id: string; name: string; isActive: boolean; newMatches: number };
+
+function PaneLink({
+    href,
+    icon: Icon,
+    label,
+    current,
+    trailing,
+}: {
+    href: string;
+    icon: LucideIcon;
+    label: string;
+    current: boolean;
+    trailing?: React.ReactNode;
+}) {
+    return (
+        <li>
+            <Link
+                href={href}
+                aria-current={current ? "page" : undefined}
+                className={cn("flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted", current && "bg-muted font-medium")}
+            >
+                <Icon className="size-4 shrink-0 text-muted-foreground" />
+                <span className="min-w-0 flex-1 truncate">{label}</span>
+                {trailing}
+            </Link>
+        </li>
+    );
+}
+
+function Count({ value }: { value: number }) {
+    return <span className="text-xs text-muted-foreground tabular-nums">{value}</span>;
+}
+
+function Section({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
+    return (
+        <section className="space-y-1">
+            <div className="flex items-center justify-between gap-2 px-3 pt-3">
+                <h2 className="text-xs font-medium text-muted-foreground">{title}</h2>
+                {action}
+            </div>
+            {children}
+        </section>
+    );
+}
+
+/**
+ * The Home's left pane (plan D7, spec 0.4 §12.1): Recomendadas and Todas with their counts, Descartadas,
+ * and the organization's lists with their new opportunities.
+ */
+export function OpportunitiesPane({
+    orgSlug,
+    current,
+    counts,
+    lists,
+    canCreate,
+}: {
+    orgSlug: string;
+    /** The view or list shown: «recomendadas», «todas», «descartadas», or a list's id (an update marks its list). */
+    current: string;
+    counts: { recomendadas: number; todas: number };
+    lists: PaneList[];
+    canCreate: boolean;
+}) {
+    return (
+        <nav aria-label="Oportunidades" className="space-y-2 p-2">
+            <Section title="Oportunidades">
+                <ul className="space-y-0.5">
+                    <PaneLink
+                        href={homeViewPath(orgSlug, { kind: "recomendadas" })}
+                        icon={Star}
+                        label="Recomendadas"
+                        current={current === "recomendadas"}
+                        trailing={<Count value={counts.recomendadas} />}
+                    />
+                    <PaneLink href={homeViewPath(orgSlug, { kind: "todas" })} icon={Layers} label="Todas" current={current === "todas"} trailing={<Count value={counts.todas} />} />
+                </ul>
+            </Section>
+            <Section title="Seguimiento">
+                <ul className="space-y-0.5">
+                    <PaneLink href={homeViewPath(orgSlug, { kind: "descartadas" })} icon={Ban} label="Descartadas" current={current === "descartadas"} />
+                </ul>
+            </Section>
+            {lists.length > 0 || canCreate ? (
+                <Section
+                    title="Listas"
+                    action={
+                        canCreate ? (
+                            <Button variant="ghost" size="icon" className="size-6" asChild>
+                                <Link href={`/organizations/${orgSlug}/lists/new`} aria-label="Nueva lista">
+                                    <Plus />
+                                </Link>
+                            </Button>
+                        ) : null
+                    }
+                >
+                    {lists.length > 0 ? (
+                        <ul className="space-y-0.5">
+                            {lists.map((list) => (
+                                <PaneLink
+                                    key={list.id}
+                                    href={homeViewPath(orgSlug, { kind: "lista", searchId: list.id })}
+                                    icon={Hash}
+                                    label={list.name}
+                                    current={list.id === current}
+                                    trailing={
+                                        !list.isActive ? (
+                                            <span className="text-xs text-muted-foreground">Pausada</span>
+                                        ) : list.newMatches > 0 ? (
+                                            <Badge variant="secondary" className="rounded-full px-1.5 text-[11px] text-muted-foreground">
+                                                {list.newMatches === 1 ? "1 nueva" : `${list.newMatches} nuevas`}
+                                            </Badge>
+                                        ) : null
+                                    }
+                                />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="px-3 py-1 text-xs text-muted-foreground">Cree listas para seguir otros temas, instituciones o modalidades.</p>
+                    )}
+                </Section>
+            ) : null}
+        </nav>
+    );
+}

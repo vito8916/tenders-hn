@@ -12,7 +12,8 @@ const deadline = new Intl.DateTimeFormat("es-HN", { day: "numeric", month: "shor
 const day = new Intl.DateTimeFormat("es-HN", { day: "numeric", month: "short", year: "numeric", timeZone: "America/Tegucigalpa" });
 
 export function MatchStateBadge({ match }: { match: SearchRunMatch }) {
-    if (match.matchState !== "nueva" && match.matchState !== "actualizada") return null;
+    // Whether a discarded opportunity is new does not call for a look.
+    if (match.relevance === "descartada" || (match.matchState !== "nueva" && match.matchState !== "actualizada")) return null;
     return <Badge variant="outline">{MATCH_STATE_LABELS[match.matchState]}</Badge>;
 }
 
@@ -28,8 +29,8 @@ const formatDeadline = (match: SearchRunMatch) => (match.closesAt ? deadline.for
  * The shown run's opportunities (spec §12.2). The expediente and the object
  * open the detail beside the table, keeping the filters and the page.
  */
-export function ResultsTable({ rows, params, homeHref }: { rows: SearchRunMatch[]; params: SearchParamsRecord; homeHref: string }) {
-    const detailHref = (match: SearchRunMatch) => `${homeHref}${withParams(params, { detalle: match.processId })}`;
+export function ResultsTable({ rows, params, viewHref }: { rows: SearchRunMatch[]; params: SearchParamsRecord; viewHref: string }) {
+    const detailHref = (match: SearchRunMatch) => `${viewHref}${withParams(params, { detalle: match.processId })}`;
 
     return (
         <>

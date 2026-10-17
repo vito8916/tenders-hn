@@ -76,6 +76,15 @@ export async function getFeedback(orgId: string, processId: string) {
     return data;
 }
 
+/** The processes the organization marked «No me interesa»: the Home shows them under Descartadas. */
+export async function listNotInterestedProcessIds(orgId: string): Promise<Set<string>> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("opportunity_feedback").select("process_id").eq("org_id", orgId).eq("decision", "no_interesa");
+
+    if (error) throw error;
+    return new Set(data.map((row) => row.process_id));
+}
+
 // ========== MUTATIONS ==========
 
 export async function upsertFeedback(params: { orgId: string; processId: string; userId: string; decision: FeedbackDecision; reason: string | null }) {

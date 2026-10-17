@@ -51,7 +51,7 @@ export async function saveSavedSearchAction(input: {
         return { success: true, searchId };
     } catch (error) {
         console.error("Error saving search:", error);
-        return { success: false, error: userErrorMessage(error, "No se pudo guardar la búsqueda. Intente de nuevo.") };
+        return { success: false, error: userErrorMessage(error, "No se pudo guardar la lista. Intente de nuevo.") };
     }
 }
 
@@ -79,7 +79,7 @@ export async function setSavedSearchActiveAction(input: {
         return { success: true };
     } catch (error) {
         console.error("Error changing search state:", error);
-        return { success: false, error: userErrorMessage(error, "No se pudo cambiar el estado de la búsqueda.") };
+        return { success: false, error: userErrorMessage(error, "No se pudo cambiar el estado de la lista.") };
     }
 }
 
@@ -106,6 +106,6 @@ export async function deleteSavedSearchAction(input: {
         return { success: true };
     } catch (error) {
         console.error("Error deleting search:", error);
-        return { success: false, error: userErrorMessage(error, "No se pudo eliminar la búsqueda.") };
+        return { success: false, error: userErrorMessage(error, "No se pudo eliminar la lista.") };
     }
 }

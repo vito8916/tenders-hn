@@ -187,7 +187,7 @@ export async function OpportunityDetail({
                 </Button>
                 {changedSinceRun ? (
                     <p className="rounded-md border border-dashed p-2 text-xs text-muted-foreground">
-                        El proceso cambió después de esta ejecución: se muestran sus datos actuales.
+                        El proceso cambió después de esta actualización: se muestran sus datos actuales.
                     </p>
                 ) : null}
             </header>

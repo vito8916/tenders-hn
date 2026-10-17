@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Search } from "lucide-react";
+import { List } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { PageHeader } from "@/components/shared/page-header";
 import { SettingsSection, SettingsSectionBody } from "@/components/settings/settings-section";
@@ -13,8 +13,8 @@ import { getSavedSearchService, getSearchLimitsService, listFilterOptionsService
 import { SavedSearchForm } from "@/features/saved-searches/components/saved-search-form";
 import { SearchStateActions } from "@/features/saved-searches/components/search-state-actions";
 
-async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string; searchId: string }> }) {
-    const { orgSlug, searchId } = await params;
+async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string; listId: string }> }) {
+    const { orgSlug, listId: searchId } = await params;
     const [{ sub: userId }, organization] = await Promise.all([getCurrentUser(), getOrganizationBySlugService(orgSlug)]);
 
     if (!organization) {
@@ -28,7 +28,8 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
         listFilterOptionsService(),
         getCompanyProfileService(organization.id),
     ]);
-    if (!role || !canManageSearches(role) || !search) {
+    // Recomendadas follows the company profile, edited in Configuración › Perfil de la empresa.
+    if (!role || !canManageSearches(role) || !search || search.isDefault) {
         notFound();
     }
 
@@ -44,14 +45,14 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
                 />
             ) : (
                 <p className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
-                    La organización no tiene un plan activo: no se pueden modificar las búsquedas.
+                    La organización no tiene un plan activo: no se pueden modificar las listas.
                 </p>
             )}
             {search.isDefault ? null : (
                 <SettingsSection
                     variant="danger"
                     title="Pausar o eliminar"
-                    description="Una búsqueda pausada no se ejecuta ni cuenta en el límite de su plan, y conserva su historial."
+                    description="Una lista pausada no se actualiza ni cuenta en el límite de su plan, y conserva su historial."
                 >
                     <SettingsSectionBody>
                         <SearchStateActions
@@ -68,12 +69,12 @@ async function EditSearchContent({ params }: { params: Promise<{ orgSlug: string
     );
 }
 
-export const metadata = { title: "Editar búsqueda" };
+export const metadata = { title: "Editar lista" };
 
-export default function EditSearchPage({ params }: { params: Promise<{ orgSlug: string; searchId: string }> }) {
+export default function EditSearchPage({ params }: { params: Promise<{ orgSlug: string; listId: string }> }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <PageHeader icon={Search} title="Editar búsqueda" description="Los cambios se aplican en la próxima ejecución." />
+            <PageHeader icon={List} title="Editar lista" description="Los cambios se aplican en la próxima actualización." />
             <div className="max-w-3xl">
                 <Suspense fallback={<SettingsFormSkeleton sections={3} />}>
                     <EditSearchContent params={params} />

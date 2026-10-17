@@ -40,7 +40,7 @@ async function CompanyProfileSettingsContent({ params }: { params: Promise<{ org
 				title="Qué vende la empresa"
 				description={
 					canEdit
-						? "Cuanto más concreto, mejores resultados. Los cambios se aplican en la próxima búsqueda."
+						? "Cuanto más concreto, mejores resultados. Los cambios se aplican en la próxima actualización."
 						: "Solo los propietarios y administradores pueden editarlo."
 				}
 			>

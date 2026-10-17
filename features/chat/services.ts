@@ -34,14 +34,14 @@ async function loadContextProcesses(orgId: string, context: ChatContext): Promis
     }
 
     const orgRun = await getOrgRun(orgId, context.runId!);
-    if (!orgRun) throw new UserFacingError("La ejecución no existe o ya no está disponible en su plan.");
+    if (!orgRun) throw new UserFacingError("La actualización no existe o ya no está disponible en su plan.");
     const matches = await listSearchRunMatches(orgRun.run.id);
     const chosen =
         context.type === "opportunity"
             ? matches.filter((match) => match.processId === context.processId)
             : matches.filter(isRelevant).slice(0, REPORT_PROCESSES);
     if (context.type === "report" && chosen.length === 0) {
-        throw new UserFacingError("Esta ejecución no tiene oportunidades relevantes para consultar.");
+        throw new UserFacingError("Esta actualización no tiene oportunidades relevantes para consultar.");
     }
 
     const snapshots = new Map(chosen.map((match) => [match.processId, { stage: match.stage, closesAt: match.closesAt, runAt: orgRun.run.createdAt, relevance: match.relevance }]));

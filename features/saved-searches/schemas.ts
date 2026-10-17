@@ -45,7 +45,7 @@ const itemListField = (label: string) =>
 
 export const savedSearchInputSchema = z
     .object({
-        name: z.string().trim().min(1, "Póngale un nombre a la búsqueda.").max(80, "El nombre puede tener hasta 80 caracteres."),
+        name: z.string().trim().min(1, "Póngale un nombre a la lista.").max(80, "El nombre puede tener hasta 80 caracteres."),
         inheritsProfile: z.boolean(),
         description: z.string().trim().max(8000, "La descripción puede tener hasta 8000 caracteres."),
         keywords: itemListField("términos"),
@@ -57,7 +57,7 @@ export const savedSearchInputSchema = z
     })
     .refine((input) => input.inheritsProfile || input.description.length > 0, {
         path: ["description"],
-        message: "Describa qué busca con esta búsqueda.",
+        message: "Describa qué sigue esta lista.",
     });
 export type SavedSearchInput = z.infer<typeof savedSearchInputSchema>;
 

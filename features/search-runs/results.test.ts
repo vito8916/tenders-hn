@@ -77,7 +77,7 @@ describe("applyResultView", () => {
             { value: "con", count: 1 },
             { value: "sin", count: 1 },
         ]);
-        expect(facets.estado.find((f) => f.value === "conocida")?.count).toBe(0);
+        expect(facets.novedad.find((f) => f.value === "conocida")?.count).toBe(0);
     });
 
     it("pages the filtered rows and clamps a page past the end", () => {

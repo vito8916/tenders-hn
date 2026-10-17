@@ -79,27 +79,13 @@ export async function listLatestFinishedRuns(orgId: string): Promise<SearchRun[]
     return data.flatMap((search) => search.search_runs.map(mapSearchRunRow));
 }
 
-/** The search's most recent runs, newest first. */
-export async function listRecentRuns(searchId: string, limit: number): Promise<SearchRun[]> {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-        .from("search_runs")
-        .select(SEARCH_RUN_COLUMNS)
-        .eq("saved_search_id", searchId)
-        .order("created_at", { ascending: false })
-        .limit(limit);
-
-    if (error) throw error;
-    return data.map(mapSearchRunRow);
-}
-
-/** One page of the search's runs, newest first, with how many there are (RLS keeps them within the plan's history). */
-export async function listRunsPage(searchId: string, page: number, pageSize: number): Promise<{ runs: SearchRun[]; total: number }> {
+/** One page of the organization's runs, newest first (RLS keeps them within the plan's history). */
+export async function listRunsPage(orgId: string, page: number, pageSize: number): Promise<{ runs: SearchRun[]; total: number }> {
     const supabase = await createClient();
     const { data, count, error } = await supabase
         .from("search_runs")
         .select(SEARCH_RUN_COLUMNS, { count: "exact" })
-        .eq("saved_search_id", searchId)
+        .eq("org_id", orgId)
         .order("created_at", { ascending: false })
         .range((page - 1) * pageSize, page * pageSize - 1);
 
@@ -117,20 +103,6 @@ export async function getHistoryMonths(orgId: string): Promise<number | null> {
     return plan?.history_months ?? null;
 }
 
-/** A run of the search, or null when the id belongs to another search (a hand-edited URL). */
-export async function getSearchRun(searchId: string, runId: string): Promise<SearchRun | null> {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-        .from("search_runs")
-        .select(SEARCH_RUN_COLUMNS)
-        .eq("saved_search_id", searchId)
-        .eq("id", runId)
-        .maybeSingle();
-
-    if (error) throw error;
-    return data ? mapSearchRunRow(data) : null;
-}
-
 /** A run of the organization with its search's name, or null (another organization's run or a hand-edited URL). */
 export async function getOrgRun(orgId: string, runId: string): Promise<{ run: SearchRun; searchName: string } | null> {
     const supabase = await createClient();
@@ -144,34 +116,7 @@ export async function getOrgRun(orgId: string, runId: string): Promise<{ run: Se
     return { run: mapSearchRunRow(data), searchName: search.name };
 }
 
-/**
- * The search's latest run, and its latest finished one (completed or
- * partial), which is the one whose results are shown: a run in progress
- * never replaces finished results (spec §12.1).
- */
-export async function getLatestRuns(searchId: string): Promise<{ latest: SearchRun | null; finished: SearchRun | null }> {
-    const supabase = await createClient();
-    const [latest, finished] = await Promise.all([
-        supabase.from("search_runs").select(SEARCH_RUN_COLUMNS).eq("saved_search_id", searchId).order("created_at", { ascending: false }).limit(1).maybeSingle(),
-        supabase
-            .from("search_runs")
-            .select(SEARCH_RUN_COLUMNS)
-            .eq("saved_search_id", searchId)
-            .in("status", ["completed", "partial"])
-            .order("created_at", { ascending: false })
-            .limit(1)
-            .maybeSingle(),
-    ]);
-
-    if (latest.error) throw latest.error;
-    if (finished.error) throw finished.error;
-    return {
-        latest: latest.data ? mapSearchRunRow(latest.data) : null,
-        finished: finished.data ? mapSearchRunRow(finished.data) : null,
-    };
-}
-
-/** When the latest complete ingestion finished: what «Ejecutar ahora» would use. */
+/** When the latest complete ingestion finished: what «Actualizar ahora» would use. */
 export async function getLatestIngestionAt(): Promise<string | null> {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -186,39 +131,53 @@ export async function getLatestIngestionAt(): Promise<string | null> {
     return data?.finished_at ?? null;
 }
 
-export async function listSearchRunMatches(runId: string): Promise<SearchRunMatch[]> {
+const MATCH_COLUMNS =
+    "run_id, process_id, process_version_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count";
+
+/** The matches of each run, keyed by run id, in one query. */
+export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, SearchRunMatch[]>> {
+    const byRun = new Map<string, SearchRunMatch[]>(runIds.map((runId) => [runId, []]));
+    if (runIds.length === 0) return byRun;
+
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("search_run_matches")
-        .select("process_id, process_version_id, retrieval_rank, relevance, match_state, reasons, expediente, title, buyer_entity, modality, stage, closes_at, detail_url, acquisition_type, starts_at, detected_at, documents_count")
-        .eq("run_id", runId)
+        .select(MATCH_COLUMNS)
+        .in("run_id", runIds)
         // Within each relevance level, the ones closing soonest first (plan, Phase 3).
         .order("closes_at", { ascending: true, nullsFirst: false })
         .order("retrieval_rank");
 
     if (error) throw error;
 
-    return data.map((row) =>
-        searchRunMatchSchema.parse({
-            processId: row.process_id,
-            processVersionId: row.process_version_id,
-            retrievalRank: row.retrieval_rank,
-            relevance: row.relevance,
-            matchState: row.match_state,
-            reasons: row.reasons,
-            expediente: row.expediente,
-            title: row.title,
-            buyerEntity: row.buyer_entity,
-            modality: row.modality,
-            stage: row.stage,
-            closesAt: row.closes_at,
-            detailUrl: row.detail_url,
-            acquisitionType: row.acquisition_type,
-            startsAt: row.starts_at,
-            detectedAt: row.detected_at,
-            documentsCount: row.documents_count,
-        }),
-    );
+    for (const row of data) {
+        byRun.get(row.run_id)?.push(
+            searchRunMatchSchema.parse({
+                processId: row.process_id,
+                processVersionId: row.process_version_id,
+                retrievalRank: row.retrieval_rank,
+                relevance: row.relevance,
+                matchState: row.match_state,
+                reasons: row.reasons,
+                expediente: row.expediente,
+                title: row.title,
+                buyerEntity: row.buyer_entity,
+                modality: row.modality,
+                stage: row.stage,
+                closesAt: row.closes_at,
+                detailUrl: row.detail_url,
+                acquisitionType: row.acquisition_type,
+                startsAt: row.starts_at,
+                detectedAt: row.detected_at,
+                documentsCount: row.documents_count,
+            }),
+        );
+    }
+    return byRun;
+}
+
+export async function listSearchRunMatches(runId: string): Promise<SearchRunMatch[]> {
+    return (await listMatchesForRuns([runId])).get(runId) ?? [];
 }
 
 /** A short-lived link to a run's PDF or Excel file, signed with the user's session so the bucket's policy applies. */

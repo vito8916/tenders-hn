@@ -25,7 +25,7 @@ const match: SearchRunMatch = {
 describe("matchesToCsv", () => {
     it("starts with a BOM and the headers, and writes dates in Honduras time", () => {
         const [header, row] = matchesToCsv([match]).replace("﻿", "").split("\r\n");
-        expect(header.startsWith("Relevancia,Estado,Expediente,Objeto")).toBe(true);
+        expect(header.startsWith("Relevancia,Novedad,Expediente,Objeto")).toBe(true);
         expect(row).toContain("2026-11-10 10:00");
         expect(row).toContain("2026-09-22 14:46");
         expect(matchesToCsv([match]).startsWith("﻿")).toBe(true);

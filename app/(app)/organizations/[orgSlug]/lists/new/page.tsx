@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Search } from "lucide-react";
+import { List } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { PageHeader } from "@/components/shared/page-header";
 import { SettingsFormSkeleton } from "@/components/shared/settings-form-skeleton";
@@ -29,7 +29,7 @@ async function NewSearchContent({ params }: { params: Promise<{ orgSlug: string 
         notFound();
     }
     if (!limits.hasActivePlan) {
-        redirect(`/organizations/${orgSlug}/searches`);
+        redirect(`/organizations/${orgSlug}`);
     }
 
     return (
@@ -43,12 +43,12 @@ async function NewSearchContent({ params }: { params: Promise<{ orgSlug: string 
     );
 }
 
-export const metadata = { title: "Nueva búsqueda" };
+export const metadata = { title: "Nueva lista" };
 
 export default function NewSearchPage({ params }: { params: Promise<{ orgSlug: string }> }) {
     return (
         <div className="flex flex-1 flex-col gap-6 p-4 px-4 lg:p-6 lg:px-8">
-            <PageHeader icon={Search} title="Nueva búsqueda" description="Defina qué busca, y en qué procesos." />
+            <PageHeader icon={List} title="Nueva lista" description="Defina qué sigue esta lista, y en qué procesos." />
             <div className="max-w-3xl">
                 <Suspense fallback={<SettingsFormSkeleton sections={3} />}>
                     <NewSearchContent params={params} />

@@ -19,7 +19,7 @@ export async function saveFeedbackAction(input: SaveFeedbackInput): Promise<{ su
         }
 
         await saveFeedbackService({ userId, input: parsed.data });
-        revalidatePath(`/organizations/${parsed.data.orgSlug}`);
+        revalidatePath(`/organizations/${parsed.data.orgSlug}`, "layout");
 
         return { success: true };
     } catch (error) {

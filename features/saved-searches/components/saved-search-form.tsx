@@ -160,7 +160,7 @@ function WhatFields({
             />
             <LinesField
                 name="exclusions"
-                label="Lo que no desea recibir en esta búsqueda"
+                label="Lo que no desea recibir en esta lista"
                 description={
                     inheritsProfile
                         ? "Opcional. Uno por línea; se suman a las exclusiones del perfil. Si el objeto de un proceso los menciona, se marca como descartado."
@@ -229,8 +229,8 @@ export function SavedSearchForm({
             toast.error(result.error);
             return;
         }
-        toast.success(search ? "Se guardaron los cambios." : "Se creó la búsqueda.");
-        router.push(`/organizations/${orgSlug}?busqueda=${result.searchId}`);
+        toast.success(search ? "Se guardaron los cambios." : "Se creó la lista.");
+        router.push(`/organizations/${orgSlug}/lists/${result.searchId}`);
     }
 
     const { isSubmitting } = form.formState;
@@ -264,7 +264,7 @@ export function SavedSearchForm({
 
                 <SettingsSection
                     title="Avisos"
-                    description="Cuándo se ejecutan las búsquedas y se envía el correo con el Excel se define en Configuración › Reportes."
+                    description="Cuándo se actualizan las listas y se envía el correo con el Excel se define en Configuración › Reportes."
                 >
                     <SettingsSectionBody>
                         <AlertField disabled={isSubmitting} />
@@ -284,7 +284,7 @@ export function SavedSearchForm({
                         ) : search ? (
                             "Guardar cambios"
                         ) : (
-                            "Crear búsqueda"
+                            "Crear lista"
                         )}
                     </Button>
                 </div>

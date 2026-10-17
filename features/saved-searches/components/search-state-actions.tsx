@@ -38,9 +38,9 @@ export function SearchStateActions({
         startTransition(async () => {
             const result = await setSavedSearchActiveAction({ orgId, orgSlug, searchId, isActive: !isActive });
             if (result.success) {
-                toast.success(isActive ? "Se pausó la búsqueda." : "Se reactivó la búsqueda.");
+                toast.success(isActive ? "Se pausó la lista." : "Se reactivó la lista.");
             } else {
-                toast.error(result.error ?? "No se pudo cambiar el estado de la búsqueda.");
+                toast.error(result.error ?? "No se pudo cambiar el estado de la lista.");
             }
         });
 
@@ -48,10 +48,10 @@ export function SearchStateActions({
         startTransition(async () => {
             const result = await deleteSavedSearchAction({ orgId, orgSlug, searchId });
             if (result.success) {
-                toast.success("Se eliminó la búsqueda.");
-                router.push(`/organizations/${orgSlug}/searches`);
+                toast.success("Se eliminó la lista.");
+                router.push(`/organizations/${orgSlug}`);
             } else {
-                toast.error(result.error ?? "No se pudo eliminar la búsqueda.");
+                toast.error(result.error ?? "No se pudo eliminar la lista.");
             }
         });
 
@@ -70,7 +70,7 @@ export function SearchStateActions({
                     <AlertDialogHeader>
                         <AlertDialogTitle>¿Eliminar «{searchName}»?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            Se eliminan también todas sus ejecuciones y resultados. Si solo quiere detenerla, páusela.
+                            Se eliminan también todas sus actualizaciones y resultados. Si solo quiere detenerla, páusela.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

@@ -11,7 +11,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ org
     const role = organization ? await getUserOrgRoleService({ userId, orgId: organization.id }) : null;
     const url = organization && role ? await getRunReportUrlService({ orgId: organization.id, runId }) : null;
     if (!url) {
-        return new Response("El reporte de esta ejecución no está disponible.", { status: 404 });
+        return new Response("El reporte de esta actualización no está disponible.", { status: 404 });
     }
     redirect(url);
 }

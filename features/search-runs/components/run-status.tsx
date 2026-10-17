@@ -41,7 +41,7 @@ export function RunStatus({ run }: { run: SearchRun }) {
                 </span>
             ) : null}
             {run.failedEvaluations > 0 ? <span className="text-muted-foreground">{run.failedEvaluations} sin evaluar por errores</span> : null}
-            {run.status === "failed" ? <span className="text-destructive">No se pudo completar. Intente ejecutarla de nuevo.</span> : null}
+            {run.status === "failed" ? <span className="text-destructive">No se pudo completar. Intente actualizar de nuevo.</span> : null}
             {active && isRunStale(run) ? <span className="text-muted-foreground">{STALE_RUN_NOTICE}</span> : null}
             {active && !isRunStale(run) ? (
                 <>

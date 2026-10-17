@@ -5,8 +5,8 @@ import { ListIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-/** On small screens the searches pane opens from a menu (spec §12.3) and closes when a search or run is chosen. */
-export function SearchesSheet({ children }: { children: React.ReactNode }) {
+/** On small screens the opportunities pane opens from a menu (spec 0.4 §12.3) and closes when a view or list is chosen. */
+export function OpportunitiesSheet({ children }: { children: React.ReactNode }) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -14,7 +14,7 @@ export function SearchesSheet({ children }: { children: React.ReactNode }) {
             <SheetTrigger asChild>
                 <Button variant="outline" size="sm">
                     <ListIcon />
-                    Búsquedas
+                    Oportunidades
                 </Button>
             </SheetTrigger>
             <SheetContent
@@ -24,7 +24,7 @@ export function SearchesSheet({ children }: { children: React.ReactNode }) {
                     if (event.target instanceof Element && event.target.closest("a")) setOpen(false);
                 }}
             >
-                <SheetTitle className="sr-only">Búsquedas</SheetTitle>
+                <SheetTitle className="sr-only">Oportunidades</SheetTitle>
                 {children}
             </SheetContent>
         </Sheet>

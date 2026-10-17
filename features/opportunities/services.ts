@@ -3,10 +3,22 @@ import { getUserOrgRole } from "@/features/memberships/repository";
 import { getProfileById } from "@/features/profiles/repository";
 import { UserFacingError } from "@/lib/errors";
 import { canDecideOpportunity } from "./rbac";
-import { deleteFeedback, getCurrentProcessVersion, getFeedback, listProcessDocuments, listProcessEvents, upsertFeedback } from "./repository";
+import {
+    deleteFeedback,
+    getCurrentProcessVersion,
+    getFeedback,
+    listNotInterestedProcessIds,
+    listProcessDocuments,
+    listProcessEvents,
+    upsertFeedback,
+} from "./repository";
 import type { Feedback, SaveFeedbackInput } from "./schemas";
 
 /** What the detail panel adds to a match (spec §12.3): the process as it is now, its changes, its documents, and the organization's decision. */
+export async function listNotInterestedProcessIdsService(orgId: string) {
+    return listNotInterestedProcessIds(orgId);
+}
+
 export async function getOpportunityDetailService(params: { orgId: string; processId: string }) {
     const [version, events, documents, feedbackRow] = await Promise.all([
         getCurrentProcessVersion(params.processId),

@@ -38,7 +38,7 @@ export async function listFilterOptionsService() {
 async function assertCanManageSearches(userId: string, orgId: string) {
     const role = await getUserOrgRole({ userId, orgId });
     if (!role || !canManageSearches(role)) {
-        throw new UserFacingError("Solo los propietarios y administradores pueden modificar las búsquedas.");
+        throw new UserFacingError("Solo los propietarios y administradores pueden modificar las listas.");
     }
 }
 

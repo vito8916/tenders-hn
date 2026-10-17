@@ -7,7 +7,7 @@ import { requestSearchRunSchema } from "./schemas";
 import { requestSearchRunService } from "./services";
 
 /**
- * Server Action for «Ejecutar ahora»: queues a run of a saved search
+ * Server Action for «Actualizar ahora»: queues a run of a saved search
  */
 export async function requestSearchRunAction(input: { searchId: string; orgSlug: string }): Promise<{ success: boolean; error?: string }> {
     try {
@@ -26,6 +26,6 @@ export async function requestSearchRunAction(input: { searchId: string; orgSlug:
         return { success: true };
     } catch (error) {
         console.error("Error requesting search run:", error);
-        return { success: false, error: userErrorMessage(error, "No se pudo iniciar la búsqueda.") };
+        return { success: false, error: userErrorMessage(error, "No se pudo iniciar la actualización.") };
     }
 }

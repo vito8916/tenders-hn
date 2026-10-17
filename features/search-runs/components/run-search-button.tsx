@@ -22,15 +22,15 @@ export function RunSearchButton({
         startTransition(async () => {
             const result = await requestSearchRunAction({ searchId, orgSlug });
             if (result.success) {
-                toast.success("Búsqueda iniciada");
+                toast.success("Actualización iniciada");
             } else {
-                toast.error(result.error ?? "No se pudo iniciar la búsqueda.");
+                toast.error(result.error ?? "No se pudo iniciar la actualización.");
             }
         });
 
     return (
         <Button onClick={run} disabled={isPending || disabled} size={size}>
-            {isPending ? "Iniciando…" : "Ejecutar ahora"}
+            {isPending ? "Iniciando…" : "Actualizar ahora"}
         </Button>
     );
 }

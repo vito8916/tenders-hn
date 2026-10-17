@@ -1,10 +1,10 @@
 import { MatchStateSchema, RelevanceSchema, type MatchState, type Relevance, type SearchRunMatch } from "./schemas";
 
 /**
- * The results table's view of a run (spec §12.2): filters, facets with
- * counts, sorting, and pages, read from and written to the URL. A run keeps
- * at most a hundred candidates, so this runs in memory on the server, and the
- * CSV download applies the same view. It never touches the saved search.
+ * The results table's view of the Home's opportunities (spec 0.4 §12.2): filters, facets with counts,
+ * sorting, and pages, read from and written to the URL. Each run keeps at most a hundred candidates, so
+ * this runs in memory on the server, and the CSV download applies the same view. It never touches the
+ * company profile or the lists.
  */
 
 export const PAGE_SIZE = 25;
@@ -25,7 +25,7 @@ export type ResultSort = keyof typeof RESULT_SORTS;
 /** The facets (spec §12.2), keyed by their URL parameter. */
 export const FACETS = {
     relevancia: { label: "Relevancia", value: (match: SearchRunMatch) => match.relevance as string | null },
-    estado: { label: "Estado", value: (match: SearchRunMatch) => match.matchState as string | null },
+    novedad: { label: "Novedad", value: (match: SearchRunMatch) => match.matchState as string | null },
     institucion: { label: "Institución", value: (match: SearchRunMatch) => match.buyerEntity as string | null },
     modalidad: { label: "Modalidad", value: (match: SearchRunMatch) => match.modality },
     etapa: { label: "Etapa", value: (match: SearchRunMatch) => match.stage },
@@ -40,7 +40,7 @@ export const DOCUMENTS_LABELS: Record<string, string> = { con: "Con documentos",
 /** How a facet value reads in the filters and on the page. */
 export function facetValueLabel(facet: FacetKey, value: string) {
     if (facet === "relevancia") return RELEVANCE_LABELS[value as Relevance] ?? value;
-    if (facet === "estado") return MATCH_STATE_LABELS[value as MatchState] ?? value;
+    if (facet === "novedad") return MATCH_STATE_LABELS[value as MatchState] ?? value;
     if (facet === "documentos") return DOCUMENTS_LABELS[value] ?? value;
     return value;
 }
@@ -64,7 +64,7 @@ const isDate = (value: string | undefined): value is string => value !== undefin
 export function parseResultView(params: SearchParamsRecord): ResultView {
     const facets = Object.fromEntries(FACET_KEYS.map((key) => [key, all(params[key]).filter(Boolean)])) as Record<FacetKey, string[]>;
     facets.relevancia = facets.relevancia.filter((value) => RelevanceSchema.safeParse(value).success);
-    facets.estado = facets.estado.filter((value) => MatchStateSchema.safeParse(value).success);
+    facets.novedad = facets.novedad.filter((value) => MatchStateSchema.safeParse(value).success);
 
     const sort = first(params.orden);
     const page = Number.parseInt(first(params.pagina) ?? "1");
@@ -147,7 +147,7 @@ export function applyResultView(matches: SearchRunMatch[], view: ResultView) {
             }
             const values = [...counts].map(([value, count]) => ({ value, count }));
             if (key === "relevancia") values.sort((a, b) => RELEVANCE_ORDER.indexOf(a.value as Relevance) - RELEVANCE_ORDER.indexOf(b.value as Relevance));
-            else if (key === "estado") values.sort((a, b) => Object.keys(MATCH_STATE_LABELS).indexOf(a.value) - Object.keys(MATCH_STATE_LABELS).indexOf(b.value));
+            else if (key === "novedad") values.sort((a, b) => Object.keys(MATCH_STATE_LABELS).indexOf(a.value) - Object.keys(MATCH_STATE_LABELS).indexOf(b.value));
             else values.sort((a, b) => b.count - a.count || a.value.localeCompare(b.value, "es"));
             return [key, values];
         }),

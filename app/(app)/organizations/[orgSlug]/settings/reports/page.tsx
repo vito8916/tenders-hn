@@ -43,7 +43,7 @@ async function ReportsSettingsContent({ params }: { params: Promise<{ orgSlug: s
 	return (
 		<SettingsTemplatePage
 			title="Reportes"
-			description="Cada reporte revisa todas sus búsquedas activas con la última actualización de HonduCompras, actualiza los resultados en Licitaly y envía un correo con un Excel."
+			description="En cada reporte, «Recomendadas» y sus listas activas se actualizan con los datos más recientes de HonduCompras y se envía un correo con un Excel."
 		>
 			{hasActivePlan && schedule ? (
 				<>

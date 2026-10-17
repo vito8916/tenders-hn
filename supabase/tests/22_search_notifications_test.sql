@@ -87,6 +87,12 @@ select results_eq(
   $$values ('org_report'::text, '["Redes", "Software"]'::jsonb, '["C-1", "A-1"]'::jsonb)$$,
   'one email lists each search with its relevant opportunities, not the discarded one'
 );
+select ok(
+  (select bool_and(path #>> '{}' like '/organizations/%/updates/%?detalle=%')
+     from public.notification_deliveries d, jsonb_path_query(d.payload, '$.sections[*].opportunities[*].path') as path
+    where d.recipient = 'owner@test.local' and d.type_id = 'search_run.completed'),
+  'and each opportunity links to its update''s page'
+);
 select is(private.notify_org_report('d0000000-0000-4000-8000-000000000001'), 0, 'a redelivered report sends nothing more');
 select is(pg_temp.told('d0000000-0000-4000-8000-000000000001'), 2, 'and nobody is told twice');
 
@@ -245,8 +251,8 @@ select is(
   'La fecha límite ahora es 20/10/2026 10:00. Soporte SAP', 'with the new deadline in Honduras time'
 );
 select ok(
-  (select action_url from public.notifications where type_id = 'opportunity.updated' limit 1) like '%&detalle=a0000000-0000-4000-8000-00000000000a',
-  'and a link that opens the opportunity'
+  (select action_url from public.notifications where type_id = 'opportunity.updated' limit 1) like '/organizations/%/updates/%?detalle=a0000000-0000-4000-8000-00000000000a',
+  'and a link that opens the opportunity on its update''s page'
 );
 insert into public.process_events (process_id, kind, after)
 values ('a0000000-0000-4000-8000-00000000000c', 'document_added', '{"title": "Aclaratoria"}');

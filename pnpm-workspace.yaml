@@ -1,6 +1,8 @@
 packages:
   - .
   - worker
+# The root is the web app: shadcn's CLI installs component dependencies there.
+ignoreWorkspaceRootCheck: true
 allowBuilds:
   esbuild: true
   sharp: true

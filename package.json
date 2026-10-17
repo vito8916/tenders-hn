@@ -46,8 +46,8 @@
     "@tanstack/react-table": "^8.21.3",
     "ai": "7.0.113",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cn": "^0.4.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.532.0",
@@ -65,7 +65,6 @@
     "server-only": "^0.0.1",
     "sonner": "^2.0.6",
     "streamdown": "^2.6.0",
-    "tailwind-merge": "^3.3.1",
     "use-stick-to-bottom": "^1.1.6",
     "vaul": "^1.1.2",
     "zod": "^4.0.13"

@@ -9,7 +9,7 @@ export function UsageSummary({ usage }: { usage: Usage }) {
             <SettingsRow label="Usuarios" description="Miembros e invitaciones pendientes.">
                 <span className="text-sm">{ofLimit(usage.seatsUsed, usage.maxMembers)}</span>
             </SettingsRow>
-            <SettingsRow label="Búsquedas activas" description="Las pausadas no cuentan.">
+            <SettingsRow label="Listas activas" description="Recomendadas y las listas pausadas no cuentan.">
                 <span className="text-sm">{ofLimit(usage.activeSearches, usage.maxActiveSearches)}</span>
             </SettingsRow>
             <SettingsRow label="Créditos de IA" description="Disponibles en este mes; no se acumulan.">

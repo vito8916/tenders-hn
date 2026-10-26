@@ -34,8 +34,8 @@ export default function PrivacyPage() {
 					el correo de las personas invitadas).
 				</li>
 				<li>
-					<strong>Perfil de la empresa y búsquedas:</strong> lo que su empresa vende, sus exclusiones,
-					preferencias y búsquedas guardadas.
+					<strong>Perfil de la empresa y listas:</strong> lo que su empresa vende, sus exclusiones,
+					preferencias, sus listas y cuáles sigue cada miembro.
 				</li>
 				<li>
 					<strong>El seguimiento de oportunidades:</strong> el estado que su equipo da a cada oportunidad, su
@@ -126,7 +126,7 @@ export default function PrivacyPage() {
 			<p>
 				Puede pedirnos acceso a sus datos, su corrección o su eliminación escribiendo a{" "}
 				<a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>. Buena parte de sus datos
-				(perfil, organización, perfil de la empresa y búsquedas) también puede verlos y corregirlos usted mismo
+				(perfil, organización, perfil de la empresa y listas) también puede verlos y corregirlos usted mismo
 				en Configuración.
 			</p>
 

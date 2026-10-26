@@ -5,7 +5,7 @@ import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { userErrorMessage } from "@/lib/errors";
 import { savedSearchInputSchema, type SavedSearchInput } from "./schemas";
-import { deleteSavedSearchService, saveSavedSearchService, setSavedSearchActiveService } from "./services";
+import { deleteSavedSearchService, saveSavedSearchService, setListFollowedService, setSavedSearchActiveService } from "./services";
 
 const searchRefSchema = z.object({
     orgId: z.uuid(),
@@ -80,6 +80,34 @@ export async function setSavedSearchActiveAction(input: {
     } catch (error) {
         console.error("Error changing search state:", error);
         return { success: false, error: userErrorMessage(error, "No se pudo cambiar el estado de la lista.") };
+    }
+}
+
+/**
+ * Server Action that follows or unfollows a list for the current user
+ */
+export async function setListFollowedAction(input: {
+    orgId: string;
+    orgSlug: string;
+    searchId: string;
+    followed: boolean;
+}): Promise<{ success: boolean; error?: string }> {
+    try {
+        const { sub: userId } = await getCurrentUser();
+
+        const parsed = searchRefSchema.extend({ followed: z.boolean() }).safeParse(input);
+        if (!parsed.success) {
+            return { success: false, error: parsed.error.issues[0]?.message ?? "Los datos ingresados no son válidos." };
+        }
+
+        await setListFollowedService({ userId, ...parsed.data });
+
+        revalidateSearches(parsed.data.orgSlug);
+
+        return { success: true };
+    } catch (error) {
+        console.error("Error following list:", error);
+        return { success: false, error: userErrorMessage(error, "No se pudo cambiar el seguimiento de la lista.") };
     }
 }
 

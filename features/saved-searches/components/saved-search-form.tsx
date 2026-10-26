@@ -190,6 +190,25 @@ function AlertField({ disabled }: { disabled?: boolean }) {
     );
 }
 
+function FollowField({ disabled }: { disabled?: boolean }) {
+    const form = useFormContext<SavedSearchInput>();
+
+    return (
+        <FormField
+            control={form.control}
+            name="follow"
+            render={({ field }) => (
+                <FormItem>
+                    <Label className="font-normal">
+                        <Checkbox disabled={disabled} checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} />
+                        Seguir esta lista: recibir sus oportunidades nuevas en mi correo de reporte
+                    </Label>
+                </FormItem>
+            )}
+        />
+    );
+}
+
 /** A part of the form: a card on a page, a plain heading inside a dialog, which is already a card. */
 function FormSection({
     title,
@@ -252,6 +271,8 @@ export function SavedSearchForm({
                   modalities: search.modalities,
                   acquisitionTypes: search.acquisitionTypes,
                   alertOnChanges: search.alertOnChanges,
+                  // Following an existing list is each member's choice, from the list's page.
+                  follow: false,
               }
             : EMPTY_SAVED_SEARCH,
     });
@@ -296,7 +317,9 @@ export function SavedSearchForm({
                     title="Avisos"
                     description="Cuándo se actualizan las listas y se envía el correo con el Excel se define en Configuración › Reportes."
                     plain={inDialog}
+                    className="space-y-4"
                 >
+                    {search ? null : <FollowField disabled={isSubmitting} />}
                     <AlertField disabled={isSubmitting} />
                 </FormSection>
 

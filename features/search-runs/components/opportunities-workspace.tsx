@@ -13,6 +13,7 @@ import { DetailSheet } from "@/features/opportunities/components/detail-sheet";
 import { formatOpportunityTitle } from "@/features/opportunities/title";
 import { OpportunityDetail } from "@/features/opportunities/components/opportunity-detail";
 import { RefreshWhileActive } from "@/components/shared/refresh-while-active";
+import { FollowListButton } from "@/features/saved-searches/components/follow-list-button";
 import { SearchCriteria } from "@/features/saved-searches/components/search-criteria";
 import type { SavedSearch } from "@/features/saved-searches/schemas";
 import { homeViewPath, type HomeView, type Opportunity } from "../opportunities";
@@ -280,6 +281,7 @@ export function OpportunitiesWorkspace({
     canManage,
     canTrack,
     hasActivePlan,
+    followedListIds,
 }: {
     orgId: string;
     orgSlug: string;
@@ -299,6 +301,8 @@ export function OpportunitiesWorkspace({
     /** Whether the user may track opportunities (status, assignee, notes). */
     canTrack: boolean;
     hasActivePlan: boolean;
+    /** The lists the user follows, for a list's «Seguir». */
+    followedListIds: string[];
 }) {
     const orgHref = `/organizations/${orgSlug}`;
     const viewHref = homeViewPath(orgSlug, view);
@@ -344,6 +348,9 @@ export function OpportunitiesWorkspace({
                         <Button variant="outline" asChild>
                             <Link href={`${orgHref}/settings/company`}>Perfil de la empresa</Link>
                         </Button>
+                    ) : null}
+                    {isList && view.kind === "lista" ? (
+                        <FollowListButton orgId={orgId} orgSlug={orgSlug} searchId={search.id} followed={followedListIds.includes(search.id)} />
                     ) : null}
                     {editHref ? (
                         <Button variant="outline" asChild>

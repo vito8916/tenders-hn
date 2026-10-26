@@ -6,11 +6,14 @@ import { canManageSearches } from "./rbac";
 import {
     createSavedSearch,
     deleteSavedSearch,
+    followList,
     getSavedSearch,
     getSearchLimits,
     listFilterOptions,
+    listFollowedListIds,
     listSavedSearches,
     setSavedSearchActive,
+    unfollowList,
     updateSavedSearch,
 } from "./repository";
 import type { SavedSearchInput } from "./schemas";
@@ -31,6 +34,10 @@ export async function getSearchLimitsService(orgId: string) {
     return getSearchLimits(orgId);
 }
 
+export async function listFollowedListIdsService(params: { orgId: string; userId: string }) {
+    return listFollowedListIds(params.orgId, params.userId);
+}
+
 export async function listFilterOptionsService() {
     return listFilterOptions();
 }
@@ -47,10 +54,23 @@ export async function saveSavedSearchService(params: { userId: string; orgId: st
     await assertCanManageSearches(params.userId, params.orgId);
 
     if (params.searchId === null) {
-        return createSavedSearch(params.orgId, params.input);
+        const searchId = await createSavedSearch(params.orgId, params.input);
+        if (params.input.follow) {
+            await followList(params.orgId, searchId, params.userId);
+        }
+        return searchId;
     }
     await updateSavedSearch(params.orgId, params.searchId, params.input);
     return params.searchId;
+}
+
+/** Any member, viewers included, follows or unfollows a list for themselves; the database rejects «Recomendadas». */
+export async function setListFollowedService(params: { userId: string; orgId: string; searchId: string; followed: boolean }) {
+    if (params.followed) {
+        await followList(params.orgId, params.searchId, params.userId);
+    } else {
+        await unfollowList(params.orgId, params.searchId, params.userId);
+    }
 }
 
 export async function setSavedSearchActiveService(params: { userId: string; orgId: string; searchId: string; isActive: boolean }) {

@@ -196,7 +196,7 @@ set local role authenticated;
 select is(
   public.plan_change_blockers('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'basic'),
   array['members', 'searches', 'report_times'],
-  'a downgrade lists what does not fit: members, active searches (with «Recomendadas»), and report times'
+  'a downgrade lists what does not fit: members, active lists («Recomendadas» does not count), and report times'
 );
 select is(public.plan_change_blockers('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'pro'), '{}'::text[], 'an upgrade fits');
 select throws_ok(

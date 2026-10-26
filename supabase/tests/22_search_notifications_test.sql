@@ -24,6 +24,13 @@ insert into public.saved_searches (id, org_id, name, inherits_profile, descripti
   ('5eeeeeee-0000-4000-8000-000000000001', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Software', false, 'Software'),
   ('5eeeeeee-0000-4000-8000-000000000002', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Redes', false, 'Redes'),
   ('5eeeeeee-0000-4000-8000-000000000003', 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb', 'Otra', false, 'Otra');
+-- Everyone follows every list until the section on followers.
+insert into public.list_followers (saved_search_id, user_id, org_id) values
+  ('5eeeeeee-0000-4000-8000-000000000001', '11111111-1111-4111-8111-111111111111', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+  ('5eeeeeee-0000-4000-8000-000000000001', '22222222-2222-4222-8222-222222222222', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+  ('5eeeeeee-0000-4000-8000-000000000002', '11111111-1111-4111-8111-111111111111', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+  ('5eeeeeee-0000-4000-8000-000000000002', '22222222-2222-4222-8222-222222222222', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
+  ('5eeeeeee-0000-4000-8000-000000000003', '33333333-3333-4333-8333-333333333333', 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb');
 
 insert into public.procurement_processes (id, source, source_process_key, expediente, buyer_entity, title, detail_url, closes_at) values
   ('a0000000-0000-4000-8000-00000000000a', 'honducompras_v1', 'a', 'A-1', 'IHSS', 'Soporte SAP', 'https://example.test/a', now() + interval '10 days'),
@@ -147,6 +154,53 @@ select is(
   5, 'a run outside a report queues no report'
 );
 
+-- ---------- Each member receives «Recomendadas» and the lists they follow ----------
+insert into public.procurement_processes (id, source, source_process_key, expediente, buyer_entity, title, detail_url) values
+  ('a0000000-0000-4000-8000-00000000000d', 'honducompras_v1', 'd', 'D-1', 'IHSS', 'Servidores', 'https://example.test/d'),
+  ('a0000000-0000-4000-8000-00000000000e', 'honducompras_v1', 'e', 'E-1', 'SEDUC', 'Switches', 'https://example.test/e'),
+  ('a0000000-0000-4000-8000-00000000000f', 'honducompras_v1', 'f', 'F-1', 'SEDUC', 'Cableado', 'https://example.test/f');
+delete from public.list_followers where user_id = '22222222-2222-4222-8222-222222222222' and saved_search_id = '5eeeeeee-0000-4000-8000-000000000002';
+
+select pg_temp.report('d0000000-0000-4000-8000-000000000006', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
+select pg_temp.run('c0000000-0000-4000-8000-000000000009', '5eeeeeee-0000-4000-8000-000000000001', 'd0000000-0000-4000-8000-000000000006', now());
+select pg_temp.run('c0000000-0000-4000-8000-00000000000a', '5eeeeeee-0000-4000-8000-000000000002', 'd0000000-0000-4000-8000-000000000006', now());
+select pg_temp.match('c0000000-0000-4000-8000-000000000009', 'a0000000-0000-4000-8000-00000000000d', null, 'posible');
+select pg_temp.match('c0000000-0000-4000-8000-00000000000a', 'a0000000-0000-4000-8000-00000000000e', null, 'posible');
+select pg_temp.finish('c0000000-0000-4000-8000-000000000009');
+select pg_temp.finish('c0000000-0000-4000-8000-00000000000a');
+-- The worker renders each member's Excel file; here, only the owner's exists.
+update public.org_reports set excel_path = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/reports/d0000000-0000-4000-8000-000000000006'
+where id = 'd0000000-0000-4000-8000-000000000006';
+insert into storage.objects (bucket_id, name)
+values ('reports', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/reports/d0000000-0000-4000-8000-000000000006/11111111-1111-4111-8111-111111111111.xlsx');
+
+select is(private.notify_org_report('d0000000-0000-4000-8000-000000000006'), 2, 'the report reports what every list found');
+select results_eq(
+  $$select recipient, jsonb_path_query_array(payload, '$.sections[*].searchName'), payload ->> 'excelPath'
+    from public.notification_deliveries d join public.notifications n on n.id = d.notification_id
+    where n.data ->> 'report_id' = 'd0000000-0000-4000-8000-000000000006' order by recipient$$,
+  $$values ('member@test.local'::text, '["Software"]'::jsonb, null::text),
+           ('owner@test.local', '["Redes", "Software"]'::jsonb,
+            'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa/reports/d0000000-0000-4000-8000-000000000006/11111111-1111-4111-8111-111111111111.xlsx')$$,
+  'each member''s email holds only the lists they follow, with their own Excel file'
+);
+select is(
+  (select title from public.notifications where data ->> 'report_id' = 'd0000000-0000-4000-8000-000000000006' and user_id = '22222222-2222-4222-8222-222222222222'),
+  '1 oportunidad nueva', 'and counts only those'
+);
+
+delete from public.list_followers where user_id = '22222222-2222-4222-8222-222222222222';
+select pg_temp.report('d0000000-0000-4000-8000-000000000007', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
+select pg_temp.run('c0000000-0000-4000-8000-00000000000b', '5eeeeeee-0000-4000-8000-000000000002', 'd0000000-0000-4000-8000-000000000007', now());
+select pg_temp.match('c0000000-0000-4000-8000-00000000000b', 'a0000000-0000-4000-8000-00000000000f', null, 'posible');
+select pg_temp.finish('c0000000-0000-4000-8000-00000000000b');
+select is(private.notify_org_report('d0000000-0000-4000-8000-000000000007'), 1, 'a list nobody else follows still reports');
+select results_eq(
+  $$select user_id from public.notifications where data ->> 'report_id' = 'd0000000-0000-4000-8000-000000000007'$$,
+  $$values ('11111111-1111-4111-8111-111111111111'::uuid)$$,
+  'to its followers only: a member with nothing new from what they follow gets no email'
+);
+
 -- ---------- Report times ----------
 select is(
   (select hours from public.report_schedules where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
@@ -230,7 +284,7 @@ update public.report_schedules set next_report_at = now() - interval '1 minute' 
 select is(private.enqueue_due_reports(), 0, 'searches with a run in flight leave no report to make');
 select is(
   (select count(*)::int from public.org_reports where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
-  5, 'and no empty report is kept'
+  7, 'and no empty report is kept'
 );
 
 update public.search_runs set status = 'completed';

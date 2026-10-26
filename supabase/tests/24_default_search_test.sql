@@ -121,9 +121,13 @@ select lives_ok(
     where id = pg_temp.default_search('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
   'its keywords and filters can change'
 );
-select throws_ok(
+select lives_ok(
   $$insert into public.saved_searches (org_id, name) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Otra')$$,
-  'P0001', 'search_limit_reached', 'it counts toward the plan''s searches'
+  'it does not count toward the plan''s lists'
+);
+select throws_ok(
+  $$insert into public.saved_searches (org_id, name) values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'Tercera')$$,
+  'P0001', 'search_limit_reached', 'which still limits the lists'
 );
 reset role;
 

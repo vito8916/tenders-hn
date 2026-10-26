@@ -11,7 +11,7 @@ import { isLiveSubscription, type CheckoutOptions, type PlanChangeBlocker, type 
 
 const BLOCKER_MESSAGES: Record<PlanChangeBlocker, string> = {
     members: "quite miembros o invitaciones pendientes",
-    searches: "pause búsquedas activas",
+    searches: "pause listas",
     report_times: "elija menos horarios de reporte en Configuración › Reportes",
 };
 

@@ -9,7 +9,7 @@ const questions = [
 	{
 		question: "¿De dónde salen los procesos?",
 		answer:
-			"De HonduCompras. Consultamos el portal de forma central, recorremos todas las páginas de resultados y guardamos el detalle y los documentos de cada proceso. Su búsqueda no limita lo que capturamos.",
+			"De HonduCompras. Consultamos el portal de forma central, recorremos todas las páginas de resultados y guardamos el detalle y los documentos de cada proceso. Sus listas no limitan lo que capturamos.",
 	},
 	{
 		question: "¿Cada cuánto se actualizan los datos?",
@@ -29,7 +29,7 @@ const questions = [
 	{
 		question: "¿Puede usarlo todo mi equipo?",
 		answer:
-			"Sí. Su empresa es una organización con un administrador y miembros que comparten las búsquedas y los reportes. La cantidad de miembros depende del plan.",
+			"Sí. Su empresa es una organización con un administrador y miembros que comparten las oportunidades, su seguimiento y las listas; cada miembro elige qué listas sigue y recibe sus reportes. La cantidad de miembros depende del plan.",
 	},
 ];
 

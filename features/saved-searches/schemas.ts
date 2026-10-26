@@ -54,6 +54,8 @@ export const savedSearchInputSchema = z
         modalities: z.array(z.string()),
         acquisitionTypes: z.array(z.string()),
         alertOnChanges: z.boolean(),
+        /** «Seguir esta lista», when creating it: its new opportunities come in the creator's report email. */
+        follow: z.boolean(),
     })
     .refine((input) => input.inheritsProfile || input.description.length > 0, {
         path: ["description"],
@@ -71,4 +73,5 @@ export const EMPTY_SAVED_SEARCH: SavedSearchInput = {
     modalities: [],
     acquisitionTypes: [],
     alertOnChanges: true,
+    follow: true,
 };

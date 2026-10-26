@@ -42,7 +42,9 @@ export type PlanWithPrice = PlanOption & { price: { amount: string; currencyCode
 /** The limits a plan card lists, the same on the landing page, onboarding, and Facturación. */
 export function planFeatures(plan: PlanOption): string[] {
     return [
-        plan.maxActiveSearches === null ? "Búsquedas ilimitadas" : `${plan.maxActiveSearches} búsquedas activas`,
+        plan.maxActiveSearches === null
+            ? "Recomendadas y listas ilimitadas"
+            : `Recomendadas y ${plan.maxActiveSearches === 1 ? "1 lista" : `${plan.maxActiveSearches} listas`} por tema`,
         plan.maxDailyReports === null ? "Un reporte en cada actualización (hasta 8 al día)" : `${plan.maxDailyReports} reportes al día con Excel`,
         plan.maxMembers === null ? "Usuarios ilimitados" : `${plan.maxMembers} usuarios`,
         plan.historyMonths === null ? "Historial completo" : `${plan.historyMonths} meses de historial`,

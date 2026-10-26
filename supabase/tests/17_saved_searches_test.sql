@@ -17,7 +17,7 @@ insert into public.organization_members (org_id, user_id, role) values
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '33333333-3333-4333-8333-333333333333', 'admin'),
   ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', '44444444-4444-4444-8444-444444444444', 'member');
 insert into public.plans (id, name, max_members, max_active_searches, min_schedule_interval, monthly_ai_credits)
-values ('test_searches', 'Test', 5, 3, null, 0);
+values ('test_searches', 'Test', 5, 2, null, 0);
 insert into public.source_sync_runs (id, source, window_start, window_end, status, started_at, finished_at)
 overriding system value values
   (901, 'honducompras_v1', '2026-09-20', '2026-09-27', 'succeeded', now() - interval '3 hours', now() - interval '170 minutes'),
@@ -43,7 +43,7 @@ select throws_ok(
 reset role;
 insert into public.organization_subscriptions (org_id, plan_id, status, current_period_end)
 values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'test_searches', 'active', now() + interval '30 days');
--- Activating the plan created «Recomendadas», which counts toward the plan's three searches.
+-- Activating the plan created «Recomendadas», which does not count toward the plan's two lists.
 
 -- ---------- Writing searches ----------
 set local role authenticated;
@@ -136,7 +136,7 @@ select pg_temp.act_as('44444444-4444-4444-8444-444444444444');
 select results_eq(
   $$select has_active_plan, max_active_searches, active_searches, max_daily_reports
     from public.saved_search_limits('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa')$$,
-  $$values (true, 3, 3, 8)$$,
+  $$values (true, 2, 2, 8)$$,
   'members see what the plan allows'
 );
 select pg_temp.act_as('22222222-2222-4222-8222-222222222222');

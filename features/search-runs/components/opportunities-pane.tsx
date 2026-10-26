@@ -1,23 +1,26 @@
 import Link from "next/link";
-import { Ban, Briefcase, Hash, Inbox, Layers, Star, type LucideIcon } from "lucide-react";
+import { Ban, Bell, Briefcase, Hash, Inbox, Layers, Star, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { NewListDialog } from "@/features/saved-searches/components/new-list-dialog";
 import type { FilterOptions } from "@/features/saved-searches/schemas";
 import { homeViewPath } from "../opportunities";
 
-export type PaneList = { id: string; name: string; isActive: boolean; newMatches: number };
+export type PaneList = { id: string; name: string; isActive: boolean; newMatches: number; followed: boolean };
 
 function PaneLink({
     href,
     icon: Icon,
     label,
+    hint,
     current,
     trailing,
 }: {
     href: string;
     icon: LucideIcon;
     label: string;
+    /** Said to screen readers after the label, for what the icon shows. */
+    hint?: string;
     current: boolean;
     trailing?: React.ReactNode;
 }) {
@@ -29,7 +32,10 @@ function PaneLink({
                 className={cn("flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-muted", current && "bg-muted font-medium")}
             >
                 <Icon className="size-4 shrink-0 text-muted-foreground" />
-                <span className="min-w-0 flex-1 truncate">{label}</span>
+                <span className="min-w-0 flex-1 truncate">
+                    {label}
+                    {hint ? <span className="sr-only"> ({hint})</span> : null}
+                </span>
                 {trailing}
             </Link>
         </li>
@@ -54,7 +60,7 @@ function Section({ title, action, children }: { title: string; action?: React.Re
 
 /**
  * The Home's left pane (plan D7, spec 0.4 §12.1): Recomendadas and Todas with their counts; Nuevas,
- * En seguimiento, and Descartadas; and the organization's lists with their new opportunities.
+ * En seguimiento, and Descartadas; and the organization's lists with their new opportunities, a bell on those the user follows.
  */
 export function OpportunitiesPane({
     orgSlug,
@@ -124,8 +130,9 @@ export function OpportunitiesPane({
                                 <PaneLink
                                     key={list.id}
                                     href={homeViewPath(orgSlug, { kind: "lista", searchId: list.id })}
-                                    icon={Hash}
+                                    icon={list.followed ? Bell : Hash}
                                     label={list.name}
+                                    hint={list.followed ? "la sigue" : undefined}
                                     current={list.id === current}
                                     trailing={
                                         !list.isActive ? (

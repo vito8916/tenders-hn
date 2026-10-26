@@ -49,7 +49,7 @@ function hondurasWallClock(date: Date) {
 }
 
 function sheetName(searchName: string, taken: Set<string>) {
-    const base = searchName.replace(/[[\]:*?/\\]/g, " ").replace(/\s+/g, " ").trim().slice(0, 31).trim() || "Búsqueda";
+    const base = searchName.replace(/[[\]:*?/\\]/g, " ").replace(/\s+/g, " ").trim().slice(0, 31).trim() || "Lista";
     let name = base;
     for (let suffix = 2; taken.has(name.toLowerCase()); suffix++) {
         name = `${base.slice(0, 31 - ` (${suffix})`.length)} (${suffix})`;

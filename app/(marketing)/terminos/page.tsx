@@ -28,7 +28,7 @@ export default function TermsPage() {
 			<p>
 				Licitaly recopila los procesos de compra publicados en HonduCompras, lee sus documentos cuando es
 				posible y los compara con el perfil de su empresa para mostrarle oportunidades relevantes. El servicio
-				incluye búsquedas guardadas, reportes descargables, avisos por correo y un chat con inteligencia
+				incluye listas por tema, seguimiento de oportunidades en equipo, reportes descargables, avisos por correo y un chat con inteligencia
 				artificial que responde preguntas sobre los procesos citando sus fuentes.
 			</p>
 
@@ -90,7 +90,7 @@ export default function TermsPage() {
 				<li>
 					El propietario puede cambiar de plan desde Configuración › Facturación; la diferencia se prorratea. Un
 					cambio a un plan menor puede rechazarse hasta que el uso de la organización (miembros e invitaciones
-					pendientes, búsquedas activas y programaciones) quepa en los límites de ese plan.
+					pendientes, listas activas y horarios de reporte) quepa en los límites de ese plan.
 				</li>
 				<li>
 					Si un pago de renovación falla, la organización conserva el acceso durante 7 días. Después, queda en
@@ -126,8 +126,8 @@ export default function TermsPage() {
 
 			<h2>7. Su contenido</h2>
 			<p>
-				Usted conserva la propiedad del contenido que ingresa: el perfil de su empresa, sus búsquedas, sus
-				comentarios sobre las oportunidades y sus preguntas al chat. Nos otorga una licencia limitada para
+				Usted conserva la propiedad del contenido que ingresa: el perfil de su empresa, sus listas, el
+				seguimiento y las notas de sus oportunidades y sus preguntas al chat. Nos otorga una licencia limitada para
 				almacenarlo y procesarlo, incluso mediante proveedores de inteligencia artificial, con el único fin de
 				prestarle el servicio. El tratamiento de los datos personales se describe en la{" "}
 				<Link href="/privacidad">Política de privacidad</Link>.

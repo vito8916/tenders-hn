@@ -38,8 +38,8 @@ export default function HowItWorksSection() {
 
 					<Step
 						number={2}
-						title="Guarde sus búsquedas"
-						description="Una por línea de negocio. A las horas que elija, todas se actualizan y le llega un correo con un Excel."
+						title="Siga sus listas"
+						description="Recomendadas sigue a su empresa; cree una lista por cada otra línea de negocio. A las horas que elija, se actualizan y a cada miembro le llega un correo con un Excel de las listas que sigue."
 					>
 						<div className="flex h-full flex-col justify-center gap-2 px-4">
 							{[

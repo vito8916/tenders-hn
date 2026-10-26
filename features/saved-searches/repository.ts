@@ -105,6 +105,15 @@ export async function getSearchLimits(orgId: string): Promise<SearchLimits> {
     });
 }
 
+/** The organization's lists the user follows («Recomendadas», which everyone follows, has no rows). */
+export async function listFollowedListIds(orgId: string, userId: string): Promise<string[]> {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("list_followers").select("saved_search_id").eq("org_id", orgId).eq("user_id", userId);
+
+    if (error) throw error;
+    return data.map((row) => row.saved_search_id);
+}
+
 export async function listFilterOptions(): Promise<FilterOptions> {
     const supabase = await createClient();
     const { data, error } = await supabase.rpc("search_filter_options");
@@ -145,6 +154,22 @@ export async function updateSavedSearch(orgId: string, searchId: string, input: 
 export async function setSavedSearchActive(orgId: string, searchId: string, isActive: boolean): Promise<void> {
     const supabase = await createClient();
     const { error } = await supabase.from("saved_searches").update({ is_active: isActive }).eq("org_id", orgId).eq("id", searchId);
+
+    if (error) throw error;
+}
+
+export async function followList(orgId: string, searchId: string, userId: string): Promise<void> {
+    const supabase = await createClient();
+    const { error } = await supabase
+        .from("list_followers")
+        .upsert({ org_id: orgId, saved_search_id: searchId, user_id: userId }, { onConflict: "saved_search_id,user_id", ignoreDuplicates: true });
+
+    if (error) throw error;
+}
+
+export async function unfollowList(orgId: string, searchId: string, userId: string): Promise<void> {
+    const supabase = await createClient();
+    const { error } = await supabase.from("list_followers").delete().eq("org_id", orgId).eq("saved_search_id", searchId).eq("user_id", userId);
 
     if (error) throw error;
 }

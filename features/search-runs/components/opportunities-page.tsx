@@ -12,7 +12,7 @@ import { getSeatsUsedService } from "@/features/billing/services";
 import { InviteTeamBanner } from "@/features/invitations/components/invite-team-banner";
 import { canManageSearches } from "@/features/saved-searches/rbac";
 import { canTrackOpportunity } from "@/features/opportunities/rbac";
-import { getSearchLimitsService, listFilterOptionsService } from "@/features/saved-searches/services";
+import { getSearchLimitsService, listFilterOptionsService, listFollowedListIdsService } from "@/features/saved-searches/services";
 import { getCompanyProfileService } from "@/features/company-profile/services";
 import { homeViewPath, type HomeView } from "../opportunities";
 import { withParams, type SearchParamsRecord } from "../results";
@@ -58,7 +58,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 		redirect("/organizations");
 	}
 
-	const [role, limits, home, seatsUsed, filterOptions, profile] = await Promise.all([
+	const [role, limits, home, seatsUsed, filterOptions, profile, followedListIds] = await Promise.all([
 		getUserOrgRoleService({ userId, orgId: organization.id }),
 		getSearchLimitsService(organization.id),
 		getHomeService({ orgId: organization.id, view: viewOf(kind, ids) }),
@@ -66,6 +66,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 		// «Nueva lista» opens in a dialog from the pane.
 		listFilterOptionsService(),
 		getCompanyProfileService(organization.id),
+		listFollowedListIdsService({ orgId: organization.id, userId }),
 	]);
 	if (!role) {
 		redirect("/organizations");
@@ -122,6 +123,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					canManage={canManage}
 					canTrack={canTrackOpportunity(role)}
 					hasActivePlan={limits.hasActivePlan}
+					followedListIds={followedListIds}
 				/>
 			</div>
 		);
@@ -146,6 +148,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					name: search.name,
 					isActive: search.isActive,
 					newMatches: latestFinished?.newMatchesCount ?? 0,
+					followed: followedListIds.includes(search.id),
 				}))}
 			newList={canManage && limits.hasActivePlan && underLimit ? { orgId: organization.id, filterOptions, hasProfile: profile !== null } : null}
 		/>
@@ -176,6 +179,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					canManage={canManage}
 					canTrack={canTrackOpportunity(role)}
 					hasActivePlan={limits.hasActivePlan}
+					followedListIds={followedListIds}
 				/>
 			</div>
 		</div>

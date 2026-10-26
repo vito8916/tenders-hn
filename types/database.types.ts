@@ -614,6 +614,42 @@ export type Database = {
           },
         ]
       }
+      list_followers: {
+        Row: {
+          created_at: string
+          org_id: string
+          saved_search_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          org_id: string
+          saved_search_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          org_id?: string
+          saved_search_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "list_followers_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "list_followers_saved_search_id_fkey"
+            columns: ["saved_search_id"]
+            isOneToOne: false
+            referencedRelation: "saved_searches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       match_evaluations: {
         Row: {
           answers: Json | null

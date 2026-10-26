@@ -106,9 +106,9 @@ function PreviewSidebar() {
 			<p className="px-2 pb-3 text-xs font-medium">Soluciones TI</p>
 			<div className="mb-3 flex h-7 items-center gap-1.5 rounded-md bg-foreground px-2 text-xs font-medium text-background">
 				<Plus className="size-3.5" />
-				Nueva búsqueda
+				Nueva lista
 			</div>
-			<p className="px-2 pb-1.5 text-[11px] text-muted-foreground">Búsquedas</p>
+			<p className="px-2 pb-1.5 text-[11px] text-muted-foreground">Listas</p>
 			<ul className="flex flex-col gap-0.5">
 				{savedSearches.map((search) => (
 					<li

@@ -116,7 +116,8 @@ export async function getUsage(orgId: string): Promise<Usage> {
     const [plan, credits, searches] = await Promise.all([
         getEntitlements(orgId),
         supabase.rpc("get_ai_credit_balance", { target_org: orgId }),
-        supabase.from("saved_searches").select("id", { count: "exact", head: true }).eq("org_id", orgId).eq("is_active", true),
+        // «Recomendadas» is not a list and does not count toward the plan.
+        supabase.from("saved_searches").select("id", { count: "exact", head: true }).eq("org_id", orgId).eq("is_active", true).eq("is_default", false),
     ]);
     if (credits.error) throw credits.error;
     if (searches.error) throw searches.error;

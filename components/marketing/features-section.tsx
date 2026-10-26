@@ -26,7 +26,7 @@ export default function FeaturesSection() {
 					<FeatureCard
 						className="lg:col-span-6"
 						title="Una lista corta, no cientos de páginas"
-						description="Cada búsqueda termina en pocas oportunidades ordenadas por relevancia, con fecha de cierre y enlace a la fuente oficial."
+						description="Cada lista termina en pocas oportunidades ordenadas por relevancia, con fecha de cierre y enlace a la fuente oficial."
 					>
 						<ShortlistVisual />
 					</FeatureCard>

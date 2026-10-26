@@ -35,7 +35,7 @@ function StatusLine({ subscription }: { subscription: Subscription }) {
 
 export function CurrentPlan({ orgId, subscription, canManage }: { orgId: string; subscription: Subscription | null; canManage: boolean }) {
     if (!subscription) {
-        return <p className="text-sm text-muted-foreground">La organización no tiene un plan. Elija uno para crear búsquedas y recibir reportes.</p>;
+        return <p className="text-sm text-muted-foreground">La organización no tiene un plan. Elija uno para ver sus oportunidades y recibir reportes.</p>;
     }
 
     const hasPaddleCustomer = subscription.source === "paddle" && subscription.paddleCustomerId !== null;

@@ -514,6 +514,7 @@ Also in this phase: «Búsqueda libre» over every collected process (text and f
 
 ### Phase 6 — Pilot readiness (M)
 
+- Restore the production cadence that `20261026120000_development_cadence` lowered to save Railway costs before launch: HonduCompras sync every three hours (`0 */3 * * *`, report times assume a sync in the hour before each one), open-process rechecks hourly (`30 * * * *`), and the worker heartbeat every minute (`* * * * *`).
 - Deploy: Supabase Cloud (migrations, Vault secrets, function secrets, pg_cron); Railway `web` and `worker` with health checks and separate staging/production environments; AI Gateway key per environment with budgets and role fallbacks.
 - Observability: sync health, pages/processes per run, download and OCR errors, analysis latency, AI usage and cost per role and model, failed deliveries; alerts to the team when the source fails or goes stale.
 - Admin project integration: sync monitoring views, `ai_model_rates` editing, support lookups, plan limits and `plan_prices`. Plans are no longer activated there (D5).

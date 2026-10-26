@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { matchesToCsv } from "./csv";
-import type { SearchRunMatch } from "./schemas";
+import type { Opportunity } from "./opportunities";
 
-const match: SearchRunMatch = {
+const match: Opportunity = {
     processId: "8b0f6d5e-6f0a-4d8e-9a43-3b7b2a1f0c11",
     processVersionId: null,
     retrievalRank: 1,
@@ -20,12 +20,16 @@ const match: SearchRunMatch = {
     startsAt: null,
     detectedAt: "2026-09-22T20:46:00.000Z",
     documentsCount: 3,
+    runId: "00000000-0000-4000-8000-0000000000a1",
+    searchId: "00000000-0000-4000-8000-00000000000a",
+    tracking: { status: "preparando_oferta", assigneeId: "00000000-0000-4000-8000-0000000000c1", assigneeName: "Ana López" },
 };
 
 describe("matchesToCsv", () => {
     it("starts with a BOM and the headers, and writes dates in Honduras time", () => {
         const [header, row] = matchesToCsv([match]).replace("﻿", "").split("\r\n");
-        expect(header.startsWith("Relevancia,Novedad,Expediente,Objeto")).toBe(true);
+        expect(header.startsWith("Relevancia,Novedad,Seguimiento,Responsable,Expediente,Objeto")).toBe(true);
+        expect(row).toContain("Nueva,Preparando oferta,Ana López,LPN-001-2026");
         expect(row).toContain("2026-11-10 10:00");
         expect(row).toContain("2026-09-22 14:46");
         expect(matchesToCsv([match]).startsWith("﻿")).toBe(true);

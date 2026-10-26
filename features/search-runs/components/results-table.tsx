@@ -2,8 +2,10 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { STATUS_LABELS } from "@/features/opportunities/schemas";
 import { formatOpportunityTitle } from "@/features/opportunities/title";
 import { cn } from "@/lib/utils";
+import type { Opportunity } from "../opportunities";
 import { MATCH_STATE_LABELS, withParams, type SearchParamsRecord } from "../results";
 import type { SearchRunMatch } from "../schemas";
 import { RelevanceBadge } from "./relevance-badge";
@@ -23,14 +25,25 @@ export function ClosedBadge() {
     return <Badge variant="outline">Cerrada</Badge>;
 }
 
+/** The team's status, plain while «Nueva», and who is responsible. */
+function TrackingCell({ match }: { match: Opportunity }) {
+    if (!match.tracking) return <span className="text-muted-foreground">{STATUS_LABELS.nueva}</span>;
+    return (
+        <span className="flex flex-col items-start gap-1">
+            <Badge variant={match.tracking.status === "descartada" ? "outline" : "secondary"}>{STATUS_LABELS[match.tracking.status]}</Badge>
+            {match.tracking.assigneeName ? <span className="text-muted-foreground">{match.tracking.assigneeName}</span> : null}
+        </span>
+    );
+}
+
 const formatDeadline = (match: SearchRunMatch) => (match.closesAt ? deadline.format(new Date(match.closesAt)) : "Sin fecha");
 
 /**
  * The shown run's opportunities (spec §12.2). The expediente and the object
  * open the detail beside the table, keeping the filters and the page.
  */
-export function ResultsTable({ rows, params, viewHref }: { rows: SearchRunMatch[]; params: SearchParamsRecord; viewHref: string }) {
-    const detailHref = (match: SearchRunMatch) => `${viewHref}${withParams(params, { detalle: match.processId })}`;
+export function ResultsTable({ rows, params, viewHref }: { rows: Opportunity[]; params: SearchParamsRecord; viewHref: string }) {
+    const detailHref = (match: Opportunity) => `${viewHref}${withParams(params, { detalle: match.processId })}`;
 
     return (
         <>
@@ -40,6 +53,7 @@ export function ResultsTable({ rows, params, viewHref }: { rows: SearchRunMatch[
                         <TableRow>
                             <TableHead>Relevancia</TableHead>
                             <TableHead className="w-full">Oportunidad</TableHead>
+                            <TableHead>Seguimiento</TableHead>
                             <TableHead>Modalidad y etapa</TableHead>
                             <TableHead>Fecha límite</TableHead>
                             <TableHead className="text-right">Documentos</TableHead>
@@ -61,6 +75,9 @@ export function ResultsTable({ rows, params, viewHref }: { rows: SearchRunMatch[
                                         <span className="line-clamp-2 font-medium group-hover:underline">{formatOpportunityTitle(match.title)}</span>
                                         <span className="block truncate text-xs text-muted-foreground">{match.buyerEntity}</span>
                                     </Link>
+                                </TableCell>
+                                <TableCell className="align-top text-xs whitespace-normal">
+                                    <TrackingCell match={match} />
                                 </TableCell>
                                 <TableCell className="align-top text-xs whitespace-normal">
                                     <span className="block min-w-36">{match.modality ?? "—"}</span>
@@ -85,10 +102,14 @@ export function ResultsTable({ rows, params, viewHref }: { rows: SearchRunMatch[
                             <div className="flex flex-wrap items-center gap-1.5">
                                 <RelevanceBadge relevance={match.relevance} />
                                 <MatchStateBadge match={match} />
+                                {match.tracking ? <Badge variant="secondary">{STATUS_LABELS[match.tracking.status]}</Badge> : null}
                                 <span className="text-xs text-muted-foreground">{match.expediente}</span>
                             </div>
                             <p className="line-clamp-2 text-sm font-medium">{formatOpportunityTitle(match.title)}</p>
-                            <p className="truncate text-xs text-muted-foreground">{match.buyerEntity}</p>
+                            <p className="truncate text-xs text-muted-foreground">
+                                {match.buyerEntity}
+                                {match.tracking?.assigneeName ? ` · ${match.tracking.assigneeName}` : ""}
+                            </p>
                             <p className="flex items-center gap-3 text-xs text-muted-foreground">
                                 <span>Cierra: {formatDeadline(match)}</span>
                                 {isClosed(match.closesAt) ? <ClosedBadge /> : null}

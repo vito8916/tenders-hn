@@ -1,9 +1,12 @@
+import { STATUS_LABELS } from "@/features/opportunities/schemas";
+import type { Opportunity } from "./opportunities";
 import { MATCH_STATE_LABELS, RELEVANCE_LABELS } from "./results";
-import type { SearchRunMatch } from "./schemas";
 
 const HEADERS = [
     "Relevancia",
     "Novedad",
+    "Seguimiento",
+    "Responsable",
     "Expediente",
     "Objeto",
     "Institución",
@@ -34,11 +37,13 @@ const escape = (value: string | number) => {
     return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 };
 
-/** A run's matches as CSV (spec §12.2): tabular fields and the official link, with a BOM so spreadsheets read the accents. */
-export function matchesToCsv(matches: SearchRunMatch[]) {
+/** A view's opportunities as CSV (spec §12.2): tabular fields, the team's tracking, and the official link, with a BOM so spreadsheets read the accents. */
+export function matchesToCsv(matches: Opportunity[]) {
     const rows = matches.map((match) => [
         RELEVANCE_LABELS[match.relevance],
         match.matchState ? MATCH_STATE_LABELS[match.matchState] : "",
+        STATUS_LABELS[match.tracking?.status ?? "nueva"],
+        match.tracking?.assigneeName ?? "",
         match.expediente,
         match.title,
         match.buyerEntity,

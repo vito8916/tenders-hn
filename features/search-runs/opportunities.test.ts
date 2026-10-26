@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { composeOpportunities, homeViewPath, type RunMatches } from "./opportunities";
+import type { TrackedState } from "@/features/opportunities/schemas";
+import type { Opportunity } from "./opportunities";
 import type { SearchRunMatch } from "./schemas";
 
 const now = new Date("2026-10-16T12:00:00.000Z");
@@ -56,6 +58,9 @@ describe("composeOpportunities", () => {
                 match("cerrada", { relevance: "muy_relevante", closesAt: "2026-10-01T16:00:00.000Z" }),
                 match("no-interesa", { relevance: "muy_relevante" }),
                 match("en-ambas", { relevance: "posible", matchState: "conocida" }),
+                match("evaluando", { relevance: "posible" }),
+                match("rescatada", { relevance: "descartada" }),
+                match("presentada-cerrada", { relevance: "muy_relevante", closesAt: "2026-10-10T16:00:00.000Z" }),
             ],
         },
         {
@@ -69,14 +74,24 @@ describe("composeOpportunities", () => {
             ],
         },
     ];
-    const views = composeOpportunities({ runs, notInterested: new Set(["no-interesa"]), now });
+    const state = (status: TrackedState["status"]): TrackedState => ({ status, assigneeId: null, assigneeName: null });
+    const tracking = new Map<string, TrackedState>([
+        ["no-interesa", state("descartada")],
+        ["evaluando", state("en_evaluacion")],
+        ["rescatada", state("en_evaluacion")],
+        ["presentada-cerrada", state("presentada")],
+        ["ganada-antes", state("ganada")],
+    ]);
+    // A process an older run found, which the latest runs no longer have.
+    const tracked: Opportunity[] = [{ ...match("ganada-antes", { closesAt: "2026-09-01T16:00:00.000Z" }), runId: "old", searchId: searchA, tracking: state("ganada") }];
+    const views = composeOpportunities({ runs, tracking, tracked, now });
 
-    it("keeps only the default search's muy relevantes in Recomendadas, open and not marked «No me interesa»", () => {
+    it("keeps only the default search's muy relevantes in Recomendadas, open and not discarded by the team", () => {
         expect(ids(views.recomendadas)).toEqual(["muy"]);
     });
 
     it("lists every search's results but the discarded ones in Todas, once per process", () => {
-        expect(ids(views.todas)).toEqual(["descartada-solo-aqui", "en-ambas", "muy", "pendiente", "posible"]);
+        expect(ids(views.todas)).toEqual(["descartada-solo-aqui", "en-ambas", "evaluando", "muy", "pendiente", "posible"]);
         expect(views.todas.filter((row) => row.processId === "en-ambas")).toHaveLength(1);
     });
 
@@ -85,7 +100,16 @@ describe("composeOpportunities", () => {
         expect(inBoth).toMatchObject({ relevance: "muy_relevante", runId: runB, searchId: searchB, matchState: "actualizada" });
     });
 
-    it("puts in Descartadas what every run discarded and what the team does not want", () => {
+    it("puts in Nuevas what in Todas nobody has acted on", () => {
+        expect(ids(views.nuevas)).toEqual(["descartada-solo-aqui", "en-ambas", "muy", "pendiente", "posible"]);
+    });
+
+    it("keeps in En seguimiento every tracked status but descartada, closed, discarded by Licitaly, or from an older run", () => {
+        expect(ids(views.seguimiento)).toEqual(["evaluando", "ganada-antes", "presentada-cerrada", "rescatada"]);
+        expect(views.seguimiento.find((row) => row.processId === "evaluando")?.tracking?.status).toBe("en_evaluacion");
+    });
+
+    it("puts in Descartadas what every run discarded and what the team discarded, but not what the team tracks", () => {
         expect(ids(views.descartadas)).toEqual(["descartada-en-ambas", "no-interesa"]);
     });
 

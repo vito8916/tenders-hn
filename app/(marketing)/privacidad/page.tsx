@@ -38,8 +38,8 @@ export default function PrivacyPage() {
 					preferencias y búsquedas guardadas.
 				</li>
 				<li>
-					<strong>Sus comentarios sobre oportunidades:</strong> «Me interesa», «No me interesa» y los motivos que
-					indique.
+					<strong>El seguimiento de oportunidades:</strong> el estado que su equipo da a cada oportunidad, su
+					responsable, las notas del equipo con su autor y fecha, y el motivo que indique al descartarla.
 				</li>
 				<li>
 					<strong>Preguntas y respuestas del chat:</strong> cada conversación solo la ve la persona que la

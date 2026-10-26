@@ -59,7 +59,7 @@ select throws_ok(
 select public.commit_ai_credits((select id from held), 20);
 select public.commit_ai_credits((select id from held), 20);
 select results_eq(
-  $$select count(*)::int, sum(amount)::int from public.ai_credit_ledger where kind = 'usage'$$,
+  $$select count(*)::int, sum(amount)::int from public.ai_credit_ledger where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa' and kind = 'usage'$$,
   $$values (1, -20)$$,
   'committing twice charges the actual usage once'
 );

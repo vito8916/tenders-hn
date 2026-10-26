@@ -52,23 +52,61 @@ export const sourceDocumentSchema = z.object({
 });
 export type SourceDocument = z.infer<typeof sourceDocumentSchema>;
 
-export const FeedbackDecisionSchema = z.enum(["interesa", "no_interesa"]);
-export type FeedbackDecision = z.infer<typeof FeedbackDecisionSchema>;
+/** The fixed statuses an organization gives an opportunity (spec 0.4 §5); no row means «Nueva». */
+export const TrackingStatusSchema = z.enum(["en_evaluacion", "preparando_oferta", "presentada", "ganada", "perdida", "descartada"]);
+export type TrackingStatus = z.infer<typeof TrackingStatusSchema>;
 
-export const feedbackSchema = z.object({
-    decision: FeedbackDecisionSchema,
-    reason: z.string().nullable(),
-    decidedAt: z.string(),
-    decidedByName: z.string().nullable(),
-});
-export type Feedback = z.infer<typeof feedbackSchema>;
+/** In the order the work goes; «nueva» is an opportunity nobody has acted on. */
+export const STATUS_LABELS: Record<TrackingStatus | "nueva", string> = {
+    nueva: "Nueva",
+    en_evaluacion: "En evaluación",
+    preparando_oferta: "Preparando oferta",
+    presentada: "Presentada",
+    ganada: "Ganada",
+    perdida: "Perdida",
+    descartada: "Descartada",
+};
 
-export const saveFeedbackInputSchema = z.object({
-    orgId: z.uuid(),
-    orgSlug: z.string().min(1),
-    processId: z.uuid(),
-    /** null clears the decision. */
-    decision: FeedbackDecisionSchema.nullable(),
-    reason: z.string().trim().max(1000, "El motivo no puede tener más de 1000 caracteres").optional(),
+/** What the views and the table show of an opportunity's tracking. */
+export type TrackedState = { status: TrackingStatus; assigneeId: string | null; assigneeName: string | null };
+
+export const trackingSchema = z.object({
+    status: TrackingStatusSchema,
+    assignedTo: z.uuid().nullable(),
+    discardReason: z.string().nullable(),
+    updatedAt: z.string(),
+    updatedByName: z.string().nullable(),
 });
-export type SaveFeedbackInput = z.infer<typeof saveFeedbackInputSchema>;
+export type Tracking = z.infer<typeof trackingSchema>;
+
+export const opportunityNoteSchema = z.object({
+    id: z.uuid(),
+    authorId: z.uuid().nullable(),
+    authorName: z.string().nullable(),
+    body: z.string(),
+    createdAt: z.string(),
+});
+export type OpportunityNote = z.infer<typeof opportunityNoteSchema>;
+
+/** A member the opportunity can be assigned to: anyone in the organization but viewers. */
+export type Assignee = { userId: string; name: string };
+
+const opportunityRef = { orgId: z.uuid(), orgSlug: z.string().min(1), processId: z.uuid() };
+
+export const saveTrackingInputSchema = z.object({
+    ...opportunityRef,
+    /** null returns it to «Nueva». */
+    status: TrackingStatusSchema.nullable(),
+    assignedTo: z.uuid().nullable(),
+    discardReason: z.string().trim().max(1000, "El motivo no puede tener más de 1000 caracteres").optional(),
+});
+export type SaveTrackingInput = z.infer<typeof saveTrackingInputSchema>;
+
+export const addNoteInputSchema = z.object({
+    ...opportunityRef,
+    body: z.string().trim().min(1, "Escriba la nota.").max(2000, "La nota no puede tener más de 2000 caracteres"),
+});
+export type AddNoteInput = z.infer<typeof addNoteInputSchema>;
+
+export const deleteNoteInputSchema = z.object({ orgId: z.uuid(), orgSlug: z.string().min(1), noteId: z.uuid() });
+export type DeleteNoteInput = z.infer<typeof deleteNoteInputSchema>;

@@ -197,7 +197,7 @@ reset role;
 
 select is(
   (select count(*)::int from pgmq.q_match q join public.search_runs r on r.id = (q.message ->> 'runId')::uuid
-   where q.message ->> 'type' = 'search_run'),
+   where q.message ->> 'type' = 'search_run' and r.org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'),
   2,
   'both runs are queued for the worker'
 );

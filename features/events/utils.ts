@@ -1,4 +1,5 @@
 import { OrgRoleSchema, ROLE_LABELS } from "@/features/memberships/schemas";
+import { STATUS_LABELS } from "@/features/opportunities/schemas";
 import { APP_EVENTS, type AppEvent } from "./schemas";
 
 export const EVENT_LABELS: Record<string, string> = {
@@ -10,6 +11,7 @@ export const EVENT_LABELS: Record<string, string> = {
 	[APP_EVENTS.SAVED_SEARCH_CREATED]: "Lista creada",
 	[APP_EVENTS.SAVED_SEARCH_UPDATED]: "Lista modificada",
 	[APP_EVENTS.SAVED_SEARCH_DELETED]: "Lista eliminada",
+	[APP_EVENTS.OPPORTUNITY_STATUS_CHANGED]: "Estado de oportunidad cambiado",
 	[APP_EVENTS.INVITATION_SENT]: "Invitaciones enviadas",
 	[APP_EVENTS.INVITATION_ACCEPTED]: "Invitación aceptada",
 	[APP_EVENTS.INVITATION_REVOKED]: "Invitación revocada",
@@ -36,6 +38,10 @@ export function eventDetail(event: AppEvent, planNames: Record<string, string>):
 	const metadata = event.metadata;
 	if (!metadata) return null;
 
+	if (typeof metadata.status_from === "string" && typeof metadata.status_to === "string") {
+		const status = (value: string) => STATUS_LABELS[value as keyof typeof STATUS_LABELS] ?? value;
+		return `${typeof metadata.expediente === "string" ? `${metadata.expediente}: ` : ""}${status(metadata.status_from)} → ${status(metadata.status_to)}`;
+	}
 	if (typeof metadata.name === "string") return metadata.name;
 	if (typeof metadata.email === "string") return metadata.email;
 	if (Array.isArray(metadata.emails)) return metadata.emails.join(", ");
@@ -75,6 +81,10 @@ export const EVENT_FILTER_GROUPS = [
 			APP_EVENTS.SAVED_SEARCH_UPDATED,
 			APP_EVENTS.SAVED_SEARCH_DELETED,
 		],
+	},
+	{
+		label: "Seguimiento",
+		events: [APP_EVENTS.OPPORTUNITY_STATUS_CHANGED],
 	},
 	{
 		label: "Invitaciones",

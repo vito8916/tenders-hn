@@ -1,6 +1,6 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
-import type { Tables } from "@/types/database.types";
+import type { Database, Tables } from "@/types/database.types";
 import { searchRunMatchSchema, searchRunSchema, type SearchRun, type SearchRunMatch } from "./schemas";
 
 const SEARCH_RUN_COLUMNS =
@@ -178,6 +178,27 @@ export async function listMatchesForRuns(runIds: string[]): Promise<Map<string, 
         });
     }
     return byRun;
+}
+
+/**
+ * The latest finished run's match for each of these processes among the organization's runs, with the run
+ * and its search: «En seguimiento» keeps a process the latest runs no longer find.
+ */
+export async function listLatestProcessMatches(orgId: string, processIds: string[]) {
+    if (processIds.length === 0) return [];
+
+    const supabase = await createClient();
+    const { data, error } = await supabase.rpc("latest_process_matches", { target_org: orgId, target_processes: processIds });
+    if (error) throw error;
+
+    type Row = Database["public"]["Functions"]["latest_process_matches"]["Returns"][number];
+    const latest = (data ?? []) as Row[];
+
+    const byRun = await listMatchesForRuns([...new Set(latest.map((row) => row.run_id))]);
+    return latest.flatMap((row) => {
+        const match = byRun.get(row.run_id)?.find((candidate) => candidate.processId === row.process_id);
+        return match ? [{ ...match, runId: row.run_id, searchId: row.saved_search_id }] : [];
+    });
 }
 
 export async function listSearchRunMatches(runId: string): Promise<MatchWithCurrentDeadline[]> {

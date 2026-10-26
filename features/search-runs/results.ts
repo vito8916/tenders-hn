@@ -1,4 +1,6 @@
-import { MatchStateSchema, RelevanceSchema, type MatchState, type Relevance, type SearchRunMatch } from "./schemas";
+import { STATUS_LABELS, TrackingStatusSchema } from "@/features/opportunities/schemas";
+import type { Opportunity } from "./opportunities";
+import { MatchStateSchema, RelevanceSchema, type MatchState, type Relevance } from "./schemas";
 
 /**
  * The results table's view of the Home's opportunities (spec 0.4 §12.2): filters, facets with counts,
@@ -22,15 +24,19 @@ export const MATCH_STATE_LABELS: Record<MatchState, string> = { nueva: "Nueva", 
 export const RESULT_SORTS = { relevancia: "Relevancia", cierre: "Fecha límite", inicio: "Fecha de inicio", institucion: "Institución", deteccion: "Fecha de detección" } as const;
 export type ResultSort = keyof typeof RESULT_SORTS;
 
+export const NO_ASSIGNEE = "Sin responsable";
+
 /** The facets (spec §12.2), keyed by their URL parameter. */
 export const FACETS = {
-    relevancia: { label: "Relevancia", value: (match: SearchRunMatch) => match.relevance as string | null },
-    novedad: { label: "Novedad", value: (match: SearchRunMatch) => match.matchState as string | null },
-    institucion: { label: "Institución", value: (match: SearchRunMatch) => match.buyerEntity as string | null },
-    modalidad: { label: "Modalidad", value: (match: SearchRunMatch) => match.modality },
-    etapa: { label: "Etapa", value: (match: SearchRunMatch) => match.stage },
-    tipo: { label: "Tipo de adquisición", value: (match: SearchRunMatch) => match.acquisitionType },
-    documentos: { label: "Documentos", value: (match: SearchRunMatch) => (match.documentsCount > 0 ? "con" : "sin") },
+    relevancia: { label: "Relevancia", value: (match: Opportunity) => match.relevance as string | null },
+    estado: { label: "Seguimiento", value: (match: Opportunity) => (match.tracking?.status ?? "nueva") as string | null },
+    responsable: { label: "Responsable", value: (match: Opportunity) => (match.tracking?.assigneeName ?? NO_ASSIGNEE) as string | null },
+    novedad: { label: "Novedad", value: (match: Opportunity) => match.matchState as string | null },
+    institucion: { label: "Institución", value: (match: Opportunity) => match.buyerEntity as string | null },
+    modalidad: { label: "Modalidad", value: (match: Opportunity) => match.modality },
+    etapa: { label: "Etapa", value: (match: Opportunity) => match.stage },
+    tipo: { label: "Tipo de adquisición", value: (match: Opportunity) => match.acquisitionType },
+    documentos: { label: "Documentos", value: (match: Opportunity) => (match.documentsCount > 0 ? "con" : "sin") },
 } as const;
 export type FacetKey = keyof typeof FACETS;
 const FACET_KEYS = Object.keys(FACETS) as FacetKey[];
@@ -40,6 +46,7 @@ export const DOCUMENTS_LABELS: Record<string, string> = { con: "Con documentos",
 /** How a facet value reads in the filters and on the page. */
 export function facetValueLabel(facet: FacetKey, value: string) {
     if (facet === "relevancia") return RELEVANCE_LABELS[value as Relevance] ?? value;
+    if (facet === "estado") return STATUS_LABELS[value as keyof typeof STATUS_LABELS] ?? value;
     if (facet === "novedad") return MATCH_STATE_LABELS[value as MatchState] ?? value;
     if (facet === "documentos") return DOCUMENTS_LABELS[value] ?? value;
     return value;
@@ -65,6 +72,7 @@ export function parseResultView(params: SearchParamsRecord): ResultView {
     const facets = Object.fromEntries(FACET_KEYS.map((key) => [key, all(params[key]).filter(Boolean)])) as Record<FacetKey, string[]>;
     facets.relevancia = facets.relevancia.filter((value) => RelevanceSchema.safeParse(value).success);
     facets.novedad = facets.novedad.filter((value) => MatchStateSchema.safeParse(value).success);
+    facets.estado = facets.estado.filter((value) => value === "nueva" || TrackingStatusSchema.safeParse(value).success);
 
     const sort = first(params.orden);
     const page = Number.parseInt(first(params.pagina) ?? "1");
@@ -86,7 +94,7 @@ export const hasFilters = (view: ResultView) =>
 
 const normalize = (text: string) => text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 
-function passes(match: SearchRunMatch, view: ResultView, exceptFacet?: FacetKey) {
+function passes(match: Opportunity, view: ResultView, exceptFacet?: FacetKey) {
     if (view.q) {
         const haystack = normalize([match.expediente, match.title, match.buyerEntity, ...match.reasons.map((reason) => reason.text)].join(" "));
         if (!normalize(view.q).split(/\s+/).every((word) => haystack.includes(word))) return false;
@@ -110,7 +118,7 @@ const byDate = (a: string | null, b: string | null, direction: 1 | -1) => {
     return a < b ? -direction : direction;
 };
 
-const COMPARATORS: Record<ResultSort, (a: SearchRunMatch, b: SearchRunMatch) => number> = {
+const COMPARATORS: Record<ResultSort, (a: Opportunity, b: Opportunity) => number> = {
     // Within each level, the ones closing soonest first (plan, Phase 3).
     relevancia: (a, b) =>
         RELEVANCE_ORDER.indexOf(a.relevance) - RELEVANCE_ORDER.indexOf(b.relevance) ||
@@ -129,7 +137,7 @@ export type FacetCounts = Record<FacetKey, { value: string; count: number }[]>;
  * the current page, and each facet's values with how many rows each would
  * give with the other filters applied.
  */
-export function applyResultView(matches: SearchRunMatch[], view: ResultView) {
+export function applyResultView(matches: Opportunity[], view: ResultView) {
     const filtered = matches.filter((match) => passes(match, view)).sort(COMPARATORS[view.sort]);
     const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     const page = Math.min(view.page, pageCount);
@@ -147,6 +155,7 @@ export function applyResultView(matches: SearchRunMatch[], view: ResultView) {
             }
             const values = [...counts].map(([value, count]) => ({ value, count }));
             if (key === "relevancia") values.sort((a, b) => RELEVANCE_ORDER.indexOf(a.value as Relevance) - RELEVANCE_ORDER.indexOf(b.value as Relevance));
+            else if (key === "estado") values.sort((a, b) => Object.keys(STATUS_LABELS).indexOf(a.value) - Object.keys(STATUS_LABELS).indexOf(b.value));
             else if (key === "novedad") values.sort((a, b) => Object.keys(MATCH_STATE_LABELS).indexOf(a.value) - Object.keys(MATCH_STATE_LABELS).indexOf(b.value));
             else values.sort((a, b) => b.count - a.count || a.value.localeCompare(b.value, "es"));
             return [key, values];

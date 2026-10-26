@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Ban, Hash, Layers, Star, type LucideIcon } from "lucide-react";
+import { Ban, Briefcase, Hash, Inbox, Layers, Star, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { NewListDialog } from "@/features/saved-searches/components/new-list-dialog";
@@ -53,8 +53,8 @@ function Section({ title, action, children }: { title: string; action?: React.Re
 }
 
 /**
- * The Home's left pane (plan D7, spec 0.4 §12.1): Recomendadas and Todas with their counts, Descartadas,
- * and the organization's lists with their new opportunities.
+ * The Home's left pane (plan D7, spec 0.4 §12.1): Recomendadas and Todas with their counts; Nuevas,
+ * En seguimiento, and Descartadas; and the organization's lists with their new opportunities.
  */
 export function OpportunitiesPane({
     orgSlug,
@@ -64,9 +64,9 @@ export function OpportunitiesPane({
     newList,
 }: {
     orgSlug: string;
-    /** The view or list shown: «recomendadas», «todas», «descartadas», or a list's id (an update marks its list). */
+    /** The view or list shown: a view's kind («recomendadas», «nuevas», …) or a list's id. */
     current: string;
-    counts: { recomendadas: number; todas: number };
+    counts: { recomendadas: number; todas: number; nuevas: number; seguimiento: number };
     lists: PaneList[];
     /** What «Nueva lista» needs; null when the user may not create one (role, plan, or limit). */
     newList: { orgId: string; filterOptions: FilterOptions; hasProfile: boolean } | null;
@@ -87,6 +87,20 @@ export function OpportunitiesPane({
             </Section>
             <Section title="Seguimiento">
                 <ul className="space-y-0.5">
+                    <PaneLink
+                        href={homeViewPath(orgSlug, { kind: "nuevas" })}
+                        icon={Inbox}
+                        label="Nuevas"
+                        current={current === "nuevas"}
+                        trailing={<Count value={counts.nuevas} />}
+                    />
+                    <PaneLink
+                        href={homeViewPath(orgSlug, { kind: "seguimiento" })}
+                        icon={Briefcase}
+                        label="En seguimiento"
+                        current={current === "seguimiento"}
+                        trailing={<Count value={counts.seguimiento} />}
+                    />
                     <PaneLink href={homeViewPath(orgSlug, { kind: "descartadas" })} icon={Ban} label="Descartadas" current={current === "descartadas"} />
                 </ul>
             </Section>

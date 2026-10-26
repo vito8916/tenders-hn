@@ -15,7 +15,7 @@ const CATEGORY_SECTIONS = [
 		category: "searches",
 		title: "Reportes",
 		description:
-			"Reportes de «Recomendadas» y sus listas, y cambios en oportunidades marcadas con «Me interesa». Los horarios de los reportes se eligen en Configuración › Reportes.",
+			"Reportes de «Recomendadas» y sus listas, y cambios en las oportunidades en seguimiento. Los horarios de los reportes se eligen en Configuración › Reportes.",
 	},
 	{
 		category: "organization",

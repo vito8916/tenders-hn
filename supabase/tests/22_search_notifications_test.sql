@@ -2,7 +2,7 @@
 -- when its last run does, and then tells every member, once, about the
 -- opportunities each search has not reported (or that changed since);
 -- report times are chosen within the plan and queue one report per due
--- organization; a change to a process marked «Me interesa» alerts the
+-- organization; a change to a tracked process (any status but descartada) alerts the
 -- members once per change.
 begin;
 create extension if not exists pgtap with schema extensions;
@@ -141,7 +141,9 @@ select is(
 select pg_temp.run('c0000000-0000-4000-8000-000000000008', '5eeeeeee-0000-4000-8000-000000000001', null, now());
 select pg_temp.finish('c0000000-0000-4000-8000-000000000008');
 select is(
-  (select count(*)::int from pgmq.q_match where message ->> 'type' = 'render_org_report'),
+  (select count(*)::int from pgmq.q_match q join public.org_reports o on o.id = (q.message ->> 'reportId')::uuid
+   where q.message ->> 'type' = 'render_org_report'
+     and o.org_id in ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb')),
   5, 'a run outside a report queues no report'
 );
 
@@ -214,7 +216,7 @@ update public.report_schedules set next_report_at = now() - interval '1 minute' 
 select is(private.enqueue_due_reports(), 1, 'a due organization gets a report');
 select results_eq(
   $$select s.name, r.trigger, r.status from public.search_runs r join public.saved_searches s on s.id = r.saved_search_id
-    where r.report_id is not null and r.status = 'queued'
+    where r.org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa' and r.report_id is not null and r.status = 'queued'
     order by s.name$$,
   $$values ('Redes'::text, 'schedule'::text, 'queued'::text), ('Software', 'schedule', 'queued')$$,
   'with a run of each active search («Recomendadas» has no profile to follow yet)'
@@ -238,13 +240,13 @@ select is(private.enqueue_due_reports(), 0, 'organizations without an active pla
 
 -- ---------- Change alerts ----------
 update public.organization_subscriptions set status = 'active' where org_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
-insert into public.opportunity_feedback (org_id, process_id, decision, decided_by)
-values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'a0000000-0000-4000-8000-00000000000a', 'interesa', '11111111-1111-4111-8111-111111111111');
+insert into public.opportunity_tracking (org_id, process_id, status, updated_by)
+values ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', 'a0000000-0000-4000-8000-00000000000a', 'en_evaluacion', '11111111-1111-4111-8111-111111111111');
 insert into public.process_events (process_id, kind, before, after)
 values ('a0000000-0000-4000-8000-00000000000a', 'deadline_changed', '{"bidsDueAt": "2026-10-10T10:00:00-06:00"}', '{"bidsDueAt": "2026-10-20T10:00:00-06:00"}');
 select is(
   (select count(*)::int from public.notifications where type_id = 'opportunity.updated'),
-  2, 'a deadline change to an opportunity marked «Me interesa» alerts both members'
+  2, 'a deadline change to a tracked opportunity alerts both members'
 );
 select is(
   (select body from public.notifications where type_id = 'opportunity.updated' limit 1),
@@ -256,7 +258,13 @@ select ok(
 );
 insert into public.process_events (process_id, kind, after)
 values ('a0000000-0000-4000-8000-00000000000c', 'document_added', '{"title": "Aclaratoria"}');
-select is((select count(*)::int from public.notifications where type_id = 'opportunity.updated'), 2, 'a process nobody marked alerts nobody');
+select is((select count(*)::int from public.notifications where type_id = 'opportunity.updated'), 2, 'a process nobody tracks alerts nobody');
+
+update public.opportunity_tracking set status = 'descartada' where process_id = 'a0000000-0000-4000-8000-00000000000a';
+insert into public.process_events (process_id, kind, after)
+values ('a0000000-0000-4000-8000-00000000000a', 'document_added', '{"title": "Anexo"}');
+select is((select count(*)::int from public.notifications where type_id = 'opportunity.updated'), 2, 'a discarded opportunity alerts nobody');
+update public.opportunity_tracking set status = 'presentada' where process_id = 'a0000000-0000-4000-8000-00000000000a';
 
 update public.saved_searches set alert_on_changes = false where id = '5eeeeeee-0000-4000-8000-000000000001';
 insert into public.process_events (process_id, kind, after)

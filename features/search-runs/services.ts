@@ -2,7 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { listSavedSearchesService } from "@/features/saved-searches/services";
 import type { SavedSearch } from "@/features/saved-searches/schemas";
-import { listNotInterestedProcessIdsService } from "@/features/opportunities/services";
+import { listTrackingService } from "@/features/opportunities/services";
 import {
     createReportUrl,
     getLatestIngestionAt,
@@ -10,13 +10,14 @@ import {
     getOrgRun,
     listLatestFinishedRuns,
     listLatestRuns,
+    listLatestProcessMatches,
     listMatchesForRuns,
     listRunsPage,
     type MatchWithCurrentDeadline,
     requestSearchRun,
 } from "./repository";
 import { isRunFinished, type SearchRun } from "./schemas";
-import { composeOpportunities, type HomeView } from "./opportunities";
+import { composeOpportunities, type HomeView, type Opportunity } from "./opportunities";
 
 const HISTORY_PAGE_SIZE = 25;
 
@@ -43,12 +44,12 @@ export async function getHomeService(params: { orgId: string; view: HomeView }) 
     if (requestedRun === null || (requestedRun && !isRunFinished(requestedRun.run.status))) return null;
     if (params.view.kind === "lista" && !z.uuid().safeParse(params.view.searchId).success) return null;
 
-    const [searches, latestRuns, finishedRuns, latestIngestionAt, notInterested] = await Promise.all([
+    const [searches, latestRuns, finishedRuns, latestIngestionAt, tracking] = await Promise.all([
         listSavedSearchesService(params.orgId),
         listLatestRuns(params.orgId),
         listLatestFinishedRuns(params.orgId),
         getLatestIngestionAt(),
-        listNotInterestedProcessIdsService(params.orgId),
+        listTrackingService(params.orgId),
     ]);
 
     const latestBySearch = new Map(latestRuns.map((run) => [run.savedSearchId, run]));
@@ -75,10 +76,20 @@ export async function getHomeService(params: { orgId: string; view: HomeView }) 
         ...(pausedShown ? [pausedShown.latestFinished.id] : []),
         ...(snapshot ? [snapshot.id] : []),
     ]);
+    const activeRuns = active.map((item) => runMatches(item, matchesByRun));
+    // What the team tracks that the active searches' latest runs no longer find, closed processes included.
+    const inActiveRuns = new Set(activeRuns.flatMap((run) => run.matches.map((match) => match.processId)));
+    const missingTracked = [...tracking]
+        .filter(([processId, state]) => state.status !== "descartada" && !inActiveRuns.has(processId))
+        .map(([processId]) => processId);
+    const tracked = (await listLatestProcessMatches(params.orgId, missingTracked)).map(
+        ({ currentClosesAt, ...match }): Opportunity => ({ ...match, closesAt: currentClosesAt ?? match.closesAt, tracking: tracking.get(match.processId) ?? null }),
+    );
+
     const now = new Date();
-    const opportunities = composeOpportunities({ runs: active.map((item) => runMatches(item, matchesByRun)), notInterested, now });
+    const opportunities = composeOpportunities({ runs: activeRuns, tracking, tracked, now });
     if (pausedShown) {
-        const paused = composeOpportunities({ runs: [runMatches(pausedShown, matchesByRun)], notInterested, now });
+        const paused = composeOpportunities({ runs: [runMatches(pausedShown, matchesByRun)], tracking, now });
         opportunities.byList.set(pausedShown.search.id, paused.byList.get(pausedShown.search.id) ?? []);
     }
 
@@ -99,6 +110,7 @@ export async function getHomeService(params: { orgId: string; view: HomeView }) 
                       ...match,
                       runId: snapshot.id,
                       searchId: snapshot.savedSearchId,
+                      tracking: tracking.get(match.processId) ?? null,
                   })),
               }
             : null,
@@ -116,6 +128,10 @@ export function homeViewRows(home: HomeData) {
             return opportunities.recomendadas;
         case "todas":
             return opportunities.todas;
+        case "nuevas":
+            return opportunities.nuevas;
+        case "seguimiento":
+            return opportunities.seguimiento;
         case "descartadas":
             return opportunities.descartadas;
         case "lista":
@@ -125,10 +141,13 @@ export function homeViewRows(home: HomeData) {
     }
 }
 
+const AGGREGATE_VIEW_NAMES = { todas: "Todas", nuevas: "Nuevas", seguimiento: "En seguimiento", descartadas: "Descartadas" } as const;
+
 /** «licitaly-<view>-<yyyy-mm-dd>»: the name of a view's CSV; a snapshot keeps its run's date. */
 export function homeViewFileName(home: HomeData) {
     const { view, viewItem, snapshot } = home;
-    const name = view.kind === "todas" ? "Todas" : view.kind === "descartadas" ? "Descartadas" : (viewItem?.search.name ?? "oportunidades");
+    const name =
+        view.kind === "recomendadas" || view.kind === "lista" || view.kind === "update" ? (viewItem?.search.name ?? "oportunidades") : AGGREGATE_VIEW_NAMES[view.kind];
     return runFileName(name, snapshot?.run.createdAt ?? new Date().toISOString());
 }
 

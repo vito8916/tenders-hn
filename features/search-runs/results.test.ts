@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { applyResultView, parseResultView, withParams } from "./results";
-import type { SearchRunMatch } from "./schemas";
+import type { Opportunity } from "./opportunities";
 
-const match = (overrides: Partial<SearchRunMatch>): SearchRunMatch => ({
+const match = (overrides: Partial<Opportunity>): Opportunity => ({
     processId: crypto.randomUUID(),
     processVersionId: null,
     retrievalRank: 1,
@@ -20,6 +20,9 @@ const match = (overrides: Partial<SearchRunMatch>): SearchRunMatch => ({
     startsAt: "2026-09-20T16:00:00.000Z",
     detectedAt: "2026-09-21T16:00:00.000Z",
     documentsCount: 2,
+    runId: "00000000-0000-4000-8000-0000000000a1",
+    searchId: "00000000-0000-4000-8000-00000000000a",
+    tracking: null,
     ...overrides,
 });
 
@@ -78,6 +81,18 @@ describe("applyResultView", () => {
             { value: "sin", count: 1 },
         ]);
         expect(facets.novedad.find((f) => f.value === "conocida")?.count).toBe(0);
+    });
+
+    it("filters by tracking status, «Nueva» when untracked, and by assignee", () => {
+        const tracked = [
+            match({ expediente: "T1", tracking: { status: "presentada", assigneeId: "u1", assigneeName: "Ana" } }),
+            match({ expediente: "T2", tracking: { status: "en_evaluacion", assigneeId: null, assigneeName: null } }),
+            match({ expediente: "N" }),
+        ];
+        expect(applyResultView(tracked, parseResultView({ estado: ["nueva", "otro"] })).filtered.map((m) => m.expediente)).toEqual(["N"]);
+        expect(applyResultView(tracked, parseResultView({ responsable: "Sin responsable" })).filtered.map((m) => m.expediente).sort()).toEqual(["N", "T2"]);
+        // In the order the work goes.
+        expect(applyResultView(tracked, parseResultView({})).facets.estado.map((f) => f.value)).toEqual(["nueva", "en_evaluacion", "presentada"]);
     });
 
     it("pages the filtered rows and clamps a page past the end", () => {

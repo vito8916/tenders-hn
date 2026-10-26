@@ -4,10 +4,10 @@ import {
     processDetailSchema,
     processEventSchema,
     sourceDocumentSchema,
-    type FeedbackDecision,
     type ProcessDetail,
     type ProcessEvent,
     type SourceDocument,
+    type TrackingStatus,
 } from "./schemas";
 
 // ========== QUERIES ==========
@@ -63,47 +63,93 @@ export async function listProcessDocuments(processId: string): Promise<SourceDoc
     );
 }
 
-export async function getFeedback(orgId: string, processId: string) {
+export async function getTracking(orgId: string, processId: string) {
     const supabase = await createClient();
     const { data, error } = await supabase
-        .from("opportunity_feedback")
-        .select("decision, reason, decided_at, decided_by")
+        .from("opportunity_tracking")
+        .select("status, assigned_to, discard_reason, updated_at, updated_by")
         .eq("org_id", orgId)
         .eq("process_id", processId)
         .maybeSingle();
 
     if (error) throw error;
+    return data ? { ...data, status: data.status as TrackingStatus } : null;
+}
+
+/** Every opportunity the organization has acted on: the views read its status and assignee. */
+export async function listTracking(orgId: string) {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("opportunity_tracking").select("process_id, status, assigned_to").eq("org_id", orgId);
+
+    if (error) throw error;
+    return data.map((row) => ({ processId: row.process_id, status: row.status as TrackingStatus, assignedTo: row.assigned_to }));
+}
+
+/** The team's notes on the opportunity, oldest first. */
+export async function listNotes(orgId: string, processId: string) {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("opportunity_notes")
+        .select("id, author_id, body, created_at")
+        .eq("org_id", orgId)
+        .eq("process_id", processId)
+        .order("created_at");
+
+    if (error) throw error;
     return data;
 }
 
-/** The processes the organization marked «No me interesa»: the Home shows them under Descartadas. */
-export async function listNotInterestedProcessIds(orgId: string): Promise<Set<string>> {
+export async function getNote(noteId: string) {
     const supabase = await createClient();
-    const { data, error } = await supabase.from("opportunity_feedback").select("process_id").eq("org_id", orgId).eq("decision", "no_interesa");
+    const { data, error } = await supabase.from("opportunity_notes").select("id, org_id, author_id").eq("id", noteId).maybeSingle();
 
     if (error) throw error;
-    return new Set(data.map((row) => row.process_id));
+    return data;
 }
 
 // ========== MUTATIONS ==========
 
-export async function upsertFeedback(params: { orgId: string; processId: string; userId: string; decision: FeedbackDecision; reason: string | null }) {
+export async function upsertTracking(params: {
+    orgId: string;
+    processId: string;
+    userId: string;
+    status: TrackingStatus;
+    assignedTo: string | null;
+    discardReason: string | null;
+}) {
     const supabase = await createClient();
-    const { error } = await supabase.from("opportunity_feedback").upsert({
+    const { error } = await supabase.from("opportunity_tracking").upsert({
         org_id: params.orgId,
         process_id: params.processId,
-        decision: params.decision,
-        reason: params.reason,
-        decided_by: params.userId,
-        decided_at: new Date().toISOString(),
+        status: params.status,
+        assigned_to: params.assignedTo,
+        discard_reason: params.discardReason,
+        updated_by: params.userId,
+        updated_at: new Date().toISOString(),
     });
 
     if (error) throw error;
 }
 
-export async function deleteFeedback(orgId: string, processId: string) {
+export async function deleteTracking(orgId: string, processId: string) {
     const supabase = await createClient();
-    const { error } = await supabase.from("opportunity_feedback").delete().eq("org_id", orgId).eq("process_id", processId);
+    const { error } = await supabase.from("opportunity_tracking").delete().eq("org_id", orgId).eq("process_id", processId);
+
+    if (error) throw error;
+}
+
+export async function insertNote(params: { orgId: string; processId: string; userId: string; body: string }) {
+    const supabase = await createClient();
+    const { error } = await supabase
+        .from("opportunity_notes")
+        .insert({ org_id: params.orgId, process_id: params.processId, author_id: params.userId, body: params.body });
+
+    if (error) throw error;
+}
+
+export async function deleteNote(noteId: string) {
+    const supabase = await createClient();
+    const { error } = await supabase.from("opportunity_notes").delete().eq("id", noteId);
 
     if (error) throw error;
 }

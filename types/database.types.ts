@@ -912,48 +912,48 @@ export type Database = {
           },
         ]
       }
-      opportunity_feedback: {
+      opportunity_notes: {
         Row: {
-          decided_at: string
-          decided_by: string | null
-          decision: string
+          author_id: string | null
+          body: string
+          created_at: string
+          id: string
           org_id: string
           process_id: string
-          reason: string | null
         }
         Insert: {
-          decided_at?: string
-          decided_by?: string | null
-          decision: string
+          author_id?: string | null
+          body: string
+          created_at?: string
+          id?: string
           org_id: string
           process_id: string
-          reason?: string | null
         }
         Update: {
-          decided_at?: string
-          decided_by?: string | null
-          decision?: string
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          id?: string
           org_id?: string
           process_id?: string
-          reason?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "opportunity_feedback_org_id_fkey"
+            foreignKeyName: "opportunity_notes_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "opportunity_feedback_process_id_fkey"
+            foreignKeyName: "opportunity_notes_process_id_fkey"
             columns: ["process_id"]
             isOneToOne: false
             referencedRelation: "process_arrivals"
             referencedColumns: ["process_id"]
           },
           {
-            foreignKeyName: "opportunity_feedback_process_id_fkey"
+            foreignKeyName: "opportunity_notes_process_id_fkey"
             columns: ["process_id"]
             isOneToOne: false
             referencedRelation: "procurement_processes"
@@ -1027,6 +1027,58 @@ export type Database = {
             columns: ["saved_search_id"]
             isOneToOne: false
             referencedRelation: "saved_searches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      opportunity_tracking: {
+        Row: {
+          assigned_to: string | null
+          discard_reason: string | null
+          org_id: string
+          process_id: string
+          status: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          assigned_to?: string | null
+          discard_reason?: string | null
+          org_id: string
+          process_id: string
+          status: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          assigned_to?: string | null
+          discard_reason?: string | null
+          org_id?: string
+          process_id?: string
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "opportunity_tracking_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "opportunity_tracking_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "process_arrivals"
+            referencedColumns: ["process_id"]
+          },
+          {
+            foreignKeyName: "opportunity_tracking_process_id_fkey"
+            columns: ["process_id"]
+            isOneToOne: false
+            referencedRelation: "procurement_processes"
             referencedColumns: ["id"]
           },
         ]
@@ -2417,6 +2469,14 @@ export type Database = {
       is_organization_slug_available: {
         Args: { candidate: string }
         Returns: boolean
+      }
+      latest_process_matches: {
+        Args: { target_org: string; target_processes: string[] }
+        Returns: {
+          process_id: string
+          run_id: string
+          saved_search_id: string
+        }[]
       }
       list_my_pending_invitations: {
         Args: never

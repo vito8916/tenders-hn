@@ -5,13 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ContextChat } from "@/features/chat/components/context-chat";
+import { getUserOrgRoleService } from "@/features/memberships/services";
+import { getCurrentUser } from "@/lib/auth/get-current-user";
 import { cn } from "@/lib/utils";
 import { RelevanceBadge } from "@/features/search-runs/components/relevance-badge";
 import { ClosedBadge, isClosed, MatchStateBadge } from "@/features/search-runs/components/results-table";
 import type { SearchRunMatch } from "@/features/search-runs/schemas";
 import { getOpportunityDetailService } from "../services";
-import { DOCUMENT_KIND_LABELS, type Feedback, type ProcessDetail, type ProcessEvent, type SourceDocument } from "../schemas";
-import { FeedbackButtons } from "./feedback-buttons";
+import { DOCUMENT_KIND_LABELS, type ProcessDetail, type ProcessEvent, type SourceDocument } from "../schemas";
+import { OpportunityNotes } from "./opportunity-notes";
+import { TrackingForm } from "./tracking-form";
 import { formatOpportunityTitle } from "../title";
 
 const dateTime = new Intl.DateTimeFormat("es-HN", { dateStyle: "full", timeStyle: "short", timeZone: "America/Tegucigalpa" });
@@ -156,16 +159,18 @@ export async function OpportunityDetail({
     orgSlug,
     runId,
     match,
-    canDecide,
+    canTrack,
 }: {
     orgId: string;
     orgSlug: string;
     /** The run the match belongs to. */
     runId: string;
     match: SearchRunMatch;
-    canDecide: boolean;
+    canTrack: boolean;
 }) {
-    const { version, events, documents, feedback } = await getOpportunityDetailService({ orgId, processId: match.processId });
+    const [{ sub: userId }, detailData] = await Promise.all([getCurrentUser(), getOpportunityDetailService({ orgId, processId: match.processId })]);
+    const { version, events, documents, tracking, notes, assignees } = detailData;
+    const role = await getUserOrgRoleService({ userId, orgId });
     const detail = version?.detail ?? null;
     const changedSinceRun = version !== null && match.processVersionId !== null && version.versionId !== match.processVersionId;
 
@@ -198,7 +203,37 @@ export async function OpportunityDetail({
                     <TabsTrigger value="preguntar">Preguntar</TabsTrigger>
                 </TabsList>
                 <TabsContent value="detalle" className="min-h-0 overflow-y-auto">
-                    <OpportunitySections match={match} detail={detail} documents={documents} events={events} feedback={feedback} orgId={orgId} orgSlug={orgSlug} canDecide={canDecide} />
+                    <OpportunitySections
+                        match={match}
+                        detail={detail}
+                        documents={documents}
+                        events={events}
+                        tracking={
+                            <>
+                                <TrackingForm
+                                    key={tracking?.updatedAt ?? "nueva"}
+                                    orgId={orgId}
+                                    orgSlug={orgSlug}
+                                    processId={match.processId}
+                                    tracking={tracking}
+                                    assignees={assignees}
+                                    canTrack={canTrack}
+                                />
+                                <div className="space-y-2 pt-2">
+                                    <h4 className="text-sm font-medium">Notas del equipo</h4>
+                                    <OpportunityNotes
+                                        orgId={orgId}
+                                        orgSlug={orgSlug}
+                                        processId={match.processId}
+                                        notes={notes}
+                                        userId={userId}
+                                        canTrack={canTrack}
+                                        canDeleteAny={role === "owner" || role === "admin"}
+                                    />
+                                </div>
+                            </>
+                        }
+                    />
                 </TabsContent>
                 {/* Kept mounted, so switching tabs does not cut an answer being written. */}
                 <TabsContent value="preguntar" forceMount className="min-h-0 border-t data-[state=inactive]:hidden">
@@ -211,25 +246,19 @@ export async function OpportunityDetail({
     );
 }
 
-/** The detail tab: what a supplier needs first, the decision, why it matched, products, documents, data, and changes. */
+/** The detail tab: what a supplier needs first, the team's tracking, why it matched, products, documents, data, and changes. */
 function OpportunitySections({
     match,
     detail,
     documents,
     events,
-    feedback,
-    orgId,
-    orgSlug,
-    canDecide,
+    tracking,
 }: {
     match: SearchRunMatch;
     detail: ProcessDetail | null;
     documents: SourceDocument[];
     events: ProcessEvent[];
-    feedback: Feedback | null;
-    orgId: string;
-    orgSlug: string;
-    canDecide: boolean;
+    tracking: React.ReactNode;
 }) {
     return (
         <>
@@ -237,9 +266,7 @@ function OpportunitySections({
                 <KeyFacts match={match} detail={detail} />
             </div>
 
-            <Section title="¿Le interesa?">
-                <FeedbackButtons orgId={orgId} orgSlug={orgSlug} processId={match.processId} feedback={feedback} canDecide={canDecide} />
-            </Section>
+            <Section title="Seguimiento">{tracking}</Section>
 
             {match.reasons.length > 0 ? (
                 <Section title="Por qué coincide">

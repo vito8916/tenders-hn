@@ -15,6 +15,8 @@ export const APP_EVENTS = {
     SAVED_SEARCH_CREATED: "saved_search.created",
     SAVED_SEARCH_UPDATED: "saved_search.updated",
     SAVED_SEARCH_DELETED: "saved_search.deleted",
+    // Logged by a trigger on opportunity_tracking
+    OPPORTUNITY_STATUS_CHANGED: "opportunity.status_changed",
     INVITATION_SENT: "invitation.sent",
     INVITATION_ACCEPTED: "invitation.accepted",
     INVITATION_REVOKED: "invitation.revoked",

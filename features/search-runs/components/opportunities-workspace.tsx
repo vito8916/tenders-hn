@@ -148,7 +148,7 @@ function Results({
     run,
     emptyMessage,
     params,
-    canDecide,
+    canTrack,
 }: {
     orgId: string;
     orgSlug: string;
@@ -161,7 +161,7 @@ function Results({
     run: SearchRun | null;
     emptyMessage: ReactNode;
     params: SearchParamsRecord;
-    canDecide: boolean;
+    canTrack: boolean;
 }) {
     const view = parseResultView(params);
     const { filtered, rows: pageRows, page, pageCount, facets } = applyResultView(rows, view);
@@ -215,7 +215,7 @@ function Results({
             {detail ? (
                 <DetailSheet title={formatOpportunityTitle(detail.title)}>
                     <Suspense key={detail.processId} fallback={<DetailSkeleton />}>
-                        <OpportunityDetail orgId={orgId} orgSlug={orgSlug} runId={detail.runId} match={detail} canDecide={canDecide} />
+                        <OpportunityDetail orgId={orgId} orgSlug={orgSlug} runId={detail.runId} match={detail} canTrack={canTrack} />
                     </Suspense>
                 </DetailSheet>
             ) : null}
@@ -223,18 +223,25 @@ function Results({
     );
 }
 
-const VIEW_COPY: Record<"recomendadas" | "todas" | "descartadas", { title: string; description: string }> = {
+const VIEW_COPY: Record<"recomendadas" | "todas" | "nuevas" | "seguimiento" | "descartadas", { title: string; description: string }> = {
     recomendadas: { title: "Recomendadas", description: "Las oportunidades abiertas muy relevantes para lo que vende su empresa." },
     todas: { title: "Todas", description: "Todo lo que coincide con su empresa o con sus listas, incluidas las posibles." },
+    nuevas: { title: "Nuevas", description: "Las oportunidades abiertas a las que nadie del equipo ha dado seguimiento todavía." },
+    seguimiento: {
+        title: "En seguimiento",
+        description: "Las oportunidades que su equipo evalúa, prepara o ya presentó, incluso después de que cierran.",
+    },
     descartadas: {
         title: "Descartadas",
-        description: "Lo que Licitaly clasificó como no relevante y lo que su equipo marcó «No me interesa». Puede volver a revisarlas.",
+        description: "Lo que Licitaly clasificó como no relevante y lo que su equipo descartó. Puede volver a revisarlas.",
     },
 };
 
 function emptyMessage(view: HomeView, viewSearch: ViewSearch | null, editHref: string | null): ReactNode {
     if (view.kind === "update") return "Esta actualización no encontró oportunidades.";
     if (view.kind === "descartadas") return "No hay oportunidades descartadas.";
+    if (view.kind === "nuevas") return "No hay oportunidades abiertas sin seguimiento.";
+    if (view.kind === "seguimiento") return "Todavía no hay oportunidades en seguimiento. Abra una oportunidad y elija su estado o un responsable.";
     if (view.kind === "todas") return "No hay oportunidades abiertas que coincidan con su empresa o sus listas.";
     if (!viewSearch?.latestFinished) return "Todavía no hay resultados. Aparecen aquí después de la primera actualización.";
 
@@ -271,13 +278,13 @@ export function OpportunitiesWorkspace({
     params,
     latestIngestionAt,
     canManage,
-    canDecide,
+    canTrack,
     hasActivePlan,
 }: {
     orgId: string;
     orgSlug: string;
     view: HomeView;
-    /** Recomendadas's or the list's search; null for Todas and Descartadas. */
+    /** Recomendadas's or the list's search; null for the views over every search (Todas, Nuevas, …). */
     viewSearch: ViewSearch | null;
     rows: Opportunity[];
     detailPool: Opportunity[];
@@ -289,8 +296,8 @@ export function OpportunitiesWorkspace({
     params: SearchParamsRecord;
     latestIngestionAt: string | null;
     canManage: boolean;
-    /** Whether the user may mark opportunities («Me interesa»). */
-    canDecide: boolean;
+    /** Whether the user may track opportunities (status, assignee, notes). */
+    canTrack: boolean;
     hasActivePlan: boolean;
 }) {
     const orgHref = `/organizations/${orgSlug}`;
@@ -305,7 +312,7 @@ export function OpportunitiesWorkspace({
         : view.kind === "lista" || view.kind === "update"
           ? { title: search?.name ?? "", description: null }
           : VIEW_COPY[view.kind];
-    const waitsForFirstRun = firstRun !== null && (view.kind === "recomendadas" || view.kind === "todas");
+    const waitsForFirstRun = firstRun !== null && (view.kind === "recomendadas" || view.kind === "todas" || view.kind === "nuevas");
     const latestRun = viewSearch?.latestRun ?? null;
 
     return (
@@ -393,10 +400,10 @@ export function OpportunitiesWorkspace({
                     viewHref={viewHref}
                     rows={rows}
                     detailPool={detailPool}
-                    run={snapshotRun ?? (viewSearch?.latestFinished && view.kind !== "todas" && view.kind !== "descartadas" ? viewSearch.latestFinished : null)}
+                    run={snapshotRun ?? viewSearch?.latestFinished ?? null}
                     emptyMessage={emptyMessage(view, viewSearch, editHref)}
                     params={params}
-                    canDecide={canDecide}
+                    canTrack={canTrack}
                 />
             )}
         </div>

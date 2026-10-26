@@ -11,7 +11,7 @@ import { canInviteMembers } from "@/features/organizations/rbac";
 import { getSeatsUsedService } from "@/features/billing/services";
 import { InviteTeamBanner } from "@/features/invitations/components/invite-team-banner";
 import { canManageSearches } from "@/features/saved-searches/rbac";
-import { canDecideOpportunity } from "@/features/opportunities/rbac";
+import { canTrackOpportunity } from "@/features/opportunities/rbac";
 import { getSearchLimitsService, listFilterOptionsService } from "@/features/saved-searches/services";
 import { getCompanyProfileService } from "@/features/company-profile/services";
 import { homeViewPath, type HomeView } from "../opportunities";
@@ -85,7 +85,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 	// A single seat means no other member and no pending invitation.
 	const showInviteBanner = canInviteMembers(role) && seatsUsed === 1;
 	const rows = homeViewRows(home);
-	const aggregate = view.kind === "todas" || view.kind === "descartadas";
+	const aggregate = view.kind === "todas" || view.kind === "nuevas" || view.kind === "seguimiento" || view.kind === "descartadas";
 	const updatedAt = aggregate
 		? (items
 				.filter((item) => item.search.isActive)
@@ -120,7 +120,7 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					params={query}
 					latestIngestionAt={home.latestIngestionAt}
 					canManage={canManage}
-					canDecide={canDecideOpportunity(role)}
+					canTrack={canTrackOpportunity(role)}
 					hasActivePlan={limits.hasActivePlan}
 				/>
 			</div>
@@ -133,7 +133,12 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 		<OpportunitiesPane
 			orgSlug={orgSlug}
 			current={current}
-			counts={{ recomendadas: opportunities.recomendadas.length, todas: opportunities.todas.length }}
+			counts={{
+				recomendadas: opportunities.recomendadas.length,
+				todas: opportunities.todas.length,
+				nuevas: opportunities.nuevas.length,
+				seguimiento: opportunities.seguimiento.length,
+			}}
 			lists={items
 				.filter((item) => !item.search.isDefault)
 				.map(({ search, latestFinished }) => ({
@@ -162,14 +167,14 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 					view={view}
 					viewSearch={viewItem}
 					rows={rows}
-					detailPool={[...rows, ...opportunities.todas, ...opportunities.descartadas]}
+					detailPool={[...rows, ...opportunities.todas, ...opportunities.seguimiento, ...opportunities.descartadas]}
 					snapshotRun={snapshot?.run ?? null}
 					updatedAt={updatedAt}
 					firstRun={firstRun}
 					params={query}
 					latestIngestionAt={home.latestIngestionAt}
 					canManage={canManage}
-					canDecide={canDecideOpportunity(role)}
+					canTrack={canTrackOpportunity(role)}
 					hasActivePlan={limits.hasActivePlan}
 				/>
 			</div>
@@ -180,7 +185,8 @@ async function OpportunitiesContent({ kind, params, searchParams }: { kind: View
 
 /**
  * An opportunities page (plan D7, spec 0.4 §12.1): the views and lists on the left, the view's opportunities on
- * the right. The Home (Recomendadas), Todas, Descartadas, each list, and each update render it with their view.
+ * the right. The Home (Recomendadas), Todas, Nuevas, En seguimiento, Descartadas, each list, and each update
+ * render it with their view.
  */
 export function OpportunitiesPage({ kind, params, searchParams }: { kind: ViewKind; params: ViewParams; searchParams: Promise<SearchParamsRecord> }) {
 	return (

@@ -13,9 +13,9 @@ import type { NotificationPreference } from "../schemas";
 const CATEGORY_SECTIONS = [
 	{
 		category: "searches",
-		title: "Reportes",
+		title: "Reportes y seguimiento",
 		description:
-			"Reportes de «Recomendadas» y sus listas, y cambios en las oportunidades en seguimiento. Los horarios de los reportes se eligen en Configuración › Reportes.",
+			"Reportes de «Recomendadas» y las listas que sigue, cambios y cierres próximos de las oportunidades en seguimiento, y las que le asignan. Los horarios de los reportes se eligen en Configuración › Reportes.",
 	},
 	{
 		category: "organization",
